@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: "Email is required" }, { status: 400 })
       }
 
-      const transporter = nodemailer.createTransporter({
+      const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
           user: process.env.GMAIL_USER,
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.GMAIL_USER,
