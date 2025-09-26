@@ -85,18 +85,18 @@ export default function StatsSection() {
   ]
 
   return (
-    <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-blue-900 dark:to-indigo-900 text-white relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
-        <div className="absolute top-10 left-10 w-40 h-40 rounded-full bg-white blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-purple-300 blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-blue-300 blur-3xl"></div>
+    <section className="py-16 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 dark:from-blue-900 dark:via-purple-900 dark:to-indigo-900 text-white relative overflow-hidden particle-bg">
+      {/* Enhanced Decorative elements with more vibrant colors */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+        <div className="absolute top-10 left-10 w-40 h-40 rounded-full bg-gradient-to-r from-cyan-300 to-blue-300 blur-3xl animate-pulse-glow"></div>
+        <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-gradient-to-r from-purple-300 to-pink-300 blur-3xl animate-float"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-gradient-to-r from-blue-300 to-purple-300 blur-3xl animate-spin-slow"></div>
       </div>
 
       <div className="container px-4 md:px-6 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">My Impact in Numbers</h2>
-          <p className="text-white/80 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold mb-4 gradient-text-animated neon-text">My Impact in Numbers</h2>
+          <p className="text-white/90 max-w-2xl mx-auto text-lg">
             Discover the concrete results of my expertise and commitment in design and training.
           </p>
         </div>
@@ -105,17 +105,18 @@ export default function StatsSection() {
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className={`text-center p-6 rounded-xl bg-gradient-to-br ${stat.color} bg-opacity-20 backdrop-blur-sm border border-white/10 shadow-lg`}
+              className={`text-center p-6 rounded-xl bg-gradient-to-br ${stat.color} bg-opacity-25 backdrop-blur-sm border border-white/20 shadow-xl glass card-interactive hover-lift glow-border`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
             >
-              <div className="flex justify-center mb-4 bg-white/10 p-3 rounded-full w-16 h-16 mx-auto">{stat.icon}</div>
-              <div className="text-3xl font-bold mb-2 font-playfair">
+              <div className="flex justify-center mb-4 bg-white/20 p-3 rounded-full w-16 h-16 mx-auto glow-border animate-bounce-gentle">{stat.icon}</div>
+              <div className="text-3xl font-bold mb-2 font-playfair neon-text">
                 <AnimatedCounter value={stat.count} suffix={stat.suffix} />
               </div>
-              <div className="text-white/80 font-montserrat text-sm">{stat.text}</div>
+              <div className="text-white/90 font-montserrat text-sm">{stat.text}</div>
             </motion.div>
           ))}
         </div>
