@@ -35,59 +35,65 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-950 dark:via-blue-950/20 dark:to-purple-950/20 particle-bg">
       {/* Navigation */}
-      <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-950/80 glass">
+      <header className="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-white/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-gray-950/80 glass">
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">MD</span>
+          <Link href="/" className="flex items-center gap-2 hover:scale-105 transition-transform">
+            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center shadow-lg glow-border animate-pulse-glow">
+              <span className="text-white font-bold text-sm neon-text">MD</span>
             </div>
-            <span className="text-xl font-bold tracking-tight text-blue-800 dark:text-blue-400">Mohamed Dhia</span>
+            <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-800 via-purple-600 to-pink-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-purple-400 dark:to-pink-400">Mohamed Dhia</span>
           </Link>
           <nav className="hidden gap-6 md:flex">
             <button
               onClick={() => scrollToSection("about")}
-              className="text-sm font-medium hover:text-blue-500 dark:hover:text-blue-400 transition-colors cursor-pointer"
+              className="text-sm font-medium hover:text-transparent hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:bg-clip-text transition-all duration-300 cursor-pointer relative group"
             >
               {t("about")}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></span>
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="text-sm font-medium hover:text-blue-500 dark:hover:text-blue-400 transition-colors cursor-pointer"
+              className="text-sm font-medium hover:text-transparent hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:bg-clip-text transition-all duration-300 cursor-pointer relative group"
             >
               {t("services")}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></span>
             </button>
             <button
               onClick={() => scrollToSection("graphic-design-marketing")}
-              className="text-sm font-medium hover:text-blue-500 dark:hover:text-blue-400 transition-colors cursor-pointer"
+              className="text-sm font-medium hover:text-transparent hover:bg-gradient-to-r hover:from-pink-500 hover:to-orange-500 hover:bg-clip-text transition-all duration-300 cursor-pointer relative group"
             >
               {t("design")}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 group-hover:w-full transition-all duration-300"></span>
             </button>
             <button
               onClick={() => scrollToSection("training-capacity-building")}
-              className="text-sm font-medium hover:text-blue-500 dark:hover:text-blue-400 transition-colors cursor-pointer"
+              className="text-sm font-medium hover:text-transparent hover:bg-gradient-to-r hover:from-green-500 hover:to-cyan-500 hover:bg-clip-text transition-all duration-300 cursor-pointer relative group"
             >
               {t("training")}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-cyan-500 group-hover:w-full transition-all duration-300"></span>
             </button>
             <button
               onClick={() => scrollToSection("civic-work")}
-              className="text-sm font-medium hover:text-blue-500 dark:hover:text-blue-400 transition-colors cursor-pointer"
+              className="text-sm font-medium hover:text-transparent hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:bg-clip-text transition-all duration-300 cursor-pointer relative group"
             >
               {t("civicWork")}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 group-hover:w-full transition-all duration-300"></span>
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-sm font-medium hover:text-blue-500 dark:hover:text-blue-400 transition-colors cursor-pointer"
+              className="text-sm font-medium hover:text-transparent hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 hover:bg-clip-text transition-all duration-300 cursor-pointer relative group"
             >
               {t("contact")}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-300"></span>
             </button>
           </nav>
           <div className="flex items-center gap-4">
             <LanguageToggle language={language} setLanguage={setLanguage} />
             <ThemeToggle />
             <Button
-              className="hidden md:flex bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all"
+              className="hidden md:flex bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 hover:from-blue-600 hover:via-purple-700 hover:to-pink-700 transition-all duration-300 btn-morph glow-border text-white font-semibold shadow-lg hover:shadow-xl animate-pulse-glow"
               onClick={() => scrollToSection("contact")}
             >
               {t("letsCollaborate")}
