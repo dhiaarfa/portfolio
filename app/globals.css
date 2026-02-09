@@ -1,0 +1,441 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Light mode colors - shadcn base tokens */
+  color-scheme: light dark;
+  --background: 0 0% 100%; /* Preserving existing value */
+  --foreground: 0 0% 5%; /* Preserving existing value */
+  --card: 0 0% 98%; /* Preserving existing value */
+  --card-foreground: 0 0% 5%; /* Preserving existing value */
+  --muted: 0 0% 90%; /* Preserving existing value */
+  --muted-foreground: 0 0% 45%; /* Preserving existing value */
+  --accent: 221.2 83.2% 53.3%; /* Preserving existing value */
+  --accent-foreground: 0 0% 100%; /* Preserving existing value */
+  --border: 0 0% 92%; /* Preserving existing value */
+  --radius: 1.5rem; /* Preserving existing value */
+  --primary: 0 0% 5%; /* Preserving existing value */
+  --primary-foreground: 0 0% 100%; /* Preserving existing value */
+  --secondary: 0 0% 90%; /* Preserving existing value */
+  --secondary-foreground: 0 0% 5%; /* Preserving existing value */
+  --destructive: 0 84.2% 60.2%; /* Preserving existing value */
+  --destructive-foreground: 0 0% 100%; /* Preserving existing value */
+  --popover: 0 0% 100%; /* Preserving existing value */
+  --popover-foreground: 0 0% 5%; /* Preserving existing value */
+  --input: 0 0% 92%; /* Preserving existing value */
+  --ring: 221.2 83.2% 53.3%; /* Preserving existing value */
+
+  /* Shadcn default chart colors (added from diff) */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Shadcn default sidebar colors (added from diff) */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Zia Studio brand colors */
+  --zia-green: 82.4 100% 50%;
+  --zia-lime: 82.4 100% 51%;
+  
+  /* Neon accent colors (preserving existing values) */
+  --neon-blue: 82.4 100% 50%;
+  --neon-purple: 262 83.3% 57.8%;
+  --neon-pink: 330 81.2% 60.4%;
+  --neon-green: 82.4 100% 50%;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: 0 0% 8%; /* Preserving existing value */
+  --foreground: 0 0% 95%; /* Preserving existing value */
+  --card: 0 0% 12%; /* Preserving existing value */
+  --card-foreground: 0 0% 95%; /* Preserving existing value */
+  --muted: 0 0% 25%; /* Preserving existing value */
+  --muted-foreground: 0 0% 70%; /* Preserving existing value */
+  --accent: 221.2 100% 70%; /* Preserving existing value */
+  --accent-foreground: 0 0% 8%; /* Preserving existing value */
+  --border: 0 0% 20%; /* Preserving existing value */
+  --primary: 0 0% 95%; /* Preserving existing value */
+  --primary-foreground: 0 0% 8%; /* Preserving existing value */
+  --secondary: 0 0% 25%; /* Preserving existing value */
+  --secondary-foreground: 0 0% 95%; /* Preserving existing value */
+  --destructive: 0 84.2% 60.2%; /* Preserving existing value */
+  --destructive-foreground: 0 0% 8%; /* Preserving existing value */
+  --popover: 0 0% 12%; /* Preserving existing value */
+  --popover-foreground: 0 0% 95%; /* Preserving existing value */
+  --input: 0 0% 20%; /* Preserving existing value */
+  --ring: 221.2 100% 70%; /* Preserving existing value */
+
+  /* Shadcn default chart colors (added from diff) */
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  /* Shadcn default sidebar colors (added from diff) */
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+
+  /* Neon colors in dark mode (preserving existing values) */
+  --neon-blue: 221.2 100% 70%;
+  --neon-purple: 262 100% 75%;
+  --neon-pink: 330 100% 75%;
+  --neon-green: 142.1 100% 65%;
+}
+
+@theme inline {
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50; /* Updated from diff */
+  }
+
+  html {
+    color-scheme: light dark;
+  }
+
+  body {
+    font-family: var(--font-sora), sans-serif;
+    @apply bg-background text-foreground; /* Updated from diff */
+    /* Simplified background - removed complex gradients for minimalist aesthetic */
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-sora), sans-serif;
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-6xl font-bold;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+  a,
+  button,
+  li,
+  span {
+    font-family: var(--font-poppins), system-ui, sans-serif;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection styles */
+::selection {
+  @apply bg-foreground text-background;
+}
+
+/* Theme transition utilities */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Ensure all interactive elements transition smoothly */
+button,
+a,
+input,
+textarea,
+select {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Premium Glassmorphism - Editorial Style */
+.glass {
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+.glass-premium {
+  background: rgba(20, 20, 20, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.1);
+}
+
+.glass-border {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(20, 20, 20, 0.6);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.15);
+}
+
+/* Grain/Noise Texture Overlay */
+.grain {
+  position: relative;
+  overflow: hidden;
+}
+
+.grain::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' seed='1' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 500px 500px;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/* Ambient Glow Effects */
+.glow-amber {
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.3), 0 0 40px rgba(217, 119, 6, 0.1);
+}
+
+.glow-amber-hover:hover {
+  box-shadow: 0 0 30px rgba(217, 119, 6, 0.5), 0 0 60px rgba(217, 119, 6, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-green {
+  box-shadow: 0 0 15px rgba(22, 163, 74, 0.2);
+}
+
+.soft-glow {
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3) inset, 0 0 60px rgba(217, 119, 6, 0.05);
+}
+
+/* Neon text effect */
+.neon-text {
+  text-shadow: 0 0 5px hsl(var(--zia-green), 0.7), 0 0 10px hsl(var(--zia-green), 0.5), 0 0 15px
+    hsl(var(--zia-green), 0.3);
+  transition: text-shadow 0.3s ease;
+}
+
+.neon-text-purple {
+  text-shadow: 0 0 5px rgba(var(--neon-purple), 0.7), 0 0 10px rgba(var(--neon-purple), 0.5), 0 0 15px
+    rgba(var(--neon-purple), 0.3);
+  transition: text-shadow 0.3s ease;
+}
+
+.neon-text-pink {
+  text-shadow: 0 0 5px rgba(var(--neon-pink), 0.7), 0 0 10px rgba(var(--neon-pink), 0.5), 0 0 15px
+    rgba(var(--neon-pink), 0.3);
+  transition: text-shadow 0.3s ease;
+}
+
+.neon-text-green {
+  text-shadow: 0 0 5px rgba(var(--neon-green), 0.7), 0 0 10px rgba(var(--neon-green), 0.5), 0 0 15px
+    rgba(var(--neon-green), 0.3);
+  transition: text-shadow 0.3s ease;
+}
+
+/* Neon border effect */
+.neon-border {
+  position: relative;
+}
+
+.neon-border::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: var(--radius);
+  background: linear-gradient(
+    45deg,
+    hsl(var(--zia-green)),
+    hsl(var(--neon-purple)),
+    hsl(var(--neon-pink)),
+    hsl(var(--zia-green))
+  );
+  z-index: -1;
+  animation: neon-border-animation 3s linear infinite;
+}
+
+@keyframes neon-border-animation {
+  0% {
+    filter: blur(5px);
+  }
+  50% {
+    filter: blur(7px);
+  }
+  100% {
+    filter: blur(5px);
+  }
+}
+
+/* 3D card effect */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.card-3d:hover {
+  transform: translateZ(20px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.7);
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--zia-green)), #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Modern animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px hsl(var(--zia-green), 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px hsl(var(--zia-green), 0.8), 0 0 30px hsl(var(--neon-purple), 0.6);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Modern button effects */
+.btn-modern {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-modern::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-modern:hover::before {
+  left: 100%;
+}

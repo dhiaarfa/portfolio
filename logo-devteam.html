@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTeam Logo - Version CSS</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .logo-symbol {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .variations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .variation {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .variation h3 {
+            margin: 0 0 20px 0;
+            color: #374151;
+            font-size: 16px;
+        }
+
+        /* Version verticale */
+        .logo-vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-vertical .logo-symbol {
+            width: 48px;
+            height: 48px;
+            font-size: 18px;
+        }
+
+        .logo-vertical .logo-text {
+            font-size: 24px;
+        }
+
+        /* Version monochrome */
+        .logo-mono .logo-symbol {
+            background: #374151;
+            box-shadow: 0 4px 12px rgba(55, 65, 81, 0.3);
+        }
+
+        .logo-mono .logo-text {
+            background: #374151;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Version symbole seul */
+        .logo-symbol-only {
+            width: 80px;
+            height: 80px;
+            font-size: 28px;
+            margin: 0 auto;
+        }
+
+        /* Palette de couleurs */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .color-item {
+            text-align: center;
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .color-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .color-code {
+            font-size: 10px;
+            color: #6b7280;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: #374151; margin-bottom: 40px;">DevTeam - Identité Visuelle</h1>
+    
+    <!-- Logo principal -->
+    <div class="logo-container">
+        <div class="logo-symbol">DT</div>
+        <div class="logo-text">DevTeam</div>
+    </div>
+
+    <!-- Variations du logo -->
+    <div class="variations">
+        <div class="variation">
+            <h3>Version Verticale</h3>
+            <div class="logo-vertical">
+                <div class="logo-symbol">DT</div>
+                <div class="logo-text">DevTeam</div>
+            </div>
+        </div>
+
+        <div class="variation">
+            <h3>Version Monochrome</h3>
+            <div class="logo-container logo-mono">
+                <div class="logo-symbol">DT</div>
+                <div class="logo-text">DevTeam</div>
+            </div>
+        </div>
+
+        <div class="variation">
+            <h3>Symbole Seul</h3>
+            <div class="logo-symbol logo-symbol-only">DT</div>
+        </div>
+    </div>
+
+    <!-- Palette de couleurs -->
+    <h2 style="color: #374151; margin: 40px 0 20px 0;">Palette de Couleurs</h2>
+    <div class="color-palette">
+        <div class="color-item">
+            <div class="color-swatch" style="background: #1e40af;"></div>
+            <div class="color-name">Bleu Principal</div>
+            <div class="color-code">#1e40af</div>
+        </div>
+        <div class="color-item">
+            <div class="color-swatch" style="background: #3b82f6;"></div>
+            <div class="color-name">Bleu Secondaire</div>
+            <div class="color-code">#3b82f6</div>
+        </div>
+        <div class="color-item">
+            <div class="color-swatch" style="background: #8b5cf6;"></div>
+            <div class="color-name">Violet</div>
+            <div class="color-code">#8b5cf6</div>
+        </div>
+        <div class="color-item">
+            <div class="color-swatch" style="background: #10b981;"></div>
+            <div class="color-name">Vert</div>
+            <div class="color-code">#10b981</div>
+        </div>
+        <div class="color-item">
+            <div class="color-swatch" style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);"></div>
+            <div class="color-name">Dégradé Principal</div>
+            <div class="color-code">Gradient</div>
+        </div>
+    </div>
+</body>
+</html>
