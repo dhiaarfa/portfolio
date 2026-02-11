@@ -89,8 +89,8 @@ export default function DeveloperPageClient() {
     <div className="w-full min-h-screen bg-background relative">
       <Navbar />
 
-      {/* Sticky Notes - Top Right */}
-      <div className="absolute top-24 right-4 space-y-2 pointer-events-none">
+      {/* Sticky Notes - Hidden on small screens */}
+      <div className="hidden lg:block absolute top-24 right-4 space-y-2 pointer-events-none">
         {notes.map((note) => (
           <motion.div
             key={note.id}
@@ -122,14 +122,14 @@ export default function DeveloperPageClient() {
                     <div className="text-xs font-medium tracking-wide text-muted-foreground">CONTINUOUS LEARNER</div>
                   </div>
 
-                  <div className="space-y-4">
-                    <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+                  <div className="space-y-3 md:space-y-4">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
                       Web Developer{" "}
                       <span className="bg-gradient-to-r from-[hsl(var(--zia-green))] via-emerald-500 to-teal-500 bg-clip-text text-transparent">
                         Learning by Building
                       </span>
                     </h1>
-                    <h2 className="text-3xl md:text-4xl font-light text-muted-foreground">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground">
                       Turning ideas and designs into functional, scalable web experiences.
                     </h2>
                   </div>
@@ -138,12 +138,12 @@ export default function DeveloperPageClient() {
                     I specialize in React and Next.js, building UI-focused web applications with a strong design-to-code foundation. My approach bridges design and development transforming concepts into responsive, performant solutions. Currently, I&apos;m continuously mastering full-stack fundamentals through real-world projects.
                   </p>
 
-                  <motion.div className="pt-4 flex gap-4 flex-wrap justify-center md:justify-start">
+                  <motion.div className="pt-4 flex flex-col sm:flex-row gap-3 sm:gap-4 flex-wrap justify-center md:justify-start">
                     <a
                       href={siteConfig.calendlyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-background rounded-lg font-medium hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-600 transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-background rounded-lg font-medium hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-600 transition-colors touch-manipulation"
                     >
                       Book Free 30-min Call
                     </a>
@@ -151,13 +151,14 @@ export default function DeveloperPageClient() {
                       href="https://github.com/dhiaarfa"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors touch-manipulation"
                     >
                       View GitHub
                     </a>
                     <motion.button
+                      type="button"
                       onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
-                      className="inline-flex items-center gap-2 px-6 py-3 border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors touch-manipulation"
                     >
                       Discuss a Project
                     </motion.button>
@@ -197,15 +198,15 @@ export default function DeveloperPageClient() {
             <div className="space-y-16">
               <div className="text-center space-y-4">
                 <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Experience</p>
-                <h2 className="text-4xl md:text-5xl font-bold">Building & Growing</h2>
-                <p className="text-muted-foreground text-lg">Production experience with continuous skill development</p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Building & Growing</h2>
+                <p className="text-muted-foreground text-sm sm:text-base md:text-lg">Production experience with continuous skill development</p>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
                 {projects.map((project, i) => (
                   <motion.div
                     key={i}
-                    className="p-8 rounded-3xl border-2 border-border hover:border-foreground/30 transition-all hover:bg-background space-y-4"
+                    className="p-5 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl border-2 border-border hover:border-foreground/30 transition-all hover:bg-background space-y-4"
                     whileHover={{ y: -4 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -237,9 +238,9 @@ export default function DeveloperPageClient() {
             <div className="space-y-10">
               <div className="text-center space-y-4">
                 <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Websites</p>
-                <h2 className="text-4xl md:text-5xl font-bold">Projects & websites</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Projects & websites</h2>
               </div>
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 {webSites.map((site, i) => (
                   <motion.a
                     key={site.slug}
@@ -285,10 +286,10 @@ export default function DeveloperPageClient() {
             <div className="space-y-12">
               <div className="text-center space-y-4">
                 <p className="text-xs font-medium tracking-widest opacity-70 uppercase">Technical Stack</p>
-                <h2 className="text-4xl md:text-5xl font-bold">Languages & Tools</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Languages & Tools</h2>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
                 {techStack.map((group, i) => (
                   <motion.div
                     key={i}

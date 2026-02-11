@@ -36,19 +36,19 @@ export default function AboutPage() {
               </Link>
 
               <div className="space-y-4">
-                <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                   Mohamed Dhia Arfa
                 </h1>
-                <p className="text-2xl text-muted-foreground">
+                <p className="text-xl sm:text-2xl text-muted-foreground">
                   {t("trainerDesignerDeveloper")}
                 </p>
-                <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
                   {t("aboutHeroDesc")}
                 </p>
               </div>
             </div>
-            <div className="shrink-0">
-              <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border-2 border-border shadow-xl">
+            <div className="shrink-0 flex justify-center md:justify-start">
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border-2 border-border shadow-xl">
                 <Image
                   src="/images/dhia/indoor-bomber.png"
                   alt="Mohamed Dhia Arfa"
@@ -65,8 +65,8 @@ export default function AboutPage() {
         {/* Core Values */}
         <section className="px-4 md:px-8 py-12 md:py-20 bg-card/30">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">{t("coreValues")}</h2>
-            <div className="grid md:grid-cols-4 gap-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-12">{t("coreValues")}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
                 { icon: Target, titleKey: "impactDriven", descKey: "impactDrivenDesc" },
                 { icon: Award, titleKey: "excellence", descKey: "excellenceDesc" },

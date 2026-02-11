@@ -33,7 +33,7 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 sm:h-20 flex items-center justify-between">
         {/* Left: Profile */}
         <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity min-w-fit shrink-0">
           <div className="w-12 h-12 rounded-full bg-foreground/10 border-2 border-foreground/20 flex items-center justify-center overflow-hidden flex-shrink-0">
@@ -91,7 +91,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg hover:bg-foreground/10 transition-colors md:hidden"
+            className="p-3 min-w-[44px] min-h-[44px] rounded-lg hover:bg-foreground/10 transition-colors md:hidden touch-manipulation flex items-center justify-center"
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
           >
@@ -118,9 +118,9 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-2 py-3 px-3 rounded-lg text-sm font-medium hover:bg-foreground/10 hover:text-[hsl(var(--zia-green))] transition-colors"
+                className="flex items-center gap-2 py-3 px-4 min-h-[44px] rounded-lg text-sm font-medium hover:bg-foreground/10 hover:text-[hsl(var(--zia-green))] transition-colors touch-manipulation active:bg-foreground/15"
               >
-                {item.icon && <item.icon className="w-4 h-4" />}
+                {item.icon && <item.icon className="w-4 h-4 shrink-0" />}
                 {t(item.labelKey)}
               </Link>
             ))}
@@ -129,9 +129,9 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 py-3 px-3 rounded-lg text-sm font-medium hover:bg-foreground/10 hover:text-[hsl(var(--zia-green))] transition-colors"
+              className="flex items-center gap-2 py-3 px-4 min-h-[44px] rounded-lg text-sm font-medium hover:bg-foreground/10 hover:text-[hsl(var(--zia-green))] transition-colors touch-manipulation"
             >
-              <Linkedin className="w-4 h-4" />
+              <Linkedin className="w-4 h-4 shrink-0" />
               {t("linkedin")}
             </a>
           </nav>

@@ -97,7 +97,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             placeholder="Enter your full name"
-            className="w-full px-4 py-3 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           />
         </div>
@@ -115,7 +115,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             placeholder="your.email@example.com"
-            className="w-full px-4 py-3 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           />
         </div>
@@ -131,7 +131,7 @@ export default function ContactForm() {
             value={formData.service}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           >
             <option value="design">Design Project</option>
@@ -154,7 +154,7 @@ export default function ContactForm() {
             required
             placeholder="Tell me about your project, timeline, and any specific requirements..."
             rows={5}
-            className="w-full px-4 py-3 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none"
+            className="w-full px-4 py-3 min-h-[120px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none touch-manipulation text-base"
             disabled={status === "loading"}
           />
         </div>
@@ -195,7 +195,7 @@ export default function ContactForm() {
           disabled={status === "loading" || status === "success"}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="w-full px-6 py-3 hover:bg-orange-600 disabled:bg-orange-300 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 bg-[rgba(37,195,20,1)]"
+          className="w-full px-6 py-3 min-h-[48px] hover:bg-orange-600 disabled:bg-orange-300 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 bg-[rgba(37,195,20,1)] touch-manipulation text-base"
         >
           {status === "loading" ? (
             <>

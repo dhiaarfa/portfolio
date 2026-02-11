@@ -96,7 +96,7 @@ export default function RootLayout({
           }
         `}</style>
       </head>
-      <body className={cn("bg-background text-foreground font-sans antialiased transition-colors duration-300")}>
+      <body className={cn("bg-background text-foreground font-sans antialiased transition-colors duration-300 overflow-x-hidden min-w-0")}>
         <ThemeProvider 
           attribute="class" 
           defaultTheme="system" 

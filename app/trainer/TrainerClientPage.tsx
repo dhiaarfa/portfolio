@@ -98,22 +98,22 @@ export default function TrainerClientPage() {
                     <div className="text-xs font-medium tracking-wide text-muted-foreground">CNFCPP CERTIFIED</div>
                   </div>
 
-                  <div className="space-y-4">
-                    <h1 className="text-5xl md:text-7xl font-bold leading-tight">{t("trainerHeroTitle")}</h1>
-                    <h2 className="text-3xl md:text-4xl font-light text-muted-foreground">
+                  <div className="space-y-3 md:space-y-4">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">{t("trainerHeroTitle")}</h1>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground">
                       {t("trainerHeroSubtitle")}
                     </h2>
                   </div>
 
-                  <p className="text-base md:text-lg text-muted-foreground max-w-md">
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-md">
                     {t("trainerHeroDescription")}
                   </p>
 
-                  <div className="flex flex-wrap gap-4 pt-4">
+                  <div className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 pt-4">
                     <motion.div whileHover={{ x: 4 }}>
                       <Link
                         href="#journey"
-                        className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
+                        className="inline-flex items-center justify-center gap-2 text-sm font-medium hover:gap-3 transition-all min-h-[44px] touch-manipulation"
                       >
                         {t("trainerExploreJourney")}
                         <ArrowLeft className="h-4 w-4 rotate-180" />
@@ -123,14 +123,14 @@ export default function TrainerClientPage() {
                       href={siteConfig.trainingPortfolioUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-[hsl(var(--zia-green))] hover:underline"
+                      className="inline-flex items-center justify-center gap-2 text-sm font-medium text-[hsl(var(--zia-green))] hover:underline min-h-[44px] touch-manipulation"
                     >
                       {t("viewFullTrainingPortfolio")} →
                     </a>
                     <button
                       type="button"
                       onClick={() => document.getElementById("trainer-impact")?.scrollIntoView({ behavior: "smooth" })}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-foreground/20 text-xs font-medium hover:border-[hsl(var(--zia-green))]/60 hover:text-[hsl(var(--zia-green))] transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-full border border-foreground/20 text-xs sm:text-sm font-medium hover:border-[hsl(var(--zia-green))]/60 hover:text-[hsl(var(--zia-green))] transition-colors touch-manipulation"
                     >
                       {t("impactMetrics")} ↓
                     </button>
@@ -138,7 +138,7 @@ export default function TrainerClientPage() {
                 </motion.div>
 
                 <motion.div
-                  className="hidden md:flex h-full min-h-[600px] items-center justify-center"
+                  className="flex h-full min-h-[400px] md:min-h-[600px] items-center justify-center order-first md:order-last"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
@@ -148,7 +148,7 @@ export default function TrainerClientPage() {
                     alt="Mohamed Dhia Arfa - Trainer"
                     width={400}
                     height={600}
-                    className="w-full max-w-md h-auto object-contain rounded-3xl"
+                    className="w-full max-w-xs sm:max-w-sm md:max-w-md h-auto object-contain rounded-3xl"
                     priority
                   />
                 </motion.div>
@@ -156,8 +156,8 @@ export default function TrainerClientPage() {
             </div>
           </div>
 
-          {/* Sticky Notes - Top Right Corner */}
-          <div className="absolute top-4 right-4 space-y-2">
+          {/* Sticky Notes - Hidden on mobile, shown on desktop */}
+          <div className="hidden lg:block absolute top-4 right-4 space-y-2 pointer-events-none">
             {notes.map((note) => (
               <motion.div
                 key={note.id}
@@ -182,16 +182,16 @@ export default function TrainerClientPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="text-center space-y-4">
+              <div className="text-center space-y-3 md:space-y-4">
                 <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">{t("impactMetrics")}</p>
-                <h2 className="text-4xl md:text-5xl font-bold">{t("measurableResults")}</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold px-2">{t("measurableResults")}</h2>
               </div>
 
-              <div className="grid md:grid-cols-5 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
                 {impactStats.map((stat, i) => (
                   <motion.div
                     key={i}
-                    className="relative p-4 md:p-5 rounded-3xl border border-border bg-gradient-to-br from-[hsl(var(--zia-green))]/10 to-emerald-50 flex flex-col items-start gap-1 overflow-hidden"
+                    className="relative p-4 md:p-5 rounded-2xl md:rounded-3xl border border-border bg-gradient-to-br from-[hsl(var(--zia-green))]/10 to-emerald-50 flex flex-col items-start gap-1 overflow-hidden"
                     whileHover={{ y: -4, scale: 1.02 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -265,12 +265,12 @@ export default function TrainerClientPage() {
                     transition={{ duration: 0.5, delay: i * 0.1 }}
                     viewport={{ once: true }}
                   >
-                    <div className="grid md:grid-cols-3 gap-8 items-start p-8 border border-border rounded-3xl hover:border-foreground/30 transition-all hover:bg-card">
-                      <div className="space-y-2">
-                        <p className="text-sm font-medium text-muted-foreground">YEAR</p>
-                        <h3 className="text-4xl font-bold">{milestone.year}</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 items-start p-5 sm:p-6 md:p-8 border border-border rounded-2xl md:rounded-3xl hover:border-foreground/30 transition-all hover:bg-card">
+                      <div className="space-y-1 md:space-y-2">
+                        <p className="text-xs md:text-sm font-medium text-muted-foreground">YEAR</p>
+                        <h3 className="text-3xl md:text-4xl font-bold">{milestone.year}</h3>
                       </div>
-                      <div className="space-y-4 md:col-span-2">
+                      <div className="space-y-3 md:space-y-4 md:col-span-2">
                         <h4 className="text-2xl font-bold">{milestone.title}</h4>
                         <p className="text-muted-foreground leading-relaxed">{milestone.description}</p>
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-background border border-border rounded-full text-sm font-medium">
@@ -297,8 +297,8 @@ export default function TrainerClientPage() {
             <div className="space-y-12">
               <div className="text-center space-y-4">
                 <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">{t("requestTraining")}</p>
-                <h2 className="text-4xl md:text-5xl font-bold">{t("readyToTransformLearning")}</h2>
-                <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold px-2">{t("readyToTransformLearning")}</h2>
+                <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">
                   {t("requestTrainingDesc")}
                 </p>
               </div>

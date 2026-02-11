@@ -25,9 +25,9 @@ export default function Footer() {
               href={siteConfig.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[hsl(var(--zia-green))] text-background rounded-full font-semibold hover:opacity-90 transition-opacity shrink-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-[hsl(var(--zia-green))] text-background rounded-full font-semibold hover:opacity-90 transition-opacity shrink-0 touch-manipulation w-full sm:w-auto"
             >
-              <Calendar className="h-4 w-4" />
+              <Calendar className="h-4 w-4 shrink-0" />
               {t("bookFreeConsultation")}
             </a>
           </div>
@@ -35,7 +35,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
-        <div className="grid md:grid-cols-4 gap-12 mb-12 items-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 items-start">
           {/* Brand */}
           <div className="space-y-4">
             <h3 className="font-bold text-lg">Mohamed Dhia Arfa</h3>
@@ -57,22 +57,22 @@ export default function Footer() {
             <h4 className="font-semibold text-sm uppercase tracking-wide">{t("navigationTitle")}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/" className="hover:text-foreground transition-colors">
+                <Link href="/" className="block py-2 hover:text-foreground transition-colors touch-manipulation">
                   {t("home")}
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-foreground transition-colors">
+                <Link href="/about" className="block py-2 hover:text-foreground transition-colors touch-manipulation">
                   {t("about")}
                 </Link>
               </li>
               <li>
-                <Link href="/designer" className="hover:text-foreground transition-colors">
+                <Link href="/designer" className="block py-2 hover:text-foreground transition-colors touch-manipulation">
                   {t("design")}
                 </Link>
               </li>
               <li>
-                <Link href="/trainer" className="hover:text-foreground transition-colors">
+                <Link href="/trainer" className="block py-2 hover:text-foreground transition-colors touch-manipulation">
                   {t("training")}
                 </Link>
               </li>
@@ -81,13 +81,13 @@ export default function Footer() {
                   href={siteConfig.trainingPortfolioUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors"
+                  className="block py-2 hover:text-foreground transition-colors touch-manipulation"
                 >
                   {t("trainingPortfolio")}
                 </a>
               </li>
               <li>
-                <Link href="/developer" className="hover:text-foreground transition-colors">
+                <Link href="/developer" className="block py-2 hover:text-foreground transition-colors touch-manipulation">
                   {t("webDevelopment")}
                 </Link>
               </li>
@@ -96,7 +96,7 @@ export default function Footer() {
                   href={siteConfig.calendlyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors"
+                  className="block py-2 hover:text-foreground transition-colors touch-manipulation"
                 >
                   {t("bookConsultation")}
                 </a>

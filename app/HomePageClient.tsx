@@ -139,8 +139,8 @@ export default function HomePageClient() {
       {/* Hero Section */}
       <section className="w-full min-h-[calc(100vh-5rem)] flex items-center justify-center py-16 md:py-0 px-4 md:px-8 pt-20 relative overflow-hidden">
         <div className="max-w-6xl mx-auto w-full flex flex-col items-center md:items-stretch">
-          {/* Sticky Notes - Below Navbar */}
-          <div className="absolute top-28 right-4 space-y-2 pointer-events-none">
+          {/* Sticky Notes - Hidden on mobile, shown on desktop */}
+          <div className="hidden lg:block absolute top-28 right-4 space-y-2 pointer-events-none">
             {notes.slice(0, 2).map((note) => (
               <motion.div
                 key={note.id}
@@ -166,10 +166,10 @@ export default function HomePageClient() {
                 <div></div>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 <div>
-                  <h1 className="text-5xl md:text-7xl font-bold leading-tight">{t("hello")}</h1>
-                  <h2 className="text-3xl md:text-5xl font-bold mt-4 leading-tight">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">{t("hello")}</h1>
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-3 md:mt-4 leading-tight">
                     {t("homeHeadlinePrefix")}{" "}
                     <span className="bg-gradient-to-r from-[hsl(var(--zia-green))] via-emerald-500 to-teal-500 bg-clip-text text-transparent">
                       {t("homeHeadlineHighlight")}
@@ -178,46 +178,46 @@ export default function HomePageClient() {
                 </div>
 
                 {/* Description with better spacing */}
-                <p className="text-base md:text-lg text-muted-foreground max-w-lg leading-relaxed mx-auto md:mx-0">
+                <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-lg leading-relaxed mx-auto md:mx-0">
                   {t("heroDescription")}
                 </p>
               </div>
 
               {/* CTA Buttons */}
-              <motion.div className="flex flex-wrap gap-4 pt-6 justify-center md:justify-start">
+              <motion.div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-4 md:pt-6 justify-center md:justify-start">
                 <a
                   href={siteConfig.calendlyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[hsl(var(--zia-green))] text-white rounded-lg font-medium hover:opacity-90 transition-all active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-[hsl(var(--zia-green))] text-white rounded-lg font-medium hover:opacity-90 transition-all active:scale-[0.98] touch-manipulation"
                 >
                   <Calendar className="w-4 h-4" />
-                  {t("bookFreeConsultation")}
+                  <span className="text-sm sm:text-base">{t("bookFreeConsultation")}</span>
                 </a>
                 <a
                   href="#roles"
-                  className="inline-flex items-center gap-2 px-6 py-3 border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors touch-manipulation"
                 >
-                  {t("exploreMyWork")}
+                  <span className="text-sm sm:text-base">{t("exploreMyWork")}</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
                   href="/about"
-                  className="inline-flex items-center gap-2 px-6 py-3 border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors touch-manipulation"
                 >
-                  {t("learnMore")}
+                  <span className="text-sm sm:text-base">{t("learnMore")}</span>
                 </a>
               </motion.div>
             </motion.div>
 
             {/* Right: Professional Photo */}
             <motion.div
-              className="flex justify-center relative w-full"
+              className="flex justify-center relative w-full order-first md:order-last"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="relative w-full max-w-sm">
+              <div className="relative w-full max-w-xs sm:max-w-sm">
                 <div className="aspect-square rounded-2xl overflow-hidden border-2 border-foreground/10 shadow-lg bg-background">
                   <Image
                     src="/images/photo-dhia.png"
@@ -237,18 +237,18 @@ export default function HomePageClient() {
       {/* Role Cards Section */}
       <section id="roles" className="w-full py-12 md:py-16 px-4 md:px-8 bg-foreground/2">
         <div className="max-w-6xl mx-auto w-full">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">{t("myExpertise")}</h2>
-          <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-3 md:mb-4 px-2">{t("myExpertise")}</h2>
+          <p className="text-center text-sm sm:text-base text-muted-foreground mb-10 md:mb-16 max-w-2xl mx-auto px-2">
             {t("myExpertiseSubtitle")}
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8 justify-items-center md:justify-items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {roles.map((role, index) => {
               const Icon = role.icon
               return (
                 <motion.div
                   key={role.slug}
-                  className="group p-8 rounded-2xl bg-background border border-foreground/10 hover:border-[hsl(var(--zia-green))]/30 transition-all w-full max-w-md md:max-w-none"
+                  className="group p-6 md:p-8 rounded-2xl bg-background border border-foreground/10 hover:border-[hsl(var(--zia-green))]/30 transition-all w-full"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -267,9 +267,9 @@ export default function HomePageClient() {
 
                   <p className="text-sm text-muted-foreground mb-6">{t(role.descriptionKey)}</p>
 
-                  <div className="flex gap-4 mb-6">
+                  <div className="flex flex-wrap gap-2 md:gap-4 mb-4 md:mb-6">
                     {role.stats.map((stat) => (
-                      <span key={stat} className="text-xs font-medium px-3 py-1 bg-foreground/5 rounded-full">
+                      <span key={stat} className="text-xs font-medium px-2 md:px-3 py-1 bg-foreground/5 rounded-full whitespace-nowrap">
                         {stat}
                       </span>
                     ))}
@@ -277,7 +277,7 @@ export default function HomePageClient() {
 
                   <Link
                     href={`/${role.slug}`}
-                    className="text-sm font-medium text-[hsl(var(--zia-green))] hover:text-[hsl(var(--zia-green))]/80 inline-flex items-center gap-2"
+                    className="text-sm font-medium text-[hsl(var(--zia-green))] hover:text-[hsl(var(--zia-green))]/80 inline-flex items-center gap-2 min-h-[44px] touch-manipulation"
                   >
                     {t(role.cta)}
                     <ArrowRight className="w-3 h-3" />
@@ -288,10 +288,10 @@ export default function HomePageClient() {
           </div>
         </div>
         {/* Scroll CTA to stats/services */}
-        <div className="max-w-6xl mx-auto w-full mt-10 flex justify-center">
+        <div className="max-w-6xl mx-auto w-full mt-8 md:mt-10 flex justify-center">
           <button
             onClick={() => document.getElementById("stats-section")?.scrollIntoView({ behavior: "smooth" })}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-foreground/20 bg-background/80 text-xs font-medium hover:border-[hsl(var(--zia-green))]/60 hover:text-[hsl(var(--zia-green))] transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] rounded-full border border-foreground/20 bg-background/80 text-xs sm:text-sm font-medium hover:border-[hsl(var(--zia-green))]/60 hover:text-[hsl(var(--zia-green))] transition-colors touch-manipulation"
           >
             {t("exploreMyWork")} ↓
           </button>

@@ -27,7 +27,7 @@ export default function WhatsAppButton() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.8, type: "spring", stiffness: 260, damping: 20 }}
-        className="fixed bottom-24 left-6 md:left-8 z-40 w-14 h-14 rounded-full bg-[#1769FF] text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
+        className="fixed bottom-24 left-4 md:left-8 z-40 w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-[#1769FF] text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation"
         aria-label="Open Behance portfolio"
         title="View Behance portfolio"
       >
@@ -48,7 +48,7 @@ export default function WhatsAppButton() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1, type: "spring", stiffness: 260, damping: 20 }}
-        className="fixed bottom-8 left-6 md:left-8 z-40 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
+        className="fixed bottom-8 left-4 md:left-8 z-40 w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-[#25D366] text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation"
         aria-label="Contact on WhatsApp"
         title="Chat on WhatsApp"
       >

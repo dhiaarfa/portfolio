@@ -53,10 +53,10 @@ export default function FAQSection() {
           className="text-center mb-12"
         >
           <p className="text-sm font-medium text-[hsl(var(--zia-green))] mb-2">FAQ</p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight px-2">
             Frequently Asked Questions
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-2">
             Quick answers to common questions. Still have questions?{" "}
             <a href="#contact" className="text-[hsl(var(--zia-green))] hover:underline font-medium">
               Get in touch

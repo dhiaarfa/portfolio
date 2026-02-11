@@ -414,10 +414,10 @@ export default function DesignerPageClient() {
                   <div className="flex justify-center md:justify-start">
                     <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/222-u48A4T9GJlR5FkrkiUgVmcx3GY05RE.png" alt="Zia Studio" width={160} height={160} className="h-36 w-auto object-contain" priority />
                   </div>
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-2 leading-tight">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-2 leading-tight">
                     Zia Studio
                   </h1>
-                  <p className="text-xl md:text-2xl text-accent font-semibold mb-4">
+                  <p className="text-lg sm:text-xl md:text-2xl text-accent font-semibold mb-4">
                     Creative Design Studio
                   </p>
                   <p className="text-base md:text-lg text-muted-foreground max-w-xl mb-4 mx-auto md:mx-0">
@@ -438,7 +438,7 @@ export default function DesignerPageClient() {
                 <motion.div whileHover={{ scale: 1.05 }} className="flex justify-center md:justify-start">
                   <Link
                     href="#gallery"
-                    className="inline-flex items-center gap-2 px-6 py-3 border border-foreground rounded-full font-medium hover:bg-foreground hover:text-background transition-all"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-foreground rounded-full font-medium hover:bg-foreground hover:text-background transition-all touch-manipulation"
                   >
                     See Work
                     <ArrowLeft className="h-4 w-4 rotate-180" />
@@ -448,7 +448,7 @@ export default function DesignerPageClient() {
                   <button
                     type="button"
                     onClick={() => document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" })}
-                    className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-foreground/20 bg-background/80 text-xs font-medium hover:border-[hsl(var(--zia-green))]/60 hover:text-[hsl(var(--zia-green))] transition-colors"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] rounded-full border border-foreground/20 bg-background/80 text-xs font-medium hover:border-[hsl(var(--zia-green))]/60 hover:text-[hsl(var(--zia-green))] transition-colors touch-manipulation"
                   >
                     View featured work ↓
                   </button>
@@ -476,8 +476,8 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        {/* Sticky Notes - Top Right Corner */}
-        <div className="absolute top-4 right-4 space-y-0 my-[85px] pointer-events-none">
+        {/* Sticky Notes - Hidden on small screens */}
+        <div className="hidden lg:block absolute top-4 right-4 space-y-0 my-[85px] pointer-events-none">
           {notes.slice(0, 2).map((note) => (
             <motion.div
               key={note.id}
@@ -492,11 +492,11 @@ export default function DesignerPageClient() {
         </div>
 
         {/* Zia Studio brand strip – dark background for readability */}
-        <section className="w-full py-14 md:py-20 px-4 md:px-8 bg-[hsl(var(--zia-green))]">
+        <section className="w-full py-10 sm:py-14 md:py-20 px-4 md:px-8 bg-[hsl(var(--zia-green))]">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-2xl md:text-4xl font-bold text-white tracking-tight">Creative, done right</p>
-            <p className="text-white/95 text-lg md:text-xl mt-3 font-medium">Thoughtful branding and visual design</p>
-            <div className="flex justify-center gap-8 mt-8">
+            <p className="text-xl sm:text-2xl md:text-4xl font-bold text-white tracking-tight px-2">Creative, done right</p>
+            <p className="text-white/95 text-base sm:text-lg md:text-xl mt-3 font-medium">Thoughtful branding and visual design</p>
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-6 md:mt-8">
               <a href={siteConfig.ziaStudioLinkedIn} target="_blank" rel="noopener noreferrer" className="text-white font-medium text-sm underline underline-offset-4 hover:no-underline">
                 Zia Studio on LinkedIn
               </a>
@@ -519,15 +519,15 @@ export default function DesignerPageClient() {
             >
               <div className="space-y-4">
                 <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">My Approach</p>
-                <h2 className="text-4xl md:text-5xl font-bold">Design Philosophy</h2>
-                <p className="text-muted-foreground text-lg max-w-3xl">Every project is guided by core principles balancing creativity with strategy, aesthetics with impact.</p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Design Philosophy</h2>
+                <p className="text-muted-foreground text-base md:text-lg max-w-3xl">Every project is guided by core principles balancing creativity with strategy, aesthetics with impact.</p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 {designPhilosophy.map((item, i) => (
                   <motion.div
                     key={i}
-                    className="p-8 rounded-3xl border-2 border-[hsl(var(--zia-green))]/20 hover:border-[hsl(var(--zia-green))]/50 transition-all hover:bg-[hsl(var(--zia-green))]/5 space-y-4 backdrop-blur-sm"
+                    className="p-5 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl border-2 border-[hsl(var(--zia-green))]/20 hover:border-[hsl(var(--zia-green))]/50 transition-all hover:bg-[hsl(var(--zia-green))]/5 space-y-4 backdrop-blur-sm"
                     whileHover={{ y: -4, scale: 1.02 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -556,7 +556,7 @@ export default function DesignerPageClient() {
             >
               <div className="space-y-4">
                 <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Portfolio</p>
-                <h2 className="text-4xl md:text-5xl font-bold">Featured Work</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Featured Work</h2>
               </div>
 
               {/* Gallery by importance: primary = logos/identity (larger), secondary = posters/campaigns (smaller) */}

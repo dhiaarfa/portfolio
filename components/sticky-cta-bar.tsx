@@ -53,14 +53,14 @@ export default function StickyCtaBar() {
                 href={siteConfig.calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[hsl(var(--zia-green))] text-white text-sm font-medium hover:opacity-90 transition-all duration-200 active:scale-95"
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-lg bg-[hsl(var(--zia-green))] text-white text-sm font-medium hover:opacity-90 transition-all duration-200 active:scale-95 touch-manipulation"
               >
                 <Calendar className="w-4 h-4" />
                 Book Now
               </a>
               <button
                 onClick={() => setDismissed(true)}
-                className="p-1.5 rounded-full hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+                className="p-2.5 min-w-[44px] min-h-[44px] rounded-full hover:bg-muted text-muted-foreground hover:text-foreground transition-colors touch-manipulation flex items-center justify-center"
                 aria-label="Dismiss"
               >
                 <span className="text-lg leading-none">×</span>
