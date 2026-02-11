@@ -1,19 +1,19 @@
 {
-  "name": "Mohamed Dhia Arfa - Portfolio",
+  "name": "Mohamed Dhia Arfa | Designer • Trainer • Developer",
   "short_name": "Mohamed Dhia",
-  "description": "Portfolio professionnel de Mohamed Dhia Arfa - Designer graphique et formateur",
+  "description": "Portfolio of Mohamed Dhia Arfa - Graphic Designer, Trainer & Web Developer",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#1e40af",
+  "theme_color": "#25c319",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/favicon-green-portrait.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/favicon-green-portrait.png",
       "sizes": "512x512",
       "type": "image/png"
     }

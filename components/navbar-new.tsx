@@ -1,29 +1,30 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Search, Palette, Code2, BookOpen, Linkedin, Globe } from "lucide-react"
+import { Search, Palette, Code2, BookOpen, Linkedin, Menu, X } from "lucide-react"
 import { motion } from "framer-motion"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { LanguageToggle } from "@/components/language-toggle"
+import { useLanguage } from "@/components/language-provider"
+import { siteConfig } from "@/lib/site-config"
+
+const navLinks = [
+  { href: "/", labelKey: "home" },
+  { href: "/about", labelKey: "about" },
+  { href: "/designer", labelKey: "design", icon: Palette },
+  { href: "/trainer", labelKey: "training", icon: BookOpen },
+  { href: "/developer", labelKey: "webDevelopment", icon: Code2 },
+] as const
+
+const greenPortraitSrc = "/images/photo-dhia.png"
 
 export default function Navbar() {
-  const [language, setLanguage] = useState("en")
-  const [mounted, setMounted] = useState(false)
+  const { language, setLanguage, t } = useLanguage()
   const [searchOpen, setSearchOpen] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-    const savedLang = localStorage.getItem("language") || "en"
-    setLanguage(savedLang)
-  }, [])
-
-  const handleLanguageChange = (lang: string) => {
-    setLanguage(lang)
-    localStorage.setItem("language", lang)
-    document.documentElement.lang = lang
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr"
-  }
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const profileSrc = greenPortraitSrc
 
   return (
     <motion.nav
@@ -33,11 +34,11 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-        {/* Left: Profile Circle with Name */}
-        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity min-w-fit">
+        {/* Left: Profile */}
+        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity min-w-fit shrink-0">
           <div className="w-12 h-12 rounded-full bg-foreground/10 border-2 border-foreground/20 flex items-center justify-center overflow-hidden flex-shrink-0">
             <div className="w-full h-full relative">
-              <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo-dhia-%282%29-ar6Th0hlC8l3coCAbXxlnP5fDflNkN.png" alt="Mohamed Dhia Arfa" fill className="object-cover" priority />
+              <Image src={profileSrc} alt="Mohamed Dhia Arfa" fill className="object-cover" priority sizes="48px" />
             </div>
           </div>
           <div className="hidden sm:flex flex-col leading-tight">
@@ -46,49 +47,26 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Center: Navigation Links + Search */}
+        {/* Center: Navigation Links + LinkedIn / Search */}
         <div className="hidden md:flex items-center gap-6 flex-1 justify-center">
-          <Link
-            href="/"
-            className="text-sm font-medium hover:text-[hsl(var(--zia-green))] transition-colors flex items-center gap-1.5"
-          >
-            <span className="text-xs">Home</span>
-          </Link>
-          <Link
-            href="/about"
-            className="text-sm font-medium hover:text-[hsl(var(--zia-green))] transition-colors flex items-center gap-1.5"
-          >
-            <span className="text-xs">About</span>
-          </Link>
-          <Link
-            href="/designer"
-            className="text-sm font-medium hover:text-[hsl(var(--zia-green))] transition-colors flex items-center gap-1.5"
-          >
-            <Palette className="w-3.5 h-3.5" />
-            <span className="text-xs">Graphic Designer</span>
-          </Link>
-          <Link
-            href="/trainer"
-            className="text-sm font-medium hover:text-[hsl(var(--zia-green))] transition-colors flex items-center gap-1.5"
-          >
-            <BookOpen className="w-3.5 h-3.5" />
-            <span className="text-xs">Trainer</span>
-          </Link>
-          <Link
-            href="/developer"
-            className="text-sm font-medium hover:text-[hsl(var(--zia-green))] transition-colors flex items-center gap-1.5"
-          >
-            <Code2 className="w-3.5 h-3.5" />
-            <span className="text-xs">Web Dev Enthusiast</span>
-          </Link>
+          {navLinks.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-sm font-medium hover:text-[hsl(var(--zia-green))] transition-colors flex items-center gap-1.5"
+            >
+              {item.icon && <item.icon className="w-3.5 h-3.5" />}
+              <span className="text-xs">{t(item.labelKey)}</span>
+            </Link>
+          ))}
           <a
-            href="https://www.linkedin.com/in/dhia-/"
+            href={siteConfig.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-medium hover:text-[hsl(var(--zia-green))] transition-colors flex items-center gap-1.5"
           >
             <Linkedin className="w-3.5 h-3.5" />
-            <span className="text-xs">LinkedIn</span>
+            <span className="text-xs">{t("linkedin")}</span>
           </a>
 
           {searchOpen && (
@@ -108,8 +86,17 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Right: Search + Language Toggle + Theme Toggle */}
-        <div className="flex items-center gap-3">
+        {/* Right: Mobile menu + Search + Language + Theme */}
+        <div className="flex items-center gap-2 md:gap-3">
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded-lg hover:bg-foreground/10 transition-colors md:hidden"
+            aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
           <button
             onClick={() => setSearchOpen(!searchOpen)}
             className="p-2 rounded-full hover:bg-foreground/10 transition-colors hidden md:flex"
@@ -117,39 +104,39 @@ export default function Navbar() {
           >
             <Search className="w-5 h-5" />
           </button>
-
-          {/* Language Selector */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="p-2 rounded-full hover:bg-foreground/10 active:bg-foreground/20 transition-all duration-200 cursor-pointer" aria-label="Change language">
-                <Globe className="w-5 h-5" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem
-                onClick={() => handleLanguageChange("en")}
-                className={language === "en" ? "bg-[hsl(var(--zia-green))]/10" : ""}
-              >
-                🇺🇸 English
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => handleLanguageChange("ar")}
-                className={language === "ar" ? "bg-[hsl(var(--zia-green))]/10" : ""}
-              >
-                🇸🇦 العربية
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => handleLanguageChange("fr")}
-                className={language === "fr" ? "bg-[hsl(var(--zia-green))]/10" : ""}
-              >
-                🇫🇷 Français
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-
+          <LanguageToggle language={language} setLanguage={setLanguage} />
+          <ThemeToggle />
         </div>
       </div>
+
+      {/* Mobile menu dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg">
+          <nav className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
+            {navLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 py-3 px-3 rounded-lg text-sm font-medium hover:bg-foreground/10 hover:text-[hsl(var(--zia-green))] transition-colors"
+              >
+                {item.icon && <item.icon className="w-4 h-4" />}
+                {t(item.labelKey)}
+              </Link>
+            ))}
+            <a
+              href={siteConfig.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 py-3 px-3 rounded-lg text-sm font-medium hover:bg-foreground/10 hover:text-[hsl(var(--zia-green))] transition-colors"
+            >
+              <Linkedin className="w-4 h-4" />
+              {t("linkedin")}
+            </a>
+          </nav>
+        </div>
+      )}
     </motion.nav>
   )
 }

@@ -12,8 +12,8 @@
   --card-foreground: 0 0% 5%; /* Preserving existing value */
   --muted: 0 0% 90%; /* Preserving existing value */
   --muted-foreground: 0 0% 45%; /* Preserving existing value */
-  --accent: 221.2 83.2% 53.3%; /* Preserving existing value */
-  --accent-foreground: 0 0% 100%; /* Preserving existing value */
+  --accent: var(--zia-green);
+  --accent-foreground: 0 0% 5%;
   --border: 0 0% 92%; /* Preserving existing value */
   --radius: 1.5rem; /* Preserving existing value */
   --primary: 0 0% 5%; /* Preserving existing value */
@@ -25,7 +25,7 @@
   --popover: 0 0% 100%; /* Preserving existing value */
   --popover-foreground: 0 0% 5%; /* Preserving existing value */
   --input: 0 0% 92%; /* Preserving existing value */
-  --ring: 221.2 83.2% 53.3%; /* Preserving existing value */
+  --ring: var(--zia-green);
 
   /* Shadcn default chart colors (added from diff) */
   --chart-1: oklch(0.646 0.222 41.116);
@@ -44,38 +44,38 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  /* Zia Studio brand colors */
-  --zia-green: 82.4 100% 50%;
-  --zia-lime: 82.4 100% 51%;
-  
+  /* Zia Studio brand colors – brighter but still readable with white text */
+  --zia-green: 142 70% 45%;
+  --zia-lime: 142 70% 50%;
+
   /* Neon accent colors (preserving existing values) */
   --neon-blue: 82.4 100% 50%;
   --neon-purple: 262 83.3% 57.8%;
   --neon-pink: 330 81.2% 60.4%;
-  --neon-green: 82.4 100% 50%;
+  --neon-green: 142 75% 50%;
 }
 
 .dark {
   color-scheme: dark;
-  --background: 0 0% 8%; /* Preserving existing value */
-  --foreground: 0 0% 95%; /* Preserving existing value */
-  --card: 0 0% 12%; /* Preserving existing value */
-  --card-foreground: 0 0% 95%; /* Preserving existing value */
-  --muted: 0 0% 25%; /* Preserving existing value */
-  --muted-foreground: 0 0% 70%; /* Preserving existing value */
-  --accent: 221.2 100% 70%; /* Preserving existing value */
-  --accent-foreground: 0 0% 8%; /* Preserving existing value */
-  --border: 0 0% 20%; /* Preserving existing value */
-  --primary: 0 0% 95%; /* Preserving existing value */
-  --primary-foreground: 0 0% 8%; /* Preserving existing value */
-  --secondary: 0 0% 25%; /* Preserving existing value */
-  --secondary-foreground: 0 0% 95%; /* Preserving existing value */
-  --destructive: 0 84.2% 60.2%; /* Preserving existing value */
-  --destructive-foreground: 0 0% 8%; /* Preserving existing value */
-  --popover: 0 0% 12%; /* Preserving existing value */
-  --popover-foreground: 0 0% 95%; /* Preserving existing value */
-  --input: 0 0% 20%; /* Preserving existing value */
-  --ring: 221.2 100% 70%; /* Preserving existing value */
+  --background: 0 0% 7%;
+  --foreground: 0 0% 96%;
+  --card: 0 0% 11%;
+  --card-foreground: 0 0% 96%;
+  --muted: 0 0% 22%;
+  --muted-foreground: 0 0% 72%;
+  --accent: var(--zia-green);
+  --accent-foreground: 0 0% 7%;
+  --border: 0 0% 18%;
+  --primary: 0 0% 96%;
+  --primary-foreground: 0 0% 7%;
+  --secondary: 0 0% 22%;
+  --secondary-foreground: 0 0% 96%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 7%;
+  --popover: 0 0% 11%;
+  --popover-foreground: 0 0% 96%;
+  --input: 0 0% 18%;
+  --ring: var(--zia-green);
 
   /* Shadcn default chart colors (added from diff) */
   --chart-1: oklch(0.488 0.243 264.376);
@@ -284,8 +284,8 @@ select {
 
 /* Neon text effect */
 .neon-text {
-  text-shadow: 0 0 5px hsl(var(--zia-green), 0.7), 0 0 10px hsl(var(--zia-green), 0.5), 0 0 15px
-    hsl(var(--zia-green), 0.3);
+  text-shadow: 0 0 5px hsl(var(--zia-green) / 0.7), 0 0 10px hsl(var(--zia-green) / 0.5), 0 0 15px
+    hsl(var(--zia-green) / 0.3);
   transition: text-shadow 0.3s ease;
 }
 
@@ -394,13 +394,27 @@ select {
   animation: float 6s ease-in-out infinite;
 }
 
+/* Testimonials ticker */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  animation: ticker 40s linear infinite;
+}
+
 @keyframes glow {
   0%,
   100% {
-    box-shadow: 0 0 5px hsl(var(--zia-green), 0.5);
+    box-shadow: 0 0 5px hsl(var(--zia-green) / 0.5);
   }
   50% {
-    box-shadow: 0 0 20px hsl(var(--zia-green), 0.8), 0 0 30px hsl(var(--neon-purple), 0.6);
+    box-shadow: 0 0 20px hsl(var(--zia-green) / 0.8), 0 0 30px hsl(var(--neon-purple) / 0.6);
   }
 }
 
@@ -439,3 +453,20 @@ select {
 .btn-modern:hover::before {
   left: 100%;
 }
+
+/* Scroll reveal - fade up animation */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+

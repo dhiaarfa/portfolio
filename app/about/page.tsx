@@ -1,40 +1,63 @@
-'use client'
+"use client"
 
-import Link from 'next/link'
-import { ArrowLeft, Award, Briefcase, BookOpen, Target } from 'lucide-react'
-import Navbar from '@/components/navbar-new'
-import Footer from '@/components/footer'
-import { motion } from 'framer-motion'
+import Link from "next/link"
+import Image from "next/image"
+import { ArrowLeft, Award, Briefcase, BookOpen, Target } from "lucide-react"
+import Navbar from "@/components/navbar-new"
+import Footer from "@/components/footer"
+import { motion } from "framer-motion"
+import { useLanguage } from "@/components/language-provider"
 
 export default function AboutPage() {
+  const { t } = useLanguage()
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
       <div className="pt-20">
         {/* Hero Section */}
-        <section className="px-4 md:px-8 py-12 md:py-20 max-w-6xl mx-auto">
+        <section className="relative px-4 md:px-8 py-12 md:py-20 max-w-6xl mx-auto overflow-hidden">
+          {/* Zia-inspired layered background */}
+          <div className="pointer-events-none absolute -right-32 -top-24 w-80 h-80 bg-[hsl(var(--zia-green))]/15 rounded-full blur-3xl" />
+          <div className="pointer-events-none absolute -left-40 bottom-0 w-72 h-72 bg-[hsl(var(--zia-green))]/10 rounded-full blur-3xl" />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12"
           >
-            <Link href="/" className="inline-flex items-center gap-2 text-accent hover:opacity-80 transition-opacity">
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back to Home</span>
-            </Link>
+            <div className="space-y-6 flex-1">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 text-accent hover:opacity-80 transition-opacity"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span>{t("backToHome")}</span>
+              </Link>
 
-            <div className="space-y-4">
-              <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-                Mohamed Dhia Arfa
-              </h1>
-              <p className="text-2xl text-muted-foreground">
-                Trainer, Designer & Developer
-              </p>
-              <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                A multi-disciplinary professional passionate about youth development, creative design, and building meaningful digital experiences. With 7+ years of experience across training, graphic design, and web development, I'm dedicated to creating impact through education and innovation.
-              </p>
+              <div className="space-y-4">
+                <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+                  Mohamed Dhia Arfa
+                </h1>
+                <p className="text-2xl text-muted-foreground">
+                  {t("trainerDesignerDeveloper")}
+                </p>
+                <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                  {t("aboutHeroDesc")}
+                </p>
+              </div>
+            </div>
+            <div className="shrink-0">
+              <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border-2 border-border shadow-xl">
+                <Image
+                  src="/images/dhia/indoor-bomber.png"
+                  alt="Mohamed Dhia Arfa"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 224px, 288px"
+                  priority
+                />
+              </div>
             </div>
           </motion.div>
         </section>
@@ -42,24 +65,24 @@ export default function AboutPage() {
         {/* Core Values */}
         <section className="px-4 md:px-8 py-12 md:py-20 bg-card/30">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">Core Values</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12">{t("coreValues")}</h2>
             <div className="grid md:grid-cols-4 gap-6">
               {[
-                { icon: Target, title: 'Impact Driven', description: 'Creating meaningful change in every project' },
-                { icon: Award, title: 'Excellence', description: 'Committed to highest quality in all endeavors' },
-                { icon: BookOpen, title: 'Continuous Learning', description: 'Always evolving and mastering new skills' },
-                { icon: Briefcase, title: 'Professional', description: 'Integrity and dedication in every interaction' },
+                { icon: Target, titleKey: "impactDriven", descKey: "impactDrivenDesc" },
+                { icon: Award, titleKey: "excellence", descKey: "excellenceDesc" },
+                { icon: BookOpen, titleKey: "continuousLearning", descKey: "continuousLearningDesc" },
+                { icon: Briefcase, titleKey: "professional", descKey: "professionalDesc" },
               ].map((value, i) => (
                 <motion.div
-                  key={i}
+                  key={value.titleKey}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="space-y-3 p-6 rounded-lg border border-border hover:border-accent/50 transition-colors"
                 >
                   <value.icon className="h-8 w-8 text-accent" />
-                  <h3 className="font-bold text-lg">{value.title}</h3>
-                  <p className="text-muted-foreground text-sm">{value.description}</p>
+                  <h3 className="font-bold text-lg">{t(value.titleKey)}</h3>
+                  <p className="text-muted-foreground text-sm">{t(value.descKey)}</p>
                 </motion.div>
               ))}
             </div>
@@ -161,12 +184,13 @@ export default function AboutPage() {
             </div>
 
             {/* Impact Statistics */}
-            <div className="mb-16 grid md:grid-cols-4 gap-6 p-8 bg-card/50 rounded-lg border border-border">
+            <div className="mb-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 p-8 bg-card/50 rounded-lg border border-border">
               {[
-                { label: 'Learners Trained', value: '1000+' },
+                { label: 'Participants Trained', value: '990+' },
                 { label: 'Training Hours', value: '450+' },
+                { label: 'Facilitation Hours', value: '30+' },
+                { label: 'Training Cycles Supervised', value: '10+' },
                 { label: 'Years Experience', value: '7+' },
-                { label: 'Events Delivered', value: '70+' },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="text-3xl md:text-4xl font-bold text-accent mb-2">{stat.value}</div>
@@ -252,7 +276,8 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold">Let's Connect</h2>
             <p className="text-lg text-muted-foreground">
-              Whether you're interested in training, design collaboration, or development work, I'd love to hear from you.
+              Whether you're interested in training, design collaboration, or development work, I'd love to hear from
+              you.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a

@@ -3,39 +3,59 @@
 import { motion } from "framer-motion"
 import { Award } from "lucide-react"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useLanguage } from "@/components/language-provider"
 
 export default function CertificationsSection() {
-  const [language, setLanguage] = useState("en")
-
-  useEffect(() => {
-    const savedLang = localStorage.getItem("language") || "en"
-    setLanguage(savedLang)
-  }, [])
+  const { t, language } = useLanguage()
 
   const certifications = [
     {
-      title: language === "fr" ? "Programme Training Youth Trainers (TYT)" : language === "ar" ? "برنامج تدريب المدربين الشباب (TYT)" : "Training Youth Trainers (TYT) Program",
-      organization: language === "fr" ? "Association Youth Clubs" : language === "ar" ? "جمعية Youth Clubs" : "Association Youth Clubs",
+      title: t("certTyT"),
+      organization: t("certOrgYouthClubs"),
       year: "2022",
       logo: "/images/logo-tyt-full-color.png",
     },
     {
-      title: language === "fr" ? "Formateur Reconnu - Fédération Internationale des Associations d'Étudiants en Médecine" : language === "ar" ? "مدرب معترف به - الاتحاد الدولي لجمعيات طلاب الطب" : "Recognized Trainer Pool - International Federation of Medical Students' Associations (IFMSA)",
-      organization: language === "fr" ? "IFMSA - Région Méditerranée Orientale" : language === "ar" ? "IFMSA - منطقة البحر الأبيض المتوسط الشرقية" : "IFMSA - Eastern Mediterranean Region",
+      title: t("certIFMSARecognized"),
+      organization: t("certOrgIFMSA"),
       year: "2023",
       logo: "/images/logo-ifmsa.png",
     },
     {
-      title: language === "fr" ? "Certification Professionnelle de Formation" : language === "ar" ? "شهادة التدريب المهنية" : "Professional Training Certification",
-      organization: language === "fr" ? "Centre National de la Formation Continue et du Perfectionnement Professionnel (CNFCPP)" : language === "ar" ? "المركز الوطني للتكوين المستمر والتحسين المهني" : "National Center for Continuing Training & Professional Development (CNFCPP)",
+      title: t("certCNFCPP"),
+      organization: t("certOrgCNFCPP"),
       year: "2021",
       logo: "/images/logo-cnfcpp.png",
     },
   ]
 
+  const internationalEventsList = [
+    {
+      titleKey: "ifmsaEventScorpCamp",
+      locationKey: "ifmsaEventMarrakech",
+      image: "/images/trainer/scorp-camp-25.png",
+      themeKey: "ifmsaEventScorpTheme",
+      orgLogo: null,
+    },
+    {
+      titleKey: "ifmsaEventTNHRT",
+      locationKey: "ifmsaEventHammamet",
+      image: "/images/trainer/tnhrt-carthaginian-camp.png",
+      themeKey: "ifmsaEventTNHRTTheme",
+      orgLogo: null,
+    },
+    {
+      titleKey: "dohaEventTitle",
+      locationKey: "dohaEventLocation",
+      image: "/images/trainer/iom-hackathon-doha-2024.png",
+      themeKey: "dohaEventSubtitle",
+      descKey: "dohaEventDesc",
+      orgLogo: "/img/organizations/iom-logo.jpg",
+    },
+  ]
+
   return (
-    <section className="w-full py-20 md:py-32 bg-card">
+    <section className="w-full py-12 md:py-24 bg-card">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <motion.div
           className="space-y-12"
@@ -46,10 +66,10 @@ export default function CertificationsSection() {
         >
           <div className="space-y-4">
             <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
-              {language === "fr" ? "Certifications" : language === "ar" ? "الشهادات" : "Certifications"}
+              {t("certificationsHeading")}
             </p>
             <h2 className="text-3xl md:text-5xl font-bold">
-              {language === "fr" ? "Accréditations et Réalisations" : language === "ar" ? "الاعتمادات والإنجازات" : "Credentials & Achievements"}
+              {t("credentialsAchievements")}
             </h2>
           </div>
 
@@ -80,6 +100,46 @@ export default function CertificationsSection() {
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          {/* International events */}
+          <div className="space-y-6 pt-8 border-t border-border">
+            <h3 className="text-xl font-bold">{t("internationalEvents")}</h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              {internationalEventsList.map((event, i) => (
+                <motion.div
+                  key={event.titleKey}
+                  className="rounded-2xl overflow-hidden border border-border bg-background"
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="aspect-video relative bg-black">
+                    <Image
+                      src={event.image}
+                      alt={t(event.titleKey)}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                  <div className="p-4">
+                    {event.orgLogo && (
+                      <div className="relative w-10 h-10 mb-2 rounded overflow-hidden bg-muted">
+                        <Image src={event.orgLogo} alt="" fill className="object-contain p-0.5" />
+                      </div>
+                    )}
+                    <h4 className="font-bold text-lg">{t(event.titleKey)}</h4>
+                    <p className="text-sm text-muted-foreground">{t(event.locationKey)}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{t(event.themeKey)}</p>
+                    {"descKey" in event && event.descKey && (
+                      <p className="text-xs text-muted-foreground mt-2 leading-relaxed">{t(event.descKey)}</p>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

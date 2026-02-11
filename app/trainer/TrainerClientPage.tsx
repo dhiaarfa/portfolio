@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
@@ -8,9 +9,12 @@ import Footer from "@/components/footer"
 import ContactForm from "@/components/contact-form"
 import TrainerCapabilities from "@/components/trainer-capabilities"
 import CertificationsSection from "@/components/certifications-section"
-import { useState, useEffect } from "react"
+import { useLanguage } from "@/components/language-provider"
+import { siteConfig } from "@/lib/site-config"
+import { useState } from "react"
 
 export default function TrainerClientPage() {
+  const { t } = useLanguage()
   const [notes, setNotes] = useState([
     {
       id: 1,
@@ -55,16 +59,17 @@ export default function TrainerClientPage() {
     {
       year: "2025",
       title: "Certified Trainer & Impact Leader",
-      description: "Currently delivering 435+ training hours for 1000+ participants across 15+ organizations",
-      stats: "1000+ Trainees",
+      description: "Delivered 450+ training hours and 30+ facilitation hours for 990+ participants across multiple organizations",
+      stats: "990+ Participants",
     },
   ]
 
   const impactStats = [
-    { number: "1000+", label: "Participants Trained", color: "from-[hsl(var(--zia-green))] to-emerald-400" },
-    { number: "435+", label: "Training Hours", color: "from-emerald-400 to-teal-400" },
-    { number: "15+", label: "Organizations", color: "from-[hsl(var(--zia-green))] to-emerald-400" },
-    { number: "7+", label: "Years Experience", color: "from-emerald-400 to-teal-400" },
+    { number: "990+", label: "Participants Trained", detail: "Across NGOs, youth clubs & associations" },
+    { number: "450+", label: "Training Hours", detail: "Non‑formal education & skills building" },
+    { number: "30+", label: "Facilitation Hours", detail: "Moderation, panels & collaborative spaces" },
+    { number: "10+", label: "Training Cycles Supervised", detail: "From design to delivery & evaluation" },
+    { number: "7+", label: "Years Experience", detail: "Youth work, civic engagement & training" },
   ]
 
   const handleMouseDown = (e, noteId) => {
@@ -88,32 +93,48 @@ export default function TrainerClientPage() {
                   transition={{ duration: 0.8 }}
                 >
                   <div className="flex gap-3 flex-wrap">
-                    <div className="text-xs font-medium tracking-wide text-muted-foreground">1000+ TRAINEES</div>
-                    <div className="text-xs font-medium tracking-wide text-muted-foreground">435+ HOURS</div>
+                    <div className="text-xs font-medium tracking-wide text-muted-foreground">990+ PARTICIPANTS</div>
+                    <div className="text-xs font-medium tracking-wide text-muted-foreground">450+ HOURS</div>
                     <div className="text-xs font-medium tracking-wide text-muted-foreground">CNFCPP CERTIFIED</div>
                   </div>
 
                   <div className="space-y-4">
-                    <h1 className="text-5xl md:text-7xl font-bold leading-tight">Trainer & Educator</h1>
+                    <h1 className="text-5xl md:text-7xl font-bold leading-tight">{t("trainerHeroTitle")}</h1>
                     <h2 className="text-3xl md:text-4xl font-light text-muted-foreground">
-                      Youth Development & Leadership
+                      {t("trainerHeroSubtitle")}
                     </h2>
                   </div>
 
                   <p className="text-base md:text-lg text-muted-foreground max-w-md">
-                    Passionate about empowering the next generation through comprehensive training, social justice
-                    advocacy, and practical skill development.
+                    {t("trainerHeroDescription")}
                   </p>
 
-                  <motion.div className="pt-4" whileHover={{ x: 4 }}>
-                    <Link
-                      href="#journey"
-                      className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
+                  <div className="flex flex-wrap gap-4 pt-4">
+                    <motion.div whileHover={{ x: 4 }}>
+                      <Link
+                        href="#journey"
+                        className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
+                      >
+                        {t("trainerExploreJourney")}
+                        <ArrowLeft className="h-4 w-4 rotate-180" />
+                      </Link>
+                    </motion.div>
+                    <a
+                      href={siteConfig.trainingPortfolioUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-[hsl(var(--zia-green))] hover:underline"
                     >
-                      Explore My Journey
-                      <ArrowLeft className="h-4 w-4 rotate-180" />
-                    </Link>
-                  </motion.div>
+                      {t("viewFullTrainingPortfolio")} →
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => document.getElementById("trainer-impact")?.scrollIntoView({ behavior: "smooth" })}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-foreground/20 text-xs font-medium hover:border-[hsl(var(--zia-green))]/60 hover:text-[hsl(var(--zia-green))] transition-colors"
+                    >
+                      {t("impactMetrics")} ↓
+                    </button>
+                  </div>
                 </motion.div>
 
                 <motion.div
@@ -122,10 +143,13 @@ export default function TrainerClientPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  <img
+                  <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tttt-qeeImhjCNcLxmCrXmbU7ImH2qg0wRJ.png"
                     alt="Mohamed Dhia Arfa - Trainer"
-                    className="w-full max-w-md h-auto object-contain border-solid rounded-4xl"
+                    width={400}
+                    height={600}
+                    className="w-full max-w-md h-auto object-contain rounded-3xl"
+                    priority
                   />
                 </motion.div>
               </div>
@@ -149,7 +173,7 @@ export default function TrainerClientPage() {
         </section>
 
         {/* Impact Metrics Grid - Moved earlier for emphasis */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-card">
+        <section id="trainer-impact" className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-16"
@@ -159,23 +183,25 @@ export default function TrainerClientPage() {
               viewport={{ once: true }}
             >
               <div className="text-center space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Impact Metrics</p>
-                <h2 className="text-4xl md:text-5xl font-bold">Measurable Results</h2>
+                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">{t("impactMetrics")}</p>
+                <h2 className="text-4xl md:text-5xl font-bold">{t("measurableResults")}</h2>
               </div>
 
-              <div className="grid md:grid-cols-4 gap-6">
+              <div className="grid md:grid-cols-5 gap-4 md:gap-6">
                 {impactStats.map((stat, i) => (
                   <motion.div
                     key={i}
-                    className={`p-8 rounded-3xl bg-gradient-to-br ${stat.color} text-white text-center space-y-2 border border-white/20`}
-                    whileHover={{ y: -4 }}
+                    className="relative p-4 md:p-5 rounded-3xl border border-border bg-gradient-to-br from-[hsl(var(--zia-green))]/10 to-emerald-50 flex flex-col items-start gap-1 overflow-hidden"
+                    whileHover={{ y: -4, scale: 1.02 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    transition={{ duration: 0.5, delay: i * 0.05 }}
                     viewport={{ once: true }}
                   >
-                    <p className="text-4xl md:text-5xl font-bold">{stat.number}</p>
-                    <p className="text-sm font-medium opacity-90">{stat.label}</p>
+                    <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[hsl(var(--zia-green))]/15" />
+                    <p className="text-3xl md:text-4xl font-bold text-[hsl(var(--zia-green))]">{stat.number}</p>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{stat.label}</p>
+                    <p className="text-[0.7rem] text-muted-foreground leading-snug mt-1">{stat.detail}</p>
                   </motion.div>
                 ))}
               </div>
@@ -183,8 +209,25 @@ export default function TrainerClientPage() {
           </div>
         </section>
 
+        {/* In action – facilitation / speaking */}
+        <section className="w-full py-12 md:py-16 px-4 md:px-8 bg-muted/20">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase mb-4">{t("inAction")}</p>
+            <div className="rounded-2xl overflow-hidden border border-border shadow-lg aspect-video bg-black relative">
+              <Image
+                src="/images/dhia/speaking-mic.png"
+                alt="Mohamed Dhia facilitating a session with microphone"
+                width={800}
+                height={450}
+                className="w-full h-full object-cover"
+                sizes="(max-width: 768px) 100vw, 800px"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* Evolution As An Educator Timeline - After impact metrics */}
-        <section id="journey" className="w-full py-20 md:py-32 px-4 md:px-8">
+        <section id="journey" className="w-full py-12 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-16"
@@ -195,13 +238,20 @@ export default function TrainerClientPage() {
             >
               <div className="space-y-4">
                 <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
-                  My Training Journey
+                  {t("myTrainingJourney")}
                 </p>
-                <h2 className="text-4xl md:text-5xl font-bold">Evolution As An Educator</h2>
+                <h2 className="text-4xl md:text-5xl font-bold">{t("evolutionAsEducator")}</h2>
                 <p className="text-muted-foreground text-lg max-w-3xl">
-                  From my first certification to leading a movement of 934+ trainees, my journey has been defined by
-                  continuous learning, passion for empowerment, and commitment to social change.
+                  {t("trainerJourneyIntro")}
                 </p>
+                <a
+                  href={siteConfig.trainingPortfolioUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[hsl(var(--zia-green))] hover:underline mt-2"
+                >
+                  {t("viewFullTrainingPortfolio")} →
+                </a>
               </div>
 
               {/* Timeline */}
@@ -242,14 +292,14 @@ export default function TrainerClientPage() {
         <CertificationsSection />
 
         {/* Contact Form Section */}
-        <section id="contact-form" className="w-full py-20 md:py-32 px-4 md:px-8 bg-card">
+        <section id="contact-form" className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-12">
               <div className="text-center space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Request Training</p>
-                <h2 className="text-4xl md:text-5xl font-bold">Ready to Transform Through Learning?</h2>
+                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">{t("requestTraining")}</p>
+                <h2 className="text-4xl md:text-5xl font-bold">{t("readyToTransformLearning")}</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Tell me about your training needs, goals, and team size. Let's create an impactful learning experience.
+                  {t("requestTrainingDesc")}
                 </p>
               </div>
 

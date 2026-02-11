@@ -134,7 +134,7 @@ export default function GraphicDesignMarketing() {
   }
 
   const openFullPortfolio = () => {
-    window.open("https://www.behance.net/dhiaarfa", "_blank")
+    window.open("https://behance.net/dhiaa", "_blank")
   }
 
   return (

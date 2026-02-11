@@ -3,6 +3,18 @@ import nodemailer from "nodemailer"
 
 export async function POST(request: NextRequest) {
   try {
+    const gmailUser = process.env.GMAIL_USER?.trim()
+    const gmailPass = (process.env.GMAIL_APP_PASSWORD ?? "").replace(/\s/g, "").trim()
+    if (!gmailUser || !gmailPass) {
+      return NextResponse.json(
+        {
+          error: "Email service not configured.",
+          hint: "Add GMAIL_USER and GMAIL_APP_PASSWORD to .env.local (see EMAIL_SETUP.md). Use a Gmail App Password, not your normal password.",
+        },
+        { status: 503 }
+      )
+    }
+
     const body = await request.json()
     const { name, email, phone, company, service, budget, message, type } = body
 
@@ -15,8 +27,8 @@ export async function POST(request: NextRequest) {
       const transporter = nodemailer.createTransporter({
         service: "gmail",
         auth: {
-          user: process.env.GMAIL_USER,
-          pass: process.env.GMAIL_APP_PASSWORD,
+          user: gmailUser,
+          pass: gmailPass,
         },
       })
 
@@ -24,7 +36,7 @@ export async function POST(request: NextRequest) {
 
       // Newsletter subscription notification
       const newsletterNotification = {
-        from: process.env.GMAIL_USER,
+        from: gmailUser,
         to: "benarfa367@gmail.com",
         subject: `New Newsletter Subscription`,
         html: `
@@ -40,7 +52,7 @@ export async function POST(request: NextRequest) {
 
       // Welcome email to subscriber
       const welcomeEmail = {
-        from: process.env.GMAIL_USER,
+        from: gmailUser,
         to: email,
         subject: "Welcome to Mohamed Dhia's Newsletter!",
         html: `
@@ -71,8 +83,8 @@ export async function POST(request: NextRequest) {
     const transporter = nodemailer.createTransporter({
       service: "gmail",
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
+        user: gmailUser,
+        pass: gmailPass,
       },
     })
 
@@ -80,7 +92,7 @@ export async function POST(request: NextRequest) {
 
     // Contact form notification
     const notificationEmail = {
-      from: process.env.GMAIL_USER,
+      from: gmailUser,
       to: "benarfa367@gmail.com",
       subject: `New Contact Form Submission from ${name}`,
       html: `
@@ -111,7 +123,7 @@ export async function POST(request: NextRequest) {
 
     // Auto-reply to sender
     const autoReply = {
-      from: process.env.GMAIL_USER,
+      from: gmailUser,
       to: email,
       subject: "Thank you for your message - Mohamed Dhia Arfa",
       html: `

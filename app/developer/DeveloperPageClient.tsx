@@ -4,7 +4,8 @@ import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import ContactForm from "@/components/contact-form" // Import ContactForm component
+import ContactForm from "@/components/contact-form"
+import { siteConfig } from "@/lib/site-config"
 
 export default function DeveloperPageClient() {
   const [notes, setNotes] = useState([
@@ -34,6 +35,27 @@ export default function DeveloperPageClient() {
     { category: "Frontend", techs: ["HTML", "CSS", "JavaScript", "React", "Next.js"] },
     { category: "Backend", techs: ["PHP", "Symfony", "SQL", "Python"] },
     { category: "Tools & Learning", techs: ["Angular", "Jira", "GitHub", "VS Code"] },
+  ]
+
+  const webSites = [
+    {
+      title: "Best Dates and Fruits",
+      slug: "bdaf",
+      description:
+        "Premium Tunisian dates brand website with product storytelling, clean sections, and clear contact paths.",
+      image: "/images/best-dates-and-fruits-logo.png",
+      url: "https://bestdatesandfruits.com/",
+      tech: "Next.js · Marketing site",
+    },
+    {
+      title: "CRIT Tunisie",
+      slug: "crit",
+      description:
+        "Corporate recruitment platform for CRIT Tunisie, clarifying services, job offers, and contact for both talents and companies.",
+      image: "/img/organizations/crit.png",
+      url: "https://crit-tunisie.net/",
+      tech: "Next.js · Corporate site",
+    },
   ]
 
   const projects = [
@@ -116,12 +138,20 @@ export default function DeveloperPageClient() {
                     I specialize in React and Next.js, building UI-focused web applications with a strong design-to-code foundation. My approach bridges design and development transforming concepts into responsive, performant solutions. Currently, I&apos;m continuously mastering full-stack fundamentals through real-world projects.
                   </p>
 
-                  <motion.div className="pt-4 flex gap-4 flex-wrap">
+                  <motion.div className="pt-4 flex gap-4 flex-wrap justify-center md:justify-start">
+                    <a
+                      href={siteConfig.calendlyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-background rounded-lg font-medium hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-600 transition-colors"
+                    >
+                      Book Free 30-min Call
+                    </a>
                     <a
                       href="https://github.com/dhiaarfa"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-background rounded-lg font-medium hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-600 transition-colors"
+                      className="inline-flex items-center gap-2 px-6 py-3 border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors"
                     >
                       View GitHub
                     </a>
@@ -140,13 +170,14 @@ export default function DeveloperPageClient() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  <div className="relative w-full max-w-sm">
+                  <div className="relative w-full max-w-sm mx-auto">
                     <div className="aspect-square rounded-2xl overflow-hidden border-2 border-foreground/10 shadow-lg bg-white dark:bg-slate-900">
                       <Image
                         src="/images/photo-dhia-282-29.png"
                         alt="Mohamed Dhia Arfa - Web Developer"
                         width={500}
                         height={500}
+                        sizes="(max-width: 768px) 100vw, 500px"
                         className="w-full h-full object-cover"
                         priority
                       />
@@ -161,7 +192,7 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* Experience Section */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-card">
+        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
           <div className="max-w-7xl mx-auto">
             <div className="space-y-16">
               <div className="text-center space-y-4">
@@ -200,8 +231,56 @@ export default function DeveloperPageClient() {
           </div>
         </section>
 
+        {/* Websites & projects */}
+        <section className="w-full py-16 md:py-24 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="space-y-10">
+              <div className="text-center space-y-4">
+                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Websites</p>
+                <h2 className="text-4xl md:text-5xl font-bold">Projects & websites</h2>
+              </div>
+              <div className="grid md:grid-cols-2 gap-8">
+                {webSites.map((site, i) => (
+                  <motion.a
+                    key={site.slug}
+                    href={site.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block p-6 rounded-3xl border-2 border-border hover:border-[hsl(var(--zia-green))] bg-card transition-all relative overflow-hidden"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    >
+                    {/* No thumbnail per your request; keep copy-focused cards */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-[hsl(var(--zia-green))]/10 via-transparent to-emerald-200/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="relative z-10 space-y-3">
+                      <div className="flex items-center justify-between gap-3">
+                        <h3 className="font-bold text-xl">{site.title}</h3>
+                        <span className="inline-flex items-center justify-center px-3 py-1 text-[10px] font-semibold rounded-full bg-[hsl(var(--zia-green))]/15 text-[hsl(var(--zia-green))] uppercase tracking-wide">
+                          Featured
+                        </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{site.description}</p>
+                      <div className="flex items-center justify-between pt-2">
+                        <span className="inline-block text-xs font-medium px-3 py-1 bg-[hsl(var(--zia-green))]/10 text-[hsl(var(--zia-green))] rounded-full">
+                          {site.tech}
+                        </span>
+                        <span className="text-xs font-medium flex items-center gap-1 text-[hsl(var(--zia-green))] group-hover:gap-2 transition-all">
+                          Visit live site
+                          <span aria-hidden="true">↗</span>
+                        </span>
+                      </div>
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Tech Stack Section */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-foreground text-background">
+        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-foreground text-background">
           <div className="max-w-7xl mx-auto">
             <div className="space-y-12">
               <div className="text-center space-y-4">
@@ -236,8 +315,8 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* Design-to-Development Bridge */}
-        <section className="w-full py-16 md:py-24 px-4 md:px-8">
-          <div className="max-w-4xl mx-auto">
+        <section className="w-full py-12 md:py-24 px-4 md:px-8">
+          <div className="max-w-4xl mx-auto text-center md:text-left">
             <div className="space-y-8">
               <div className="space-y-4">
                 <h2 className="text-4xl md:text-5xl font-bold">Design-to-Development Bridge</h2>
@@ -292,10 +371,10 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* What I Can Build Today Section */}
-        <section className="w-full py-12 md:py-20 px-4 md:px-8 bg-card">
+        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
           <div className="max-w-7xl mx-auto">
             <div className="space-y-12">
-              <div className="text-center space-y-4">
+              <div className="text-center space-y-4 mx-auto max-w-3xl">
                 <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Capabilities</p>
                 <h2 className="text-4xl md:text-5xl font-bold">What I Can Build Today</h2>
                 <p className="text-muted-foreground text-lg">Production-ready solutions across the modern web stack</p>
@@ -349,7 +428,7 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* CTA Section */}
-        <section className="w-full py-12 md:py-20 px-4 md:px-8">
+        <section className="w-full py-12 md:py-24 px-4 md:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold">
               Let's Build{" "}
@@ -361,16 +440,24 @@ export default function DeveloperPageClient() {
               Looking for a developer who ships quality code? Let's discuss your project and how I can contribute.
             </p>
 
-            <div className="flex gap-4 flex-col sm:flex-row justify-center">
+            <div className="flex gap-4 flex-col sm:flex-row justify-center flex-wrap">
+              <a
+                href={siteConfig.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[hsl(var(--zia-green))] text-background font-semibold rounded-lg hover:opacity-90 transition-opacity"
+              >
+                {siteConfig.ctaText}
+              </a>
               <motion.button
                 onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
                 whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-background font-semibold rounded-lg hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-600 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background font-semibold rounded-lg hover:shadow-lg transition-colors"
               >
                 Discuss A Project
               </motion.button>
               <a
-                href="https://www.linkedin.com/in/dhia-/"
+                href={siteConfig.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 border border-foreground/30 font-semibold rounded-lg hover:bg-foreground/5 transition-colors"
@@ -382,10 +469,10 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* Contact Form Section */}
-        <section id="contact-form" className="w-full py-12 md:py-20 px-4 md:px-8 bg-card">
+        <section id="contact-form" className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-8">
-              <div className="text-center space-y-4">
+              <div className="text-center space-y-4 mx-auto max-w-2xl">
                 <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Let's Talk</p>
                 <h2 className="text-4xl md:text-5xl font-bold">Ready for a Web Project?</h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

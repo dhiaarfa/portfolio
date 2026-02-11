@@ -28,12 +28,12 @@ export default function CursorFollower() {
 
   return (
     <motion.div
-      className="fixed pointer-events-none z-40"
+      className="fixed pointer-events-none z-40 hidden md:block"
       animate={isVisible ? { x: position.x - 16, y: position.y - 16, opacity: 1 } : { opacity: 0 }}
       transition={{ type: "spring", stiffness: 500, damping: 28 }}
     >
-      <div className="w-8 h-8 border-2 border-[hsl(var(--zia-green))] rounded-full" />
-      <div className="absolute inset-0 w-8 h-8 border border-[hsl(var(--zia-green))]/30 rounded-full animate-pulse" />
+      <div className="w-6 h-6 border-2 border-[hsl(var(--zia-green))] rounded-full bg-[hsl(var(--zia-green))]/10 backdrop-blur-sm" />
+      <div className="absolute inset-0 w-6 h-6 border border-[hsl(var(--zia-green))]/30 rounded-full animate-pulse" />
     </motion.div>
   )
 }

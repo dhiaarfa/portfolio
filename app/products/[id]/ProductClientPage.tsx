@@ -1,11 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, ShoppingCart, Heart } from "lucide-react"
-import ProductViewer from "@/components/product-viewer"
+
+const ProductViewer = dynamic(() => import("@/components/product-viewer"), { ssr: false })
 
 interface Product {
   name: string

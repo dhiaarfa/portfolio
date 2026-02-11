@@ -15,6 +15,7 @@ export default function ContactForm() {
   })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
+  const [errorHint, setErrorHint] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -43,6 +44,7 @@ export default function ContactForm() {
       if (!response.ok) {
         setStatus("error")
         setErrorMessage(data.error || "Failed to send message. Please try again.")
+        setErrorHint(data.hint || "")
         return
       }
 
@@ -61,6 +63,7 @@ export default function ContactForm() {
     } catch (error) {
       setStatus("error")
       setErrorMessage("An error occurred. Please try again later.")
+      setErrorHint("")
       console.error("Form error:", error)
     }
   }
@@ -164,7 +167,10 @@ export default function ContactForm() {
             animate={{ opacity: 1 }}
           >
             <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-red-700 dark:text-red-300">{errorMessage}</p>
+            <div>
+              <p className="text-sm text-red-700 dark:text-red-300">{errorMessage}</p>
+              {errorHint && <p className="text-xs text-red-600 dark:text-red-400 mt-2">{errorHint}</p>}
+            </div>
           </motion.div>
         )}
 

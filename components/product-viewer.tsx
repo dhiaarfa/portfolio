@@ -6,9 +6,10 @@ import { OrbitControls, useGLTF, Environment, ContactShadows } from "@react-thre
 import { Button } from "@/components/ui/button"
 import { RotateCcw, ZoomIn, ZoomOut } from "lucide-react"
 
+const DUCK_MODEL = "https://cdn.jsdelivr.net/gh/mrdoob/three.js@dev/examples/models/gltf/Duck/glTF-Binary/Duck.glb"
+
 function Model({ modelPath }: { modelPath: string }) {
-  // For demo purposes, we'll use the duck model since we don't have the actual models
-  const { scene } = useGLTF("/assets/3d/duck.glb")
+  const { scene } = useGLTF(DUCK_MODEL)
 
   return <primitive object={scene} scale={2} position={[0, -1, 0]} rotation={[0, Math.PI / 4, 0]} />
 }

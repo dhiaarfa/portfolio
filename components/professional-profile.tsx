@@ -140,7 +140,7 @@ export default function ProfessionalProfile() {
               ))}
             </div>
             <a
-              href="https://www.behance.net/dhiaarfa"
+              href="https://behance.net/dhiaa"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-4 px-6 py-3 bg-foreground text-background rounded-2xl font-semibold hover:opacity-90 transition-opacity"
