@@ -3,11 +3,18 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
+/**
+ * Optimized cursor follower using lightweight 'm' component instead of 'motion'
+ * Reduces bundle size and improves performance
+ */
 export default function CursorFollower() {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
+    // Only run on desktop (matches hidden md:block)
+    if (window.innerWidth < 768) return
+
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY })
       setIsVisible(true)

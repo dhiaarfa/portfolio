@@ -53,7 +53,7 @@ export default function StickyCtaBar() {
                 href={siteConfig.calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-lg bg-[hsl(var(--zia-green))] text-white text-sm font-medium hover:opacity-90 transition-all duration-200 active:scale-95 touch-manipulation"
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-lg bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-white text-sm font-medium hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-500/90 transition-all duration-200 active:scale-95 touch-manipulation"
               >
                 <Calendar className="w-4 h-4" />
                 Book Now

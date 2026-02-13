@@ -138,17 +138,18 @@ export default function TrainerClientPage() {
                 </motion.div>
 
                 <motion.div
-                  className="flex h-full min-h-[400px] md:min-h-[600px] items-center justify-center order-first md:order-last"
+                  className="flex h-full min-h-[400px] md:min-h-[600px] items-center justify-center order-first md:order-last w-full"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
+                  {/* Mobile: Larger portrait, Desktop: Standard */}
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tttt-qeeImhjCNcLxmCrXmbU7ImH2qg0wRJ.png"
                     alt="Mohamed Dhia Arfa - Trainer"
                     width={400}
                     height={600}
-                    className="w-full max-w-xs sm:max-w-sm md:max-w-md h-auto object-contain rounded-3xl"
+                    className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-sm lg:max-w-md h-auto object-contain rounded-3xl mx-auto"
                     priority
                   />
                 </motion.div>
@@ -157,7 +158,7 @@ export default function TrainerClientPage() {
           </div>
 
           {/* Sticky Notes - Hidden on mobile, shown on desktop */}
-          <div className="hidden lg:block absolute top-4 right-4 space-y-2 pointer-events-none">
+          <div className="hidden lg:block absolute top-32 right-4 space-y-2 pointer-events-none">
             {notes.map((note) => (
               <motion.div
                 key={note.id}
@@ -209,23 +210,6 @@ export default function TrainerClientPage() {
           </div>
         </section>
 
-        {/* In action – facilitation / speaking */}
-        <section className="w-full py-12 md:py-16 px-4 md:px-8 bg-muted/20">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase mb-4">{t("inAction")}</p>
-            <div className="rounded-2xl overflow-hidden border border-border shadow-lg aspect-video bg-black relative">
-              <Image
-                src="/images/dhia/speaking-mic.png"
-                alt="Mohamed Dhia facilitating a session with microphone"
-                width={800}
-                height={450}
-                className="w-full h-full object-cover"
-                sizes="(max-width: 768px) 100vw, 800px"
-              />
-            </div>
-          </div>
-        </section>
-
         {/* Evolution As An Educator Timeline - After impact metrics */}
         <section id="journey" className="w-full py-12 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
@@ -252,6 +236,33 @@ export default function TrainerClientPage() {
                 >
                   {t("viewFullTrainingPortfolio")} →
                 </a>
+              </div>
+              
+              {/* Microphone photo in context - showing trainer in action */}
+              <div className="rounded-2xl overflow-hidden border border-border shadow-lg bg-gradient-to-br from-background to-card">
+                <div className="grid md:grid-cols-2 gap-0">
+                  <div className="relative aspect-[4/3] md:aspect-square">
+                    <Image
+                      src="/images/dhia/speaking-mic.png"
+                      alt="Mohamed Dhia facilitating training session"
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      style={{ objectPosition: "center top" }}
+                    />
+                  </div>
+                  <div className="p-6 md:p-8 flex flex-col justify-center bg-card/50">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-3">In Action</h3>
+                    <p className="text-muted-foreground leading-relaxed mb-4">
+                      Facilitating engaging workshops and training sessions with a focus on clarity, energy, and measurable learning outcomes. Every session is designed to empower participants and drive real-world impact.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-[hsl(var(--zia-green))]/10 text-[hsl(var(--zia-green))] rounded-full text-sm font-medium">Interactive Sessions</span>
+                      <span className="px-3 py-1 bg-[hsl(var(--zia-green))]/10 text-[hsl(var(--zia-green))] rounded-full text-sm font-medium">Youth Development</span>
+                      <span className="px-3 py-1 bg-[hsl(var(--zia-green))]/10 text-[hsl(var(--zia-green))] rounded-full text-sm font-medium">Leadership Training</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Timeline */}

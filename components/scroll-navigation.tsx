@@ -66,7 +66,7 @@ export default function ScrollNavigation() {
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
             transition={{ duration: 0.2 }}
             onClick={scrollToTop}
-            className="w-12 h-12 rounded-full bg-[hsl(var(--zia-green))] text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-200 flex items-center justify-center"
+            className="w-12 h-12 rounded-full bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-200 flex items-center justify-center"
             aria-label="Scroll to top"
             title="Scroll to top (Press Home)"
           >

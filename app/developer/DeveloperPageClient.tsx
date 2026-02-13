@@ -6,6 +6,8 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 import ContactForm from "@/components/contact-form"
 import { siteConfig } from "@/lib/site-config"
+import CritProjectModal from "@/components/crit-project-modal"
+import BdafProjectModal from "@/components/bdaf-project-modal"
 
 export default function DeveloperPageClient() {
   const [notes, setNotes] = useState([
@@ -37,24 +39,29 @@ export default function DeveloperPageClient() {
     { category: "Tools & Learning", techs: ["Angular", "Jira", "GitHub", "VS Code"] },
   ]
 
+  const [critModalOpen, setCritModalOpen] = useState(false)
+  const [bdafModalOpen, setBdafModalOpen] = useState(false)
+
   const webSites = [
     {
       title: "Best Dates and Fruits",
       slug: "bdaf",
       description:
         "Premium Tunisian dates brand website with product storytelling, clean sections, and clear contact paths.",
-      image: "/images/best-dates-and-fruits-logo.png",
+      image: "/images/bdaf-thumbnail.png",
       url: "https://bestdatesandfruits.com/",
       tech: "Next.js · Marketing site",
+      isModal: true, // This one opens modal instead of external link
     },
     {
       title: "CRIT Tunisie",
       slug: "crit",
       description:
         "Corporate recruitment platform for CRIT Tunisie, clarifying services, job offers, and contact for both talents and companies.",
-      image: "/img/organizations/crit.png",
+      image: "/images/crit-thumbnail.png",
       url: "https://crit-tunisie.net/",
       tech: "Next.js · Corporate site",
+      isModal: true, // This one opens modal instead of external link
     },
   ]
 
@@ -90,7 +97,7 @@ export default function DeveloperPageClient() {
       <Navbar />
 
       {/* Sticky Notes - Hidden on small screens */}
-      <div className="hidden lg:block absolute top-24 right-4 space-y-2 pointer-events-none">
+      <div className="hidden lg:block absolute top-32 right-4 space-y-2 pointer-events-none">
         {notes.map((note) => (
           <motion.div
             key={note.id}
@@ -166,19 +173,20 @@ export default function DeveloperPageClient() {
                 </motion.div>
 
                 <motion.div
-                  className="flex justify-center relative"
+                  className="flex justify-center relative w-full"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  <div className="relative w-full max-w-sm mx-auto">
+                  {/* Mobile: Larger portrait (280px), Desktop: Standard */}
+                  <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-sm mx-auto">
                     <div className="aspect-square rounded-2xl overflow-hidden border-2 border-foreground/10 shadow-lg bg-white dark:bg-slate-900">
                       <Image
                         src="/images/photo-dhia-282-29.png"
                         alt="Mohamed Dhia Arfa - Web Developer"
                         width={500}
                         height={500}
-                        sizes="(max-width: 768px) 100vw, 500px"
+                        sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 500px"
                         className="w-full h-full object-cover"
                         priority
                       />
@@ -241,40 +249,69 @@ export default function DeveloperPageClient() {
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Projects & websites</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                {webSites.map((site, i) => (
-                  <motion.a
-                    key={site.slug}
-                    href={site.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block p-6 rounded-3xl border-2 border-border hover:border-[hsl(var(--zia-green))] bg-card transition-all relative overflow-hidden"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    viewport={{ once: true }}
+                {webSites.map((site, i) => {
+                  const Component = site.isModal ? motion.button : motion.a
+                  const onClickHandler = site.slug === "crit" 
+                    ? () => setCritModalOpen(true)
+                    : site.slug === "bdaf"
+                    ? () => setBdafModalOpen(true)
+                    : undefined
+                  
+                  const props = site.isModal
+                    ? {
+                        onClick: onClickHandler,
+                        className: "group block p-6 rounded-3xl border-2 border-border hover:border-[hsl(var(--zia-green))] bg-card transition-all relative overflow-hidden w-full text-left cursor-pointer",
+                      }
+                    : {
+                        href: site.url,
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        className: "group block p-6 rounded-3xl border-2 border-border hover:border-[hsl(var(--zia-green))] bg-card transition-all relative overflow-hidden",
+                      }
+
+                  return (
+                    <Component
+                      key={site.slug}
+                      {...props}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      viewport={{ once: true }}
                     >
-                    {/* No thumbnail per your request; keep copy-focused cards */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-[hsl(var(--zia-green))]/10 via-transparent to-emerald-200/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative z-10 space-y-3">
-                      <div className="flex items-center justify-between gap-3">
-                        <h3 className="font-bold text-xl">{site.title}</h3>
-                        <span className="inline-flex items-center justify-center px-3 py-1 text-[10px] font-semibold rounded-full bg-[hsl(var(--zia-green))]/15 text-[hsl(var(--zia-green))] uppercase tracking-wide">
-                          Featured
-                        </span>
+                      {/* Thumbnail */}
+                      <div className="relative aspect-video rounded-xl overflow-hidden mb-4 bg-muted">
+                        <Image
+                          src={site.image}
+                          alt={site.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
                       </div>
-                      <p className="text-sm text-muted-foreground">{site.description}</p>
-                      <div className="flex items-center justify-between pt-2">
-                        <span className="inline-block text-xs font-medium px-3 py-1 bg-[hsl(var(--zia-green))]/10 text-[hsl(var(--zia-green))] rounded-full">
-                          {site.tech}
-                        </span>
-                        <span className="text-xs font-medium flex items-center gap-1 text-[hsl(var(--zia-green))] group-hover:gap-2 transition-all">
-                          Visit live site
-                          <span aria-hidden="true">↗</span>
-                        </span>
+                      
+                      {/* Content */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-[hsl(var(--zia-green))]/10 via-transparent to-emerald-200/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="relative z-10 space-y-3">
+                        <div className="flex items-center justify-between gap-3">
+                          <h3 className="font-bold text-xl">{site.title}</h3>
+                          <span className="inline-flex items-center justify-center px-3 py-1 text-[10px] font-semibold rounded-full bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-white uppercase tracking-wide">
+                            Featured
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{site.description}</p>
+                        <div className="flex items-center justify-between pt-2">
+                          <span className="inline-block text-xs font-medium px-3 py-1 bg-gradient-to-r from-[hsl(var(--zia-green))]/10 to-emerald-500/10 text-[hsl(var(--zia-green))] rounded-full">
+                            {site.tech}
+                          </span>
+                          <span className="text-xs font-medium flex items-center gap-1 bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 bg-clip-text text-transparent group-hover:gap-2 transition-all">
+                            {site.isModal ? "View project details" : "Visit live site"}
+                            <span aria-hidden="true">{site.isModal ? "→" : "↗"}</span>
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </motion.a>
-                ))}
+                    </Component>
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -488,6 +525,12 @@ export default function DeveloperPageClient() {
       </main>
 
       <Footer />
+      
+      {/* CRIT Project Modal */}
+      <CritProjectModal isOpen={critModalOpen} onClose={() => setCritModalOpen(false)} />
+      
+      {/* BD&F Project Modal */}
+      <BdafProjectModal isOpen={bdafModalOpen} onClose={() => setBdafModalOpen(false)} />
     </div>
   )
 }

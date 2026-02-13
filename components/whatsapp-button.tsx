@@ -32,7 +32,7 @@ export default function WhatsAppButton() {
         title="View Behance portfolio"
       >
         <Image
-          src="/img/tools/behance.png"
+          src="/img/tools/behance-logo.png"
           alt="Behance"
           width={24}
           height={24}

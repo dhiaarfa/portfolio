@@ -166,7 +166,7 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-sora), sans-serif;
+    font-family: var(--font-sora), system-ui, -apple-system, sans-serif;
     @apply font-semibold tracking-tight;
   }
 
@@ -185,7 +185,7 @@
   button,
   li,
   span {
-    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
   }
 }
 

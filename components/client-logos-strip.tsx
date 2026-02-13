@@ -53,8 +53,10 @@ function LogoImage({ logo, index }: { logo: (typeof logos)[0]; index: number }) 
         alt={logo.name}
         width={logo.width}
         height={logo.height}
+        sizes="(max-width: 768px) 120px, 160px"
         className="object-contain max-h-14 md:max-h-16 w-auto h-auto"
         onError={() => setFailed(true)}
+        loading="lazy"
         unoptimized
       />
     </motion.div>

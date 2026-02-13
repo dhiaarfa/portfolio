@@ -139,12 +139,26 @@ export default function HomePageClient() {
       {/* Hero Section */}
       <section className="w-full min-h-[calc(100vh-5rem)] flex items-center justify-center py-16 md:py-0 px-4 md:px-8 pt-20 relative overflow-hidden">
         <div className="max-w-6xl mx-auto w-full flex flex-col items-center md:items-stretch">
-          {/* Sticky Notes - Hidden on mobile, shown on desktop */}
-          <div className="hidden lg:block absolute top-28 right-4 space-y-2 pointer-events-none">
+          {/* Sticky Notes - Positioned lower on mobile to avoid hero text overlap */}
+          <div className="hidden lg:block absolute top-32 right-4 space-y-2 pointer-events-none">
             {notes.slice(0, 2).map((note) => (
               <motion.div
                 key={note.id}
                 className={`${note.color} p-3 rounded-lg shadow-md w-32 text-xs font-medium select-none`}
+                initial={{ opacity: 0, rotate: -5 }}
+                animate={{ opacity: 1, rotate: note.rotation }}
+                transition={{ duration: 0.6, delay: note.id * 0.1 }}
+              >
+                <span className={note.color.includes("yellow") ? "text-black" : "text-foreground"}>{note.text}</span>
+              </motion.div>
+            ))}
+          </div>
+          {/* Mobile notes - positioned much lower to avoid hero text */}
+          <div className="lg:hidden absolute top-[calc(100vh-200px)] right-4 space-y-2 pointer-events-none z-10">
+            {notes.slice(0, 2).map((note) => (
+              <motion.div
+                key={note.id}
+                className={`${note.color} p-2 rounded-lg shadow-md w-28 text-[10px] font-medium select-none`}
                 initial={{ opacity: 0, rotate: -5 }}
                 animate={{ opacity: 1, rotate: note.rotation }}
                 transition={{ duration: 0.6, delay: note.id * 0.1 }}
@@ -189,7 +203,7 @@ export default function HomePageClient() {
                   href={siteConfig.calendlyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-[hsl(var(--zia-green))] text-white rounded-lg font-medium hover:opacity-90 transition-all active:scale-[0.98] touch-manipulation"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-white rounded-lg font-medium hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-500/90 transition-all active:scale-[0.98] touch-manipulation"
                 >
                   <Calendar className="w-4 h-4" />
                   <span className="text-sm sm:text-base">{t("bookFreeConsultation")}</span>
@@ -217,13 +231,15 @@ export default function HomePageClient() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="relative w-full max-w-xs sm:max-w-sm">
+              {/* Mobile: Larger portrait (280px), Desktop: Standard */}
+              <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-xs lg:max-w-sm mx-auto md:mx-0">
                 <div className="aspect-square rounded-2xl overflow-hidden border-2 border-foreground/10 shadow-lg bg-background">
                   <Image
                     src="/images/photo-dhia.png"
                     alt="Mohamed Dhia Arfa"
                     width={500}
                     height={500}
+                    sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 500px"
                     className="w-full h-full object-cover object-center"
                     priority
                   />

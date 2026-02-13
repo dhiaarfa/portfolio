@@ -111,8 +111,8 @@ export default function DesignerPageClient() {
 
   const galleryProjects = [
     {
-      title: "Walmart Packaging",
-      image: "/images/free-paper-square-box-mockup-recovered.png",
+      title: "Walmart Branding + System",
+      image: "/images/walmart-branding.png",
       url: "https://behance.net/dhiaa",
       size: "primary",
     },
@@ -125,18 +125,6 @@ export default function DesignerPageClient() {
     {
       title: "Speranza Café",
       image: "/images/445771850-916829483581375-1053755579034856379-n.png",
-      url: "https://behance.net/dhiaa",
-      size: "primary",
-    },
-    {
-      title: "Walmart Branding",
-      image: "/images/walmart.jpg",
-      url: "https://behance.net/dhiaa",
-      size: "primary",
-    },
-    {
-      title: "Walmart Branding System",
-      image: "/images/walmart-branding.png",
       url: "https://behance.net/dhiaa",
       size: "primary",
     },
@@ -399,7 +387,7 @@ export default function DesignerPageClient() {
 
       <main className="w-full pt-20">
         {/* Hero Section - balanced content and image */}
-        <section className="relative w-full min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-gradient-to-b from-background via-background to-background/70">
+        <section className="relative w-full min-h-screen flex items-center pt-16 md:pt-20 overflow-hidden bg-gradient-to-b from-background via-background to-background/70">
           {/* Zia layered background */}
           <div className="pointer-events-none absolute inset-0 opacity-60 mix-blend-screen">
             <div className="absolute -left-32 -top-32 w-72 h-72 bg-[hsl(var(--zia-green))]/20 rounded-full blur-3xl" />
@@ -454,19 +442,20 @@ export default function DesignerPageClient() {
                   </button>
                 </div>
               </div>
-              {/* Right: Portrait - same column width, constrained size */}
+              {/* Right: Portrait - Mobile: Larger, Desktop: Standard */}
               <motion.div
-                className="flex items-center justify-center order-1 md:order-2"
+                className="flex items-center justify-center order-1 md:order-2 w-full"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="relative w-full max-w-sm aspect-square rounded-2xl overflow-hidden border-2 border-foreground/10 shadow-xl bg-card">
+                {/* Mobile: Larger portrait (280px), Desktop: Standard */}
+                <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-sm aspect-square rounded-2xl overflow-hidden border-2 border-foreground/10 shadow-xl bg-card mx-auto md:mx-0">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo-dhia-%282%29-GYOWxbEnyOKrobIBDVx9xwfpQFfYMn.png"
                     alt="Mohamed Dhia Arfa - Graphic Designer"
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 50vw"
                     className="object-cover rounded-2xl"
                     priority
                   />
@@ -476,12 +465,26 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        {/* Sticky Notes - Hidden on small screens */}
-        <div className="hidden lg:block absolute top-4 right-4 space-y-0 my-[85px] pointer-events-none">
+        {/* Sticky Notes - Desktop */}
+        <div className="hidden lg:block absolute top-32 right-4 space-y-0 my-[85px] pointer-events-none">
           {notes.slice(0, 2).map((note) => (
             <motion.div
               key={note.id}
               className={`${note.color} w-40 p-4 rounded-lg shadow-lg text-sm font-medium text-foreground/80 select-none`}
+              initial={{ opacity: 0, rotate: -5 }}
+              animate={{ opacity: 1, rotate: note.rotation }}
+              transition={{ duration: 0.6, delay: note.id * 0.1 }}
+            >
+              {note.text}
+            </motion.div>
+          ))}
+        </div>
+        {/* Mobile notes - positioned much lower to avoid hero text overlap */}
+        <div className="lg:hidden absolute top-[calc(100vh-180px)] right-4 space-y-2 pointer-events-none z-10">
+          {notes.slice(0, 2).map((note) => (
+            <motion.div
+              key={note.id}
+              className={`${note.color} p-2 rounded-lg shadow-md w-28 text-[10px] font-medium select-none`}
               initial={{ opacity: 0, rotate: -5 }}
               animate={{ opacity: 1, rotate: note.rotation }}
               transition={{ duration: 0.6, delay: note.id * 0.1 }}
@@ -559,41 +562,39 @@ export default function DesignerPageClient() {
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Featured Work</h2>
               </div>
 
-              {/* Gallery by importance: primary = logos/identity (larger), secondary = posters/campaigns (smaller) */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max">
-                {galleryProjects.map((project, index) => (
-                  <motion.a
-                    key={project.title}
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`group relative overflow-hidden rounded-xl bg-foreground/5 border border-foreground/10 hover:border-[hsl(var(--zia-green))]/30 transition-all cursor-pointer ${
-                      project.size === "primary" ? "md:col-span-2 md:row-span-2" : ""
-                    }`}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05, duration: 0.4 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -8 }}
-                  >
-                    <div className="aspect-video md:aspect-square w-full overflow-hidden bg-foreground/10 relative">
+              {/* Gallery: Grid layout - one next to other, one down the other */}
+              <div className="bg-white/80 rounded-2xl border border-foreground/10 overflow-hidden">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[2px] bg-white p-[2px]">
+                  {galleryProjects.map((project, index) => (
+                    <motion.a
+                      key={project.title}
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative aspect-square overflow-hidden bg-white cursor-pointer"
+                      initial={{ opacity: 0, scale: 0.985 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: Math.min(index * 0.02, 0.25), duration: 0.25 }}
+                      viewport={{ once: true }}
+                      whileHover={{ scale: 1.02 }}
+                    >
                       <Image
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
+                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 240px"
+                        loading={index < 6 ? "eager" : "lazy"}
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                      <div>
-                        <h3 className="font-bold text-white text-lg">{project.title}</h3>
-                        <p className="text-white/80 text-sm">View on Behance →</p>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-3">
+                        <div>
+                          <h3 className="font-bold text-white text-xs sm:text-sm">{project.title}</h3>
+                          <p className="text-white/80 text-[10px] sm:text-xs">View on Behance →</p>
+                        </div>
                       </div>
-                    </div>
-                  </motion.a>
-                ))}
+                    </motion.a>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
@@ -751,7 +752,7 @@ export default function DesignerPageClient() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[hsl(var(--zia-green))] text-background rounded-full font-semibold hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-white rounded-full font-semibold hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-500/90 transition-all"
               >
                 <Calendar className="h-4 w-4" />
                 {siteConfig.ctaText}

@@ -195,7 +195,7 @@ export default function ContactForm() {
           disabled={status === "loading" || status === "success"}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="w-full px-6 py-3 min-h-[48px] hover:bg-orange-600 disabled:bg-orange-300 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 bg-[rgba(37,195,20,1)] touch-manipulation text-base"
+          className="w-full px-6 py-3 min-h-[48px] bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-500/90 disabled:opacity-50 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 touch-manipulation text-base"
         >
           {status === "loading" ? (
             <>

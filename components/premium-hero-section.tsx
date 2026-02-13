@@ -130,18 +130,6 @@ export default function PremiumHeroSection({
                 Get In Touch
               </motion.button>
 
-              {cvLink && (
-                <motion.a
-                  href={cvLink}
-                  download
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-3 rounded-full border border-amber-500/50 text-amber-400 font-semibold flex items-center gap-2 glass-hover transition-all"
-                >
-                  <Download className="w-4 h-4" />
-                  Download CV
-                </motion.a>
-              )}
             </div>
 
             {/* Contact Info */}
