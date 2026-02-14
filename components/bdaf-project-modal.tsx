@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
+import Image from "next/image"
 import { siteConfig } from "@/lib/site-config"
 
 interface BdafProjectModalProps {
@@ -134,15 +135,18 @@ export default function BdafProjectModal({ isOpen, onClose }: BdafProjectModalPr
                           <h4 className="font-semibold text-lg md:text-xl mb-2 text-gray-900">{screenshot.title}</h4>
                           <p className="text-sm md:text-base text-gray-700 leading-relaxed">{screenshot.description}</p>
                         </div>
-                        {/* Screenshot at full content width so text is readable; height is natural (scroll for tall ones) */}
+                        {/* Full-width screenshot at high resolution so text stays sharp (Next Image optimization) */}
                         <div className="w-full rounded-xl overflow-hidden border-2 border-gray-200 bg-gray-100 shadow-md ring-1 ring-gray-200/50">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
+                          <Image
                             src={screenshot.image}
                             alt={screenshot.title}
+                            width={1920}
+                            height={6000}
                             className="w-full h-auto block"
-                            loading={index < 2 ? "eager" : "lazy"}
-                            decoding="async"
+                            style={{ width: "100%", height: "auto" }}
+                            sizes="(min-width: 1280px) 90vw, (min-width: 1024px) 85vw, 100vw"
+                            priority={index < 2}
+                            quality={95}
                           />
                         </div>
                       </motion.div>
