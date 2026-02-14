@@ -1,13 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import dynamic from "next/dynamic"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ShoppingCart, Heart } from "lucide-react"
-
-const ProductViewer = dynamic(() => import("@/components/product-viewer"), { ssr: false })
+import { ArrowLeft, ShoppingCart, Heart, Box } from "lucide-react"
 
 interface Product {
   name: string
@@ -60,8 +57,11 @@ export default function ProductClientPage({ products }: ProductClientPageProps) 
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
-          <div className="relative h-[500px] w-full overflow-hidden rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800/30 dark:to-gray-700/30">
-            <ProductViewer modelPath={product.modelPath} />
+          <div className="relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800/30 dark:to-gray-700/30">
+            <div className="flex flex-col items-center gap-3 text-gray-500 dark:text-gray-400">
+              <Box className="h-16 w-16" />
+              <span className="text-sm font-medium">Product preview</span>
+            </div>
           </div>
 
           <div className="space-y-6">

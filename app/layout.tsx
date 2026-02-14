@@ -1,5 +1,5 @@
 import type React from "react"
-import "@/app/globals.css"
+import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
 import { Poppins, Sora } from "next/font/google"
@@ -95,6 +95,18 @@ export default function RootLayout({
           :root {
             ${poppins.variable};
             ${sora.variable};
+            --background: 0 0% 100%;
+            --foreground: 0 0% 5%;
+            --zia-green: 142 70% 45%;
+          }
+          .dark {
+            --background: 0 0% 7%;
+            --foreground: 0 0% 96%;
+          }
+          body {
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            font-family: var(--font-sora), system-ui, sans-serif;
           }
         `}</style>
         {/* Preconnect to external domains for faster loading */}
@@ -189,7 +201,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={cn("bg-background text-foreground font-sans antialiased transition-colors duration-300 overflow-x-hidden min-w-0")}>
+      <body className={cn("bg-background text-foreground font-sans antialiased transition-colors duration-300 overflow-x-hidden min-w-0")} style={{ backgroundColor: "hsl(var(--background))", color: "hsl(var(--foreground))" }}>
         <ThemeProvider 
           attribute="class" 
           defaultTheme="light" 
@@ -202,8 +214,8 @@ export default function RootLayout({
         >
           <LanguageProvider>
             <MotionProvider>
-              <GlobalComponents />
               {children}
+              <GlobalComponents />
             </MotionProvider>
           </LanguageProvider>
         </ThemeProvider>
