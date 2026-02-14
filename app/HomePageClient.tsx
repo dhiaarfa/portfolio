@@ -1,5 +1,6 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, BookOpen, Palette, Code, Calendar } from "lucide-react"
@@ -8,13 +9,15 @@ import Footer from "@/components/footer"
 import Image from "next/image"
 import { useState } from "react"
 import { siteConfig } from "@/lib/site-config"
-import ClientLogosStrip from "@/components/client-logos-strip"
-import StatsSection from "@/components/stats-section"
-import ServicePackages from "@/components/service-packages"
-import FAQSection from "@/components/faq-section"
-import NewsletterSection from "@/components/newsletter-section"
-import TestimonialsTicker from "@/components/testimonials-ticker"
 import { useLanguage } from "@/components/language-provider"
+
+/* Below-the-fold sections: load after hero for faster first paint */
+const ClientLogosStrip = dynamic(() => import("@/components/client-logos-strip"), { ssr: true })
+const TestimonialsTicker = dynamic(() => import("@/components/testimonials-ticker"), { ssr: true })
+const StatsSection = dynamic(() => import("@/components/stats-section"), { ssr: true })
+const ServicePackages = dynamic(() => import("@/components/service-packages"), { ssr: true })
+const FAQSection = dynamic(() => import("@/components/faq-section"), { ssr: true })
+const NewsletterSection = dynamic(() => import("@/components/newsletter-section"), { ssr: true })
 
 export default function HomePageClient() {
   const { t } = useLanguage()

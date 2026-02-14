@@ -57,22 +57,22 @@ export default function Footer() {
             <h4 className="font-semibold text-sm uppercase tracking-wide">{t("navigationTitle")}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/" className="block py-2 hover:text-foreground transition-colors touch-manipulation">
+                <Link href="/" prefetch className="block py-2 hover:text-foreground transition-colors touch-manipulation">
                   {t("home")}
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="block py-2 hover:text-foreground transition-colors touch-manipulation">
+                <Link href="/about" prefetch className="block py-2 hover:text-foreground transition-colors touch-manipulation">
                   {t("about")}
                 </Link>
               </li>
               <li>
-                <Link href="/designer" className="block py-2 hover:text-foreground transition-colors touch-manipulation">
+                <Link href="/designer" prefetch className="block py-2 hover:text-foreground transition-colors touch-manipulation">
                   {t("design")}
                 </Link>
               </li>
               <li>
-                <Link href="/trainer" className="block py-2 hover:text-foreground transition-colors touch-manipulation">
+                <Link href="/trainer" prefetch className="block py-2 hover:text-foreground transition-colors touch-manipulation">
                   {t("training")}
                 </Link>
               </li>
@@ -87,7 +87,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link href="/developer" className="block py-2 hover:text-foreground transition-colors touch-manipulation">
+                <Link href="/developer" prefetch className="block py-2 hover:text-foreground transition-colors touch-manipulation">
                   {t("webDevelopment")}
                 </Link>
               </li>

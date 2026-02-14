@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
-import Image from "next/image"
+import { siteConfig } from "@/lib/site-config"
 
 interface CritProjectModalProps {
   isOpen: boolean
@@ -52,15 +52,15 @@ export default function CritProjectModal({ isOpen, onClose }: CritProjectModalPr
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
           />
 
-          {/* Modal */}
+          {/* Modal - near full viewport on large screens so screenshots are readable */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed inset-0 md:inset-4 lg:inset-8 z-50 bg-white md:rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+            className="fixed inset-0 md:inset-3 lg:inset-2 xl:inset-[0.5rem] z-50 bg-white md:rounded-2xl shadow-2xl overflow-hidden flex flex-col"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 bg-white">
+            <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 bg-white shrink-0">
               <div>
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900">CRIT Tunisie</h2>
                 <p className="text-sm text-gray-600 mt-1">Corporate Recruitment Platform - Next.js Development</p>
@@ -74,9 +74,9 @@ export default function CritProjectModal({ isOpen, onClose }: CritProjectModalPr
               </button>
             </div>
 
-            {/* Content - Scrollable */}
-            <div className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 bg-white">
-              <div className="max-w-5xl mx-auto space-y-12">
+            {/* Content - Scrollable, wide for readable screenshots */}
+            <div className="flex-1 overflow-y-auto p-4 md:p-6 lg:px-8 lg:py-6 bg-white">
+              <div className="max-w-[1920px] mx-auto space-y-12">
                 {/* Technical Project Description */}
                 <div className="space-y-4">
                   <h3 className="text-xl md:text-2xl font-bold text-gray-900">Technical Implementation</h3>
@@ -117,34 +117,32 @@ export default function CritProjectModal({ isOpen, onClose }: CritProjectModalPr
                   </div>
                 </div>
 
-                {/* Screenshots - One under the other in large format */}
-                <div className="space-y-8">
+                {/* Screenshots - Near full internal width, large min-height for readability */}
+                <div className="space-y-10">
                   <h3 className="text-xl md:text-2xl font-bold text-gray-900">Website Pages & Features</h3>
-                  <div className="space-y-10">
+                  <div className="space-y-12">
                     {critScreenshots.map((screenshot, index) => (
                       <motion.div
                         key={index}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="space-y-4 bg-white rounded-lg border border-gray-200 p-4 md:p-6"
+                        className="space-y-4"
                       >
-                        <div>
+                        <div className="px-0">
                           <h4 className="font-semibold text-lg md:text-xl mb-2 text-gray-900">{screenshot.title}</h4>
                           <p className="text-sm md:text-base text-gray-700 leading-relaxed">{screenshot.description}</p>
                         </div>
-                        {/* Large screenshot - full width, readable */}
-                        <div className="relative w-full rounded-lg overflow-hidden border-2 border-gray-200 bg-gray-50 shadow-sm">
-                          <div className="relative w-full" style={{ minHeight: "400px" }}>
-                            <Image
-                              src={screenshot.image}
-                              alt={screenshot.title}
-                              fill
-                              className="object-contain object-top"
-                              sizes="100vw"
-                              priority={index < 2}
-                            />
-                          </div>
+                        {/* Screenshot at full content width so text is readable; height is natural (scroll for tall ones) */}
+                        <div className="w-full rounded-xl overflow-hidden border-2 border-gray-200 bg-gray-100 shadow-md ring-1 ring-gray-200/50">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={screenshot.image}
+                            alt={screenshot.title}
+                            className="w-full h-auto block"
+                            loading={index < 2 ? "eager" : "lazy"}
+                            decoding="async"
+                          />
                         </div>
                       </motion.div>
                     ))}
@@ -174,7 +172,7 @@ export default function CritProjectModal({ isOpen, onClose }: CritProjectModalPr
                 </div>
 
                 {/* CTA */}
-                <div className="pt-6 border-t border-gray-200">
+                <div className="pt-6 border-t border-gray-200 flex flex-wrap gap-4">
                   <a
                     href="https://crit-tunisie.net/"
                     target="_blank"
@@ -183,6 +181,14 @@ export default function CritProjectModal({ isOpen, onClose }: CritProjectModalPr
                   >
                     Visit Live Site
                     <span>↗</span>
+                  </a>
+                  <a
+                    href={siteConfig.calendlyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[hsl(var(--zia-green))] text-[hsl(var(--zia-green))] rounded-lg font-semibold hover:bg-[hsl(var(--zia-green))]/10 transition-colors"
+                  >
+                    Discuss a similar project
                   </a>
                 </div>
               </div>

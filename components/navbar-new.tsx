@@ -53,7 +53,7 @@ export default function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              prefetch={true}
+              prefetch
               className="text-sm font-medium hover:text-[hsl(var(--zia-green))] transition-colors flex items-center gap-1.5"
             >
               {item.icon && <item.icon className="w-3.5 h-3.5" />}
@@ -93,7 +93,7 @@ export default function Navbar() {
           <div className="hidden sm:flex md:hidden items-center gap-1.5">
             <Link
               href="/designer"
-              prefetch={true}
+              prefetch
               className="p-2.5 min-w-[40px] min-h-[40px] rounded-lg bg-[hsl(var(--zia-green))]/10 hover:bg-[hsl(var(--zia-green))]/20 text-[hsl(var(--zia-green))] transition-all touch-manipulation flex items-center justify-center border border-[hsl(var(--zia-green))]/20"
               aria-label="Designer"
             >
@@ -101,7 +101,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/trainer"
-              prefetch={true}
+              prefetch
               className="p-2.5 min-w-[40px] min-h-[40px] rounded-lg bg-[hsl(var(--zia-green))]/10 hover:bg-[hsl(var(--zia-green))]/20 text-[hsl(var(--zia-green))] transition-all touch-manipulation flex items-center justify-center border border-[hsl(var(--zia-green))]/20"
               aria-label="Trainer"
             >
@@ -109,7 +109,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/developer"
-              prefetch={true}
+              prefetch
               className="p-2.5 min-w-[40px] min-h-[40px] rounded-lg bg-[hsl(var(--zia-green))]/10 hover:bg-[hsl(var(--zia-green))]/20 text-[hsl(var(--zia-green))] transition-all touch-manipulation flex items-center justify-center border border-[hsl(var(--zia-green))]/20"
               aria-label="Developer"
             >
@@ -168,7 +168,7 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  prefetch={true}
+                  prefetch
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center gap-3 py-4 px-4 min-h-[52px] rounded-xl text-base font-semibold bg-gray-50 dark:bg-gray-800 hover:bg-[hsl(var(--zia-green))]/10 hover:text-[hsl(var(--zia-green))] active:bg-[hsl(var(--zia-green))]/20 transition-all touch-manipulation border border-transparent hover:border-[hsl(var(--zia-green))]/20"
                 >
