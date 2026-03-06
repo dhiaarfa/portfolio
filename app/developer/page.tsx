@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import DeveloperPageClient from "./DeveloperPageClient"
 
+export const dynamic = "force-static"
+
 export const metadata: Metadata = {
   title: "Web Developer Tunisia | React & Next.js · Mohamed Dhia Arfa",
   description:

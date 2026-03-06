@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import TrainerClientPage from "./TrainerClientPage"
 
+export const dynamic = "force-static"
+
 export const metadata: Metadata = {
   title: "Certified Trainer & Youth Development Coach Tunisia | Mohamed Dhia Arfa",
   description:

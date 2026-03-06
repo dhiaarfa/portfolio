@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import AboutPageClient from "./AboutPageClient"
 
+export const dynamic = "force-static"
+
 export const metadata: Metadata = {
   title: "About Mohamed Dhia Arfa — Designer, Trainer & Developer · Tunisia",
   description:

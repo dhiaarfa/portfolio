@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import DesignerPageClient from "./DesignerPageClient"
 
+export const dynamic = "force-static"
+
 export const metadata: Metadata = {
   title: "Graphic Designer Tunisia | Brand Identity & UI/UX — Zia Studio · Mohamed Dhia Arfa",
   description:
