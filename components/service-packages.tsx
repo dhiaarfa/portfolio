@@ -1,109 +1,93 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Palette, BookOpen, Code2, Check } from "lucide-react"
+import { PenTool, GraduationCap, Code2, ArrowRight, Calendar } from "lucide-react"
 import Link from "next/link"
 import { siteConfig } from "@/lib/site-config"
 import { useLanguage } from "@/components/language-provider"
+import { FadeUp } from "@/components/ui/motion"
 
-const packages = [
+const services = [
   {
-    icon: Palette,
-    title: "Graphic Design",
-    description: "Brand identity, visual systems, creative direction",
-    features: ["Logo & visual identity", "Marketing materials", "Social media assets", "Brand guidelines"],
-    cta: "View design work",
+    icon: PenTool,
+    bg: "bg-pink-50 dark:bg-pink-950/40",
+    ic: "text-pink-600 dark:text-pink-400",
+    title: "Graphic Design & Branding",
+    desc: "Logo · Visual identity · Social assets · Brand guidelines",
     href: "/designer",
+    cta: "View design work",
   },
   {
-    icon: BookOpen,
+    icon: GraduationCap,
+    bg: "bg-amber-50 dark:bg-amber-950/40",
+    ic: "text-amber-600 dark:text-amber-400",
     title: "Training & Workshops",
-    description: "Youth development, leadership, civic engagement",
-    features: ["Custom workshops", "Training of trainers", "Youth programs", "Capacity building"],
-    cta: "Explore training",
+    desc: "Custom workshops · Leadership · Youth programs · TOT",
     href: "/trainer",
+    cta: "Explore training",
   },
   {
     icon: Code2,
+    bg: "bg-blue-50 dark:bg-blue-950/40",
+    ic: "text-blue-600 dark:text-blue-400",
     title: "Web Development",
-    description: "Portfolios, digital experiences, modern web apps",
-    features: ["Portfolio websites", "Responsive design", "Next.js & React", "Performance optimized"],
-    cta: "See dev projects",
+    desc: "Next.js · React · Responsive design · Performance-first",
     href: "/developer",
+    cta: "See dev projects",
   },
 ]
 
 export default function ServicePackages() {
   const { t } = useLanguage()
   return (
-    <section id="services" className="py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-10 md:mb-16"
-        >
-          <p className="text-sm font-medium text-[hsl(var(--zia-green))] mb-2">{t("myServices")}</p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight px-2">
+    <section id="services" className="bg-section-tint dark:bg-[#052e16] py-20 px-5">
+      <div className="max-w-4xl mx-auto">
+        <FadeUp>
+          <p className="label text-center">{t("myServices")}</p>
+          <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] text-center text-slate-900 dark:text-white leading-snug mb-3">
             {t("howICanHelpYou")}
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-2">
+          <p className="text-center text-slate-400 dark:text-slate-500 text-sm mb-12 max-w-md mx-auto">
             {t("servicesTagline")}
           </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-          {packages.map((pkg, i) => (
+        </FadeUp>
+        <div className="flex flex-col gap-4">
+          {services.map((s, i) => (
             <motion.div
-              key={pkg.title}
+              key={s.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative p-5 sm:p-6 md:p-8 rounded-2xl border border-border bg-card hover:border-[hsl(var(--zia-green))]/50 hover:shadow-lg transition-all duration-300"
+              transition={{ delay: i * 0.08 }}
+              className="card-base card-brand flex items-center gap-5 p-5 sm:p-6 cursor-default"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-[hsl(var(--zia-green))]/10 flex items-center justify-center group-hover:bg-[hsl(var(--zia-green))]/20 transition-colors">
-                  <pkg.icon className="w-6 h-6 text-[hsl(var(--zia-green))]" />
-                </div>
-                <h3 className="text-xl font-bold">{pkg.title}</h3>
+              <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${s.bg} flex items-center justify-center flex-shrink-0`}>
+                <s.icon className={`w-6 h-6 sm:w-7 sm:h-7 ${s.ic}`} />
               </div>
-              <p className="text-muted-foreground mb-6">{pkg.description}</p>
-              <ul className="space-y-2 mb-8">
-                {pkg.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm">
-                    <Check className="w-4 h-4 text-[hsl(var(--zia-green))] shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-display font-semibold text-slate-900 dark:text-white text-[15px] sm:text-base mb-0.5">{s.title}</h3>
+                <p className="text-slate-400 dark:text-slate-500 text-xs sm:text-sm leading-relaxed">{s.desc}</p>
+              </div>
               <Link
-                href={pkg.href}
-                className="inline-flex items-center gap-2 text-[hsl(var(--zia-green))] font-semibold hover:gap-3 transition-all"
+                href={s.href}
+                className="flex-shrink-0 hidden sm:flex items-center gap-1.5 text-sm font-medium text-green-600 dark:text-green-400 group/row"
               >
-                {pkg.cta}
-                <span>→</span>
+                {s.cta}
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/row:translate-x-1 rtl:rotate-180" />
               </Link>
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-12 text-center"
-        >
+        <div className="mt-10 text-center">
           <a
             href={siteConfig.calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[hsl(var(--zia-green))] text-white font-semibold hover:opacity-90 transition-all"
+            className="btn-green"
           >
-            {t("bookFreeConsultationCta")}
+            <Calendar className="w-4 h-4" /> {t("bookFreeConsultation")}
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

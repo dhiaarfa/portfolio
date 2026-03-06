@@ -1,14 +1,17 @@
+import type { Metadata } from "next"
 import TrainerClientPage from "./TrainerClientPage"
 
-export const metadata = {
-  title: "Trainer - Mohamed Dhia Arfa",
+export const metadata: Metadata = {
+  title: "Certified Trainer & Youth Development Coach Tunisia | Mohamed Dhia Arfa",
   description:
-    "Professional trainer and educator. CNFCPP certified trainer. 990+ participants, 450+ hours of training delivered, 30+ hours of facilitation. Specializing in youth development, leadership, and civic engagement.",
+    "National Certified Trainer (CNFCPP) with 1000+ participants trained, 450+ training hours, and 30+ facilitation hours. Specialized in youth development, leadership, and civic engagement.",
   keywords: ["trainer", "CNFCPP certified", "youth development", "leadership training", "Tunisia", "facilitation", "non-formal education"],
   openGraph: {
-    title: "Trainer - Mohamed Dhia Arfa",
-    description: "CNFCPP certified trainer specializing in youth development, leadership, and civic engagement.",
+    title: "Youth Trainer & Facilitator · Mohamed Dhia Arfa",
+    description:
+      "Professional trainer and facilitator delivering workshops and programs in youth development, leadership, and civic engagement.",
     type: "website",
+    url: "https://dhia-portfolio.me/trainer",
   },
 }
 

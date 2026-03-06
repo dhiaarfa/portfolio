@@ -22,7 +22,7 @@ export default function NewsletterSection() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), type: "newsletter" }),
+        body: JSON.stringify({ name: "", email: email.trim(), message: "Newsletter signup", type: "newsletter" }),
       })
 
       const data = await res.json()

@@ -3,42 +3,14 @@ import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import ContactForm from "@/components/contact-form"
 import { siteConfig } from "@/lib/site-config"
 import CritProjectModal from "@/components/crit-project-modal"
 import BdafProjectModal from "@/components/bdaf-project-modal"
+import { Monitor, Box, Gauge, Server } from "lucide-react"
 
 export default function DeveloperPageClient() {
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      text: "Learning by shipping",
-      color: "bg-[hsl(var(--zia-green))]",
-      textColor: "text-background",
-      x: 80,
-      y: 200,
-      rotation: 2,
-    },
-    {
-      id: 2,
-      text: "Real projects drive growth",
-      color: "bg-[hsl(var(--zia-green))]",
-      textColor: "text-background",
-      x: 1000,
-      y: 280,
-      rotation: -2,
-    },
-  ])
-
-
-
-  const techStack = [
-    { category: "Frontend", techs: ["HTML", "CSS", "JavaScript", "React", "Next.js"] },
-    { category: "Backend", techs: ["PHP", "Symfony", "SQL", "Python"] },
-    { category: "Tools & Learning", techs: ["Angular", "Jira", "GitHub", "VS Code"] },
-  ]
-
   const [critModalOpen, setCritModalOpen] = useState(false)
   const [bdafModalOpen, setBdafModalOpen] = useState(false)
 
@@ -73,10 +45,12 @@ export default function DeveloperPageClient() {
       tech: "React / Next.js",
       description: "Developing responsive web interfaces, optimizing user experience, shipping features to production",
       icon: "🚀",
+      isCurrent: true,
     },
     {
       role: "Marketing & Web Strategy",
       company: "Speranza Cafe & Resto",
+      isCurrent: false,
       period: "Jan 2025 – Jun 2025",
       tech: "Web & Digital Marketing",
       description: "Managed web presence, digital marketing campaigns, and data-driven strategy execution",
@@ -85,6 +59,7 @@ export default function DeveloperPageClient() {
     {
       role: "Full-Stack Development",
       company: "Self-Directed & Open Source",
+      isCurrent: false,
       period: "2023 – Present",
       tech: "React, Next.js, Node.js, SQL",
       description: "Building personal projects, contributing to real applications, mastering frontend and backend fundamentals",
@@ -96,108 +71,43 @@ export default function DeveloperPageClient() {
     <div className="w-full min-h-screen bg-background relative">
       <Navbar />
 
-      {/* Sticky Notes - Hidden on small screens */}
-      <div className="hidden lg:block absolute top-32 right-4 space-y-2 pointer-events-none">
-        {notes.map((note) => (
-          <motion.div
-            key={note.id}
-            className={`${note.color} p-3 rounded-lg shadow-lg max-w-40 text-xs font-bold select-none border border-white/20`}
-            initial={{ opacity: 0, rotate: -5 }}
-            animate={{ opacity: 1, rotate: note.rotation }}
-            transition={{ duration: 0.6, delay: note.id * 0.1 }}
-          >
-            <span className={note.textColor}>{note.text}</span>
-          </motion.div>
-        ))}
-      </div>
-
-      <main className="w-full pt-20">
-        {/* Hero Section */}
-        <section className="relative w-full min-h-[calc(100vh-80px)] flex items-center py-16 md:py-0 px-4 md:px-8 bg-gradient-to-br from-[hsl(var(--zia-green))]/5 via-background to-emerald-50">
-          <div className="w-full px-4 md:px-8">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center min-h-[calc(100vh-120px)]">
-                <motion.div
-                  className="space-y-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  <div className="flex gap-3 flex-wrap">
-                    <div className="text-xs font-medium tracking-wide text-muted-foreground">WEB DEVELOPER</div>
-                    <div className="text-xs font-medium tracking-wide text-muted-foreground">BUILDER</div>
-                    <div className="text-xs font-medium tracking-wide text-muted-foreground">CONTINUOUS LEARNER</div>
-                  </div>
-
-                  <div className="space-y-3 md:space-y-4">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                      Web Developer{" "}
-                      <span className="bg-gradient-to-r from-[hsl(var(--zia-green))] via-emerald-500 to-teal-500 bg-clip-text text-transparent">
-                        Learning by Building
-                      </span>
-                    </h1>
-                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground">
-                      Turning ideas and designs into functional, scalable web experiences.
-                    </h2>
-                  </div>
-
-                  <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                    I specialize in React and Next.js, building UI-focused web applications with a strong design-to-code foundation. My approach bridges design and development transforming concepts into responsive, performant solutions. Currently, I&apos;m continuously mastering full-stack fundamentals through real-world projects.
-                  </p>
-
-                  <motion.div className="pt-4 flex flex-col sm:flex-row gap-3 sm:gap-4 flex-wrap justify-center md:justify-start">
-                    <a
-                      href={siteConfig.calendlyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-background rounded-lg font-medium hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-600 transition-colors touch-manipulation"
-                    >
-                      Book Free 30-min Call
-                    </a>
-                    <a
-                      href="https://github.com/dhiaarfa"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors touch-manipulation"
-                    >
-                      View GitHub
-                    </a>
-                    <motion.button
-                      type="button"
-                      onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors touch-manipulation"
-                    >
-                      Discuss a Project
-                    </motion.button>
-                  </motion.div>
-                </motion.div>
-
-                <motion.div
-                  className="flex justify-center relative w-full"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  {/* Mobile: Larger portrait (280px), Desktop: Standard */}
-                  <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-sm mx-auto">
-                    <div className="aspect-square rounded-2xl overflow-hidden border-2 border-foreground/10 shadow-lg bg-white dark:bg-slate-900">
-                      <Image
-                        src="/images/photo-dhia-282-29.png"
-                        alt="Mohamed Dhia Arfa - Web Developer"
-                        width={500}
-                        height={500}
-                        sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 500px"
-                        className="w-full h-full object-cover"
-                        priority
-                      />
-                    </div>
-                  </div>
-                </motion.div>
+      <main className="w-full pt-0">
+        {/* Hero — dark terminal aesthetic */}
+        <section className="bg-slate-950 text-white min-h-[85vh] flex items-center px-6 py-24 relative overflow-hidden">
+          <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#22c55e 1px, transparent 1px), linear-gradient(90deg, #22c55e 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+          <div className="pointer-events-none absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full bg-green-500/8 blur-[100px]" />
+          <div className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-14 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-slate-800/80 border border-slate-700/60 rounded-lg px-4 py-2 mb-8 font-mono text-sm">
+                <span className="text-green-400">$</span>
+                <span className="text-slate-300">dhia --role developer</span>
+                <span className="text-green-400 animate-[pulse_1s_ease-in-out_infinite] font-bold ml-1">█</span>
+              </div>
+              <h1 className="font-display font-black text-[clamp(44px,6.5vw,80px)] leading-[0.93] tracking-tight mb-4">
+                Web Developer<br /><span className="text-green-500">Learning by</span><br />Building.
+              </h1>
+              <p className="text-slate-400 text-[17px] leading-relaxed max-w-md mb-8">
+                Turning designs into fast, scalable digital experiences. React · Next.js · Design-first mindset.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a href="#projects" className="btn-green">View Projects</a>
+                <a href="#contact" className="border border-slate-700 text-slate-300 font-medium px-6 py-3 rounded-[14px] hover:border-green-500/40 hover:text-white transition-all">
+                  Start a Project
+                </a>
+              </div>
+            </div>
+            <div className="hidden lg:block">
+              <div className="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700/60 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
+                <div className="flex items-center gap-1.5 px-4 py-3 bg-slate-900/60 border-b border-slate-700/60">
+                  <span className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <span className="w-3 h-3 rounded-full bg-green-500/80" />
+                  <span className="ml-4 font-mono text-slate-500 text-xs">dhia.dev</span>
+                </div>
+                <Image src="/images/photos/dhia-developer.png" alt="Dhia — Developer" width={380} height={400} className="w-full object-cover" />
               </div>
             </div>
           </div>
-
-
         </section>
 
         {/* Experience Section */}
@@ -214,14 +124,22 @@ export default function DeveloperPageClient() {
                 {projects.map((project, i) => (
                   <motion.div
                     key={i}
-                    className="p-5 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl border-2 border-border hover:border-foreground/30 transition-all hover:bg-background space-y-4"
+                    className={`p-5 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl border-2 border-border hover:border-foreground/30 transition-all hover:bg-background space-y-4 ${(project as { isCurrent?: boolean }).isCurrent ? "" : ""}`}
                     whileHover={{ y: -4 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: i * 0.1 }}
                     viewport={{ once: true }}
                   >
+                    <div className="flex items-start justify-between gap-3">
                     <div className="text-4xl">{project.icon}</div>
+                      {(project as { isCurrent?: boolean }).isCurrent && (
+                        <span className="text-xs font-semibold bg-green-100 text-green-700 rounded-full px-2.5 py-1 inline-flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                          Current
+                        </span>
+                      )}
+                    </div>
                     <h3 className="text-xl font-bold">{project.role}</h3>
                     <div className="space-y-2">
                       <p className="text-sm font-semibold text-[hsl(var(--zia-green))]">{project.company}</p>
@@ -317,37 +235,46 @@ export default function DeveloperPageClient() {
           </div>
         </section>
 
-        {/* Tech Stack Section */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-foreground text-background">
-          <div className="max-w-7xl mx-auto">
-            <div className="space-y-12">
-              <div className="text-center space-y-4">
-                <p className="text-xs font-medium tracking-widest opacity-70 uppercase">Technical Stack</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Languages & Tools</h2>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-                {techStack.map((group, i) => (
-                  <motion.div
-                    key={i}
-                    className="space-y-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <h3 className="text-xl font-bold">{group.category}</h3>
-                    <ul className="space-y-2">
-                      {group.techs.map((tech, j) => (
-                        <li key={j} className="text-sm opacity-90 flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 bg-background rounded-full"></span>
-                          {tech}
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
-              </div>
+        {/* Languages & Tools — skill bars */}
+        <section className="bg-section-subtle dark:bg-slate-900 py-20 px-5">
+          <div className="max-w-4xl mx-auto">
+            <p className="label text-center">Technical Skills</p>
+            <h2 className="font-serif text-[clamp(24px,3vw,38px)] text-center text-slate-900 dark:text-white leading-snug mb-12">
+              Languages & Tools
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {[
+                { cat: "Frontend", Icon: Monitor, bg: "bg-blue-50 dark:bg-blue-950/40", ic: "text-blue-600 dark:text-blue-400", tools: [{ n: "React / Next.js", v: 88 }, { n: "Tailwind CSS", v: 95 }, { n: "TypeScript", v: 72 }, { n: "Framer Motion", v: 68 }] },
+                { cat: "Tools & Backend", Icon: Server, bg: "bg-purple-50 dark:bg-purple-950/40", ic: "text-purple-600 dark:text-purple-400", tools: [{ n: "Git & GitHub", v: 85 }, { n: "Figma", v: 82 }, { n: "Node.js", v: 58 }, { n: "Vercel / Netlify", v: 78 }] },
+              ].map((col) => (
+                <div key={col.cat} className="card-base p-7">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className={`w-10 h-10 ${col.bg} rounded-xl flex items-center justify-center`}>
+                      <col.Icon className={`w-5 h-5 ${col.ic}`} />
+                    </div>
+                    <h3 className="font-display font-semibold text-slate-900 dark:text-white">{col.cat}</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {col.tools.map((t) => (
+                      <div key={t.n}>
+                        <div className="flex justify-between mb-1.5">
+                          <span className="text-sm text-slate-600 dark:text-slate-300 font-medium">{t.n}</span>
+                          <span className="text-xs text-slate-400">{t.v}%</span>
+                        </div>
+                        <div className="h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                          <motion.div
+                            className="h-full bg-green-500 dark:bg-green-400 rounded-full"
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${t.v}%` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -408,58 +335,56 @@ export default function DeveloperPageClient() {
           </div>
         </section>
 
-        {/* What I Can Build Today Section */}
+        {/* What I Can Build Today — icon cards */}
         <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
           <div className="max-w-7xl mx-auto">
             <div className="space-y-12">
               <div className="text-center space-y-4 mx-auto max-w-3xl">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Capabilities</p>
-                <h2 className="text-4xl md:text-5xl font-bold">What I Can Build Today</h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-green-600">Capabilities</p>
+                <h2 className="text-3xl md:text-4xl font-bold">What I Can Build Today</h2>
                 <p className="text-muted-foreground text-lg">Production-ready solutions across the modern web stack</p>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+              <div className="grid md:grid-cols-3 gap-6">
                 {[
                   {
-                    icon: "📐",
+                    icon: Monitor,
                     title: "Responsive Web Interfaces",
-                    description: "Modern layouts optimized for desktop and mobile with performance in mind",
+                    desc: "Mobile-first, pixel-perfect layouts across all devices",
+                    color: "bg-blue-50 text-blue-600",
                   },
                   {
-                    icon: "🧩",
+                    icon: Box,
                     title: "React Component Architecture",
-                    description: "Reusable, maintainable UI components with clean, modular code structure",
+                    desc: "Scalable, reusable component systems with clean state management",
+                    color: "bg-purple-50 text-purple-600",
                   },
                   {
-                    icon: "🛣️",
-                    title: "Next.js Pages & Routing",
-                    description: "App Router, nested layouts, and dynamic routes for scalable applications",
+                    icon: Gauge,
+                    title: "Performance-First Apps",
+                    desc: "Fast load times, lazy loading, and optimized Core Web Vitals",
+                    color: "bg-green-50 text-green-600",
                   },
-                  {
-                    icon: "🔌",
-                    title: "API Integration",
-                    description: "Consuming REST APIs, handling async data, and state management",
-                  },
-                  {
-                    icon: "✨",
-                    title: "Design-to-Code Translation",
-                    description: "Converting UI/UX designs into accurate, functional, pixel-perfect code",
-                  },
-                ].map((capability, i) => (
+                ].map((item, i) => {
+                  const Icon = item.icon
+                  return (
                   <motion.div
                     key={i}
-                    className="p-6 rounded-2xl border border-border bg-background hover:border-[hsl(var(--zia-green))]/50 hover:bg-[hsl(var(--zia-green))]/5 transition-all space-y-4"
-                    whileHover={{ y: -6 }}
+                      className="bg-white rounded-3xl p-7 border border-slate-100 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
+                      whileHover={{ y: -4 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: i * 0.08 }}
                     viewport={{ once: true }}
                   >
-                    <div className="text-4xl">{capability.icon}</div>
-                    <h3 className="text-lg font-bold leading-tight">{capability.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{capability.description}</p>
+                      <div className={`w-12 h-12 ${item.color} rounded-2xl flex items-center justify-center mb-5`}>
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <h3 className="font-semibold text-slate-900 mb-2">{item.title}</h3>
+                      <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
                   </motion.div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           </div>

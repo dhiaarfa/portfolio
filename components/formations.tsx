@@ -31,7 +31,7 @@ export default function Formations() {
   ]
 
   return (
-    <section id="formations" className="py-20 md:py-32 bg-white dark:bg-slate-950">
+    <section id="formations" className="py-20 bg-white dark:bg-slate-950">
       <div className="container px-4 md:px-6">
         <div className="max-w-2xl mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-slate-950 dark:text-white mb-6">Training Programs</h2>

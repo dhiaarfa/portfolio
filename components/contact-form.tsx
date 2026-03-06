@@ -36,7 +36,13 @@ export default function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.service,
+          message: formData.message,
+          type: "contact",
+        }),
       })
 
       const data = await response.json()

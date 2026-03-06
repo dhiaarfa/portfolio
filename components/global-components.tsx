@@ -6,7 +6,6 @@ import dynamic from "next/dynamic"
 // These components are client-only and don't need SSR
 const CursorFollower = dynamic(() => import("@/components/cursor-follower"), { ssr: false })
 const ScrollNavigation = dynamic(() => import("@/components/scroll-navigation"), { ssr: false })
-const StickyCtaBar = dynamic(() => import("@/components/sticky-cta-bar"), { ssr: false })
 const WhatsAppButton = dynamic(() => import("@/components/whatsapp-button"), { ssr: false })
 const NavbarPrefetch = dynamic(() => import("@/components/navbar-prefetch"), { ssr: false })
 
@@ -21,7 +20,6 @@ export default function GlobalComponents() {
       <NavbarPrefetch />
       <CursorFollower />
       <ScrollNavigation />
-      <StickyCtaBar />
       <WhatsAppButton />
     </>
   )

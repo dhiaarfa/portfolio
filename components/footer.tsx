@@ -1,158 +1,122 @@
 "use client"
 
 import Link from "next/link"
-import { Mail, Linkedin, Instagram, Calendar } from "lucide-react"
+import { Mail, Linkedin, Instagram, Calendar, MapPin, Heart } from "lucide-react"
 import { siteConfig } from "@/lib/site-config"
 import { useLanguage } from "@/components/language-provider"
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
   const { t } = useLanguage()
 
   return (
-    <footer id="contact" className="w-full border-t border-border bg-card">
-      {/* Calendly CTA Banner */}
-      <div className="bg-[hsl(var(--zia-green))]/10 border-b border-[hsl(var(--zia-green))]/20">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h3 className="font-bold text-lg text-foreground">{siteConfig.ctaText}</h3>
-              <p className="text-sm text-muted-foreground mt-1">
-                {t("scheduleCallDescription")}
-              </p>
+    <footer id="contact" className="w-full bg-slate-950 text-white">
+      <div className="border-b border-slate-800">
+        <div className="max-w-5xl mx-auto px-6 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div>
+            <p className="label text-green-500 mb-1">Let&apos;s work together</p>
+            <h3 className="font-display font-bold text-2xl sm:text-3xl text-white leading-snug">
+              Ready to start a project?
+            </h3>
+            <p className="text-slate-500 text-sm mt-1">30-min call · no commitment</p>
+          </div>
+          <a
+            href={siteConfig.calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-green flex-shrink-0 py-4 px-7 !rounded-2xl"
+          >
+            <Calendar className="w-5 h-5" /> {t("bookFreeConsultation")}
+          </a>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
+        <div>
+          <div className="flex items-center gap-2.5 mb-4">
+            <div className="w-8 h-8 bg-green-600 rounded-xl flex items-center justify-center">
+              <span className="text-white font-black text-sm font-display">D</span>
             </div>
+            <span className="font-display font-bold text-white text-sm">Mohamed Dhia</span>
+          </div>
+          <p className="text-slate-500 text-xs leading-relaxed mb-5">
+            {t("footerDesc")}
+          </p>
+          <div className="flex gap-2.5">
             <a
-              href={siteConfig.calendlyUrl}
+              href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-[hsl(var(--zia-green))] text-background rounded-full font-semibold hover:opacity-90 transition-opacity shrink-0 touch-manipulation w-full sm:w-auto"
+              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-green-600 hover:text-white transition-all duration-200"
+              aria-label="LinkedIn"
             >
-              <Calendar className="h-4 w-4 shrink-0" />
-              {t("bookFreeConsultation")}
+              <Linkedin className="w-4 h-4" />
             </a>
+            <a
+              href={siteConfig.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-green-600 hover:text-white transition-all duration-200"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-green-600 hover:text-white transition-all duration-200"
+              aria-label="Email"
+            >
+              <Mail className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">Navigation</p>
+          <ul className="space-y-2.5">
+            <li><Link href="/" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("home")}</Link></li>
+            <li><Link href="/about" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("about")}</Link></li>
+            <li><Link href="/designer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("design")}</Link></li>
+            <li><Link href="/trainer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("training")}</Link></li>
+            <li><Link href="/developer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("webDevelopment")}</Link></li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">Services</p>
+          <ul className="space-y-2.5">
+            {["Brand Identity", "UI/UX Design", "Youth Training", "Leadership Workshops", "Web Development", "Book Consultation"].map((s) => (
+              <li key={s}><span className="text-slate-400 text-sm">{s}</span></li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">Contact</p>
+          <div className="space-y-3">
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="flex items-center gap-2.5 text-slate-400 hover:text-green-400 text-sm transition-colors"
+            >
+              <Mail className="w-4 h-4 flex-shrink-0" /> {siteConfig.email}
+            </a>
+            <div className="flex items-center gap-2.5 text-slate-400 text-sm">
+              <MapPin className="w-4 h-4 flex-shrink-0" /> {t("basedInTunisia")}
+            </div>
+            <div className="flex items-center gap-2 mt-3">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75" />
+                <span className="relative h-2 w-2 rounded-full bg-green-500" />
+              </span>
+              <span className="text-green-400 text-xs font-medium">Available for projects</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 items-start">
-          {/* Brand */}
-          <div className="space-y-4">
-            <h3 className="font-bold text-lg">Mohamed Dhia Arfa</h3>
-            <p className="text-sm text-muted-foreground max-w-xs">
-              {t("footerDesc")}
-            </p>
-            <a
-              href={siteConfig.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-2 text-sm font-medium text-[hsl(var(--zia-green))] hover:underline"
-            >
-              {t("bookFreeConsultation")}
-            </a>
-          </div>
-
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-sm uppercase tracking-wide">{t("navigationTitle")}</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href="/" prefetch className="block py-2 hover:text-foreground transition-colors touch-manipulation">
-                  {t("home")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" prefetch className="block py-2 hover:text-foreground transition-colors touch-manipulation">
-                  {t("about")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/designer" prefetch className="block py-2 hover:text-foreground transition-colors touch-manipulation">
-                  {t("design")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/trainer" prefetch className="block py-2 hover:text-foreground transition-colors touch-manipulation">
-                  {t("training")}
-                </Link>
-              </li>
-              <li>
-                <a
-                  href={siteConfig.trainingPortfolioUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block py-2 hover:text-foreground transition-colors touch-manipulation"
-                >
-                  {t("trainingPortfolio")}
-                </a>
-              </li>
-              <li>
-                <Link href="/developer" prefetch className="block py-2 hover:text-foreground transition-colors touch-manipulation">
-                  {t("webDevelopment")}
-                </Link>
-              </li>
-              <li>
-                <a
-                  href={siteConfig.calendlyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block py-2 hover:text-foreground transition-colors touch-manipulation"
-                >
-                  {t("bookConsultation")}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact - Update with correct contact information*/}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-sm uppercase tracking-wide">{t("contact")}</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4" />
-                <a href={`mailto:${siteConfig.email}`} className="hover:text-foreground transition-colors">
-                  {siteConfig.email}
-                </a>
-              </li>
-              <li>
-                <p className="text-sm">{t("basedInTunisia")}</p>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social – Personal + Zia Studio */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-sm uppercase tracking-wide">{t("followTitle")}</h4>
-            <div className="space-y-3">
-              <div className="flex flex-wrap gap-2 items-center">
-                <span className="text-xs text-muted-foreground">{t("me")}</span>
-                <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="LinkedIn">
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Instagram">
-                  <Instagram className="h-5 w-5" />
-                </a>
-              </div>
-              <div className="flex flex-wrap gap-2 items-center">
-                <span className="text-xs text-muted-foreground">Zia Studio</span>
-                <a href={siteConfig.ziaStudioLinkedIn} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-[hsl(var(--zia-green))] hover:underline" aria-label="Zia Studio LinkedIn">
-                  <Linkedin className="h-4 w-4" /> LinkedIn
-                </a>
-                <a href={siteConfig.ziaStudioInstagram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-[hsl(var(--zia-green))] hover:underline" aria-label="Zia Studio Instagram">
-                  <Instagram className="h-4 w-4" /> Instagram
-                </a>
-              </div>
-              <Link href={`mailto:${siteConfig.email}`} className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
-                <Mail className="h-5 w-5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>
-            © {currentYear} Mohamed Dhia Arfa. {t("allRightsReserved")}
-          </p>
+      <div className="border-t border-slate-800">
+        <div className="max-w-5xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-slate-600 text-xs">
+          <span>© 2026 Mohamed Dhia Arfa · {t("allRightsReserved")}</span>
+          <span className="flex items-center gap-1">Built with <Heart className="w-3 h-3 text-green-600 mx-0.5 fill-green-600" /> using Next.js & Tailwind</span>
         </div>
       </div>
     </footer>

@@ -32,7 +32,7 @@ export const translations = {
     roleTrainerDescription: "Youth development, leadership training, and facilitation with 7+ years of experience.",
     roleDesignerDescription: "Graphic design, UI/UX, and visual branding with a strong strategy-to-visual foundation.",
     roleDeveloperDescription: "Building modern web experiences with a design-first mindset and clean, scalable code.",
-    roleStatTrainer1: "990+ Participants",
+    roleStatTrainer1: "1000+ Participants",
     roleStatTrainer2: "450+ Training Hours",
     roleStatTrainer3: "30+ Facilitation Hours",
     roleStatDesigner1: "Brand Identity",
@@ -68,7 +68,7 @@ export const translations = {
     aboutDescription: "Discover my journey and passion for design, training, and continuous learning.",
     passionateDesigner: "Passionate Designer & Trainer",
     aboutText1:
-      "I'm a graphic designer and trainer with 7+ years of experience, contributing to campaigns and media projects. As a trainer, I delivered 450+ hours of training and reached 990+ participants, supporting education and youth capacity building in Tunisia.",
+      "I'm a graphic designer and trainer with 7+ years of experience, contributing to campaigns and media projects. As a trainer, I delivered 450+ hours of training and reached 1000+ participants, supporting education and youth capacity building in Tunisia.",
     aboutText2:
       "Versatile and committed to continuous learning, I am always open to exploring new opportunities that enrich my professional portfolio. I'm passionate about marketing, project management, and business development, actively advocating for education and youth empowerment.",
     email: "Email",
@@ -196,7 +196,7 @@ export const translations = {
     monFri: "Mon-Fri: 9am-6pm",
     whyWorkWith: "Why work with me?",
     whyWork1: "7+ years of experience in graphic design",
-    whyWork2: "990+ participants trained successfully",
+    whyWork2: "1000+ participants trained successfully",
     whyWork3: "Personalized approach for each project",
     whyWork4: "Complete follow-up and support",
     collaborationRequest: "Collaboration Request",
@@ -282,7 +282,7 @@ export const translations = {
     myTrainingJourney: "My Training Journey",
     evolutionAsEducator: "Evolution As An Educator",
     trainerJourneyIntro:
-      "From my first certification to reaching 990+ participants, my journey has been defined by continuous learning, passion for empowerment, and commitment to social change.",
+      "From my first certification to reaching 1000+ participants, my journey has been defined by continuous learning, passion for empowerment, and commitment to social change.",
     requestTraining: "Request Training",
     readyToTransformLearning: "Ready to Transform Through Learning?",
     requestTrainingDesc:
@@ -326,7 +326,7 @@ export const translations = {
     roleTrainerDescription: "Développement des jeunes, formation au leadership et facilitation avec 7+ ans d'expérience.",
     roleDesignerDescription: "Design graphique, UI/UX et identité visuelle avec une base stratégie-to-visuel solide.",
     roleDeveloperDescription: "Création d'expériences web modernes avec une approche design-first et un code propre et évolutif.",
-    roleStatTrainer1: "990+ Participants",
+    roleStatTrainer1: "1000+ Participants",
     roleStatTrainer2: "450+ Heures de formation",
     roleStatTrainer3: "30+ Heures de facilitation",
     roleStatDesigner1: "Identité de marque",
@@ -362,7 +362,7 @@ export const translations = {
     aboutDescription: "Découvrez mon parcours et ma passion pour le design, la formation et l'apprentissage continu.",
     passionateDesigner: "Designer & Formateur Passionné",
     aboutText1:
-      "Je suis designer graphique et formateur avec 7+ ans d'expérience, ayant contribué à de nombreuses campagnes et projets médias. En tant que formateur, j'ai animé 450+ heures de formation et touché 990+ participants, en soutenant l'éducation et le renforcement des capacités des jeunes en Tunisie.",
+      "Je suis designer graphique et formateur avec 7+ ans d'expérience, ayant contribué à de nombreuses campagnes et projets médias. En tant que formateur, j'ai animé 450+ heures de formation et touché 1000+ participants, en soutenant l'éducation et le renforcement des capacités des jeunes en Tunisie.",
     aboutText2:
       "Polyvalent et engagé dans l'apprentissage continu, je suis toujours ouvert à explorer de nouvelles opportunités qui enrichissent mon portfolio professionnel. Je suis passionné par le marketing, la gestion de projet et le développement commercial, plaidant activement pour l'éducation et l'autonomisation des jeunes.",
     email: "Email",
@@ -492,7 +492,7 @@ export const translations = {
     monFri: "Lun-Ven: 9h-18h",
     whyWorkWith: "Pourquoi travailler avec moi ?",
     whyWork1: "7+ années d'expérience en design graphique",
-    whyWork2: "990+ participants formés avec succès",
+    whyWork2: "1000+ participants formés avec succès",
     whyWork3: "Approche personnalisée pour chaque projet",
     whyWork4: "Suivi et accompagnement complet",
     collaborationRequest: "Demande de Collaboration",
@@ -577,7 +577,7 @@ export const translations = {
     myTrainingJourney: "Mon parcours de formateur",
     evolutionAsEducator: "Évolution en tant qu'éducateur",
     trainerJourneyIntro:
-      "De ma première certification à plus de 990 participants, mon parcours est marqué par l'apprentissage continu, la passion pour l'autonomisation et l'engagement pour le changement social.",
+      "De ma première certification à plus de 1000 participants, mon parcours est marqué par l'apprentissage continu, la passion pour l'autonomisation et l'engagement pour le changement social.",
     requestTraining: "Demander une formation",
     readyToTransformLearning: "Prêt à transformer par l'apprentissage ?",
     requestTrainingDesc:
@@ -621,7 +621,7 @@ export const translations = {
     roleTrainerDescription: "تنمية الشباب وتدريب القيادة والتيسير مع أكثر من 7 سنوات من الخبرة.",
     roleDesignerDescription: "تصميم جرافيك وواجهات وتجربة مستخدم وهوية بصرية قائمة على الاستراتيجية.",
     roleDeveloperDescription: "بناء تجارب ويب حديثة بعقلية تصميم أولاً وكود نظيف وقابل للتوسع.",
-    roleStatTrainer1: "990+ مشارك",
+    roleStatTrainer1: "1000+ مشارك",
     roleStatTrainer2: "450+ ساعة تدريب",
     roleStatTrainer3: "30+ ساعة تيسير",
     roleStatDesigner1: "هوية العلامة",
@@ -657,7 +657,7 @@ export const translations = {
     aboutDescription: "اكتشف رحلتي وشغفي بالتصميم والتدريب والتعلم المستمر.",
     passionateDesigner: "مصمم ومدرب شغوف",
     aboutText1:
-      "أنا مصمم جرافيكي ومدرب بخبرة 7+ سنوات، ساهمت في العديد من الحملات والمشاريع الإعلامية. كمدرب، قدمت أكثر من 450+ ساعة تدريب ووصلت إلى 990+ مشاركاً، دعماً للتعليم وبناء قدرات الشباب في تونس.",
+      "أنا مصمم جرافيكي ومدرب بخبرة 7+ سنوات، ساهمت في العديد من الحملات والمشاريع الإعلامية. كمدرب، قدمت أكثر من 450+ ساعة تدريب ووصلت إلى 1000+ مشاركاً، دعماً للتعليم وبناء قدرات الشباب في تونس.",
     aboutText2:
       "متعدد المواهب والتزام بالتعلم المستمر، أنا دائماً مفتوح لاستكشاف فرص جديدة تثري محفظتي المهنية. أنا شغوف بالتسويق وإدارة المشاريع والتطوير التجاري، ويدعو بنشاط للتعليم وتمكين الشباب.",
     email: "البريد الإلكتروني",
@@ -787,7 +787,7 @@ export const translations = {
     monFri: "الإثنين - الجمعة: 9صباحاً - 6مساءً",
     whyWorkWith: "لماذا تعمل معي؟",
     whyWork1: "7+ سنوات من الخبرة في التصميم الجرافيكي",
-    whyWork2: "990+ مشاركاً تم تدريبهم بنجاح",
+    whyWork2: "1000+ مشاركاً تم تدريبهم بنجاح",
     whyWork3: "نهج مخصص لكل مشروع",
     whyWork4: "المتابعة والدعم الكامل",
     collaborationRequest: "طلب التعاون",

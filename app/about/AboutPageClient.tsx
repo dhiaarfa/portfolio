@@ -2,11 +2,34 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Award, Briefcase, BookOpen, Target } from "lucide-react"
+import { ArrowLeft, Award, Briefcase, BookOpen, Zap, Star, ShieldCheck, Palette, Code } from "lucide-react"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import { motion } from "framer-motion"
 import { useLanguage } from "@/components/language-provider"
+import { FadeUp } from "@/components/ui/motion"
+import { siteConfig } from "@/lib/site-config"
+
+const skillsConfig = [
+  {
+    category: "Design & Creative",
+    icon: Palette,
+    color: "text-pink-600 bg-pink-50",
+    skills: ["Graphic Design (Adobe Suite)", "UI/UX Design (Figma)", "Visual Branding & Identity", "Digital Marketing Design", "Packaging & Print Design"],
+  },
+  {
+    category: "Development",
+    icon: Code,
+    color: "text-blue-600 bg-blue-50",
+    skills: ["React & Next.js", "Responsive Web Design", "Frontend Development", "UI Component Architecture", "Modern CSS & Tailwind"],
+  },
+  {
+    category: "Training & Leadership",
+    icon: Award,
+    color: "text-green-700 bg-green-50",
+    skills: ["Youth Development", "Leadership Training", "Workshop Facilitation", "Social Justice Advocacy", "Team Building & Coaching"],
+  },
+]
 
 export default function AboutPageClient() {
   const { t } = useLanguage()
@@ -14,76 +37,59 @@ export default function AboutPageClient() {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <div className="pt-20">
-        {/* Hero Section */}
-        <section className="relative px-4 md:px-8 py-12 md:py-20 max-w-6xl mx-auto overflow-hidden">
-          {/* Zia-inspired layered background */}
-          <div className="pointer-events-none absolute -right-32 -top-24 w-80 h-80 bg-[hsl(var(--zia-green))]/15 rounded-full blur-3xl" />
-          <div className="pointer-events-none absolute -left-40 bottom-0 w-72 h-72 bg-[hsl(var(--zia-green))]/10 rounded-full blur-3xl" />
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12"
-          >
-            <div className="space-y-6 flex-1">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 text-accent hover:opacity-80 transition-opacity"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span>{t("backToHome")}</span>
-              </Link>
-
-              <div className="space-y-4">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                  Mohamed Dhia Arfa
+      <div className="pt-28">
+        {/* Hero — editorial polaroid layout */}
+        <section className="bg-white dark:bg-slate-950 pt-28 pb-16 px-6">
+          <div className="max-w-5xl mx-auto">
+            <Link href="/" className="inline-flex items-center gap-1.5 text-slate-400 text-sm hover:text-green-600 mb-10 transition-colors group">
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform rtl:rotate-180" />
+              {t("backToHome")}
+            </Link>
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_260px] gap-12 items-start">
+              <div>
+                <p className="label mb-3">The person behind the work</p>
+                <h1 className="font-display font-extrabold text-[clamp(40px,7vw,78px)] leading-[0.93] tracking-tight text-slate-900 dark:text-white mb-5">
+                  Mohamed<br />Dhia Arfa
                 </h1>
-                <p className="text-xl sm:text-2xl text-muted-foreground">
-                  {t("trainerDesignerDeveloper")}
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                  {t("aboutHeroDesc")}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="chip chip-pink">Graphic Designer</span>
+                  <span className="chip chip-amber">Certified Trainer</span>
+                  <span className="chip chip-blue">Web Developer</span>
+                </div>
+                <p className="text-slate-500 dark:text-slate-400 text-[17px] leading-relaxed max-w-lg">
+                  Multi-disciplinary creative based in Tunisia operating where visual design, human development, and technology meet.
                 </p>
               </div>
-            </div>
-            <div className="shrink-0 flex justify-center md:justify-start">
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border-2 border-border shadow-xl">
-                <Image
-                  src="/images/dhia/indoor-bomber.png"
-                  alt="Mohamed Dhia Arfa"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 224px, 288px"
-                  priority
-                />
+              <div className="hidden md:block">
+                <div className="relative inline-block">
+                  <div className="bg-white dark:bg-slate-700 p-3 pb-10 shadow-[0_12px_48px_rgba(0,0,0,0.14)] dark:shadow-[0_12px_48px_rgba(0,0,0,0.5)] rounded-sm rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <Image src="/images/photos/dhia-about.png" alt="Mohamed Dhia" width={260} height={320} className="w-full object-cover" />
+                    <p className="text-center text-slate-400 dark:text-slate-500 text-xs font-medium mt-3">Dhia · Tunisia 🇹🇳</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </section>
 
-        {/* Core Values */}
-        <section className="px-4 md:px-8 py-12 md:py-20 bg-card/30">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-12">{t("coreValues")}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        {/* Core Values — icon tiles */}
+        <section className="bg-section-tint dark:bg-[#052e16] py-16 px-6">
+          <div className="max-w-5xl mx-auto">
+            <p className="label text-center">Core Values</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
               {[
-                { icon: Target, titleKey: "impactDriven", descKey: "impactDrivenDesc" },
-                { icon: Award, titleKey: "excellence", descKey: "excellenceDesc" },
-                { icon: BookOpen, titleKey: "continuousLearning", descKey: "continuousLearningDesc" },
-                { icon: Briefcase, titleKey: "professional", descKey: "professionalDesc" },
-              ].map((value, i) => (
-                <motion.div
-                  key={value.titleKey}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="space-y-3 p-6 rounded-lg border border-border hover:border-accent/50 transition-colors"
-                >
-                  <value.icon className="h-8 w-8 text-accent" />
-                  <h3 className="font-bold text-lg">{t(value.titleKey)}</h3>
-                  <p className="text-muted-foreground text-sm">{t(value.descKey)}</p>
-                </motion.div>
+                { Icon: Zap, label: "Impact Driven", desc: "Meaningful change in every project", bg: "bg-green-50 dark:bg-green-950/40", ic: "text-green-600 dark:text-green-400" },
+                { Icon: Star, label: "Excellence", desc: "Highest quality in all endeavors", bg: "bg-amber-50 dark:bg-amber-950/40", ic: "text-amber-600 dark:text-amber-400" },
+                { Icon: BookOpen, label: "Continuous Learning", desc: "Always mastering new skills", bg: "bg-blue-50 dark:bg-blue-950/40", ic: "text-blue-600 dark:text-blue-400" },
+                { Icon: ShieldCheck, label: "Professional", desc: "Integrity in every interaction", bg: "bg-purple-50 dark:bg-purple-950/40", ic: "text-purple-600 dark:text-purple-400" },
+              ].map((v) => (
+                <div key={v.label} className="card-base p-6 text-center">
+                  <div className={`w-12 h-12 ${v.bg} rounded-2xl flex items-center justify-center mx-auto mb-4`}>
+                    <v.Icon className={`w-6 h-6 ${v.ic}`} />
+                  </div>
+                  <p className="font-semibold text-slate-900 dark:text-white text-sm mb-1">{v.label}</p>
+                  <p className="text-slate-400 dark:text-slate-500 text-xs leading-relaxed">{v.desc}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -146,55 +152,43 @@ export default function AboutPageClient() {
               </div>
             </div>
 
-            {/* Key Skills */}
+            {/* Key Skills — visual grid with icon badges */}
             <div className="mb-16 space-y-6">
               <h3 className="text-2xl font-bold text-accent">Key Skills</h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="space-y-4">
-                  <h4 className="font-bold">Design & Creative</h4>
-                  <ul className="space-y-2 text-muted-foreground text-sm">
-                    <li>• Graphic Design (Adobe Suite)</li>
-                    <li>• UI/UX Design (Figma)</li>
-                    <li>• Visual Branding & Identity</li>
-                    <li>• Digital Marketing Design</li>
-                    <li>• Packaging & Print Design</li>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {skillsConfig.map((col) => (
+                  <div key={col.category} className="bg-white rounded-3xl p-6 border border-slate-100 shadow-card">
+                    <div className={`w-11 h-11 ${col.color} rounded-2xl flex items-center justify-center mb-4`}>
+                      <col.icon className="w-5 h-5" />
+                </div>
+                    <h4 className="font-semibold text-slate-900 text-sm mb-4">{col.category}</h4>
+                    <ul className="space-y-2">
+                      {col.skills.map((skill) => (
+                        <li key={skill} className="flex items-center gap-2 text-sm text-slate-500">
+                          <span className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
+                          {skill}
+                        </li>
+                      ))}
                   </ul>
                 </div>
-                <div className="space-y-4">
-                  <h4 className="font-bold">Development</h4>
-                  <ul className="space-y-2 text-muted-foreground text-sm">
-                    <li>• React & Next.js</li>
-                    <li>• Responsive Web Design</li>
-                    <li>• Frontend Development</li>
-                    <li>• UI Component Architecture</li>
-                    <li>• Modern CSS & Tailwind</li>
-                  </ul>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="font-bold">Training & Leadership</h4>
-                  <ul className="space-y-2 text-muted-foreground text-sm">
-                    <li>• Youth Development</li>
-                    <li>• Leadership Training</li>
-                    <li>• Workshop Facilitation</li>
-                    <li>• Social Justice Advocacy</li>
-                    <li>• Team Building & Coaching</li>
-                  </ul>
-                </div>
+                ))}
               </div>
             </div>
 
-            {/* Impact Statistics */}
-            <div className="mb-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 p-8 bg-card/50 rounded-lg border border-border">
+            {/* Impact Statistics — dark card, prominent numbers */}
+            <div className="mb-16 bg-slate-900 rounded-3xl p-8 grid grid-cols-2 md:grid-cols-5 gap-6">
               {[
-                { label: 'Participants Trained', value: '990+' },
-                { label: 'Training Hours', value: '450+' },
-                { label: 'Facilitation Hours', value: '30+' },
-                { label: 'Training Cycles Supervised', value: '10+' },
-                { label: 'Years Experience', value: '7+' },
+                { label: "Participants Trained", value: `${siteConfig.stats.participants}+` },
+                { label: "Training Hours", value: `${siteConfig.stats.trainingHours}+` },
+                { label: "Facilitation Hours", value: `${siteConfig.stats.facilitationHours}+` },
+                { label: "Training Cycles Supervised", value: `${siteConfig.stats.trainingCyclesSupervised}+` },
+                { label: "Years Experience", value: `${siteConfig.stats.yearsExperience}+` },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-accent mb-2">{stat.value}</div>
-                  <p className="text-muted-foreground">{stat.label}</p>
+                  <p className="font-display font-black text-[clamp(28px,4vw,40px)] text-white leading-none mb-1.5">
+                    {stat.value}
+                  </p>
+                  <p className="text-slate-500 text-xs font-medium uppercase tracking-wide">{stat.label}</p>
                 </div>
               ))}
             </div>

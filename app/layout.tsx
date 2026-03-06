@@ -2,24 +2,36 @@ import type React from "react"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
-import { Poppins, Sora } from "next/font/google"
+import { Syne, DM_Serif_Display, DM_Sans } from "next/font/google"
 import { cn } from "@/lib/utils"
 import MotionProvider from "@/components/motion-provider"
 import GlobalComponents from "@/components/global-components"
 
-// Optimized font loading: Reduced from 5 fonts to 2 (Sora + Poppins)
-// This reduces font download from ~200KB+ to ~60KB and eliminates layout shift
-const poppins = Poppins({
-  weight: ["400", "500", "600", "700"],
+// Typography system:
+// - Syne: display / hero headlines
+// - DM Serif Display: section headings
+// - DM Sans: body & UI text
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-poppins",
-  display: "swap", // Prevents FOIT (Flash of Invisible Text)
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-syne",
+  display: "swap",
   preload: true,
 })
 
-const sora = Sora({
+const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
-  variable: "--font-sora",
+  style: ["normal", "italic"],
+  weight: "400",
+  variable: "--font-dm-serif",
+  display: "swap",
+  preload: true,
+})
+
+const dmSans = DM_Sans({
+  subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-dm-sans",
   display: "swap",
   preload: true,
 })
@@ -31,7 +43,7 @@ export const metadata = {
     template: "%s | Mohamed Dhia Arfa",
   },
   description:
-    "Designer • Trainer • Developer based in Tunisia. 990+ participants trained, 450+ hours delivered, 30+ hours of facilitation, 10+ training cycles supervised.",
+    "Designer • Trainer • Developer based in Tunisia. 1000+ participants trained, 450+ hours delivered, 30+ hours of facilitation, 10+ training cycles supervised.",
   keywords: ["trainer", "youth development", "leadership", "graphic designer", "web developer", "Tunisia", "training programs", "CNFCPP certified"],
   authors: [{ name: "Mohamed Dhia Arfa" }],
   creator: "Mohamed Dhia Arfa",
@@ -64,9 +76,9 @@ export const metadata = {
     description: "Professional portfolio of Mohamed Dhia Arfa - Expert graphic designer and trainer",
     images: [
       {
-        url: "/favicon-green-portrait.png",
-        width: 512,
-        height: 512,
+        url: "/images/photos/dhia-main.png",
+        width: 1200,
+        height: 630,
         alt: "Mohamed Dhia Arfa",
       },
     ],
@@ -75,7 +87,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Mohamed Dhia Arfa | Designer • Trainer • Developer",
     description: "Professional portfolio of Mohamed Dhia Arfa - Expert graphic designer and trainer",
-    images: ["/favicon-green-portrait.png"],
+    images: ["/images/photos/dhia-main.png"],
   },
   alternates: {
     canonical: "https://dhia-portfolio.me",
@@ -88,13 +100,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+    <html lang="en" dir="ltr" suppressHydrationWarning className={`scroll-smooth ${syne.variable} ${dmSerifDisplay.variable} ${dmSans.variable}`}>
       <head>
         <link rel="icon" href="/favicon-green-portrait.png" sizes="any" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
         <style>{`
           :root {
-            ${poppins.variable};
-            ${sora.variable};
+            ${syne.variable};
+            ${dmSerifDisplay.variable};
+            ${dmSans.variable};
             --background: 0 0% 100%;
             --foreground: 0 0% 5%;
             --zia-green: 142 70% 45%;
@@ -106,7 +122,7 @@ export default function RootLayout({
           body {
             background-color: hsl(var(--background));
             color: hsl(var(--foreground));
-            font-family: var(--font-sora), system-ui, sans-serif;
+            font-family: var(--font-syne), var(--font-dm-sans), system-ui, sans-serif;
           }
         `}</style>
         {/* Preconnect to external domains for faster loading */}
@@ -136,7 +152,7 @@ export default function RootLayout({
               alternateName: "Dhia Arfa",
               jobTitle: "Designer, Trainer & Developer",
               url: "https://dhia-portfolio.me",
-              image: "https://dhia-portfolio.me/images/photo-dhia.png",
+              image: "https://dhia-portfolio.me/images/photos/dhia-main.png",
               email: "mohameddhiaarfa@gmail.com",
               telephone: "+216-53-580-272",
               sameAs: [
@@ -201,13 +217,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={cn("bg-background text-foreground font-sans antialiased transition-colors duration-300 overflow-x-hidden min-w-0")} style={{ backgroundColor: "hsl(var(--background))", color: "hsl(var(--foreground))" }}>
+      <body className={cn("font-sans antialiased bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 overflow-x-hidden min-w-0")} style={{ backgroundColor: "hsl(var(--background))", color: "hsl(var(--foreground))" }}>
         <ThemeProvider 
           attribute="class" 
           defaultTheme="light" 
-          enableSystem
+          enableSystem={false}
           storageKey="theme-preference"
-          forcedTheme={undefined}
           enableColorScheme={true}
           themes={["light", "dark"]}
           disableTransitionOnChange={false}

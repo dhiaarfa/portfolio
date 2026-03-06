@@ -2,11 +2,11 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, BookOpen, Palette, Code, Calendar } from "lucide-react"
+import { ArrowRight, BookOpen, Palette, Code, Calendar, Users } from "lucide-react"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { siteConfig } from "@/lib/site-config"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import StatsSection from "@/components/stats-section"
@@ -15,84 +15,40 @@ import FAQSection from "@/components/faq-section"
 import NewsletterSection from "@/components/newsletter-section"
 import TestimonialsTicker from "@/components/testimonials-ticker"
 import { useLanguage } from "@/components/language-provider"
+import { FadeUp } from "@/components/ui/motion"
+
+function AnimatedRole() {
+  const [i, setI] = useState(0)
+  const [show, setShow] = useState(true)
+  const roles = [
+    { text: "Graphic Designer", cls: "text-pink-500 dark:text-pink-400" },
+    { text: "Youth Trainer", cls: "text-amber-500 dark:text-amber-400" },
+    { text: "Web Developer", cls: "text-blue-500 dark:text-blue-400" },
+  ]
+  useEffect(() => {
+    const t = setInterval(() => {
+      setShow(false)
+      setTimeout(() => {
+        setI((p) => (p + 1) % 3)
+        setShow(true)
+      }, 280)
+    }, 2800)
+    return () => clearInterval(t)
+  }, [])
+  return (
+    <p className="text-[17px] font-medium text-slate-500 dark:text-slate-400">
+      A Creative{" "}
+      <span
+        className={`font-semibold transition-all duration-300 inline-block ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"} ${roles[i].cls}`}
+      >
+        {roles[i].text}
+      </span>
+    </p>
+  )
+}
 
 export default function HomePageClient() {
   const { t } = useLanguage()
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      text: "Currently crafting digital experiences",
-      color: "bg-yellow-200",
-      x: 50,
-      y: 100,
-      rotation: 3,
-      section: "hero",
-    },
-    {
-      id: 2,
-      text: "Designer • Trainer • Developer",
-      color: "bg-[hsl(var(--zia-green))]/20",
-      x: 150,
-      y: 250,
-      rotation: -2,
-      section: "hero",
-    },
-    {
-      id: 3,
-      text: "7+ Years Experience",
-      color: "bg-green-100",
-      x: 800,
-      y: 150,
-      rotation: 1,
-      section: "hero",
-    },
-    {
-      id: 4,
-      text: "Building meaningful experiences",
-      color: "bg-[hsl(var(--zia-green))]/10",
-      x: 100,
-      y: 800,
-      rotation: -3,
-      section: "roles",
-    },
-    {
-      id: 5,
-      text: "Creative problem solving",
-      color: "bg-pink-100",
-      x: 700,
-      y: 900,
-      rotation: 2,
-      section: "roles",
-    },
-    {
-      id: 6,
-      text: "Always learning & growing",
-      color: "bg-purple-100",
-      x: 200,
-      y: 1100,
-      rotation: -1,
-      section: "roles",
-    },
-    {
-      id: 7,
-      text: "Design + Code + Teaching",
-      color: "bg-[hsl(var(--zia-green))]/20",
-      x: 900,
-      y: 1000,
-      rotation: 3,
-      section: "roles",
-    },
-    {
-      id: 8,
-      text: "Let's collaborate!",
-      color: "bg-yellow-100",
-      x: 400,
-      y: 300,
-      rotation: -2,
-      section: "hero",
-    },
-  ])
-
   const roles = [
     {
       title: "Trainer",
@@ -126,191 +82,204 @@ export default function HomePageClient() {
     },
   ]
 
-  const [draggingId, setDraggingId] = useState(null);
-
-  const handleMouseDown = (e, id) => {
-    setDraggingId(id);
-  };
-
   return (
-    <div className="w-full min-h-screen bg-background">
+    <div className="w-full min-h-screen bg-white dark:bg-slate-950">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="w-full min-h-[calc(100vh-5rem)] flex items-center justify-center py-16 md:py-0 px-4 md:px-8 pt-20 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto w-full flex flex-col items-center md:items-stretch">
-          {/* Sticky Notes - Positioned lower on mobile to avoid hero text overlap */}
-          <div className="hidden lg:block absolute top-32 right-4 space-y-2 pointer-events-none">
-            {notes.slice(0, 2).map((note) => (
-              <motion.div
-                key={note.id}
-                className={`${note.color} p-3 rounded-lg shadow-md w-32 text-xs font-medium select-none`}
-                initial={{ opacity: 0, rotate: -5 }}
-                animate={{ opacity: 1, rotate: note.rotation }}
-                transition={{ duration: 0.6, delay: note.id * 0.1 }}
+      <section className="relative min-h-[92vh] flex items-center bg-white dark:bg-slate-950 overflow-hidden px-5 pt-24 pb-16">
+        <div className="pointer-events-none absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-green-400/10 dark:bg-green-500/8 blur-[120px]" />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.022] dark:opacity-[0.04]"
+          style={{
+            backgroundImage: "radial-gradient(#16a34a 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
+        <div className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[58%_42%] gap-10 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 mb-7 px-4 py-1.5 rounded-full text-sm font-medium bg-green-50 dark:bg-green-950/60 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 w-fit">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75" />
+                <span className="relative h-2 w-2 rounded-full bg-green-500" />
+              </span>
+              Open to new projects · {t("basedInTunisia")}
+            </div>
+            <h1 className="font-display font-extrabold text-[clamp(44px,7.5vw,84px)] leading-[0.94] tracking-tight text-slate-900 dark:text-white mb-3">
+              Hello, I&apos;m<br />
+              <span className="text-green-600 dark:text-green-400">Mohamed Dhia</span>
+            </h1>
+            <AnimatedRole />
+            <p className="mt-5 mb-8 text-slate-500 dark:text-slate-400 text-[17px] leading-relaxed max-w-[420px]">
+              Designer, trainer, and developer helping people communicate clearly and build stronger digital products.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={siteConfig.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-green"
               >
-                <span className={note.color.includes("yellow") ? "text-black" : "text-foreground"}>{note.text}</span>
-              </motion.div>
-            ))}
+                <Calendar className="w-4 h-4" /> {t("bookFreeConsultation")}
+              </a>
+              <a href="#expertise" className="btn-outline group">
+                {t("exploreMyWork")}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
+              </a>
+            </div>
           </div>
-          {/* Mobile notes - positioned much lower to avoid hero text */}
-          <div className="lg:hidden absolute top-[calc(100vh-200px)] right-4 space-y-2 pointer-events-none z-10">
-            {notes.slice(0, 2).map((note) => (
-              <motion.div
-                key={note.id}
-                className={`${note.color} p-2 rounded-lg shadow-md w-28 text-[10px] font-medium select-none`}
-                initial={{ opacity: 0, rotate: -5 }}
-                animate={{ opacity: 1, rotate: note.rotation }}
-                transition={{ duration: 0.6, delay: note.id * 0.1 }}
-              >
-                <span className={note.color.includes("yellow") ? "text-black" : "text-foreground"}>{note.text}</span>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 items-center w-full">
-            {/* Left: Text content */}
-            <motion.div
-              className="space-y-8 relative text-center md:text-left"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="inline-block relative">
-                <div></div>
+          <div className="relative hidden lg:flex justify-center">
+            <div className="absolute inset-8 bg-green-400/15 dark:bg-green-500/10 rounded-3xl blur-2xl" />
+            <div className="relative rounded-3xl overflow-hidden border-2 border-green-100 dark:border-green-900/50 w-[340px]">
+              <Image
+                src="/images/photos/dhia-main.png"
+                alt="Mohamed Dhia Arfa"
+                width={340}
+                height={420}
+                className="w-full object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-green-950/20 to-transparent" />
+            </div>
+            <div className="absolute -bottom-5 -left-4 card-base px-4 py-3 flex items-center gap-3 w-max shadow-[0_8px_24px_rgba(0,0,0,0.10)]">
+              <div className="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-900/50 flex items-center justify-center flex-shrink-0">
+                <Users className="w-5 h-5 text-green-600 dark:text-green-400" />
               </div>
-
-              <div className="space-y-4 md:space-y-6">
-                <div>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">{t("hello")}</h1>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-3 md:mt-4 leading-tight">
-                    {t("homeHeadlinePrefix")}{" "}
-                    <span className="bg-gradient-to-r from-[hsl(var(--zia-green))] via-emerald-500 to-teal-500 bg-clip-text text-transparent">
-                      {t("homeHeadlineHighlight")}
-                    </span>
-                  </h2>
-                </div>
-
-                {/* Description with better spacing */}
-                <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-lg leading-relaxed mx-auto md:mx-0">
-                  {t("heroDescription")}
-                </p>
+              <div>
+                <p className="font-display font-black text-[17px] leading-none text-slate-900 dark:text-white">{siteConfig.stats.participants}+</p>
+                <p className="text-xs text-slate-400 mt-0.5">People trained</p>
               </div>
-
-              {/* CTA Buttons */}
-              <motion.div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-4 md:pt-6 justify-center md:justify-start">
-                <a
-                  href={siteConfig.calendlyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-white rounded-lg font-medium hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-500/90 transition-all active:scale-[0.98] touch-manipulation"
-                >
-                  <Calendar className="w-4 h-4" />
-                  <span className="text-sm sm:text-base">{t("bookFreeConsultation")}</span>
-                </a>
-                <a
-                  href="#roles"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors touch-manipulation"
-                >
-                  <span className="text-sm sm:text-base">{t("exploreMyWork")}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-                <a
-                  href="/about"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-foreground/30 rounded-lg font-medium hover:bg-foreground/5 transition-colors touch-manipulation"
-                >
-                  <span className="text-sm sm:text-base">{t("learnMore")}</span>
-                </a>
-              </motion.div>
-            </motion.div>
-
-            {/* Right: Professional Photo */}
-            <motion.div
-              className="flex justify-center relative w-full order-first md:order-last"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              {/* Mobile: Larger portrait (280px), Desktop: Standard */}
-              <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-xs lg:max-w-sm mx-auto md:mx-0">
-                <div className="aspect-square rounded-2xl overflow-hidden border-2 border-foreground/10 shadow-lg bg-background">
-                  <Image
-                    src="/images/photo-dhia.png"
-                    alt="Mohamed Dhia Arfa"
-                    width={500}
-                    height={500}
-                    sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 500px"
-                    className="w-full h-full object-cover object-center"
-                    priority
-                  />
-                </div>
-              </div>
-            </motion.div>
+            </div>
+            <div className="absolute -top-4 -right-3 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl px-3.5 py-2.5 shadow-lg">
+              <p className="font-display font-black text-xl leading-none">{siteConfig.stats.yearsExperience}+</p>
+              <p className="text-slate-400 text-[10px] mt-0.5 tracking-wide">Yrs exp.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Role Cards Section */}
-      <section id="roles" className="w-full py-12 md:py-16 px-4 md:px-8 bg-foreground/2">
-        <div className="max-w-6xl mx-auto w-full">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-3 md:mb-4 px-2">{t("myExpertise")}</h2>
-          <p className="text-center text-sm sm:text-base text-muted-foreground mb-10 md:mb-16 max-w-2xl mx-auto px-2">
-            {t("myExpertiseSubtitle")}
-          </p>
+      {/* My Expertise Bento */}
+      <section id="expertise" className="bg-section-tint py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <FadeUp>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-green-600 text-center mb-2">
+              {t("myExpertise")}
+            </p>
+            <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] text-center text-slate-900 leading-snug mb-12">
+              Three specialized areas.
+              <br />
+              One cohesive vision.
+            </h2>
+          </FadeUp>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {roles.map((role, index) => {
-              const Icon = role.icon
-              return (
-                <motion.div
-                  key={role.slug}
-                  className="group p-6 md:p-8 rounded-2xl bg-background border border-foreground/10 hover:border-[hsl(var(--zia-green))]/30 transition-all w-full"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -4 }}
-                >
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-lg bg-[hsl(var(--zia-green))]/10 flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-[hsl(var(--zia-green))]" />
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* TILE 1 — Graphic Designer (large, spans 2 rows) */}
+            {roles[1] && (
+              <Link
+                href={`/${roles[1].slug}`}
+                className="md:row-span-2 bg-white rounded-3xl border border-green-100 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 p-8 flex flex-col justify-between group cursor-pointer"
+              >
                     <div>
-                      <h3 className="font-bold text-lg">
-                        {role.slug === "trainer" ? t("training") : role.slug === "designer" ? t("design") : t("webDevelopment")}
-                      </h3>
-                    </div>
+                  <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                    <Palette className="w-6 h-6 text-green-700" />
                   </div>
-
-                  <p className="text-sm text-muted-foreground mb-6">{t(role.descriptionKey)}</p>
-
-                  <div className="flex flex-wrap gap-2 md:gap-4 mb-4 md:mb-6">
-                    {role.stats.map((stat) => (
-                      <span key={stat} className="text-xs font-medium px-2 md:px-3 py-1 bg-foreground/5 rounded-full whitespace-nowrap">
-                        {stat}
+                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-green-600 mb-2">
+                    {t("design")}
+                  </p>
+                  <h3 className="font-display text-2xl font-bold text-slate-900 mb-3">Zia Studio</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                    {t(roles[1].descriptionKey)}
+                  </p>
+                  <div className="flex gap-2 mb-6 flex-wrap">
+                    {["Brand Identity", "UI/UX", "Motion", "Print"].map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs bg-green-50 text-green-700 rounded-full px-3 py-1 font-medium border border-green-100"
+                      >
+                        {tag}
                       </span>
                     ))}
                   </div>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-green-600 group-hover/link:gap-2 transition-all">
+                  {t(roles[1].cta)}
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                </span>
+              </Link>
+            )}
 
+            {/* TILE 2 — Trainer */}
+            {roles[0] && (
+              <Link
+                href={`/${roles[0].slug}`}
+                className="md:col-span-2 bg-white rounded-3xl border border-slate-100 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 p-7 flex flex-col group cursor-pointer"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-11 h-11 bg-amber-50 rounded-xl flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-amber-600" />
+                  </div>
+                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
+                    {t("training")}
+                  </span>
+                </div>
+                <h3 className="font-display text-xl font-bold text-slate-900 mb-2">Youth Development</h3>
+                <p className="text-slate-500 text-sm leading-relaxed mb-5 flex-1">
+                  {t(roles[0].descriptionKey)}
+                </p>
+                <div className="flex gap-6 pb-5 border-b border-slate-100 mb-4">
+                  {[
+                    [`${siteConfig.stats.participants}+`, "Participants"],
+                    [`${siteConfig.stats.trainingHours}+`, "Hours"],
+                    ["30+", "Workshops"],
+                  ].map(([val, label]) => (
+                    <div key={label}>
+                      <p className="font-display font-bold text-lg text-slate-900 leading-none">{val}</p>
+                      <p className="text-xs text-slate-400 mt-0.5">{label}</p>
+                    </div>
+                  ))}
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 group-hover/link:gap-2 transition-all">
+                  {t(roles[0].cta)}
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                </span>
+              </Link>
+            )}
+
+            {/* TILE 3 — Developer (dark) */}
+            {roles[2] && (
                   <Link
-                    href={`/${role.slug}`}
-                    className="text-sm font-medium text-[hsl(var(--zia-green))] hover:text-[hsl(var(--zia-green))]/80 inline-flex items-center gap-2 min-h-[44px] touch-manipulation"
-                  >
-                    {t(role.cta)}
-                    <ArrowRight className="w-3 h-3" />
+                href={`/${roles[2].slug}`}
+                className="md:col-span-2 bg-slate-900 rounded-3xl border border-slate-800 hover:border-green-500/30 hover:-translate-y-1 transition-all duration-300 p-7 flex flex-col group cursor-pointer"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-11 h-11 bg-green-500/15 rounded-xl flex items-center justify-center">
+                    <Code className="w-5 h-5 text-green-400" />
+                  </div>
+                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-green-400 bg-green-500/10 px-3 py-1 rounded-full">
+                    {t("webDevelopment")}
+                  </span>
+                </div>
+                <h3 className="font-display text-xl font-bold text-white mb-2">React & Next.js</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-5 flex-1">
+                  {t(roles[2].descriptionKey)}
+                </p>
+                <div className="flex gap-2 flex-wrap mb-5">
+                  {["React", "Next.js", "Tailwind", "TypeScript"].map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-xs bg-slate-800 text-slate-300 rounded-full px-3 py-1 font-medium border border-slate-700"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-green-400 group-hover/link:gap-2 transition-all">
+                  {t(roles[2].cta)}
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                </span>
                   </Link>
-                </motion.div>
-              )
-            })}
+            )}
           </div>
-        </div>
-        {/* Scroll CTA to stats/services */}
-        <div className="max-w-6xl mx-auto w-full mt-8 md:mt-10 flex justify-center">
-          <button
-            onClick={() => document.getElementById("stats-section")?.scrollIntoView({ behavior: "smooth" })}
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] rounded-full border border-foreground/20 bg-background/80 text-xs sm:text-sm font-medium hover:border-[hsl(var(--zia-green))]/60 hover:text-[hsl(var(--zia-green))] transition-colors touch-manipulation"
-          >
-            {t("exploreMyWork")} ↓
-          </button>
         </div>
       </section>
 
@@ -325,6 +294,32 @@ export default function HomePageClient() {
 
       {/* Service Packages */}
       <ServicePackages />
+
+      {/* Featured Testimonials */}
+      <section className="bg-white dark:bg-slate-950 py-20 px-5">
+        <div className="max-w-5xl mx-auto">
+          <p className="label text-center">What people say</p>
+          <h2 className="font-serif text-[clamp(24px,3vw,38px)] text-center text-slate-900 dark:text-white leading-snug mb-12">
+            Trusted by the people I&apos;ve worked with
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {[
+              { q: "True leader, remarkable leadership. Joy to collaborate with.", name: "Rayen Bejaoui", role: "Jr. Project Manager · 1000 Challenges" },
+              { q: "Highly-qualified designer, motivated digital marketer, inspiring youth worker.", name: "Ikram Allah Nemri", role: "Social Entrepreneur · AIESEC Sousse" },
+              { q: "Creativity and dedication. Attention to detail, eagerness to learn.", name: "Youssef Touati", role: "CEO, Jasmin Marketing" },
+            ].map((tst) => (
+              <div key={tst.name} className="card-base flex flex-col p-7">
+                <span className="font-serif text-5xl text-green-200 dark:text-green-900 leading-none mb-3 block">&quot;</span>
+                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed flex-1 mb-6">{tst.q}</p>
+                <div className="pt-5 border-t border-slate-100 dark:border-slate-700/60">
+                  <p className="font-semibold text-slate-900 dark:text-white text-sm">{tst.name}</p>
+                  <p className="text-slate-400 dark:text-slate-500 text-xs mt-0.5">{tst.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* FAQ */}
       <FAQSection />

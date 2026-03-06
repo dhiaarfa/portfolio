@@ -1,8 +1,6 @@
 "use client"
 
-import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
@@ -11,30 +9,9 @@ import TrainerCapabilities from "@/components/trainer-capabilities"
 import CertificationsSection from "@/components/certifications-section"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
-import { useState } from "react"
 
 export default function TrainerClientPage() {
   const { t } = useLanguage()
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      text: "Empowering the next generation",
-      color: "bg-[hsl(var(--zia-green))]",
-      textColor: "text-background",
-      x: 70,
-      y: 130,
-      rotation: 2,
-    },
-    {
-      id: 2,
-      text: "Impact through education",
-      color: "bg-emerald-100",
-      textColor: "text-foreground",
-      x: 1020,
-      y: 180,
-      rotation: -2,
-    },
-  ])
 
   const journeyMilestones = [
     {
@@ -59,117 +36,62 @@ export default function TrainerClientPage() {
     {
       year: "2025",
       title: "Certified Trainer & Impact Leader",
-      description: "Delivered 450+ training hours and 30+ facilitation hours for 990+ participants across multiple organizations",
-      stats: "990+ Participants",
+      description:
+        "Delivered 450+ training hours and 30+ facilitation hours for 1000+ participants across multiple organizations",
+      stats: "1000+ Participants",
     },
   ]
 
   const impactStats = [
-    { number: "990+", label: "Participants Trained", detail: "Across NGOs, youth clubs & associations" },
+    { number: "1000+", label: "Participants Trained", detail: "Across NGOs, youth clubs & associations" },
     { number: "450+", label: "Training Hours", detail: "Non‑formal education & skills building" },
     { number: "30+", label: "Facilitation Hours", detail: "Moderation, panels & collaborative spaces" },
     { number: "10+", label: "Training Cycles Supervised", detail: "From design to delivery & evaluation" },
     { number: "7+", label: "Years Experience", detail: "Youth work, civic engagement & training" },
   ]
 
-  const handleMouseDown = (e, noteId) => {
-    // Placeholder function for handleMouseDown
-  }
-
   return (
     <div className="w-full min-h-screen bg-background">
       <Navbar />
 
-      <main className="w-full pt-20">
-        {/* Hero Section */}
-        <section className="relative w-full min-h-screen flex items-center pt-16 md:pt-0 bg-gradient-to-br from-[hsl(var(--zia-green))]/5 via-background to-emerald-50">
-          <div className="w-full px-4 md:px-8">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center min-h-[calc(100vh-80px)]">
-                <motion.div
-                  className="space-y-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  <div className="flex gap-3 flex-wrap">
-                    <div className="text-xs font-medium tracking-wide text-muted-foreground">990+ PARTICIPANTS</div>
-                    <div className="text-xs font-medium tracking-wide text-muted-foreground">450+ HOURS</div>
-                    <div className="text-xs font-medium tracking-wide text-muted-foreground">CNFCPP CERTIFIED</div>
-                  </div>
-
-                  <div className="space-y-3 md:space-y-4">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">{t("trainerHeroTitle")}</h1>
-                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground">
-                      {t("trainerHeroSubtitle")}
-                    </h2>
-                  </div>
-
-                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-md">
-                    {t("trainerHeroDescription")}
-                  </p>
-
-                  <div className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 pt-4">
-                    <motion.div whileHover={{ x: 4 }}>
-                      <Link
-                        href="#journey"
-                        className="inline-flex items-center justify-center gap-2 text-sm font-medium hover:gap-3 transition-all min-h-[44px] touch-manipulation"
-                      >
-                        {t("trainerExploreJourney")}
-                        <ArrowLeft className="h-4 w-4 rotate-180" />
-                      </Link>
-                    </motion.div>
-                    <a
-                      href={siteConfig.trainingPortfolioUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 text-sm font-medium text-[hsl(var(--zia-green))] hover:underline min-h-[44px] touch-manipulation"
-                    >
-                      {t("viewFullTrainingPortfolio")} →
-                    </a>
-                    <button
-                      type="button"
-                      onClick={() => document.getElementById("trainer-impact")?.scrollIntoView({ behavior: "smooth" })}
-                      className="inline-flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-full border border-foreground/20 text-xs sm:text-sm font-medium hover:border-[hsl(var(--zia-green))]/60 hover:text-[hsl(var(--zia-green))] transition-colors touch-manipulation"
-                    >
-                      {t("impactMetrics")} ↓
-                    </button>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="flex h-full min-h-[400px] md:min-h-[600px] items-center justify-center order-first md:order-last w-full"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  {/* Mobile: Larger portrait, Desktop: Standard */}
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tttt-qeeImhjCNcLxmCrXmbU7ImH2qg0wRJ.png"
-                    alt="Mohamed Dhia Arfa - Trainer"
-                    width={400}
-                    height={600}
-                    className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-sm lg:max-w-md h-auto object-contain rounded-3xl mx-auto"
-                    priority
-                  />
-                </motion.div>
-              </div>
-            </div>
+      <main className="w-full pt-0">
+        {/* Hero — full-cover photo + overlaid text */}
+        <section className="relative min-h-[85vh] flex items-end overflow-hidden bg-slate-950">
+          <div className="absolute inset-0 min-h-[400px]">
+            <Image
+              src="/images/photos/dhia-trainer.png"
+              alt="Dhia training"
+              fill
+              className="object-cover object-top"
+              priority
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/65 to-slate-900/10" />
           </div>
-
-          {/* Sticky Notes - Hidden on mobile, shown on desktop */}
-          <div className="hidden lg:block absolute top-32 right-4 space-y-2 pointer-events-none">
-            {notes.map((note) => (
-              <motion.div
-                key={note.id}
-                className={`${note.color} w-40 p-4 rounded-lg shadow-lg text-sm font-medium text-foreground/80 select-none`}
-                initial={{ opacity: 0, rotate: -5 }}
-                animate={{ opacity: 1, rotate: note.rotation }}
-                transition={{ duration: 0.6, delay: note.id * 0.1 }}
-              >
-                {note.text}
-              </motion.div>
-            ))}
+          <div className="relative z-10 max-w-5xl mx-auto px-6 pb-16 pt-32 w-full">
+            <p className="label text-green-400 mb-4">{t("trainerHeroTitle")}</p>
+            <h1 className="font-display font-black text-[60px] leading-[0.93] text-white tracking-tight mb-4 max-w-2xl">
+              Youth Development<br />& Leadership
+            </h1>
+            <p className="text-slate-300 text-[18px] max-w-xl leading-relaxed mb-8">
+              1000+ participants trained. Certified by CNFCPP. Empowering the next generation.
+            </p>
+            <div className="flex flex-wrap gap-10 mb-8 pb-8 border-b border-white/15">
+              {[["1000+", "Participants"], ["450+", "Training Hrs"], ["10+", "Cycles"], ["7+", "Yrs Exp"]].map(([v, l]) => (
+                <div key={l}>
+                  <p className="font-display font-black text-[clamp(26px,4vw,40px)] text-white leading-none">{v}</p>
+                  <p className="text-slate-400 text-[11px] uppercase tracking-wider mt-1">{l}</p>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green">
+                Book a Workshop
+              </a>
+              <a href={siteConfig.trainingPortfolioUrl} target="_blank" rel="noopener noreferrer" className="border border-white/25 text-white font-medium px-6 py-3 rounded-[14px] hover:border-white/50 hover:bg-white/5 transition-all">
+                Training Portfolio
+              </a>
+            </div>
           </div>
         </section>
 

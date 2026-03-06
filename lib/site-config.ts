@@ -22,10 +22,38 @@ export const siteConfig = {
   ziaStudioLinkedIn: "https://www.linkedin.com/company/104318935",
   ziaStudioInstagram: "https://www.instagram.com/zia.studioo/",
 
+  /**
+   * Social embeds (Designer page)
+   *
+   * Instagram:
+   * - Instagram supports embeddable iframes for profiles via `/embed` for public profiles.
+   * - If Instagram ever blocks profile embeds, you can instead embed specific posts/reels by using:
+   *   `https://www.instagram.com/p/<SHORTCODE>/embed`
+   *
+   * Behance:
+   * - For best reliability, copy the iframe from Behance: open a project → Share → Embed → Copy Embed
+   * - Paste the iframe `src` into `behanceEmbeds` below.
+   */
+  socialEmbeds: {
+    // Public profile embed
+    instagramProfileEmbedSrc: "https://www.instagram.com/zia.studioo/embed",
+
+    // Optional: embed specific posts (recommended if profile embed doesn't render)
+    instagramPostEmbedSrcs: [] as string[],
+
+    // Behance project embeds (paste src from Behance "Copy Embed")
+    behanceEmbeds: [
+      { title: "Project 1", src: "https://www.behance.net/embed/project/176172553?ilo0=1", height: 316 },
+      { title: "Project 2", src: "https://www.behance.net/embed/project/224222465?ilo0=1", height: 316 },
+      { title: "Project 3", src: "https://www.behance.net/embed/project/203374945?ilo0=1", height: 316 },
+      { title: "Project 4", src: "https://www.behance.net/embed/project/201341801?ilo0=1", height: 316 },
+    ] as Array<{ title: string; src: string; height?: number }>,
+  },
+
   // Stats (update with real numbers)
   stats: {
     yearsExperience: 7,
-    participants: 990,
+    participants: 1000,
     trainingHours: 450,
     facilitationHours: 30,
     trainingCyclesSupervised: 10,

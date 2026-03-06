@@ -70,7 +70,7 @@ export default function TrainerCapabilities() {
   ]
 
   return (
-    <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-background">
+    <section className="w-full py-20 px-4 md:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="space-y-16"

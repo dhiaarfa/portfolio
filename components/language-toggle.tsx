@@ -2,17 +2,13 @@
 
 import { Button } from "@/components/ui/button"
 import { Globe } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
 
-import type { Language } from "@/lib/translations"
+const order = ["en", "fr", "ar"] as const
 
-interface LanguageToggleProps {
-  language: Language
-  setLanguage: (lang: Language) => void
-}
+export function LanguageToggle() {
+  const { language, setLanguage } = useLanguage()
 
-const order: Language[] = ["en", "fr", "ar"]
-
-export function LanguageToggle({ language, setLanguage }: LanguageToggleProps) {
   const handleClick = () => {
     const idx = order.indexOf(language)
     const next = order[(idx + 1) % order.length]

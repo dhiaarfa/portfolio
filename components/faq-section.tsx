@@ -32,7 +32,7 @@ const faqs = [
   {
     question: "Can you run in-person workshops or events?",
     answer:
-      "Yes. I run in-person workshops in Tunisia and can travel for events. I've delivered 450+ training hours and 30+ facilitation hours to 990+ participants. Get in touch to discuss dates and logistics.",
+      "Yes. I run in-person workshops in Tunisia and can travel for events. I've delivered 450+ training hours and 30+ facilitation hours to 1000+ participants. Get in touch to discuss dates and logistics.",
   },
   {
     question: "What is Zia Studio?",

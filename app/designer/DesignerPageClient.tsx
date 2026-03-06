@@ -8,35 +8,10 @@ import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import ContactForm from "@/components/contact-form"
-import { useState, useEffect } from "react"
-
-const handleMouseDown = (e: any, noteId: number) => {
-  // Handle mouse down logic here
-}
+import SocialEmbedsSection from "@/components/social-embeds-section"
+import { useState } from "react"
 
 export default function DesignerPageClient() {
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      text: "Every design tells a story",
-      color: "bg-[hsl(var(--zia-green))]",
-      textColor: "text-background",
-      x: 60,
-      y: 180,
-      rotation: 2,
-    },
-    {
-      id: 2,
-      text: "Design is problem-solving",
-      color: "bg-accent dark:bg-accent",
-      textColor: "text-accent-foreground",
-      x: 1050,
-      y: 240,
-      rotation: -2,
-    },
-  ])
-
-
   const studioManifesto = {
     title: "Studio Philosophy",
     points: [
@@ -109,72 +84,86 @@ export default function DesignerPageClient() {
     },
   ]
 
+  const categories = ["All", "Brand Identity", "Social Media", "Logo Design", "Packaging", "UI/UX"]
+  const [activeCategory, setActiveCategory] = useState("All")
+
   const galleryProjects = [
     {
       title: "Walmart Branding + System",
       image: "/images/walmart-branding.png",
       url: "https://behance.net/dhiaa",
       size: "primary",
+      category: "Brand Identity",
     },
     {
       title: "Tafani Travel",
       image: "/images/tafani-white-png.png",
       url: "https://behance.net/dhiaa",
       size: "primary",
+      category: "Brand Identity",
     },
     {
       title: "Speranza Café",
       image: "/images/445771850-916829483581375-1053755579034856379-n.png",
       url: "https://behance.net/dhiaa",
       size: "primary",
+      category: "Brand Identity",
     },
     {
       title: "Lone Space Gold Branding",
       image: "/images/lone-space-gold.png",
       url: "https://behance.net/dhiaa",
       size: "primary",
+      category: "Brand Identity",
     },
     {
       title: "Lone Space Stationery",
       image: "/images/lone-space-mockup.jpg",
       url: "https://behance.net/dhiaa",
       size: "primary",
+      category: "Packaging",
     },
     {
       title: "Lone Space Business Cards",
       image: "/images/lone-space-cards.jpg",
       url: "https://behance.net/dhiaa",
       size: "primary",
+      category: "Logo Design",
     },
     {
       title: "MeetUp Pro Event",
       image: "/images/meetuppro-thumbnail.png",
       url: "https://behance.net/dhiaa",
       size: "primary",
+      category: "Social Media",
     },
     {
       title: "Archaeological Museum Sousse",
       image: "/images/archaeological-museum-sousse.png",
       url: "https://behance.net/dhiaa",
       size: "primary",
+      category: "Brand Identity",
     },
     {
       title: "TravelTodo Billboard",
       image: "/images/billboard-48x14-ft-mockup-3.jpeg",
       url: "https://behance.net/dhiaa",
       size: "secondary",
+      category: "Social Media",
     },
     {
       title: "Football Campaign",
       image: "/images/argentina-messi-copa-america-outdoor.jpeg",
       url: "https://behance.net/dhiaa",
       size: "secondary",
+      category: "Social Media",
     },
     {
       title: "TravelTodo Poster",
       image: "/images/affiche-traveltodo.jpg",
       url: "https://behance.net/dhiaa",
       size: "secondary",
+      category: "Social Media",
     },
     {
       title: "Our Cause Campaign",
@@ -385,114 +374,53 @@ export default function DesignerPageClient() {
     <div className="w-full min-h-screen bg-background">
       <Navbar />
 
-      <main className="w-full pt-20">
-        {/* Hero Section - balanced content and image */}
-        <section className="relative w-full min-h-screen flex items-center pt-16 md:pt-20 overflow-hidden bg-gradient-to-b from-background via-background to-background/70">
-          {/* Zia layered background */}
-          <div className="pointer-events-none absolute inset-0 opacity-60 mix-blend-screen">
-            <div className="absolute -left-32 -top-32 w-72 h-72 bg-[hsl(var(--zia-green))]/20 rounded-full blur-3xl" />
-            <div className="absolute right-0 top-20 w-80 h-80 bg-[hsl(var(--zia-green))]/15 rounded-full blur-3xl" />
-          </div>
-
-          <div className="max-w-7xl mx-auto w-full px-4 md:px-8 relative">
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center min-h-[calc(100vh-6rem)]">
-              {/* Left: Text content - same visual weight as image */}
-              <div className="space-y-6 md:space-y-8 text-center md:text-left order-2 md:order-1 relative">
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                  <div className="flex justify-center md:justify-start">
-                    <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/222-u48A4T9GJlR5FkrkiUgVmcx3GY05RE.png" alt="Zia Studio" width={160} height={160} className="h-36 w-auto object-contain" priority />
-                  </div>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-2 leading-tight">
-                    Zia Studio
-                  </h1>
-                  <p className="text-lg sm:text-xl md:text-2xl text-accent font-semibold mb-4">
-                    Creative Design Studio
-                  </p>
-                  <p className="text-base md:text-lg text-muted-foreground max-w-xl mb-4 mx-auto md:mx-0">
-                    Brand Identity • Visual Systems • UI/UX • Creative Direction
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Founded and led by <span className="font-semibold text-foreground">Mohamed Dhia Arfa</span>
-                  </p>
-                  <div className="flex flex-wrap gap-3 pt-2">
-                    <a href={siteConfig.ziaStudioLinkedIn} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(var(--zia-green))] hover:underline">
-                      Zia Studio on LinkedIn
-                    </a>
-                    <a href={siteConfig.ziaStudioInstagram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(var(--zia-green))] hover:underline">
-                      Zia Studio on Instagram
-                    </a>
-                  </div>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} className="flex justify-center md:justify-start">
-                  <Link
-                    href="#gallery"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-foreground rounded-full font-medium hover:bg-foreground hover:text-background transition-all touch-manipulation"
-                  >
-                    See Work
-                    <ArrowLeft className="h-4 w-4 rotate-180" />
-                  </Link>
-                </motion.div>
-                <div className="flex justify-center md:justify-start mt-4">
-                  <button
-                    type="button"
-                    onClick={() => document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" })}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] rounded-full border border-foreground/20 bg-background/80 text-xs font-medium hover:border-[hsl(var(--zia-green))]/60 hover:text-[hsl(var(--zia-green))] transition-colors touch-manipulation"
-                  >
-                    View featured work ↓
-                  </button>
-                </div>
+      <main className="w-full pt-0">
+        {/* Hero — full-bleed dark split */}
+        <section className="min-h-[88vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+          <div className="relative bg-slate-950 flex flex-col justify-between p-10 lg:p-16 order-2 lg:order-1 overflow-hidden">
+            <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#22c55e 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
+            <div className="pointer-events-none absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-green-600/10 blur-[60px]" />
+            <div className="flex items-center gap-3 relative z-10">
+              <div className="w-11 h-11 bg-green-600 rounded-xl flex items-center justify-center shadow-[0_2px_12px_rgba(22,163,74,0.5)]">
+                <span className="text-white font-black text-xl">Z</span>
               </div>
-              {/* Right: Portrait - Mobile: Larger, Desktop: Standard */}
-              <motion.div
-                className="flex items-center justify-center order-1 md:order-2 w-full"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                {/* Mobile: Larger portrait (280px), Desktop: Standard */}
-                <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-sm aspect-square rounded-2xl overflow-hidden border-2 border-foreground/10 shadow-xl bg-card mx-auto md:mx-0">
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo-dhia-%282%29-GYOWxbEnyOKrobIBDVx9xwfpQFfYMn.png"
-                    alt="Mohamed Dhia Arfa - Graphic Designer"
-                    fill
-                    sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 50vw"
-                    className="object-cover rounded-2xl"
-                    priority
-                  />
+              <div>
+                <p className="text-white font-bold text-sm leading-none">Zia Studio</p>
+                <p className="text-slate-500 text-xs">by Mohamed Dhia</p>
+              </div>
+            </div>
+            <div className="relative z-10 my-auto py-10">
+              <h1 className="font-display font-black text-[clamp(52px,6.5vw,88px)] leading-[0.91] text-white tracking-tight mb-6">
+                Creative<br /><span className="text-green-500">Design.</span><br />Done Right.
+              </h1>
+              <p className="text-slate-400 text-[17px] leading-relaxed max-w-sm mb-10">
+                Brand identities, visual systems, and UI/UX for organizations that want to stand out.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a href="#gallery" className="btn-green">Browse Portfolio</a>
+                <a href="#contact" className="border border-slate-700 text-slate-300 font-medium px-6 py-3 rounded-[14px] hover:border-green-500/60 hover:text-white transition-all duration-200">
+                  Request a Quote
+                </a>
+              </div>
+            </div>
+            <div className="flex gap-8 pt-8 border-t border-slate-800 relative z-10">
+              {[["50+", "Projects"], ["7+", "Years"], ["20+", "Brands"]].map(([v, l]) => (
+                <div key={l}>
+                  <p className="font-display font-black text-2xl text-white leading-none">{v}</p>
+                  <p className="text-slate-500 text-[11px] uppercase tracking-widest mt-1">{l}</p>
                 </div>
-              </motion.div>
+              ))}
+            </div>
+          </div>
+          <div className="relative order-1 lg:order-2 min-h-[50vh] lg:min-h-full overflow-hidden bg-slate-900">
+            <Image src="/images/photos/dhia-designer.png" alt="Dhia — Graphic Designer" fill className="object-cover object-center" priority />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/20 to-transparent" />
+            <div className="absolute bottom-6 right-6 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-xl">
+              <p className="font-semibold text-slate-900 dark:text-white text-sm">@zia.studioo</p>
+              <p className="text-slate-500 dark:text-slate-400 text-xs">Follow on Instagram</p>
             </div>
           </div>
         </section>
-
-        {/* Sticky Notes - Desktop */}
-        <div className="hidden lg:block absolute top-32 right-4 space-y-0 my-[85px] pointer-events-none">
-          {notes.slice(0, 2).map((note) => (
-            <motion.div
-              key={note.id}
-              className={`${note.color} w-40 p-4 rounded-lg shadow-lg text-sm font-medium text-foreground/80 select-none`}
-              initial={{ opacity: 0, rotate: -5 }}
-              animate={{ opacity: 1, rotate: note.rotation }}
-              transition={{ duration: 0.6, delay: note.id * 0.1 }}
-            >
-              {note.text}
-            </motion.div>
-          ))}
-        </div>
-        {/* Mobile notes - positioned much lower to avoid hero text overlap */}
-        <div className="lg:hidden absolute top-[calc(100vh-180px)] right-4 space-y-2 pointer-events-none z-10">
-          {notes.slice(0, 2).map((note) => (
-            <motion.div
-              key={note.id}
-              className={`${note.color} p-2 rounded-lg shadow-md w-28 text-[10px] font-medium select-none`}
-              initial={{ opacity: 0, rotate: -5 }}
-              animate={{ opacity: 1, rotate: note.rotation }}
-              transition={{ duration: 0.6, delay: note.id * 0.1 }}
-            >
-              {note.text}
-            </motion.div>
-          ))}
-        </div>
 
         {/* Zia Studio brand strip – dark background for readability */}
         <section className="w-full py-10 sm:py-14 md:py-20 px-4 md:px-8 bg-[hsl(var(--zia-green))]">
@@ -509,6 +437,11 @@ export default function DesignerPageClient() {
             </div>
           </div>
         </section>
+
+        <SocialEmbedsSection
+          instagramProfileUrl={siteConfig.ziaStudioInstagram}
+          behanceProfileUrl={siteConfig.behance}
+        />
 
         {/* Design Philosophy - Enhanced Creative Section */}
         <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-gradient-to-b from-background via-[hsl(var(--zia-green))]/3 to-background">
@@ -562,39 +495,50 @@ export default function DesignerPageClient() {
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Featured Work</h2>
               </div>
 
-              {/* Gallery: Grid layout - one next to other, one down the other */}
-              <div className="bg-white/80 rounded-2xl border border-foreground/10 overflow-hidden">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[2px] bg-white p-[2px]">
-                  {galleryProjects.map((project, index) => (
-                    <motion.a
-                      key={project.title}
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative aspect-square overflow-hidden bg-white cursor-pointer"
-                      initial={{ opacity: 0, scale: 0.985 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: Math.min(index * 0.02, 0.25), duration: 0.25 }}
-                      viewport={{ once: true }}
-                      whileHover={{ scale: 1.02 }}
-                    >
-                      <Image
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 240px"
-                        loading={index < 6 ? "eager" : "lazy"}
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-3">
-                        <div>
-                          <h3 className="font-bold text-white text-xs sm:text-sm">{project.title}</h3>
-                          <p className="text-white/80 text-[10px] sm:text-xs">View on Behance →</p>
-                        </div>
+              {/* Filter tabs — horizontally scrollable on mobile */}
+              <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1 mb-8 -mx-5 px-5 md:mx-0 md:px-0 md:flex-wrap md:justify-center">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`flex-shrink-0 text-sm font-medium px-4 py-2 rounded-full transition-all duration-200 ${
+                      activeCategory === cat
+                        ? "bg-green-600 text-white shadow-[0_2px_8px_rgba(22,163,74,0.4)]"
+                        : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+
+              {/* Gallery grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                {(activeCategory === "All" ? galleryProjects : galleryProjects.filter((p) => (p as { category?: string }).category === activeCategory)).map((project, index) => (
+                  <motion.a
+                    key={project.title}
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    layout
+                    className="group relative overflow-hidden rounded-2xl aspect-square bg-slate-100 dark:bg-slate-800 cursor-pointer"
+                  >
+                    <Image
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 25vw"
+                      loading={index < 6 ? "eager" : "lazy"}
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/65 transition-all duration-300 flex items-end p-4">
+                      <div className="translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                        <p className="text-white font-semibold text-sm">{project.title}</p>
+                        <p className="text-white/60 text-xs">{(project as { category?: string }).category || "Design"}</p>
                       </div>
-                    </motion.a>
-                  ))}
-                </div>
+                    </div>
+                  </motion.a>
+                ))}
               </div>
             </motion.div>
           </div>
@@ -676,8 +620,8 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        {/* Software & Skills */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-foreground text-background">
+        {/* Software & Skills — icon badge chips */}
+        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-[#f8fafc]">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-12"
@@ -687,45 +631,45 @@ export default function DesignerPageClient() {
               viewport={{ once: true }}
             >
               <div className="text-center space-y-4">
-                <p className="text-xs font-medium tracking-widest opacity-70 uppercase">Tools of the Trade</p>
-                <h2 className="text-4xl md:text-5xl font-bold">Software & Skills</h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-green-600">Tools of the Trade</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Software & Skills</h2>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {[
                   {
-                    category: "Design Software",
-                    tools: [
-                      "Adobe Photoshop",
-                      "Adobe Illustrator",
-                      "Adobe InDesign",
-                      "Adobe Premiere Pro",
-                      "Canva",
-                      "2D Animation",
+                    title: "Design Software",
+                    skills: [
+                      { name: "Illustrator", icon: "🎨" },
+                      { name: "Photoshop", icon: "📸" },
+                      { name: "InDesign", icon: "📄" },
+                      { name: "Figma", icon: "🔷" },
+                      { name: "After Effects", icon: "🎬" },
                     ],
                   },
                   {
-                    category: "UI/UX Design",
-                    tools: ["Figma", "Adobe XD", "Wireframing", "Prototyping", "User Research"],
+                    title: "Everyday Tools",
+                    skills: [
+                      { name: "Canva Pro", icon: "✨" },
+                      { name: "Behance", icon: "🌐" },
+                      { name: "Dribbble", icon: "🏀" },
+                      { name: "Notion", icon: "📋" },
+                    ],
                   },
-                ].map((group, i) => (
-                  <motion.div
-                    key={i}
-                    className="space-y-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <h3 className="text-xl font-bold">{group.category}</h3>
-                    <ul className="space-y-2">
-                      {group.tools.map((tool, j) => (
-                        <li key={j} className="text-sm opacity-90 flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 bg-background rounded-full"></span>
-                          {tool}
-                        </li>
+                ].map((col, i) => (
+                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} viewport={{ once: true }}>
+                    <h3 className="font-semibold text-slate-700 text-sm uppercase tracking-widest mb-4">{col.title}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {col.skills.map((skill) => (
+                        <span
+                          key={skill.name}
+                          className="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm text-slate-700 font-medium hover:border-green-300 hover:bg-green-50 transition-all duration-200"
+                        >
+                          <span>{skill.icon}</span>
+                          {skill.name}
+                        </span>
                       ))}
-                    </ul>
+                    </div>
                   </motion.div>
                 ))}
               </div>

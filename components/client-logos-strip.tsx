@@ -57,7 +57,6 @@ function LogoImage({ logo, index }: { logo: (typeof logos)[0]; index: number }) 
         className="object-contain max-h-14 md:max-h-16 w-auto h-auto"
         onError={() => setFailed(true)}
         loading="lazy"
-        unoptimized
       />
     </motion.div>
   )

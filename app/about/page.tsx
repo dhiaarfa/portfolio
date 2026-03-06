@@ -1,14 +1,17 @@
+import type { Metadata } from "next"
 import AboutPageClient from "./AboutPageClient"
 
-export const metadata = {
-  title: "About - Mohamed Dhia Arfa",
+export const metadata: Metadata = {
+  title: "About Mohamed Dhia Arfa — Designer, Trainer & Developer · Tunisia",
   description:
-    "Learn about Mohamed Dhia Arfa's journey as a designer, trainer, and developer. 7+ years of experience, 990+ participants trained, CNFCPP certified trainer.",
+    "Learn about Mohamed Dhia Arfa’s journey as a graphic designer, certified trainer, and web developer based in Tunisia. 7+ years of experience and 1000+ participants trained.",
   keywords: ["about", "Mohamed Dhia Arfa", "designer", "trainer", "developer", "Tunisia", "CNFCPP", "professional journey"],
   openGraph: {
-    title: "About - Mohamed Dhia Arfa",
-    description: "Learn about Mohamed Dhia Arfa's professional journey and expertise.",
+    title: "About Mohamed Dhia Arfa",
+    description:
+      "Background, experience, and story of Mohamed Dhia Arfa — combining design, training, and web development in Tunisia.",
     type: "profile",
+    url: "https://dhia-portfolio.me/about",
   },
 }
 

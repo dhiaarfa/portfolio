@@ -3,6 +3,132 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ─── NOISE TEXTURE (premium feel used by Linear, Vercel, Notion) ─── */
+@layer base {
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+  }
+}
+
+/* ─── SECTION ALTERNATION ─── */
+.bg-section-tint   { background-color: #f0fdf4; }
+.dark .bg-section-tint { background-color: #052e16; }
+
+.bg-section-subtle { background-color: #f8fafc; }
+.dark .bg-section-subtle { background-color: #0f172a; }
+
+/* ─── SMOOTH TRANSITIONS for theme toggle (scoped to avoid hydration/layout issues) ─── */
+body, body * {
+  transition: background-color 0.25s ease, border-color 0.2s ease, color 0.15s ease, box-shadow 0.2s ease;
+}
+
+/* ─── SECTION LABELS ─── */
+.label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #16a34a;
+  margin-bottom: 8px;
+}
+.dark .label { color: #4ade80; }
+
+/* ─── CARD BASE ─── */
+.card-base {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s ease;
+}
+.card-base:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+  border-color: #cbd5e1;
+}
+.dark .card-base {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+.dark .card-base:hover {
+  border-color: #475569;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+.card-brand:hover {
+  border-color: #16a34a !important;
+  box-shadow: 0 8px 28px rgba(22,163,74,0.20) !important;
+}
+
+/* ─── BUTTONS ─── */
+.btn-green {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #16a34a; color: #fff;
+  font-size: 14px; font-weight: 600;
+  padding: 12px 24px; border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(22,163,74,0.35);
+  border: none; cursor: pointer; white-space: nowrap;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn-green:hover {
+  background: #15803d;
+  box-shadow: 0 6px 20px rgba(22,163,74,0.45);
+  transform: translateY(-2px);
+}
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: #334155;
+  font-size: 14px; font-weight: 500;
+  padding: 11px 24px; border-radius: 14px;
+  border: 1.5px solid #e2e8f0;
+  cursor: pointer; white-space: nowrap;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.btn-outline:hover {
+  border-color: #16a34a; color: #16a34a; background: #f0fdf4;
+}
+.dark .btn-outline { color: #cbd5e1; border-color: #334155; }
+.dark .btn-outline:hover { border-color: #4ade80; color: #4ade80; background: #052e16; }
+
+/* ─── RTL Arabic font ─── */
+[dir="rtl"] {
+  font-family: 'Cairo', 'Noto Sans Arabic', var(--font-dm-sans), sans-serif;
+  letter-spacing: 0 !important;
+  word-spacing: 0.05em;
+  line-height: 1.85;
+}
+[dir="rtl"] .icon-arrow { transform: scaleX(-1); }
+
+/* ─── HIDE SCROLLBAR on horizontal scrollers ─── */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── CHIP (About page role pills) ─── */
+.chip { font-size: 14px; font-weight: 500; padding: 6px 16px; border-radius: 9999px; border: 1px solid; }
+.chip-pink { background: #fdf2f8; color: #be185d; border-color: #fbcfe8; }
+.dark .chip-pink { background: rgba(190,24,93,0.2); color: #f472b6; border-color: #831843; }
+.chip-amber { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+.dark .chip-amber { background: rgba(180,83,9,0.2); color: #fbbf24; border-color: #78350f; }
+.chip-blue { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+.dark .chip-blue { background: rgba(29,78,216,0.2); color: #60a5fa; border-color: #1e3a8a; }
+
+/* ─── RTL layout helpers (Section I) ─── */
+[dir="rtl"] .flex-row { flex-direction: row-reverse; }
+[dir="rtl"] .text-left { text-align: right; }
+[dir="rtl"] .text-right { text-align: left; }
+[dir="rtl"] [data-icon="arrow-right"] { transform: scaleX(-1); }
+
 :root {
   /* Light mode colors - shadcn base tokens */
   color-scheme: light dark;
@@ -47,6 +173,31 @@
   /* Zia Studio brand colors – brighter but still readable with white text */
   --zia-green: 142 70% 45%;
   --zia-lime: 142 70% 50%;
+
+  /* Design token system - professional elevation */
+  --brand: #16a34a;
+  --brand-light: #f0fdf4;
+  --brand-mid: #dcfce7;
+  --brand-glow: rgba(34, 197, 94, 0.25);
+  --surface-0: #ffffff;
+  --surface-1: #f8fafc;
+  --surface-2: #f0fdf4;
+  --surface-dark: #0f172a;
+  --surface-card: #ffffff;
+  --ink-1: #0f172a;
+  --ink-2: #334155;
+  --ink-3: #64748b;
+  --ink-4: #94a3b8;
+  --border-token: #e2e8f0;
+  --border-hover: #16a34a;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
+  --shadow-green: 0 4px 20px rgba(22,163,74,0.30);
+  --shadow-green-lg: 0 8px 32px rgba(22,163,74,0.35);
 
   /* Neon accent colors (preserving existing values) */
   --neon-blue: 82.4 100% 50%;
@@ -131,6 +282,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: 14px;
+  --radius-3xl: 20px;
+  --radius-4xl: 28px;
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -151,9 +305,9 @@
   }
 
   body {
-    font-family: var(--font-sora), sans-serif;
-    @apply bg-background text-foreground; /* Updated from diff */
-    /* Simplified background - removed complex gradients for minimalist aesthetic */
+    /* DM Sans as primary body/UI font */
+    font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+    @apply bg-background text-foreground;
   }
 
   html.dark {
@@ -166,16 +320,21 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-sora), system-ui, -apple-system, sans-serif;
-    @apply font-semibold tracking-tight;
+    @apply tracking-tight;
   }
 
   h1 {
-    @apply text-4xl md:text-6xl font-bold;
+    /* Syne for hero/page titles */
+    font-family: var(--font-syne), system-ui, -apple-system, sans-serif;
   }
 
-  h2 {
-    @apply text-3xl md:text-4xl font-bold;
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    /* DM Serif Display for section headings */
+    font-family: var(--font-dm-serif), Georgia, "Times New Roman", serif;
   }
 
   p {
@@ -185,8 +344,40 @@
   button,
   li,
   span {
-    font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
   }
+}
+
+/* Utility font classes for fine-grained control */
+.font-display {
+  font-family: var(--font-syne), system-ui, -apple-system, sans-serif;
+}
+
+.font-heading {
+  font-family: var(--font-dm-serif), Georgia, "Times New Roman", serif;
+}
+
+.font-body {
+  font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* Card shadows from design token system */
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+.shadow-card-hover {
+  box-shadow: var(--shadow-card-hover);
+}
+.shadow-green {
+  box-shadow: var(--shadow-green);
+}
+.shadow-green-lg {
+  box-shadow: var(--shadow-green-lg);
+}
+
+/* Section heading font (alias for font-heading) */
+.font-serif {
+  font-family: var(--font-dm-serif), Georgia, "Times New Roman", serif;
 }
 
 /* Smooth scrolling */

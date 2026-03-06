@@ -10,14 +10,30 @@ import { motion } from "framer-motion"
 export default function CursorFollower() {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
+  const [enabled, setEnabled] = useState(false)
 
   useEffect(() => {
-    // Only run on desktop (matches hidden md:block)
-    if (window.innerWidth < 768) return
+    // Respect reduced motion & only run on desktop pointers
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (prefersReducedMotion || window.innerWidth < 768) return
+
+    setEnabled(true)
+
+    let frameRequested = false
+    let nextX = 0
+    let nextY = 0
 
     const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY })
-      setIsVisible(true)
+      nextX = e.clientX
+      nextY = e.clientY
+      if (!frameRequested) {
+        frameRequested = true
+        requestAnimationFrame(() => {
+          setPosition({ x: nextX, y: nextY })
+          setIsVisible(true)
+          frameRequested = false
+        })
+      }
     }
 
     const handleMouseLeave = () => {
@@ -32,6 +48,8 @@ export default function CursorFollower() {
       window.removeEventListener("mouseleave", handleMouseLeave)
     }
   }, [])
+
+  if (!enabled) return null
 
   return (
     <motion.div
