@@ -103,7 +103,7 @@ body, body * {
 
 /* ─── RTL Arabic font ─── */
 [dir="rtl"] {
-  font-family: 'Cairo', 'Noto Sans Arabic', var(--font-dm-sans), sans-serif;
+  font-family: var(--font-cairo), 'Noto Sans Arabic', var(--font-dm-sans), sans-serif;
   letter-spacing: 0 !important;
   word-spacing: 0.05em;
   line-height: 1.85;

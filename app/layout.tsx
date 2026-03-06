@@ -2,7 +2,7 @@ import type React from "react"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
-import { Syne, DM_Serif_Display, DM_Sans } from "next/font/google"
+import { Syne, DM_Serif_Display, DM_Sans, Cairo } from "next/font/google"
 import { cn } from "@/lib/utils"
 import MotionProvider from "@/components/motion-provider"
 import GlobalComponents from "@/components/global-components"
@@ -11,29 +11,38 @@ import GlobalComponents from "@/components/global-components"
 // - Syne: display / hero headlines
 // - DM Serif Display: section headings
 // - DM Sans: body & UI text
+// - Cairo: Arabic / RTL content
 const syne = Syne({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["700", "800"],
   variable: "--font-syne",
-  display: "swap",
+  display: "optional",
   preload: true,
 })
 
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
-  style: ["normal", "italic"],
+  style: ["normal"],
   weight: "400",
   variable: "--font-dm-serif",
   display: "swap",
-  preload: true,
+  preload: false,
 })
 
 const dmSans = DM_Sans({
   subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
   variable: "--font-dm-sans",
   display: "swap",
-  preload: true,
+  preload: false,
+})
+
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-cairo",
+  display: "swap",
+  preload: false,
 })
 
 export const metadata = {
@@ -100,17 +109,20 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning className={`scroll-smooth ${syne.variable} ${dmSerifDisplay.variable} ${dmSans.variable}`}>
+    <html
+      lang="en"
+      dir="ltr"
+      suppressHydrationWarning
+      className={`scroll-smooth ${syne.variable} ${dmSerifDisplay.variable} ${dmSans.variable} ${cairo.variable}`}
+    >
       <head>
         <link rel="icon" href="/favicon-green-portrait.png" sizes="any" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
         <style>{`
           :root {
             ${syne.variable};
             ${dmSerifDisplay.variable};
             ${dmSans.variable};
+            ${cairo.variable};
             --background: 0 0% 100%;
             --foreground: 0 0% 5%;
             --zia-green: 142 70% 45%;
@@ -125,8 +137,6 @@ export default function RootLayout({
             font-family: var(--font-syne), var(--font-dm-sans), system-ui, sans-serif;
           }
         `}</style>
-        {/* Preconnect to external domains for faster loading */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com" />
         
         {/* Advanced SEO Meta Tags */}
