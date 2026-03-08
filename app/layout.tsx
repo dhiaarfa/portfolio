@@ -6,6 +6,7 @@ import { Syne, DM_Serif_Display, DM_Sans, Cairo } from "next/font/google"
 import { cn } from "@/lib/utils"
 import MotionProvider from "@/components/motion-provider"
 import GlobalComponents from "@/components/global-components"
+import { Analytics } from "@vercel/analytics/next"
 
 // Typography system:
 // - Syne: display / hero headlines
@@ -244,6 +245,7 @@ export default function RootLayout({
             </MotionProvider>
           </LanguageProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
