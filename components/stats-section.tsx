@@ -40,9 +40,9 @@ export default function StatsSection() {
   const stats = [
     { value: String(siteConfig.stats.participants), suffix: "+", label: "Participants Trained", Icon: Users },
     { value: String(siteConfig.stats.trainingHours), suffix: "+", label: "Training Hours", Icon: Clock },
-    { value: String(siteConfig.stats.facilitationHours), suffix: "+", label: "Facilitation Hours", Icon: Presentation },
+    { value: "50", suffix: "+", label: "Design Projects", Icon: BookOpen },
+    { value: String(siteConfig.stats.yearsExperience), suffix: "+", label: "Years Experience", Icon: Presentation },
     { value: String(siteConfig.stats.trainingCyclesSupervised), suffix: "+", label: "Training Cycles", Icon: RefreshCw },
-    { value: String(siteConfig.stats.trainingsReceivedHoursNfe), suffix: "h+", label: "NFE Received", Icon: BookOpen },
   ]
 
   return (

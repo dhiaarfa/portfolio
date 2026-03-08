@@ -292,6 +292,13 @@ export const translations = {
     trainerHeroDescription:
       "Passionate about empowering the next generation through comprehensive training, social justice advocacy, and practical skill development.",
     trainingPortfolio: "Training portfolio",
+    // Freebies / Insights
+    "nav.freebies": "Freebies",
+    "nav.insights": "Insights",
+    "freebies.title": "Free Resources",
+    "freebies.subtitle": "Real tools I use — yours free.",
+    "freebies.unlockBtn": "Unlock Free Download",
+    "freebies.successMsg": "You're all set! Your download is starting.",
   },
   fr: {
     // Navigation
@@ -587,6 +594,13 @@ export const translations = {
     trainerHeroDescription:
       "Passionné par l'autonomisation de la prochaine génération à travers la formation, la défense de la justice sociale et le développement de compétences pratiques.",
     trainingPortfolio: "Portfolio de formation",
+    // Freebies / Insights
+    "nav.freebies": "Ressources",
+    "nav.insights": "Articles",
+    "freebies.title": "Ressources Gratuites",
+    "freebies.subtitle": "Des outils concrets que j'utilise — gratuits pour vous.",
+    "freebies.unlockBtn": "Télécharger gratuitement",
+    "freebies.successMsg": "C'est bon ! Votre téléchargement démarre.",
   },
   ar: {
     // Navigation
@@ -882,6 +896,13 @@ export const translations = {
     trainerHeroDescription:
       "شغوف بتمكين الجيل القادم من خلال التدريب الشامل والدعوة للعدالة الاجتماعية وتنمية المهارات العملية.",
     trainingPortfolio: "Portfolio التدريب",
+    // Freebies / Insights
+    "nav.freebies": "موارد مجانية",
+    "nav.insights": "مقالات",
+    "freebies.title": "موارد مجانية",
+    "freebies.subtitle": "أدوات أستعملها في عملي — متاحة لك مجاناً.",
+    "freebies.unlockBtn": "تحميل مجاني",
+    "freebies.successMsg": "تم بنجاح! بدأ التحميل الآن.",
   },
 }
 

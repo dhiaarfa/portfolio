@@ -42,38 +42,54 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section id="newsletter" className="py-20 bg-[hsl(var(--zia-green))]/5 dark:bg-[hsl(var(--zia-green))]/10">
-      <div className="max-w-2xl mx-auto px-4 md:px-6">
+    <section id="newsletter" className="py-20 bg-slate-950">
+      <div className="max-w-2xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[hsl(var(--zia-green))]/20 mb-4">
-            <Mail className="w-6 h-6 text-[hsl(var(--zia-green))]" />
+          {/* Icon */}
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-green-600/20 mb-4">
+            <Mail className="w-6 h-6 text-green-400" />
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+
+          {/* Headline */}
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
             Get design & training insights
           </h2>
-          <p className="mt-3 text-muted-foreground">
-            Join my newsletter for tips, project updates, and exclusive content. No spam.
+          <p className="mt-3 text-sm text-slate-400">
+            Join for practical tips, project breakdowns, and training frameworks directly from real work.
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          {/* Value props */}
+          <div className="flex flex-wrap justify-center gap-4 mb-2 mt-4">
+            {["🎨 Free design templates", "📚 Training frameworks", "💡 Monthly project tips"].map((item) => (
+              <span key={item} className="text-xs text-slate-500">
+                {item}
+              </span>
+            ))}
+          </div>
+
+          {/* Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="mt-6 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+          >
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
+              placeholder="you@email.com"
               required
               disabled={status === "loading"}
-              className="flex-1 px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(var(--zia-green))] focus:border-transparent transition-all"
+              className="flex-1 px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-50 placeholder:text-slate-500 focus:outline-none focus:border-green-500 text-sm"
             />
             <button
               type="submit"
               disabled={status === "loading"}
-              className="px-6 py-3 rounded-lg bg-[hsl(var(--zia-green))] text-white font-semibold hover:opacity-90 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+              className="px-6 py-3 rounded-xl bg-green-600 hover:bg-green-500 text-white font-semibold text-sm transition-colors disabled:opacity-60 flex items-center justify-center gap-2 whitespace-nowrap"
             >
               {status === "loading" ? (
                 <>
@@ -85,12 +101,14 @@ export default function NewsletterSection() {
               )}
             </button>
           </form>
+          <p className="text-[11px] text-slate-500 mt-2">No spam. Unsubscribe anytime.</p>
 
+          {/* Status */}
           {status === "success" && (
             <motion.p
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-4 text-sm text-green-600 dark:text-green-400 flex items-center justify-center gap-2"
+              className="mt-4 text-sm text-green-400 flex items-center justify-center gap-2"
             >
               <CheckCircle2 className="w-4 h-4" />
               {message}
@@ -100,7 +118,7 @@ export default function NewsletterSection() {
             <motion.p
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-4 text-sm text-red-600 dark:text-red-400 flex items-center justify-center gap-2"
+              className="mt-4 text-sm text-red-500 flex items-center justify-center gap-2"
             >
               <AlertCircle className="w-4 h-4" />
               {message}

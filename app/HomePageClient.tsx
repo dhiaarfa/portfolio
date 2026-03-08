@@ -113,6 +113,19 @@ export default function HomePageClient() {
             <p className="mt-5 mb-8 text-slate-500 dark:text-slate-400 text-[17px] leading-relaxed max-w-[420px]">
               Designer, trainer, and developer helping people communicate clearly and build stronger digital products.
             </p>
+            {/* Social proof micro-stats */}
+            <div className="flex flex-wrap gap-x-6 gap-y-2 mt-1 mb-6">
+              {[
+                { value: "1000+", label: "youth trained" },
+                { value: "50+", label: "brands & campaigns" },
+                { value: "7+", label: "years active" },
+              ].map(({ value, label }) => (
+                <div key={label} className="flex items-center gap-1.5">
+                  <span className="font-bold text-green-600 dark:text-green-400 text-sm">{value}</span>
+                  <span className="text-slate-500 dark:text-slate-400 text-sm">{label}</span>
+                </div>
+              ))}
+            </div>
             <div className="flex flex-wrap gap-3">
               <a
                 href={siteConfig.calendlyUrl}

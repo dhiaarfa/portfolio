@@ -350,39 +350,39 @@ export default function DeveloperPageClient() {
                   {
                     icon: Monitor,
                     title: "Responsive Web Interfaces",
-                    desc: "Mobile-first, pixel-perfect layouts across all devices",
+                    desc: "Pixel-perfect, mobile-first React layouts that stay accessible and consistent across all devices.",
                     color: "bg-blue-50 text-blue-600",
                   },
                   {
                     icon: Box,
                     title: "React Component Architecture",
-                    desc: "Scalable, reusable component systems with clean state management",
+                    desc: "Scalable, reusable UI components with clean state management and clear boundaries.",
                     color: "bg-purple-50 text-purple-600",
                   },
                   {
                     icon: Gauge,
                     title: "Performance-First Apps",
-                    desc: "Fast load times, lazy loading, and optimized Core Web Vitals",
+                    desc: "Fast-loading Next.js apps with lazy loading, code-splitting, and strong Core Web Vitals.",
                     color: "bg-green-50 text-green-600",
                   },
                 ].map((item, i) => {
                   const Icon = item.icon
                   return (
-                  <motion.div
-                    key={i}
+                    <motion.div
+                      key={i}
                       className="bg-white rounded-3xl p-7 border border-slate-100 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
                       whileHover={{ y: -4 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.08 }}
-                    viewport={{ once: true }}
-                  >
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: i * 0.08 }}
+                      viewport={{ once: true }}
+                    >
                       <div className={`w-12 h-12 ${item.color} rounded-2xl flex items-center justify-center mb-5`}>
                         <Icon className="w-6 h-6" />
                       </div>
                       <h3 className="font-semibold text-slate-900 mb-2">{item.title}</h3>
                       <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
-                  </motion.div>
+                    </motion.div>
                   )
                 })}
               </div>

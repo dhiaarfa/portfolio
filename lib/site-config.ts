@@ -67,3 +67,75 @@ export const siteConfig = {
   trainingPortfolioUrl:
     "https://docs.google.com/spreadsheets/d/1Lt3Rr7O-0pj67lMCFB0nM7l28LdR6UMyIVIYLxxmOew/edit?usp=drive_web&ouid=100284283298477488031",
 }
+
+export const freebies = [
+  {
+    id: "brand-brief-template",
+    category: "design",
+    emoji: "🎨",
+    title: "Brand Brief Template",
+    description:
+      "The exact template I use with every new client to capture their brand vision, audience, and goals before starting any design work.",
+    format: "PDF · 2 pages",
+    value: "Saves 2 hours per project",
+    file: "/freebies/brand-brief-template.pdf",
+    color: "pink",
+  },
+  {
+    id: "color-palette-guide",
+    category: "design",
+    emoji: "🎨",
+    title: "Color Psychology Guide",
+    description:
+      "How to choose brand colors that actually communicate the right emotion. Includes 12 ready-made palettes used in real projects.",
+    format: "PDF · 8 pages",
+    value: "Used in 50+ projects",
+    file: "/freebies/color-psychology-guide.pdf",
+    color: "pink",
+  },
+  {
+    id: "social-media-kit",
+    category: "design",
+    emoji: "📱",
+    title: "Social Media Post Templates",
+    description: "10 Canva templates for consistent, professional social media content. Arabic and French versions included.",
+    format: "Canva Link",
+    value: "Save 3h per week",
+    file: "/freebies/social-media-kit-link.txt",
+    color: "pink",
+  },
+  {
+    id: "workshop-plan-template",
+    category: "training",
+    emoji: "📚",
+    title: "Workshop Planning Template",
+    description:
+      "The session plan structure I use for all my youth development workshops. Includes timing, activities, and facilitation notes.",
+    format: "PDF · 4 pages",
+    value: "Based on 450+ hours",
+    file: "/freebies/workshop-plan-template.pdf",
+    color: "amber",
+  },
+  {
+    id: "icebreakers-guide",
+    category: "training",
+    emoji: "🤝",
+    title: "20 Youth Icebreaker Activities",
+    description: "Tested icebreakers and energizers for groups of 10–100 participants. Arabic, French, and English versions.",
+    format: "PDF · 12 pages",
+    value: "Tested with 1000+ youth",
+    file: "/freebies/icebreakers-guide.pdf",
+    color: "amber",
+  },
+  {
+    id: "trainer-checklist",
+    category: "training",
+    emoji: "✅",
+    title: "Pre-Training Checklist",
+    description: "The 30-point checklist I go through before every training session to guarantee smooth delivery.",
+    format: "PDF · 1 page",
+    value: "Never forget anything",
+    file: "/freebies/trainer-checklist.pdf",
+    color: "amber",
+  },
+] as const

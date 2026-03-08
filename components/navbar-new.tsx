@@ -14,6 +14,8 @@ const links = [
   { label: 'Designer',  href: '/designer',  emoji: '🎨' },
   { label: 'Trainer',   href: '/trainer',   emoji: '🎓' },
   { label: 'Developer', href: '/developer', emoji: '💻' },
+  { label: 'Freebies',  href: '/freebies',  emoji: '🎁' },
+  { label: 'Insights',  href: '/insights',  emoji: '📝' },
 ]
 
 export default function Navbar() {

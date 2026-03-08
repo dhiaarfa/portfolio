@@ -740,6 +740,24 @@ export default function DesignerPageClient() {
             </div>
           </div>
         </section>
+
+        {/* Free design resources CTA */}
+        <section className="w-full py-12 px-4 md:px-8 bg-pink-50 dark:bg-pink-950/20">
+          <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <p className="font-bold text-slate-900 dark:text-white">Free design templates</p>
+              <p className="text-sm text-muted-foreground">
+                Brand brief, color guide, and social media kit — the same tools I use with clients.
+              </p>
+            </div>
+            <a
+              href="/freebies?category=design"
+              className="px-5 py-2.5 bg-pink-600 hover:bg-pink-500 text-white font-semibold rounded-xl text-sm transition-colors whitespace-nowrap"
+            >
+              🎁 Get Free Templates
+            </a>
+          </div>
+        </section>
       </main>
 
       <Footer />

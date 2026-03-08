@@ -78,6 +78,8 @@ export default function Footer() {
             <li><Link href="/designer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("design")}</Link></li>
             <li><Link href="/trainer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("training")}</Link></li>
             <li><Link href="/developer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("webDevelopment")}</Link></li>
+            <li><Link href="/freebies" className="text-slate-400 hover:text-green-400 text-sm transition-colors">🎁 Freebies</Link></li>
+            <li><Link href="/insights" className="text-slate-400 hover:text-green-400 text-sm transition-colors">📝 Insights</Link></li>
           </ul>
         </div>
 

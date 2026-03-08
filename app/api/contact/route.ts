@@ -157,7 +157,36 @@ export async function POST(req: NextRequest) {
     const receiver = process.env.CONTACT_RECEIVER || "benarfa367@gmail.com"
     const isNewsletter = type === "newsletter"
 
-    // ── 4. Send notification email to Dhia ───────────────────────────────
+    // ── 4. Handle freebie downloads (notification only) ──────────────────
+    if (type === "freebie") {
+      const { error: freebieError } = await resend.emails.send({
+        from: "Mohamed Dhia Portfolio <onboarding@resend.dev>",
+        to: [receiver],
+        subject: `📥 Freebie download: ${subject || "Unknown resource"}`,
+        html: buildEmailHTML({
+          type: "freebie",
+          name: name || undefined,
+          email: email.trim(),
+          subject: subject || "Freebie download",
+          message: message || "",
+        }),
+      })
+
+      if (freebieError) {
+        console.error("[EMAIL] Resend freebie error:", freebieError)
+        return NextResponse.json(
+          {
+            error: "Unable to send message right now.",
+            hint: "Please try again or contact me at mohameddhiaarfa@gmail.com",
+          },
+          { status: 500 },
+        )
+      }
+
+      return NextResponse.json({ success: true })
+    }
+
+    // ── 5. Send notification email to Dhia ───────────────────────────────
     const { error: sendError } = await resend.emails.send({
       // Free tier: must use onboarding@resend.dev OR your verified domain
       from: "Mohamed Dhia Portfolio <onboarding@resend.dev>",
@@ -186,7 +215,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // ── 5. Send auto-reply to sender (contact only, not newsletter) ───────
+    // ── 6. Send auto-reply to sender (contact only, not newsletter) ───────
     if (!isNewsletter && name && email) {
       const firstName = name.trim().split(" ")[0]
 
@@ -204,7 +233,7 @@ export async function POST(req: NextRequest) {
         })
     }
 
-    // ── 6. Success ────────────────────────────────────────────────────────
+    // ── 7. Success ────────────────────────────────────────────────────────
     return NextResponse.json({ success: true })
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Unknown error"

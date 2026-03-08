@@ -38,12 +38,23 @@ export default function TestimonialsTicker() {
     <section className="w-full py-8 border-y border-border bg-muted/30 overflow-hidden">
       <div className="flex animate-ticker gap-12 whitespace-nowrap">
         {duplicated.map((t, i) => (
-          <div key={i} className="inline-flex items-center gap-6 shrink-0">
-            <p className="text-sm md:text-base text-muted-foreground italic max-w-xs md:max-w-sm truncate">
-              &ldquo;{t.quote}&rdquo;
-            </p>
-            <span className="text-xs font-semibold text-foreground">{t.name}</span>
-            <span className="text-xs text-muted-foreground hidden sm:inline">— {t.relation}</span>
+          <div key={i} className="inline-flex items-center gap-4 shrink-0">
+            <div className="w-8 h-8 rounded-full bg-slate-900/5 dark:bg-slate-100/10 flex items-center justify-center text-[11px] font-semibold text-slate-700 dark:text-slate-100">
+              {t.name
+                .split(" ")
+                .map((n: string) => n[0])
+                .join("")
+                .slice(0, 2)}
+            </div>
+            <div className="flex flex-col">
+              <p className="text-xs md:text-sm text-muted-foreground italic max-w-xs md:max-w-sm">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <div className="flex items-center gap-2 mt-1">
+                <span className="text-[11px] font-semibold text-foreground">{t.name}</span>
+                <span className="text-[10px] text-muted-foreground hidden sm:inline">· {t.relation}</span>
+              </div>
+            </div>
           </div>
         ))}
       </div>

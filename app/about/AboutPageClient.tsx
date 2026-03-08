@@ -2,13 +2,14 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Award, Briefcase, BookOpen, Zap, Star, ShieldCheck, Palette, Code } from "lucide-react"
+import { ArrowLeft, Award, Briefcase, BookOpen, Zap, Star, ShieldCheck, Palette, Code, Download } from "lucide-react"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import { motion } from "framer-motion"
 import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
 import { siteConfig } from "@/lib/site-config"
+import ContactForm from "@/components/contact-form"
 
 const skillsConfig = [
   {
@@ -59,6 +60,14 @@ export default function AboutPageClient() {
                 <p className="text-slate-500 dark:text-slate-400 text-[17px] leading-relaxed max-w-lg">
                   Multi-disciplinary creative based in Tunisia operating where visual design, human development, and technology meet.
                 </p>
+                <a
+                  href="/cv-mohamed-dhia-arfa.pdf"
+                  download
+                  className="inline-flex items-center gap-2 px-4 py-2.5 mt-4 bg-slate-100 dark:bg-slate-800 hover:bg-green-50 dark:hover:bg-green-950 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 transition-colors"
+                >
+                  <Download className="w-4 h-4" />
+                  {t("downloadCV")}
+                </a>
               </div>
               <div className="hidden md:block">
                 <div className="relative inline-block">
@@ -252,29 +261,41 @@ export default function AboutPageClient() {
           </div>
         </section>
 
-        {/* Call to Action */}
+        {/* Call to Action + Contact Form */}
         <section className="px-4 md:px-8 py-12 md:py-20 bg-card/30">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Let's Connect</h2>
-            <p className="text-lg text-muted-foreground">
-              Whether you're interested in training, design collaboration, or development work, I'd love to hear from
-              you.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href="https://www.linkedin.com/in/dhia-/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-white rounded-lg font-semibold hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-500/90 transition-all"
-              >
-                Connect on LinkedIn
-              </a>
-              <a
-                href="mailto:mohameddhiaarfa@gmail.com"
-                className="px-6 py-3 border border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-colors"
-              >
-                Send Email
-              </a>
+          <div className="max-w-4xl mx-auto space-y-10">
+            <div className="text-center space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold">Let's Connect</h2>
+              <p className="text-lg text-muted-foreground">
+                Whether you're interested in training, design collaboration, or development work, I'd love to hear from
+                you.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <a
+                  href="https://www.linkedin.com/in/dhia-/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-white rounded-lg font-semibold hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-500/90 transition-all"
+                >
+                  Connect on LinkedIn
+                </a>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="px-6 py-3 border border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-colors"
+                >
+                  Send Email
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-card border border-border rounded-3xl p-6 sm:p-8 shadow-card">
+              <div className="text-center mb-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-1">Send a message</p>
+                <p className="text-sm text-muted-foreground">
+                  I respond to every message within 24 hours.
+                </p>
+              </div>
+              <ContactForm />
             </div>
           </div>
         </section>

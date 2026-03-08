@@ -224,6 +224,24 @@ export default function TrainerClientPage() {
         {/* Certifications Section - Imported component */}
         <CertificationsSection />
 
+        {/* Free training resources CTA */}
+        <section className="w-full py-12 px-4 md:px-8 bg-amber-50 dark:bg-amber-950/20">
+          <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <p className="font-bold text-slate-900 dark:text-white">Free training resources</p>
+              <p className="text-sm text-muted-foreground">
+                Workshop template, icebreakers, checklist — all free and based on real sessions.
+              </p>
+            </div>
+            <a
+              href="/freebies?category=training"
+              className="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-semibold rounded-xl text-sm transition-colors whitespace-nowrap"
+            >
+              🎁 Get Free Resources
+            </a>
+          </div>
+        </section>
+
         {/* Contact Form Section */}
         <section id="contact-form" className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto">
