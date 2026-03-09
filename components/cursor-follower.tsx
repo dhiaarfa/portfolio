@@ -52,13 +52,19 @@ export default function CursorFollower() {
   if (!enabled) return null
 
   return (
-    <motion.div
-      className="fixed pointer-events-none z-40 hidden md:block"
-      animate={isVisible ? { x: position.x - 16, y: position.y - 16, opacity: 1 } : { opacity: 0 }}
-      transition={{ type: "spring", stiffness: 500, damping: 28 }}
-    >
-      <div className="w-6 h-6 border-2 border-[hsl(var(--zia-green))] rounded-full bg-[hsl(var(--zia-green))]/10 backdrop-blur-sm" />
-      <div className="absolute inset-0 w-6 h-6 border border-[hsl(var(--zia-green))]/30 rounded-full animate-pulse" />
-    </motion.div>
+    <>
+      {/* Dot cursor */}
+      <motion.div
+        className="fixed pointer-events-none z-[9999] hidden md:block w-2 h-2 rounded-full bg-[#AAFF00] mix-blend-difference"
+        animate={isVisible ? { x: position.x - 4, y: position.y - 4, opacity: 1 } : { opacity: 0 }}
+        transition={{ type: "spring", stiffness: 500, damping: 28 }}
+      />
+      {/* Follower ring */}
+      <motion.div
+        className="fixed pointer-events-none z-[9998] hidden md:block w-10 h-10 border-2 border-[#AAFF00]/60 rounded-full"
+        animate={isVisible ? { x: position.x - 20, y: position.y - 20, opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+        transition={{ type: "spring", stiffness: 150, damping: 20 }}
+      />
+    </>
   )
 }

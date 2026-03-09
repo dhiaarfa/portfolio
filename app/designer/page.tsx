@@ -4,12 +4,12 @@ import DesignerPageClient from "./DesignerPageClient"
 export const dynamic = "force-static"
 
 export const metadata: Metadata = {
-  title: "Graphic Designer Tunisia | Brand Identity & UI/UX — Zia Studio · Mohamed Dhia Arfa",
+  title: "Creative & Marketing | Brand Identity, Social Media & Training — Zia Studio · Mohamed Dhia Arfa",
   description:
-    "Zia Studio — creative design studio by Mohamed Dhia Arfa. Brand identity, logo design, visual systems, and UI/UX for startups, NGOs, and organizations in Tunisia and beyond.",
-  keywords: ["graphic designer", "brand identity", "visual design", "UI/UX", "Tunisia", "Zia Studio", "logo design"],
+    "Creative & Marketing work by Mohamed Dhia Arfa — brand identity, social media content, training & education. Zia Studio, Tunisia.",
+  keywords: ["creative marketing", "brand identity", "social media", "visual design", "training", "Tunisia", "Zia Studio"],
   openGraph: {
-    title: "Zia Studio · Graphic Design & Brand Identity",
+    title: "Zia Studio · Creative & Marketing",
     description:
       "Graphic design and branding work by Mohamed Dhia Arfa — visual identities, campaigns, and UI/UX projects from Zia Studio.",
     type: "website",

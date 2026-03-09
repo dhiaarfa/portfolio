@@ -286,7 +286,8 @@ export default function DeveloperPageClient() {
               <div className="space-y-4">
                 <h2 className="text-4xl md:text-5xl font-bold">Design-to-Development Bridge</h2>
                 <p className="text-lg text-muted-foreground">
-                  With a background in graphic design and UI/UX, I translate design concepts directly into clean, maintainable code. This bridges the gap between vision and implementation.
+                  With a background in graphic design and UI/UX, I translate design concepts directly into clean,
+                  maintainable code. This bridges the gap between vision and implementation.
                 </p>
               </div>
 
@@ -297,7 +298,8 @@ export default function DeveloperPageClient() {
                     <span>UI/UX Focused Components</span>
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Building responsive interfaces that translate design systems into pixel-perfect React components with intuitive interactions.
+                    Building responsive interfaces that translate design systems into pixel-perfect React components
+                    with intuitive interactions.
                   </p>
                 </div>
 
@@ -307,7 +309,8 @@ export default function DeveloperPageClient() {
                     <span>Scalable Architecture</span>
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Designing modular, reusable components that maintain consistency and scale across the entire application.
+                    Designing modular, reusable components that maintain consistency and scale across the entire
+                    application.
                   </p>
                 </div>
 
@@ -317,7 +320,8 @@ export default function DeveloperPageClient() {
                     <span>Performance Optimized</span>
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Creating fast, efficient interfaces with attention to performance metrics and user experience quality.
+                    Creating fast, efficient interfaces with attention to performance metrics and user experience
+                    quality.
                   </p>
                 </div>
 
@@ -327,7 +331,8 @@ export default function DeveloperPageClient() {
                     <span>Rapid Prototyping</span>
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Transforming wireframes and designs into working prototypes quickly, enabling faster iteration and feedback cycles.
+                    Transforming wireframes and designs into working prototypes quickly, enabling faster iteration and
+                    feedback cycles.
                   </p>
                 </div>
               </div>
@@ -335,57 +340,76 @@ export default function DeveloperPageClient() {
           </div>
         </section>
 
-        {/* What I Can Build Today — icon cards */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
-          <div className="max-w-7xl mx-auto">
-            <div className="space-y-12">
-              <div className="text-center space-y-4 mx-auto max-w-3xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-green-600">Capabilities</p>
-                <h2 className="text-3xl md:text-4xl font-bold">What I Can Build Today</h2>
-                <p className="text-muted-foreground text-lg">Production-ready solutions across the modern web stack</p>
-              </div>
+        {/* ── WHAT I CAN BUILD TODAY ── */}
+        <section className="py-16 px-6 bg-slate-50 dark:bg-slate-900">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-sm font-semibold text-green-600 uppercase tracking-widest mb-2 text-center">
+              Capabilities
+            </p>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-3">
+              What I Can Build Today
+            </h2>
+            <p className="text-slate-500 text-center text-sm mb-10 max-w-md mx-auto">
+              Production-ready solutions across the modern web stack.
+            </p>
 
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  {
-                    icon: Monitor,
-                    title: "Responsive Web Interfaces",
-                    desc: "Pixel-perfect, mobile-first React layouts that stay accessible and consistent across all devices.",
-                    color: "bg-blue-50 text-blue-600",
-                  },
-                  {
-                    icon: Box,
-                    title: "React Component Architecture",
-                    desc: "Scalable, reusable UI components with clean state management and clear boundaries.",
-                    color: "bg-purple-50 text-purple-600",
-                  },
-                  {
-                    icon: Gauge,
-                    title: "Performance-First Apps",
-                    desc: "Fast-loading Next.js apps with lazy loading, code-splitting, and strong Core Web Vitals.",
-                    color: "bg-green-50 text-green-600",
-                  },
-                ].map((item, i) => {
-                  const Icon = item.icon
-                  return (
-                    <motion.div
-                      key={i}
-                      className="bg-white rounded-3xl p-7 border border-slate-100 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
-                      whileHover={{ y: -4 }}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: i * 0.08 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className={`w-12 h-12 ${item.color} rounded-2xl flex items-center justify-center mb-5`}>
-                        <Icon className="w-6 h-6" />
-                      </div>
-                      <h3 className="font-semibold text-slate-900 mb-2">{item.title}</h3>
-                      <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
-                    </motion.div>
-                  )
-                })}
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              {[
+                {
+                  icon: '🖥️',
+                  iconBg: 'bg-blue-50 dark:bg-blue-950',
+                  title: 'Responsive Web Interfaces',
+                  description:
+                    'Pixel-perfect, mobile-first React components with smooth interactions and accessible markup.',
+                  tags: ['React', 'Tailwind', 'Framer Motion', 'WCAG'],
+                  color: 'border-blue-100 dark:border-blue-900',
+                },
+                {
+                  icon: '⚙️',
+                  iconBg: 'bg-green-50 dark:bg-green-950',
+                  title: 'React Component Architecture',
+                  description:
+                    'Scalable, reusable component systems with TypeScript, proper state management, and clean APIs.',
+                  tags: ['TypeScript', 'Context API', 'Zustand', 'ShadCN'],
+                  color: 'border-green-100 dark:border-green-900',
+                },
+                {
+                  icon: '⚡',
+                  iconBg: 'bg-amber-50 dark:bg-amber-950',
+                  title: 'Performance-Optimized Sites',
+                  description:
+                    'Next.js sites with 90+ Lighthouse scores, optimal loading, and great Core Web Vitals.',
+                  tags: ['Next.js', 'Image Opt.', 'Edge Functions', '90+ Score'],
+                  color: 'border-amber-100 dark:border-amber-900',
+                },
+              ].map((cap, i) => (
+                <div
+                  key={i}
+                  className={`rounded-2xl border ${cap.color} bg-white dark:bg-slate-950 p-6 hover:shadow-lg hover:-translate-y-1 transition-all`}
+                >
+                  <div
+                    className={`w-12 h-12 rounded-2xl ${cap.iconBg} flex items-center justify-center text-2xl mb-4`}
+                  >
+                    {cap.icon}
+                  </div>
+                  <h3 className="font-bold text-slate-900 dark:text-white mb-2 text-sm leading-snug">
+                    {cap.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                    {cap.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {cap.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded-md"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

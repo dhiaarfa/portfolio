@@ -2,41 +2,13 @@ import type React from "react"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
-import { Syne, DM_Serif_Display, DM_Sans, Cairo } from "next/font/google"
+import { Cairo } from "next/font/google"
 import { cn } from "@/lib/utils"
 import MotionProvider from "@/components/motion-provider"
 import GlobalComponents from "@/components/global-components"
+import { Toaster } from "@/components/ui/sonner"
 
-// Typography system:
-// - Syne: display / hero headlines
-// - DM Serif Display: section headings
-// - DM Sans: body & UI text
-// - Cairo: Arabic / RTL content
-const syne = Syne({
-  subsets: ["latin"],
-  weight: ["700", "800"],
-  variable: "--font-syne",
-  display: "optional",
-  preload: true,
-})
-
-const dmSerifDisplay = DM_Serif_Display({
-  subsets: ["latin"],
-  style: ["normal"],
-  weight: "400",
-  variable: "--font-dm-serif",
-  display: "swap",
-  preload: false,
-})
-
-const dmSans = DM_Sans({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
-  variable: "--font-dm-sans",
-  display: "swap",
-  preload: false,
-})
-
+// Typography: Clash Display + Satoshi via Fontshare; Cairo for Arabic
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -113,34 +85,36 @@ export default function RootLayout({
       lang="en"
       dir="ltr"
       suppressHydrationWarning
-      className={`scroll-smooth ${syne.variable} ${dmSerifDisplay.variable} ${dmSans.variable} ${cairo.variable}`}
+      className={`scroll-smooth ${cairo.variable}`}
     >
       <head>
         <link rel="icon" href="/favicon-green-portrait.png" sizes="any" />
+        <link
+          rel="stylesheet"
+          href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&amp;f[]=satoshi@400,500,700&amp;display=swap"
+        />
         <style>{`
           :root {
-            ${syne.variable};
-            ${dmSerifDisplay.variable};
-            ${dmSans.variable};
             ${cairo.variable};
             --background: 0 0% 100%;
             --foreground: 0 0% 5%;
+            --zia-lime: 84 100% 50%;
             --zia-green: 142 70% 45%;
           }
           .dark {
-            --background: 0 0% 7%;
+            --background: 0 0% 4%;
             --foreground: 0 0% 96%;
           }
           body {
             background-color: hsl(var(--background));
             color: hsl(var(--foreground));
-            font-family: var(--font-syne), var(--font-dm-sans), system-ui, sans-serif;
+            font-family: 'Satoshi', var(--font-cairo), system-ui, sans-serif;
           }
         `}</style>
         <link rel="dns-prefetch" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com" />
         
         {/* Advanced SEO Meta Tags */}
-        <meta name="theme-color" content="#29A368" />
+        <meta name="theme-color" content="#0A0A0A" />
         <meta name="color-scheme" content="light dark" />
         <meta name="format-detection" content="telephone=yes" />
         <meta name="geo.region" content="TN" />
@@ -227,7 +201,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={cn("font-sans antialiased bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 overflow-x-hidden min-w-0")} style={{ backgroundColor: "hsl(var(--background))", color: "hsl(var(--foreground))" }}>
+      <body className={cn("antialiased overflow-x-hidden min-w-0 font-body")} style={{ backgroundColor: "hsl(var(--background))", color: "hsl(var(--foreground))" }}>
         <ThemeProvider 
           attribute="class" 
           defaultTheme="light" 
@@ -237,6 +211,7 @@ export default function RootLayout({
           themes={["light", "dark"]}
           disableTransitionOnChange={false}
         >
+          <Toaster richColors position="bottom-center" />
           <LanguageProvider>
             <MotionProvider>
               {children}

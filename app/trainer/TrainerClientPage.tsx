@@ -7,6 +7,7 @@ import Footer from "@/components/footer"
 import ContactForm from "@/components/contact-form"
 import TrainerCapabilities from "@/components/trainer-capabilities"
 import CertificationsSection from "@/components/certifications-section"
+import TrainingMethodologySection from "@/components/training-methodology-section"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
 
@@ -59,7 +60,7 @@ export default function TrainerClientPage() {
         <section className="relative min-h-[85vh] flex items-end overflow-hidden bg-slate-950">
           <div className="absolute inset-0 min-h-[400px]">
             <Image
-              src="/images/photos/dhia-trainer.png"
+              src="/images/photos/dhia-trainer-hero.png"
               alt="Dhia training"
               fill
               className="object-cover object-top"
@@ -217,6 +218,9 @@ export default function TrainerClientPage() {
             </motion.div>
           </div>
         </section>
+
+        {/* Training Methodology */}
+        <TrainingMethodologySection />
 
         {/* Trainer Capabilities */}
         <TrainerCapabilities />

@@ -93,7 +93,7 @@ export default function FreebiesClient() {
                   : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
               }`}
             >
-              {cat === "design" ? "🎨 Design" : cat === "training" ? "📚 Training" : "✨ All"}
+              {cat === "design" ? "Design" : cat === "training" ? "Training" : "All"}
             </button>
           ))}
         </div>
@@ -113,7 +113,7 @@ export default function FreebiesClient() {
                 onClick={() => !isUnlocked && setSelectedFreebie(freebie)}
               >
                 <span className={`self-start text-xs font-semibold px-2.5 py-1 rounded-full ${colors.badge}`}>
-                  {freebie.category === "design" ? "🎨 Design" : "📚 Training"}
+                  {freebie.category === "design" ? "Design" : "Training"}
                 </span>
 
                 <div>

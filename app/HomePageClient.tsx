@@ -11,6 +11,7 @@ import { siteConfig } from "@/lib/site-config"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import StatsSection from "@/components/stats-section"
 import ServicePackages from "@/components/service-packages"
+import ValueRadarChart from "@/components/value-radar-chart"
 import FAQSection from "@/components/faq-section"
 import NewsletterSection from "@/components/newsletter-section"
 import TestimonialsTicker from "@/components/testimonials-ticker"
@@ -98,7 +99,7 @@ export default function HomePageClient() {
         />
         <div className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[58%_42%] gap-10 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 mb-7 px-4 py-1.5 rounded-full text-sm font-medium bg-green-50 dark:bg-green-950/60 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 w-fit">
+            <div className="inline-flex items-center gap-2 mb-7 px-4 py-1.5 rounded-full text-sm font-medium bg-[#AAFF00]/10 dark:bg-[#AAFF00]/10 border border-[#AAFF00]/30 text-[#0A0A0A] dark:text-[#AAFF00] w-fit">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75" />
                 <span className="relative h-2 w-2 rounded-full bg-green-500" />
@@ -107,21 +108,21 @@ export default function HomePageClient() {
             </div>
             <h1 className="font-display font-extrabold text-[clamp(44px,7.5vw,84px)] leading-[0.94] tracking-tight text-slate-900 dark:text-white mb-3">
               Hello, I&apos;m<br />
-              <span className="text-green-600 dark:text-green-400">Mohamed Dhia</span>
+              <span className="text-[#AAFF00]">Mohamed Dhia</span>
             </h1>
             <AnimatedRole />
             <p className="mt-5 mb-8 text-slate-500 dark:text-slate-400 text-[17px] leading-relaxed max-w-[420px]">
-              Designer, trainer, and developer helping people communicate clearly and build stronger digital products.
+              I design, train, and build — 7 years in Tunisia. Here to make brands clear and people sharper.
             </p>
             {/* Social proof micro-stats */}
             <div className="flex flex-wrap gap-x-6 gap-y-2 mt-1 mb-6">
               {[
-                { value: "1000+", label: "youth trained" },
+                { value: "950+", label: "youth trained" },
                 { value: "50+", label: "brands & campaigns" },
                 { value: "7+", label: "years active" },
               ].map(({ value, label }) => (
                 <div key={label} className="flex items-center gap-1.5">
-                  <span className="font-bold text-green-600 dark:text-green-400 text-sm">{value}</span>
+                  <span className="font-bold text-[#AAFF00] text-sm">{value}</span>
                   <span className="text-slate-500 dark:text-slate-400 text-sm">{label}</span>
                 </div>
               ))}
@@ -178,7 +179,7 @@ export default function HomePageClient() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-green-600 text-center mb-2">
               {t("myExpertise")}
             </p>
-            <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] text-center text-slate-900 leading-snug mb-12">
+            <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] text-center text-slate-900 dark:text-white leading-snug mb-12">
               Three specialized areas.
               <br />
               One cohesive vision.
@@ -296,6 +297,31 @@ export default function HomePageClient() {
         </div>
       </section>
 
+      {/* Zia Studio — dedicated section */}
+      <section className="py-20 px-6 bg-[#0A0A0A] dark:bg-[#0A0A0A]">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+          <div className="flex-shrink-0 rounded-2xl overflow-hidden">
+            <Image
+              src="/images/zia/zia-logo-full.png"
+              alt="Zia Studio"
+              width={180}
+              height={64}
+              className="object-contain"
+            />
+          </div>
+          <div className="flex-1 text-center md:text-left">
+            <p className="text-[#AAFF00] text-sm font-semibold uppercase tracking-widest mb-2">Creative Agency</p>
+            <p className="text-[#F5F5F5] text-lg leading-relaxed mb-6">
+              Brand identity, digital campaigns, and visual storytelling for startups, NGOs, and ambitious projects across Tunisia and beyond.
+            </p>
+            <a href="#contact" className="btn-green">
+              Work with Zia Studio
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Client Logos */}
       <ClientLogosStrip />
 
@@ -307,6 +333,9 @@ export default function HomePageClient() {
 
       {/* Service Packages */}
       <ServicePackages />
+
+      {/* Working with me – radar chart */}
+      <ValueRadarChart />
 
       {/* Featured Testimonials */}
       <section className="bg-white dark:bg-slate-950 py-20 px-5">

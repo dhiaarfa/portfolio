@@ -57,15 +57,15 @@ export default function NewsletterSection() {
 
           {/* Headline */}
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
-            Get design & training insights
+            {t("getDesignInsights")}
           </h2>
           <p className="mt-3 text-sm text-slate-400">
-            Join for practical tips, project breakdowns, and training frameworks directly from real work.
+            {t("newsletterTagline")}
           </p>
 
           {/* Value props */}
           <div className="flex flex-wrap justify-center gap-4 mb-2 mt-4">
-            {["🎨 Free design templates", "📚 Training frameworks", "💡 Monthly project tips"].map((item) => (
+            {[t("newsletterBenefit1"), t("newsletterBenefit2"), t("newsletterBenefit3")].map((item) => (
               <span key={item} className="text-xs text-slate-500">
                 {item}
               </span>
@@ -101,7 +101,7 @@ export default function NewsletterSection() {
               )}
             </button>
           </form>
-          <p className="text-[11px] text-slate-500 mt-2">No spam. Unsubscribe anytime.</p>
+          <p className="text-[11px] text-slate-500 mt-2">{t("newsletterNoSpam")}</p>
 
           {/* Status */}
           {status === "success" && (

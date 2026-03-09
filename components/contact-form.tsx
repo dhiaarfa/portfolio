@@ -1,10 +1,11 @@
 "use client"
 
-import React from "react"
-
-import { useState } from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { Mail, AlertCircle, CheckCircle2 } from "lucide-react"
+import { toast } from "sonner"
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -19,28 +20,45 @@ export default function ContactForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const validate = () => {
+    if (!formData.name?.trim()) {
+      toast.error("Please enter your name.")
+      return false
+    }
+    if (!formData.email?.trim()) {
+      toast.error("Please enter your email.")
+      return false
+    }
+    if (!EMAIL_REGEX.test(formData.email.trim())) {
+      toast.error("Please enter a valid email address.")
+      return false
+    }
+    if (!formData.message?.trim()) {
+      toast.error("Please enter a message.")
+      return false
+    }
+    return true
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!validate()) return
+
     setStatus("loading")
     setErrorMessage("")
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
           subject: formData.service,
-          message: formData.message,
+          message: formData.message.trim(),
           type: "contact",
         }),
       })
@@ -49,28 +67,21 @@ export default function ContactForm() {
 
       if (!response.ok) {
         setStatus("error")
-        setErrorMessage(data.error || "Failed to send message. Please try again.")
+        setErrorMessage(data.error || "Failed to send message.")
         setErrorHint(data.hint || "")
+        toast.error("Something went wrong. Try again or email me directly.")
         return
       }
 
       setStatus("success")
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-        service: "design",
-      })
-
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setStatus("idle")
-      }, 5000)
-    } catch (error) {
+      setFormData({ name: "", email: "", message: "", service: "design" })
+      toast.success("Message sent! I'll get back to you soon.")
+      setTimeout(() => setStatus("idle"), 5000)
+    } catch {
       setStatus("error")
-      setErrorMessage("An error occurred. Please try again later.")
+      setErrorMessage("Network error. Please try again.")
       setErrorHint("")
-      console.error("Form error:", error)
+      toast.error("Something went wrong. Try again or email me directly.")
     }
   }
 
@@ -93,7 +104,7 @@ export default function ContactForm() {
         {/* Name Field */}
         <div className="space-y-2">
           <label htmlFor="name" className="block text-sm font-semibold">
-            Your Name <span className="text-orange-500">*</span>
+            Your Name <span className="text-[#AAFF00]">*</span>
           </label>
           <input
             type="text"
@@ -103,7 +114,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             placeholder="Enter your full name"
-            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all touch-manipulation text-base"
+            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-[#AAFF00] focus:border-[#AAFF00] transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           />
         </div>
@@ -111,7 +122,7 @@ export default function ContactForm() {
         {/* Email Field */}
         <div className="space-y-2">
           <label htmlFor="email" className="block text-sm font-semibold">
-            Email Address <span className="text-orange-500">*</span>
+            Email Address <span className="text-[#AAFF00]">*</span>
           </label>
           <input
             type="email"
@@ -121,7 +132,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             placeholder="your.email@example.com"
-            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all touch-manipulation text-base"
+            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-[#AAFF00] focus:border-[#AAFF00] transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           />
         </div>
@@ -129,7 +140,7 @@ export default function ContactForm() {
         {/* Service Type Dropdown */}
         <div className="space-y-2">
           <label htmlFor="service" className="block text-sm font-semibold">
-            What can I help with? <span className="text-orange-500">*</span>
+            What can I help with? <span className="text-[#AAFF00]">*</span>
           </label>
           <select
             id="service"
@@ -137,7 +148,7 @@ export default function ContactForm() {
             value={formData.service}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all touch-manipulation text-base"
+            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-[#AAFF00] focus:border-[#AAFF00] transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           >
             <option value="design">Design Project</option>
@@ -150,7 +161,7 @@ export default function ContactForm() {
         {/* Message Field */}
         <div className="space-y-2">
           <label htmlFor="message" className="block text-sm font-semibold">
-            Your Message <span className="text-orange-500">*</span>
+            Your Message <span className="text-[#AAFF00]">*</span>
           </label>
           <textarea
             id="message"
@@ -160,7 +171,7 @@ export default function ContactForm() {
             required
             placeholder="Tell me about your project, timeline, and any specific requirements..."
             rows={5}
-            className="w-full px-4 py-3 min-h-[120px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none touch-manipulation text-base"
+            className="w-full px-4 py-3 min-h-[120px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-[#AAFF00] focus:border-[#AAFF00] transition-all resize-none touch-manipulation text-base"
             disabled={status === "loading"}
           />
         </div>
@@ -201,7 +212,7 @@ export default function ContactForm() {
           disabled={status === "loading" || status === "success"}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="w-full px-6 py-3 min-h-[48px] bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-500/90 disabled:opacity-50 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 touch-manipulation text-base"
+          className="w-full px-6 py-3 min-h-[48px] bg-gradient-to-r bg-[#AAFF00] hover:bg-[#b8ff33]  disabled:opacity-50 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 touch-manipulation text-base"
         >
           {status === "loading" ? (
             <>
@@ -223,7 +234,7 @@ export default function ContactForm() {
 
         <p className="text-xs text-muted-foreground text-center">
           I'll respond to your message within 24 hours. You can also reach me directly at{" "}
-          <a href="mailto:mohameddhiaarfa@gmail.com" className="text-orange-500 hover:underline font-medium">
+          <a href="mailto:mohameddhiaarfa@gmail.com" className="text-[#AAFF00] hover:underline font-medium">
             mohameddhiaarfa@gmail.com
           </a>
         </p>

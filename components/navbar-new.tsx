@@ -9,13 +9,13 @@ import { ThemeToggle } from './theme-toggle'
 import { LanguageToggle } from './language-toggle'
 
 const links = [
-  { label: 'Home',      href: '/' },
-  { label: 'About',     href: '/about' },
-  { label: 'Designer',  href: '/designer',  emoji: '🎨' },
-  { label: 'Trainer',   href: '/trainer',   emoji: '🎓' },
-  { label: 'Developer', href: '/developer', emoji: '💻' },
-  { label: 'Freebies',  href: '/freebies',  emoji: '🎁' },
-  { label: 'Insights',  href: '/insights',  emoji: '📝' },
+  { label: 'Home',       href: '/' },
+  { label: 'About',      href: '/about' },
+  { label: 'Branding',   href: '/designer' },
+  { label: 'Training',   href: '/trainer' },
+  { label: 'Development', href: '/developer' },
+  { label: 'Freebies',   href: '/freebies' },
+  { label: 'Insights',   href: '/insights' },
 ]
 
 export default function Navbar() {
@@ -74,7 +74,6 @@ export default function Navbar() {
                   <span className={`relative z-10 flex items-center gap-1.5 ${
                     active ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                   }`}>
-                    {link.emoji && <span className="text-sm leading-none">{link.emoji}</span>}
                     {link.label}
                   </span>
                 </Link>
@@ -112,7 +111,7 @@ export default function Navbar() {
                         : "text-slate-500 dark:text-slate-300"
                     }`}
                   >
-                    {link.emoji ? link.emoji : link.label}
+                    {link.label}
                   </Link>
                 )
               })}
@@ -129,7 +128,7 @@ export default function Navbar() {
         </div>
       </motion.header>
 
-      {/* MOBILE FULLSCREEN MENU */}
+            {/* MOBILE FULLSCREEN MENU */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -143,17 +142,20 @@ export default function Navbar() {
               {links.map((link, i) => {
                 const active = pathname === link.href
                 return (
-                  <motion.div key={link.href}
+                  <motion.div
+                    key={link.href}
                     initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.055 }}>
-                    <Link href={link.href}
+                    transition={{ delay: i * 0.055 }}
+                  >
+                    <Link
+                      href={link.href}
                       className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl text-[17px] font-semibold transition-colors ${
                         active
                           ? 'bg-green-50 dark:bg-green-950/50 text-green-700 dark:text-green-400'
                           : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900'
-                      }`}>
-                      {link.emoji && <span className="text-2xl w-8 text-center">{link.emoji}</span>}
+                      }`}
+                    >
                       {link.label}
                     </Link>
                   </motion.div>

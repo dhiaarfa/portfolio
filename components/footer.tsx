@@ -13,11 +13,11 @@ export default function Footer() {
       <div className="border-b border-slate-800">
         <div className="max-w-5xl mx-auto px-6 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
-            <p className="label text-green-500 mb-1">Let&apos;s work together</p>
+            <p className="label text-green-500 mb-1">{t("footerLetsWork")}</p>
             <h3 className="font-display font-bold text-2xl sm:text-3xl text-white leading-snug">
-              Ready to start a project?
+              {t("footerReadyProject")}
             </h3>
-            <p className="text-slate-500 text-sm mt-1">30-min call · no commitment</p>
+            <p className="text-slate-500 text-sm mt-1">{t("footerCallShort")}</p>
           </div>
           <a
             href={siteConfig.calendlyUrl}
@@ -71,29 +71,29 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">Navigation</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("navigationTitle")}</p>
           <ul className="space-y-2.5">
             <li><Link href="/" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("home")}</Link></li>
             <li><Link href="/about" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("about")}</Link></li>
-            <li><Link href="/designer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("design")}</Link></li>
+            <li><Link href="/designer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("work")}</Link></li>
             <li><Link href="/trainer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("training")}</Link></li>
             <li><Link href="/developer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("webDevelopment")}</Link></li>
-            <li><Link href="/freebies" className="text-slate-400 hover:text-green-400 text-sm transition-colors">🎁 Freebies</Link></li>
-            <li><Link href="/insights" className="text-slate-400 hover:text-green-400 text-sm transition-colors">📝 Insights</Link></li>
+            <li><Link href="/freebies" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("nav.freebies")}</Link></li>
+            <li><Link href="/insights" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("nav.insights")}</Link></li>
           </ul>
         </div>
 
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">Services</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("services")}</p>
           <ul className="space-y-2.5">
-            {["Brand Identity", "UI/UX Design", "Youth Training", "Leadership Workshops", "Web Development", "Book Consultation"].map((s) => (
+            {[t("footerService1"), t("footerService2"), t("footerService3"), t("footerService4"), t("footerService5"), t("bookConsultation")].map((s) => (
               <li key={s}><span className="text-slate-400 text-sm">{s}</span></li>
             ))}
           </ul>
         </div>
 
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">Contact</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("contact")}</p>
           <div className="space-y-3">
             <a
               href={`mailto:${siteConfig.email}`}
@@ -109,7 +109,7 @@ export default function Footer() {
                 <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75" />
                 <span className="relative h-2 w-2 rounded-full bg-green-500" />
               </span>
-              <span className="text-green-400 text-xs font-medium">Available for projects</span>
+              <span className="text-green-400 text-xs font-medium">{t("availableForProjects")}</span>
             </div>
           </div>
         </div>

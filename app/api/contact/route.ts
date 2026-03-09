@@ -154,7 +154,7 @@ export async function POST(req: NextRequest) {
 
     // Initialize client lazily so build does not crash when key is missing
     const resend = new Resend(process.env.RESEND_API_KEY)
-    const receiver = process.env.CONTACT_RECEIVER || "benarfa367@gmail.com"
+    const receiver = process.env.CONTACT_RECEIVER || "mohameddhiaarfa@gmail.com"
     const isNewsletter = type === "newsletter"
 
     // ── 4. Handle freebie downloads (notification only) ──────────────────

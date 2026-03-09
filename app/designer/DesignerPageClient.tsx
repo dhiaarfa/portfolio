@@ -9,6 +9,7 @@ import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import ContactForm from "@/components/contact-form"
 import SocialEmbedsSection from "@/components/social-embeds-section"
+import TrainingImpactChart from "@/components/training-impact-chart"
 import { useState } from "react"
 
 export default function DesignerPageClient() {
@@ -24,24 +25,20 @@ export default function DesignerPageClient() {
 
   const designPhilosophy = [
     {
-      icon: "✨",
       title: "Brand Identity Systems",
-      description: "We don't just create logos—we build comprehensive visual systems that evolve with your brand.",
+      description: "We don't just create logos—we build visual systems that evolve with your brand.",
     },
     {
-      icon: "🎨",
       title: "Creative Direction",
-      description: "Strategic visual thinking that aligns design decisions with business objectives and audience insights.",
+      description: "Strategic visual thinking that aligns design decisions with business objectives.",
     },
     {
-      icon: "🖼️",
       title: "Visual Design & UI/UX",
-      description: "Beautiful, functional interfaces that solve real problems and create meaningful user experiences.",
+      description: "Functional interfaces that solve real problems and create meaningful user experiences.",
     },
     {
-      icon: "📱",
       title: "Design Consulting",
-      description: "Strategic guidance on visual branding, design systems, and creative direction for ambitious projects.",
+      description: "Guidance on visual branding, design systems, and creative direction.",
     },
   ]
 
@@ -301,73 +298,43 @@ export default function DesignerPageClient() {
 
   const workExperience = [
     {
-      title: "Zia Studio - Design Studio Operations",
+      title: "Zia Studio — Design Studio Operations",
       company: "Solo-led Creative Practice",
       period: "2020 – Present",
-      description: "Running Zia Studio as a full-service creative design studio delivering branding, UI/UX, and visual identity systems to diverse clients",
-      icon: "🎨",
+      description: "Full-service creative design studio — branding, UI/UX, visual identity systems.",
     },
     {
       title: "Senior Graphic Designer",
       company: "Icom Agency",
       period: "Jan – Feb 2025",
-      description: "Led design projects, contributed to brand identity systems and campaign visuals for agency clients",
-      icon: "🎯",
+      description: "Led design projects, brand identity systems, campaign visuals.",
     },
     {
       title: "Graphic Designer",
       company: "Phenyx Company",
       period: "Oct – Nov 2024",
-      description: "Designed marketing materials, brand assets, and visual communications for growing tech company",
-      icon: "🔧",
+      description: "Marketing materials, brand assets, visual communications.",
     },
     {
       title: "Graphic Designer",
       company: "Jasmin Marketing",
       period: "Dec 2023 – Jan 2024",
-      description: "Created campaign visuals, promotional materials, and brand-consistent design assets",
-      icon: "✨",
+      description: "Campaign visuals, promotional materials, brand assets.",
     },
     {
       title: "Design & Creative Training",
       company: "FunCoach Space, Sousse",
       period: "Jun – Jul 2021",
-      description: "Delivered design training and mentored emerging designers in brand identity and visual systems",
-      icon: "📚",
+      description: "Design training, mentoring emerging designers.",
     },
   ]
 
   const certifications = [
-    {
-      title: "National Certified Trainer (CNFCPP)",
-      issuer: "Tunisia - National Certification",
-      year: "2024",
-      icon: "🏆",
-    },
-    {
-      title: "Graphic Design Certification",
-      issuer: "GoMyCode Academy",
-      year: "2023",
-      icon: "🎭",
-    },
-    {
-      title: "Social Media Marketing",
-      issuer: "HubSpot Academy",
-      year: "2024",
-      icon: "📊",
-    },
-    {
-      title: "Green Digital Skills",
-      issuer: "INCO Academy",
-      year: "2024",
-      icon: "♻️",
-    },
-    {
-      title: "Certified Trainer",
-      issuer: "Association YOUTH CLUBs",
-      year: "2025",
-      icon: "👥",
-    },
+    { title: "National Certified Trainer (CNFCPP)", issuer: "Tunisia", year: "2024" },
+    { title: "Graphic Design Certification", issuer: "GoMyCode Academy", year: "2023" },
+    { title: "Social Media Marketing", issuer: "HubSpot Academy", year: "2024" },
+    { title: "Green Digital Skills", issuer: "INCO Academy", year: "2024" },
+    { title: "Certified Trainer", issuer: "Association YOUTH CLUBs", year: "2025" },
   ]
 
   return (
@@ -391,10 +358,10 @@ export default function DesignerPageClient() {
             </div>
             <div className="relative z-10 my-auto py-10">
               <h1 className="font-display font-black text-[clamp(52px,6.5vw,88px)] leading-[0.91] text-white tracking-tight mb-6">
-                Creative<br /><span className="text-green-500">Design.</span><br />Done Right.
+                Creative &<br /><span className="text-green-500">Marketing</span>
               </h1>
               <p className="text-slate-400 text-[17px] leading-relaxed max-w-sm mb-10">
-                Brand identities, visual systems, and UI/UX for organizations that want to stand out.
+                Brand identities, social media, training — clarity and impact for brands and people.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a href="#gallery" className="btn-green">Browse Portfolio</a>
@@ -422,59 +389,58 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        {/* Zia Studio brand strip – dark background for readability */}
-        <section className="w-full py-10 sm:py-14 md:py-20 px-4 md:px-8 bg-[hsl(var(--zia-green))]">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-xl sm:text-2xl md:text-4xl font-bold text-white tracking-tight px-2">Creative, done right</p>
-            <p className="text-white/95 text-base sm:text-lg md:text-xl mt-3 font-medium">Thoughtful branding and visual design</p>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-6 md:mt-8">
-              <a href={siteConfig.ziaStudioLinkedIn} target="_blank" rel="noopener noreferrer" className="text-white font-medium text-sm underline underline-offset-4 hover:no-underline">
-                Zia Studio on LinkedIn
-              </a>
-              <a href={siteConfig.ziaStudioInstagram} target="_blank" rel="noopener noreferrer" className="text-white font-medium text-sm underline underline-offset-4 hover:no-underline">
-                Zia Studio on Instagram
-              </a>
-            </div>
-          </div>
-        </section>
-
         <SocialEmbedsSection
           instagramProfileUrl={siteConfig.ziaStudioInstagram}
           behanceProfileUrl={siteConfig.behance}
         />
 
-        {/* Design Philosophy - Enhanced Creative Section */}
+        {/* Design Philosophy - interactive steps */}
         <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-gradient-to-b from-background via-[hsl(var(--zia-green))]/3 to-background">
           <div className="max-w-7xl mx-auto">
             <motion.div
-              className="space-y-16"
+              className="space-y-12"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">My Approach</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Design Philosophy</h2>
-                <p className="text-muted-foreground text-base md:text-lg max-w-3xl">Every project is guided by core principles balancing creativity with strategy, aesthetics with impact.</p>
+              <div className="space-y-4 max-w-3xl">
+                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
+                  How we build your brand
+                </p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+                  Design Philosophy in four moves
+                </h2>
+                <p className="text-muted-foreground text-base md:text-lg">
+                  A clear sequence from strategy to visuals so every asset feels part of one story.
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                {designPhilosophy.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    className="p-5 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl border-2 border-[hsl(var(--zia-green))]/20 hover:border-[hsl(var(--zia-green))]/50 transition-all hover:bg-[hsl(var(--zia-green))]/5 space-y-4 backdrop-blur-sm"
-                    whileHover={{ y: -4, scale: 1.02 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="text-4xl">{item.icon}</div>
-                    <h3 className="text-2xl font-bold text-foreground">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.description}</p>
-                  </motion.div>
-                ))}
+              <div className="relative">
+                <div className="hidden md:block absolute left-8 right-8 top-8 h-px bg-gradient-to-r from-transparent via-[hsl(var(--zia-green))] to-transparent opacity-40" />
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                  {designPhilosophy.map((item, i) => (
+                    <motion.div
+                      key={item.title}
+                      className="relative bg-background rounded-2xl border border-[hsl(var(--zia-green))]/25 p-5 sm:p-6 hover:border-[hsl(var(--zia-green))] hover:-translate-y-1 transition-all shadow-sm"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: i * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="w-8 h-8 rounded-full bg-[hsl(var(--zia-green))]/10 text-[hsl(var(--zia-green))] text-xs font-bold flex items-center justify-center">
+                          {`0${i + 1}`}
+                        </span>
+                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                          Step {i + 1}
+                        </span>
+                      </div>
+                      <h3 className="text-sm font-semibold text-foreground mb-2">{item.title}</h3>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
@@ -544,11 +510,11 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        {/* Work Experience - Compact section */}
+        {/* Work Experience - timeline */}
         <section className="w-full py-20 md:py-24 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <motion.div
-              className="space-y-8"
+              className="space-y-10"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
@@ -556,35 +522,49 @@ export default function DesignerPageClient() {
             >
               <div className="space-y-2">
                 <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
-                  Professional Journey
+                  Studio Journey
                 </p>
-                <h2 className="text-3xl md:text-4xl font-bold">Work Experience</h2>
+                <h2 className="text-3xl md:text-4xl font-bold">Selected experience</h2>
               </div>
 
-              <div className="flex flex-wrap gap-3">
-                {workExperience.map((job, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex-1 min-w-[160px] p-4 border border-foreground/20 bg-background rounded-lg hover:border-[hsl(var(--zia-green))]/50 transition-all"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: i * 0.05 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="text-2xl mb-2">{job.icon}</div>
-                    <h3 className="text-xs font-bold leading-tight mb-1">{job.title}</h3>
-                    <p className="text-xs text-muted-foreground mb-1">{job.company}</p>
-                    <p className="text-xs font-medium text-[hsl(var(--zia-green))]">{job.period}</p>
-                  </motion.div>
-                ))}
+              <div className="relative">
+                <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-[hsl(var(--zia-green))] via-slate-200 to-transparent dark:via-slate-700" />
+                <div className="flex flex-col gap-6">
+                  {workExperience.map((job, i) => (
+                    <motion.div
+                      key={`${job.company}-${job.period}`}
+                      className="relative pl-12"
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: i * 0.08 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-[hsl(var(--zia-green))] text-[10px] font-semibold text-background flex items-center justify-center shadow-md">
+                        {i === 0 ? "Now" : job.period.split("–")[0].trim()}
+                      </div>
+                      <div className="bg-background border border-border rounded-2xl p-5 hover:border-[hsl(var(--zia-green))]/60 hover:shadow-md transition-all">
+                        <div className="flex items-start justify-between gap-3 flex-wrap mb-2">
+                          <div>
+                            <h3 className="text-sm font-bold text-foreground">{job.title}</h3>
+                            <p className="text-xs text-muted-foreground">{job.company}</p>
+                          </div>
+                          <span className="text-[11px] text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full whitespace-nowrap">
+                            {job.period}
+                          </span>
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{job.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
         </section>
 
         {/* Certifications */}
-        <section className="w-full py-20 md:py-24 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
+        <section className="w-full py-16 md:py-20 px-4 md:px-8 bg-muted/40 dark:bg-slate-950">
+          <div className="max-w-4xl mx-auto">
             <motion.div
               className="space-y-8"
               initial={{ opacity: 0 }}
@@ -592,27 +572,30 @@ export default function DesignerPageClient() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="space-y-2">
+              <div className="space-y-2 text-center">
                 <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
-                  Professional Credentials
+                  Professional credentials
                 </p>
                 <h2 className="text-3xl md:text-4xl font-bold">Certifications</h2>
               </div>
 
-              <div className="grid md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {certifications.map((cert, i) => (
                   <motion.div
-                    key={i}
-                    className="p-4 border-2 border-foreground/10 rounded-lg hover:border-[hsl(var(--zia-green))]/50 bg-background hover:bg-foreground/2 transition-all text-center"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    key={cert.title}
+                    className="rounded-2xl border border-[hsl(var(--zia-green))]/20 bg-background p-4 text-left hover:border-[hsl(var(--zia-green))]/60 hover:-translate-y-1 transition-all"
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: i * 0.05 }}
                     viewport={{ once: true }}
                   >
-                    <div className="text-3xl mb-2">{cert.icon}</div>
-                    <h3 className="text-xs font-bold mb-1 line-clamp-2">{cert.title}</h3>
-                    <p className="text-xs text-muted-foreground mb-1">{cert.issuer}</p>
-                    <p className="text-xs font-semibold text-[hsl(var(--zia-green))]">{cert.year}</p>
+                    <p className="text-[11px] font-semibold text-[hsl(var(--zia-green))] mb-1 uppercase tracking-widest">
+                      {cert.year}
+                    </p>
+                    <p className="text-sm font-semibold text-foreground leading-snug mb-1">
+                      {cert.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground">{cert.issuer}</p>
                   </motion.div>
                 ))}
               </div>
@@ -620,8 +603,8 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        {/* Software & Skills — icon badge chips */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-[#f8fafc]">
+        {/* Marketing & Social Media */}
+        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-gradient-to-b from-background via-muted/30 to-background">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-12"
@@ -630,50 +613,164 @@ export default function DesignerPageClient() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="text-center space-y-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-green-600">Tools of the Trade</p>
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Software & Skills</h2>
+              <div className="space-y-4">
+                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Content & Campaigns</p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Marketing & Social Media</h2>
+                <p className="text-muted-foreground max-w-2xl">Social content, campaigns, and visual storytelling that connect brands with their audience. From Instagram feeds to event promotions.</p>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-3 gap-4">
                 {[
-                  {
-                    title: "Design Software",
-                    skills: [
-                      { name: "Illustrator", icon: "🎨" },
-                      { name: "Photoshop", icon: "📸" },
-                      { name: "InDesign", icon: "📄" },
-                      { name: "Figma", icon: "🔷" },
-                      { name: "After Effects", icon: "🎬" },
-                    ],
-                  },
-                  {
-                    title: "Everyday Tools",
-                    skills: [
-                      { name: "Canva Pro", icon: "✨" },
-                      { name: "Behance", icon: "🌐" },
-                      { name: "Dribbble", icon: "🏀" },
-                      { name: "Notion", icon: "📋" },
-                    ],
-                  },
-                ].map((col, i) => (
-                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} viewport={{ once: true }}>
-                    <h3 className="font-semibold text-slate-700 text-sm uppercase tracking-widest mb-4">{col.title}</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {col.skills.map((skill) => (
-                        <span
-                          key={skill.name}
-                          className="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm text-slate-700 font-medium hover:border-green-300 hover:bg-green-50 transition-all duration-200"
-                        >
-                          <span>{skill.icon}</span>
-                          {skill.name}
-                        </span>
-                      ))}
-                    </div>
+                  { label: "Social Media Content", desc: "Feed visuals, stories, carousels" },
+                  { label: "Campaign Design", desc: "Product launches, seasonal promos" },
+                  { label: "Event Branding", desc: "Posters, invites, on-site assets" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    className="p-6 border border-border rounded-2xl hover:border-[hsl(var(--zia-green))]/40 transition-all"
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.08 }}
+                    viewport={{ once: true }}
+                  >
+                    <h3 className="font-bold text-foreground mb-2">{item.label}</h3>
+                    <p className="text-sm text-muted-foreground">{item.desc}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
+          </div>
+        </section>
+
+        {/* Training & Education */}
+        <section className="w-full py-12 md:py-24 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              className="space-y-12"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="space-y-4">
+                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Capacity Building</p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Training & Education</h2>
+                <p className="text-muted-foreground max-w-2xl">Workshops, youth training, and design education. Sharper people, clearer brands.</p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {["Youth Development", "Design Workshops", "Brand & Identity Training", "Leadership Facilitation", "NFE Programs"].map((s, i) => (
+                  <span
+                    key={s}
+                    className="px-4 py-2 rounded-full border border-border text-sm font-medium hover:border-[hsl(var(--zia-green))]/50 transition-colors"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Brand impact chart */}
+        <TrainingImpactChart />
+
+        {/* ── TOOLS & STACK ── */}
+        <section className="py-16 px-6 bg-slate-50 dark:bg-slate-900">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-sm font-semibold text-green-600 uppercase tracking-widest mb-2 text-center">
+              Tools & Stack
+            </p>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-10">
+              Software I work with daily
+            </h3>
+
+            {/* Design & Creative */}
+            <div className="mb-10">
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-5">
+                Design & Creative
+              </p>
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+                {[
+                  {
+                    name: "Figma",
+                    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+                    level: 95,
+                  },
+                  {
+                    name: "Adobe Illustrator",
+                    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg",
+                    level: 90,
+                  },
+                  {
+                    name: "Adobe Photoshop",
+                    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg",
+                    level: 88,
+                  },
+                  {
+                    name: "Canva",
+                    icon: "https://cdn.simpleicons.org/canva/00C4CC",
+                    level: 95,
+                  },
+                  {
+                    name: "Adobe InDesign",
+                    icon: "https://cdn.simpleicons.org/adobeindesign/FF3366",
+                    level: 75,
+                  },
+                  {
+                    name: "Adobe After Effects",
+                    icon: "https://cdn.simpleicons.org/adobeaftereffects/9999FF",
+                    level: 65,
+                  },
+                ].map((tool) => (
+                  <div key={tool.name} className="flex flex-col items-center gap-2 group">
+                    <div className="w-14 h-14 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:-translate-y-1 transition-all p-3">
+                      <img src={tool.icon} alt={tool.name} className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 text-center leading-tight">
+                      {tool.name}
+                    </p>
+                    <div className="w-12 h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                      <div className="h-full bg-green-500 rounded-full" style={{ width: `${tool.level}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Productivity & Collaboration */}
+            <div>
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-5">
+                Productivity & Collaboration
+              </p>
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+                {[
+                  { name: "Notion", icon: "https://cdn.simpleicons.org/notion/000000", level: 90 },
+                  { name: "Trello", icon: "https://cdn.simpleicons.org/trello/0052CC", level: 85 },
+                  { name: "Slack", icon: "https://cdn.simpleicons.org/slack/4A154B", level: 80 },
+                  { name: "Behance", icon: "https://cdn.simpleicons.org/behance/1769FF", level: 95 },
+                  { name: "ChatGPT", icon: "https://cdn.simpleicons.org/openai/000000", level: 90 },
+                  { name: "Midjourney", icon: "https://cdn.simpleicons.org/midjourney/000000", level: 75 },
+                ].map((tool) => (
+                  <div key={tool.name} className="flex flex-col items-center gap-2 group">
+                    <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:-translate-y-1 transition-all p-3">
+                      <img
+                        src={tool.icon}
+                        alt={tool.name}
+                        className="w-full h-full object-contain"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none"
+                        }}
+                      />
+                    </div>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 text-center leading-tight">
+                      {tool.name}
+                    </p>
+                    <div className="w-12 h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                      <div className="h-full bg-purple-500 rounded-full" style={{ width: `${tool.level}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -754,7 +851,7 @@ export default function DesignerPageClient() {
               href="/freebies?category=design"
               className="px-5 py-2.5 bg-pink-600 hover:bg-pink-500 text-white font-semibold rounded-xl text-sm transition-colors whitespace-nowrap"
             >
-              🎁 Get Free Templates
+              Get Free Templates
             </a>
           </div>
         </section>

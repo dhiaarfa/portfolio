@@ -36,9 +36,12 @@ export default function TestimonialsTicker() {
 
   return (
     <section className="w-full py-8 border-y border-border bg-muted/30 overflow-hidden">
-      <div className="flex animate-ticker gap-12 whitespace-nowrap">
+      <div className="flex animate-ticker gap-16 whitespace-nowrap">
         {duplicated.map((t, i) => (
-          <div key={i} className="inline-flex items-center gap-4 shrink-0">
+          <div
+            key={i}
+            className="inline-flex items-center gap-4 shrink-0 min-w-[260px] pr-8 md:pr-12"
+          >
             <div className="w-8 h-8 rounded-full bg-slate-900/5 dark:bg-slate-100/10 flex items-center justify-center text-[11px] font-semibold text-slate-700 dark:text-slate-100">
               {t.name
                 .split(" ")
