@@ -707,17 +707,17 @@ export default function DesignerPageClient() {
                   },
                   {
                     name: "Canva",
-                    icon: "https://cdn.simpleicons.org/canva/00C4CC",
+                    icon: "/images/icons/canva.svg",
                     level: 95,
                   },
                   {
                     name: "Adobe InDesign",
-                    icon: "https://cdn.simpleicons.org/adobeindesign/FF3366",
+                    icon: "/images/icons/indesign.svg",
                     level: 75,
                   },
                   {
                     name: "Adobe After Effects",
-                    icon: "https://cdn.simpleicons.org/adobeaftereffects/9999FF",
+                    icon: "/images/icons/after-effects.svg",
                     level: 65,
                   },
                 ].map((tool) => (
@@ -745,13 +745,13 @@ export default function DesignerPageClient() {
                 {[
                   { name: "Notion", icon: "https://cdn.simpleicons.org/notion/000000", level: 90 },
                   { name: "Trello", icon: "https://cdn.simpleicons.org/trello/0052CC", level: 85 },
-                  { name: "Slack", icon: "https://cdn.simpleicons.org/slack/4A154B", level: 80 },
+                  { name: "Slack", icon: "/images/icons/slack.svg", level: 80 },
                   { name: "Behance", icon: "https://cdn.simpleicons.org/behance/1769FF", level: 95 },
-                  { name: "ChatGPT", icon: "https://cdn.simpleicons.org/openai/000000", level: 90 },
-                  { name: "Midjourney", icon: "https://cdn.simpleicons.org/midjourney/000000", level: 75 },
+                  { name: "ChatGPT", icon: "/images/icons/openai.svg", level: 90 },
+                  { name: "Midjourney", icon: "/images/icons/midjourney.svg", level: 75 },
                 ].map((tool) => (
                   <div key={tool.name} className="flex flex-col items-center gap-2 group">
-                    <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:-translate-y-1 transition-all p-3">
+                    <div className="w-14 h-14 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:-translate-y-1 transition-all p-3">
                       <img
                         src={tool.icon}
                         alt={tool.name}
