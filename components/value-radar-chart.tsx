@@ -35,7 +35,7 @@ export default function ValueRadarChart() {
     <section className="py-16 px-6 bg-slate-950">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
-          <p className="text-sm font-semibold text-green-400 uppercase tracking-widest mb-2">
+          <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2">
             {t('radarLabel')}
           </p>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
@@ -64,8 +64,8 @@ export default function ValueRadarChart() {
                 <Radar
                   name="Mohamed Dhia"
                   dataKey="Dhia"
-                  stroke="#16a34a"
-                  fill="#16a34a"
+                  stroke="var(--site-accent)"
+                  fill="var(--site-accent)"
                   fillOpacity={0.25}
                   strokeWidth={2}
                 />
@@ -96,7 +96,7 @@ export default function ValueRadarChart() {
           <div className="flex flex-col gap-4">
             {valueProps.map((item) => (
               <div key={item.titleKey} className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center flex-shrink-0 text-green-400">
+                <div className="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center flex-shrink-0 text-accent">
                   <item.Icon className="w-4 h-4" />
                 </div>
                 <div>

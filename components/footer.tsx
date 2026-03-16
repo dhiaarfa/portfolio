@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="border-b border-slate-800">
         <div className="max-w-5xl mx-auto px-6 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
-            <p className="label text-green-500 mb-1">{t("footerLetsWork")}</p>
+            <p className="label text-accent mb-1">{t("footerLetsWork")}</p>
             <h3 className="font-display font-bold text-2xl sm:text-3xl text-white leading-snug">
               {t("footerReadyProject")}
             </h3>
@@ -33,7 +33,7 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
         <div>
           <div className="flex items-center gap-2.5 mb-4">
-            <div className="w-8 h-8 bg-green-600 rounded-xl flex items-center justify-center">
+            <div className="w-8 h-8 bg-accent rounded-xl flex items-center justify-center">
               <span className="text-white font-black text-sm font-display">D</span>
             </div>
             <span className="font-display font-bold text-white text-sm">Mohamed Dhia</span>
@@ -46,7 +46,7 @@ export default function Footer() {
               href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-green-600 hover:text-white transition-all duration-200"
+              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-4 h-4" />
@@ -55,14 +55,14 @@ export default function Footer() {
               href={siteConfig.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-green-600 hover:text-white transition-all duration-200"
+              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
               aria-label="Instagram"
             >
               <Instagram className="w-4 h-4" />
             </a>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-green-600 hover:text-white transition-all duration-200"
+              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
               aria-label="Email"
             >
               <Mail className="w-4 h-4" />
@@ -73,13 +73,13 @@ export default function Footer() {
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("navigationTitle")}</p>
           <ul className="space-y-2.5">
-            <li><Link href="/" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("home")}</Link></li>
-            <li><Link href="/about" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("about")}</Link></li>
-            <li><Link href="/designer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("work")}</Link></li>
-            <li><Link href="/trainer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("training")}</Link></li>
-            <li><Link href="/developer" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("webDevelopment")}</Link></li>
-            <li><Link href="/freebies" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("nav.freebies")}</Link></li>
-            <li><Link href="/insights" className="text-slate-400 hover:text-green-400 text-sm transition-colors">{t("nav.insights")}</Link></li>
+            <li><Link href="/" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("home")}</Link></li>
+            <li><Link href="/about" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("about")}</Link></li>
+            <li><Link href="/designer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("work")}</Link></li>
+            <li><Link href="/trainer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("training")}</Link></li>
+            <li><Link href="/developer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("webDevelopment")}</Link></li>
+            <li><Link href="/freebies" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("nav.freebies")}</Link></li>
+            <li><Link href="/insights" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("nav.insights")}</Link></li>
           </ul>
         </div>
 
@@ -97,7 +97,7 @@ export default function Footer() {
           <div className="space-y-3">
             <a
               href={`mailto:${siteConfig.email}`}
-              className="flex items-center gap-2.5 text-slate-400 hover:text-green-400 text-sm transition-colors"
+              className="flex items-center gap-2.5 text-slate-400 hover:text-accent text-sm transition-colors"
             >
               <Mail className="w-4 h-4 flex-shrink-0" /> {siteConfig.email}
             </a>
@@ -118,7 +118,7 @@ export default function Footer() {
       <div className="border-t border-slate-800">
         <div className="max-w-5xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-slate-600 text-xs">
           <span>© 2026 Mohamed Dhia Arfa · {t("allRightsReserved")}</span>
-          <span className="flex items-center gap-1">Built with <Heart className="w-3 h-3 text-green-600 mx-0.5 fill-green-600" /> using Next.js & Tailwind</span>
+          <span className="flex items-center gap-1">Built with <Heart className="w-3 h-3 text-green-600 mx-0.5 fill-[var(--site-accent)]" /> using Next.js & Tailwind</span>
         </div>
       </div>
     </footer>

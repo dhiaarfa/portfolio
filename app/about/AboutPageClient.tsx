@@ -27,7 +27,7 @@ const skillsConfig = [
   {
     category: "Training & Leadership",
     icon: Award,
-    color: "text-green-700 bg-green-50",
+    color: "text-accent bg-accent-subtle",
     skills: ["Youth Development", "Leadership Training", "Workshop Facilitation", "Social Justice Advocacy", "Team Building & Coaching"],
   },
 ]
@@ -42,7 +42,7 @@ export default function AboutPageClient() {
         {/* Hero — editorial polaroid layout */}
         <section className="bg-white dark:bg-slate-950 pt-28 pb-16 px-6">
           <div className="max-w-5xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-1.5 text-slate-400 text-sm hover:text-green-600 mb-10 transition-colors group">
+            <Link href="/" className="inline-flex items-center gap-1.5 text-slate-400 text-sm hover:text-accent mb-10 transition-colors group">
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform rtl:rotate-180" />
               {t("backToHome")}
             </Link>
@@ -79,7 +79,7 @@ export default function AboutPageClient() {
             <p className="label text-center">{t("coreValues")}</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
               {[
-                { Icon: Zap, label: t("impactDriven"), desc: t("impactDrivenDesc"), bg: "bg-green-50 dark:bg-green-950/40", ic: "text-green-600 dark:text-green-400" },
+                { Icon: Zap, label: t("impactDriven"), desc: t("impactDrivenDesc"), bg: "bg-accent-subtle/40", ic: "text-accent" },
                 { Icon: Star, label: t("excellence"), desc: t("excellenceDesc"), bg: "bg-amber-50 dark:bg-amber-950/40", ic: "text-amber-600 dark:text-amber-400" },
                 { Icon: BookOpen, label: t("continuousLearning"), desc: t("continuousLearningDesc"), bg: "bg-blue-50 dark:bg-blue-950/40", ic: "text-blue-600 dark:text-blue-400" },
                 { Icon: ShieldCheck, label: t("professional"), desc: t("professionalDesc"), bg: "bg-purple-50 dark:bg-purple-950/40", ic: "text-purple-600 dark:text-purple-400" },
@@ -191,9 +191,9 @@ export default function AboutPageClient() {
                       issuer: "Association YOUTH CLUBs",
                       year: "2025",
                       Icon: Award,
-                      color: "border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/30",
-                      badge: "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300",
-                      iconCls: "text-green-600 dark:text-green-400",
+                      color: "border-accent/20 bg-accent-subtle",
+                      badge: "bg-accent-subtle text-accent",
+                      iconCls: "text-accent",
                     },
                     {
                       title: "Social Media Marketing",
@@ -269,7 +269,7 @@ export default function AboutPageClient() {
                     <ul className="space-y-2">
                       {col.skills.map((skill) => (
                         <li key={skill} className="flex items-center gap-2 text-sm text-slate-500">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
                           {skill}
                         </li>
                       ))}
@@ -302,14 +302,14 @@ export default function AboutPageClient() {
             <section className="py-8 px-0">
               <div className="max-w-3xl">
                 <div className="flex items-center gap-3 mb-8">
-                  <div className="w-9 h-9 rounded-xl bg-green-50 dark:bg-green-950 flex items-center justify-center flex-shrink-0">
-                    <Briefcase className="w-5 h-5 text-green-600 dark:text-green-400" />
+                  <div className="w-9 h-9 rounded-xl bg-accent-subtle flex items-center justify-center flex-shrink-0">
+                    <Briefcase className="w-5 h-5 text-accent" />
                   </div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">{t("professionalExperience")}</h3>
                 </div>
 
                 <div className="relative">
-                  <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-green-500 via-slate-200 to-transparent dark:via-slate-700" />
+                  <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-slate-200 to-transparent dark:via-slate-700" />
 
                   <div className="flex flex-col gap-6">
                     {[
@@ -320,7 +320,7 @@ export default function AboutPageClient() {
                         description:
                           "Developed responsive web interfaces using React/Next.js, optimized UI/UX, and improved digital strategy.",
                         tags: ["React", "Next.js", "UI/UX", "Strategy"],
-                        color: "bg-green-500 text-white",
+                        color: "bg-accent text-white",
                         Icon: Code,
                       },
                       {
@@ -398,7 +398,7 @@ export default function AboutPageClient() {
                   href="https://www.linkedin.com/in/dhia-/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-white rounded-lg font-semibold hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-500/90 transition-all"
+                  className="px-6 py-3 bg-gradient-to-r from-[var(--site-accent)] to-emerald-500 text-white rounded-lg font-semibold hover:from-[var(--site-accent)]/90 hover:to-emerald-500/90 transition-all"
                 >
                   Connect on LinkedIn
                 </a>

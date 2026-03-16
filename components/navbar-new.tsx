@@ -48,7 +48,7 @@ export default function Navbar() {
 
           {/* LOGO */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-            <div className="relative w-8 h-8 rounded-xl overflow-hidden flex-shrink-0 shadow-[0_2px_8px_rgba(22,163,74,0.4)] group-hover:shadow-[0_4px_12px_rgba(22,163,74,0.5)] transition-shadow ring-2 ring-green-600/30">
+            <div className="relative w-8 h-8 rounded-xl overflow-hidden flex-shrink-0 shadow-[0_2px_8px_color-mix(in_oklab,var(--site-accent)_40%,transparent)] group-hover:shadow-[0_4px_12px_color-mix(in_oklab,var(--site-accent)_50%,transparent)] transition-shadow ring-2 ring-[color-mix(in_oklab,var(--site-accent)_30%,transparent)]">
               <Image src="/images/photos/nav-avatar.png" alt="Mohamed Dhia" width={32} height={32} className="object-cover w-full h-full" priority />
             </div>
             <div className="hidden sm:block leading-tight">

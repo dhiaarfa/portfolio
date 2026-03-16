@@ -25,7 +25,7 @@ export default function TrainingImpactChart() {
   return (
     <section className="py-16 px-6 bg-slate-950">
       <div className="max-w-4xl mx-auto">
-        <p className="text-sm font-semibold text-amber-400 uppercase tracking-widest mb-2 text-center">
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2 text-center">
           {t('impactChartLabel')}
         </p>
         <h3 className="text-2xl font-bold text-white text-center mb-2">
@@ -54,7 +54,7 @@ export default function TrainingImpactChart() {
               <Bar dataKey="yourBrand" radius={[4, 4, 0, 0]} maxBarSize={40}>
                 {data.map((_, index) => (
                   // eslint-disable-next-line react/no-array-index-key
-                  <Cell key={index} fill="#16a34a" />
+                  <Cell key={index} fill="var(--site-accent)" />
                 ))}
               </Bar>
               <Bar dataKey="others" radius={[4, 4, 0, 0]} maxBarSize={40}>
@@ -69,10 +69,10 @@ export default function TrainingImpactChart() {
 
         <div className="grid grid-cols-2 gap-4 mt-8">
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 text-center">
-            <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-green-900/50 text-green-400 mb-2">
+            <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-green-900/50 text-accent mb-2">
               <TrendingUp className="w-5 h-5" />
             </div>
-            <p className="text-xs font-bold text-green-400 mt-1">{t('impactChartYourBrand')}</p>
+            <p className="text-xs font-bold text-accent mt-1">{t('impactChartYourBrand')}</p>
             <p className="text-xs text-slate-400 mt-1 leading-tight">
               {t('impactChartYourBrandDesc')}
             </p>

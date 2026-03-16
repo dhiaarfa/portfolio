@@ -346,9 +346,9 @@ export default function DesignerPageClient() {
         <section className="min-h-[88vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
           <div className="relative bg-slate-950 flex flex-col justify-between p-10 lg:p-16 order-2 lg:order-1 overflow-hidden">
             <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#22c55e 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
-            <div className="pointer-events-none absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-green-600/10 blur-[60px]" />
+            <div className="pointer-events-none absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-accent-muted blur-[60px]" />
             <div className="flex items-center gap-3 relative z-10">
-              <div className="w-11 h-11 bg-green-600 rounded-xl flex items-center justify-center shadow-[0_2px_12px_rgba(22,163,74,0.5)]">
+              <div className="w-11 h-11 bg-accent rounded-xl flex items-center justify-center shadow-[0_2px_12px_rgba(22,163,74,0.5)]">
                 <span className="text-white font-black text-xl">Z</span>
               </div>
               <div>
@@ -358,14 +358,14 @@ export default function DesignerPageClient() {
             </div>
             <div className="relative z-10 my-auto py-10">
               <h1 className="font-display font-black text-[clamp(52px,6.5vw,88px)] leading-[0.91] text-white tracking-tight mb-6">
-                Creative &<br /><span className="text-green-500">Marketing</span>
+                Creative &<br /><span className="text-accent">Marketing</span>
               </h1>
               <p className="text-slate-400 text-[17px] leading-relaxed max-w-sm mb-10">
                 Brand identities, social media, training — clarity and impact for brands and people.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a href="#gallery" className="btn-green">Browse Portfolio</a>
-                <a href="#contact" className="border border-slate-700 text-slate-300 font-medium px-6 py-3 rounded-[14px] hover:border-green-500/60 hover:text-white transition-all duration-200">
+                <a href="#contact" className="border border-slate-700 text-slate-300 font-medium px-6 py-3 rounded-[14px] hover:border-accent/60 hover:text-white transition-all duration-200">
                   Request a Quote
                 </a>
               </div>
@@ -395,7 +395,7 @@ export default function DesignerPageClient() {
         />
 
         {/* Design Philosophy - interactive steps */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-gradient-to-b from-background via-[hsl(var(--zia-green))]/3 to-background">
+        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-gradient-to-b from-background via-[var(--site-accent)]/3 to-background">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-12"
@@ -417,19 +417,19 @@ export default function DesignerPageClient() {
               </div>
 
               <div className="relative">
-                <div className="hidden md:block absolute left-8 right-8 top-8 h-px bg-gradient-to-r from-transparent via-[hsl(var(--zia-green))] to-transparent opacity-40" />
+                <div className="hidden md:block absolute left-8 right-8 top-8 h-px bg-gradient-to-r from-transparent via-[var(--site-accent)] to-transparent opacity-40" />
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   {designPhilosophy.map((item, i) => (
                     <motion.div
                       key={item.title}
-                      className="relative bg-background rounded-2xl border border-[hsl(var(--zia-green))]/25 p-5 sm:p-6 hover:border-[hsl(var(--zia-green))] hover:-translate-y-1 transition-all shadow-sm"
+                      className="relative bg-background rounded-2xl border border-[var(--site-accent)]/25 p-5 sm:p-6 hover:border-[var(--site-accent)] hover:-translate-y-1 transition-all shadow-sm"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: i * 0.1 }}
                       viewport={{ once: true }}
                     >
                       <div className="flex items-center justify-between mb-3">
-                        <span className="w-8 h-8 rounded-full bg-[hsl(var(--zia-green))]/10 text-[hsl(var(--zia-green))] text-xs font-bold flex items-center justify-center">
+                        <span className="w-8 h-8 rounded-full bg-[var(--site-accent)]/10 text-[var(--site-accent)] text-xs font-bold flex items-center justify-center">
                           {`0${i + 1}`}
                         </span>
                         <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -469,7 +469,7 @@ export default function DesignerPageClient() {
                     onClick={() => setActiveCategory(cat)}
                     className={`flex-shrink-0 text-sm font-medium px-4 py-2 rounded-full transition-all duration-200 ${
                       activeCategory === cat
-                        ? "bg-green-600 text-white shadow-[0_2px_8px_rgba(22,163,74,0.4)]"
+                        ? "bg-accent text-white shadow-[0_2px_8px_rgba(22,163,74,0.4)]"
                         : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
                     }`}
                   >
@@ -528,7 +528,7 @@ export default function DesignerPageClient() {
               </div>
 
               <div className="relative">
-                <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-[hsl(var(--zia-green))] via-slate-200 to-transparent dark:via-slate-700" />
+                <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--site-accent)] via-slate-200 to-transparent dark:via-slate-700" />
                 <div className="flex flex-col gap-6">
                   {workExperience.map((job, i) => (
                     <motion.div
@@ -539,10 +539,10 @@ export default function DesignerPageClient() {
                       transition={{ duration: 0.4, delay: i * 0.08 }}
                       viewport={{ once: true }}
                     >
-                      <div className="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-[hsl(var(--zia-green))] text-[10px] font-semibold text-background flex items-center justify-center shadow-md">
+                      <div className="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-[var(--site-accent)] text-[10px] font-semibold text-background flex items-center justify-center shadow-md">
                         {i === 0 ? "Now" : job.period.split("–")[0].trim()}
                       </div>
-                      <div className="bg-background border border-border rounded-2xl p-5 hover:border-[hsl(var(--zia-green))]/60 hover:shadow-md transition-all">
+                      <div className="bg-background border border-border rounded-2xl p-5 hover:border-[var(--site-accent)]/60 hover:shadow-md transition-all">
                         <div className="flex items-start justify-between gap-3 flex-wrap mb-2">
                           <div>
                             <h3 className="text-sm font-bold text-foreground">{job.title}</h3>
@@ -583,13 +583,13 @@ export default function DesignerPageClient() {
                 {certifications.map((cert, i) => (
                   <motion.div
                     key={cert.title}
-                    className="rounded-2xl border border-[hsl(var(--zia-green))]/20 bg-background p-4 text-left hover:border-[hsl(var(--zia-green))]/60 hover:-translate-y-1 transition-all"
+                    className="rounded-2xl border border-[var(--site-accent)]/20 bg-background p-4 text-left hover:border-[var(--site-accent)]/60 hover:-translate-y-1 transition-all"
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: i * 0.05 }}
                     viewport={{ once: true }}
                   >
-                    <p className="text-[11px] font-semibold text-[hsl(var(--zia-green))] mb-1 uppercase tracking-widest">
+                    <p className="text-[11px] font-semibold text-[var(--site-accent)] mb-1 uppercase tracking-widest">
                       {cert.year}
                     </p>
                     <p className="text-sm font-semibold text-foreground leading-snug mb-1">
@@ -626,7 +626,7 @@ export default function DesignerPageClient() {
                 ].map((item, i) => (
                   <motion.div
                     key={i}
-                    className="p-6 border border-border rounded-2xl hover:border-[hsl(var(--zia-green))]/40 transition-all"
+                    className="p-6 border border-border rounded-2xl hover:border-[var(--site-accent)]/40 transition-all"
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.08 }}
@@ -660,7 +660,7 @@ export default function DesignerPageClient() {
                 {["Youth Development", "Design Workshops", "Brand & Identity Training", "Leadership Facilitation", "NFE Programs"].map((s, i) => (
                   <span
                     key={s}
-                    className="px-4 py-2 rounded-full border border-border text-sm font-medium hover:border-[hsl(var(--zia-green))]/50 transition-colors"
+                    className="px-4 py-2 rounded-full border border-border text-sm font-medium hover:border-[var(--site-accent)]/50 transition-colors"
                   >
                     {s}
                   </span>
@@ -676,7 +676,7 @@ export default function DesignerPageClient() {
         {/* ── TOOLS & STACK ── */}
         <section className="py-16 px-6 bg-slate-50 dark:bg-slate-900">
           <div className="max-w-4xl mx-auto">
-            <p className="text-sm font-semibold text-green-600 uppercase tracking-widest mb-2 text-center">
+            <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2 text-center">
               Tools & Stack
             </p>
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-10">
@@ -729,7 +729,7 @@ export default function DesignerPageClient() {
                       {tool.name}
                     </p>
                     <div className="w-12 h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-                      <div className="h-full bg-green-500 rounded-full" style={{ width: `${tool.level}%` }} />
+                      <div className="h-full bg-accent rounded-full" style={{ width: `${tool.level}%` }} />
                     </div>
                   </div>
                 ))}
@@ -779,7 +779,7 @@ export default function DesignerPageClient() {
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="text-4xl md:text-5xl font-bold">
               Let's Create Something{" "}
-              <span className="bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[var(--site-accent)] to-emerald-500 bg-clip-text text-transparent">
                 Beautiful
               </span>
             </h2>
@@ -793,7 +793,7 @@ export default function DesignerPageClient() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[hsl(var(--zia-green))] to-emerald-500 text-white rounded-full font-semibold hover:from-[hsl(var(--zia-green))]/90 hover:to-emerald-500/90 transition-all"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[var(--site-accent)] to-emerald-500 text-white rounded-full font-semibold hover:from-[var(--site-accent)]/90 hover:to-emerald-500/90 transition-all"
               >
                 <Calendar className="h-4 w-4" />
                 {siteConfig.ctaText}
@@ -811,7 +811,7 @@ export default function DesignerPageClient() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -4 }}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl border border-border hover:border-[hsl(var(--zia-green))]/30 transition-all"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl border border-border hover:border-[var(--site-accent)]/30 transition-all"
               >
                 View Full Portfolio on Behance
                 <ArrowLeft className="h-4 w-4 rotate-180" />

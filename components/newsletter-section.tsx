@@ -51,7 +51,7 @@ export default function NewsletterSection() {
           className="text-center"
         >
           {/* Icon */}
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-green-600/20 mb-4">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-accent-muted mb-4">
             <Mail className="w-6 h-6 text-green-400" />
           </div>
 
@@ -84,12 +84,12 @@ export default function NewsletterSection() {
               placeholder="you@email.com"
               required
               disabled={status === "loading"}
-              className="flex-1 px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-50 placeholder:text-slate-500 focus:outline-none focus:border-green-500 text-sm"
+              className="flex-1 px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-50 placeholder:text-slate-500 focus:outline-none focus:border-accent text-sm"
             />
             <button
               type="submit"
               disabled={status === "loading"}
-              className="px-6 py-3 rounded-xl bg-green-600 hover:bg-green-500 text-white font-semibold text-sm transition-colors disabled:opacity-60 flex items-center justify-center gap-2 whitespace-nowrap"
+              className="px-6 py-3 rounded-xl bg-accent hover:opacity-90 text-white font-semibold text-sm transition-colors disabled:opacity-60 flex items-center justify-center gap-2 whitespace-nowrap"
             >
               {status === "loading" ? (
                 <>

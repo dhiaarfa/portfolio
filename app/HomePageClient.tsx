@@ -55,8 +55,8 @@ export default function HomePageClient() {
       title: "Trainer",
       slug: "trainer",
       icon: BookOpen,
-      color: "from-[hsl(var(--zia-green))]/10 to-emerald-50",
-      accentColor: "hsl(var(--zia-green))",
+      color: "from-accent-muted to-emerald-50",
+      accentColor: "var(--site-accent)",
       stats: [t("roleStatTrainer1"), t("roleStatTrainer2"), t("roleStatTrainer3")],
       descriptionKey: "roleTrainerDescription",
       cta: "exploreTraining",
@@ -65,8 +65,8 @@ export default function HomePageClient() {
       title: "Visual Designer",
       slug: "designer",
       icon: Palette,
-      color: "from-emerald-50 to-teal-50",
-      accentColor: "#059669",
+      color: "from-accent-muted to-teal-50",
+      accentColor: "var(--site-accent)",
       stats: [t("roleStatDesigner1"), t("roleStatDesigner2"), t("roleStatDesigner3")],
       descriptionKey: "roleDesignerDescription",
       cta: "viewDesignWork",
@@ -89,26 +89,26 @@ export default function HomePageClient() {
 
       {/* Hero Section */}
       <section className="relative min-h-[92vh] flex items-center bg-white dark:bg-slate-950 overflow-hidden px-5 pt-24 pb-16">
-        <div className="pointer-events-none absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-green-400/10 dark:bg-green-500/8 blur-[120px]" />
+        <div className="pointer-events-none absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-accent-subtle dark:bg-accent/8 blur-[120px]" />
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.022] dark:opacity-[0.04]"
           style={{
-            backgroundImage: "radial-gradient(#16a34a 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(var(--site-accent) 1px, transparent 1px)",
             backgroundSize: "32px 32px",
           }}
         />
         <div className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[58%_42%] gap-10 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 mb-7 px-4 py-1.5 rounded-full text-sm font-medium bg-[#AAFF00]/10 dark:bg-[#AAFF00]/10 border border-[#AAFF00]/30 text-[#0A0A0A] dark:text-[#AAFF00] w-fit">
+            <div className="inline-flex items-center gap-2 mb-7 px-4 py-1.5 rounded-full text-sm font-medium bg-accent-subtle dark:bg-accent-subtle border border-accent/30 text-foreground dark:text-accent w-fit">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75" />
-                <span className="relative h-2 w-2 rounded-full bg-green-500" />
+                <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-75" />
+                <span className="relative h-2 w-2 rounded-full bg-accent" />
               </span>
               Open to new projects · {t("basedInTunisia")}
             </div>
             <h1 className="font-display font-extrabold text-[clamp(44px,7.5vw,84px)] leading-[0.94] tracking-tight text-slate-900 dark:text-white mb-3">
               Hello, I&apos;m<br />
-              <span className="text-[#AAFF00]">Mohamed Dhia</span>
+              <span className="text-accent">Mohamed Dhia</span>
             </h1>
             <AnimatedRole />
             <p className="mt-5 mb-8 text-slate-500 dark:text-slate-400 text-[17px] leading-relaxed max-w-[420px]">
@@ -122,7 +122,7 @@ export default function HomePageClient() {
                 { value: "7+", label: "years active" },
               ].map(({ value, label }) => (
                 <div key={label} className="flex items-center gap-1.5">
-                  <span className="font-bold text-[#AAFF00] text-sm">{value}</span>
+                  <span className="font-bold text-accent text-sm">{value}</span>
                   <span className="text-slate-500 dark:text-slate-400 text-sm">{label}</span>
                 </div>
               ))}
@@ -143,8 +143,8 @@ export default function HomePageClient() {
             </div>
           </div>
           <div className="relative hidden lg:flex justify-center">
-            <div className="absolute inset-8 bg-green-400/15 dark:bg-green-500/10 rounded-3xl blur-2xl" />
-            <div className="relative rounded-3xl overflow-hidden border-2 border-green-100 dark:border-green-900/50 w-[340px]">
+            <div className="absolute inset-8 bg-accent-muted rounded-3xl blur-2xl" />
+            <div className="relative rounded-3xl overflow-hidden border-2 border-accent/20 w-[340px]">
               <Image
                 src="/images/photos/dhia-main.png"
                 alt="Mohamed Dhia Arfa"
@@ -153,11 +153,11 @@ export default function HomePageClient() {
                 className="w-full object-cover"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-green-950/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent" />
             </div>
             <div className="absolute -bottom-5 -left-4 card-base px-4 py-3 flex items-center gap-3 w-max shadow-[0_8px_24px_rgba(0,0,0,0.10)]">
-              <div className="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-900/50 flex items-center justify-center flex-shrink-0">
-                <Users className="w-5 h-5 text-green-600 dark:text-green-400" />
+              <div className="w-10 h-10 rounded-xl bg-accent-subtle flex items-center justify-center flex-shrink-0">
+                <Users className="w-5 h-5 text-accent" />
               </div>
               <div>
                 <p className="font-display font-black text-[17px] leading-none text-slate-900 dark:text-white">{siteConfig.stats.participants}+</p>
@@ -176,7 +176,7 @@ export default function HomePageClient() {
       <section id="expertise" className="bg-section-tint py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <FadeUp>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-green-600 text-center mb-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent text-center mb-2">
               {t("myExpertise")}
             </p>
             <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] text-center text-slate-900 dark:text-white leading-snug mb-12">
@@ -191,13 +191,13 @@ export default function HomePageClient() {
             {roles[1] && (
               <Link
                 href={`/${roles[1].slug}`}
-                className="md:row-span-2 bg-white rounded-3xl border border-green-100 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 p-8 flex flex-col justify-between group cursor-pointer"
+                className="md:row-span-2 bg-white rounded-3xl border border-accent/15 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 p-8 flex flex-col justify-between group cursor-pointer"
               >
                     <div>
-                  <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
-                    <Palette className="w-6 h-6 text-green-700" />
+                  <div className="w-12 h-12 bg-accent-subtle rounded-2xl flex items-center justify-center mb-6">
+                    <Palette className="w-6 h-6 text-accent" />
                   </div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-green-600 mb-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-accent mb-2">
                     {t("design")}
                   </p>
                   <h3 className="font-display text-2xl font-bold text-slate-900 mb-3">Zia Studio</h3>
@@ -208,14 +208,14 @@ export default function HomePageClient() {
                     {["Brand Identity", "UI/UX", "Motion", "Print"].map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs bg-green-50 text-green-700 rounded-full px-3 py-1 font-medium border border-green-100"
+                        className="text-xs bg-accent-subtle text-accent rounded-full px-3 py-1 font-medium border border-accent/15"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-green-600 group-hover/link:gap-2 transition-all">
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent group-hover/link:gap-2 transition-all">
                   {t(roles[1].cta)}
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </span>
@@ -263,13 +263,13 @@ export default function HomePageClient() {
             {roles[2] && (
                   <Link
                 href={`/${roles[2].slug}`}
-                className="md:col-span-2 bg-slate-900 rounded-3xl border border-slate-800 hover:border-green-500/30 hover:-translate-y-1 transition-all duration-300 p-7 flex flex-col group cursor-pointer"
+                className="md:col-span-2 bg-slate-900 rounded-3xl border border-slate-800 hover:border-accent/30 hover:-translate-y-1 transition-all duration-300 p-7 flex flex-col group cursor-pointer"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-11 h-11 bg-green-500/15 rounded-xl flex items-center justify-center">
-                    <Code className="w-5 h-5 text-green-400" />
+                  <div className="w-11 h-11 bg-accent-muted rounded-xl flex items-center justify-center">
+                    <Code className="w-5 h-5 text-accent" />
                   </div>
-                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-green-400 bg-green-500/10 px-3 py-1 rounded-full">
+                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-accent bg-accent-subtle px-3 py-1 rounded-full">
                     {t("webDevelopment")}
                   </span>
                 </div>
@@ -287,7 +287,7 @@ export default function HomePageClient() {
                     </span>
                   ))}
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-green-400 group-hover/link:gap-2 transition-all">
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent group-hover/link:gap-2 transition-all">
                   {t(roles[2].cta)}
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </span>
@@ -310,7 +310,7 @@ export default function HomePageClient() {
             />
           </div>
           <div className="flex-1 text-center md:text-left">
-            <p className="text-[#AAFF00] text-sm font-semibold uppercase tracking-widest mb-2">Creative Agency</p>
+            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-2">Creative Agency</p>
             <p className="text-[#F5F5F5] text-lg leading-relaxed mb-6">
               Brand identity, digital campaigns, and visual storytelling for startups, NGOs, and ambitious projects across Tunisia and beyond.
             </p>
@@ -351,7 +351,7 @@ export default function HomePageClient() {
               { q: "Creativity and dedication. Attention to detail, eagerness to learn.", name: "Youssef Touati", role: "CEO, Jasmin Marketing" },
             ].map((tst) => (
               <div key={tst.name} className="card-base flex flex-col p-7">
-                <span className="font-serif text-5xl text-green-200 dark:text-green-900 leading-none mb-3 block">&quot;</span>
+                <span className="font-serif text-5xl text-accent-muted leading-none mb-3 block">&quot;</span>
                 <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed flex-1 mb-6">{tst.q}</p>
                 <div className="pt-5 border-t border-slate-100 dark:border-slate-700/60">
                   <p className="font-semibold text-slate-900 dark:text-white text-sm">{tst.name}</p>

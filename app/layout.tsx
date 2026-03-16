@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils"
 import MotionProvider from "@/components/motion-provider"
 import GlobalComponents from "@/components/global-components"
 import { Toaster } from "@/components/ui/sonner"
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // Typography: Clash Display + Satoshi via Fontshare; Cairo for Arabic
 const cairo = Cairo({
@@ -216,6 +218,8 @@ export default function RootLayout({
             <MotionProvider>
               {children}
               <GlobalComponents />
+              <Analytics />
+              <SpeedInsights />
             </MotionProvider>
           </LanguageProvider>
         </ThemeProvider>

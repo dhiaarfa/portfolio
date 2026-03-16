@@ -115,15 +115,15 @@ export default function TrainerClientPage() {
                 {impactStats.map((stat, i) => (
                   <motion.div
                     key={i}
-                    className="relative p-4 md:p-5 rounded-2xl md:rounded-3xl border border-border bg-gradient-to-br from-[hsl(var(--zia-green))]/10 to-emerald-50 flex flex-col items-start gap-1 overflow-hidden"
+                    className="relative p-4 md:p-5 rounded-2xl md:rounded-3xl border border-border bg-gradient-to-br from-[var(--site-accent)]/10 to-emerald-50 flex flex-col items-start gap-1 overflow-hidden"
                     whileHover={{ y: -4, scale: 1.02 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: i * 0.05 }}
                     viewport={{ once: true }}
                   >
-                    <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[hsl(var(--zia-green))]/15" />
-                    <p className="text-3xl md:text-4xl font-bold text-[hsl(var(--zia-green))]">{stat.number}</p>
+                    <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[var(--site-accent)]/15" />
+                    <p className="text-3xl md:text-4xl font-bold text-[var(--site-accent)]">{stat.number}</p>
                     <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{stat.label}</p>
                     <p className="text-[0.7rem] text-muted-foreground leading-snug mt-1">{stat.detail}</p>
                   </motion.div>
@@ -155,7 +155,7 @@ export default function TrainerClientPage() {
                   href={siteConfig.trainingPortfolioUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-[hsl(var(--zia-green))] hover:underline mt-2"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[var(--site-accent)] hover:underline mt-2"
                 >
                   {t("viewFullTrainingPortfolio")} →
                 </a>
@@ -180,9 +180,9 @@ export default function TrainerClientPage() {
                       Facilitating engaging workshops and training sessions with a focus on clarity, energy, and measurable learning outcomes. Every session is designed to empower participants and drive real-world impact.
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 bg-[hsl(var(--zia-green))]/10 text-[hsl(var(--zia-green))] rounded-full text-sm font-medium">Interactive Sessions</span>
-                      <span className="px-3 py-1 bg-[hsl(var(--zia-green))]/10 text-[hsl(var(--zia-green))] rounded-full text-sm font-medium">Youth Development</span>
-                      <span className="px-3 py-1 bg-[hsl(var(--zia-green))]/10 text-[hsl(var(--zia-green))] rounded-full text-sm font-medium">Leadership Training</span>
+                      <span className="px-3 py-1 bg-[var(--site-accent)]/10 text-[var(--site-accent)] rounded-full text-sm font-medium">Interactive Sessions</span>
+                      <span className="px-3 py-1 bg-[var(--site-accent)]/10 text-[var(--site-accent)] rounded-full text-sm font-medium">Youth Development</span>
+                      <span className="px-3 py-1 bg-[var(--site-accent)]/10 text-[var(--site-accent)] rounded-full text-sm font-medium">Leadership Training</span>
                     </div>
                   </div>
                 </div>

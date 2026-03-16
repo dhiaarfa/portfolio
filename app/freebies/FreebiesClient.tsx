@@ -73,9 +73,9 @@ export default function FreebiesClient() {
     <>
       {/* Hero */}
       <section className="pt-28 pb-12 px-6 text-center">
-        <p className="text-sm font-semibold text-green-600 uppercase tracking-widest mb-3">Free Resources</p>
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">Free Resources</p>
         <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-3 leading-tight">
-          Free tools &amp; <span className="text-green-600">templates</span>
+          Free tools &amp; <span className="text-accent">templates</span>
         </h1>
         <p className="text-slate-500 dark:text-slate-400 max-w-md mx-auto text-base leading-relaxed">
           Real resources I use in my design and training work — yours free. Enter your name and email to download
@@ -89,7 +89,7 @@ export default function FreebiesClient() {
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2 rounded-xl text-sm font-medium transition-all capitalize ${
                 activeCategory === cat
-                  ? "bg-green-600 text-white shadow-md shadow-green-500/20"
+                  ? "bg-accent text-white shadow-md shadow-green-500/20"
                   : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
               }`}
             >
@@ -134,7 +134,7 @@ export default function FreebiesClient() {
                     href={freebie.file}
                     download
                     onClick={(e) => e.stopPropagation()}
-                    className="flex items-center justify-center gap-2 w-full py-2.5 bg-green-600 hover:bg-green-500 text-white text-sm font-semibold rounded-xl transition-colors"
+                    className="flex items-center justify-center gap-2 w-full py-2.5 bg-accent hover:opacity-90 text-white text-sm font-semibold rounded-xl transition-colors"
                   >
                     <Download className="w-4 h-4" />
                     Download again
@@ -176,8 +176,8 @@ export default function FreebiesClient() {
 
             {status === "success" ? (
               <div className="text-center py-4">
-                <div className="w-14 h-14 bg-green-100 dark:bg-green-950 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-7 h-7 text-green-600" />
+                <div className="w-14 h-14 bg-accent-subtle rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-7 h-7 text-accent" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">You're all set!</h3>
                 <p className="text-slate-500 text-sm">Your download is starting now. Check your downloads folder.</p>
@@ -195,7 +195,7 @@ export default function FreebiesClient() {
                     placeholder="Your name"
                     value={formData.name}
                     onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
-                    className="px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 text-sm focus:outline-none focus:border-green-500"
+                    className="px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 text-sm focus:outline-none focus:border-accent"
                   />
                   <input
                     type="email"
@@ -203,12 +203,12 @@ export default function FreebiesClient() {
                     placeholder="Your email address"
                     value={formData.email}
                     onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
-                    className="px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 text-sm focus:outline-none focus:border-green-500"
+                    className="px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 text-sm focus:outline-none focus:border-accent"
                   />
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="flex items-center justify-center gap-2 py-3 bg-green-600 hover:bg-green-500 disabled:opacity-60 text-white font-semibold rounded-xl text-sm transition-colors"
+                    className="flex items-center justify-center gap-2 py-3 bg-accent hover:opacity-90 disabled:opacity-60 text-white font-semibold rounded-xl text-sm transition-colors"
                   >
                     {status === "loading" ? (
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
