@@ -6,6 +6,7 @@ import Image from "next/image"
 import { useState } from "react"
 import ContactForm from "@/components/contact-form"
 import { siteConfig } from "@/lib/site-config"
+import { developerExperience } from "@/lib/profile"
 import CritProjectModal from "@/components/crit-project-modal"
 import BdafProjectModal from "@/components/bdaf-project-modal"
 import { Monitor, Box, Gauge, Server } from "lucide-react"
@@ -37,35 +38,15 @@ export default function DeveloperPageClient() {
     },
   ]
 
-  const projects = [
-    {
-      role: "Web Developer",
-      company: "CRIT Tunisie",
-      period: "Sep 2025 – Dec 2025",
-      tech: "React / Next.js",
-      description: "Developing responsive web interfaces, optimizing user experience, shipping features to production",
-      icon: "🚀",
-      isCurrent: true,
-    },
-    {
-      role: "Marketing & Web Strategy",
-      company: "Speranza Cafe & Resto",
-      isCurrent: false,
-      period: "Jan 2025 – Jun 2025",
-      tech: "Web & Digital Marketing",
-      description: "Managed web presence, digital marketing campaigns, and data-driven strategy execution",
-      icon: "📱",
-    },
-    {
-      role: "Full-Stack Development",
-      company: "Self-Directed & Open Source",
-      isCurrent: false,
-      period: "2023 – Present",
-      tech: "React, Next.js, Node.js, SQL",
-      description: "Building personal projects, contributing to real applications, mastering frontend and backend fundamentals",
-      icon: "📚",
-    },
-  ]
+  const projects = developerExperience.map((exp) => ({
+    role: exp.role,
+    company: exp.company,
+    period: exp.period,
+    tech: exp.tags?.[0] ?? "",
+    description: exp.description,
+    icon: exp.id === "crit-dev" ? "🚀" : exp.id === "speranza" ? "📱" : "📚",
+    isCurrent: exp.isCurrent ?? false,
+  }))
 
   return (
     <div className="w-full min-h-screen bg-background relative">
@@ -91,7 +72,7 @@ export default function DeveloperPageClient() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <a href="#projects" className="btn-green">View Projects</a>
-                <a href="#contact" className="border border-slate-700 text-slate-300 font-medium px-6 py-3 rounded-[14px] hover:border-accent/40 hover:text-white transition-all">
+                <a href="#contact-form" className="border border-slate-700 text-slate-300 font-medium px-6 py-3 rounded-[14px] hover:border-accent/40 hover:text-white transition-all">
                   Start a Project
                 </a>
               </div>
@@ -159,7 +140,7 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* Websites & projects */}
-        <section className="w-full py-16 md:py-24 px-4 md:px-8">
+        <section id="projects" className="w-full py-16 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="space-y-10">
               <div className="text-center space-y-4">

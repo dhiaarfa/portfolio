@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 import DeveloperPageClient from "./DeveloperPageClient"
+import { pageMetadata } from "@/lib/page-metadata"
 
 export const dynamic = "force-static"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/developer",
   title: "Web Developer Tunisia | React & Next.js · Mohamed Dhia Arfa",
   description:
     "Front-end web developer based in Tunisia building modern, performant web applications with React and Next.js. Experience with CRIT Tunisie, Best Dates & Fruits, and other production projects.",
@@ -12,10 +14,8 @@ export const metadata: Metadata = {
     title: "React & Next.js Web Developer · Mohamed Dhia Arfa",
     description:
       "Design-first web development portfolio showing production work built with React and Next.js for clients in Tunisia and beyond.",
-    type: "website",
-    url: "https://dhia-portfolio.me/developer",
   },
-}
+})
 
 export default function DeveloperPage() {
   return <DeveloperPageClient />

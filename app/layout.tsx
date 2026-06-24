@@ -72,9 +72,6 @@ export const metadata = {
     description: "Professional portfolio of Mohamed Dhia Arfa - Expert graphic designer and trainer",
     images: ["/images/photos/dhia-main.png"],
   },
-  alternates: {
-    canonical: "https://dhia-portfolio.me",
-  },
 }
 
 export default function RootLayout({

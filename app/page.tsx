@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 import HomePageClient from "./HomePageClient"
+import { pageMetadata } from "@/lib/page-metadata"
 
 export const dynamic = "force-static"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/",
   title: "Mohamed Dhia Arfa — Graphic Designer, Trainer & Web Developer · Tunisia",
   description:
     "Multi-disciplinary creative based in Tunisia. Brand design via Zia Studio, youth development training (1000+ participants), and Next.js web development. Book a free consultation.",
@@ -20,8 +22,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mohamed Dhia Arfa — Designer, Trainer & Developer",
     description: "Graphic designer, certified trainer, and web developer based in Tunisia.",
-    url: "https://dhia-portfolio.me",
-    type: "website",
     images: [
       {
         url: "/images/photos/dhia-main.png",
@@ -31,13 +31,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Mohamed Dhia Arfa — Designer, Trainer & Developer",
-    description: "Graphic designer, certified trainer, and web developer based in Tunisia.",
-    images: ["/images/photos/dhia-main.png"],
-  },
-}
+})
 
 export default function HomePage() {
   return <HomePageClient />

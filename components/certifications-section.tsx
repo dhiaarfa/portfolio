@@ -4,30 +4,17 @@ import { motion } from "framer-motion"
 import { Award } from "lucide-react"
 import Image from "next/image"
 import { useLanguage } from "@/components/language-provider"
+import { trainerCredentials } from "@/lib/profile"
 
 export default function CertificationsSection() {
-  const { t, language } = useLanguage()
+  const { t } = useLanguage()
 
-  const certifications = [
-    {
-      title: t("certTyT"),
-      organization: t("certOrgYouthClubs"),
-      year: "2022",
-      logo: "/images/logo-tyt-full-color.png",
-    },
-    {
-      title: t("certIFMSARecognized"),
-      organization: t("certOrgIFMSA"),
-      year: "2023",
-      logo: "/images/logo-ifmsa.png",
-    },
-    {
-      title: t("certCNFCPP"),
-      organization: t("certOrgCNFCPP"),
-      year: "2021",
-      logo: "/images/logo-cnfcpp.png",
-    },
-  ]
+  const certifications = trainerCredentials.map((cert) => ({
+    title: t(cert.titleKey),
+    organization: t(cert.orgKey),
+    year: cert.year,
+    logo: cert.logo,
+  }))
 
   const internationalEventsList = [
     {

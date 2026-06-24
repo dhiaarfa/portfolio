@@ -9,6 +9,7 @@ import { motion } from "framer-motion"
 import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
 import { siteConfig } from "@/lib/site-config"
+import { aboutExperience, certifications as profileCertifications, profileStats } from "@/lib/profile"
 import ContactForm from "@/components/contact-form"
 
 const skillsConfig = [
@@ -31,6 +32,54 @@ const skillsConfig = [
     skills: ["Youth Development", "Leadership Training", "Workshop Facilitation", "Social Justice Advocacy", "Team Building & Coaching"],
   },
 ]
+
+const certVisuals: Record<
+  string,
+  { Icon: typeof Medal; color: string; badge: string; iconCls: string }
+> = {
+  cnfcpp: {
+    Icon: Medal,
+    color: "border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/30",
+    badge: "bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300",
+    iconCls: "text-amber-600 dark:text-amber-400",
+  },
+  "youth-clubs": {
+    Icon: Award,
+    color: "border-accent/20 bg-accent-subtle",
+    badge: "bg-accent-subtle text-accent",
+    iconCls: "text-accent",
+  },
+  hubspot: {
+    Icon: Smartphone,
+    color: "border-orange-200 dark:border-orange-800 bg-orange-50/50 dark:bg-orange-950/30",
+    badge: "bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300",
+    iconCls: "text-orange-600 dark:text-orange-400",
+  },
+  inco: {
+    Icon: Leaf,
+    color: "border-teal-200 dark:border-teal-800 bg-teal-50/50 dark:bg-teal-950/30",
+    badge: "bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300",
+    iconCls: "text-teal-600 dark:text-teal-400",
+  },
+  "graphic-design": {
+    Icon: Palette,
+    color: "border-purple-200 dark:border-purple-800 bg-purple-50/50 dark:bg-purple-950/30",
+    badge: "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300",
+    iconCls: "text-purple-600 dark:text-purple-400",
+  },
+  "entrepreneur-leader": {
+    Icon: Rocket,
+    color: "border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/30",
+    badge: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300",
+    iconCls: "text-blue-600 dark:text-blue-400",
+  },
+}
+
+const experienceVisuals: Record<string, { color: string; Icon: typeof Code }> = {
+  "crit-about": { color: "bg-accent text-white", Icon: Code },
+  "jasmin-crafts": { color: "bg-blue-500 text-white", Icon: TrendingUp },
+  internships: { color: "bg-purple-500 text-white", Icon: Palette },
+}
 
 export default function AboutPageClient() {
   const { t } = useLanguage()
@@ -176,68 +225,15 @@ export default function AboutPageClient() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    {
-                      title: "National Certified Trainer (CNFCPP)",
-                      issuer: "Tunisia · National Certification",
-                      year: "2024",
-                      Icon: Medal,
-                      color: "border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/30",
-                      badge: "bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300",
-                      iconCls: "text-amber-600 dark:text-amber-400",
-                    },
-                    {
-                      title: "Certified Trainer",
-                      issuer: "Association YOUTH CLUBs",
-                      year: "2025",
-                      Icon: Award,
-                      color: "border-accent/20 bg-accent-subtle",
-                      badge: "bg-accent-subtle text-accent",
-                      iconCls: "text-accent",
-                    },
-                    {
-                      title: "Social Media Marketing",
-                      issuer: "HubSpot Academy",
-                      year: "2024",
-                      Icon: Smartphone,
-                      color: "border-orange-200 dark:border-orange-800 bg-orange-50/50 dark:bg-orange-950/30",
-                      badge: "bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300",
-                      iconCls: "text-orange-600 dark:text-orange-400",
-                    },
-                    {
-                      title: "Green Digital Skills",
-                      issuer: "INCO Academy",
-                      year: "2024",
-                      Icon: Leaf,
-                      color: "border-teal-200 dark:border-teal-800 bg-teal-50/50 dark:bg-teal-950/30",
-                      badge: "bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300",
-                      iconCls: "text-teal-600 dark:text-teal-400",
-                    },
-                    {
-                      title: "Graphic Design",
-                      issuer: "Canva",
-                      year: "2023",
-                      Icon: Palette,
-                      color: "border-purple-200 dark:border-purple-800 bg-purple-50/50 dark:bg-purple-950/30",
-                      badge: "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300",
-                      iconCls: "text-purple-600 dark:text-purple-400",
-                    },
-                    {
-                      title: "Certified Trainer Entrepreneur Leader",
-                      issuer: "International Certification",
-                      year: "2025",
-                      Icon: Rocket,
-                      color: "border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/30",
-                      badge: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300",
-                      iconCls: "text-blue-600 dark:text-blue-400",
-                    },
-                  ].map((cert, i) => (
+                  {profileCertifications.map((cert) => {
+                    const visual = certVisuals[cert.id]
+                    return (
                     <div
-                      key={i}
-                      className={`rounded-2xl border p-5 flex gap-4 items-start ${cert.color}`}
+                      key={cert.id}
+                      className={`rounded-2xl border p-5 flex gap-4 items-start ${visual.color}`}
                     >
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-white/80 dark:bg-slate-800/80 ${cert.iconCls}`}>
-                        <cert.Icon className="w-5 h-5" />
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-white/80 dark:bg-slate-800/80 ${visual.iconCls}`}>
+                        <visual.Icon className="w-5 h-5" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold text-slate-900 dark:text-white text-sm leading-snug">
@@ -246,12 +242,12 @@ export default function AboutPageClient() {
                         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{cert.issuer}</p>
                       </div>
                       <span
-                        className={`text-xs font-bold px-2.5 py-1 rounded-full flex-shrink-0 ${cert.badge}`}
+                        className={`text-xs font-bold px-2.5 py-1 rounded-full flex-shrink-0 ${visual.badge}`}
                       >
                         {cert.year}
                       </span>
                     </div>
-                  ))}
+                  )})}
                 </div>
               </div>
             </section>
@@ -282,15 +278,15 @@ export default function AboutPageClient() {
             {/* Impact Statistics — dark card, prominent numbers */}
             <div className="mb-16 bg-slate-900 rounded-3xl p-8 grid grid-cols-2 md:grid-cols-5 gap-6">
               {[
-                { label: "Participants Trained", value: `${siteConfig.stats.participants}+` },
-                { label: "Training Hours", value: `${siteConfig.stats.trainingHours}+` },
-                { label: "Facilitation Hours", value: `${siteConfig.stats.facilitationHours}+` },
-                { label: "Training Cycles Supervised", value: `${siteConfig.stats.trainingCyclesSupervised}+` },
-                { label: "Years Experience", value: `${siteConfig.stats.yearsExperience}+` },
-              ].map((stat, i) => (
-                <div key={i} className="text-center">
+                { label: "Participants Trained", value: profileStats.participantsTrained },
+                { label: "Training Hours", value: profileStats.trainingHours },
+                { label: "Facilitation Hours", value: profileStats.facilitationHours },
+                { label: "Training Cycles Supervised", value: profileStats.trainingCycles },
+                { label: "Years Experience", value: profileStats.yearsExperience },
+              ].map((stat) => (
+                <div key={stat.label} className="text-center">
                   <p className="font-display font-black text-[clamp(28px,4vw,40px)] text-white leading-none mb-1.5">
-                    {stat.value}
+                    {stat.value.value.toLocaleString()}{stat.value.suffix}
                   </p>
                   <p className="text-slate-500 text-xs font-medium uppercase tracking-wide">{stat.label}</p>
                 </div>
@@ -312,43 +308,14 @@ export default function AboutPageClient() {
                   <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-slate-200 to-transparent dark:via-slate-700" />
 
                   <div className="flex flex-col gap-6">
-                    {[
-                      {
-                        period: "Sep 2023 – Dec 2023",
-                        role: "Web Developer & Marketing Manager",
-                        company: "CRIT Tunisie",
-                        description:
-                          "Developed responsive web interfaces using React/Next.js, optimized UI/UX, and improved digital strategy.",
-                        tags: ["React", "Next.js", "UI/UX", "Strategy"],
-                        color: "bg-accent text-white",
-                        Icon: Code,
-                      },
-                      {
-                        period: "Jul 2022 – Jul 2023",
-                        role: "Marketing Manager",
-                        company: "Jasmin Crafts & Plants",
-                        description:
-                          "Managed marketing campaigns, increased engagement by 40%, designed promotional materials and maintained social consistency.",
-                        tags: ["Marketing", "Social Media", "Design", "+40% Engagement"],
-                        color: "bg-blue-500 text-white",
-                        Icon: TrendingUp,
-                      },
-                      {
-                        period: "2021 – 2023",
-                        role: "Graphic Designer (Internships)",
-                        company: "Icon Agency, Phenyx Company, Jasmin Marketing & Others",
-                        description:
-                          "Produced campaign visuals, brand assets, marketing materials, and collaborated on client-facing design solutions.",
-                        tags: ["Brand Identity", "Campaigns", "Visual Design"],
-                        color: "bg-purple-500 text-white",
-                        Icon: Palette,
-                      },
-                    ].map((exp, i) => (
-                      <div key={i} className="relative pl-12">
+                    {aboutExperience.map((exp) => {
+                      const visual = experienceVisuals[exp.id]
+                      return (
+                      <div key={exp.id} className="relative pl-12">
                         <div
-                          className={`absolute left-0 top-1.5 w-9 h-9 rounded-full ${exp.color} flex items-center justify-center shadow-md`}
+                          className={`absolute left-0 top-1.5 w-9 h-9 rounded-full ${visual.color} flex items-center justify-center shadow-md`}
                         >
-                          <exp.Icon className="w-4 h-4" />
+                          <visual.Icon className="w-4 h-4" />
                         </div>
 
                         <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-5 hover:shadow-md transition-shadow">
@@ -364,6 +331,7 @@ export default function AboutPageClient() {
                           <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-3">
                             {exp.description}
                           </p>
+                          {exp.tags && (
                           <div className="flex flex-wrap gap-1.5">
                             {exp.tags.map((tag) => (
                               <span
@@ -374,9 +342,10 @@ export default function AboutPageClient() {
                               </span>
                             ))}
                           </div>
+                          )}
                         </div>
                       </div>
-                    ))}
+                    )})}
                   </div>
                 </div>
               </div>

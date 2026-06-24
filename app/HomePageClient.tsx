@@ -8,6 +8,7 @@ import Footer from "@/components/footer"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { siteConfig } from "@/lib/site-config"
+import { formatStat } from "@/lib/profile"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import StatsSection from "@/components/stats-section"
 import ServicePackages from "@/components/service-packages"
@@ -117,9 +118,9 @@ export default function HomePageClient() {
             {/* Social proof micro-stats */}
             <div className="flex flex-wrap gap-x-6 gap-y-2 mt-1 mb-6">
               {[
-                { value: "950+", label: "youth trained" },
-                { value: "50+", label: "brands & campaigns" },
-                { value: "7+", label: "years active" },
+                { value: formatStat("participantsTrained"), label: "youth trained" },
+                { value: formatStat("designProjects"), label: "design projects" },
+                { value: formatStat("yearsExperience"), label: "years active" },
               ].map(({ value, label }) => (
                 <div key={label} className="flex items-center gap-1.5">
                   <span className="font-bold text-accent text-sm">{value}</span>
@@ -244,7 +245,7 @@ export default function HomePageClient() {
                   {[
                     [`${siteConfig.stats.participants}+`, "Participants"],
                     [`${siteConfig.stats.trainingHours}+`, "Hours"],
-                    ["30+", "Workshops"],
+                    [`${siteConfig.stats.facilitationHours}+`, "Facilitation Hrs"],
                   ].map(([val, label]) => (
                     <div key={label}>
                       <p className="font-display font-bold text-lg text-slate-900 leading-none">{val}</p>

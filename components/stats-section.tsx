@@ -1,49 +1,74 @@
 "use client"
 
-import { useEffect } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useRef } from "react"
 import { Clock, Users, Presentation, RefreshCw, BookOpen } from "lucide-react"
 import { useState } from "react"
 import { useInView } from "react-intersection-observer"
-import { useLanguage } from "@/components/language-provider"
-import { siteConfig } from "@/lib/site-config"
+import { useReducedMotion } from "framer-motion"
+import { homepageStatsRow, profileStats } from "@/lib/profile"
 
-function AnimatedCounter({ value, suffix = "", duration = 2 }: { value: string; suffix?: string; duration?: number }) {
-  const [count, setCount] = useState(0)
-  const [ref, isInView] = useInView({ triggerOnce: true, threshold: 0.4, rootMargin: "0px 0px -80px 0px" })
-  const numericPart = parseInt(value.replace(/\D/g, ""), 10) || 0
+const iconMap = {
+  Users,
+  Clock,
+  BookOpen,
+  Presentation,
+  RefreshCw,
+} as const
+
+function AnimatedCounter({
+  value,
+  suffix = "+",
+  duration = 2,
+}: {
+  value: number
+  suffix?: string
+  duration?: number
+}) {
+  const finalLabel = `${value.toLocaleString()}${suffix}`
+  const [count, setCount] = useState(value)
+  const [ref, isInView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const prefersReducedMotion = useReducedMotion()
+  const hasAnimated = useRef(false)
 
   useEffect(() => {
-    if (!isInView || numericPart <= 0) return
-    const step = Math.max(1, Math.ceil(numericPart / (duration * 60)))
-    const stepMs = (duration * 1000) / Math.ceil(numericPart / step)
+    if (prefersReducedMotion || value <= 0) {
+      setCount(value)
+      return
+    }
+    if (!isInView || hasAnimated.current) return
+    hasAnimated.current = true
+
+    const step = Math.max(1, Math.ceil(value / (duration * 60)))
+    const stepMs = (duration * 1000) / Math.ceil(value / step)
+    setCount(0)
+
     const timer = setInterval(() => {
       setCount((prev) => {
-        const next = Math.min(prev + step, numericPart)
-        if (next >= numericPart) clearInterval(timer)
+        const next = Math.min(prev + step, value)
+        if (next >= value) clearInterval(timer)
         return next
       })
     }, stepMs)
+
     return () => clearInterval(timer)
-  }, [isInView, numericPart, duration])
+  }, [isInView, value, duration, prefersReducedMotion])
+
+  const display = count > 0 || value === 0 ? `${count.toLocaleString()}${suffix}` : finalLabel
 
   return (
-    <span ref={ref}>
-      {count.toLocaleString()}
-      {suffix}
+    <span ref={ref} aria-label={finalLabel}>
+      {display}
     </span>
   )
 }
 
 export default function StatsSection() {
-  const { t } = useLanguage()
-  const stats = [
-    { value: String(siteConfig.stats.participants), suffix: "+", label: "Participants Trained", Icon: Users },
-    { value: String(siteConfig.stats.trainingHours), suffix: "+", label: "Training Hours", Icon: Clock },
-    { value: "50", suffix: "+", label: "Design Projects", Icon: BookOpen },
-    { value: String(siteConfig.stats.yearsExperience), suffix: "+", label: "Years Experience", Icon: Presentation },
-    { value: String(siteConfig.stats.trainingCyclesSupervised), suffix: "+", label: "Training Cycles", Icon: RefreshCw },
-  ]
+  const stats = homepageStatsRow.map((row) => ({
+    value: profileStats[row.statKey].value,
+    suffix: profileStats[row.statKey].suffix,
+    label: row.label,
+    Icon: iconMap[row.icon],
+  }))
 
   return (
     <section id="stats-section" className="bg-slate-950 dark:bg-slate-950 py-14 px-5 relative overflow-hidden">
@@ -51,15 +76,11 @@ export default function StatsSection() {
       <div className="relative max-w-4xl mx-auto">
         <p className="label text-center text-green-500 mb-10">By the numbers</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-slate-800">
-          {stats.map((s, i) => (
-            <div key={i} className="flex flex-col items-center text-center py-4 sm:px-4 sm:py-0">
+          {stats.map((s) => (
+            <div key={s.label} className="flex flex-col items-center text-center py-4 sm:px-4 sm:py-0">
               <s.Icon className="w-5 h-5 text-green-500/50 mb-3" />
-              <span
-                className={`font-display font-black leading-none text-white ${
-                  s.label === "NFE Received" ? "text-[clamp(28px,4vw,40px)]" : "text-[clamp(32px,4.5vw,52px)]"
-                }`}
-              >
-                <AnimatedCounter value={s.value} />{s.suffix}
+              <span className="font-display font-black leading-none text-white text-[clamp(32px,4.5vw,52px)]">
+                <AnimatedCounter value={s.value} suffix={s.suffix} />
               </span>
               <p className="text-slate-500 text-[11px] font-medium uppercase tracking-widest mt-2">{s.label}</p>
             </div>

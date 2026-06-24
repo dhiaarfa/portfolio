@@ -10,45 +10,17 @@ import CertificationsSection from "@/components/certifications-section"
 import TrainingMethodologySection from "@/components/training-methodology-section"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
+import { formatStat, trainingMilestones } from "@/lib/profile"
 
 export default function TrainerClientPage() {
   const { t } = useLanguage()
 
-  const journeyMilestones = [
-    {
-      year: "2022",
-      title: "National Certified Trainer from CNFCPP",
-      description:
-        "Achieved official certification from National Center for Continuing Training and Professional Promotion",
-      stats: "Professional Credentials",
-    },
-    {
-      year: "2022",
-      title: "Training Pioneer",
-      description: "Began delivering comprehensive training through ONGs, social programs, and youth events",
-      stats: "Training Launch",
-    },
-    {
-      year: "2019",
-      title: "Youth Development Leader & Activist",
-      description: "Started youth development and civic engagement initiatives, driving social impact",
-      stats: "Advocacy Start",
-    },
-    {
-      year: "2025",
-      title: "Certified Trainer & Impact Leader",
-      description:
-        "Delivered 450+ training hours and 30+ facilitation hours for 1000+ participants across multiple organizations",
-      stats: "1000+ Participants",
-    },
-  ]
-
   const impactStats = [
-    { number: "1000+", label: "Participants Trained", detail: "Across NGOs, youth clubs & associations" },
-    { number: "450+", label: "Training Hours", detail: "Non‑formal education & skills building" },
-    { number: "30+", label: "Facilitation Hours", detail: "Moderation, panels & collaborative spaces" },
-    { number: "10+", label: "Training Cycles Supervised", detail: "From design to delivery & evaluation" },
-    { number: "7+", label: "Years Experience", detail: "Youth work, civic engagement & training" },
+    { number: formatStat("participantsTrained"), label: "Participants Trained", detail: "Across NGOs, youth clubs & associations" },
+    { number: formatStat("trainingHours"), label: "Training Hours", detail: "Non‑formal education & skills building" },
+    { number: formatStat("facilitationHours"), label: "Facilitation Hours", detail: "Moderation, panels & collaborative spaces" },
+    { number: formatStat("trainingCycles"), label: "Training Cycles Supervised", detail: "From design to delivery & evaluation" },
+    { number: formatStat("yearsExperience"), label: "Years Experience", detail: "Youth work, civic engagement & training" },
   ]
 
   return (
@@ -75,10 +47,15 @@ export default function TrainerClientPage() {
               Youth Development<br />& Leadership
             </h1>
             <p className="text-slate-300 text-[18px] max-w-xl leading-relaxed mb-8">
-              1000+ participants trained. Certified by CNFCPP. Empowering the next generation.
+              {formatStat("participantsTrained")} participants trained. Certified by CNFCPP. Empowering the next generation.
             </p>
             <div className="flex flex-wrap gap-10 mb-8 pb-8 border-b border-white/15">
-              {[["1000+", "Participants"], ["450+", "Training Hrs"], ["10+", "Cycles"], ["7+", "Yrs Exp"]].map(([v, l]) => (
+              {[
+                [formatStat("participantsTrained"), "Participants"],
+                [formatStat("trainingHours"), "Training Hrs"],
+                [formatStat("trainingCycles"), "Cycles"],
+                [formatStat("yearsExperience"), "Yrs Exp"],
+              ].map(([v, l]) => (
                 <div key={l}>
                   <p className="font-display font-black text-[clamp(26px,4vw,40px)] text-white leading-none">{v}</p>
                   <p className="text-slate-400 text-[11px] uppercase tracking-wider mt-1">{l}</p>
@@ -190,7 +167,7 @@ export default function TrainerClientPage() {
 
               {/* Timeline */}
               <div className="space-y-8">
-                {journeyMilestones.map((milestone, i) => (
+                {trainingMilestones.map((milestone, i) => (
                   <motion.div
                     key={i}
                     className="group relative"

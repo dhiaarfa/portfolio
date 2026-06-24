@@ -3,6 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, Calendar } from "lucide-react"
+import { formatStat, designExperience, certifications as profileCertifications, isConceptProject } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
 import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
@@ -46,37 +47,37 @@ export default function DesignerPageClient() {
     {
       id: 1,
       title: "MeetUp Pro",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       color: "from-accent to-accent",
     },
     {
       id: 2,
       title: "Speranza Café",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       color: "from-[#D4A574] to-[#C8860E]",
     },
     {
       id: 3,
       title: "Business Cards",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       color: "from-card to-secondary",
     },
     {
       id: 4,
       title: "Walmart Packaging",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       color: "from-[#0E2B5F] to-[#F4B024]",
     },
     {
       id: 5,
       title: "Speranza",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       color: "from-[#B8860B] to-[#DAA520]",
     },
     {
       id: 6,
       title: "Football Campaign",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       color: "from-[#0066CC] to-[#0052A3]",
     },
   ]
@@ -88,254 +89,224 @@ export default function DesignerPageClient() {
     {
       title: "Walmart Branding + System",
       image: "/images/walmart-branding.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "primary",
       category: "Brand Identity",
     },
     {
       title: "Tafani Travel",
       image: "/images/tafani-white-png.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "primary",
       category: "Brand Identity",
     },
     {
       title: "Speranza Café",
       image: "/images/445771850-916829483581375-1053755579034856379-n.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "primary",
       category: "Brand Identity",
     },
     {
       title: "Lone Space Gold Branding",
       image: "/images/lone-space-gold.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "primary",
       category: "Brand Identity",
     },
     {
       title: "Lone Space Stationery",
       image: "/images/lone-space-mockup.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "primary",
       category: "Packaging",
     },
     {
       title: "Lone Space Business Cards",
       image: "/images/lone-space-cards.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "primary",
       category: "Logo Design",
     },
     {
       title: "MeetUp Pro Event",
       image: "/images/meetuppro-thumbnail.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "primary",
       category: "Social Media",
     },
     {
       title: "Archaeological Museum Sousse",
       image: "/images/archaeological-museum-sousse.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "primary",
       category: "Brand Identity",
     },
     {
       title: "TravelTodo Billboard",
       image: "/images/billboard-48x14-ft-mockup-3.jpeg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
       category: "Social Media",
     },
     {
       title: "Football Campaign",
       image: "/images/argentina-messi-copa-america-outdoor.jpeg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
       category: "Social Media",
     },
     {
       title: "TravelTodo Poster",
       image: "/images/affiche-traveltodo.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
       category: "Social Media",
     },
     {
       title: "Our Cause Campaign",
       image: "/images/palestine.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Love & Noodles - Delivery",
       image: "/images/love-noodles-avec-livraison.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Le Vrai Amour",
       image: "/images/le-vrai-amour.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Food Campaign - Sportif",
       image: "/images/sportif-yekl-f-noodles.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "3jeja - Livraison",
       image: "/images/3jeja-livraison.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Happy Tuesday Promotion",
       image: "/images/happy-tuesday.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Valentine's Special Combo",
       image: "/images/best-combo-for-valentine.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Plat Ramen Campaign",
       image: "/images/plat-ramen.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Just Have a Taste",
       image: "/images/after-saying-just-have-taste.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Plain Studios Campaign",
       image: "/images/1_01.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Wasabi Warning",
       image: "/images/wasabi-warning.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Plain Studios Store",
       image: "/images/1_03.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Black Heavy Streetwear",
       image: "/images/1_04.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Sousse Palace Breakfast",
       image: "/images/enjoy-breakfast.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Plain Studios Comfy & Chic",
       image: "/images/1_05.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Saint Valentin",
       image: "/images/saint-valentin.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Euro 2024 Final",
       image: "/images/polaroid-frame.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Speranza Café Crème",
       image: "/images/cafe-creme.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Argentina Copa America",
       image: "/images/argentina-messi.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Speranza Benna",
       image: "/images/speranza-benna.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Speranza Pasta",
       image: "/images/speranza-pasta.jpg",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
     {
       title: "Vinyl Album Cover",
       image: "/images/vinyl-album.png",
-      url: "https://behance.net/dhiaa",
+      url: siteConfig.behance,
       size: "secondary",
     },
   ]
 
-  const workExperience = [
-    {
-      title: "Zia Studio — Design Studio Operations",
-      company: "Solo-led Creative Practice",
-      period: "2020 – Present",
-      description: "Full-service creative design studio — branding, UI/UX, visual identity systems.",
-    },
-    {
-      title: "Senior Graphic Designer",
-      company: "Icom Agency",
-      period: "Jan – Feb 2025",
-      description: "Led design projects, brand identity systems, campaign visuals.",
-    },
-    {
-      title: "Graphic Designer",
-      company: "Phenyx Company",
-      period: "Oct – Nov 2024",
-      description: "Marketing materials, brand assets, visual communications.",
-    },
-    {
-      title: "Graphic Designer",
-      company: "Jasmin Marketing",
-      period: "Dec 2023 – Jan 2024",
-      description: "Campaign visuals, promotional materials, brand assets.",
-    },
-    {
-      title: "Design & Creative Training",
-      company: "FunCoach Space, Sousse",
-      period: "Jun – Jul 2021",
-      description: "Design training, mentoring emerging designers.",
-    },
-  ]
+  const workExperience = designExperience.map((exp) => ({
+    title: exp.role,
+    company: exp.company,
+    period: exp.period,
+    description: exp.description,
+  }))
 
-  const certifications = [
-    { title: "National Certified Trainer (CNFCPP)", issuer: "Tunisia", year: "2024" },
-    { title: "Graphic Design Certification", issuer: "GoMyCode Academy", year: "2023" },
-    { title: "Social Media Marketing", issuer: "HubSpot Academy", year: "2024" },
-    { title: "Green Digital Skills", issuer: "INCO Academy", year: "2024" },
-    { title: "Certified Trainer", issuer: "Association YOUTH CLUBs", year: "2025" },
-  ]
+  const certifications = profileCertifications
+    .filter((c) => ["cnfcpp", "graphic-design", "hubspot", "inco", "youth-clubs"].includes(c.id))
+    .map((c) => ({ title: c.title, issuer: c.issuer, year: c.year }))
 
   return (
     <div className="w-full min-h-screen bg-background">
@@ -371,7 +342,11 @@ export default function DesignerPageClient() {
               </div>
             </div>
             <div className="flex gap-8 pt-8 border-t border-slate-800 relative z-10">
-              {[["50+", "Projects"], ["7+", "Years"], ["20+", "Brands"]].map(([v, l]) => (
+              {[
+                [formatStat("designProjects"), "Projects"],
+                [formatStat("yearsExperience"), "Years"],
+                [formatStat("brands"), "Brands"],
+              ].map(([v, l]) => (
                 <div key={l}>
                   <p className="font-display font-black text-2xl text-white leading-none">{v}</p>
                   <p className="text-slate-500 text-[11px] uppercase tracking-widest mt-1">{l}</p>
@@ -498,9 +473,16 @@ export default function DesignerPageClient() {
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/65 transition-all duration-300 flex items-end p-4">
+                      {isConceptProject(project.title) && (
+                        <span className="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-amber-500/90 text-white px-2 py-0.5 rounded-full">
+                          Concept
+                        </span>
+                      )}
                       <div className="translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                         <p className="text-white font-semibold text-sm">{project.title}</p>
-                        <p className="text-white/60 text-xs">{(project as { category?: string }).category || "Design"}</p>
+                        <p className="text-white/60 text-xs">
+                          {isConceptProject(project.title) ? "Personal project" : (project as { category?: string }).category || "Design"}
+                        </p>
                       </div>
                     </div>
                   </motion.a>

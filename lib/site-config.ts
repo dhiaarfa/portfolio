@@ -1,3 +1,5 @@
+import { profileStats } from "@/lib/profile"
+
 /**
  * Site configuration - Update these for your deployment
  *
@@ -50,22 +52,24 @@ export const siteConfig = {
     ] as Array<{ title: string; src: string; height?: number }>,
   },
 
-  // Stats (update with real numbers)
+  // Stats — sourced from lib/profile.ts (single source of truth)
   stats: {
-    yearsExperience: 7,
-    participants: 1000,
-    trainingHours: 450,
-    facilitationHours: 30,
-    trainingCyclesSupervised: 10,
-    trainingsReceivedHoursNfe: 2000,
+    yearsExperience: profileStats.yearsExperience.value,
+    participants: profileStats.participantsTrained.value,
+    trainingHours: profileStats.trainingHours.value,
+    facilitationHours: profileStats.facilitationHours.value,
+    trainingCyclesSupervised: profileStats.trainingCycles.value,
+    trainingsReceivedHoursNfe: profileStats.trainingsReceivedHoursNfe.value,
+    designProjects: profileStats.designProjects.value,
+    brands: profileStats.brands.value,
   },
 
   // Consultation CTA
   ctaText: "Book a Free 30-Min Consultation",
 
-  // Training portfolio (Google Sheets)
+  // Training portfolio — view-only link (no /edit or ouid)
   trainingPortfolioUrl:
-    "https://docs.google.com/spreadsheets/d/1Lt3Rr7O-0pj67lMCFB0nM7l28LdR6UMyIVIYLxxmOew/edit?usp=drive_web&ouid=100284283298477488031",
+    "https://docs.google.com/spreadsheets/d/1Lt3Rr7O-0pj67lMCFB0nM7l28LdR6UMyIVIYLxxmOew/view?usp=sharing",
 }
 
 export const freebies = [
