@@ -71,7 +71,7 @@ export default function StatsSection() {
   }))
 
   return (
-    <section id="stats-section" className="bg-slate-950 dark:bg-slate-950 py-14 px-5 relative overflow-hidden">
+    <section id="stats-section" className="bg-slate-950 dark:bg-slate-950 py-10 px-5 relative overflow-hidden">
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full bg-green-600/8 blur-[80px]" />
       <div className="relative max-w-4xl mx-auto">
         <p className="label text-center text-green-500 mb-10">By the numbers</p>
@@ -82,7 +82,7 @@ export default function StatsSection() {
               <span className="font-display font-black leading-none text-white text-[clamp(32px,4.5vw,52px)]">
                 <AnimatedCounter value={s.value} suffix={s.suffix} />
               </span>
-              <p className="text-slate-500 text-[11px] font-medium uppercase tracking-widest mt-2">{s.label}</p>
+              <p className="text-slate-500 dark:text-slate-400 text-[11px] font-medium uppercase tracking-widest mt-2">{s.label}</p>
             </div>
           ))}
         </div>

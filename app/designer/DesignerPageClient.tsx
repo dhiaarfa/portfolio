@@ -8,9 +8,15 @@ import { siteConfig } from "@/lib/site-config"
 import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
+import dynamic from "next/dynamic"
 import ContactForm from "@/components/contact-form"
-import SocialEmbedsSection from "@/components/social-embeds-section"
-import TrainingImpactChart from "@/components/training-impact-chart"
+const SocialEmbedsSection = dynamic(() => import("@/components/social-embeds-section"), {
+  loading: () => <div className="h-48 animate-pulse rounded-2xl bg-muted/30" />,
+})
+const TrainingImpactChart = dynamic(() => import("@/components/training-impact-chart"), {
+  ssr: false,
+  loading: () => <div className="h-64 animate-pulse rounded-2xl bg-muted/30" />,
+})
 import { useState } from "react"
 
 export default function DesignerPageClient() {
@@ -314,7 +320,7 @@ export default function DesignerPageClient() {
 
       <main className="w-full pt-0">
         {/* Hero — full-bleed dark split */}
-        <section className="min-h-[88vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+        <section className="min-h-[70vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
           <div className="relative bg-slate-950 flex flex-col justify-between p-10 lg:p-16 order-2 lg:order-1 overflow-hidden">
             <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#22c55e 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
             <div className="pointer-events-none absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-accent-muted blur-[60px]" />
@@ -370,7 +376,7 @@ export default function DesignerPageClient() {
         />
 
         {/* Design Philosophy - interactive steps */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-gradient-to-b from-background via-[var(--site-accent)]/3 to-background">
+        <section className="w-full section-compact px-4 md:px-8 bg-gradient-to-b from-background via-[var(--site-accent)]/3 to-background">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-12"
@@ -422,7 +428,7 @@ export default function DesignerPageClient() {
         </section>
 
         {/* Portfolio Gallery */}
-        <section id="gallery" className="w-full py-12 md:py-24 px-4 md:px-8">
+        <section id="gallery" className="w-full section-compact px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-16"
@@ -493,7 +499,7 @@ export default function DesignerPageClient() {
         </section>
 
         {/* Work Experience - timeline */}
-        <section className="w-full py-20 md:py-24 px-4 md:px-8">
+        <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
             <motion.div
               className="space-y-10"
@@ -545,7 +551,7 @@ export default function DesignerPageClient() {
         </section>
 
         {/* Certifications */}
-        <section className="w-full py-16 md:py-20 px-4 md:px-8 bg-muted/40 dark:bg-slate-950">
+        <section className="w-full section-compact px-4 md:px-8 bg-muted/40 dark:bg-slate-950">
           <div className="max-w-4xl mx-auto">
             <motion.div
               className="space-y-8"
@@ -586,7 +592,7 @@ export default function DesignerPageClient() {
         </section>
 
         {/* Marketing & Social Media */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-gradient-to-b from-background via-muted/30 to-background">
+        <section className="w-full section-compact px-4 md:px-8 bg-gradient-to-b from-background via-muted/30 to-background">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-12"
@@ -624,7 +630,7 @@ export default function DesignerPageClient() {
         </section>
 
         {/* Training & Education */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8">
+        <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-12"
@@ -757,7 +763,7 @@ export default function DesignerPageClient() {
         </section>
 
         {/* CTA Section */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8">
+        <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="text-4xl md:text-5xl font-bold">
               Let's Create Something{" "}
@@ -803,7 +809,7 @@ export default function DesignerPageClient() {
         </section>
 
         {/* Contact Form Section */}
-        <section id="contact-form" className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
+        <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-12">
               <div className="text-center space-y-4">

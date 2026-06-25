@@ -84,7 +84,7 @@ export default function RootLayout({
       lang="en"
       dir="ltr"
       suppressHydrationWarning
-      className={`scroll-smooth ${cairo.variable}`}
+      className={`scroll-smooth theme-transition ${cairo.variable}`}
     >
       <head>
         <link rel="icon" href="/favicon-green-portrait.png" sizes="any" />

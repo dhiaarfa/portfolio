@@ -13,6 +13,7 @@ export default function ContactForm() {
     email: "",
     message: "",
     service: "design",
+    website: "",
   })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
@@ -60,6 +61,7 @@ export default function ContactForm() {
           subject: formData.service,
           message: formData.message.trim(),
           type: "contact",
+          website: formData.website,
         }),
       })
 
@@ -74,7 +76,7 @@ export default function ContactForm() {
       }
 
       setStatus("success")
-      setFormData({ name: "", email: "", message: "", service: "design" })
+      setFormData({ name: "", email: "", message: "", service: "design", website: "" })
       toast.success("Message sent! I'll get back to you soon.")
       setTimeout(() => setStatus("idle"), 5000)
     } catch {
@@ -101,10 +103,11 @@ export default function ContactForm() {
       viewport={{ once: true }}
     >
       <form onSubmit={handleSubmit} className="space-y-6">
+        <input type="text" name="website" value={formData.website} readOnly tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
         {/* Name Field */}
         <div className="space-y-2">
           <label htmlFor="name" className="block text-sm font-semibold">
-            Your Name <span className="text-[#AAFF00]">*</span>
+            Your Name <span className="text-accent">*</span>
           </label>
           <input
             type="text"
@@ -114,7 +117,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             placeholder="Enter your full name"
-            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-[#AAFF00] focus:border-[#AAFF00] transition-all touch-manipulation text-base"
+            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           />
         </div>
@@ -122,7 +125,7 @@ export default function ContactForm() {
         {/* Email Field */}
         <div className="space-y-2">
           <label htmlFor="email" className="block text-sm font-semibold">
-            Email Address <span className="text-[#AAFF00]">*</span>
+            Email Address <span className="text-accent">*</span>
           </label>
           <input
             type="email"
@@ -132,7 +135,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             placeholder="your.email@example.com"
-            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-[#AAFF00] focus:border-[#AAFF00] transition-all touch-manipulation text-base"
+            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           />
         </div>
@@ -140,7 +143,7 @@ export default function ContactForm() {
         {/* Service Type Dropdown */}
         <div className="space-y-2">
           <label htmlFor="service" className="block text-sm font-semibold">
-            What can I help with? <span className="text-[#AAFF00]">*</span>
+            What can I help with? <span className="text-accent">*</span>
           </label>
           <select
             id="service"
@@ -148,7 +151,7 @@ export default function ContactForm() {
             value={formData.service}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-[#AAFF00] focus:border-[#AAFF00] transition-all touch-manipulation text-base"
+            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           >
             <option value="design">Design Project</option>
@@ -161,7 +164,7 @@ export default function ContactForm() {
         {/* Message Field */}
         <div className="space-y-2">
           <label htmlFor="message" className="block text-sm font-semibold">
-            Your Message <span className="text-[#AAFF00]">*</span>
+            Your Message <span className="text-accent">*</span>
           </label>
           <textarea
             id="message"
@@ -171,7 +174,7 @@ export default function ContactForm() {
             required
             placeholder="Tell me about your project, timeline, and any specific requirements..."
             rows={5}
-            className="w-full px-4 py-3 min-h-[120px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-[#AAFF00] focus:border-[#AAFF00] transition-all resize-none touch-manipulation text-base"
+            className="w-full px-4 py-3 min-h-[120px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all resize-none touch-manipulation text-base"
             disabled={status === "loading"}
           />
         </div>
@@ -212,7 +215,7 @@ export default function ContactForm() {
           disabled={status === "loading" || status === "success"}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="w-full px-6 py-3 min-h-[48px] bg-gradient-to-r bg-[#AAFF00] hover:bg-[#b8ff33]  disabled:opacity-50 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 touch-manipulation text-base"
+          className="w-full px-6 py-3 min-h-[48px] btn-green disabled:opacity-50 font-semibold rounded-lg transition-all flex items-center justify-center gap-2 touch-manipulation text-base"
         >
           {status === "loading" ? (
             <>
@@ -234,7 +237,7 @@ export default function ContactForm() {
 
         <p className="text-xs text-muted-foreground text-center">
           I'll respond to your message within 24 hours. You can also reach me directly at{" "}
-          <a href="mailto:mohameddhiaarfa@gmail.com" className="text-[#AAFF00] hover:underline font-medium">
+          <a href="mailto:mohameddhiaarfa@gmail.com" className="text-accent hover:underline font-medium">
             mohameddhiaarfa@gmail.com
           </a>
         </p>

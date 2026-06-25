@@ -6,7 +6,11 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "test:api": "node scripts/test-api.mjs",
+    "test:freebies": "node scripts/validate-freebies.mjs",
+    "test:routes": "node scripts/test-routes.mjs",
+    "test:all": "node scripts/test-routes.mjs && node scripts/test-api.mjs && node scripts/validate-freebies.mjs"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",

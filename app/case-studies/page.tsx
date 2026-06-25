@@ -50,7 +50,7 @@ export default function CaseStudiesPage() {
       <Navbar />
       <main className="min-h-screen">
         {/* Hero Section */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-gradient-to-b from-[hsl(var(--zia-green))]/5 to-background dark:from-[hsl(var(--zia-green))]/10 dark:to-background">
+        <section className="w-full section-compact px-4 md:px-8 bg-gradient-to-b from-[hsl(var(--zia-green))]/5 to-background dark:from-[hsl(var(--zia-green))]/10 dark:to-background">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -80,7 +80,7 @@ export default function CaseStudiesPage() {
         </section>
 
         {/* Case Studies Grid */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8">
+        <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {caseStudies.map((study, i) => (
@@ -143,7 +143,7 @@ export default function CaseStudiesPage() {
         </section>
 
         {/* Info Section */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-card">
+        <section className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -181,7 +181,7 @@ export default function CaseStudiesPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8">
+        <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

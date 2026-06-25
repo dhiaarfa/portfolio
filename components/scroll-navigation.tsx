@@ -58,7 +58,7 @@ export default function ScrollNavigation() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <div className="fixed bottom-8 right-8 flex flex-col gap-3 z-40">
+        <div className="fixed bottom-36 right-4 md:right-8 flex flex-col gap-3 z-40">
           {/* Scroll to Top Button */}
           <motion.button
             initial={{ opacity: 0, scale: 0.8, y: 10 }}

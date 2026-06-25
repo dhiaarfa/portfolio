@@ -13,7 +13,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function FreebiesPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950">
+    <div className="min-h-screen bg-background">
       <Navbar />
       <main>
         <FreebiesClient />

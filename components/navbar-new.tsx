@@ -3,22 +3,25 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Calendar, Menu, X } from 'lucide-react'
 import { ThemeToggle } from './theme-toggle'
 import { LanguageToggle } from './language-toggle'
+import { useLanguage } from './language-provider'
+import { siteConfig } from '@/lib/site-config'
 
-const links = [
-  { label: 'Home',       href: '/' },
-  { label: 'About',      href: '/about' },
-  { label: 'Branding',   href: '/designer' },
-  { label: 'Training',   href: '/trainer' },
-  { label: 'Development', href: '/developer' },
-  { label: 'Freebies',   href: '/freebies' },
-  { label: 'Insights',   href: '/insights' },
-]
+const navLinks = [
+  { labelKey: 'home', href: '/' },
+  { labelKey: 'about', href: '/about' },
+  { labelKey: 'branding', href: '/designer' },
+  { labelKey: 'training', href: '/trainer' },
+  { labelKey: 'nav.webDev', href: '/developer' },
+  { labelKey: 'nav.freebies', href: '/freebies' },
+  { labelKey: 'nav.insights', href: '/insights' },
+] as const
 
 export default function Navbar() {
+  const { t } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
@@ -34,141 +37,121 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transition-[background,padding,box-shadow] duration-200 ${
           scrolled
-            ? 'py-2 bg-white/85 dark:bg-slate-950/85 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm'
-            : 'py-4 bg-transparent'
+            ? 'py-2 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm'
+            : 'py-3 bg-transparent'
         }`}
       >
-        <div className="max-w-6xl mx-auto px-5 flex items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-4 lg:px-5 flex items-center justify-between gap-3">
 
-          {/* LOGO */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-            <div className="relative w-8 h-8 rounded-xl overflow-hidden flex-shrink-0 shadow-[0_2px_8px_color-mix(in_oklab,var(--site-accent)_40%,transparent)] group-hover:shadow-[0_4px_12px_color-mix(in_oklab,var(--site-accent)_50%,transparent)] transition-shadow ring-2 ring-[color-mix(in_oklab,var(--site-accent)_30%,transparent)]">
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
+            <div className="relative w-8 h-8 rounded-xl overflow-hidden flex-shrink-0 ring-2 ring-[color-mix(in_oklab,var(--site-accent)_30%,transparent)]">
               <Image src="/images/photos/nav-avatar.png" alt="Mohamed Dhia" width={32} height={32} className="object-cover w-full h-full" priority />
             </div>
             <div className="hidden sm:block leading-tight">
               <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none">Mohamed Dhia</p>
-              <p className="text-[10px] text-slate-400 tracking-widest uppercase font-medium mt-0.5">Designer · Trainer · Dev</p>
+              <p className="text-[10px] text-slate-400 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5">Designer · Trainer · Dev</p>
             </div>
           </Link>
 
-          {/* DESKTOP NAV PILL */}
-          <nav className="hidden md:flex items-center gap-0.5 bg-slate-100/90 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl px-2 py-1.5 border border-slate-200/60 dark:border-slate-700/60">
-            {links.map(link => {
+          <nav className="hidden lg:flex items-center gap-0.5 bg-slate-100/90 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl px-1.5 py-1 border border-slate-200/60 dark:border-slate-700/60">
+            {navLinks.map(link => {
               const active = pathname === link.href
               return (
                 <Link key={link.href} href={link.href}
-                  className="relative px-3.5 py-1.5 rounded-xl text-sm font-medium transition-colors duration-150 select-none">
+                  className="relative px-2.5 py-1.5 rounded-xl text-[13px] font-medium whitespace-nowrap transition-colors duration-150 select-none">
                   {active && (
-                    <motion.span
-                      layoutId="nav-pill"
-                      className="absolute inset-0 bg-white dark:bg-slate-700 rounded-xl shadow-sm"
-                      transition={{ type: 'spring', stiffness: 420, damping: 36 }}
-                    />
+                    <span className="absolute inset-0 bg-white dark:bg-slate-700 rounded-xl shadow-sm" />
                   )}
-                  <span className={`relative z-10 flex items-center gap-1.5 ${
-                    active ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+                  <span className={`relative z-10 ${
+                    active ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
                   }`}>
-                    {link.label}
+                    {t(link.labelKey)}
                   </span>
                 </Link>
               )
             })}
           </nav>
 
-          {/* RIGHT ACTIONS + MOBILE NAV */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="hidden md:flex items-center gap-2">
-              <ThemeToggle />
-              <LanguageToggle />
-              <a
-                href="https://calendly.com/benarfa367/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-green text-xs px-4 py-2.5 !rounded-xl !gap-1.5"
-              >
-                <Calendar className="w-3.5 h-3.5" />
-                Book Call
-              </a>
-            </div>
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            <a
+              href={siteConfig.behance}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex w-9 h-9 rounded-full border border-slate-200 dark:border-slate-700 bg-[#1769FF] hover:brightness-110 items-center justify-center transition-all"
+              aria-label="Behance portfolio"
+              title="Behance"
+            >
+              <Image src="/img/tools/behance-logo.png" alt="" width={18} height={18} className="object-contain brightness-0 invert" />
+            </a>
+            <ThemeToggle />
+            <LanguageToggle />
+            <a
+              href={siteConfig.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex btn-green text-xs px-3.5 py-2 !rounded-xl !gap-1.5 whitespace-nowrap"
+            >
+              <Calendar className="w-3.5 h-3.5" />
+              {t("bookConsultation")}
+            </a>
 
-            {/* Compact mobile nav pill (always visible) */}
-            <nav className="flex md:hidden items-center gap-1 bg-slate-100/90 dark:bg-slate-800/70 rounded-2xl px-2 py-1 border border-slate-200/60 dark:border-slate-700/60 overflow-x-auto max-w-[46vw] hide-scrollbar">
-              {links.map(link => {
-                const active = pathname === link.href
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`whitespace-nowrap px-2.5 py-1 rounded-xl text-[11px] font-medium ${
-                      active
-                        ? "bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
-                        : "text-slate-500 dark:text-slate-300"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                )
-              })}
-            </nav>
-
-            {/* HAMBURGER */}
             <button
+              type="button"
               onClick={() => setOpen(o => !o)}
-              className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
+              aria-label="Menu"
             >
               {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
-            {/* MOBILE FULLSCREEN MENU */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -16 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-white dark:bg-slate-950 flex flex-col pt-[72px] overflow-y-auto h-[100dvh]"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 z-40 bg-white dark:bg-slate-950 flex flex-col pt-[68px] overflow-y-auto lg:hidden"
           >
-            <nav className="flex flex-col gap-1 px-5 py-6 flex-1">
-              {links.map((link, i) => {
+            <nav className="flex flex-col gap-1 px-4 py-4 flex-1">
+              {navLinks.map((link) => {
                 const active = pathname === link.href
                 return (
-                  <motion.div
+                  <Link
                     key={link.href}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.055 }}
+                    href={link.href}
+                    className={`px-4 py-3 rounded-xl text-base font-semibold ${
+                      active
+                        ? 'bg-green-50 dark:bg-green-950/50 text-green-700 dark:text-green-400'
+                        : 'text-slate-700 dark:text-slate-200'
+                    }`}
                   >
-                    <Link
-                      href={link.href}
-                      className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl text-[17px] font-semibold transition-colors ${
-                        active
-                          ? 'bg-green-50 dark:bg-green-950/50 text-green-700 dark:text-green-400'
-                          : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900'
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
+                    {t(link.labelKey)}
+                  </Link>
                 )
               })}
+              <a
+                href={siteConfig.behance}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold text-[#1769FF]"
+              >
+                <span className="w-8 h-8 rounded-lg bg-[#1769FF] flex items-center justify-center">
+                  <Image src="/img/tools/behance-logo.png" alt="" width={16} height={16} className="brightness-0 invert" />
+                </span>
+                Behance
+              </a>
             </nav>
-            <div className="px-5 pb-8 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-3">
-              <div className="flex items-center gap-2 mb-1">
-                <ThemeToggle /><LanguageToggle />
-              </div>
-              <a href="https://calendly.com/benarfa367/30min" target="_blank" rel="noopener noreferrer"
-                 className="btn-green w-full justify-center py-4 !rounded-2xl text-[15px]">
-                <Calendar className="w-5 h-5" /> Book a Free Consultation
+            <div className="px-4 pb-6 pt-3 border-t border-border">
+              <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer"
+                 className="btn-green w-full justify-center py-3.5 !rounded-xl text-base">
+                <Calendar className="w-5 h-5" /> {t("bookFreeConsultation")}
               </a>
             </div>
           </motion.div>

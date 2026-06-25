@@ -8,6 +8,7 @@ import { useLanguage } from "@/components/language-provider"
 export default function NewsletterSection() {
   const { t } = useLanguage()
   const [email, setEmail] = useState("")
+  const [website, setWebsite] = useState("")
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [message, setMessage] = useState("")
 
@@ -22,7 +23,13 @@ export default function NewsletterSection() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: "", email: email.trim(), message: "Newsletter signup", type: "newsletter" }),
+        body: JSON.stringify({
+          name: "",
+          email: email.trim(),
+          message: "Newsletter signup",
+          type: "newsletter",
+          website,
+        }),
       })
 
       const data = await res.json()
@@ -30,19 +37,19 @@ export default function NewsletterSection() {
       if (res.ok) {
         setStatus("success")
         setEmail("")
-        setMessage("You're in! Check your inbox for a welcome message.")
+        setMessage(t("newsletterSuccess"))
       } else {
         setStatus("error")
-        setMessage(data.error || "Something went wrong. Please try again.")
+        setMessage(data.error || t("freebies.errorMsg"))
       }
     } catch {
       setStatus("error")
-      setMessage("Network error. Please try again.")
+      setMessage(t("newsletterNetworkError"))
     }
   }
 
   return (
-    <section id="newsletter" className="py-20 bg-slate-950">
+    <section id="newsletter" className="py-14 bg-slate-950">
       <div className="max-w-2xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,6 +84,7 @@ export default function NewsletterSection() {
             onSubmit={handleSubmit}
             className="mt-6 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
           >
+            <input type="text" name="website" value={website} readOnly tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
             <input
               type="email"
               value={email}

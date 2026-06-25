@@ -146,7 +146,7 @@ export default function AboutPageClient() {
         </section>
 
         {/* Professional Journey */}
-        <section className="px-4 md:px-8 py-12 md:py-20">
+        <section className="px-4 md:px-8 section-compact">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-12">{t("myJourney")}</h2>
 
@@ -354,7 +354,7 @@ export default function AboutPageClient() {
         </section>
 
         {/* Call to Action + Contact Form */}
-        <section className="px-4 md:px-8 py-12 md:py-20 bg-card/30">
+        <section className="px-4 md:px-8 section-compact bg-card/30">
           <div className="max-w-4xl mx-auto space-y-10">
             <div className="text-center space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold">Let's Connect</h2>

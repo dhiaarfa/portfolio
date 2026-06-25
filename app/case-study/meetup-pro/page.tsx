@@ -14,7 +14,7 @@ export default function MeetUpProCaseStudy() {
       <Navbar />
       <main className="min-h-screen">
         {/* Hero Section */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-gradient-to-b from-[hsl(var(--zia-green))]/5 to-background dark:from-[hsl(var(--zia-green))]/10 dark:to-background">
+        <section className="w-full section-compact px-4 md:px-8 bg-gradient-to-b from-[hsl(var(--zia-green))]/5 to-background dark:from-[hsl(var(--zia-green))]/10 dark:to-background">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -73,7 +73,7 @@ export default function MeetUpProCaseStudy() {
         </section>
 
         {/* Context & Challenge */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8">
+        <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-4xl mx-auto space-y-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -116,7 +116,7 @@ export default function MeetUpProCaseStudy() {
         </section>
 
         {/* My Role */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-card">
+        <section className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -158,7 +158,7 @@ export default function MeetUpProCaseStudy() {
         </section>
 
         {/* Process */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8">
+        <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-4xl mx-auto space-y-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -232,7 +232,7 @@ export default function MeetUpProCaseStudy() {
         </section>
 
         {/* Deliverables */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-card">
+        <section className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto space-y-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -310,7 +310,7 @@ export default function MeetUpProCaseStudy() {
         </section>
 
         {/* Outcomes & Metrics */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8">
+        <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-4xl mx-auto space-y-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -382,7 +382,7 @@ export default function MeetUpProCaseStudy() {
         </section>
 
         {/* What I Learned */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-card">
+        <section className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -434,7 +434,7 @@ export default function MeetUpProCaseStudy() {
         </section>
 
         {/* CTA Section */}
-        <section className="w-full py-20 md:py-32 px-4 md:px-8">
+        <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -478,7 +478,7 @@ export default function MeetUpProCaseStudy() {
         </section>
 
         {/* Contact Form Section */}
-        <section id="contact-form" className="w-full py-20 md:py-32 px-4 md:px-8 bg-card">
+        <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-12">
               <div className="text-center space-y-4">

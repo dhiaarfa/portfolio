@@ -9,10 +9,14 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 import { siteConfig } from "@/lib/site-config"
 import { formatStat } from "@/lib/profile"
+import dynamic from "next/dynamic"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import StatsSection from "@/components/stats-section"
 import ServicePackages from "@/components/service-packages"
-import ValueRadarChart from "@/components/value-radar-chart"
+const ValueRadarChart = dynamic(() => import("@/components/value-radar-chart"), {
+  ssr: false,
+  loading: () => <div className="h-64 animate-pulse rounded-2xl bg-muted/40" />,
+})
 import FAQSection from "@/components/faq-section"
 import NewsletterSection from "@/components/newsletter-section"
 import TestimonialsTicker from "@/components/testimonials-ticker"
@@ -20,12 +24,13 @@ import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
 
 function AnimatedRole() {
+  const { t } = useLanguage()
   const [i, setI] = useState(0)
   const [show, setShow] = useState(true)
   const roles = [
-    { text: "Graphic Designer", cls: "text-pink-500 dark:text-pink-400" },
-    { text: "Youth Trainer", cls: "text-amber-500 dark:text-amber-400" },
-    { text: "Web Developer", cls: "text-blue-500 dark:text-blue-400" },
+    { text: t("homeRotatingDesigner"), cls: "text-pink-500 dark:text-pink-400" },
+    { text: t("homeRotatingTrainer"), cls: "text-amber-500 dark:text-amber-400" },
+    { text: t("homeRotatingDeveloper"), cls: "text-blue-500 dark:text-blue-400" },
   ]
   useEffect(() => {
     const t = setInterval(() => {
@@ -38,8 +43,8 @@ function AnimatedRole() {
     return () => clearInterval(t)
   }, [])
   return (
-    <p className="text-[17px] font-medium text-slate-500 dark:text-slate-400">
-      A Creative{" "}
+    <p className="text-xl font-medium text-slate-500 dark:text-slate-400">
+      {t("homeRotatingPrefix")}{" "}
       <span
         className={`font-semibold transition-all duration-300 inline-block ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"} ${roles[i].cls}`}
       >
@@ -89,7 +94,7 @@ export default function HomePageClient() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[92vh] flex items-center bg-white dark:bg-slate-950 overflow-hidden px-5 pt-24 pb-16">
+      <section className="relative min-h-[68vh] flex items-center bg-white dark:bg-slate-950 overflow-hidden px-5 pt-20 pb-10">
         <div className="pointer-events-none absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-accent-subtle dark:bg-accent/8 blur-[120px]" />
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.022] dark:opacity-[0.04]"
@@ -112,15 +117,15 @@ export default function HomePageClient() {
               <span className="text-accent">Mohamed Dhia</span>
             </h1>
             <AnimatedRole />
-            <p className="mt-5 mb-8 text-slate-500 dark:text-slate-400 text-[17px] leading-relaxed max-w-[420px]">
-              I design, train, and build — 7 years in Tunisia. Here to make brands clear and people sharper.
+            <p className="mt-5 mb-6 text-slate-500 dark:text-slate-400 text-xl leading-relaxed max-w-[480px]">
+              {t("homeHeroTagline")}
             </p>
             {/* Social proof micro-stats */}
             <div className="flex flex-wrap gap-x-6 gap-y-2 mt-1 mb-6">
               {[
-                { value: formatStat("participantsTrained"), label: "youth trained" },
-                { value: formatStat("designProjects"), label: "design projects" },
-                { value: formatStat("yearsExperience"), label: "years active" },
+                { value: formatStat("participantsTrained"), label: t("homeMicroYouth") },
+                { value: formatStat("designProjects"), label: t("homeMicroProjects") },
+                { value: formatStat("yearsExperience"), label: t("homeMicroYears") },
               ].map(({ value, label }) => (
                 <div key={label} className="flex items-center gap-1.5">
                   <span className="font-bold text-accent text-sm">{value}</span>
@@ -161,20 +166,20 @@ export default function HomePageClient() {
                 <Users className="w-5 h-5 text-accent" />
               </div>
               <div>
-                <p className="font-display font-black text-[17px] leading-none text-slate-900 dark:text-white">{siteConfig.stats.participants}+</p>
-                <p className="text-xs text-slate-400 mt-0.5">People trained</p>
+                <p className="font-display font-black text-[17px] leading-none text-slate-900 dark:text-white">{formatStat("participantsTrained")}</p>
+                <p className="text-xs text-slate-400 mt-0.5">{t("homePeopleTrained")}</p>
               </div>
             </div>
             <div className="absolute -top-4 -right-3 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl px-3.5 py-2.5 shadow-lg">
-              <p className="font-display font-black text-xl leading-none">{siteConfig.stats.yearsExperience}+</p>
-              <p className="text-slate-400 text-[10px] mt-0.5 tracking-wide">Yrs exp.</p>
+              <p className="font-display font-black text-xl leading-none">{formatStat("yearsExperience")}</p>
+              <p className="text-slate-400 text-[10px] mt-0.5 tracking-wide">{t("homeYrsExp")}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* My Expertise Bento */}
-      <section id="expertise" className="bg-section-tint py-20 px-4">
+      <section id="expertise" className="bg-section-tint section-compact px-4">
         <div className="max-w-5xl mx-auto">
           <FadeUp>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent text-center mb-2">
@@ -299,7 +304,7 @@ export default function HomePageClient() {
       </section>
 
       {/* Zia Studio — dedicated section */}
-      <section className="py-20 px-6 bg-[#0A0A0A] dark:bg-[#0A0A0A]">
+      <section className="section-compact px-6 bg-[#0A0A0A] dark:bg-[#0A0A0A]">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="flex-shrink-0 rounded-2xl overflow-hidden">
             <Image
@@ -339,7 +344,7 @@ export default function HomePageClient() {
       <ValueRadarChart />
 
       {/* Featured Testimonials */}
-      <section className="bg-white dark:bg-slate-950 py-20 px-5">
+      <section className="bg-white dark:bg-slate-950 section-compact px-5">
         <div className="max-w-5xl mx-auto">
           <p className="label text-center">What people say</p>
           <h2 className="font-serif text-[clamp(24px,3vw,38px)] text-center text-slate-900 dark:text-white leading-snug mb-12">

@@ -54,7 +54,7 @@ export default function DeveloperPageClient() {
 
       <main className="w-full pt-0">
         {/* Hero — dark terminal aesthetic */}
-        <section className="bg-slate-950 text-white min-h-[85vh] flex items-center px-6 py-24 relative overflow-hidden">
+        <section className="bg-slate-950 text-white min-h-[65vh] flex items-center px-6 py-16 section-compact relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#22c55e 1px, transparent 1px), linear-gradient(90deg, #22c55e 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
           <div className="pointer-events-none absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full bg-accent/8 blur-[100px]" />
           <div className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-14 items-center">
@@ -92,7 +92,7 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* Experience Section */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
+        <section className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-7xl mx-auto">
             <div className="space-y-16">
               <div className="text-center space-y-4">
@@ -140,7 +140,7 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* Websites & projects */}
-        <section id="projects" className="w-full py-16 md:py-24 px-4 md:px-8">
+        <section id="projects" className="w-full section-compact px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="space-y-10">
               <div className="text-center space-y-4">
@@ -217,7 +217,7 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* Languages & Tools — skill bars */}
-        <section className="bg-section-subtle dark:bg-slate-900 py-20 px-5">
+        <section className="bg-section-subtle dark:bg-slate-900 section-compact px-5">
           <div className="max-w-4xl mx-auto">
             <p className="label text-center">Technical Skills</p>
             <h2 className="font-serif text-[clamp(24px,3vw,38px)] text-center text-slate-900 dark:text-white leading-snug mb-12">
@@ -261,7 +261,7 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* Design-to-Development Bridge */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8">
+        <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-4xl mx-auto text-center md:text-left">
             <div className="space-y-8">
               <div className="space-y-4">
@@ -396,7 +396,7 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* CTA Section */}
-        <section className="w-full py-12 md:py-24 px-4 md:px-8">
+        <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold">
               Let's Build{" "}
@@ -437,7 +437,7 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* Contact Form Section */}
-        <section id="contact-form" className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
+        <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-8">
               <div className="text-center space-y-4 mx-auto max-w-2xl">

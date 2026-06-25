@@ -25,9 +25,81 @@
 .bg-section-subtle { background-color: #f5f5f5; }
 .dark .bg-section-subtle { background-color: #0A0A0A; }
 
-/* ─── SMOOTH TRANSITIONS for theme toggle (scoped to avoid hydration/layout issues) ─── */
-body, body * {
-  transition: background-color 0.25s ease, border-color 0.2s ease, color 0.15s ease, box-shadow 0.2s ease;
+/* ─── SMOOTH TRANSITIONS — theme only (not every element — perf) ─── */
+html.theme-transition,
+html.theme-transition body,
+html.theme-transition .card-base,
+html.theme-transition button,
+html.theme-transition a {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
+}
+
+/* ─── DARK MODE: readable muted text (no dark-on-dark) ─── */
+.dark .text-slate-500:not(.dark\:text-slate-400):not(.dark\:text-slate-300) {
+  color: hsl(var(--muted-foreground));
+}
+.dark .text-slate-400 {
+  color: hsl(var(--muted-foreground));
+}
+.dark .text-slate-600 {
+  color: hsl(var(--muted-foreground));
+}
+.dark .bg-slate-50 {
+  background-color: hsl(var(--card));
+}
+.dark .bg-slate-100 {
+  background-color: hsl(var(--muted));
+}
+
+/* ─── TYPOGRAPHY — readable desktop sizes ─── */
+@media (min-width: 1024px) {
+  html {
+    font-size: 20px;
+  }
+  body {
+    line-height: 1.65;
+  }
+  .label {
+    font-size: 13px;
+  }
+  .btn-green,
+  .btn-outline {
+    font-size: 16px;
+  }
+  .chip {
+    font-size: 16px;
+  }
+  /* Bump common utility sizes on desktop */
+  .text-xs {
+    font-size: 0.875rem;
+  }
+  .text-sm {
+    font-size: 1rem;
+  }
+  .text-base {
+    font-size: 1.125rem;
+  }
+  .text-lg {
+    font-size: 1.25rem;
+  }
+  .text-xl {
+    font-size: 1.375rem;
+  }
+  p:not([class*="text-"]) {
+    font-size: 1.0625rem;
+  }
+}
+
+/* ─── COMPACT SECTION SPACING ─── */
+.section-compact {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+@media (min-width: 1024px) {
+  .section-compact {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
 }
 
 /* ─── UNIFIED ACCENT (single green across site) ─── */
@@ -73,12 +145,12 @@ body, body * {
   border-color: #cbd5e1;
 }
 .dark .card-base {
-  background: #1e293b;
-  border-color: #334155;
+  background: hsl(var(--card));
+  border-color: hsl(var(--border));
   box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 .dark .card-base:hover {
-  border-color: #475569;
+  border-color: hsl(var(--muted-foreground) / 0.35);
   box-shadow: 0 12px 32px rgba(0,0,0,0.4);
 }
 .card-brand:hover {
@@ -240,8 +312,8 @@ body, body * {
   --foreground: 0 0% 96%;
   --card: 0 0% 11%;
   --card-foreground: 0 0% 96%;
-  --muted: 0 0% 22%;
-  --muted-foreground: 0 0% 72%;
+  --muted: 0 0% 18%;
+  --muted-foreground: 0 0% 78%;
   --accent: var(--zia-green);
   --accent-foreground: 0 0% 7%;
   --border: 0 0% 18%;

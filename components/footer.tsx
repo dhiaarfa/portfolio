@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Mail, Linkedin, Instagram, Calendar, MapPin, Heart } from "lucide-react"
+import { Mail, Linkedin, Instagram, Calendar, MapPin, Heart, Github } from "lucide-react"
 import { siteConfig } from "@/lib/site-config"
 import { useLanguage } from "@/components/language-provider"
 
@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer id="contact" className="w-full bg-slate-950 text-white">
       <div className="border-b border-slate-800">
-        <div className="max-w-5xl mx-auto px-6 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
             <p className="label text-accent mb-1">{t("footerLetsWork")}</p>
             <h3 className="font-display font-bold text-2xl sm:text-3xl text-white leading-snug">
@@ -59,6 +59,15 @@ export default function Footer() {
               aria-label="Instagram"
             >
               <Instagram className="w-4 h-4" />
+            </a>
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
+              aria-label="GitHub"
+            >
+              <Github className="w-4 h-4" />
             </a>
             <a
               href={`mailto:${siteConfig.email}`}

@@ -29,7 +29,7 @@ export default function TrainerClientPage() {
 
       <main className="w-full pt-0">
         {/* Hero — full-cover photo + overlaid text */}
-        <section className="relative min-h-[85vh] flex items-end overflow-hidden bg-slate-950">
+        <section className="relative min-h-[65vh] flex items-end overflow-hidden bg-slate-950">
           <div className="absolute inset-0 min-h-[400px]">
             <Image
               src="/images/photos/dhia-trainer-hero.png"
@@ -74,7 +74,7 @@ export default function TrainerClientPage() {
         </section>
 
         {/* Impact Metrics Grid - Moved earlier for emphasis */}
-        <section id="trainer-impact" className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
+        <section id="trainer-impact" className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-16"
@@ -111,7 +111,7 @@ export default function TrainerClientPage() {
         </section>
 
         {/* Evolution As An Educator Timeline - After impact metrics */}
-        <section id="journey" className="w-full py-12 md:py-24 px-4 md:px-8">
+        <section id="journey" className="w-full section-compact px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-16"
@@ -224,7 +224,7 @@ export default function TrainerClientPage() {
         </section>
 
         {/* Contact Form Section */}
-        <section id="contact-form" className="w-full py-12 md:py-24 px-4 md:px-8 bg-card">
+        <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-12">
               <div className="text-center space-y-4">
