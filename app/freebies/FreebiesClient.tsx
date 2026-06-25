@@ -150,7 +150,7 @@ function FreebiesClientInner() {
       </section>
 
       <section className="pb-20 px-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-5">
           {filtered.length === 0 ? (
             <p className="col-span-full text-center text-muted-foreground py-12">{t("freebies.empty")}</p>
           ) : (
@@ -161,7 +161,7 @@ function FreebiesClientInner() {
               return (
                 <div
                   key={freebie.id}
-                  className={`relative rounded-2xl border p-6 flex flex-col gap-4 transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer ${colors.bg} ${colors.border}`}
+                  className={`relative w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.833rem)] max-w-sm rounded-2xl border p-6 flex flex-col gap-4 transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer ${colors.bg} ${colors.border}`}
                   onClick={() => !isUnlocked && setSelectedFreebie(freebie)}
                 >
                   <span className={`self-start text-xs font-semibold px-2.5 py-1 rounded-full ${colors.badge}`}>
@@ -281,6 +281,7 @@ function FreebiesClientInner() {
                     onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
                     className="px-4 py-3.5 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground text-base focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
                   />
+                  <p className="text-xs text-muted-foreground -mt-1">{t("freebies.privacyNote")}</p>
                   <button
                     type="submit"
                     disabled={status === "loading"}

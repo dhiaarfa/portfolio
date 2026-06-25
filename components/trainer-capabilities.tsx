@@ -70,15 +70,9 @@ export default function TrainerCapabilities() {
   ]
 
   return (
-    <section className="w-full py-20 px-4 md:px-8 bg-background">
+    <section className="w-full section-compact px-4 md:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          className="space-y-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <motion.div className="space-y-16" initial={{ opacity: 1 }} viewport={{ once: true }}>
           <div className="space-y-4">
             <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
               {language === "fr" ? "Domaines de Compétence" : language === "ar" ? "مجالات الخبرة" : "Core Capabilities"}
@@ -118,11 +112,9 @@ export default function TrainerCapabilities() {
               return (
                 <motion.div
                   key={i}
-                  className="p-8 border border-border rounded-2xl hover:border-foreground/50 transition-all hover:bg-card/50 group"
+                  className="p-8 border border-border rounded-2xl hover:border-foreground/50 transition-all hover:bg-card/50 group h-full"
                   whileHover={{ y: -4 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  initial={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                 >
                   <div className="mb-6">

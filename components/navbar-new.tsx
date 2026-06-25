@@ -75,12 +75,12 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="flex items-center gap-1.5 flex-shrink-0">
+          <div className="flex items-center gap-2 flex-shrink-0">
             <a
               href={siteConfig.behance}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex w-9 h-9 rounded-full border border-slate-200 dark:border-slate-700 bg-[#1769FF] hover:brightness-110 items-center justify-center transition-all"
+              className="hidden md:flex w-9 h-9 rounded-full border border-slate-200 dark:border-slate-700 bg-[#1769FF] hover:brightness-110 items-center justify-center transition-all ml-1"
               aria-label="Behance portfolio"
               title="Behance"
             >

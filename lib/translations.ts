@@ -16,8 +16,8 @@ export const translations = {
     ziaStudio: "Zia Studio",
     basedInTunisia: "Based in Tunisia",
     scheduleCallDescription: "Schedule a 30-minute call—no obligation, just a conversation.",
-    bookFreeConsultation: "Book Free Consultation",
-    bookConsultation: "Book Consultation",
+    bookFreeConsultation: "Book a free call",
+    bookConsultation: "Book a free call",
 
     // Hero Section
     hello: "Hello, I'm Mohamed Dhia",
@@ -358,7 +358,8 @@ export const translations = {
     "insights.heroTitle": "Thoughts on design, training & the web.",
     "insights.subtitle": "Practical tips from real project experience — no fluff.",
     "insights.note": "Articles in progress — subscribe on the homepage newsletter to get the first post when it drops.",
-    "insights.comingSoon": "Coming soon",
+    "insights.readArticle": "Read article",
+    "freebies.privacyNote": "No spam — just the file. Unsubscribe anytime.",
     "insightsCatDesign": "Design",
     "insightsCatTraining": "Training",
     "insightsCatDev": "Development",
@@ -404,8 +405,8 @@ export const translations = {
     ziaStudio: "Zia Studio",
     basedInTunisia: "Basé en Tunisie",
     scheduleCallDescription: "Planifiez un appel de 30 minutes — sans engagement, juste une conversation.",
-    bookFreeConsultation: "Réserver une consultation gratuite",
-    bookConsultation: "Réserver une consultation",
+    bookFreeConsultation: "Réserver un appel gratuit",
+    bookConsultation: "Réserver un appel gratuit",
 
     // Hero Section
     hello: "Bonjour, je suis Mohamed Dhia",
@@ -747,7 +748,8 @@ export const translations = {
     "insights.heroTitle": "Réflexions sur le design, la formation et le web.",
     "insights.subtitle": "Conseils pratiques tirés de projets réels — sans blabla.",
     "insights.note": "Articles en cours — abonnez-vous à la newsletter sur la page d'accueil pour recevoir le premier article.",
-    "insights.comingSoon": "Bientôt disponible",
+    "insights.readArticle": "Lire l'article",
+    "freebies.privacyNote": "Pas de spam — juste le fichier. Désabonnement à tout moment.",
     "insightsCatDesign": "Design",
     "insightsCatTraining": "Formation",
     "insightsCatDev": "Développement",
@@ -793,8 +795,8 @@ export const translations = {
     ziaStudio: "Zia Studio",
     basedInTunisia: "مقيم في تونس",
     scheduleCallDescription: "احجز مكالمة لمدة 30 دقيقة — دون التزام، مجرد محادثة.",
-    bookFreeConsultation: "حجز استشارة مجانية",
-    bookConsultation: "حجز استشارة",
+    bookFreeConsultation: "احجز مكالمة مجانية",
+    bookConsultation: "احجز مكالمة مجانية",
 
     // Hero Section
     hello: "مرحباً، أنا محمد ضياء",
@@ -1136,7 +1138,8 @@ export const translations = {
     "insights.heroTitle": "أفكار حول التصميم والتدريب والويب.",
     "insights.subtitle": "نصائح عملية من مشاريع حقيقية — بدون كلام فارغ.",
     "insights.note": "مقالات قيد الإعداد — اشترك في النشرة على الصفحة الرئيسية لاستلام أول مقال.",
-    "insights.comingSoon": "قريباً",
+    "insights.readArticle": "اقرأ المقال",
+    "freebies.privacyNote": "لا رسائل مزعجة — فقط الملف. يمكنك إلغاء الاشتراك في أي وقت.",
     "insightsCatDesign": "تصميم",
     "insightsCatTraining": "تدريب",
     "insightsCatDev": "تطوير",

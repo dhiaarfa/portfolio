@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 
 export const FadeUp = ({
   children,
@@ -10,17 +10,20 @@ export const FadeUp = ({
   children: React.ReactNode
   delay?: number
   className?: string
-}) => (
-  <motion.div
-    initial={{ opacity: 0, y: 18 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-)
+}) => {
+  const prefersReducedMotion = useReducedMotion()
+  return (
+    <motion.div
+      initial={prefersReducedMotion ? false : { opacity: 1, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -80px 0px", amount: 0.15 }}
+      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}
 
 export const StaggerGrid = ({
   children,
@@ -29,15 +32,7 @@ export const StaggerGrid = ({
   children: React.ReactNode
   className?: string
 }) => (
-  <motion.div
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, margin: "-50px" }}
-    variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
-    className={className}
-  >
-    {children}
-  </motion.div>
+  <div className={className}>{children}</div>
 )
 
 export const StaggerItem = ({
@@ -46,14 +41,4 @@ export const StaggerItem = ({
 }: {
   children: React.ReactNode
   className?: string
-}) => (
-  <motion.div
-    variants={{
-      hidden: { opacity: 0, y: 20 },
-      visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-    }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-)
+}) => <div className={className}>{children}</div>

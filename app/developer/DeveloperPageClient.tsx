@@ -223,35 +223,43 @@ export default function DeveloperPageClient() {
             <h2 className="font-serif text-[clamp(24px,3vw,38px)] text-center text-slate-900 dark:text-white leading-snug mb-12">
               Languages & Tools
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
               {[
-                { cat: "Frontend", Icon: Monitor, bg: "bg-blue-50 dark:bg-blue-950/40", ic: "text-blue-600 dark:text-blue-400", tools: [{ n: "React / Next.js", v: 88 }, { n: "Tailwind CSS", v: 95 }, { n: "TypeScript", v: 72 }, { n: "Framer Motion", v: 68 }] },
-                { cat: "Tools & Backend", Icon: Server, bg: "bg-purple-50 dark:bg-purple-950/40", ic: "text-purple-600 dark:text-purple-400", tools: [{ n: "Git & GitHub", v: 85 }, { n: "Figma", v: 82 }, { n: "Node.js", v: 58 }, { n: "Vercel / Netlify", v: 78 }] },
+                {
+                  cat: "Frontend",
+                  Icon: Monitor,
+                  bg: "bg-blue-50 dark:bg-blue-950/40",
+                  ic: "text-blue-600 dark:text-blue-400",
+                  tools: ["React / Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
+                  level: "Comfortable",
+                },
+                {
+                  cat: "Tools & Backend",
+                  Icon: Server,
+                  bg: "bg-purple-50 dark:bg-purple-950/40",
+                  ic: "text-purple-600 dark:text-purple-400",
+                  tools: ["Git & GitHub", "Figma", "Node.js", "Vercel / Netlify"],
+                  level: "Working knowledge",
+                },
               ].map((col) => (
-                <div key={col.cat} className="card-base p-7">
-                  <div className="flex items-center gap-3 mb-6">
+                <div key={col.cat} className="card-base p-7 h-full flex flex-col">
+                  <div className="flex items-center gap-3 mb-2">
                     <div className={`w-10 h-10 ${col.bg} rounded-xl flex items-center justify-center`}>
                       <col.Icon className={`w-5 h-5 ${col.ic}`} />
                     </div>
-                    <h3 className="font-display font-semibold text-slate-900 dark:text-white">{col.cat}</h3>
+                    <div>
+                      <h3 className="font-display font-semibold text-slate-900 dark:text-white">{col.cat}</h3>
+                      <p className="text-xs text-muted-foreground">{col.level}</p>
+                    </div>
                   </div>
-                  <div className="space-y-4">
-                    {col.tools.map((t) => (
-                      <div key={t.n}>
-                        <div className="flex justify-between mb-1.5">
-                          <span className="text-sm text-slate-600 dark:text-slate-300 font-medium">{t.n}</span>
-                          <span className="text-xs text-slate-400">{t.v}%</span>
-                        </div>
-                        <div className="h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                          <motion.div
-                            className="h-full bg-accent dark:bg-green-400 rounded-full"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${t.v}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
-                          />
-                        </div>
-                      </div>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {col.tools.map((tool) => (
+                      <span
+                        key={tool}
+                        className="text-sm font-medium px-3 py-1.5 rounded-full bg-muted text-foreground border border-border"
+                      >
+                        {tool}
+                      </span>
                     ))}
                   </div>
                 </div>

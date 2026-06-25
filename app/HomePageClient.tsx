@@ -19,7 +19,6 @@ const ValueRadarChart = dynamic(() => import("@/components/value-radar-chart"), 
 })
 import FAQSection from "@/components/faq-section"
 import NewsletterSection from "@/components/newsletter-section"
-import TestimonialsTicker from "@/components/testimonials-ticker"
 import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
 
@@ -185,11 +184,14 @@ export default function HomePageClient() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent text-center mb-2">
               {t("myExpertise")}
             </p>
-            <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] text-center text-slate-900 dark:text-white leading-snug mb-12">
+            <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] text-center text-slate-900 dark:text-white leading-snug mb-4">
               Three specialized areas.
               <br />
               One cohesive vision.
             </h2>
+            <p className="text-center text-muted-foreground text-base lg:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
+              Design + training + development in one person means no hand-offs, one brand voice, and someone who can both make it and ship it.
+            </p>
           </FadeUp>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -330,9 +332,6 @@ export default function HomePageClient() {
 
       {/* Client Logos */}
       <ClientLogosStrip />
-
-      {/* Testimonials ticker – names & relations only */}
-      <TestimonialsTicker />
 
       {/* Stats */}
       <StatsSection />

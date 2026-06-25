@@ -380,7 +380,7 @@ export default function DesignerPageClient() {
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-12"
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
@@ -404,7 +404,7 @@ export default function DesignerPageClient() {
                     <motion.div
                       key={item.title}
                       className="relative bg-background rounded-2xl border border-[var(--site-accent)]/25 p-5 sm:p-6 hover:border-[var(--site-accent)] hover:-translate-y-1 transition-all shadow-sm"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 1, y: 0 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: i * 0.1 }}
                       viewport={{ once: true }}
@@ -432,7 +432,7 @@ export default function DesignerPageClient() {
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-16"
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
@@ -503,7 +503,7 @@ export default function DesignerPageClient() {
           <div className="max-w-4xl mx-auto">
             <motion.div
               className="space-y-10"
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
@@ -522,7 +522,7 @@ export default function DesignerPageClient() {
                     <motion.div
                       key={`${job.company}-${job.period}`}
                       className="relative pl-12"
-                      initial={{ opacity: 0, y: 12 }}
+                      initial={{ opacity: 1, y: 0 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: i * 0.08 }}
                       viewport={{ once: true }}
@@ -555,7 +555,7 @@ export default function DesignerPageClient() {
           <div className="max-w-4xl mx-auto">
             <motion.div
               className="space-y-8"
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
@@ -572,7 +572,7 @@ export default function DesignerPageClient() {
                   <motion.div
                     key={cert.title}
                     className="rounded-2xl border border-[var(--site-accent)]/20 bg-background p-4 text-left hover:border-[var(--site-accent)]/60 hover:-translate-y-1 transition-all"
-                    initial={{ opacity: 0, y: 16 }}
+                    initial={{ opacity: 1, y: 0 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: i * 0.05 }}
                     viewport={{ once: true }}
@@ -596,7 +596,7 @@ export default function DesignerPageClient() {
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-12"
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
@@ -615,7 +615,7 @@ export default function DesignerPageClient() {
                   <motion.div
                     key={i}
                     className="p-6 border border-border rounded-2xl hover:border-[var(--site-accent)]/40 transition-all"
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={{ opacity: 1, y: 0 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.08 }}
                     viewport={{ once: true }}
@@ -634,7 +634,7 @@ export default function DesignerPageClient() {
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="space-y-12"
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
