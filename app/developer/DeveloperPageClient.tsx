@@ -18,12 +18,12 @@ export default function DeveloperPageClient() {
 
   const webSites = [
     {
-      title: "DigiMyTech Talent Hub",
-      slug: "digimytech",
+      title: "Digimytch Talent Hub",
+      slug: "digimytch",
       description:
-        "AI-powered talent hub (PFE capstone): candidate profiles, opportunity matching, and OpenRouter-assisted workflows built with Next.js and Supabase.",
-      image: "/images/crit-thumbnail.png",
-      url: "https://github.com/dhiaarfa",
+        "AI-powered talent hub (PFE capstone): CV and cover-letter prep, skill matching, LinkedIn optimization, and application tracking. Built with Next.js, Supabase, and OpenRouter.",
+      image: "/images/projects/digimytch.png",
+      url: "https://digimytch.webflow.io/",
       repoUrl: "https://github.com/dhiaarfa",
       tech: "Next.js · Supabase · OpenRouter",
       isModal: false,
