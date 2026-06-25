@@ -9,13 +9,27 @@ import { siteConfig } from "@/lib/site-config"
 import { developerExperience } from "@/lib/profile"
 import CritProjectModal from "@/components/crit-project-modal"
 import BdafProjectModal from "@/components/bdaf-project-modal"
-import { Monitor, Box, Gauge, Server } from "lucide-react"
+import { Monitor, Box, Gauge, Server, ExternalLink, Github } from "lucide-react"
+import ToolsStackSection from "@/components/tools-stack-section"
 
 export default function DeveloperPageClient() {
   const [critModalOpen, setCritModalOpen] = useState(false)
   const [bdafModalOpen, setBdafModalOpen] = useState(false)
 
   const webSites = [
+    {
+      title: "DigiMyTech Talent Hub",
+      slug: "digimytech",
+      description:
+        "AI-powered talent hub (PFE capstone): candidate profiles, opportunity matching, and OpenRouter-assisted workflows built with Next.js and Supabase.",
+      image: "/images/crit-thumbnail.png",
+      url: "https://github.com/dhiaarfa",
+      repoUrl: "https://github.com/dhiaarfa",
+      tech: "Next.js · Supabase · OpenRouter",
+      isModal: false,
+      featured: true,
+      badge: "Featured · PFE",
+    },
     {
       title: "Best Dates and Fruits",
       slug: "bdaf",
@@ -191,21 +205,29 @@ export default function DeveloperPageClient() {
                       {/* Content */}
                       <div className="absolute inset-0 bg-gradient-to-tr from-[var(--site-accent)]/10 via-transparent to-emerald-200/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="relative z-10 space-y-3">
-                        <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center justify-between gap-3 flex-wrap">
                           <h3 className="font-bold text-xl">{site.title}</h3>
-                          <span className="inline-flex items-center justify-center px-3 py-1 text-[10px] font-semibold rounded-full bg-gradient-to-r from-[var(--site-accent)] to-emerald-500 text-white uppercase tracking-wide">
-                            Featured
-                          </span>
+                          {"badge" in site && site.badge ? (
+                            <span className="inline-flex items-center justify-center px-3 py-1 text-[10px] font-semibold rounded-full bg-gradient-to-r from-[var(--site-accent)] to-emerald-500 text-white uppercase tracking-wide">
+                              {site.badge}
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center justify-center px-3 py-1 text-[10px] font-semibold rounded-full bg-gradient-to-r from-[var(--site-accent)] to-emerald-500 text-white uppercase tracking-wide">
+                              Featured
+                            </span>
+                          )}
                         </div>
                         <p className="text-sm text-muted-foreground">{site.description}</p>
-                        <div className="flex items-center justify-between pt-2">
+                        <div className="flex items-center justify-between pt-2 flex-wrap gap-2">
                           <span className="inline-block text-xs font-medium px-3 py-1 bg-gradient-to-r from-[var(--site-accent)]/10 to-emerald-500/10 text-[var(--site-accent)] rounded-full">
                             {site.tech}
                           </span>
-                          <span className="text-xs font-medium flex items-center gap-1 bg-gradient-to-r from-[var(--site-accent)] to-emerald-500 bg-clip-text text-transparent group-hover:gap-2 transition-all">
-                            {site.isModal ? "View project details" : "Visit live site"}
-                            <span aria-hidden="true">{site.isModal ? "→" : "↗"}</span>
-                          </span>
+                          <div className="flex items-center gap-3">
+                            <span className="text-xs font-medium flex items-center gap-1 text-accent group-hover:gap-2 transition-all">
+                              {site.isModal ? "View project details" : "Visit live site"}
+                              <span aria-hidden="true">{site.isModal ? "→" : "↗"}</span>
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </Component>
@@ -216,57 +238,7 @@ export default function DeveloperPageClient() {
           </div>
         </section>
 
-        {/* Languages & Tools — skill bars */}
-        <section className="bg-section-subtle dark:bg-slate-900 section-compact px-5">
-          <div className="max-w-4xl mx-auto">
-            <p className="label text-center">Technical Skills</p>
-            <h2 className="font-serif text-[clamp(24px,3vw,38px)] text-center text-slate-900 dark:text-white leading-snug mb-12">
-              Languages & Tools
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
-              {[
-                {
-                  cat: "Frontend",
-                  Icon: Monitor,
-                  bg: "bg-blue-50 dark:bg-blue-950/40",
-                  ic: "text-blue-600 dark:text-blue-400",
-                  tools: ["React / Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
-                  level: "Comfortable",
-                },
-                {
-                  cat: "Tools & Backend",
-                  Icon: Server,
-                  bg: "bg-purple-50 dark:bg-purple-950/40",
-                  ic: "text-purple-600 dark:text-purple-400",
-                  tools: ["Git & GitHub", "Figma", "Node.js", "Vercel / Netlify"],
-                  level: "Working knowledge",
-                },
-              ].map((col) => (
-                <div key={col.cat} className="card-base p-7 h-full flex flex-col">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className={`w-10 h-10 ${col.bg} rounded-xl flex items-center justify-center`}>
-                      <col.Icon className={`w-5 h-5 ${col.ic}`} />
-                    </div>
-                    <div>
-                      <h3 className="font-display font-semibold text-slate-900 dark:text-white">{col.cat}</h3>
-                      <p className="text-xs text-muted-foreground">{col.level}</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {col.tools.map((tool) => (
-                      <span
-                        key={tool}
-                        className="text-sm font-medium px-3 py-1.5 rounded-full bg-muted text-foreground border border-border"
-                      >
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ToolsStackSection />
 
         {/* Design-to-Development Bridge */}
         <section className="w-full section-compact px-4 md:px-8">

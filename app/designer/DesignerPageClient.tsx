@@ -10,6 +10,7 @@ import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import dynamic from "next/dynamic"
 import ContactForm from "@/components/contact-form"
+import ToolsStackSection from "@/components/tools-stack-section"
 const SocialEmbedsSection = dynamic(() => import("@/components/social-embeds-section"), {
   loading: () => <div className="h-48 animate-pulse rounded-2xl bg-muted/30" />,
 })
@@ -33,7 +34,7 @@ export default function DesignerPageClient() {
   const designPhilosophy = [
     {
       title: "Brand Identity Systems",
-      description: "We don't just create logos—we build visual systems that evolve with your brand.",
+      description: "We don't just create logos. We build visual systems that evolve with your brand.",
     },
     {
       title: "Creative Direction",
@@ -338,7 +339,7 @@ export default function DesignerPageClient() {
                 Creative &<br /><span className="text-accent">Marketing</span>
               </h1>
               <p className="text-slate-400 text-[17px] leading-relaxed max-w-sm mb-10">
-                Brand identities, social media, training — clarity and impact for brands and people.
+                Brand identities, social media, training. Clarity and impact for brands and people.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a href="#gallery" className="btn-green">Browse Portfolio</a>
@@ -361,7 +362,7 @@ export default function DesignerPageClient() {
             </div>
           </div>
           <div className="relative order-1 lg:order-2 min-h-[50vh] lg:min-h-full overflow-hidden bg-slate-900">
-            <Image src="/images/photos/dhia-designer.png" alt="Dhia — Graphic Designer" fill className="object-cover object-center" priority />
+            <Image src="/images/photos/dhia-designer.png" alt="Dhia, Graphic Designer" fill className="object-cover object-center" priority />
             <div className="absolute inset-0 bg-gradient-to-r from-slate-950/20 to-transparent" />
             <div className="absolute bottom-6 right-6 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-xl">
               <p className="font-semibold text-slate-900 dark:text-white text-sm">@zia.studioo</p>
@@ -662,105 +663,7 @@ export default function DesignerPageClient() {
         <TrainingImpactChart />
 
         {/* ── TOOLS & STACK ── */}
-        <section className="py-16 px-6 bg-slate-50 dark:bg-slate-900">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2 text-center">
-              Tools & Stack
-            </p>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-10">
-              Software I work with daily
-            </h3>
-
-            {/* Design & Creative */}
-            <div className="mb-10">
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-5">
-                Design & Creative
-              </p>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
-                {[
-                  {
-                    name: "Figma",
-                    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
-                    level: 95,
-                  },
-                  {
-                    name: "Adobe Illustrator",
-                    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg",
-                    level: 90,
-                  },
-                  {
-                    name: "Adobe Photoshop",
-                    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg",
-                    level: 88,
-                  },
-                  {
-                    name: "Canva",
-                    icon: "/images/icons/canva.svg",
-                    level: 95,
-                  },
-                  {
-                    name: "Adobe InDesign",
-                    icon: "/images/icons/indesign.svg",
-                    level: 75,
-                  },
-                  {
-                    name: "Adobe After Effects",
-                    icon: "/images/icons/after-effects.svg",
-                    level: 65,
-                  },
-                ].map((tool) => (
-                  <div key={tool.name} className="flex flex-col items-center gap-2 group">
-                    <div className="w-14 h-14 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:-translate-y-1 transition-all p-3">
-                      <img src={tool.icon} alt={tool.name} className="w-full h-full object-contain" />
-                    </div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 text-center leading-tight">
-                      {tool.name}
-                    </p>
-                    <div className="w-12 h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-                      <div className="h-full bg-accent rounded-full" style={{ width: `${tool.level}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Productivity & Collaboration */}
-            <div>
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-5">
-                Productivity & Collaboration
-              </p>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
-                {[
-                  { name: "Notion", icon: "https://cdn.simpleicons.org/notion/000000", level: 90 },
-                  { name: "Trello", icon: "https://cdn.simpleicons.org/trello/0052CC", level: 85 },
-                  { name: "Slack", icon: "/images/icons/slack.svg", level: 80 },
-                  { name: "Behance", icon: "https://cdn.simpleicons.org/behance/1769FF", level: 95 },
-                  { name: "ChatGPT", icon: "/images/icons/openai.svg", level: 90 },
-                  { name: "Midjourney", icon: "/images/icons/midjourney.svg", level: 75 },
-                ].map((tool) => (
-                  <div key={tool.name} className="flex flex-col items-center gap-2 group">
-                    <div className="w-14 h-14 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:-translate-y-1 transition-all p-3">
-                      <img
-                        src={tool.icon}
-                        alt={tool.name}
-                        className="w-full h-full object-contain"
-                        onError={(e) => {
-                          e.currentTarget.style.display = "none"
-                        }}
-                      />
-                    </div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 text-center leading-tight">
-                      {tool.name}
-                    </p>
-                    <div className="w-12 h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-                      <div className="h-full bg-purple-500 rounded-full" style={{ width: `${tool.level}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        <ToolsStackSection />
 
         {/* CTA Section */}
         <section className="w-full section-compact px-4 md:px-8">
@@ -832,7 +735,7 @@ export default function DesignerPageClient() {
             <div>
               <p className="font-bold text-slate-900 dark:text-white">Free design templates</p>
               <p className="text-sm text-muted-foreground">
-                Brand brief, color guide, and social media kit — the same tools I use with clients.
+                Brand brief, color guide, and social media kit. The same tools I use with clients.
               </p>
             </div>
             <a

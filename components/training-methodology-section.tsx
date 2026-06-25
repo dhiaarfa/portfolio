@@ -1,6 +1,6 @@
 'use client'
 
-import { Brain, Users, Target, Repeat, MessageSquare, Lightbulb, Search, Rocket } from 'lucide-react'
+import { Brain, Users, Target, Repeat, MessageSquare, Lightbulb, Search, Rocket, RefreshCw, LayoutGrid, Globe } from 'lucide-react'
 
 // ─── Data ─────────────────────────────────────────────────────────────────
 
@@ -14,7 +14,7 @@ const pillars = [
     title: 'Needs Before Content',
     subtitle: 'Training Needs Assessment (TNA)',
     description:
-      "Every session starts with a question, not a slide deck. Before designing anything, I map what participants already know, what they misunderstand, what they need to do differently after the training, and what barriers they'll face when applying it. This is why my sessions feel relevant — because they are built around real gaps, not assumed ones.",
+      "Every session starts with a question, not a slide deck. Before designing anything, I map what participants already know, what they misunderstand, what they need to do differently after the training, and what barriers they'll face when applying it. This is why my sessions feel relevant: they are built around real gaps, not assumed ones.",
     quote: '"A training that doesn\'t answer a real need is just an event."',
   },
   {
@@ -26,7 +26,7 @@ const pillars = [
     title: 'Learning Through Experience',
     subtitle: "Kolb's Experiential Learning Cycle",
     description:
-      "I design sessions that follow the natural learning cycle: participants start with a lived experience or a physical activity, then reflect on it, then connect it to theory, then apply it in a new context. For example, instead of explaining learning styles by lecture, I have participants physically position themselves in the room based on how they prefer to learn — then we debrief and connect to theory. The insight lasts because it was felt first.",
+      "I design sessions that follow the natural learning cycle: participants start with a lived experience or a physical activity, then reflect on it, then connect it to theory, then apply it in a new context. For example, instead of explaining learning styles by lecture, I have participants physically position themselves in the room based on how they prefer to learn. Then we debrief and connect to theory. The insight lasts because it was felt first.",
     quote: '"People forget what they heard. They remember what they lived."',
   },
   {
@@ -38,7 +38,7 @@ const pillars = [
     title: 'Designing for Every Learner',
     subtitle: "McCarthy's 4MAT Instructional Design Model",
     description:
-      "Not everyone processes information the same way. Some participants need to understand why before engaging. Others want the theory immediately. Others learn by doing. Others by reflecting and imagining. I use the 4MAT framework — grounded in Kolb's theory and developed by Bernice McCarthy — to design sessions that move through all four quadrants: emotional connection → conceptual understanding → practical application → creative synthesis. No learner is left behind.",
+      "Not everyone processes information the same way. Some participants need to understand why before engaging. Others want the theory immediately. Others learn by doing. Others by reflecting and imagining. I use the 4MAT framework (grounded in Kolb's theory and developed by Bernice McCarthy) to design sessions that move through all four quadrants: emotional connection → conceptual understanding → practical application → creative synthesis. No learner is left behind.",
     quote: '"The best session design is one where every participant finds their entry point."',
   },
   {
@@ -50,7 +50,7 @@ const pillars = [
     title: 'Human-Centered Facilitation',
     subtitle: 'Group Dynamics & Psychological Safety',
     description:
-      "Content is only 30% of a training. The other 70% is the room: how people feel, who dominates, who stays silent, whether participants trust each other enough to be honest. I actively manage group dynamics — creating psychological safety from the first minute, using techniques to surface quiet voices, and redirecting dominant ones without embarrassment. My goal is to turn a group of strangers into a learning community.",
+      "Content is only 30% of a training. The other 70% is the room: how people feel, who dominates, who stays silent, whether participants trust each other enough to be honest. I actively manage group dynamics: creating psychological safety from the first minute, using techniques to surface quiet voices, and redirecting dominant ones without embarrassment. My goal is to turn a group of strangers into a learning community.",
     quote: '"You can have the best content in the world. If the room isn\'t safe, nothing lands."',
   },
   {
@@ -62,7 +62,7 @@ const pillars = [
     title: 'Training People to Train',
     subtitle: 'Train-the-Trainer & Cascade Methodology',
     description:
-      "Many of my sessions are designed with a multiplier effect in mind. I don't just train participants — I train future trainers. Through micro-training exercises, small-group session design, and structured peer feedback, participants leave not only with knowledge but with the ability and confidence to facilitate others. I have applied this approach in TNHRT (Training New Human Rights Trainers) workshops at international level.",
+      "Many of my sessions are designed with a multiplier effect in mind. I don't just train participants. I train future trainers. Through micro-training exercises, small-group session design, and structured peer feedback, participants leave not only with knowledge but with the ability and confidence to facilitate others. I have applied this approach in TNHRT (Training New Human Rights Trainers) workshops at international level.",
     quote: '"The most powerful outcome of a training is a room full of future trainers."',
   },
   {
@@ -74,7 +74,7 @@ const pillars = [
     title: 'Capable Actors, Not Informed Listeners',
     subtitle: 'Non-Formal Education & Action-Oriented Learning',
     description:
-      "The final measure of any training is not what participants know when they leave the room — it is what they do in the week after. Every session I design ends with a clear answer to: 'What will you do differently tomorrow?' I work in the non-formal education tradition, where learning is participatory, values-based, and connected to real-world action. Participants leave as advocates, facilitators, and change-makers.",
+      "The final measure of any training is not what participants know when they leave the room. It is what they do in the week after. Every session I design ends with a clear answer to: 'What will you do differently tomorrow?' I work in the non-formal education tradition, where learning is participatory, values-based, and connected to real-world action. Participants leave as advocates, facilitators, and change-makers.",
     quote: '"Information without action is trivia. Training should change behavior."',
   },
 ]
@@ -86,27 +86,31 @@ const frameworks = [
     description: 'The foundational model behind how adults learn through concrete experience, reflection, and application.',
     color: 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/30',
     textColor: 'text-green-700 dark:text-green-400',
+    Icon: RefreshCw,
   },
   {
     name: "McCarthy's 4MAT\nInstructional Design",
     year: '1979',
-    description: 'An 8-step learning cycle that ensures every session engages all learner types — from emotional connection to creative application.',
+    description: 'An 8-step learning cycle that ensures every session engages all learner types, from emotional connection to creative application.',
     color: 'border-purple-200 dark:border-purple-800 bg-purple-50/50 dark:bg-purple-950/30',
     textColor: 'text-purple-700 dark:text-purple-400',
+    Icon: LayoutGrid,
   },
   {
     name: "Dewey's Reflective\nPractice",
     year: '1933',
-    description: 'Learning as an active process of problem-solving, testing, and revising — not passive reception of information.',
+    description: 'Learning as an active process of problem-solving, testing, and revising, not passive reception of information.',
     color: 'border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/30',
     textColor: 'text-amber-700 dark:text-amber-400',
+    Icon: Lightbulb,
   },
   {
     name: 'Non-Formal Education\n(NFE) Principles',
     year: 'Council of Europe',
-    description: 'Participatory, values-based, learner-centered education outside formal systems — the tradition behind all youth and human rights training.',
+    description: 'Participatory, values-based, learner-centered education outside formal systems. The tradition behind youth and human rights training.',
     color: 'border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/30',
     textColor: 'text-blue-700 dark:text-blue-400',
+    Icon: Globe,
   },
 ]
 
@@ -130,7 +134,7 @@ export default function TrainingMethodologySection() {
               </h2>
             </div>
             <p className="text-slate-500 dark:text-slate-400 max-w-sm text-sm leading-relaxed lg:text-right">
-              Every session I design and facilitate is grounded in internationally recognized instructional design frameworks — adapted for real people, real needs, and real contexts.
+              Every session I design and facilitate is grounded in internationally recognized instructional design frameworks, adapted for real people, real needs, and real contexts.
             </p>
           </div>
         </div>
@@ -185,7 +189,7 @@ export default function TrainingMethodologySection() {
             How I Design Every Session
           </p>
           <h3 className="text-xl font-bold text-white text-center mb-10">
-            Kolb&apos;s Experiential Learning Cycle — in practice
+            Kolb&apos;s Experiential Learning Cycle in practice
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -220,7 +224,7 @@ export default function TrainingMethodologySection() {
                 textColor: 'text-purple-400',
                 Icon: Lightbulb,
                 description:
-                  'Now the theory is introduced — and it makes sense because participants already lived it.',
+                  'Now the theory is introduced, and it makes sense because participants already lived it.',
                 example: "VARK model, Kolb's theory, 4MAT framework",
               },
               {
@@ -268,7 +272,7 @@ export default function TrainingMethodologySection() {
 
           <div className="text-center mt-6">
             <span className="text-xs text-slate-500 italic">
-              ↺ This cycle repeats — each application becomes the next concrete experience
+              ↺ This cycle repeats. Each application becomes the next concrete experience
             </span>
           </div>
         </div>
@@ -291,8 +295,11 @@ export default function TrainingMethodologySection() {
             {frameworks.map((fw) => (
               <div
                 key={fw.name}
-                className={`rounded-2xl border p-5 ${fw.color}`}
+                className={`rounded-2xl border p-5 h-full hover:-translate-y-0.5 transition-transform ${fw.color}`}
               >
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-white/70 dark:bg-slate-900/40 ${fw.textColor}`}>
+                  <fw.Icon className="w-5 h-5" />
+                </div>
                 <p className={`text-xs font-bold uppercase tracking-wider mb-1 ${fw.textColor}`}>
                   {fw.year}
                 </p>

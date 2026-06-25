@@ -60,31 +60,27 @@ export default function CertificationsSection() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {certifications.map((cert, i) => (
               <motion.div
                 key={i}
-                className="p-6 border border-border rounded-2xl hover:border-foreground transition-colors"
+                className="p-5 border border-border rounded-2xl hover:border-accent/40 transition-colors flex items-center gap-4"
                 whileHover={{ y: -2 }}
               >
-                <div className="flex items-start gap-4">
-                  {cert.logo && (
-                    <div className="relative w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-foreground/5">
-                      <Image
-                        src={cert.logo || "/placeholder.svg"}
-                        alt={cert.organization}
-                        fill
-                        className="object-contain p-1"
-                      />
-                    </div>
-                  )}
-                  {!cert.logo && <Award className="h-5 w-5 mt-1 text-muted-foreground flex-shrink-0" />}
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg">{cert.title}</h3>
-                    <p className="text-sm text-muted-foreground">{cert.organization}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{cert.year}</p>
+                {cert.logo ? (
+                  <div className="relative w-16 h-16 flex-shrink-0 rounded-xl overflow-hidden bg-white ring-1 ring-border flex items-center justify-center p-2">
+                    <Image src={cert.logo} alt={cert.organization} width={56} height={56} className="object-contain w-full h-full" />
                   </div>
+                ) : (
+                  <Award className="h-8 w-8 text-muted-foreground flex-shrink-0" />
+                )}
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-base leading-snug">{cert.title}</h3>
+                  <p className="text-sm text-muted-foreground truncate">{cert.organization}</p>
                 </div>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-accent-subtle text-accent flex-shrink-0">
+                  {cert.year} ✓
+                </span>
               </motion.div>
             ))}
           </div>

@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Calendar, Menu, X } from 'lucide-react'
 import { ThemeToggle } from './theme-toggle'
 import { LanguageToggle } from './language-toggle'
 import { useLanguage } from './language-provider'
 import { siteConfig } from '@/lib/site-config'
+import { BehanceIcon } from '@/lib/brand-icon'
 
 const navLinks = [
   { labelKey: 'home', href: '/' },
@@ -25,6 +26,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30)
@@ -46,15 +48,17 @@ export default function Navbar() {
       >
         <div className="max-w-6xl mx-auto px-4 lg:px-5 flex items-center justify-between gap-3">
 
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
-            <div className="relative w-8 h-8 rounded-xl overflow-hidden flex-shrink-0 ring-2 ring-[color-mix(in_oklab,var(--site-accent)_30%,transparent)]">
-              <Image src="/images/photos/nav-avatar.png" alt="Mohamed Dhia" width={32} height={32} className="object-cover w-full h-full" priority />
-            </div>
-            <div className="hidden sm:block leading-tight">
-              <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none">Mohamed Dhia</p>
-              <p className="text-[10px] text-slate-400 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5">Designer · Trainer · Dev</p>
-            </div>
-          </Link>
+          <motion.div whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }} whileTap={prefersReducedMotion ? undefined : { scale: 0.92, rotate: -4 }}>
+            <Link href="/" className="flex items-center gap-2 flex-shrink-0 group" aria-label="Home">
+              <div className="relative w-9 h-9 rounded-xl overflow-hidden flex-shrink-0 ring-2 ring-[color-mix(in_oklab,var(--site-accent)_35%,transparent)]">
+                <Image src="/images/photos/nav-avatar.png" alt="Mohamed Dhia" width={36} height={36} className="object-cover w-full h-full" priority />
+              </div>
+              <div className="hidden sm:block leading-tight">
+                <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none">Mohamed Dhia</p>
+                <p className="text-[10px] text-slate-400 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5">Designer · Trainer · Dev</p>
+              </div>
+            </Link>
+          </motion.div>
 
           <nav className="hidden lg:flex items-center gap-0.5 bg-slate-100/90 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl px-1.5 py-1 border border-slate-200/60 dark:border-slate-700/60">
             {navLinks.map(link => {
@@ -84,7 +88,7 @@ export default function Navbar() {
               aria-label="Behance portfolio"
               title="Behance"
             >
-              <Image src="/img/tools/behance-logo.png" alt="" width={18} height={18} className="object-contain brightness-0 invert" />
+              <BehanceIcon size={18} color="#ffffff" />
             </a>
             <ThemeToggle />
             <LanguageToggle />
@@ -143,7 +147,7 @@ export default function Navbar() {
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold text-[#1769FF]"
               >
                 <span className="w-8 h-8 rounded-lg bg-[#1769FF] flex items-center justify-center">
-                  <Image src="/img/tools/behance-logo.png" alt="" width={16} height={16} className="brightness-0 invert" />
+                  <BehanceIcon size={16} className="text-white" />
                 </span>
                 Behance
               </a>

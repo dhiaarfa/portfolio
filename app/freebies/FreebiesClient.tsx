@@ -161,9 +161,22 @@ function FreebiesClientInner() {
               return (
                 <div
                   key={freebie.id}
-                  className={`relative w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.833rem)] max-w-sm rounded-2xl border p-6 flex flex-col gap-4 transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer ${colors.bg} ${colors.border}`}
+                  className={`relative overflow-hidden w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.833rem)] max-w-sm rounded-2xl border p-6 flex flex-col gap-4 transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer bg-card ${colors.border}`}
                   onClick={() => !isUnlocked && setSelectedFreebie(freebie)}
                 >
+                  <div className={`pointer-events-none absolute inset-0 ${freebie.color === "pink" ? "bg-rose-50/50 dark:bg-rose-950/20" : "bg-amber-50/50 dark:bg-amber-950/20"}`} />
+                  {freebie.bgImage && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={freebie.bgImage}
+                      alt=""
+                      className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.08] dark:opacity-[0.05]"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none"
+                      }}
+                    />
+                  )}
+                  <div className="relative z-10 flex flex-col gap-4 h-full">
                   <span className={`self-start text-xs font-semibold px-2.5 py-1 rounded-full ${colors.badge}`}>
                     {freebie.category === "design" ? t("freebiesCategoryDesign") : t("freebiesCategoryTraining")}
                   </span>
@@ -204,6 +217,7 @@ function FreebiesClientInner() {
                       {t("freebies.unlockBtn")}
                     </button>
                   )}
+                  </div>
                 </div>
               )
             })

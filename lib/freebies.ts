@@ -11,6 +11,7 @@ export type Freebie = {
   format: string
   benefit: string
   color: "pink" | "amber"
+  bgImage?: string
   delivery: FreebieDelivery
   published: boolean
 }
@@ -26,6 +27,7 @@ export const freebieCatalog: Freebie[] = [
     format: "PDF · 2 pages",
     benefit: "Saves 2 hours per project",
     color: "pink",
+    bgImage: "/images/freebies/brand-brief.jpg",
     delivery: { kind: "pdf", path: "/freebies/brand-brief-template.pdf" },
     published: true,
   },
@@ -39,6 +41,7 @@ export const freebieCatalog: Freebie[] = [
     format: "PDF · 8 pages",
     benefit: "Used in 50+ projects",
     color: "pink",
+    bgImage: "/images/freebies/color-psychology.jpg",
     delivery: { kind: "pdf", path: "/freebies/color-psychology-guide.pdf" },
     published: true,
   },
@@ -68,6 +71,7 @@ export const freebieCatalog: Freebie[] = [
     format: "PDF · 4 pages",
     benefit: "Based on 450+ hours",
     color: "amber",
+    bgImage: "/images/freebies/workshop-planning.jpg",
     delivery: { kind: "pdf", path: "/freebies/workshop-plan-template.pdf" },
     published: true,
   },
@@ -81,6 +85,7 @@ export const freebieCatalog: Freebie[] = [
     format: "PDF · 12 pages",
     benefit: "Tested with 1000+ youth",
     color: "amber",
+    bgImage: "/images/freebies/icebreakers.jpg",
     delivery: { kind: "pdf", path: "/freebies/icebreakers-guide.pdf" },
     published: true,
   },
@@ -94,6 +99,7 @@ export const freebieCatalog: Freebie[] = [
     format: "PDF · 1 page",
     benefit: "Never forget anything",
     color: "amber",
+    bgImage: "/images/freebies/checklist.jpg",
     delivery: { kind: "pdf", path: "/freebies/trainer-checklist.pdf" },
     published: true,
   },
