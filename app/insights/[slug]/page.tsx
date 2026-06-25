@@ -6,6 +6,7 @@ import Footer from "@/components/footer"
 import InsightArticleBody from "@/components/insight-article-body"
 import { insightBySlug, publishedInsightArticles } from "@/lib/insights"
 import { getInsightContent } from "@/lib/insights-content"
+import { insightEnExcerpts, insightEnTitles } from "@/lib/insight-en-copy"
 import { pageMetadata } from "@/lib/page-metadata"
 import { SITE_URL } from "@/lib/profile"
 
@@ -26,26 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = insightBySlug(slug)
   if (!article) return {}
 
-  const titles: Record<string, string> = {
-    insightsArticle1Title: "How brand colors affect trust (and how to choose yours)",
-    insightsArticle2Title: "5 facilitation mistakes that kill youth workshop energy",
-    insightsArticle3Title: "Why I rebuilt my portfolio in Next.js (and what I'd do differently)",
-  }
-  const excerpts: Record<string, string> = {
-    insightsArticle1Excerpt:
-      "Color psychology isn't magic — but it shapes first impressions. Here's the practical framework I use with clients.",
-    insightsArticle2Excerpt:
-      "After 1000+ youth sessions, these are the patterns that consistently drain engagement — and how to fix them.",
-    insightsArticle3Excerpt:
-      "A freelancer's honest take on static vs dynamic, i18n, and shipping fast without cutting corners.",
-  }
-
-  const title = titles[article.titleKey] ?? article.slug
-  const description = excerpts[article.excerptKey] ?? ""
+  const title = insightEnTitles[article.titleKey] ?? article.slug
+  const description = insightEnExcerpts[article.excerptKey] ?? ""
 
   return pageMetadata({
     path: `/insights/${slug}`,
-    title: `${title} | Insights — Mohamed Dhia`,
+    title: `${title} | Insights · Mohamed Dhia`,
     description,
     openGraph: { type: "article" },
   })
@@ -57,12 +44,7 @@ export default async function InsightArticlePage({ params }: Props) {
   const content = getInsightContent(slug)
   if (!article || !content) notFound()
 
-  const titles: Record<string, string> = {
-    insightsArticle1Title: "How brand colors affect trust (and how to choose yours)",
-    insightsArticle2Title: "5 facilitation mistakes that kill youth workshop energy",
-    insightsArticle3Title: "Why I rebuilt my portfolio in Next.js (and what I'd do differently)",
-  }
-  const title = titles[article.titleKey] ?? article.slug
+  const title = insightEnTitles[article.titleKey] ?? article.slug
   const url = `${SITE_URL}/insights/${slug}`
 
   const jsonLd = {

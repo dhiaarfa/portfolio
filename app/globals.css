@@ -420,7 +420,7 @@ html.theme-transition a {
   h4,
   h5,
   h6 {
-    @apply tracking-tight;
+    letter-spacing: 0.02em;
     font-family: 'Clash Display', system-ui, -apple-system, sans-serif;
   }
 
@@ -440,6 +440,7 @@ html.theme-transition a {
 /* Utility font classes */
 .font-display {
   font-family: 'Clash Display', system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.025em;
 }
 
 .font-heading {

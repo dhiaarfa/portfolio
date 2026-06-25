@@ -42,6 +42,36 @@ export const insightArticles: InsightArticleMeta[] = [
     date: "2026-06-01",
     published: true,
   },
+  {
+    slug: "social-media-visual-consistency",
+    category: "Design",
+    categoryKey: "insightsCatDesign",
+    readMin: 5,
+    titleKey: "insightsArticle4Title",
+    excerptKey: "insightsArticle4Excerpt",
+    date: "2026-06-15",
+    published: true,
+  },
+  {
+    slug: "training-needs-assessment-basics",
+    category: "Training",
+    categoryKey: "insightsCatTraining",
+    readMin: 5,
+    titleKey: "insightsArticle5Title",
+    excerptKey: "insightsArticle5Excerpt",
+    date: "2026-06-15",
+    published: true,
+  },
+  {
+    slug: "supabase-nextjs-for-freelancers",
+    category: "Development",
+    categoryKey: "insightsCatDev",
+    readMin: 6,
+    titleKey: "insightsArticle6Title",
+    excerptKey: "insightsArticle6Excerpt",
+    date: "2026-06-20",
+    published: true,
+  },
 ]
 
 export function publishedInsightArticles() {

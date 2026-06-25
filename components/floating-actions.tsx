@@ -53,15 +53,19 @@ export default function FloatingActions() {
   return (
     <>
       {chatOpen && (
-        <div className="fixed inset-0 z-[60] bg-black/40 md:bg-transparent md:pointer-events-none" onClick={() => setChatOpen(false)} aria-hidden />
+        <div
+          className="fixed inset-0 z-[60] bg-black/30 backdrop-blur-[2px]"
+          onClick={() => setChatOpen(false)}
+          aria-hidden
+        />
       )}
 
       {chatOpen && (
         <div
-          className="fixed bottom-[7.5rem] left-4 md:left-6 z-[70] w-[min(100vw-2rem,380px)] h-[min(62vh,480px)] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+          className="fixed bottom-[7.5rem] left-4 md:left-6 z-[70] w-[min(100vw-2rem,380px)] h-[min(62vh,480px)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-[0_24px_64px_rgba(0,0,0,0.28)] flex flex-col overflow-hidden isolate"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-slate-900 text-white">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-700 bg-slate-900 text-white shrink-0">
             <div>
               <p className="font-semibold text-sm">{t("chatTitle")}</p>
               <p className="text-xs opacity-90">{t("chatSubtitle")}</p>
@@ -70,12 +74,14 @@ export default function FloatingActions() {
               <X className="w-5 h-5" />
             </button>
           </div>
-          <div ref={listRef} className="flex-1 overflow-y-auto p-4 space-y-3 text-[15px]">
+          <div ref={listRef} className="flex-1 overflow-y-auto p-4 space-y-3 text-[15px] bg-white dark:bg-slate-900">
             {messages.map((m, i) => (
               <div
                 key={i}
                 className={`max-w-[90%] rounded-2xl px-3.5 py-2.5 leading-relaxed ${
-                  m.role === "user" ? "ml-auto bg-accent text-white" : "mr-auto bg-muted text-foreground"
+                  m.role === "user"
+                    ? "ml-auto bg-accent text-white"
+                    : "mr-auto bg-slate-100 dark:bg-slate-800 text-foreground"
                 }`}
               >
                 {m.content}
@@ -89,7 +95,7 @@ export default function FloatingActions() {
             {error && <p className="text-sm text-red-500">{error}</p>}
           </div>
           <form
-            className="p-3 border-t border-border flex gap-2"
+            className="p-3 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 flex gap-2 shrink-0"
             onSubmit={(e) => {
               e.preventDefault()
               send()

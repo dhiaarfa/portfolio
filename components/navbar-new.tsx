@@ -147,7 +147,7 @@ export default function Navbar() {
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold text-[#1769FF]"
               >
                 <span className="w-8 h-8 rounded-lg bg-[#1769FF] flex items-center justify-center">
-                  <BehanceIcon size={16} className="text-white" />
+                  <BehanceIcon size={16} color="#ffffff" />
                 </span>
                 Behance
               </a>
