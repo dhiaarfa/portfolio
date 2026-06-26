@@ -1,7 +1,6 @@
 "use client"
 
 import { useMemo } from "react"
-import Image from "next/image"
 import { Calendar } from "lucide-react"
 import { motion, useReducedMotion } from "framer-motion"
 import { BasedInTunisia } from "@/components/based-in-tunisia"
@@ -189,14 +188,14 @@ function ConnectorLines({
 
 function PortraitImage({ src, priority = true }: { src: string; priority?: boolean }) {
   return (
-    <Image
+    // Native img preserves PNG alpha — no optimizer, no fill container bleed
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
       src={src}
       alt="Mohamed Dhia Arfa — designer, trainer, and web developer"
-      fill
-      priority={priority}
-      unoptimized
-      sizes="(min-width: 1024px) 420px, 280px"
-      className="object-contain object-center select-none"
+      className="h-full w-full object-contain object-center select-none bg-transparent"
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
     />
   )
 }

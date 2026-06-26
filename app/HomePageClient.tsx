@@ -12,7 +12,6 @@ import { formatStat } from "@/lib/profile"
 import dynamic from "next/dynamic"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import HeroAnnotatedPortrait from "@/components/hero-annotated-portrait"
-import { BasedInTunisia } from "@/components/based-in-tunisia"
 import StatsSection from "@/components/stats-section"
 import ServicePackages from "@/components/service-packages"
 const ValueRadarChart = dynamic(() => import("@/components/value-radar-chart"), {
@@ -102,7 +101,7 @@ export default function HomePageClient() {
               <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-75" />
               <span className="relative h-2 w-2 rounded-full bg-accent" />
             </span>
-            Open to new projects · <BasedInTunisia />
+            {t("availableForProjects")}
           </div>
           <h1 className="font-display font-extrabold text-[clamp(36px,6vw,64px)] leading-[0.96] tracking-tight text-slate-900 dark:text-white mb-2">
             Hello, I&apos;m{" "}

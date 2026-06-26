@@ -1,25 +1,25 @@
 "use client"
 
+import Image from "next/image"
 import { useLanguage } from "@/components/language-provider"
 
+const TUNISIA_FLAG_SRC = "/images/flags/tunisia.png"
+
 export function TunisiaFlag({
-  className = "inline-block h-[0.85em] w-[1.25em] rounded-[2px] shadow-sm align-[-0.15em]",
+  className = "inline-block h-[0.9em] w-[1.35em] rounded-[2px] shadow-sm align-[-0.12em] object-cover",
 }: {
   className?: string
 }) {
   return (
-    <svg
+    <Image
+      src={TUNISIA_FLAG_SRC}
+      alt=""
+      width={27}
+      height={18}
+      unoptimized
       className={className}
-      viewBox="0 0 900 600"
-      role="img"
-      aria-label="Tunisia"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect width="900" height="600" fill="#E70013" />
-      <circle cx="450" cy="300" r="180" fill="#fff" />
-      <circle cx="495" cy="300" r="150" fill="#E70013" />
-      <path fill="#fff" d="M545 300l55 18-34-48 34-48-55 18-21-52v104z" />
-    </svg>
+      aria-hidden
+    />
   )
 }
 
