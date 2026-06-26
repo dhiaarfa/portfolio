@@ -24,6 +24,12 @@ import {
 } from "simple-icons"
 import { LOCAL_ICON_SVGS } from "@/lib/local-icon-svgs"
 
+/** High-fidelity PNGs for Adobe apps where inline SVG colors were wrong */
+const LOCAL_ICON_IMAGES: Record<string, string> = {
+  adobeindesign: "/images/icons/indesign.png",
+  adobeaftereffects: "/images/icons/adobe-after-effects.png",
+}
+
 export type BrandIconProps = {
   slug: string
   size?: number
@@ -101,6 +107,21 @@ function SiSvg({
 
 export default function BrandIcon({ slug, size = 28, className = "", mono, color }: BrandIconProps) {
   const key = slug.toLowerCase()
+  const png = LOCAL_ICON_IMAGES[key]
+  if (png) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={png}
+        alt=""
+        width={size}
+        height={size}
+        className={`object-contain rounded-[5px] ${className}`}
+        loading="lazy"
+      />
+    )
+  }
+
   const localSvg = LOCAL_ICON_SVGS[key]
   if (localSvg) {
     return <InlineSvgMarkup svg={localSvg} size={size} className={className} />

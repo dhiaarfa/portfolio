@@ -65,7 +65,7 @@ export default function Navbar() {
               const active = pathname === link.href
               return (
                 <Link key={link.href} href={link.href}
-                  className="relative px-2.5 py-1.5 rounded-xl text-[13px] font-medium whitespace-nowrap transition-colors duration-150 select-none">
+                  className="relative px-2 py-1.5 rounded-xl text-[12px] xl:text-[13px] font-medium whitespace-nowrap transition-colors duration-150 select-none">
                   {active && (
                     <span className="absolute inset-0 bg-white dark:bg-slate-700 rounded-xl shadow-sm" />
                   )}
