@@ -18,6 +18,7 @@ export const translations = {
     scheduleCallDescription: "Schedule a 30-minute call. No obligation, just a conversation.",
     bookFreeConsultation: "Book a free call",
     bookConsultation: "Book a free call",
+    bookWorkshop: "Book a workshop",
 
     // Hero Section
     hello: "Hello, I'm Mohamed Dhia",
@@ -438,6 +439,7 @@ export const translations = {
     scheduleCallDescription: "Planifiez un appel de 30 minutes. Sans engagement, juste une conversation.",
     bookFreeConsultation: "Réserver un appel gratuit",
     bookConsultation: "Réserver un appel gratuit",
+    bookWorkshop: "Réserver un atelier",
 
     // Hero Section
     hello: "Bonjour, je suis Mohamed Dhia",
@@ -859,6 +861,7 @@ export const translations = {
     scheduleCallDescription: "احجز مكالمة لمدة 30 دقيقة. دون التزام، مجرد محادثة.",
     bookFreeConsultation: "احجز مكالمة مجانية",
     bookConsultation: "احجز مكالمة مجانية",
+    bookWorkshop: "احجز ورشة",
 
     // Hero Section
     hello: "مرحباً، أنا محمد ضياء",

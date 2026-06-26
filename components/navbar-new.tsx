@@ -99,7 +99,7 @@ export default function Navbar() {
               className="hidden md:inline-flex btn-green text-xs px-3.5 py-2 !rounded-xl !gap-1.5 whitespace-nowrap"
             >
               <Calendar className="w-3.5 h-3.5" />
-              {t("bookConsultation")}
+              {pathname === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
             </a>
 
             <button
