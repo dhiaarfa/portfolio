@@ -72,6 +72,36 @@ export const insightArticles: InsightArticleMeta[] = [
     date: "2026-06-20",
     published: true,
   },
+  {
+    slug: "brand-guidelines-that-get-used",
+    category: "Design",
+    categoryKey: "insightsCatDesign",
+    readMin: 5,
+    titleKey: "insightsArticle7Title",
+    excerptKey: "insightsArticle7Excerpt",
+    date: "2026-06-22",
+    published: true,
+  },
+  {
+    slug: "icebreakers-vs-energizers",
+    category: "Training",
+    categoryKey: "insightsCatTraining",
+    readMin: 4,
+    titleKey: "insightsArticle8Title",
+    excerptKey: "insightsArticle8Excerpt",
+    date: "2026-06-22",
+    published: true,
+  },
+  {
+    slug: "client-chatbot-with-openrouter",
+    category: "Development",
+    categoryKey: "insightsCatDev",
+    readMin: 5,
+    titleKey: "insightsArticle9Title",
+    excerptKey: "insightsArticle9Excerpt",
+    date: "2026-06-24",
+    published: true,
+  },
 ]
 
 export function publishedInsightArticles() {

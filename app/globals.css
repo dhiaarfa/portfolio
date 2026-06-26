@@ -420,7 +420,7 @@ html.theme-transition a {
   h4,
   h5,
   h6 {
-    letter-spacing: 0.02em;
+    letter-spacing: 0.035em;
     font-family: 'Clash Display', system-ui, -apple-system, sans-serif;
   }
 
@@ -440,7 +440,7 @@ html.theme-transition a {
 /* Utility font classes */
 .font-display {
   font-family: 'Clash Display', system-ui, -apple-system, sans-serif;
-  letter-spacing: 0.025em;
+  letter-spacing: 0.04em;
 }
 
 .font-heading {
@@ -449,6 +449,7 @@ html.theme-transition a {
 
 .font-body {
   font-family: 'Satoshi', var(--font-cairo), system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.012em;
 }
 
 /* Card shadows from design token system */

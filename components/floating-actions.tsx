@@ -54,7 +54,7 @@ export default function FloatingActions() {
     <>
       {chatOpen && (
         <div
-          className="fixed inset-0 z-[60] bg-black/30 backdrop-blur-[2px]"
+          className="fixed inset-0 z-[60] bg-black/45 backdrop-blur-sm"
           onClick={() => setChatOpen(false)}
           aria-hidden
         />
@@ -62,40 +62,45 @@ export default function FloatingActions() {
 
       {chatOpen && (
         <div
-          className="fixed bottom-[7.5rem] left-4 md:left-6 z-[70] w-[min(100vw-2rem,380px)] h-[min(62vh,480px)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-[0_24px_64px_rgba(0,0,0,0.28)] flex flex-col overflow-hidden isolate"
+          className="fixed bottom-[7.5rem] left-4 md:left-6 z-[70] w-[min(100vw-2rem,380px)] h-[min(62vh,480px)] flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.35)] ring-1 ring-black/10 dark:border-slate-600 dark:bg-slate-900 dark:ring-white/10"
           onClick={(e) => e.stopPropagation()}
+          role="dialog"
+          aria-label={t("chatTitle")}
         >
-          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-700 bg-slate-900 text-white shrink-0">
+          <div className="flex shrink-0 items-center justify-between border-b border-slate-200 bg-slate-900 px-4 py-3 text-white dark:border-slate-700">
             <div>
-              <p className="font-semibold text-sm">{t("chatTitle")}</p>
+              <p className="text-sm font-semibold">{t("chatTitle")}</p>
               <p className="text-xs opacity-90">{t("chatSubtitle")}</p>
             </div>
-            <button type="button" onClick={() => setChatOpen(false)} className="p-1.5 rounded-lg hover:bg-white/20" aria-label="Close chat">
-              <X className="w-5 h-5" />
+            <button type="button" onClick={() => setChatOpen(false)} className="rounded-lg p-1.5 hover:bg-white/20" aria-label="Close chat">
+              <X className="h-5 w-5" />
             </button>
           </div>
-          <div ref={listRef} className="flex-1 overflow-y-auto p-4 space-y-3 text-[15px] bg-white dark:bg-slate-900">
+          <div
+            ref={listRef}
+            className="flex-1 space-y-3 overflow-y-auto bg-slate-100 p-4 text-[15px] dark:bg-slate-950"
+          >
             {messages.map((m, i) => (
               <div
                 key={i}
-                className={`max-w-[90%] rounded-2xl px-3.5 py-2.5 leading-relaxed ${
+                className={`max-w-[92%] rounded-2xl px-3.5 py-2.5 leading-relaxed shadow-sm ${
                   m.role === "user"
                     ? "ml-auto bg-accent text-white"
-                    : "mr-auto bg-slate-100 dark:bg-slate-800 text-foreground"
+                    : "mr-auto border border-slate-200 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 }`}
               >
                 {m.content}
               </div>
             ))}
             {loading && (
-              <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                <Loader2 className="w-4 h-4 animate-spin" /> {t("chatThinking")}
+              <div className="flex items-center gap-2 text-sm text-slate-500">
+                <Loader2 className="h-4 w-4 animate-spin" /> {t("chatThinking")}
               </div>
             )}
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
           </div>
           <form
-            className="p-3 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 flex gap-2 shrink-0"
+            className="flex shrink-0 gap-2 border-t border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-900"
             onSubmit={(e) => {
               e.preventDefault()
               send()
@@ -106,17 +111,17 @@ export default function FloatingActions() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={t("chatPlaceholder")}
-              className="flex-1 px-3 py-2.5 rounded-xl border border-border bg-background text-foreground text-[15px] focus:outline-none focus:ring-2 focus:ring-accent/40"
+              className="flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-[15px] text-slate-900 focus:outline-none focus:ring-2 focus:ring-accent/40 dark:border-slate-600 dark:bg-slate-800 dark:text-white"
               disabled={loading}
             />
-            <button type="submit" disabled={loading || !input.trim()} className="p-2.5 rounded-xl bg-accent text-white disabled:opacity-50" aria-label="Send">
-              <Send className="w-5 h-5" />
+            <button type="submit" disabled={loading || !input.trim()} className="rounded-xl bg-accent p-2.5 text-white disabled:opacity-50" aria-label="Send">
+              <Send className="h-5 w-5" />
             </button>
           </form>
         </div>
       )}
 
-      <div className="fixed bottom-5 left-4 md:left-6 z-50 flex flex-col gap-3 safe-area-pb">
+      <div className="fixed bottom-5 left-4 z-50 flex flex-col gap-3 md:left-6">
         <a
           href={whatsappUrl}
           target="_blank"

@@ -1,78 +1,114 @@
-"use client"
-
-import * as icons from "simple-icons"
+import {
+  siBehance,
+  siFigma,
+  siBlender,
+  siClaude,
+  siOpenrouter,
+  siReact,
+  siNextdotjs,
+  siTypescript,
+  siTailwindcss,
+  siFramer,
+  siNodedotjs,
+  siSupabase,
+  siVercel,
+  siGit,
+  siGithub,
+  siNotion,
+  siTrello,
+  siMiro,
+  siLoom,
+  siKahoot,
+  siGoogleslides,
+  siWhatsapp,
+} from "simple-icons"
+import { LOCAL_ICON_SVGS } from "@/lib/local-icon-svgs"
 
 export type BrandIconProps = {
-  /** Brand slug, e.g. "figma", "nextdotjs", "openai" */
   slug: string
   size?: number
   className?: string
-  /** Force single color (e.g. white on colored button) */
   mono?: boolean
   color?: string
 }
 
-/** Brands removed from simple-icons — served locally (devicon / custom SVG). */
-const LOCAL_ICON_PATHS: Record<string, string> = {
-  adobeillustrator: "/images/icons/adobe-illustrator.svg",
-  adobephotoshop: "/images/icons/adobe-photoshop.svg",
-  adobeindesign: "/images/icons/indesign.svg",
-  adobeaftereffects: "/images/icons/adobe-after-effects.svg",
-  adobelightroomclassic: "/images/icons/adobe-lightroom.svg",
-  canva: "/images/icons/canva.svg",
-  openai: "/images/icons/openai.svg",
-  midjourney: "/images/icons/midjourney.svg",
-  slack: "/images/icons/slack.svg",
+type SiIcon = { path: string; hex: string; title: string; slug?: string }
+
+const SI_BY_SLUG: Record<string, SiIcon> = {
+  figma: siFigma,
+  blender: siBlender,
+  claude: siClaude,
+  openrouter: siOpenrouter,
+  react: siReact,
+  nextdotjs: siNextdotjs,
+  typescript: siTypescript,
+  tailwindcss: siTailwindcss,
+  framer: siFramer,
+  nodedotjs: siNodedotjs,
+  supabase: siSupabase,
+  vercel: siVercel,
+  git: siGit,
+  github: siGithub,
+  notion: siNotion,
+  trello: siTrello,
+  miro: siMiro,
+  loom: siLoom,
+  behance: siBehance,
+  kahoot: siKahoot,
+  googleslides: siGoogleslides,
+  whatsapp: siWhatsapp,
 }
 
-function slugToSiKey(slug: string): string {
-  const normalized = slug.toLowerCase().replace(/\./g, "dot").replace(/-/g, "")
-  const parts = normalized.match(/[a-z0-9]+/g) ?? []
-  return "si" + parts.map((p) => p.charAt(0).toUpperCase() + p.slice(1)).join("")
+function InlineSvgMarkup({ svg, size, className }: { svg: string; size: number; className?: string }) {
+  const sized = svg.replace(/<svg\b/, `<svg width="${size}" height="${size}"`)
+  return (
+    <span
+      className={`inline-flex shrink-0 items-center justify-center [&>svg]:block ${className ?? ""}`}
+      style={{ width: size, height: size }}
+      aria-hidden
+      dangerouslySetInnerHTML={{ __html: sized }}
+    />
+  )
 }
 
-export function getSimpleIcon(slug: string) {
-  const key = slugToSiKey(slug)
-  const direct = (icons as Record<string, { path: string; hex: string; title: string; slug?: string }>)[key]
-  if (direct) return direct
-
-  const all = Object.values(icons as Record<string, { path: string; hex: string; title: string; slug?: string }>)
-  return all.find((icon) => icon.slug === slug) ?? null
+function SiSvg({
+  icon,
+  size,
+  className,
+  mono,
+  color,
+}: {
+  icon: SiIcon
+  size: number
+  className?: string
+  mono?: boolean
+  color?: string
+}) {
+  return (
+    <svg
+      role="img"
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill={color ?? (mono ? "currentColor" : `#${icon.hex}`)}
+      className={className}
+      aria-label={icon.title}
+    >
+      <path d={icon.path} />
+    </svg>
+  )
 }
 
 export default function BrandIcon({ slug, size = 28, className = "", mono, color }: BrandIconProps) {
-  const localPath = LOCAL_ICON_PATHS[slug.toLowerCase()]
-  if (localPath) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={localPath}
-        alt=""
-        width={size}
-        height={size}
-        className={`object-contain ${className}`}
-        loading="lazy"
-        draggable={false}
-      />
-    )
+  const key = slug.toLowerCase()
+  const localSvg = LOCAL_ICON_SVGS[key]
+  if (localSvg) {
+    return <InlineSvgMarkup svg={localSvg} size={size} className={className} />
   }
 
-  const icon = getSimpleIcon(slug)
-
-  if (icon?.path) {
-    return (
-      <svg
-        role="img"
-        viewBox="0 0 24 24"
-        width={size}
-        height={size}
-        fill={color ?? (mono ? "currentColor" : `#${icon.hex}`)}
-        className={className}
-        aria-label={icon.title}
-      >
-        <path d={icon.path} />
-      </svg>
-    )
+  const icon = SI_BY_SLUG[key]
+  if (icon) {
+    return <SiSvg icon={icon} size={size} className={className} mono={mono} color={color} />
   }
 
   return (
@@ -84,23 +120,15 @@ export default function BrandIcon({ slug, size = 28, className = "", mono, color
       height={size}
       className={`object-contain ${className}`}
       loading="lazy"
-      onError={(e) => {
-        e.currentTarget.style.display = "none"
-      }}
     />
   )
 }
 
 export function WhatsAppIcon({ size = 28, className = "" }: { size?: number; className?: string }) {
-  const icon = getSimpleIcon("whatsapp")
-  if (!icon) return null
-  return (
-    <svg role="img" viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className} aria-label="WhatsApp">
-      <path d={icon.path} />
-    </svg>
-  )
+  return <SiSvg icon={siWhatsapp} size={size} className={className} mono color="currentColor" />
 }
 
+/** Compact Behance “Bē” mark for nav buttons */
 export function BehanceIcon({
   size = 20,
   className = "",
@@ -110,11 +138,17 @@ export function BehanceIcon({
   className?: string
   color?: string
 }) {
-  const icon = getSimpleIcon("behance")
-  if (!icon) return null
   return (
-    <svg role="img" viewBox="0 0 24 24" width={size} height={size} fill={color} className={className} aria-label="Behance">
-      <path d={icon.path} />
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill={color}
+      className={className}
+      role="img"
+      aria-label="Behance"
+    >
+      <path d="M6.938 5.918H12.1c2.15 0 3.548 1.14 3.548 3.035 0 1.3-.637 2.2-1.672 2.613 1.472.413 2.404 1.472 2.404 3.142 0 2.25-1.695 3.692-4.316 3.692H6.938V5.918zm2.905 5.34h1.695c.945 0 1.53-.472 1.53-1.342 0-.855-.585-1.342-1.53-1.342h-1.695v2.684zm0 5.58h1.83c1.155 0 1.875-.585 1.875-1.605 0-1.035-.72-1.62-1.875-1.62h-1.83v3.225zM15.878 7.05h5.565v1.35h-5.565V7.05zm.285 3.75h5.25v1.305h-5.25V10.8z" />
     </svg>
   )
 }

@@ -89,13 +89,13 @@ export default function AboutPageClient() {
 
       <div className="pt-[5.5rem]">
         {/* Hero — editorial polaroid layout */}
-        <section className="bg-white dark:bg-slate-950 pb-10 px-6">
+        <section className="bg-white dark:bg-slate-950 pb-6 px-6">
           <div className="max-w-5xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-1.5 text-slate-400 text-sm hover:text-accent mb-6 transition-colors group">
+            <Link href="/" className="inline-flex items-center gap-1.5 text-slate-400 text-sm hover:text-accent mb-4 transition-colors group">
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform rtl:rotate-180" />
               {t("backToHome")}
             </Link>
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_260px] gap-12 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_260px] gap-8 items-start">
               <div>
                 <p className="label mb-3">{t("aboutPersonBehind")}</p>
                 <h1 className="font-display font-extrabold text-[clamp(40px,7vw,78px)] leading-[0.93] text-slate-900 dark:text-white mb-4">
@@ -123,10 +123,10 @@ export default function AboutPageClient() {
         </section>
 
         {/* Core Values — icon tiles */}
-        <section className="bg-section-tint dark:bg-[#052e16] py-10 px-6">
+        <section className="bg-section-tint dark:bg-[#052e16] py-7 px-6">
           <div className="max-w-5xl mx-auto">
             <p className="label text-center">{t("coreValues")}</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
               {[
                 { Icon: Zap, label: t("impactDriven"), desc: t("impactDrivenDesc"), bg: "bg-accent-subtle/40", ic: "text-accent" },
                 { Icon: Star, label: t("excellence"), desc: t("excellenceDesc"), bg: "bg-amber-50 dark:bg-amber-950/40", ic: "text-amber-600 dark:text-amber-400" },
@@ -146,14 +146,14 @@ export default function AboutPageClient() {
         </section>
 
         {/* Professional Journey */}
-        <section className="px-4 md:px-8 py-10">
+        <section className="px-4 md:px-8 py-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">{t("myJourney")}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-5 text-center">{t("myJourney")}</h2>
 
             {/* ── EDUCATION TIMELINE ── */}
-            <section className="py-6 px-0">
+            <section className="py-4 px-0">
               <div className="max-w-3xl mx-auto">
-                <div className="flex items-center gap-3 mb-10">
+                <div className="flex items-center gap-3 mb-6">
                   <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950 flex items-center justify-center flex-shrink-0">
                     <GraduationCap className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
@@ -164,7 +164,7 @@ export default function AboutPageClient() {
                   {/* Vertical line */}
                   <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-slate-200 to-transparent dark:via-slate-700" />
 
-                  <div className="flex flex-col gap-8">
+                  <div className="flex flex-col gap-6">
                     {[
                       {
                         year: "2023 – 2026",
@@ -215,16 +215,16 @@ export default function AboutPageClient() {
             </section>
 
             {/* ── CERTIFICATIONS ── */}
-            <section className="py-6 px-0">
-              <div className="max-w-3xl mx-auto">
-                <div className="flex items-center justify-center gap-3 mb-6">
+            <section className="py-4 px-0">
+              <div className="max-w-2xl mx-auto w-full">
+                <div className="flex items-center justify-center gap-3 mb-5">
                   <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950 flex items-center justify-center flex-shrink-0">
                     <Award className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">{t("certificationsHeading")}</h3>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
                   {profileCertifications.map((cert) => {
                     const visual = certVisuals[cert.id]
                     return (
@@ -253,9 +253,9 @@ export default function AboutPageClient() {
             </section>
 
             {/* Key Skills — visual grid with icon badges */}
-            <div className="mb-10 space-y-5">
+            <div className="mb-6 space-y-4">
               <h3 className="text-2xl font-bold text-accent text-center">Key Skills</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {skillsConfig.map((col) => (
                   <div key={col.category} className="bg-white rounded-3xl p-6 border border-slate-100 shadow-card">
                     <div className={`w-11 h-11 ${col.color} rounded-2xl flex items-center justify-center mb-4`}>
@@ -276,7 +276,7 @@ export default function AboutPageClient() {
             </div>
 
             {/* Impact Statistics — dark card, prominent numbers */}
-            <div className="mb-10 bg-slate-900 rounded-3xl p-6 md:p-8 grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
+            <div className="mb-6 bg-slate-900 rounded-3xl p-5 md:p-7 grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-5">
               {[
                 { label: "Participants Trained", value: profileStats.participantsTrained },
                 { label: "Training Hours", value: profileStats.trainingHours },
@@ -295,9 +295,9 @@ export default function AboutPageClient() {
 
 
             {/* ── PROFESSIONAL EXPERIENCE ── */}
-            <section className="py-6 px-0">
+            <section className="py-4 px-0">
               <div className="max-w-3xl mx-auto">
-                <div className="flex items-center gap-3 mb-8">
+                <div className="flex items-center gap-3 mb-6">
                   <div className="w-9 h-9 rounded-xl bg-accent-subtle flex items-center justify-center flex-shrink-0">
                     <Briefcase className="w-5 h-5 text-accent" />
                   </div>
@@ -354,8 +354,8 @@ export default function AboutPageClient() {
         </section>
 
         {/* Call to Action + Contact Form */}
-        <section className="px-4 md:px-8 py-10 bg-card/30">
-          <div className="max-w-4xl mx-auto space-y-10">
+        <section className="px-4 md:px-8 py-8 bg-card/30">
+          <div className="max-w-4xl mx-auto space-y-8">
             <div className="text-center space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold">Let's Connect</h2>
               <p className="text-lg text-muted-foreground">

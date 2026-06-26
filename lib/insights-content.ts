@@ -222,6 +222,130 @@ My PFE project, [Digimytch Talent Hub](/developer), is the most complete example
 "You get a fast public site, a real database, secure auth, and room to grow without rewriting everything in six months." That sentence closes projects.
 
 > **Building something similar?** See the [development work](/developer) or [book a free call](https://calendly.com/benarfa367/30min) to talk through your MVP scope.`,
+
+  "brand-guidelines-that-get-used": `Most brand guidelines I inherit from clients share the same problem: they're beautiful PDFs that nobody opens after launch week. Designers ignore them. Social media managers improvise. The logo gets stretched. Within three months, the brand looks nothing like the deck that cost €2,000.
+
+After building identity systems for cafés, NGOs, and startups in Tunisia, I've learned that a guideline document only works if it's **short, visual, and tied to real decisions**.
+
+### What actually belongs in a useful guide
+
+**1. Logo rules on one page.** Clear space, minimum size, wrong vs right examples. Show the broken versions, not just the rules in text. People learn faster from "don't do this" than from abstract measurements.
+
+**2. Color roles, not just hex codes.** Primary, secondary, neutral, accent. Assign each a job: "accent is only for buttons and links." Without roles, every color becomes decoration.
+
+**3. Type hierarchy with real examples.** Show H1, H2, body, caption at actual sizes used on web and print. Include Arabic and French if the brand is multilingual. Don't assume everyone knows which weight to use.
+
+**4. Three social templates.** Not fifty. Three post types that cover 80% of what the client will publish. Link to Canva or Figma files they can duplicate.
+
+**5. Voice in five bullets.** Tone, words to avoid, how to address the audience. Keep it short enough to read in two minutes.
+
+### Why long guidelines fail
+
+- **Too much theory, not enough examples.** Clients don't need a history of Swiss design. They need to know what font size to use on Instagram.
+- **No editable files.** A PDF alone is a museum piece. Pair it with source files.
+- **No owner.** Someone on the client side must be named as the person who answers "is this on brand?" questions.
+
+### How I deliver guidelines now
+
+I ship a **one-page cheat sheet** (PDF + PNG for WhatsApp sharing) plus a Figma/Canva library. The full deck exists for reference, but the cheat sheet is what people actually use.
+
+> **Need a system that sticks?** Grab my free [Brand Brief Template](/freebies?category=design) or [book a call](https://calendly.com/benarfa367/30min) to talk through your identity project.`,
+
+  "icebreakers-vs-energizers": `New facilitators often treat icebreakers and energizers as the same thing: a fun activity to wake people up. They're not. Using the wrong one at the wrong time is one of the fastest ways to lose a youth group's trust in the first twenty minutes.
+
+Here's the distinction I use in every session design.
+
+### Icebreakers: build safety and connection
+
+**Purpose:** Help strangers become comfortable with each other. Lower social risk. Learn names and something human about each person.
+
+**When:** Start of a multi-day program, first session with a new group, or when participants don't know each other.
+
+**Characteristics:**
+- Low physical demand
+- No wrong answers
+- Everyone speaks or participates at least once
+- Connected to the session theme when possible, but connection comes first
+
+**Examples I use:** Two truths and a wish, human bingo, line-ups by preference ("stand left if you prefer mornings"), name + one skill you'd teach a friend.
+
+### Energizers: reset attention and body
+
+**Purpose:** Break cognitive fatigue. Move blood. Shift who's dominating the conversation. Transition between heavy topics.
+
+**When:** Every 20–30 minutes in a long session, after lunch, when energy visibly drops, before a difficult topic.
+
+**Characteristics:**
+- Short (2–5 minutes max)
+- Physical movement or quick competitive element
+- No deep sharing required
+- Clearly framed as a reset, not a lesson
+
+**Examples:** Stand-sit based on questions, quick group photo challenge, 30-second partner swap and share one word, clap patterns.
+
+### The mistake that kills sessions
+
+Running an **energizer** at the start when the group doesn't know each other yet. High-energy physical games before psychological safety exists makes quiet participants shut down and dominant ones take over.
+
+Running an **icebreaker** in the middle when the group is flat. A name game won't fix attention fatigue. They need movement.
+
+### A simple planning rule
+
+- **Day 1, first 15 min:** icebreaker
+- **Every 25 min after:** energizer
+- **End of session:** application activity (not either)
+
+> **Want a starting library?** Download my [20 Youth Icebreaker Activities](/freebies?category=training) or [book a call](https://calendly.com/benarfa367/30min) if you'd like me to design a session flow for your group.`,
+
+  "client-chatbot-with-openrouter": `Clients increasingly ask for "a little AI chatbot on the site." The requirements sound simple: answer FAQs, capture leads, maybe help visitors find the right service. The trap is putting your API key in the browser or paying for a SaaS widget you can't customize.
+
+Here's how I ship client chatbots using **Next.js API routes + OpenRouter**, the same stack running on this portfolio.
+
+### Architecture that keeps keys safe
+
+**Never call OpenRouter from the browser.** The flow is:
+
+1. Visitor types in the chat widget (client component)
+2. Message goes to your /api/chat route (server)
+3. Server adds a system prompt with your business context
+4. Server calls OpenRouter with the secret key
+5. Reply returns to the client
+
+The visitor never sees the key. You control the model, temperature, and max tokens on the server.
+
+### What goes in the system prompt
+
+Keep it factual and bounded:
+- Who you are and what you offer (design, training, dev)
+- Three profile pages and what each is for
+- Calendly link for booking
+- Email fallback if the bot can't help
+- Explicit rule: "Don't invent prices, timelines, or projects not listed"
+
+Update the prompt when services change. Treat it like copy, not config you set once.
+
+### Model choice on a budget
+
+For portfolio and small business sites, a fast cheap model is enough for FAQ-style chat. I use OpenRouter to swap models without rewriting integration code. Test with real visitor questions from clients before launch.
+
+### What clients actually get
+
+- Branded chat widget matching their site
+- WhatsApp as a parallel path (not replaced)
+- Rate limiting on the API route to prevent abuse
+- Optional logging of conversations for FAQ improvement
+
+### Common mistakes
+
+**1. No fallback.** Always show email and WhatsApp when the API fails.
+
+**2. Over-long replies.** Cap tokens so answers stay scannable.
+
+**3. No disclosure.** Tell visitors they're talking to an AI assistant, not you directly.
+
+**4. Training the bot on fantasy.** If the system prompt claims capabilities you don't offer, you'll get awkward sales calls.
+
+> **Want one on your site?** See how it works here (bottom-left chat), check the [development work](/developer), or [book a free call](https://calendly.com/benarfa367/30min).`,
 }
 
 export function getInsightContent(slug: string): string | undefined {

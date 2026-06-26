@@ -84,11 +84,11 @@ export default function Navbar() {
               href={siteConfig.behance}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex w-9 h-9 rounded-full border border-slate-200 dark:border-slate-700 bg-[#1769FF] hover:brightness-110 items-center justify-center transition-all ml-1"
+              className="hidden md:flex w-9 h-9 rounded-full border border-[#1769FF]/30 bg-[#1769FF] hover:brightness-110 items-center justify-center transition-all ml-1 shrink-0"
               aria-label="Behance portfolio"
               title="Behance"
             >
-              <BehanceIcon size={18} color="#ffffff" />
+              <BehanceIcon size={20} color="#ffffff" />
             </a>
             <ThemeToggle />
             <LanguageToggle />
