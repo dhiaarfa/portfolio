@@ -187,12 +187,11 @@ function ConnectorLines({
 
 function PortraitImage({ src, priority = true }: { src: string; priority?: boolean }) {
   return (
-    // Native img preserves PNG alpha — no optimizer, no fill container bleed
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={src}
       alt="Mohamed Dhia Arfa — designer, trainer, and web developer"
-      className="h-full w-full object-contain object-center select-none bg-transparent"
+      className="h-full w-full rounded-3xl object-contain object-center select-none bg-transparent"
       loading={priority ? "eager" : "lazy"}
       decoding="async"
     />
@@ -261,7 +260,7 @@ function HudStage({
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.35, ease: "easeOut" }}
       >
-        <div className="relative h-full w-full bg-transparent">
+        <div className="relative h-full w-full overflow-hidden rounded-3xl bg-transparent shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
           <PortraitImage src={imageSrc} />
         </div>
       </motion.div>
@@ -399,7 +398,7 @@ export default function HeroAnnotatedPortrait({
 
         {/* Mobile / tablet — stacked below intro text, no connector lines */}
         <div className="lg:hidden mt-8 flex flex-col items-center gap-6">
-          <div className="relative w-[min(72vw,280px)] aspect-[3/4] max-h-[360px] bg-transparent">
+          <div className="relative w-[min(72vw,280px)] aspect-[3/4] max-h-[360px] overflow-hidden rounded-3xl bg-transparent shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
             <PortraitImage src={imageSrc} />
           </div>
           <div className="flex w-full max-w-lg gap-3 overflow-x-auto pb-2 snap-x snap-mandatory px-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
