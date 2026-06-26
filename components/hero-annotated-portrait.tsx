@@ -298,7 +298,7 @@ export default function HeroAnnotatedPortrait({
                 fill
                 priority
                 sizes="(min-width: 1024px) 380px, 0px"
-                className="object-cover object-top select-none"
+                className="object-cover object-top select-none scale-[1.18]"
                 style={{ objectPosition: imageObjectPosition }}
               />
             </div>
