@@ -67,6 +67,9 @@ export const siteConfig = {
   // Consultation CTA
   ctaText: "Book a Free 30-Min Consultation",
 
+  /** Résumé PDF — add file to public/resume.pdf when available */
+  resumePdfUrl: "/resume.pdf",
+
   // Training portfolio — view-only link (no /edit or ouid)
   trainingPortfolioUrl:
     "https://docs.google.com/spreadsheets/d/1Lt3Rr7O-0pj67lMCFB0nM7l28LdR6UMyIVIYLxxmOew/view?usp=sharing",

@@ -28,6 +28,8 @@ import { LOCAL_ICON_SVGS } from "@/lib/local-icon-svgs"
 const LOCAL_ICON_IMAGES: Record<string, string> = {
   adobeindesign: "/images/icons/indesign.png",
   adobeaftereffects: "/images/icons/adobe-after-effects.png",
+  adobelightroomclassic: "/images/icons/lightroom.png",
+  behance: "/images/icons/behance-circle.png",
 }
 
 export type BrandIconProps = {

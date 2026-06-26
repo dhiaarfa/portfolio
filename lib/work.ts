@@ -1,4 +1,6 @@
-export type WorkCategory = "Brand Identity" | "Social Media" | "Logo Design" | "Packaging" | "UI/UX"
+export type WorkCategory = "Brand Identity" | "Social Media" | "Logo Design" | "Packaging" | "UI/UX" | "Web Dev"
+
+export type WorkKind = "design" | "dev"
 
 export type WorkProject = {
   slug: string
@@ -11,10 +13,14 @@ export type WorkProject = {
   timeline: string
   outcome: string
   category: WorkCategory
+  kind: WorkKind
   featured: boolean
   concept?: boolean
   tools: string[]
   behanceUrl?: string
+  liveUrl?: string
+  repoUrl?: string
+  metrics?: string
   nextSlug?: string
   published: boolean
 }
@@ -31,6 +37,7 @@ export const workProjects: WorkProject[] = [
     timeline: "4 weeks",
     outcome: "Identity adopted across in-store packaging, Instagram, and seasonal promos.",
     category: "Brand Identity",
+    kind: "design",
     featured: true,
     tools: ["Illustrator", "Photoshop", "InDesign"],
     nextSlug: "lone-space",
@@ -47,6 +54,7 @@ export const workProjects: WorkProject[] = [
     timeline: "3 weeks",
     outcome: "Cohesive gold system used across cards, letterhead, and client-facing materials.",
     category: "Brand Identity",
+    kind: "design",
     featured: true,
     tools: ["Illustrator", "Photoshop", "InDesign"],
     nextSlug: "tafani-travel",
@@ -63,6 +71,7 @@ export const workProjects: WorkProject[] = [
     timeline: "2 weeks",
     outcome: "Cleaner brand recognition on social and client proposals within the first month.",
     category: "Brand Identity",
+    kind: "design",
     featured: true,
     tools: ["Illustrator", "Figma", "Photoshop"],
     nextSlug: "meetup-pro",
@@ -79,6 +88,7 @@ export const workProjects: WorkProject[] = [
     timeline: "6 weeks",
     outcome: "Strong social traction and sold-out attendance; visuals reused across follow-up events.",
     category: "Social Media",
+    kind: "design",
     featured: true,
     tools: ["Illustrator", "Photoshop", "Canva"],
     nextSlug: "traveltodo-campaign",
@@ -95,9 +105,68 @@ export const workProjects: WorkProject[] = [
     timeline: "2 weeks",
     outcome: "Unified campaign look across billboard, poster, and Instagram formats.",
     category: "Social Media",
+    kind: "design",
     featured: true,
     tools: ["Photoshop", "Illustrator"],
-    nextSlug: "speranza-cafe",
+    nextSlug: "digimytch",
+    published: true,
+  },
+  {
+    slug: "digimytch",
+    title: "DigiMyTech Talent Hub",
+    clientLine: "PFE capstone: an AI-powered talent hub for CV prep, skill matching, and application tracking.",
+    excerpt: "Next.js app with Supabase auth/DB and OpenRouter LLM workflows baked into the product, not a floating chat widget.",
+    heroImage: "/images/projects/digimytch.png",
+    cardImage: "/images/projects/digimytch.png",
+    role: "Full-stack · AI integration · Product design",
+    timeline: "PFE · 2025",
+    outcome: "1200+ CVs processed in beta · 98% user satisfaction reported in testing",
+    category: "Web Dev",
+    kind: "dev",
+    featured: true,
+    tools: ["Next.js", "Supabase", "OpenRouter", "Tailwind", "Vercel"],
+    liveUrl: "https://digimytch.webflow.io/",
+    repoUrl: "https://github.com/dhiaarfa",
+    metrics: "1200+ CVs · 98% satisfaction",
+    nextSlug: "crit-tunisie",
+    published: true,
+  },
+  {
+    slug: "crit-tunisie",
+    title: "CRIT Tunisie",
+    clientLine: "Corporate recruitment platform for a major staffing firm in Tunisia.",
+    excerpt: "Production Next.js site clarifying services, job offers, and contact paths for talents and companies.",
+    heroImage: "/images/crit-thumbnail.png",
+    cardImage: "/images/crit-thumbnail.png",
+    role: "Web developer · UI implementation",
+    timeline: "Sep – Dec 2023",
+    outcome: "Shipped responsive corporate site to production during CRIT developer role.",
+    category: "Web Dev",
+    kind: "dev",
+    featured: true,
+    tools: ["Next.js", "React", "Tailwind"],
+    liveUrl: "https://crit-tunisie.net/",
+    repoUrl: "https://github.com/dhiaarfa",
+    nextSlug: "best-dates-fruits",
+    published: true,
+  },
+  {
+    slug: "best-dates-fruits",
+    title: "Best Dates and Fruits",
+    clientLine: "Premium Tunisian dates brand needing a credible web presence and product storytelling.",
+    excerpt: "Marketing site with product sections, seasonal storytelling, and clear contact conversion paths.",
+    heroImage: "/images/bdaf-thumbnail.png",
+    cardImage: "/images/bdaf-thumbnail.png",
+    role: "Web development · Marketing site",
+    timeline: "Client project",
+    outcome: "Live brand site with product-focused layout and contact funnel.",
+    category: "Web Dev",
+    kind: "dev",
+    featured: true,
+    tools: ["Next.js", "Tailwind"],
+    liveUrl: "https://bestdatesandfruits.com/",
+    repoUrl: "https://github.com/dhiaarfa",
+    nextSlug: "digimytch",
     published: true,
   },
 ]
@@ -131,6 +200,10 @@ export function publishedWorkProjects() {
 
 export function featuredWorkProjects() {
   return workProjects.filter((p) => p.published && p.featured)
+}
+
+export function devWorkProjects() {
+  return workProjects.filter((p) => p.published && p.kind === "dev")
 }
 
 export function workBySlug(slug: string) {

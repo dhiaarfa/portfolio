@@ -3,17 +3,28 @@
 import BrandIcon from "@/lib/brand-icon"
 import { toolsStackGroups } from "@/lib/tools-stack"
 
-export default function ToolsStackSection({ compact = false }: { compact?: boolean }) {
+export default function ToolsStackSection({
+  compact = false,
+  groups,
+}: {
+  compact?: boolean
+  /** Filter to specific group ids, e.g. ["frontend", "backend", "ai"] */
+  groups?: string[]
+}) {
+  const visibleGroups = groups?.length
+    ? toolsStackGroups.filter((g) => groups.includes(g.id))
+    : toolsStackGroups
+
   return (
     <section className={compact ? "py-10 px-6" : "py-16 px-6 bg-slate-50 dark:bg-slate-900"}>
       <div className="max-w-4xl mx-auto">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2 text-center">Tools & Stack</p>
         <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-10">
-          Software I work with daily
+          {compact ? "Dev stack I ship with" : "Software I work with daily"}
         </h3>
 
         <div className="space-y-6">
-          {toolsStackGroups.map((group) => (
+          {visibleGroups.map((group) => (
             <div
               key={group.id}
               className="rounded-2xl border border-slate-200/80 dark:border-slate-700/70 bg-white/70 dark:bg-slate-800/50 px-4 py-5 md:px-6"

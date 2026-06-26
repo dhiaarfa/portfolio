@@ -109,6 +109,81 @@ One **master layout grid**: headline zone, image window, logo lockup, CTA bar. T
 **Unified campaign look** across OOH, poster, and Instagram. Client could approve one system instead of three separate designs.
 
 **Tools:** Photoshop, Illustrator · **Full set:** [Behance](https://www.behance.net/dhiaarfa)`,
+
+  digimytch: `DigiMyTech Talent Hub is my **PFE capstone**: an AI-powered talent platform for CV preparation, skill matching, LinkedIn optimization, and application tracking. It is the exact archetype recruiters look for in 2026: LLM integration baked into the workflow, not a floating chat bubble.
+
+### The problem
+
+Job seekers and young professionals in Tunisia often have strong experience but weak presentation: CVs that do not pass screening, cover letters that sound generic, and no system to track applications. The product needed to guide users through **structured improvement** with AI assistance at each step.
+
+### What I built
+
+- **Auth & profiles** on Supabase (sign-up, session, user data model)
+- **CV and cover-letter workflows** with OpenRouter LLM prompts tuned for structured output
+- **Skill matching** logic connecting user profiles to role requirements
+- **Application tracking** so users see status in one place
+- **Responsive UI** in Next.js + Tailwind, deployed on Vercel
+
+The AI is embedded in forms and review steps: users see suggestions in context, edit, and save. That keeps the experience product-like rather than chat-only.
+
+![](/images/projects/digimytch.png)
+
+### The interesting technical challenge
+
+The hardest part was **structuring LLM output reliably**: CV sections and matching scores need predictable JSON-like shapes, not free-form paragraphs. I used prompt templates, validation on the response, and fallbacks when the model drifts. Cost control mattered too: batching requests and limiting token use per feature so beta testing stayed affordable on OpenRouter.
+
+Supabase RLS and auth roles were another focus: user CV data must stay private while still enabling future admin views.
+
+### What I'd do differently
+
+I would add **explicit user feedback loops** on every AI suggestion (thumbs up/down stored in DB) to improve prompts over time and show employers the system learns from real usage. I would also ship the native Next.js app URL as primary instead of the Webflow marketing shell once the repo is public.
+
+### Metrics
+
+**1200+ CVs** processed in beta · **98% satisfaction** reported in user testing.
+
+**Stack:** Next.js · Supabase · OpenRouter · Tailwind · Vercel  
+**Live:** [digimytch.webflow.io](https://digimytch.webflow.io/) · **Code:** [GitHub](https://github.com/dhiaarfa)`,
+
+  "crit-tunisie": `CRIT Tunisie is a **corporate recruitment platform** I helped build during my web developer role (Sep–Dec 2023). The site had to clarify services for both job seekers and client companies without feeling like a generic template.
+
+### The problem
+
+CRIT needed a modern web presence: clear service pages, job offer discovery, and trustworthy contact paths. The legacy experience was hard to navigate on mobile.
+
+### What I built
+
+- Responsive **Next.js** pages with React components
+- UI implementation from design direction: service sections, job listings layout, contact flows
+- Performance-conscious markup and component structure for maintainability
+
+![](/images/crit-thumbnail.png)
+
+### Outcome
+
+Shipped to **production** at [crit-tunisie.net](https://crit-tunisie.net/). This was my first sustained corporate dev role: real deadlines, stakeholder feedback, and code that other people depend on.
+
+**Stack:** Next.js · React · Tailwind`,
+
+  "best-dates-fruits": `Best Dates and Fruits is a **premium Tunisian dates brand** that needed a credible marketing site: product storytelling, seasonal sections, and clear contact paths for B2B and retail buyers.
+
+### The problem
+
+The brand had strong product photography but no web presence that matched the quality of the product. The site had to feel premium without slow load times or cluttered layout.
+
+### What I built
+
+- **Next.js marketing site** with product-focused sections
+- Clean typography and spacing aligned with the brand's warm palette
+- Contact and inquiry paths for wholesale and retail
+
+![](/images/bdaf-thumbnail.png)
+
+### Outcome
+
+Live at [bestdatesandfruits.com](https://bestdatesandfruits.com/). A reference for **design-to-code** work: translating visual direction into a shippable site without a heavy CMS.
+
+**Stack:** Next.js · Tailwind`,
 }
 
 export function getWorkContent(slug: string): string | undefined {
