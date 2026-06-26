@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import {
   ArrowLeft,
   ArrowRight,
@@ -24,6 +23,7 @@ import {
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import ClientLogosStrip from "@/components/client-logos-strip"
+import HeroAnnotatedPortrait from "@/components/hero-annotated-portrait"
 import { PageTestimonials } from "@/components/page-testimonials"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
@@ -148,8 +148,7 @@ export default function AboutPageClient() {
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform rtl:rotate-180" />
               {t("backToHome")}
             </Link>
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_260px] gap-8 items-start">
-              <div>
+            <div className="max-w-3xl">
                 <p className="label mb-3">{t("aboutPersonBehind")}</p>
                 <h1 className="font-display font-extrabold text-[clamp(40px,7vw,78px)] leading-[0.93] text-slate-900 dark:text-white mb-4">
                   Mohamed
@@ -203,26 +202,11 @@ export default function AboutPageClient() {
                     </a>
                   </p>
                 </div>
-              </div>
-              <div className="hidden md:block">
-                <div className="relative inline-block">
-                  <div className="bg-white dark:bg-slate-700 p-3 pb-10 shadow-[0_12px_48px_rgba(0,0,0,0.14)] dark:shadow-[0_12px_48px_rgba(0,0,0,0.5)] rounded-sm rotate-2 hover:rotate-0 transition-transform duration-500">
-                    <Image
-                      src="/images/photos/dhia-about.png"
-                      alt="Mohamed Dhia"
-                      width={260}
-                      height={320}
-                      className="w-full object-cover"
-                    />
-                    <p className="text-center text-slate-400 dark:text-slate-500 text-xs font-medium mt-3">
-                      {t("aboutLocationTag")}
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
+
+        <HeroAnnotatedPortrait theme="light" compact showCta={false} className="!pt-4 !min-h-0 !pb-6" />
 
         {/* Proof — stats bar */}
         <section className="px-4 md:px-8 py-6">

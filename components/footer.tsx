@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { Mail, Linkedin, Instagram, Calendar, MapPin, Heart, Github } from "lucide-react"
+import { Mail, Linkedin, Instagram, Calendar, Heart, Github } from "lucide-react"
+import { BasedInTunisia } from "@/components/based-in-tunisia"
 import { siteConfig } from "@/lib/site-config"
 import { useLanguage } from "@/components/language-provider"
 
@@ -111,7 +112,7 @@ export default function Footer() {
               <Mail className="w-4 h-4 flex-shrink-0" /> {siteConfig.email}
             </a>
             <div className="flex items-center gap-2.5 text-slate-400 text-sm">
-              <MapPin className="w-4 h-4 flex-shrink-0" /> {t("basedInTunisia")}
+              <BasedInTunisia />
             </div>
             <div className="flex items-center gap-2 mt-3">
               <span className="relative flex h-2 w-2">

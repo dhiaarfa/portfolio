@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, BookOpen, Palette, Code, Calendar, Users } from "lucide-react"
+import { ArrowRight, BookOpen, Palette, Code } from "lucide-react"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import Image from "next/image"
@@ -11,6 +11,8 @@ import { siteConfig } from "@/lib/site-config"
 import { formatStat } from "@/lib/profile"
 import dynamic from "next/dynamic"
 import ClientLogosStrip from "@/components/client-logos-strip"
+import HeroAnnotatedPortrait from "@/components/hero-annotated-portrait"
+import { BasedInTunisia } from "@/components/based-in-tunisia"
 import StatsSection from "@/components/stats-section"
 import ServicePackages from "@/components/service-packages"
 const ValueRadarChart = dynamic(() => import("@/components/value-radar-chart"), {
@@ -92,90 +94,42 @@ export default function HomePageClient() {
     <div className="w-full min-h-screen bg-white dark:bg-slate-950">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[68vh] flex items-center bg-white dark:bg-slate-950 overflow-hidden px-5 pt-20 pb-10">
-        <div className="pointer-events-none absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-accent-subtle dark:bg-accent/8 blur-[120px]" />
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.022] dark:opacity-[0.04]"
-          style={{
-            backgroundImage: "radial-gradient(var(--site-accent) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }}
-        />
-        <div className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[58%_42%] gap-10 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 mb-7 px-4 py-1.5 rounded-full text-sm font-medium bg-accent-subtle dark:bg-accent-subtle border border-accent/30 text-foreground dark:text-accent w-fit">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-75" />
-                <span className="relative h-2 w-2 rounded-full bg-accent" />
-              </span>
-              Open to new projects · {t("basedInTunisia")}
-            </div>
-            <h1 className="font-display font-extrabold text-[clamp(44px,7.5vw,84px)] leading-[0.94] tracking-tight text-slate-900 dark:text-white mb-3">
-              Hello, I&apos;m<br />
-              <span className="text-accent">Mohamed Dhia</span>
-            </h1>
-            <AnimatedRole />
-            <p className="mt-5 mb-6 text-slate-500 dark:text-slate-400 text-xl leading-relaxed max-w-[480px]">
-              {t("homeHeroTagline")}
-            </p>
-            {/* Social proof micro-stats */}
-            <div className="flex flex-wrap gap-x-6 gap-y-2 mt-1 mb-6">
-              {[
-                { value: formatStat("participantsTrained"), label: t("homeMicroYouth") },
-                { value: formatStat("designProjects"), label: t("homeMicroProjects") },
-                { value: formatStat("yearsExperience"), label: t("homeMicroYears") },
-              ].map(({ value, label }) => (
-                <div key={label} className="flex items-center gap-1.5">
-                  <span className="font-bold text-accent text-sm">{value}</span>
-                  <span className="text-slate-500 dark:text-slate-400 text-sm">{label}</span>
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href={siteConfig.calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-green"
-              >
-                <Calendar className="w-4 h-4" /> {t("bookFreeConsultation")}
-              </a>
-              <a href="#expertise" className="btn-outline group">
-                {t("exploreMyWork")}
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
-              </a>
-            </div>
+      {/* Hero — annotated portrait HUD */}
+      <HeroAnnotatedPortrait theme="light" className="!min-h-[min(92vh,860px)]">
+        <div className="max-w-2xl mx-auto text-center lg:text-left lg:mx-0 lg:absolute lg:top-[18%] lg:left-0 lg:z-30 mb-6 lg:mb-0">
+          <div className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-sm font-medium bg-accent-subtle dark:bg-accent-subtle border border-accent/30 text-foreground dark:text-accent w-fit mx-auto lg:mx-0">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-75" />
+              <span className="relative h-2 w-2 rounded-full bg-accent" />
+            </span>
+            Open to new projects · <BasedInTunisia />
           </div>
-          <div className="relative hidden lg:flex justify-center">
-            <div className="absolute inset-8 bg-accent-muted rounded-3xl blur-2xl" />
-            <div className="relative rounded-3xl overflow-hidden border-2 border-accent/20 w-[340px]">
-              <Image
-                src="/images/photos/dhia-main.png"
-                alt="Mohamed Dhia Arfa"
-                width={340}
-                height={420}
-                className="w-full object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent" />
-            </div>
-            <div className="absolute -bottom-5 -left-4 card-base px-4 py-3 flex items-center gap-3 w-max shadow-[0_8px_24px_rgba(0,0,0,0.10)]">
-              <div className="w-10 h-10 rounded-xl bg-accent-subtle flex items-center justify-center flex-shrink-0">
-                <Users className="w-5 h-5 text-accent" />
+          <h1 className="font-display font-extrabold text-[clamp(36px,6vw,64px)] leading-[0.96] tracking-tight text-slate-900 dark:text-white mb-2">
+            Hello, I&apos;m{" "}
+            <span className="text-accent">Mohamed Dhia</span>
+          </h1>
+          <AnimatedRole />
+          <p className="mt-4 text-slate-500 dark:text-slate-400 text-lg leading-relaxed max-w-[480px] mx-auto lg:mx-0">
+            {t("homeHeroTagline")}
+          </p>
+          <div className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 mt-5 mb-2">
+            {[
+              { value: formatStat("participantsTrained"), label: t("homeMicroYouth") },
+              { value: formatStat("designProjects"), label: t("homeMicroProjects") },
+              { value: formatStat("yearsExperience"), label: t("homeMicroYears") },
+            ].map(({ value, label }) => (
+              <div key={label} className="flex items-center gap-1.5">
+                <span className="font-bold text-accent text-sm">{value}</span>
+                <span className="text-slate-500 dark:text-slate-400 text-sm">{label}</span>
               </div>
-              <div>
-                <p className="font-display font-black text-[17px] leading-none text-slate-900 dark:text-white">{formatStat("participantsTrained")}</p>
-                <p className="text-xs text-slate-400 mt-0.5">{t("homePeopleTrained")}</p>
-              </div>
-            </div>
-            <div className="absolute -top-4 -right-3 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl px-3.5 py-2.5 shadow-lg">
-              <p className="font-display font-black text-xl leading-none">{formatStat("yearsExperience")}</p>
-              <p className="text-slate-400 text-[10px] mt-0.5 tracking-wide">{t("homeYrsExp")}</p>
-            </div>
+            ))}
           </div>
+          <a href="#expertise" className="btn-outline group mt-4 inline-flex mx-auto lg:mx-0">
+            {t("exploreMyWork")}
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
+          </a>
         </div>
-      </section>
+      </HeroAnnotatedPortrait>
 
       {/* My Expertise Bento */}
       <section id="expertise" className="bg-section-tint section-compact px-4">
