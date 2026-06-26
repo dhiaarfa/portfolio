@@ -8,8 +8,7 @@ import { useLanguage } from "@/components/language-provider"
 import { formatStat } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
 
-/** Transparent PNG cutout — swap path only; do not re-export the file. */
-export const HERO_PORTRAIT_SRC = "/images/photos/dhia-hero-cutout.png"
+export const HERO_PORTRAIT_SRC = "/images/photos/dhia-main.png"
 
 export type HeroPortraitTheme = "light" | "dark"
 
