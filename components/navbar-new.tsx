@@ -84,11 +84,11 @@ export default function Navbar() {
               href={siteConfig.behance}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex w-9 h-9 rounded-full border border-[#1769FF]/30 bg-[#1769FF] hover:brightness-110 items-center justify-center transition-all ml-1 shrink-0"
+              className="hidden md:flex w-9 h-9 rounded-full overflow-hidden items-center justify-center transition-all hover:scale-105 ml-1 shrink-0 ring-1 ring-black/10 dark:ring-white/10"
               aria-label="Behance portfolio"
               title="Behance"
             >
-              <BehanceIcon size={20} color="#ffffff" />
+              <BehanceIcon size={36} />
             </a>
             <ThemeToggle />
             <LanguageToggle />
@@ -146,8 +146,8 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold text-[#1769FF]"
               >
-                <span className="w-8 h-8 rounded-lg bg-[#1769FF] flex items-center justify-center">
-                  <BehanceIcon size={16} color="#ffffff" />
+                <span className="w-8 h-8 rounded-full overflow-hidden shrink-0">
+                  <BehanceIcon size={32} />
                 </span>
                 Behance
               </a>

@@ -151,27 +151,24 @@ export function WhatsAppIcon({ size = 28, className = "" }: { size?: number; cla
   return <SiSvg icon={siWhatsapp} size={size} className={className} mono color="currentColor" />
 }
 
-/** Compact Behance “Bē” mark for nav buttons */
+/** Compact Behance “Bē” mark for nav buttons — uses official circular logo PNG */
 export function BehanceIcon({
   size = 20,
   className = "",
-  color = "#ffffff",
 }: {
   size?: number
   className?: string
+  /** @deprecated color prop ignored — logo PNG includes brand colors */
   color?: string
 }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/images/icons/behance-circle.png"
+      alt="Behance"
       width={size}
       height={size}
-      fill={color}
-      className={className}
-      role="img"
-      aria-label="Behance"
-    >
-      <path d="M6.938 5.918H12.1c2.15 0 3.548 1.14 3.548 3.035 0 1.3-.637 2.2-1.672 2.613 1.472.413 2.404 1.472 2.404 3.142 0 2.25-1.695 3.692-4.316 3.692H6.938V5.918zm2.905 5.34h1.695c.945 0 1.53-.472 1.53-1.342 0-.855-.585-1.342-1.53-1.342h-1.695v2.684zm0 5.58h1.83c1.155 0 1.875-.585 1.875-1.605 0-1.035-.72-1.62-1.875-1.62h-1.83v3.225zM15.878 7.05h5.565v1.35h-5.565V7.05zm.285 3.75h5.25v1.305h-5.25V10.8z" />
-    </svg>
+      className={`block rounded-full object-cover ${className}`}
+    />
   )
 }

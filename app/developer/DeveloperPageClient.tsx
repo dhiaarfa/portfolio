@@ -151,7 +151,7 @@ export default function DeveloperPageClient() {
                     className={`group overflow-hidden rounded-3xl border-2 border-border bg-card transition-all hover:border-accent/40 ${i === 0 ? "lg:col-span-2" : ""}`}
                   >
                     <div className={`relative bg-muted ${i === 0 ? "aspect-[21/9]" : "aspect-video"}`}>
-                      <Image src={project.cardImage} alt={project.title} fill className="object-cover" sizes="(max-width:1024px) 100vw, 50vw" />
+                      <Image src={project.cardImage} alt={project.title} fill className="object-cover object-top" sizes="(max-width:1024px) 100vw, 50vw" />
                       {project.slug === "digimytch" && (
                         <span className="absolute top-4 left-4 rounded-full bg-accent px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
                           Featured · PFE

@@ -33,7 +33,7 @@ const jsonLd = {
       name: "DigiMyTech Talent Hub",
       applicationCategory: "WebApplication",
       description: "AI-powered talent hub for CV prep, skill matching, and application tracking.",
-      url: "https://digimytch.webflow.io/",
+      url: "https://digimytch-talent-hub.vercel.app/",
       author: { "@type": "Person", name: "Mohamed Dhia Arfa" },
     },
   ],

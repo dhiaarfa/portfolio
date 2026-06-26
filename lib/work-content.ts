@@ -126,7 +126,15 @@ Job seekers and young professionals in Tunisia often have strong experience but 
 
 The AI is embedded in forms and review steps: users see suggestions in context, edit, and save. That keeps the experience product-like rather than chat-only.
 
-![](/images/projects/digimytch.png)
+![](/images/projects/digimytch/landing.png)
+
+![](/images/projects/digimytch/dashboard.png)
+
+![](/images/projects/digimytch/analyze-offer.png)
+
+![](/images/projects/digimytch/linkedin.png)
+
+![](/images/projects/digimytch/kanban.png)
 
 ### The interesting technical challenge
 
@@ -143,7 +151,7 @@ I would add **explicit user feedback loops** on every AI suggestion (thumbs up/d
 **1200+ CVs** processed in beta · **98% satisfaction** reported in user testing.
 
 **Stack:** Next.js · Supabase · OpenRouter · Tailwind · Vercel  
-**Live:** [digimytch.webflow.io](https://digimytch.webflow.io/) · **Code:** [GitHub](https://github.com/dhiaarfa)`,
+**Live:** [digimytch-talent-hub.vercel.app](https://digimytch-talent-hub.vercel.app/) · **Code:** [GitHub](https://github.com/dhiaarfa)`,
 
   "crit-tunisie": `CRIT Tunisie is a **corporate recruitment platform** I helped build during my web developer role (Sep–Dec 2023). The site had to clarify services for both job seekers and client companies without feeling like a generic template.
 
@@ -157,7 +165,11 @@ CRIT needed a modern web presence: clear service pages, job offer discovery, and
 - UI implementation from design direction: service sections, job listings layout, contact flows
 - Performance-conscious markup and component structure for maintainability
 
-![](/images/crit-thumbnail.png)
+![](/images/projects/crit/home.png)
+
+![](/images/projects/crit/jobs.png)
+
+![](/images/projects/crit/services.png)
 
 ### Outcome
 
