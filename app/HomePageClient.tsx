@@ -95,9 +95,9 @@ export default function HomePageClient() {
       <Navbar />
 
       {/* Hero — annotated portrait HUD */}
-      <HeroAnnotatedPortrait theme="light" className="!min-h-[min(92vh,860px)]">
-        <div className="max-w-2xl mx-auto text-center lg:text-left lg:mx-0 lg:absolute lg:top-[18%] lg:left-0 lg:z-30 mb-6 lg:mb-0">
-          <div className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-sm font-medium bg-accent-subtle dark:bg-accent-subtle border border-accent/30 text-foreground dark:text-accent w-fit mx-auto lg:mx-0">
+      <HeroAnnotatedPortrait theme="light" className="!pb-10">
+        <div className="max-w-2xl">
+          <div className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-sm font-medium bg-accent-subtle dark:bg-accent-subtle border border-accent/30 text-foreground dark:text-accent w-fit">
             <span className="relative flex h-2 w-2">
               <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-75" />
               <span className="relative h-2 w-2 rounded-full bg-accent" />
@@ -109,10 +109,10 @@ export default function HomePageClient() {
             <span className="text-accent">Mohamed Dhia</span>
           </h1>
           <AnimatedRole />
-          <p className="mt-4 text-slate-500 dark:text-slate-400 text-lg leading-relaxed max-w-[480px] mx-auto lg:mx-0">
+          <p className="mt-4 text-slate-500 dark:text-slate-400 text-lg leading-relaxed max-w-[480px]">
             {t("homeHeroTagline")}
           </p>
-          <div className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 mt-5 mb-2">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mt-5 mb-2">
             {[
               { value: formatStat("participantsTrained"), label: t("homeMicroYouth") },
               { value: formatStat("designProjects"), label: t("homeMicroProjects") },
@@ -124,7 +124,7 @@ export default function HomePageClient() {
               </div>
             ))}
           </div>
-          <a href="#expertise" className="btn-outline group mt-4 inline-flex mx-auto lg:mx-0">
+          <a href="#expertise" className="btn-outline group mt-4 inline-flex">
             {t("exploreMyWork")}
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
           </a>

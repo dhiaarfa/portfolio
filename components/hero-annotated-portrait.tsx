@@ -9,45 +9,79 @@ import { useLanguage } from "@/components/language-provider"
 import { formatStat } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
 
-/** Swap this path when you have a plain-shirt cutout (no third-party logo on chest). */
+/** Transparent PNG cutout — swap path only; do not re-export the file. */
 export const HERO_PORTRAIT_SRC = "/images/photos/dhia-hero-cutout.png"
 
 export type HeroPortraitTheme = "light" | "dark"
 
-type AnchorPoint = { x: number; y: number }
+type Point = { x: number; y: number }
 
 export type HeroCalloutConfig = {
   id: string
   label: string
   value: React.ReactNode
   subvalue?: React.ReactNode
-  anchor: AnchorPoint
-  card: AnchorPoint
+  /** Anchor on photo edge, % of stage box (0–100) */
+  anchor: Point
+  /** Card center, % of stage box (0–100) */
+  card: Point
   cardMaxWidth?: number
   bracket?: boolean
-  pulse?: boolean
   delay: number
 }
 
 type Props = {
   theme?: HeroPortraitTheme
-  /** Shorter section for About page */
   compact?: boolean
   className?: string
   imageSrc?: string
-  /** Crop focus — default hides chest logo on current cutout */
-  imageObjectPosition?: string
   showCta?: boolean
   children?: React.ReactNode
 }
 
-function HudBracket({ accent }: { accent: boolean }) {
-  if (!accent) return null
+/** Photo bounds inside the HUD stage (% of stage width/height) */
+const PHOTO_BOUNDS = { x: 34, y: 4, w: 44, h: 92 }
+
+function HudBracket({ show }: { show: boolean }) {
+  if (!show) return null
   return (
     <>
       <span className="pointer-events-none absolute -top-px -left-px h-3 w-3 border-l border-t border-accent/50" />
       <span className="pointer-events-none absolute -bottom-px -right-px h-3 w-3 border-r border-b border-accent/50" />
     </>
+  )
+}
+
+function AnchorDot({
+  x,
+  y,
+  reducedMotion,
+  delay,
+}: {
+  x: number
+  y: number
+  reducedMotion: boolean
+  delay: number
+}) {
+  return (
+    <motion.div
+      className="absolute z-20 pointer-events-none"
+      style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
+      initial={reducedMotion ? false : { scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.35, delay: 0.2 + delay }}
+    >
+      <span
+        className="block h-2 w-2 rounded-full bg-accent"
+        style={{ boxShadow: "0 0 10px color-mix(in oklab, var(--site-accent) 70%, transparent)" }}
+      />
+      {!reducedMotion && (
+        <span
+          className="absolute inset-0 rounded-full bg-accent animate-ping opacity-40"
+          style={{ animationDuration: "2.5s" }}
+        />
+      )}
+    </motion.div>
   )
 }
 
@@ -65,40 +99,45 @@ function CalloutCard({
   const isDark = theme === "dark"
   const cardClass = isDark
     ? "bg-black/40 backdrop-blur-md border-accent/20 text-white"
-    : "bg-white/75 backdrop-blur-md border-accent/20 text-slate-900 shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
-
-  const labelClass = "text-[10px] font-semibold uppercase tracking-[0.18em] text-accent"
-  const valueClass = isDark ? "text-sm font-semibold text-white" : "text-sm font-semibold text-slate-900"
-  const subClass = isDark ? "text-xs text-white/65 mt-0.5" : "text-xs text-slate-500 mt-0.5"
+    : "bg-white/80 backdrop-blur-md border-accent/25 text-slate-900 shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
 
   const motionProps = reducedMotion
     ? {}
     : {
-        initial: { opacity: 0, scale: 0.96, x: isMobile ? 0 : (callout.card.x < callout.anchor.x ? -8 : 8), y: isMobile ? 8 : (callout.card.y < callout.anchor.y ? -8 : 8) },
+        initial: {
+          opacity: 0,
+          scale: 0.96,
+          x: isMobile ? 0 : callout.card.x < callout.anchor.x ? -10 : 10,
+          y: isMobile ? 8 : callout.card.y < callout.anchor.y ? -10 : 10,
+        },
         animate: { opacity: 1, scale: 1, x: 0, y: 0 },
-        transition: { duration: 0.5, delay: 0.35 + callout.delay, ease: [0.22, 1, 0.36, 1] as const },
+        transition: { duration: 0.55, delay: 0.35 + callout.delay, ease: [0.22, 1, 0.36, 1] as const },
       }
 
   return (
     <motion.div
       {...motionProps}
-      className={`relative rounded-xl border px-3.5 py-3 ${cardClass} ${isMobile ? "min-w-[220px] max-w-[260px] shrink-0 snap-start" : "absolute -translate-x-1/2 -translate-y-1/2 z-20"}`}
+      className={`relative rounded-xl border px-3.5 py-3 ${cardClass} ${
+        isMobile ? "min-w-[220px] max-w-[260px] shrink-0 snap-start" : "absolute z-30"
+      }`}
       style={
         isMobile
           ? undefined
           : {
               left: `${callout.card.x}%`,
               top: `${callout.card.y}%`,
-              maxWidth: callout.cardMaxWidth ?? 220,
+              transform: "translate(-50%, -50%)",
+              maxWidth: callout.cardMaxWidth ?? 210,
             }
       }
     >
-      <HudBracket accent={!!callout.bracket} />
-      <p className={labelClass}>{callout.label}</p>
-      <div className={`${valueClass} mt-1 leading-snug`}>{callout.value}</div>
-      {callout.subvalue ? <div className={subClass}>{callout.subvalue}</div> : null}
-      {callout.pulse ? (
-        <span className="sr-only">Status: </span>
+      <HudBracket show={!!callout.bracket} />
+      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">{callout.label}</p>
+      <div className={`mt-1 text-sm font-semibold leading-snug ${isDark ? "text-white" : "text-slate-900"}`}>
+        {callout.value}
+      </div>
+      {callout.subvalue ? (
+        <div className={`mt-0.5 text-xs ${isDark ? "text-white/65" : "text-slate-500"}`}>{callout.subvalue}</div>
       ) : null}
     </motion.div>
   )
@@ -106,25 +145,24 @@ function CalloutCard({
 
 function ConnectorLines({
   callouts,
-  photoBox,
   reducedMotion,
 }: {
   callouts: HeroCalloutConfig[]
-  photoBox: { left: number; top: number; width: number; height: number }
   reducedMotion: boolean
 }) {
   return (
     <svg
-      className="pointer-events-none absolute inset-0 z-10 hidden lg:block h-full w-full"
+      className="pointer-events-none absolute inset-0 z-20 h-full w-full overflow-visible"
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
       aria-hidden
     >
-      {callouts.map((c, i) => {
-        const x1 = photoBox.left + (photoBox.width * c.anchor.x) / 100
-        const y1 = photoBox.top + (photoBox.height * c.anchor.y) / 100
+      {callouts.map((c) => {
+        const x1 = c.anchor.x
+        const y1 = c.anchor.y
         const x2 = c.card.x
         const y2 = c.card.y
+        const len = Math.hypot(x2 - x1, y2 - y1)
         return (
           <g key={c.id}>
             <motion.line
@@ -133,37 +171,127 @@ function ConnectorLines({
               x2={x2}
               y2={y2}
               stroke="var(--site-accent)"
-              strokeOpacity={0.35}
-              strokeWidth={0.15}
+              strokeOpacity={0.38}
+              strokeWidth={0.22}
               vectorEffect="non-scaling-stroke"
-              initial={reducedMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.55, delay: 0.25 + c.delay, ease: "easeOut" }}
+              strokeLinecap="round"
+              strokeDasharray={`${len} ${len}`}
+              initial={reducedMotion ? false : { strokeDashoffset: len, opacity: 0 }}
+              animate={{ strokeDashoffset: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.25 + c.delay, ease: "easeOut" }}
             />
-            <motion.circle
-              cx={x1}
-              cy={y1}
-              r={0.35}
-              fill="var(--site-accent)"
-              initial={reducedMotion ? false : { scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.35, delay: 0.2 + c.delay }}
-            />
-            {!reducedMotion && (
-              <motion.circle
-                cx={x1}
-                cy={y1}
-                r={0.55}
-                fill="var(--site-accent)"
-                fillOpacity={0.25}
-                animate={{ scale: [1, 1.25, 1], opacity: [0.35, 0.15, 0.35] }}
-                transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.2 }}
-              />
-            )}
           </g>
         )
       })}
     </svg>
+  )
+}
+
+function PortraitImage({ src, priority = true }: { src: string; priority?: boolean }) {
+  return (
+    <Image
+      src={src}
+      alt="Mohamed Dhia Arfa — designer, trainer, and web developer"
+      fill
+      priority={priority}
+      unoptimized
+      sizes="(min-width: 1024px) 420px, 280px"
+      className="object-contain object-center select-none"
+    />
+  )
+}
+
+function HudStage({
+  callouts,
+  theme,
+  compact,
+  imageSrc,
+  showCta,
+  reducedMotion,
+  t,
+}: {
+  callouts: HeroCalloutConfig[]
+  theme: HeroPortraitTheme
+  compact: boolean
+  imageSrc: string
+  showCta: boolean
+  reducedMotion: boolean
+  t: (key: string) => string
+}) {
+  const stageHeight = compact ? "min-h-[440px] h-[440px]" : "min-h-[500px] h-[500px]"
+
+  return (
+    <div className={`relative mx-auto w-full max-w-[600px] px-3 sm:px-5 ${stageHeight}`}>
+      {/* Accent glow — sibling behind photo, never on image */}
+      <div
+        className="pointer-events-none absolute z-0 rounded-full blur-3xl"
+        style={{
+          left: `${PHOTO_BOUNDS.x + PHOTO_BOUNDS.w / 2}%`,
+          top: `${PHOTO_BOUNDS.y + PHOTO_BOUNDS.h / 2}%`,
+          width: "42%",
+          height: "55%",
+          transform: "translate(-50%, -50%)",
+          background: "color-mix(in oklab, var(--site-accent) 16%, transparent)",
+        }}
+      />
+
+      {/* Scan line — subtle, within stage only */}
+      {!reducedMotion && (
+        <motion.div
+          className="pointer-events-none absolute left-[8%] right-[8%] z-[5] h-px bg-accent/10 blur-[1px] hidden lg:block"
+          animate={{ top: ["8%", "88%", "8%"] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        />
+      )}
+
+      <ConnectorLines callouts={callouts} reducedMotion={reducedMotion} />
+
+      {callouts.map((c) => (
+        <AnchorDot key={`dot-${c.id}`} x={c.anchor.x} y={c.anchor.y} reducedMotion={reducedMotion} delay={c.delay} />
+      ))}
+
+      {/* Photo — transparent background, object-contain, no masks */}
+      <motion.div
+        className="absolute z-10 bg-transparent"
+        style={{
+          left: `${PHOTO_BOUNDS.x}%`,
+          top: `${PHOTO_BOUNDS.y}%`,
+          width: `${PHOTO_BOUNDS.w}%`,
+          height: `${PHOTO_BOUNDS.h}%`,
+        }}
+        initial={reducedMotion ? false : { opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+      >
+        <div className="relative h-full w-full bg-transparent">
+          <PortraitImage src={imageSrc} />
+        </div>
+      </motion.div>
+
+      {callouts.map((c) => (
+        <CalloutCard key={c.id} callout={c} theme={theme} reducedMotion={reducedMotion} />
+      ))}
+
+      {showCta && (
+        <motion.div
+          className="absolute left-1/2 z-30 -translate-x-1/2"
+          style={{ bottom: "0" }}
+          initial={reducedMotion ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.7 }}
+        >
+          <a
+            href={siteConfig.calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-green inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold shadow-[0_4px_24px_color-mix(in_oklab,var(--site-accent)_35%,transparent)]"
+          >
+            <Calendar className="w-4 h-4" />
+            {t("bookFreeConsultation")}
+          </a>
+        </motion.div>
+      )}
+    </div>
   )
 }
 
@@ -172,7 +300,6 @@ export default function HeroAnnotatedPortrait({
   compact = false,
   className = "",
   imageSrc = HERO_PORTRAIT_SRC,
-  imageObjectPosition = "center 10%",
   showCta = true,
   children,
 }: Props) {
@@ -187,9 +314,9 @@ export default function HeroAnnotatedPortrait({
         label: t("hudLabelSubject"),
         value: "Mohamed Dhia Arfa",
         subvalue: `${t("graphicDesigner")} · ${t("aboutCertifiedTrainer")} · ${t("aboutWebDeveloper")}`,
-        anchor: { x: 68, y: 14 },
-        card: { x: 82, y: 16 },
-        cardMaxWidth: 240,
+        anchor: { x: 62, y: 12 },
+        card: { x: 88, y: 10 },
+        cardMaxWidth: 220,
         bracket: true,
         delay: 0,
       },
@@ -199,18 +326,15 @@ export default function HeroAnnotatedPortrait({
         value: (
           <span className="inline-flex items-center gap-2">
             <span className="relative flex h-2 w-2" aria-hidden>
-              {!reducedMotion && (
-                <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-60" />
-              )}
+              {!reducedMotion && <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-60" />}
               <span className="relative h-2 w-2 rounded-full bg-accent" />
             </span>
             {t("availableForProjects")}
           </span>
         ),
-        anchor: { x: 28, y: 38 },
-        card: { x: 12, y: 34 },
-        cardMaxWidth: 210,
-        pulse: true,
+        anchor: { x: 38, y: 36 },
+        card: { x: 10, y: 32 },
+        cardMaxWidth: 200,
         delay: 0.1,
       },
       {
@@ -218,144 +342,73 @@ export default function HeroAnnotatedPortrait({
         label: t("hudLabelImpact"),
         value: formatStat("participantsTrained"),
         subvalue: t("homePeopleTrained"),
-        anchor: { x: 72, y: 42 },
-        card: { x: 88, y: 42 },
+        anchor: { x: 72, y: 40 },
+        card: { x: 92, y: 48 },
+        cardMaxWidth: 175,
         delay: 0.2,
       },
       {
         id: "location",
         label: t("hudLabelLocation"),
         value: <BasedInTunisia className="text-sm font-semibold" />,
-        anchor: { x: 38, y: 72 },
-        card: { x: 14, y: 68 },
-        cardMaxWidth: 200,
+        anchor: { x: 44, y: 78 },
+        card: { x: 12, y: 72 },
+        cardMaxWidth: 190,
         delay: 0.3,
       },
     ],
     [t, reducedMotion]
   )
 
-  /** Photo occupies ~38% width, centered-right in the HUD stage */
-  const photoBox = { left: 52, top: 18, width: 32, height: 64 }
-
   const sectionBg = isDark
     ? "bg-slate-950 text-white"
     : "bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
 
   return (
-    <section
-      className={`relative overflow-hidden ${sectionBg} ${compact ? "min-h-[620px]" : "min-h-[min(100vh,820px)]"} flex flex-col justify-center px-4 sm:px-6 pt-24 pb-10 ${className}`}
-    >
-      {/* Dot grid */}
+    <section className={`relative isolate ${sectionBg} px-4 sm:px-6 pt-24 pb-12 ${className}`}>
+      {/* Section-level dot grid */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06] dark:opacity-[0.08]"
+        className="pointer-events-none absolute inset-0 opacity-[0.07] dark:opacity-[0.08]"
         style={{
           backgroundImage: "radial-gradient(var(--site-accent) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
+          backgroundSize: "26px 26px",
         }}
       />
 
-      {/* Radial glow behind photo */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-[10%] -translate-y-1/2 w-[min(90vw,520px)] h-[min(70vh,560px)] rounded-full blur-[100px]"
-        style={{ background: "color-mix(in oklab, var(--site-accent) 18%, transparent)" }}
-      />
-
-      {/* Scan line */}
-      {!reducedMotion && (
-        <motion.div
-          className="pointer-events-none absolute left-[38%] right-[8%] h-px bg-accent/10 blur-[1px] z-[5] hidden lg:block"
-          initial={{ top: "18%" }}
-          animate={{ top: ["18%", "78%", "18%"] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        />
-      )}
-
       <div className="relative z-10 mx-auto w-full max-w-6xl">
-        {children}
+        <div
+          className={
+            children
+              ? "grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,46%)_minmax(0,54%)] lg:gap-10"
+              : ""
+          }
+        >
+          {children ? <div className="min-w-0">{children}</div> : null}
 
-        {/* Desktop HUD stage */}
-        <div className={`relative mx-auto hidden lg:block ${compact ? "h-[520px]" : "h-[620px]"}`}>
-          <ConnectorLines callouts={callouts} photoBox={photoBox} reducedMotion={reducedMotion} />
-
-          {/* Portrait */}
-          <motion.div
-            className="absolute z-[15]"
-            style={{
-              left: `${photoBox.left}%`,
-              top: `${photoBox.top}%`,
-              width: `${photoBox.width}%`,
-              height: `${photoBox.height}%`,
-            }}
-            initial={reducedMotion ? false : { opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-          >
-            <div className="relative h-full w-full overflow-hidden">
-              <Image
-                src={imageSrc}
-                alt="Mohamed Dhia Arfa — designer, trainer, and web developer"
-                fill
-                priority
-                sizes="(min-width: 1024px) 380px, 0px"
-                className="object-cover object-top select-none scale-[1.18]"
-                style={{ objectPosition: imageObjectPosition }}
-              />
-            </div>
-          </motion.div>
-
-          {callouts.map((c) => (
-            <CalloutCard key={c.id} callout={c} theme={theme} reducedMotion={reducedMotion} />
-          ))}
-
-          {showCta && (
-            <motion.div
-              className="absolute left-1/2 -translate-x-1/2 z-20"
-              style={{ bottom: compact ? "4%" : "6%" }}
-              initial={reducedMotion ? false : { opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.65 }}
-            >
-              <a
-                href={siteConfig.calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-green inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold shadow-[0_4px_24px_color-mix(in_oklab,var(--site-accent)_35%,transparent)]"
-              >
-                <Calendar className="w-4 h-4" />
-                {t("bookFreeConsultation")}
-              </a>
-            </motion.div>
-          )}
+          {/* Desktop HUD — contained stage, never overlaps siblings */}
+          <div className={`hidden lg:block w-full ${children ? "" : "max-w-[560px] mx-auto"}`}>
+            <HudStage
+              callouts={callouts}
+              theme={theme}
+              compact={compact}
+              imageSrc={imageSrc}
+              showCta={showCta}
+              reducedMotion={reducedMotion}
+              t={t}
+            />
+          </div>
         </div>
 
-        {/* Mobile / tablet */}
-        <div className="lg:hidden flex flex-col items-center gap-6">
-          <motion.div
-            className="relative w-[min(78vw,320px)] aspect-[3/4] max-h-[420px]"
-            initial={reducedMotion ? false : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35 }}
-          >
-            <div className="relative h-full w-full overflow-hidden">
-              <Image
-                src={imageSrc}
-                alt="Mohamed Dhia Arfa — designer, trainer, and web developer"
-                fill
-                priority
-                sizes="(max-width: 1023px) 320px, 0px"
-                className="object-cover object-top"
-                style={{ objectPosition: imageObjectPosition }}
-              />
-            </div>
-          </motion.div>
-
-          <div className="flex gap-3 overflow-x-auto pb-2 w-full max-w-lg snap-x snap-mandatory px-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {/* Mobile / tablet — stacked below intro text, no connector lines */}
+        <div className="lg:hidden mt-8 flex flex-col items-center gap-6">
+          <div className="relative w-[min(72vw,280px)] aspect-[3/4] max-h-[360px] bg-transparent">
+            <PortraitImage src={imageSrc} />
+          </div>
+          <div className="flex w-full max-w-lg gap-3 overflow-x-auto pb-2 snap-x snap-mandatory px-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {callouts.map((c) => (
-              <CalloutCard key={c.id} callout={c} theme={theme} reducedMotion={reducedMotion} isMobile />
+              <CalloutCard key={`m-${c.id}`} callout={c} theme={theme} reducedMotion={reducedMotion} isMobile />
             ))}
           </div>
-
           {showCta && (
             <a
               href={siteConfig.calendlyUrl}

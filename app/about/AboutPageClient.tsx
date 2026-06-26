@@ -206,7 +206,7 @@ export default function AboutPageClient() {
           </div>
         </section>
 
-        <HeroAnnotatedPortrait theme="light" compact showCta={false} className="!pt-4 !min-h-0 !pb-6" />
+        <HeroAnnotatedPortrait theme="light" compact showCta={false} className="!pt-2 !pb-8" />
 
         {/* Proof — stats bar */}
         <section className="px-4 md:px-8 py-6">
