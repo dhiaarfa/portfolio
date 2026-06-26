@@ -4,7 +4,8 @@ import { notFound } from "next/navigation"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import InsightArticleBody from "@/components/insight-article-body"
-import { insightBySlug, publishedInsightArticles } from "@/lib/insights"
+import { InsightArticleCta } from "@/components/insight-article-cta"
+import { insightBySlug, publishedInsightArticles, relatedInsights } from "@/lib/insights"
 import { getInsightContent } from "@/lib/insights-content"
 import { insightEnExcerpts, insightEnTitles } from "@/lib/insight-en-copy"
 import { pageMetadata } from "@/lib/page-metadata"
@@ -46,6 +47,7 @@ export default async function InsightArticlePage({ params }: Props) {
 
   const title = insightEnTitles[article.titleKey] ?? article.slug
   const url = `${SITE_URL}/insights/${slug}`
+  const related = relatedInsights(article)
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -73,6 +75,25 @@ export default async function InsightArticlePage({ params }: Props) {
           </div>
           <h1 className="text-3xl lg:text-4xl font-extrabold text-foreground mb-8 leading-[1.08]">{title}</h1>
           <InsightArticleBody content={content} />
+          <InsightArticleCta article={article} />
+          {related.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-border">
+              <h2 className="text-lg font-bold text-foreground mb-4">Related articles</h2>
+              <ul className="space-y-3">
+                {related.map((r) => (
+                  <li key={r.slug}>
+                    <Link href={`/insights/${r.slug}`} className="text-accent hover:underline font-medium">
+                      {insightEnTitles[r.titleKey] ?? r.slug}
+                    </Link>
+                    <span className="text-muted-foreground text-sm ml-2">· {r.readMin} min</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href={article.servicePath} className="mt-4 inline-block text-sm text-muted-foreground hover:text-accent">
+                View {article.category.toLowerCase()} services →
+              </Link>
+            </div>
+          )}
         </article>
       </main>
       <Footer />

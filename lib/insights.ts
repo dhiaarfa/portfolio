@@ -9,6 +9,8 @@ export type InsightArticleMeta = {
   excerptKey: string
   date: string
   published: boolean
+  featured?: boolean
+  servicePath: "/designer" | "/trainer" | "/developer"
 }
 
 export const insightArticles: InsightArticleMeta[] = [
@@ -21,6 +23,7 @@ export const insightArticles: InsightArticleMeta[] = [
     excerptKey: "insightsArticle1Excerpt",
     date: "2026-06-01",
     published: true,
+    servicePath: "/designer",
   },
   {
     slug: "facilitation-mistakes-youth-workshops",
@@ -31,6 +34,8 @@ export const insightArticles: InsightArticleMeta[] = [
     excerptKey: "insightsArticle2Excerpt",
     date: "2026-06-01",
     published: true,
+    featured: true,
+    servicePath: "/trainer",
   },
   {
     slug: "why-i-rebuilt-my-portfolio-in-nextjs",
@@ -41,6 +46,7 @@ export const insightArticles: InsightArticleMeta[] = [
     excerptKey: "insightsArticle3Excerpt",
     date: "2026-06-01",
     published: true,
+    servicePath: "/developer",
   },
   {
     slug: "social-media-visual-consistency",
@@ -51,6 +57,7 @@ export const insightArticles: InsightArticleMeta[] = [
     excerptKey: "insightsArticle4Excerpt",
     date: "2026-06-15",
     published: true,
+    servicePath: "/designer",
   },
   {
     slug: "training-needs-assessment-basics",
@@ -61,6 +68,7 @@ export const insightArticles: InsightArticleMeta[] = [
     excerptKey: "insightsArticle5Excerpt",
     date: "2026-06-15",
     published: true,
+    servicePath: "/trainer",
   },
   {
     slug: "supabase-nextjs-for-freelancers",
@@ -71,6 +79,7 @@ export const insightArticles: InsightArticleMeta[] = [
     excerptKey: "insightsArticle6Excerpt",
     date: "2026-06-20",
     published: true,
+    servicePath: "/developer",
   },
   {
     slug: "brand-guidelines-that-get-used",
@@ -81,6 +90,7 @@ export const insightArticles: InsightArticleMeta[] = [
     excerptKey: "insightsArticle7Excerpt",
     date: "2026-06-22",
     published: true,
+    servicePath: "/designer",
   },
   {
     slug: "icebreakers-vs-energizers",
@@ -91,6 +101,7 @@ export const insightArticles: InsightArticleMeta[] = [
     excerptKey: "insightsArticle8Excerpt",
     date: "2026-06-22",
     published: true,
+    servicePath: "/trainer",
   },
   {
     slug: "client-chatbot-with-openrouter",
@@ -101,6 +112,7 @@ export const insightArticles: InsightArticleMeta[] = [
     excerptKey: "insightsArticle9Excerpt",
     date: "2026-06-24",
     published: true,
+    servicePath: "/developer",
   },
 ]
 
@@ -110,4 +122,10 @@ export function publishedInsightArticles() {
 
 export function insightBySlug(slug: string) {
   return insightArticles.find((a) => a.slug === slug && a.published)
+}
+
+export function relatedInsights(article: InsightArticleMeta, limit = 2) {
+  return publishedInsightArticles()
+    .filter((a) => a.slug !== article.slug && a.category === article.category)
+    .slice(0, limit)
 }

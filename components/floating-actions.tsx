@@ -30,6 +30,8 @@ function markShown(id: string) {
   sessionStorage.setItem(NUDGE_SHOWN_KEY, JSON.stringify([...shown]))
 }
 
+const NUDGE_QUIET_PREFIXES = ["/about", "/insights", "/freebies"]
+
 export default function FloatingActions() {
   const { t } = useLanguage()
   const pathname = usePathname()
@@ -106,6 +108,11 @@ export default function FloatingActions() {
     nudgeIndexRef.current = 0
     setNudgeVisible(false)
     setActiveNudge(null)
+
+    const quiet = NUDGE_QUIET_PREFIXES.some(
+      (p) => pathname === p || pathname.startsWith(`${p}/`)
+    )
+    if (quiet) return clearNudgeTimers
 
     const first = setTimeout(() => showNextNudgeRef.current(), FIRST_NUDGE_MS)
     nudgeTimersRef.current.push(first)
