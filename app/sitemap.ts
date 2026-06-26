@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next"
 
 import { publishedInsightArticles } from "@/lib/insights"
+import { publishedWorkProjects } from "@/lib/work"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://dhia-portfolio.me"
@@ -9,6 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.55,
+  }))
+  const workUrls = publishedWorkProjects().map((p) => ({
+    url: `${baseUrl}/work/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
   }))
   
   return [
@@ -61,5 +68,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     ...insightUrls,
+    ...workUrls,
   ]
 }

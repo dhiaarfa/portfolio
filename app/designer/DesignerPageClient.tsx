@@ -2,748 +2,388 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Calendar } from "lucide-react"
-import { formatStat, designExperience, certifications as profileCertifications, isConceptProject } from "@/lib/profile"
+import { Calendar, ArrowRight, Target, Layers, LayoutGrid, Compass, Search, PenTool, Package, Handshake, RefreshCw } from "lucide-react"
+import { formatStat, designExperience, certifications as profileCertifications } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
+import { featuredWorkProjects, curatedGallery } from "@/lib/work"
 import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
-import dynamic from "next/dynamic"
 import ContactForm from "@/components/contact-form"
 import ToolsStackSection from "@/components/tools-stack-section"
-const SocialEmbedsSection = dynamic(() => import("@/components/social-embeds-section"), {
-  loading: () => <div className="h-48 animate-pulse rounded-2xl bg-muted/30" />,
-})
-const TrainingImpactChart = dynamic(() => import("@/components/training-impact-chart"), {
-  ssr: false,
-  loading: () => <div className="h-64 animate-pulse rounded-2xl bg-muted/30" />,
-})
+import ClientLogosStrip from "@/components/client-logos-strip"
 import { useState } from "react"
 
+const designPhilosophy = [
+  { title: "Brand Identity Systems", description: "Logos plus color, type, and usage rules so every touchpoint feels like one brand.", Icon: Layers },
+  { title: "Creative Direction", description: "Visual choices tied to business goals, not decoration for its own sake.", Icon: Target },
+  { title: "Visual Design & UI/UX", description: "Interfaces and campaigns that are clear, usable, and on-brand.", Icon: LayoutGrid },
+  { title: "Design Consulting", description: "Guidance on systems, templates, and how your team keeps consistency.", Icon: Compass },
+]
+
+const howWeWork = [
+  { step: "01", title: "Discovery & brief", desc: "Goals, audience, competitors, and deliverables locked before pixels.", Icon: Search },
+  { step: "02", title: "Concept directions", desc: "2–3 visual routes with rationale. You pick a direction with confidence.", Icon: PenTool },
+  { step: "03", title: "Design & iterate", desc: "Refine the system across logo, templates, and key applications.", Icon: RefreshCw },
+  { step: "04", title: "Handover & assets", desc: "Export kit, templates, and usage notes so your team can run with it.", Icon: Package },
+]
+
+const packages = [
+  {
+    name: "Brand Identity",
+    desc: "Logo, color, typography, and core templates for startups and SMEs.",
+    includes: ["Logo suite", "Color & type system", "Social templates", "Brand usage guide"],
+    note: "From custom quote",
+  },
+  {
+    name: "Social & Campaigns",
+    desc: "Feed systems, promos, and campaign visuals for active brands.",
+    includes: ["Template family", "Campaign key visual", "Story & post formats", "Canva/Figma handoff"],
+    note: "Project-based",
+  },
+  {
+    name: "Logo & Essentials",
+    desc: "Fast turnaround for new businesses that need a credible mark quickly.",
+    includes: ["Primary logo", "Color palette", "Basic social avatar", "File exports"],
+    note: "Fixed scope",
+  },
+]
+
+const designTestimonials = [
+  { name: "Youssef Touati", role: "CEO, Jasmin Marketing · Direct manager", quote: "Creativity and dedication. Attention to detail, eagerness to learn." },
+  { name: "Skander Chebbi", role: "Graphic Designer · Collaborator", quote: "Symbol of dynamism and accuracy. Adds value in design and strategy." },
+  { name: "Amir Boujelben", role: "MeetUp Pro Event Manager", quote: "Exceptional strategic marketing and creativity. Crucial to event success." },
+]
+
+const categories = ["All", "Brand Identity", "Social Media", "Logo Design", "Packaging"] as const
+
 export default function DesignerPageClient() {
-  const studioManifesto = {
-    title: "Studio Philosophy",
-    points: [
-      "Design as Strategy, Not Decoration",
-      "Visual Identity as a System, Not a Logo",
-      "Creativity Guided by Purpose, Clarity, and Impact",
-      "Every Project Tells a Unique Brand Story",
-    ]
-  }
-
-  const designPhilosophy = [
-    {
-      title: "Brand Identity Systems",
-      description: "We don't just create logos. We build visual systems that evolve with your brand.",
-    },
-    {
-      title: "Creative Direction",
-      description: "Strategic visual thinking that aligns design decisions with business objectives.",
-    },
-    {
-      title: "Visual Design & UI/UX",
-      description: "Functional interfaces that solve real problems and create meaningful user experiences.",
-    },
-    {
-      title: "Design Consulting",
-      description: "Guidance on visual branding, design systems, and creative direction.",
-    },
-  ]
-
-  const projects = [
-    {
-      id: 1,
-      title: "MeetUp Pro",
-      url: siteConfig.behance,
-      color: "from-accent to-accent",
-    },
-    {
-      id: 2,
-      title: "Speranza Café",
-      url: siteConfig.behance,
-      color: "from-[#D4A574] to-[#C8860E]",
-    },
-    {
-      id: 3,
-      title: "Business Cards",
-      url: siteConfig.behance,
-      color: "from-card to-secondary",
-    },
-    {
-      id: 4,
-      title: "Walmart Packaging",
-      url: siteConfig.behance,
-      color: "from-[#0E2B5F] to-[#F4B024]",
-    },
-    {
-      id: 5,
-      title: "Speranza",
-      url: siteConfig.behance,
-      color: "from-[#B8860B] to-[#DAA520]",
-    },
-    {
-      id: 6,
-      title: "Football Campaign",
-      url: siteConfig.behance,
-      color: "from-[#0066CC] to-[#0052A3]",
-    },
-  ]
-
-  const categories = ["All", "Brand Identity", "Social Media", "Logo Design", "Packaging", "UI/UX"]
-  const [activeCategory, setActiveCategory] = useState("All")
-
-  const galleryProjects = [
-    {
-      title: "Walmart Branding + System",
-      image: "/images/walmart-branding.png",
-      url: siteConfig.behance,
-      size: "primary",
-      category: "Brand Identity",
-    },
-    {
-      title: "Tafani Travel",
-      image: "/images/tafani-white-png.png",
-      url: siteConfig.behance,
-      size: "primary",
-      category: "Brand Identity",
-    },
-    {
-      title: "Speranza Café",
-      image: "/images/445771850-916829483581375-1053755579034856379-n.png",
-      url: siteConfig.behance,
-      size: "primary",
-      category: "Brand Identity",
-    },
-    {
-      title: "Lone Space Gold Branding",
-      image: "/images/lone-space-gold.png",
-      url: siteConfig.behance,
-      size: "primary",
-      category: "Brand Identity",
-    },
-    {
-      title: "Lone Space Stationery",
-      image: "/images/lone-space-mockup.jpg",
-      url: siteConfig.behance,
-      size: "primary",
-      category: "Packaging",
-    },
-    {
-      title: "Lone Space Business Cards",
-      image: "/images/lone-space-cards.jpg",
-      url: siteConfig.behance,
-      size: "primary",
-      category: "Logo Design",
-    },
-    {
-      title: "MeetUp Pro Event",
-      image: "/images/meetuppro-thumbnail.png",
-      url: siteConfig.behance,
-      size: "primary",
-      category: "Social Media",
-    },
-    {
-      title: "Archaeological Museum Sousse",
-      image: "/images/archaeological-museum-sousse.png",
-      url: siteConfig.behance,
-      size: "primary",
-      category: "Brand Identity",
-    },
-    {
-      title: "TravelTodo Billboard",
-      image: "/images/billboard-48x14-ft-mockup-3.jpeg",
-      url: siteConfig.behance,
-      size: "secondary",
-      category: "Social Media",
-    },
-    {
-      title: "Football Campaign",
-      image: "/images/argentina-messi-copa-america-outdoor.jpeg",
-      url: siteConfig.behance,
-      size: "secondary",
-      category: "Social Media",
-    },
-    {
-      title: "TravelTodo Poster",
-      image: "/images/affiche-traveltodo.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-      category: "Social Media",
-    },
-    {
-      title: "Our Cause Campaign",
-      image: "/images/palestine.png",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Love & Noodles - Delivery",
-      image: "/images/love-noodles-avec-livraison.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Le Vrai Amour",
-      image: "/images/le-vrai-amour.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Food Campaign - Sportif",
-      image: "/images/sportif-yekl-f-noodles.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "3jeja - Livraison",
-      image: "/images/3jeja-livraison.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Happy Tuesday Promotion",
-      image: "/images/happy-tuesday.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Valentine's Special Combo",
-      image: "/images/best-combo-for-valentine.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Plat Ramen Campaign",
-      image: "/images/plat-ramen.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Just Have a Taste",
-      image: "/images/after-saying-just-have-taste.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Plain Studios Campaign",
-      image: "/images/1_01.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Wasabi Warning",
-      image: "/images/wasabi-warning.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Plain Studios Store",
-      image: "/images/1_03.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Black Heavy Streetwear",
-      image: "/images/1_04.png",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Sousse Palace Breakfast",
-      image: "/images/enjoy-breakfast.png",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Plain Studios Comfy & Chic",
-      image: "/images/1_05.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Saint Valentin",
-      image: "/images/saint-valentin.png",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Euro 2024 Final",
-      image: "/images/polaroid-frame.png",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Speranza Café Crème",
-      image: "/images/cafe-creme.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Argentina Copa America",
-      image: "/images/argentina-messi.png",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Speranza Benna",
-      image: "/images/speranza-benna.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Speranza Pasta",
-      image: "/images/speranza-pasta.jpg",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-    {
-      title: "Vinyl Album Cover",
-      image: "/images/vinyl-album.png",
-      url: siteConfig.behance,
-      size: "secondary",
-    },
-  ]
-
-  const workExperience = designExperience.map((exp) => ({
-    title: exp.role,
-    company: exp.company,
-    period: exp.period,
-    description: exp.description,
-  }))
-
+  const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("All")
+  const featured = featuredWorkProjects()
+  const workExperience = designExperience.slice(0, 3)
   const certifications = profileCertifications
-    .filter((c) => ["cnfcpp", "graphic-design", "hubspot", "inco", "youth-clubs"].includes(c.id))
+    .filter((c) => ["graphic-design", "hubspot", "inco"].includes(c.id))
     .map((c) => ({ title: c.title, issuer: c.issuer, year: c.year }))
+
+  const filteredGallery =
+    activeCategory === "All"
+      ? curatedGallery
+      : curatedGallery.filter((p) => p.category === activeCategory)
 
   return (
     <div className="w-full min-h-screen bg-background">
       <Navbar />
 
       <main className="w-full pt-0">
-        {/* Hero — full-bleed dark split */}
-        <section className="min-h-[70vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
-          <div className="relative bg-slate-950 flex flex-col justify-between p-10 lg:p-16 order-2 lg:order-1 overflow-hidden">
+        {/* 1. Hero — positioning + work visual */}
+        <section className="min-h-[72vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+          <div className="relative order-2 flex flex-col justify-between bg-slate-950 p-8 lg:order-1 lg:p-14">
             <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#22c55e 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
-            <div className="pointer-events-none absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-accent-muted blur-[60px]" />
-            <div className="flex items-center gap-3 relative z-10">
-              <div className="w-11 h-11 bg-accent rounded-xl flex items-center justify-center shadow-[0_2px_12px_rgba(22,163,74,0.5)]">
-                <span className="text-white font-black text-xl">Z</span>
-              </div>
-              <div>
-                <p className="text-white font-bold text-sm leading-none">Zia Studio</p>
-                <p className="text-slate-500 text-xs">by Mohamed Dhia</p>
-              </div>
-            </div>
-            <div className="relative z-10 my-auto py-10">
-              <h1 className="font-display font-black text-[clamp(52px,6.5vw,88px)] leading-[0.91] text-white tracking-tight mb-6">
-                Creative &<br /><span className="text-accent">Marketing</span>
+            <div className="relative z-10 my-auto py-6">
+              <p className="label mb-4 text-accent">Brand design · Zia Studio</p>
+              <h1 className="font-display mb-5 text-[clamp(36px,5.5vw,64px)] font-black leading-[0.95] text-white">
+                Brand identity and social design that make Tunisian brands impossible to ignore.
               </h1>
-              <p className="text-slate-400 text-[17px] leading-relaxed max-w-sm mb-10">
-                Brand identities, social media, training. Clarity and impact for brands and people.
+              <p className="mb-8 max-w-md text-[17px] leading-relaxed text-slate-400">
+                I&apos;m Dhia. I build brands that look as good as they work, from logo to launch, for cafés, startups, and NGOs across Tunisia.
               </p>
               <div className="flex flex-wrap gap-3">
-                <a href="#gallery" className="btn-green">Browse Portfolio</a>
-                <a href="#contact" className="border border-slate-700 text-slate-300 font-medium px-6 py-3 rounded-[14px] hover:border-accent/60 hover:text-white transition-all duration-200">
-                  Request a Quote
+                <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green">
+                  Start a project
+                </a>
+                <a href="#case-studies" className="rounded-[14px] border border-slate-700 px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white">
+                  See selected work
                 </a>
               </div>
             </div>
-            <div className="flex gap-8 pt-8 border-t border-slate-800 relative z-10">
+            <div className="relative z-10 flex gap-8 border-t border-slate-800 pt-6">
               {[
                 [formatStat("designProjects"), "Projects"],
                 [formatStat("yearsExperience"), "Years"],
                 [formatStat("brands"), "Brands"],
               ].map(([v, l]) => (
                 <div key={l}>
-                  <p className="font-display font-black text-2xl text-white leading-none">{v}</p>
-                  <p className="text-slate-500 text-[11px] uppercase tracking-widest mt-1">{l}</p>
+                  <p className="font-display text-2xl font-black leading-none text-white">{v}</p>
+                  <p className="mt-1 text-[11px] uppercase tracking-widest text-slate-500">{l}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div className="relative order-1 lg:order-2 min-h-[50vh] lg:min-h-full overflow-hidden bg-slate-900">
-            <Image src="/images/photos/dhia-designer.png" alt="Dhia, Graphic Designer" fill className="object-cover object-center" priority />
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/20 to-transparent" />
-            <div className="absolute bottom-6 right-6 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-xl">
-              <p className="font-semibold text-slate-900 dark:text-white text-sm">@zia.studioo</p>
-              <p className="text-slate-500 dark:text-slate-400 text-xs">Follow on Instagram</p>
+          <div className="relative order-1 grid min-h-[45vh] grid-cols-2 grid-rows-2 gap-1 bg-slate-900 lg:order-2 lg:min-h-full">
+            {[
+              "/images/lone-space-gold.png",
+              "/images/445771850-916829483581375-1053755579034856379-n.png",
+              "/images/tafani-white-png.png",
+              "/images/meetuppro-thumbnail.png",
+            ].map((src, i) => (
+              <div key={src} className="relative overflow-hidden">
+                <Image src={src} alt="" fill className="object-cover" priority={i < 2} sizes="50vw" />
+              </div>
+            ))}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent lg:bg-gradient-to-r lg:from-slate-950/30" />
+          </div>
+        </section>
+
+        {/* 2. Client logos */}
+        <ClientLogosStrip />
+
+        {/* 3. Featured case studies */}
+        <section id="case-studies" className="section-compact w-full px-4 md:px-8">
+          <div className="mx-auto max-w-7xl">
+            <p className="label mb-2">Case studies</p>
+            <h2 className="mb-3 text-3xl font-bold md:text-4xl">Selected work, with context</h2>
+            <p className="mb-10 max-w-2xl text-muted-foreground">
+              Problem, process, and outcome for each project. Not just thumbnails.
+            </p>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {featured.map((project, i) => (
+                <motion.article
+                  key={project.slug}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.06 }}
+                  viewport={{ once: true }}
+                  className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-accent/40 hover:shadow-lg"
+                >
+                  <Link href={`/work/${project.slug}`} className="block">
+                    <div className="relative aspect-[4/3] bg-muted">
+                      <Image src={project.cardImage} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
+                    </div>
+                    <div className="space-y-2 p-5">
+                      <span className="text-xs font-semibold uppercase tracking-wide text-accent">{project.category}</span>
+                      <h3 className="text-lg font-bold">{project.title}</h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2">{project.excerpt}</p>
+                      <p className="text-xs text-muted-foreground">{project.role} · {project.timeline}</p>
+                      <span className="inline-flex items-center gap-1 pt-1 text-sm font-semibold text-accent">
+                        View case study <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+                  </Link>
+                </motion.article>
+              ))}
             </div>
           </div>
         </section>
 
-        <SocialEmbedsSection
-          instagramProfileUrl={siteConfig.ziaStudioInstagram}
-          behanceProfileUrl={siteConfig.behance}
-        />
-
-        {/* Design Philosophy - interactive steps */}
-        <section className="w-full section-compact px-4 md:px-8 bg-gradient-to-b from-background via-[var(--site-accent)]/3 to-background">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              className="space-y-12"
-              initial={{ opacity: 1 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="space-y-4 max-w-3xl">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
-                  How we build your brand
-                </p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
-                  Design Philosophy in four moves
-                </h2>
-                <p className="text-muted-foreground text-base md:text-lg">
-                  A clear sequence from strategy to visuals so every asset feels part of one story.
-                </p>
-              </div>
-
-              <div className="relative">
-                <div className="hidden md:block absolute left-8 right-8 top-8 h-px bg-gradient-to-r from-transparent via-[var(--site-accent)] to-transparent opacity-40" />
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                  {designPhilosophy.map((item, i) => (
-                    <motion.div
-                      key={item.title}
-                      className="relative bg-background rounded-2xl border border-[var(--site-accent)]/25 p-5 sm:p-6 hover:border-[var(--site-accent)] hover:-translate-y-1 transition-all shadow-sm"
-                      initial={{ opacity: 1, y: 0 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: i * 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="w-8 h-8 rounded-full bg-[var(--site-accent)]/10 text-[var(--site-accent)] text-xs font-bold flex items-center justify-center">
-                          {`0${i + 1}`}
-                        </span>
-                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                          Step {i + 1}
-                        </span>
-                      </div>
-                      <h3 className="text-sm font-semibold text-foreground mb-2">{item.title}</h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
-                    </motion.div>
-                  ))}
+        {/* 4. How we work */}
+        <section className="section-compact w-full bg-muted/30 px-4 md:px-8 dark:bg-slate-950/50">
+          <div className="mx-auto max-w-5xl">
+            <p className="label mb-2 text-center">Process</p>
+            <h2 className="mb-10 text-center text-3xl font-bold md:text-4xl">How we work together</h2>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {howWeWork.map((step) => (
+                <div key={step.step} className="rounded-2xl border border-border bg-card p-5">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-subtle text-accent">
+                      <step.Icon className="h-4 w-4" />
+                    </span>
+                    <span className="font-display text-2xl font-black text-muted-foreground/40">{step.step}</span>
+                  </div>
+                  <h3 className="mb-2 font-semibold">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
                 </div>
-              </div>
-            </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* Portfolio Gallery */}
-        <section id="gallery" className="w-full section-compact px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              className="space-y-16"
-              initial={{ opacity: 1 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Portfolio</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Featured Work</h2>
-              </div>
+        {/* 5. Services / packages */}
+        <section className="section-compact w-full px-4 md:px-8">
+          <div className="mx-auto max-w-5xl">
+            <p className="label mb-2">Services</p>
+            <h2 className="mb-10 text-3xl font-bold md:text-4xl">What I design for clients</h2>
+            <div className="grid gap-5 md:grid-cols-3">
+              {packages.map((pkg) => (
+                <div key={pkg.name} className="flex flex-col rounded-2xl border border-border bg-card p-6">
+                  <h3 className="mb-2 text-lg font-bold">{pkg.name}</h3>
+                  <p className="mb-4 text-sm text-muted-foreground">{pkg.desc}</p>
+                  <ul className="mb-6 flex-1 space-y-2">
+                    {pkg.includes.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-accent">{pkg.note}</p>
+                  <a href="#contact-form" className="text-sm font-semibold text-foreground hover:text-accent">
+                    Start a project →
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              {/* Filter tabs — horizontally scrollable on mobile */}
-              <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1 mb-8 -mx-5 px-5 md:mx-0 md:px-0 md:flex-wrap md:justify-center">
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setActiveCategory(cat)}
-                    className={`flex-shrink-0 text-sm font-medium px-4 py-2 rounded-full transition-all duration-200 ${
-                      activeCategory === cat
-                        ? "bg-accent text-white shadow-[0_2px_8px_rgba(22,163,74,0.4)]"
-                        : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
+        {/* 6. Design philosophy */}
+        <section className="section-compact w-full bg-gradient-to-b from-background via-accent/5 to-background px-4 md:px-8">
+          <div className="mx-auto max-w-7xl">
+            <p className="label mb-2">Approach</p>
+            <h2 className="mb-8 text-3xl font-bold md:text-4xl">Design philosophy in four moves</h2>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {designPhilosophy.map((item, i) => (
+                <div key={item.title} className="rounded-2xl border border-accent/20 bg-card p-5 shadow-sm">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-subtle text-accent">
+                    <item.Icon className="h-5 w-5" />
+                  </div>
+                  <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Step 0{i + 1}</p>
+                  <h3 className="mb-2 text-sm font-semibold">{item.title}</h3>
+                  <p className="text-xs leading-relaxed text-muted-foreground">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              {/* Gallery grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                {(activeCategory === "All" ? galleryProjects : galleryProjects.filter((p) => (p as { category?: string }).category === activeCategory)).map((project, index) => (
-                  <motion.a
+        {/* 7. Curated gallery */}
+        <section id="gallery" className="section-compact w-full px-4 md:px-8">
+          <div className="mx-auto max-w-7xl">
+            <p className="label mb-2">Portfolio</p>
+            <h2 className="mb-6 text-3xl font-bold md:text-4xl">More selected work</h2>
+            <div className="mb-8 flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setActiveCategory(cat)}
+                  className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                    activeCategory === cat ? "bg-accent text-white shadow-md" : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {filteredGallery.map((project) => {
+                const href = project.workSlug ? `/work/${project.workSlug}` : project.externalUrl ?? siteConfig.behance
+                const internal = !!project.workSlug
+                const Wrapper = internal ? Link : "a"
+                const linkProps = internal
+                  ? { href }
+                  : { href, target: "_blank" as const, rel: "noopener noreferrer" as const }
+
+                return (
+                  <Wrapper
                     key={project.title}
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    layout
-                    className="group relative overflow-hidden rounded-2xl aspect-square bg-slate-100 dark:bg-slate-800 cursor-pointer"
+                    {...linkProps}
+                    className="group relative aspect-square overflow-hidden rounded-2xl bg-muted"
                   >
-                    <Image
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 25vw"
-                      loading={index < 6 ? "eager" : "lazy"}
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/65 transition-all duration-300 flex items-end p-4">
-                      {isConceptProject(project.title) && (
-                        <span className="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-amber-500/90 text-white px-2 py-0.5 rounded-full">
+                    <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="25vw" />
+                    <div className="absolute inset-0 flex items-end bg-slate-900/0 p-3 transition-all group-hover:bg-slate-900/70">
+                      {project.concept && (
+                        <span className="absolute left-3 top-3 rounded-full bg-amber-500/90 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
                           Concept
                         </span>
                       )}
-                      <div className="translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                        <p className="text-white font-semibold text-sm">{project.title}</p>
-                        <p className="text-white/60 text-xs">
-                          {isConceptProject(project.title) ? "Personal project" : (project as { category?: string }).category || "Design"}
-                        </p>
+                      <div className="translate-y-2 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
+                        <p className="text-sm font-semibold text-white">{project.title}</p>
+                        <p className="text-xs text-white/70">{internal ? "Case study" : "Behance"}</p>
                       </div>
                     </div>
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
+                  </Wrapper>
+                )
+              })}
+            </div>
+            <div className="mt-8 text-center">
+              <a href={siteConfig.behance} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-accent hover:underline">
+                See full archive on Behance ↗
+              </a>
+            </div>
           </div>
         </section>
 
-        {/* Work Experience - timeline */}
-        <section className="w-full section-compact px-4 md:px-8">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              className="space-y-10"
-              initial={{ opacity: 1 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="space-y-2">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
-                  Studio Journey
-                </p>
-                <h2 className="text-3xl md:text-4xl font-bold">Selected experience</h2>
-              </div>
-
-              <div className="relative">
-                <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--site-accent)] via-slate-200 to-transparent dark:via-slate-700" />
-                <div className="flex flex-col gap-6">
-                  {workExperience.map((job, i) => (
-                    <motion.div
-                      key={`${job.company}-${job.period}`}
-                      className="relative pl-12"
-                      initial={{ opacity: 1, y: 0 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: i * 0.08 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-[var(--site-accent)] text-[10px] font-semibold text-background flex items-center justify-center shadow-md">
-                        {i === 0 ? "Now" : job.period.split("–")[0].trim()}
-                      </div>
-                      <div className="bg-background border border-border rounded-2xl p-5 hover:border-[var(--site-accent)]/60 hover:shadow-md transition-all">
-                        <div className="flex items-start justify-between gap-3 flex-wrap mb-2">
-                          <div>
-                            <h3 className="text-sm font-bold text-foreground">{job.title}</h3>
-                            <p className="text-xs text-muted-foreground">{job.company}</p>
-                          </div>
-                          <span className="text-[11px] text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full whitespace-nowrap">
-                            {job.period}
-                          </span>
-                        </div>
-                        <p className="text-xs text-muted-foreground leading-relaxed">{job.description}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Certifications */}
-        <section className="w-full section-compact px-4 md:px-8 bg-muted/40 dark:bg-slate-950">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              className="space-y-8"
-              initial={{ opacity: 1 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="space-y-2 text-center">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
-                  Professional credentials
-                </p>
-                <h2 className="text-3xl md:text-4xl font-bold">Certifications</h2>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {certifications.map((cert, i) => (
-                  <motion.div
-                    key={cert.title}
-                    className="rounded-2xl border border-[var(--site-accent)]/20 bg-background p-4 text-left hover:border-[var(--site-accent)]/60 hover:-translate-y-1 transition-all"
-                    initial={{ opacity: 1, y: 0 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: i * 0.05 }}
-                    viewport={{ once: true }}
-                  >
-                    <p className="text-[11px] font-semibold text-[var(--site-accent)] mb-1 uppercase tracking-widest">
-                      {cert.year}
-                    </p>
-                    <p className="text-sm font-semibold text-foreground leading-snug mb-1">
-                      {cert.title}
-                    </p>
-                    <p className="text-xs text-muted-foreground">{cert.issuer}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Marketing & Social Media */}
-        <section className="w-full section-compact px-4 md:px-8 bg-gradient-to-b from-background via-muted/30 to-background">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              className="space-y-12"
-              initial={{ opacity: 1 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
+        {/* 8. Short experience + design certs */}
+        <section className="section-compact w-full px-4 md:px-8">
+          <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2">
+            <div>
+              <p className="label mb-2">Experience</p>
+              <h2 className="mb-6 text-2xl font-bold">Selected studio journey</h2>
               <div className="space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Content & Campaigns</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Marketing & Social Media</h2>
-                <p className="text-muted-foreground max-w-2xl">Social content, campaigns, and visual storytelling that connect brands with their audience. From Instagram feeds to event promotions.</p>
-              </div>
-              <div className="grid md:grid-cols-3 gap-4">
-                {[
-                  { label: "Social Media Content", desc: "Feed visuals, stories, carousels" },
-                  { label: "Campaign Design", desc: "Product launches, seasonal promos" },
-                  { label: "Event Branding", desc: "Posters, invites, on-site assets" },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    className="p-6 border border-border rounded-2xl hover:border-[var(--site-accent)]/40 transition-all"
-                    initial={{ opacity: 1, y: 0 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.08 }}
-                    viewport={{ once: true }}
-                  >
-                    <h3 className="font-bold text-foreground mb-2">{item.label}</h3>
-                    <p className="text-sm text-muted-foreground">{item.desc}</p>
-                  </motion.div>
+                {workExperience.map((job) => (
+                  <div key={job.company} className="rounded-xl border border-border p-4">
+                    <p className="font-semibold text-sm">{job.role}</p>
+                    <p className="text-xs text-muted-foreground">{job.company} · {job.period}</p>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
+            <div>
+              <p className="label mb-2">Credentials</p>
+              <h2 className="mb-6 text-2xl font-bold">Design-relevant certifications</h2>
+              <div className="space-y-3">
+                {certifications.map((cert) => (
+                  <div key={cert.title} className="flex items-center justify-between rounded-xl border border-border p-4">
+                    <div>
+                      <p className="text-sm font-semibold">{cert.title}</p>
+                      <p className="text-xs text-muted-foreground">{cert.issuer}</p>
+                    </div>
+                    <span className="text-xs font-bold text-accent">{cert.year}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Training & Education */}
-        <section className="w-full section-compact px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              className="space-y-12"
-              initial={{ opacity: 1 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Capacity Building</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Training & Education</h2>
-                <p className="text-muted-foreground max-w-2xl">Workshops, youth training, and design education. Sharper people, clearer brands.</p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {["Youth Development", "Design Workshops", "Brand & Identity Training", "Leadership Facilitation", "NFE Programs"].map((s, i) => (
-                  <span
-                    key={s}
-                    className="px-4 py-2 rounded-full border border-border text-sm font-medium hover:border-[var(--site-accent)]/50 transition-colors"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+        {/* 9. Testimonials */}
+        <section className="section-compact w-full bg-muted/30 px-4 md:px-8">
+          <div className="mx-auto max-w-5xl">
+            <p className="label mb-2 text-center">Clients & collaborators</p>
+            <h2 className="mb-8 text-center text-3xl font-bold">What people say about the design work</h2>
+            <div className="grid gap-4 md:grid-cols-3">
+              {designTestimonials.map((t) => (
+                <blockquote key={t.name} className="rounded-2xl border border-border bg-card p-5">
+                  <p className="mb-4 text-sm italic leading-relaxed text-muted-foreground">&ldquo;{t.quote}&rdquo;</p>
+                  <footer>
+                    <p className="text-sm font-semibold">{t.name}</p>
+                    <p className="text-xs text-muted-foreground">{t.role}</p>
+                  </footer>
+                </blockquote>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* Brand impact chart */}
-        <TrainingImpactChart />
-
-        {/* ── TOOLS & STACK ── */}
         <ToolsStackSection />
 
-        {/* CTA Section */}
-        <section className="w-full section-compact px-4 md:px-8">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold">
-              Let's Create Something{" "}
-              <span className="bg-gradient-to-r from-[var(--site-accent)] to-emerald-500 bg-clip-text text-transparent">
-                Beautiful
-              </span>
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Whether it's brand identity, UI/UX design, visual campaigns, or digital content, I'm excited to
-              collaborate on your next project.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
-              <motion.a
-                href={siteConfig.calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[var(--site-accent)] to-emerald-500 text-white rounded-full font-semibold hover:from-[var(--site-accent)]/90 hover:to-emerald-500/90 transition-all"
-              >
+        {/* Final CTA */}
+        <section className="section-compact w-full px-4 md:px-8">
+          <div className="mx-auto max-w-3xl space-y-6 text-center">
+            <Handshake className="mx-auto h-10 w-10 text-accent" />
+            <h2 className="text-3xl font-bold md:text-4xl">Ready to sharpen your brand?</h2>
+            <p className="text-muted-foreground">One primary path: tell me about your project. I respond within 24 hours.</p>
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green inline-flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
-                {siteConfig.ctaText}
-              </motion.a>
-              <motion.button
-                onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
-                whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background rounded-full font-semibold hover:shadow-lg transition-all"
-              >
-                Start A Design Project
-                <ArrowLeft className="h-4 w-4 rotate-180" />
-              </motion.button>
-              <motion.a
-                href={siteConfig.behance}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ y: -4 }}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl border border-border hover:border-[var(--site-accent)]/30 transition-all"
-              >
-                View Full Portfolio on Behance
-                <ArrowLeft className="h-4 w-4 rotate-180" />
-              </motion.a>
+                Start a project
+              </a>
+              <a href={siteConfig.behance} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-accent">
+                Full archive on Behance ↗
+              </a>
             </div>
           </div>
         </section>
 
-        {/* Contact Form Section */}
-        <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-12">
-              <div className="text-center space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Get In Touch</p>
-                <h2 className="text-4xl md:text-5xl font-bold">Let's Create Together</h2>
-                <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Tell me about your project. Whether it's a brand identity, UI/UX design, or digital campaign, I'm
-                  here to help.
-                </p>
-              </div>
-
-              <ContactForm />
+        <section id="contact-form" className="section-compact w-full bg-card px-4 md:px-8">
+          <div className="mx-auto max-w-4xl space-y-8">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold">Tell me about your project</h2>
+              <p className="mt-2 text-muted-foreground">Brand identity, social campaigns, or a full visual system.</p>
             </div>
+            <ContactForm />
           </div>
         </section>
 
-        {/* Free design resources CTA */}
-        <section className="w-full py-12 px-4 md:px-8 bg-pink-50 dark:bg-pink-950/20">
-          <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <section className="w-full bg-pink-50 px-4 py-10 dark:bg-pink-950/20 md:px-8">
+          <div className="mx-auto flex max-w-3xl flex-col items-center justify-between gap-4 sm:flex-row">
             <div>
               <p className="font-bold text-slate-900 dark:text-white">Free design templates</p>
-              <p className="text-sm text-muted-foreground">
-                Brand brief, color guide, and social media kit. The same tools I use with clients.
-              </p>
+              <p className="text-sm text-muted-foreground">Brand brief, color guide, and workshop tools I use with clients.</p>
             </div>
-            <a
-              href="/freebies?category=design"
-              className="px-5 py-2.5 bg-pink-600 hover:bg-pink-500 text-white font-semibold rounded-xl text-sm transition-colors whitespace-nowrap"
-            >
-              Get Free Templates
-            </a>
+            <Link href="/freebies?category=design" className="whitespace-nowrap rounded-xl bg-pink-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-pink-500">
+              Get free templates
+            </Link>
           </div>
         </section>
       </main>
