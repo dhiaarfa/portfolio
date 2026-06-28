@@ -29,6 +29,7 @@ import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
 import { aboutExperience, certifications as profileCertifications, profileStats } from "@/lib/profile"
 import ContactForm from "@/components/contact-form"
+import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 
 const CERT_ORDER = ["cnfcpp", "youth-clubs", "entrepreneur-leader", "graphic-design", "hubspot", "inco"]
 const CERT_TIER1 = new Set(["cnfcpp"])
@@ -206,7 +207,7 @@ export default function AboutPageClient() {
           </div>
         </section>
 
-        <HeroAnnotatedPortrait theme="light" compact showCta={false} className="!pt-2 !pb-8" />
+        <HeroAnnotatedPortrait theme="light" compact showCta={false} className="!pt-2 !pb-14" />
 
         {/* Proof — stats bar */}
         <section className="px-4 md:px-8 py-6">
@@ -230,7 +231,7 @@ export default function AboutPageClient() {
         </section>
 
         {/* Testimonials */}
-        <section className="px-4 md:px-8 py-10">
+        <section id="testimonials" className="px-4 md:px-8 py-10">
           <div className="max-w-5xl mx-auto">
             <PageTestimonials />
           </div>
@@ -438,6 +439,8 @@ export default function AboutPageClient() {
             </section>
           </div>
         </section>
+
+        <ResourcesInsightsStrip focus="all" />
 
         {/* CTA + Contact */}
         <section className="px-4 md:px-8 py-8 bg-card/30">

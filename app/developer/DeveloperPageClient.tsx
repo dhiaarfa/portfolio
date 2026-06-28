@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import Image from "next/image"
 import ContactForm from "@/components/contact-form"
+import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { siteConfig } from "@/lib/site-config"
 import { developerExperience } from "@/lib/profile"
 import { devWorkProjects } from "@/lib/work"
@@ -334,6 +335,8 @@ export default function DeveloperPageClient() {
             </div>
           </div>
         </section>
+
+        <ResourcesInsightsStrip focus="development" className="bg-section-tint" />
 
         <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto space-y-8">

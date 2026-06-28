@@ -12,6 +12,7 @@ import Footer from "@/components/footer"
 import ContactForm from "@/components/contact-form"
 import ToolsStackSection from "@/components/tools-stack-section"
 import ClientLogosStrip from "@/components/client-logos-strip"
+import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { useState } from "react"
 
 const designPhilosophy = [
@@ -364,6 +365,8 @@ export default function DesignerPageClient() {
             </div>
           </div>
         </section>
+
+        <ResourcesInsightsStrip focus="design" className="bg-section-tint" />
 
         <section id="contact-form" className="section-compact w-full bg-card px-4 md:px-8">
           <div className="mx-auto max-w-4xl space-y-8">

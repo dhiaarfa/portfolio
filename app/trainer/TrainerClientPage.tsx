@@ -14,6 +14,7 @@ import TrainerTestimonialsSection from "@/components/trainer-testimonials-sectio
 import TrainerOffersSection from "@/components/trainer-offers-section"
 import TrainerHowWeWorkSection from "@/components/trainer-how-we-work-section"
 import TrainerRoleClarifier from "@/components/trainer-role-clarifier"
+import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
 import { formatStat, trainingMilestones } from "@/lib/profile"
@@ -243,6 +244,8 @@ export default function TrainerClientPage() {
         </section>
 
         {/* 12. Final CTA + contact */}
+        <ResourcesInsightsStrip focus="training" className="bg-section-tint" />
+
         <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-12">

@@ -22,6 +22,7 @@ import FAQSection from "@/components/faq-section"
 import NewsletterSection from "@/components/newsletter-section"
 import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
+import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 
 function AnimatedRole() {
   const { t } = useLanguage()
@@ -323,6 +324,8 @@ export default function HomePageClient() {
 
       {/* FAQ */}
       <FAQSection />
+
+      <ResourcesInsightsStrip focus="all" className="bg-section-tint" />
 
       {/* Newsletter */}
       <NewsletterSection />

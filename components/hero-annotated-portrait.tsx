@@ -19,9 +19,7 @@ export type HeroCalloutConfig = {
   label: string
   value: React.ReactNode
   subvalue?: React.ReactNode
-  /** Anchor on photo edge, % of stage box (0–100) */
   anchor: Point
-  /** Card center, % of stage box (0–100) */
   card: Point
   cardMaxWidth?: number
   bracket?: boolean
@@ -37,8 +35,7 @@ type Props = {
   children?: React.ReactNode
 }
 
-/** Photo bounds inside the HUD stage (% of stage width/height) */
-const PHOTO_BOUNDS = { x: 34, y: 4, w: 44, h: 92 }
+const PHOTO_BOUNDS = { x: 16, y: 0, w: 68, h: 86 }
 
 function HudBracket({ show }: { show: boolean }) {
   if (!show) return null
@@ -50,17 +47,7 @@ function HudBracket({ show }: { show: boolean }) {
   )
 }
 
-function AnchorDot({
-  x,
-  y,
-  reducedMotion,
-  delay,
-}: {
-  x: number
-  y: number
-  reducedMotion: boolean
-  delay: number
-}) {
+function AnchorDot({ x, y, reducedMotion, delay }: { x: number; y: number; reducedMotion: boolean; delay: number }) {
   return (
     <motion.div
       className="absolute z-20 pointer-events-none"
@@ -74,10 +61,7 @@ function AnchorDot({
         style={{ boxShadow: "0 0 10px color-mix(in oklab, var(--site-accent) 70%, transparent)" }}
       />
       {!reducedMotion && (
-        <span
-          className="absolute inset-0 rounded-full bg-accent animate-ping opacity-40"
-          style={{ animationDuration: "2.5s" }}
-        />
+        <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-40" style={{ animationDuration: "2.5s" }} />
       )}
     </motion.div>
   )
@@ -131,43 +115,24 @@ function CalloutCard({
     >
       <HudBracket show={!!callout.bracket} />
       <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">{callout.label}</p>
-      <div className={`mt-1 text-sm font-semibold leading-snug ${isDark ? "text-white" : "text-slate-900"}`}>
-        {callout.value}
-      </div>
-      {callout.subvalue ? (
-        <div className={`mt-0.5 text-xs ${isDark ? "text-white/65" : "text-slate-500"}`}>{callout.subvalue}</div>
-      ) : null}
+      <div className={`mt-1 text-sm font-semibold leading-snug ${isDark ? "text-white" : "text-slate-900"}`}>{callout.value}</div>
+      {callout.subvalue ? <div className={`mt-0.5 text-xs ${isDark ? "text-white/65" : "text-slate-500"}`}>{callout.subvalue}</div> : null}
     </motion.div>
   )
 }
 
-function ConnectorLines({
-  callouts,
-  reducedMotion,
-}: {
-  callouts: HeroCalloutConfig[]
-  reducedMotion: boolean
-}) {
+function ConnectorLines({ callouts, reducedMotion }: { callouts: HeroCalloutConfig[]; reducedMotion: boolean }) {
   return (
-    <svg
-      className="pointer-events-none absolute inset-0 z-20 h-full w-full overflow-visible"
-      viewBox="0 0 100 100"
-      preserveAspectRatio="none"
-      aria-hidden
-    >
+    <svg className="pointer-events-none absolute inset-0 z-20 h-full w-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
       {callouts.map((c) => {
-        const x1 = c.anchor.x
-        const y1 = c.anchor.y
-        const x2 = c.card.x
-        const y2 = c.card.y
-        const len = Math.hypot(x2 - x1, y2 - y1)
+        const len = Math.hypot(c.card.x - c.anchor.x, c.card.y - c.anchor.y)
         return (
           <g key={c.id}>
             <motion.line
-              x1={x1}
-              y1={y1}
-              x2={x2}
-              y2={y2}
+              x1={c.anchor.x}
+              y1={c.anchor.y}
+              x2={c.card.x}
+              y2={c.card.y}
               stroke="var(--site-accent)"
               strokeOpacity={0.38}
               strokeWidth={0.22}
@@ -191,7 +156,7 @@ function PortraitImage({ src, priority = true }: { src: string; priority?: boole
     <img
       src={src}
       alt="Mohamed Dhia Arfa — designer, trainer, and web developer"
-      className="h-full w-full rounded-3xl object-contain object-center select-none bg-transparent"
+      className="h-full w-full rounded-3xl object-cover object-[center_12%] select-none"
       loading={priority ? "eager" : "lazy"}
       decoding="async"
     />
@@ -215,64 +180,60 @@ function HudStage({
   reducedMotion: boolean
   t: (key: string) => string
 }) {
-  const stageHeight = compact ? "min-h-[440px] h-[440px]" : "min-h-[500px] h-[500px]"
+  const stageHeight = compact ? "h-[480px]" : "h-[560px]"
 
   return (
-    <div className={`relative mx-auto w-full max-w-[600px] px-3 sm:px-5 ${stageHeight}`}>
-      {/* Accent glow — sibling behind photo, never on image */}
-      <div
-        className="pointer-events-none absolute z-0 rounded-full blur-3xl"
-        style={{
-          left: `${PHOTO_BOUNDS.x + PHOTO_BOUNDS.w / 2}%`,
-          top: `${PHOTO_BOUNDS.y + PHOTO_BOUNDS.h / 2}%`,
-          width: "42%",
-          height: "55%",
-          transform: "translate(-50%, -50%)",
-          background: "color-mix(in oklab, var(--site-accent) 16%, transparent)",
-        }}
-      />
-
-      {/* Scan line — subtle, within stage only */}
-      {!reducedMotion && (
-        <motion.div
-          className="pointer-events-none absolute left-[8%] right-[8%] z-[5] h-px bg-accent/10 blur-[1px] hidden lg:block"
-          animate={{ top: ["8%", "88%", "8%"] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+    <div className="flex flex-col items-center">
+      <div className={`relative mx-auto w-full max-w-[640px] px-2 sm:px-4 ${stageHeight}`}>
+        <div
+          className="pointer-events-none absolute z-0 rounded-full blur-3xl"
+          style={{
+            left: `${PHOTO_BOUNDS.x + PHOTO_BOUNDS.w / 2}%`,
+            top: `${PHOTO_BOUNDS.y + PHOTO_BOUNDS.h / 2}%`,
+            width: "48%",
+            height: "58%",
+            transform: "translate(-50%, -50%)",
+            background: "color-mix(in oklab, var(--site-accent) 14%, transparent)",
+          }}
         />
-      )}
 
-      <ConnectorLines callouts={callouts} reducedMotion={reducedMotion} />
+        {!reducedMotion && (
+          <motion.div
+            className="pointer-events-none absolute left-[10%] right-[10%] z-[5] h-px bg-accent/10 blur-[1px]"
+            animate={{ top: ["6%", "84%", "6%"] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          />
+        )}
 
-      {callouts.map((c) => (
-        <AnchorDot key={`dot-${c.id}`} x={c.anchor.x} y={c.anchor.y} reducedMotion={reducedMotion} delay={c.delay} />
-      ))}
+        <ConnectorLines callouts={callouts} reducedMotion={reducedMotion} />
 
-      {/* Photo — transparent background, object-contain, no masks */}
-      <motion.div
-        className="absolute z-10 bg-transparent"
-        style={{
-          left: `${PHOTO_BOUNDS.x}%`,
-          top: `${PHOTO_BOUNDS.y}%`,
-          width: `${PHOTO_BOUNDS.w}%`,
-          height: `${PHOTO_BOUNDS.h}%`,
-        }}
-        initial={reducedMotion ? false : { opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
-      >
-        <div className="relative h-full w-full overflow-hidden rounded-3xl bg-transparent shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+        {callouts.map((c) => (
+          <AnchorDot key={`dot-${c.id}`} x={c.anchor.x} y={c.anchor.y} reducedMotion={reducedMotion} delay={c.delay} />
+        ))}
+
+        <motion.div
+          className="absolute z-10"
+          style={{
+            left: `${PHOTO_BOUNDS.x}%`,
+            top: `${PHOTO_BOUNDS.y}%`,
+            width: `${PHOTO_BOUNDS.w}%`,
+            height: `${PHOTO_BOUNDS.h}%`,
+          }}
+          initial={reducedMotion ? false : { opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+        >
           <PortraitImage src={imageSrc} />
-        </div>
-      </motion.div>
+        </motion.div>
 
-      {callouts.map((c) => (
-        <CalloutCard key={c.id} callout={c} theme={theme} reducedMotion={reducedMotion} />
-      ))}
+        {callouts.map((c) => (
+          <CalloutCard key={c.id} callout={c} theme={theme} reducedMotion={reducedMotion} />
+        ))}
+      </div>
 
       {showCta && (
         <motion.div
-          className="absolute left-1/2 z-30 -translate-x-1/2"
-          style={{ bottom: "0" }}
+          className="mt-5 z-30"
           initial={reducedMotion ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.7 }}
@@ -311,9 +272,9 @@ export default function HeroAnnotatedPortrait({
         label: t("hudLabelSubject"),
         value: "Mohamed Dhia Arfa",
         subvalue: `${t("graphicDesigner")} · ${t("aboutCertifiedTrainer")} · ${t("aboutWebDeveloper")}`,
-        anchor: { x: 62, y: 12 },
-        card: { x: 88, y: 10 },
-        cardMaxWidth: 220,
+        anchor: { x: 58, y: 10 },
+        card: { x: 92, y: 12 },
+        cardMaxWidth: 215,
         bracket: true,
         delay: 0,
       },
@@ -329,9 +290,9 @@ export default function HeroAnnotatedPortrait({
             {t("availableForProjects")}
           </span>
         ),
-        anchor: { x: 38, y: 36 },
-        card: { x: 10, y: 32 },
-        cardMaxWidth: 200,
+        anchor: { x: 22, y: 34 },
+        card: { x: 6, y: 30 },
+        cardMaxWidth: 195,
         delay: 0.1,
       },
       {
@@ -339,31 +300,28 @@ export default function HeroAnnotatedPortrait({
         label: t("hudLabelImpact"),
         value: formatStat("participantsTrained"),
         subvalue: t("homePeopleTrained"),
-        anchor: { x: 72, y: 40 },
-        card: { x: 92, y: 48 },
-        cardMaxWidth: 175,
+        anchor: { x: 78, y: 34 },
+        card: { x: 94, y: 32 },
+        cardMaxWidth: 170,
         delay: 0.2,
       },
       {
         id: "location",
         label: t("hudLabelLocation"),
         value: <BasedInTunisia className="text-sm font-semibold" />,
-        anchor: { x: 44, y: 78 },
-        card: { x: 12, y: 72 },
-        cardMaxWidth: 190,
+        anchor: { x: 42, y: 52 },
+        card: { x: 8, y: 48 },
+        cardMaxWidth: 185,
         delay: 0.3,
       },
     ],
     [t, reducedMotion]
   )
 
-  const sectionBg = isDark
-    ? "bg-slate-950 text-white"
-    : "bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
+  const sectionBg = isDark ? "bg-slate-950 text-white" : "bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
 
   return (
-    <section className={`relative isolate ${sectionBg} px-4 sm:px-6 pt-24 pb-12 ${className}`}>
-      {/* Section-level dot grid */}
+    <section className={`relative isolate ${sectionBg} px-4 sm:px-6 pt-24 pb-16 lg:pb-20 ${className}`}>
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.07] dark:opacity-[0.08]"
         style={{
@@ -373,17 +331,10 @@ export default function HeroAnnotatedPortrait({
       />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl">
-        <div
-          className={
-            children
-              ? "grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,46%)_minmax(0,54%)] lg:gap-10"
-              : ""
-          }
-        >
+        <div className={children ? "grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,44%)_minmax(0,56%)] lg:gap-8" : ""}>
           {children ? <div className="min-w-0">{children}</div> : null}
 
-          {/* Desktop HUD — contained stage, never overlaps siblings */}
-          <div className={`hidden lg:block w-full ${children ? "" : "max-w-[560px] mx-auto"}`}>
+          <div className={`hidden lg:block w-full ${children ? "mb-0" : "max-w-[640px] mx-auto"}`}>
             <HudStage
               callouts={callouts}
               theme={theme}
@@ -396,9 +347,8 @@ export default function HeroAnnotatedPortrait({
           </div>
         </div>
 
-        {/* Mobile / tablet — stacked below intro text, no connector lines */}
         <div className="lg:hidden mt-8 flex flex-col items-center gap-6">
-          <div className="relative w-[min(72vw,280px)] aspect-[3/4] max-h-[360px] overflow-hidden rounded-3xl bg-transparent shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+          <div className="relative w-[min(88vw,340px)] aspect-[3/4] max-h-[420px]">
             <PortraitImage src={imageSrc} />
           </div>
           <div className="flex w-full max-w-lg gap-3 overflow-x-auto pb-2 snap-x snap-mandatory px-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -407,12 +357,7 @@ export default function HeroAnnotatedPortrait({
             ))}
           </div>
           {showCta && (
-            <a
-              href={siteConfig.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-green inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold"
-            >
+            <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold">
               <Calendar className="w-4 h-4" />
               {t("bookFreeConsultation")}
             </a>
