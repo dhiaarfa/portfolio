@@ -21,6 +21,20 @@ export default function WorkCaseStudyBody({ content }: { content: string }) {
         ),
         li: ({ children }) => <li className="mb-1">{children}</li>,
         strong: ({ children }) => <strong className="font-semibold text-foreground">{children}</strong>,
+        table: ({ children }) => (
+          <div className="my-8 overflow-x-auto rounded-2xl border border-border">
+            <table className="w-full min-w-[480px] text-sm">{children}</table>
+          </div>
+        ),
+        thead: ({ children }) => <thead className="border-b border-border bg-muted/50">{children}</thead>,
+        tbody: ({ children }) => <tbody>{children}</tbody>,
+        tr: ({ children }) => <tr className="border-b border-border/60 last:border-0">{children}</tr>,
+        th: ({ children }) => (
+          <th className="px-4 py-3 text-left font-semibold text-foreground">{children}</th>
+        ),
+        td: ({ children }) => (
+          <td className="px-4 py-3 text-muted-foreground">{children}</td>
+        ),
         img: ({ src, alt }) =>
           src ? (
             <div className="relative my-8 aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border bg-muted">

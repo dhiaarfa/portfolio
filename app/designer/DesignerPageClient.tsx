@@ -11,6 +11,7 @@ import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import ContactForm from "@/components/contact-form"
 import ToolsStackSection from "@/components/tools-stack-section"
+import MarketingSection from "@/components/marketing-section"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { useState } from "react"
@@ -51,9 +52,10 @@ const packages = [
 ]
 
 const designTestimonials = [
-  { name: "Youssef Touati", role: "CEO, Jasmin Marketing · Direct manager", quote: "Creativity and dedication. Attention to detail, eagerness to learn." },
-  { name: "Skander Chebbi", role: "Graphic Designer · Collaborator", quote: "Symbol of dynamism and accuracy. Adds value in design and strategy." },
-  { name: "Amir Boujelben", role: "MeetUp Pro Event Manager", quote: "Exceptional strategic marketing and creativity. Crucial to event success." },
+  { name: "Yassine Bahri", role: "Digital Strategy Creator · ISG Tunis workshop", quote: "Captured, involved, and trained students who left with solid visual identities and the drive to go further." },
+  { name: "Youssef Touati", role: "CEO, Jasmin Marketing · Direct manager", quote: "Creativity and dedication on every project. Attention to detail and eagerness to learn throughout his internship." },
+  { name: "Skander Chebbi", role: "Graphic Designer · Collaborator", quote: "Symbol of dynamism and accuracy. Added value in design, strategic planning, and external representation." },
+  { name: "Amir Boujelben", role: "MeetUp Pro 1.0 · Event Manager", quote: "Exceptional strategic marketing and creativity. Crucial to promoting the event through engaging campaigns." },
 ]
 
 const categories = ["All", "Brand Identity", "Social Media", "Logo Design", "Packaging"] as const
@@ -81,12 +83,12 @@ export default function DesignerPageClient() {
           <div className="relative order-2 flex flex-col justify-between bg-slate-950 p-8 lg:order-1 lg:p-14">
             <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#22c55e 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
             <div className="relative z-10 my-auto py-6">
-              <p className="label mb-4 text-accent">Brand design · Zia Studio</p>
+              <p className="label mb-4 text-accent">Brand design · Digital marketing · Zia Studio</p>
               <h1 className="font-display mb-5 text-[clamp(36px,5.5vw,64px)] font-black leading-[0.95] text-white">
-                Brand identity and social design that make Tunisian brands impossible to ignore.
+                Design that sells — brand identity, campaigns, and marketing strategy for Tunisian brands.
               </h1>
               <p className="mb-8 max-w-md text-[17px] leading-relaxed text-slate-400">
-                I&apos;m Dhia. I build brands that look as good as they work, from logo to launch, for cafés, startups, and NGOs across Tunisia.
+                I&apos;m not just a designer — I conceive digital marketing strategies, run social campaigns, and build visual systems that convert. From logo to launch for cafés, startups, and NGOs across Tunisia.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green">
@@ -127,6 +129,9 @@ export default function DesignerPageClient() {
 
         {/* 2. Client logos */}
         <ClientLogosStrip />
+
+        {/* 2b. Marketing & strategy */}
+        <MarketingSection />
 
         {/* 3. Featured case studies */}
         <section id="case-studies" className="section-compact w-full px-4 md:px-8">
@@ -332,7 +337,7 @@ export default function DesignerPageClient() {
           <div className="mx-auto max-w-5xl">
             <p className="label mb-2 text-center">Clients & collaborators</p>
             <h2 className="mb-8 text-center text-3xl font-bold">What people say about the design work</h2>
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {designTestimonials.map((t) => (
                 <blockquote key={t.name} className="rounded-2xl border border-border bg-card p-5">
                   <p className="mb-4 text-sm italic leading-relaxed text-muted-foreground">&ldquo;{t.quote}&rdquo;</p>

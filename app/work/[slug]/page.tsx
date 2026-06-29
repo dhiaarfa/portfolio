@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import WorkCaseStudyBody from "@/components/work-case-study-body"
+import DevCaseStudyVisuals from "@/components/dev-case-study-visuals"
 import { workBySlug, publishedWorkProjects } from "@/lib/work"
 import { getWorkContent } from "@/lib/work-content"
 import { pageMetadata } from "@/lib/page-metadata"
@@ -26,6 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/work/${slug}`,
     title: `${project.title} · Case Study · Mohamed Dhia`,
     description: project.excerpt,
+    ogImage: {
+      url: project.heroImage,
+      width: 1200,
+      height: 630,
+      alt: `${project.title} case study`,
+    },
     openGraph: { type: "article" },
   })
 }
@@ -114,6 +121,8 @@ export default async function WorkCaseStudyPage({ params }: Props) {
           <div className="mb-10 rounded-xl border border-accent/20 bg-accent-subtle px-4 py-3 text-sm text-foreground">
             <strong>Outcome:</strong> {project.outcome}
           </div>
+
+          {isDev && <DevCaseStudyVisuals slug={slug} />}
 
           <WorkCaseStudyBody content={content} />
 

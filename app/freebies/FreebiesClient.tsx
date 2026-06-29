@@ -2,13 +2,30 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
-import { Download, Lock, CheckCircle, X, Mail } from "lucide-react"
+import { Download, Lock, CheckCircle, X, Mail, Youtube, BookOpen, ExternalLink, GraduationCap, Wrench } from "lucide-react"
 import Link from "next/link"
 import { PageTestimonials } from "@/components/page-testimonials"
 import { publishedFreebies, type Freebie } from "@/lib/freebies"
+import { learningResources, type LearningResource } from "@/lib/learning-resources"
 import { useLanguage } from "@/components/language-provider"
 
 type Category = "all" | "design" | "training"
+type ResourceFilter = "all" | LearningResource["category"]
+
+const resourceIcon = (type: LearningResource["type"]) => {
+  if (type === "youtube") return Youtube
+  if (type === "course") return GraduationCap
+  if (type === "tool") return Wrench
+  return BookOpen
+}
+
+const resourceFilterLabels: Record<ResourceFilter, string> = {
+  all: "All topics",
+  design: "Design",
+  training: "Training",
+  development: "Development",
+  marketing: "Marketing",
+}
 
 interface FormData {
   name: string
@@ -26,6 +43,7 @@ function FreebiesClientInner() {
   const searchParams = useSearchParams()
   const freebies = publishedFreebies()
   const [activeCategory, setActiveCategory] = useState<Category>("all")
+  const [resourceFilter, setResourceFilter] = useState<ResourceFilter>("all")
   const [selectedFreebie, setSelectedFreebie] = useState<Freebie | null>(null)
   const [formData, setFormData] = useState<FormData>({ name: "", email: "", website: "" })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
@@ -38,6 +56,9 @@ function FreebiesClientInner() {
   }, [searchParams])
 
   const filtered = freebies.filter((f) => (activeCategory === "all" ? true : f.category === activeCategory))
+  const filteredResources = learningResources.filter((r) =>
+    resourceFilter === "all" ? true : r.category === resourceFilter
+  )
 
   const triggerDownload = (url: string, kind: "pdf" | "canva") => {
     if (kind === "canva") {
@@ -251,6 +272,86 @@ function FreebiesClientInner() {
               </Link>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Curated learning resources */}
+      <section className="pb-16 px-6 bg-muted/20">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-8">
+            <p className="label mb-2">{t("freebies.learnMore") || "Keep learning"}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+              Videos, tools & suggested reads
+            </h2>
+            <p className="text-muted-foreground text-sm max-w-xl mx-auto">
+              Hand-picked resources on design, training, development, and digital marketing — free to explore.
+            </p>
+          </div>
+
+          <div className="flex justify-center gap-2 mb-8 flex-wrap">
+            {(["all", "design", "training", "development", "marketing"] as ResourceFilter[]).map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setResourceFilter(cat)}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                  resourceFilter === cat
+                    ? "bg-accent text-white shadow-md shadow-green-500/20"
+                    : "bg-background border border-border text-muted-foreground hover:border-accent/30"
+                }`}
+              >
+                {resourceFilterLabels[cat]}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredResources.map((resource) => {
+              const Icon = resourceIcon(resource.type)
+              return (
+                <article
+                  key={resource.id}
+                  className="flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-accent/30 hover:shadow-md"
+                >
+                  {resource.youtubeId && (
+                    <div className="relative aspect-video bg-muted">
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${resource.youtubeId}`}
+                        title={resource.title}
+                        className="absolute inset-0 h-full w-full"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  )}
+                  <div className="flex flex-col flex-1 p-5 gap-3">
+                    <div className="flex items-start gap-3">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-subtle text-accent">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                          {resource.category} · {resource.type}
+                        </span>
+                        <h3 className="font-semibold text-foreground leading-snug mt-0.5">{resource.title}</h3>
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">{resource.description}</p>
+                    <a
+                      href={resource.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
+                    >
+                      {resource.type === "youtube" ? "Watch on YouTube" : "Open resource"}
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
         </div>
       </section>
 

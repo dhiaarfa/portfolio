@@ -3,30 +3,138 @@
 import { useLanguage } from "@/components/language-provider"
 
 const testimonialsEn = [
-  { name: "Rayen Bejaoui", relation: "Junior Project Manager · Same team (1000 Challenges, AIESEC)", quote: "True leader, remarkable leadership. Joy to collaborate with." },
-  { name: "Omayma Arfaoui", relation: "Geosciences Engineer · Harvard Fellow · IOM Hackathon Doha", quote: "Inspiring, outstanding collaborative skills, unique design perspective." },
-  { name: "Ikram Allah Nemri", relation: "Social Entrepreneur · MBA Candidate · AIESEC Sousse", quote: "Highly-qualified designer, motivated digital marketer, inspiring youth worker." },
-  { name: "Youssef Touati", relation: "CEO & Co-Founder, Jasmin Marketing · Direct manager", quote: "Creativity and dedication. Attention to detail, eagerness to learn." },
-  { name: "Skander Chebbi", relation: "Graphic Designer · Worked on different teams", quote: "Symbol of dynamism and accuracy. Great skillset, adds value in design and strategy." },
-  { name: "Amir Boujelben", relation: "Software Engineer · MeetUp Pro 1.0 Event Manager", quote: "Exceptional strategic marketing, creativity. Crucial role in event success." },
+  {
+    name: "Yassine Bahri",
+    relation: "Digital Strategy Creator · ISG Tunis workshop co-facilitator",
+    quote:
+      "Co-facilitated a graphic design workshop at ISG Tunis — captured, involved, and trained students who left with solid visual identities.",
+  },
+  {
+    name: "Rayen Bejaoui",
+    relation: "Junior Project Manager · 1000 Challenges & AIESEC",
+    quote:
+      "Inspiring journey! Remarkable leadership during the 2nd cohort of 1000 Challenges School. Adaptability, dedication, and ability to bring people together.",
+  },
+  {
+    name: "Oumaima Arfaoui",
+    relation: "Geosciences Engineer · IOM Hackathon Doha",
+    quote:
+      "Outstanding collaborative skills, innovative ideas, and unique design perspective during the IOM-UN Migration Hackathon in Doha.",
+  },
+  {
+    name: "Ikram Allah Nemri",
+    relation: "Social Entrepreneur · AIESEC Sousse",
+    quote:
+      "Highly-qualified designer, motivated digital marketer, and inspiring youth worker. Highly recommend for any opportunity.",
+  },
+  {
+    name: "Youssef Touati",
+    relation: "CEO, Jasmin Marketing · Direct manager",
+    quote:
+      "Creativity and dedication on every project. Attention to detail and eagerness to learn evident throughout his internship.",
+  },
+  {
+    name: "Skander Chebbi",
+    relation: "Graphic Designer · Collaborator",
+    quote:
+      "Symbol of dynamism and accuracy. Added value in design, strategic planning, logistics, and external representation.",
+  },
+  {
+    name: "Amir Boujelben",
+    relation: "MeetUp Pro 1.0 Event Manager",
+    quote:
+      "Exceptional strategic marketing and creativity. Crucial role promoting the event through engaging content and campaigns.",
+  },
 ]
 
 const testimonialsFr = [
-  { name: "Rayen Bejaoui", relation: "Chef de projet junior · Même équipe (1000 Challenges, AIESEC)", quote: "Vrai leader, remarquable. Un plaisir de collaborer." },
-  { name: "Omayma Arfaoui", relation: "Ingénieur géosciences · Harvard Fellow · Hackathon OIM Doha", quote: "Inspirant, excellent en collaboration, perspective design unique." },
-  { name: "Ikram Allah Nemri", relation: "Entrepreneur social · MBA · AIESEC Sousse", quote: "Designer qualifié, marketeur digital motivé, travailleur jeunesse inspirant." },
-  { name: "Youssef Touati", relation: "CEO & Co-fondateur, Jasmin Marketing · Manager direct", quote: "Créativité et dévouement. Souci du détail, soif d'apprendre." },
-  { name: "Skander Chebbi", relation: "Designer graphique · Équipes différentes", quote: "Symbole de dynamisme et précision. Grande expertise, valeur ajoutée." },
-  { name: "Amir Boujelben", relation: "Ingénieur logiciel · Event Manager MeetUp Pro 1.0", quote: "Marketing stratégique exceptionnel, créativité. Rôle crucial dans le succès." },
+  {
+    name: "Yassine Bahri",
+    relation: "Stratégies digitales · Co-animation ISG Tunis",
+    quote:
+      "A co-animé un workshop design graphique à l'ISG — capter, impliquer, former. Les étudiants sont repartis avec des identités visuelles solides.",
+  },
+  {
+    name: "Rayen Bejaoui",
+    relation: "Chef de projet junior · 1000 Challenges & AIESEC",
+    quote:
+      "Parcours inspirant ! Leadership remarquable lors de la 2e cohorte 1000 Challenges. Adaptabilité, dévouement et esprit d'équipe.",
+  },
+  {
+    name: "Oumaima Arfaoui",
+    relation: "Ingénieur géosciences · Hackathon OIM Doha",
+    quote:
+      "Compétences collaboratives exceptionnelles, idées innovantes et perspective design unique au Hackathon OIM à Doha.",
+  },
+  {
+    name: "Ikram Allah Nemri",
+    relation: "Entrepreneur social · AIESEC Sousse",
+    quote:
+      "Designer qualifié, marketeur digital motivé et travailleur jeunesse inspirant. Je le recommande vivement.",
+  },
+  {
+    name: "Youssef Touati",
+    relation: "CEO, Jasmin Marketing · Manager direct",
+    quote:
+      "Créativité et dévouement sur chaque projet. Souci du détail et soif d'apprendre pendant son stage.",
+  },
+  {
+    name: "Skander Chebbi",
+    relation: "Designer graphique · Collaborateur",
+    quote:
+      "Symbole de dynamisme et précision. Valeur ajoutée en design, planification stratégique et représentation externe.",
+  },
+  {
+    name: "Amir Boujelben",
+    relation: "Event Manager MeetUp Pro 1.0",
+    quote:
+      "Marketing stratégique exceptionnel et créativité. Rôle crucial dans la promotion et le succès de l'événement.",
+  },
 ]
 
 const testimonialsAr = [
-  { name: "رايان بوجاوي", relation: "مدير مشاريع صغير · نفس الفريق (1000 تحدي، أييسيك)", quote: "قائد حقيقي، قيادة رائعة. متعة التعاون معه." },
-  { name: "أميمة العرفاوي", relation: "مهندسة جيولوجيا · زميلة هارفارد · هاكاثون المنظمة الدولية للهجرة الدوحة", quote: "ملهم، مهارات تعاون استثنائية، رؤية تصميم فريدة." },
-  { name: "إكرام الله النمري", relation: "مقاول اجتماعي · ماجستير إدارة أعمال · أييسيك سوسة", quote: "مصمم مؤهل، مسوق رقمي متحمس، عامل شباب ملهم." },
-  { name: "يوسف التواتي", relation: "الرئيس التنفيذي والشريك، جاسمين ماركتينغ · المدير المباشر", quote: "إبداع وتفانٍ. انتباه للتفاصيل، حرص على التعلم." },
-  { name: "سكندر الشابي", relation: "مصمم جرافيك · فرق مختلفة", quote: "رمز الحيوية والدقة. مهارات عالية، قيمة مضافة في التصميم." },
-  { name: "أمير بوجلبن", relation: "مهندس برمجيات · مدير حدث MeetUp Pro 1.0", quote: "تسويق استراتيجي استثنائي، إبداع. دور حاسم في النجاح." },
+  {
+    name: "ياسين بحري",
+    relation: "استراتيجيات رقمية · ورشة ISG تونس",
+    quote:
+      "شارك في تيسير ورشة تصميم جرافيك — يلفت الانتباه ويشرك الطلاب الذين غادروا بهويات بصرية قوية.",
+  },
+  {
+    name: "رايان بوجاوي",
+    relation: "مدير مشاريع · 1000 تحدي وأييسيك",
+    quote:
+      "رحلة ملهمة! قيادة رائعة في الدفعة الثانية من مدرسة 1000 تحدي. مرونة وتفانٍ وقدرة على جمع الناس.",
+  },
+  {
+    name: "أميمة العرفاوي",
+    relation: "مهندسة جيولوجيا · هاكاثون المنظمة الدولية للهجرة",
+    quote:
+      "مهارات تعاون استثنائية وأفكار مبتكرة ورؤية تصميم فريدة في هاكاثون المنظمة الدولية للهجرة بالدوحة.",
+  },
+  {
+    name: "إكرام الله النمري",
+    relation: "مقاول اجتماعي · أييسيك سوسة",
+    quote:
+      "مصمم مؤهل، مسوق رقمي متحمس، وعامل شباب ملهم. أوصي به بشدة.",
+  },
+  {
+    name: "يوسف التواتي",
+    relation: "الرئيس التنفيذي، جاسمين ماركتينغ · المدير المباشر",
+    quote:
+      "إبداع وتفانٍ في كل مشروع. انتباه للتفاصيل وحرص على التعلم خلال فترة التدريب.",
+  },
+  {
+    name: "سكندر الشابي",
+    relation: "مصمم جرافيك · متعاون",
+    quote:
+      "رمز الحيوية والدقة. قيمة مضافة في التصميم والتخطيط الاستراتيجي والتمثيل الخارجي.",
+  },
+  {
+    name: "أمير بوجلبن",
+    relation: "مدير حدث MeetUp Pro 1.0",
+    quote:
+      "تسويق استراتيجي استثنائي وإبداع. دور حاسم في الترويج للحدث ونجاحه.",
+  },
 ]
 
 export default function TestimonialsTicker() {

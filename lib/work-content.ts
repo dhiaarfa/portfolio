@@ -110,21 +110,21 @@ One **master layout grid**: headline zone, image window, logo lockup, CTA bar. T
 
 **Tools:** Photoshop, Illustrator · **Full set:** [Behance](https://www.behance.net/dhiaarfa)`,
 
-  digimytch: `DigiMyTech Talent Hub is my **PFE capstone**: an AI-powered talent platform for CV preparation, skill matching, LinkedIn optimization, and application tracking. It is the exact archetype recruiters look for in 2026: LLM integration baked into the workflow, not a floating chat bubble.
+  digimytch: `DigiMyTech Talent Hub is my **PFE capstone** (Licence MDW, ISET Sousse): a full-stack, AI-powered talent platform built solo in **97 days** at Digimytch SUARL, Ariana. It accompanies Tunisian job seekers from CV creation through interview simulation — with AI embedded at every step, not bolted on as a chat widget. **Graduated with highest honors (Mention Très Bien).**
 
-### The problem
+### Context & problem
 
-Job seekers and young professionals in Tunisia often have strong experience but weak presentation: CVs that do not pass screening, cover letters that sound generic, and no system to track applications. The product needed to guide users through **structured improvement** with AI assistance at each step.
+At Q1 2026, graduate unemployment in Tunisia reached **24.2%** (INS). Candidates often have strong skills but weak presentation: generic CVs, no objective way to gauge fit before applying, Excel-based tracking, and zero French-language interview prep tools adapted to the local market. International tools like Jobscan and Rezi.ai cover only fragments of this journey.
 
-### What I built
+I conducted field analysis at Digimytch with the CTO, CEO (Product Owner), and mapped four broken steps: CV writing without feedback, subjective job browsing, unstructured application tracking, and no guided interview practice.
 
-- **Auth & profiles** on Supabase (sign-up, session, user data model)
-- **CV and cover-letter workflows** with OpenRouter LLM prompts tuned for structured output
-- **Skill matching** logic connecting user profiles to role requirements
-- **Application tracking** so users see status in one place
-- **Responsive UI** in Next.js + Tailwind, deployed on Vercel
+### Five integrated modules
 
-The AI is embedded in forms and review steps: users see suggestions in context, edit, and save. That keeps the experience product-like rather than chat-only.
+1. **Smart CV editor** — Structured editor with streaming AI assistant, PDF/Word/OCR import, high-fidelity PDF export via @react-pdf/renderer, and AI quality scoring by category.
+2. **Job matching engine** — Deterministic 0–100 compatibility score (not LLM-generated) with NFD tokenization for accent-insensitive skill matching, plus AI-generated explanation in 3–5 sentences.
+3. **Training catalog** — 21 formations ranked by detected skill gaps from matching results — "Recommended for you" instead of a generic list.
+4. **Application Kanban** — Four columns (To do, Applied, Interview, Offer) with timestamped status history and soft-delete archiving.
+5. **Interview simulator** — 8 dynamically generated questions, voice mode (Web Speech API on Chrome/Edge) or full text fallback, personalized debrief per answer.
 
 ![](/images/projects/digimytch/landing.png)
 
@@ -136,21 +136,51 @@ The AI is embedded in forms and review steps: users see suggestions in context, 
 
 ![](/images/projects/digimytch/kanban.png)
 
+![](/images/projects/digimytch/formations.png)
+
+### Architecture & stack
+
+Three-tier architecture: **Next.js 15 + React 19 + Tailwind** (presentation), **Server Actions + Zod DTOs** (business logic with Repository pattern), **Supabase PostgreSQL + Storage + JWT Auth** (data with Row Level Security on every user table).
+
+AI layer: **Vercel AI SDK v4** streaming to **OpenRouter Free** models — Kimi K2.6 for CV, Gemma 4 26B for cover letters, Llama 3.3 70B for interviews. Each Server Action validates JWT before calling OpenRouter; responses stream directly to React without a REST middle layer.
+
+### Scrum delivery (5 sprints)
+
+| Sprint | Focus | Key deliverable |
+|--------|-------|-----------------|
+| Initiation | Backlog, UML, architecture | Product backlog + tech stack locked |
+| Sprint 1 | Auth & profile | Magic link auth, RLS profiles, dashboard KPIs |
+| Sprint 2 | CV editor | Auto-save editor, PDF export, AI quality score |
+| Sprint 3 | AI & matching | Deterministic matching engine, formations catalog |
+| Sprint 4 | Kanban & admin | Application tracker, formation import via AI |
+| Sprint 5 | Interview AI | Voice simulator, debrief, 109 tests green |
+
+**21 user stories delivered** out of 21 planned. Solo developer on every sprint — conception, code, tests, documentation.
+
 ### The interesting technical challenge
 
-The hardest part was **structuring LLM output reliably**: CV sections and matching scores need predictable JSON-like shapes, not free-form paragraphs. I used prompt templates, validation on the response, and fallbacks when the model drifts. Cost control mattered too: batching requests and limiting token use per feature so beta testing stayed affordable on OpenRouter.
+The most significant design decision was building the matching score as a **deterministic algorithm** (\`src/lib/matching.ts\`) rather than an LLM call. Same profile + same offer = same score every time — tested explicitly in the test suite. Users can trust and audit the number; the AI only generates the natural-language explanation on top.
 
-Supabase RLS and auth roles were another focus: user CV data must stay private while still enabling future admin views.
+Other hard problems: token budget management on free OpenRouter models, Supabase SSR session sync (\`syncProfileToAuthSession\`), and a React state bug causing duplicate formation recommendations (fixed by resetting state between matching calls).
 
-### What I'd do differently
+### Quality & security
 
-I would add **explicit user feedback loops** on every AI suggestion (thumbs up/down stored in DB) to improve prompts over time and show employers the system learns from real usage. I would also ship the native Next.js app URL as primary instead of the Webflow marketing shell once the repo is public.
+- **109 automated tests** across 24 files (Node.js native test runner) — all passing at defense
+- Rate limiting (60s / 10 requests), CSP, HSTS, prompt injection sanitization via Zod
+- RLS on all 10 PostgreSQL tables; admin access via JWT \`app_metadata.is_admin\`
 
-### Metrics
+### Measured performance
 
-**1200+ CVs** processed in beta · **98% satisfaction** reported in user testing.
+- Matching score calculation: **< 50 ms** for a 10-skill CV
+- AI assistant first token: **< 800 ms**
+- CV quality score (generateObject + Zod): **2–4 s**
+- Vercel deploy from GitHub push: **< 90 s**
 
-**Stack:** Next.js · Supabase · OpenRouter · Tailwind · Vercel  
+### What I'd do next
+
+Vector search via pgvector to match "JavaScript engineer" with "React/Node developer" beyond lexical matching. Playwright E2E for critical flows. Auto-fill profile on signup from CV parser. Arabic-language models with RTL support.
+
+**Stack:** Next.js 15 · React 19 · TypeScript · Supabase · OpenRouter · Vercel AI SDK · Tailwind · Framer Motion · Vercel  
 **Live:** [digimytch-talent-hub.vercel.app](https://digimytch-talent-hub.vercel.app/) · **Code:** [GitHub](https://github.com/dhiaarfa)`,
 
   "crit-tunisie": `CRIT Tunisie is a **corporate recruitment platform** I helped build during my web developer role (Sep–Dec 2023). The site had to clarify services for both job seekers and client companies without feeling like a generic template.

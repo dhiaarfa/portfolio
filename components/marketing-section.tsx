@@ -61,11 +61,11 @@ export default function MarketingSection() {
         >
           {/* Header */}
           <div className="space-y-4">
-            <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Experience</p>
-            <h2 className="text-3xl md:text-5xl font-bold">Marketing & Brand Communication</h2>
+            <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Beyond pixels</p>
+            <h2 className="text-3xl md:text-5xl font-bold">Digital marketing & brand strategy</h2>
             <p className="text-muted-foreground text-lg max-w-2xl">
-              Practical experience in running marketing campaigns, managing brands, and crafting visual strategies with
-              measurable results.
+              I don&apos;t stop at visuals — I help brands define positioning, plan social campaigns, write content
+              pillars, and measure what works. Design and marketing as one system, not two separate hires.
             </p>
           </div>
 

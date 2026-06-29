@@ -24,6 +24,7 @@ import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import HeroAnnotatedPortrait from "@/components/hero-annotated-portrait"
+import { BasedInTunisia } from "@/components/based-in-tunisia"
 import { PageTestimonials } from "@/components/page-testimonials"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
@@ -139,9 +140,9 @@ export default function AboutPageClient() {
       <Navbar />
 
       <div className="pt-[5.5rem]">
-        {/* Hero — story first, then self-select doors */}
-        <section className="bg-white dark:bg-slate-950 pb-8 px-6">
-          <div className="max-w-5xl mx-auto">
+        {/* Hero — story + portrait HUD side by side */}
+        <HeroAnnotatedPortrait theme="light" compact showCta={false} className="!pt-0 !pb-14">
+          <div className="max-w-xl">
             <Link
               href="/"
               className="inline-flex items-center gap-1.5 text-slate-400 text-sm hover:text-accent mb-4 transition-colors group"
@@ -149,65 +150,64 @@ export default function AboutPageClient() {
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform rtl:rotate-180" />
               {t("backToHome")}
             </Link>
-            <div className="max-w-3xl">
-                <p className="label mb-3">{t("aboutPersonBehind")}</p>
-                <h1 className="font-display font-extrabold text-[clamp(40px,7vw,78px)] leading-[0.93] text-slate-900 dark:text-white mb-4">
-                  Mohamed
-                  <br />
-                  Dhia Arfa
-                </h1>
-                <div className="flex flex-wrap gap-2 mb-5">
-                  <span className="chip chip-pink">{t("graphicDesigner")}</span>
-                  <span className="chip chip-amber">{t("aboutCertifiedTrainer")}</span>
-                  <span className="chip chip-blue">{t("aboutWebDeveloper")}</span>
-                </div>
-                <p className="text-slate-700 dark:text-slate-200 text-[17px] leading-relaxed max-w-xl font-medium">
-                  {t("aboutStoryHook")}
-                </p>
-                <p className="text-slate-500 dark:text-slate-400 text-sm mt-3 max-w-lg">{t("aboutHeroTagline")}</p>
+            <p className="label mb-3">{t("aboutPersonBehind")}</p>
+            <h1 className="font-display font-extrabold text-[clamp(40px,7vw,78px)] leading-[0.93] text-slate-900 dark:text-white mb-4">
+              Mohamed
+              <br />
+              Dhia Arfa
+            </h1>
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="chip chip-pink">{t("graphicDesigner")}</span>
+              <span className="chip chip-amber">{t("aboutCertifiedTrainer")}</span>
+              <span className="chip chip-blue">{t("aboutWebDeveloper")}</span>
+            </div>
+            <p className="inline-flex items-center gap-1.5 rounded-full border border-accent/25 bg-accent-subtle/50 px-3 py-1.5 text-sm font-medium text-foreground mb-4">
+              <BasedInTunisia />
+            </p>
+            <p className="text-slate-700 dark:text-slate-200 text-[17px] leading-relaxed font-medium">
+              {t("aboutStoryHook")}
+            </p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-3">{t("aboutHeroTagline")}</p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-7">
-                  {intentDoors.map((door) => (
-                    <Link
-                      key={door.href}
-                      href={door.href}
-                      className="group flex items-center justify-between gap-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-4 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 hover:border-accent/40 hover:bg-accent-subtle/30 transition-all"
-                    >
-                      <span>{t(door.labelKey)}</span>
-                      <ArrowRight className="w-4 h-4 text-accent opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all rtl:rotate-180" />
-                    </Link>
-                  ))}
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-7">
+              {intentDoors.map((door) => (
+                <Link
+                  key={door.href}
+                  href={door.href}
+                  className="group flex items-center justify-between gap-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-4 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 hover:border-accent/40 hover:bg-accent-subtle/30 transition-all"
+                >
+                  <span>{t(door.labelKey)}</span>
+                  <ArrowRight className="w-4 h-4 text-accent opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all rtl:rotate-180" />
+                </Link>
+              ))}
+            </div>
 
-                <div className="mt-7 flex flex-wrap items-center gap-4">
-                  <a
-                    href={siteConfig.calendlyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-green inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold"
-                  >
-                    {t("bookFreeConsultation")}
-                  </a>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
-                    <a
-                      href="https://www.linkedin.com/in/dhia-/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-accent transition-colors"
-                    >
-                      LinkedIn
-                    </a>
-                    <span className="mx-2">·</span>
-                    <a href={`mailto:${siteConfig.email}`} className="hover:text-accent transition-colors">
-                      {t("email")}
-                    </a>
-                  </p>
-                </div>
+            <div className="mt-7 flex flex-wrap items-center gap-4">
+              <a
+                href={siteConfig.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-green inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold"
+              >
+                {t("bookFreeConsultation")}
+              </a>
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                <a
+                  href="https://www.linkedin.com/in/dhia-/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-colors"
+                >
+                  LinkedIn
+                </a>
+                <span className="mx-2">·</span>
+                <a href={`mailto:${siteConfig.email}`} className="hover:text-accent transition-colors">
+                  {t("email")}
+                </a>
+              </p>
             </div>
           </div>
-        </section>
-
-        <HeroAnnotatedPortrait theme="light" compact showCta={false} className="!pt-2 !pb-14" />
+        </HeroAnnotatedPortrait>
 
         {/* Proof — stats bar */}
         <section className="px-4 md:px-8 py-6">

@@ -22,14 +22,6 @@ export const metadata: Metadata = pageMetadata({
   openGraph: {
     title: "Mohamed Dhia Arfa — Designer, Trainer & Developer",
     description: "Graphic designer, certified trainer, and web developer based in Tunisia.",
-    images: [
-      {
-        url: "/images/photos/dhia-main.png",
-        width: 512,
-        height: 512,
-        alt: "Mohamed Dhia Arfa",
-      },
-    ],
   },
 })
 
