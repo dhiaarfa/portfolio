@@ -23,6 +23,7 @@ import NewsletterSection from "@/components/newsletter-section"
 import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
+import { TestimonialsShowcase } from "@/components/testimonials-showcase"
 
 function AnimatedRole() {
   const { t } = useLanguage()
@@ -153,7 +154,7 @@ export default function HomePageClient() {
             {roles[1] && (
               <Link
                 href={`/${roles[1].slug}`}
-                className="md:row-span-2 bg-white rounded-3xl border border-accent/15 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 p-8 flex flex-col justify-between group cursor-pointer"
+                className="md:row-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-accent/15 dark:border-accent/20 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 p-8 flex flex-col justify-between group cursor-pointer"
               >
                     <div>
                   <div className="w-12 h-12 bg-accent-subtle rounded-2xl flex items-center justify-center mb-6">
@@ -162,8 +163,8 @@ export default function HomePageClient() {
                   <p className="text-xs font-semibold uppercase tracking-[0.15em] text-accent mb-2">
                     {t("design")}
                   </p>
-                  <h3 className="font-display text-2xl font-bold text-slate-900 mb-3">Zia Studio</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                  <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white mb-3">Zia Studio</h3>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
                     {t(roles[1].descriptionKey)}
                   </p>
                   <div className="flex gap-2 mb-6 flex-wrap">
@@ -188,33 +189,33 @@ export default function HomePageClient() {
             {roles[0] && (
               <Link
                 href={`/${roles[0].slug}`}
-                className="md:col-span-2 bg-white rounded-3xl border border-slate-100 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 p-7 flex flex-col group cursor-pointer"
+                className="md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 p-7 flex flex-col group cursor-pointer"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-11 h-11 bg-amber-50 rounded-xl flex items-center justify-center">
-                    <BookOpen className="w-5 h-5 text-amber-600" />
+                  <div className="w-11 h-11 bg-amber-50 dark:bg-amber-950/50 rounded-xl flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   </div>
-                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
+                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 px-3 py-1 rounded-full">
                     {t("training")}
                   </span>
                 </div>
-                <h3 className="font-display text-xl font-bold text-slate-900 mb-2">Youth Development</h3>
-                <p className="text-slate-500 text-sm leading-relaxed mb-5 flex-1">
+                <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white mb-2">Youth Development</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">
                   {t(roles[0].descriptionKey)}
                 </p>
-                <div className="flex gap-6 pb-5 border-b border-slate-100 mb-4">
+                <div className="flex gap-6 pb-5 border-b border-slate-100 dark:border-slate-800 mb-4">
                   {[
                     [`${siteConfig.stats.participants}+`, "Participants"],
                     [`${siteConfig.stats.trainingHours}+`, "Hours"],
                     [`${siteConfig.stats.facilitationHours}+`, "Facilitation Hrs"],
                   ].map(([val, label]) => (
                     <div key={label}>
-                      <p className="font-display font-bold text-lg text-slate-900 leading-none">{val}</p>
-                      <p className="text-xs text-slate-400 mt-0.5">{label}</p>
+                      <p className="font-display font-bold text-lg text-slate-900 dark:text-white leading-none">{val}</p>
+                      <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{label}</p>
                     </div>
                   ))}
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 group-hover/link:gap-2 transition-all">
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 dark:text-slate-300 group-hover/link:gap-2 transition-all">
                   {t(roles[0].cta)}
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </span>
@@ -297,30 +298,10 @@ export default function HomePageClient() {
       <ValueRadarChart />
 
       {/* Featured Testimonials */}
-      <section className="bg-white dark:bg-slate-950 section-compact px-5">
-        <div className="max-w-5xl mx-auto">
-          <p className="label text-center">What people say</p>
-          <h2 className="font-serif text-[clamp(24px,3vw,38px)] text-center text-slate-900 dark:text-white leading-snug mb-12">
-            Trusted by the people I&apos;ve worked with
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[
-              { q: "True leader, remarkable leadership. Joy to collaborate with.", name: "Rayen Bejaoui", role: "Jr. Project Manager · 1000 Challenges" },
-              { q: "Highly-qualified designer, motivated digital marketer, inspiring youth worker.", name: "Ikram Allah Nemri", role: "Social Entrepreneur · AIESEC Sousse" },
-              { q: "Creativity and dedication. Attention to detail, eagerness to learn.", name: "Youssef Touati", role: "CEO, Jasmin Marketing" },
-            ].map((tst) => (
-              <div key={tst.name} className="card-base flex flex-col p-7">
-                <span className="font-serif text-5xl text-accent-muted leading-none mb-3 block">&quot;</span>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed flex-1 mb-6">{tst.q}</p>
-                <div className="pt-5 border-t border-slate-100 dark:border-slate-700/60">
-                  <p className="font-semibold text-slate-900 dark:text-white text-sm">{tst.name}</p>
-                  <p className="text-slate-400 dark:text-slate-500 text-xs mt-0.5">{tst.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimonialsShowcase
+        className="bg-white dark:bg-slate-950 section-compact py-12 md:py-16"
+        ids={["rayen", "ikram", "youssef", "skander", "amir"]}
+      />
 
       {/* FAQ */}
       <FAQSection />

@@ -5,6 +5,7 @@ import { ArrowRight, Download, BookOpen } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { publishedInsightArticles, type InsightCategory } from "@/lib/insights"
 import { publishedFreebies } from "@/lib/freebies"
+import { freebieText } from "@/lib/freebie-i18n"
 
 type Focus = "design" | "training" | "development" | "all"
 
@@ -88,9 +89,9 @@ export default function ResourcesInsightsStrip({ focus = "all", className = "" }
                 <li key={f.id}>
                   <Link href={`/freebies?category=${f.category}`} className="group block">
                     <p className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
-                      {f.title}
+                      {freebieText(f, "title", t)}
                     </p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{f.format} · {f.benefit}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{freebieText(f, "format", t)} · {freebieText(f, "benefit", t)}</p>
                   </Link>
                 </li>
               ))}

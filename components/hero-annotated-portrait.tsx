@@ -81,7 +81,7 @@ function CalloutCard({
   const isDark = theme === "dark"
   const cardClass = isDark
     ? "bg-black/40 backdrop-blur-md border-accent/20 text-white"
-    : "bg-white/80 backdrop-blur-md border-accent/25 text-slate-900 shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
+    : "bg-white/85 dark:bg-slate-900/90 backdrop-blur-md border-accent/25 dark:border-accent/30 text-slate-900 dark:text-white shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-none"
 
   const motionProps = reducedMotion
     ? {}
@@ -115,8 +115,8 @@ function CalloutCard({
     >
       <HudBracket show={!!callout.bracket} />
       <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">{callout.label}</p>
-      <div className={`mt-1 text-sm font-semibold leading-snug ${isDark ? "text-white" : "text-slate-900"}`}>{callout.value}</div>
-      {callout.subvalue ? <div className={`mt-0.5 text-xs ${isDark ? "text-white/65" : "text-slate-500"}`}>{callout.subvalue}</div> : null}
+      <div className={`mt-1 text-sm font-semibold leading-snug ${isDark ? "text-white" : "text-slate-900 dark:text-white"}`}>{callout.value}</div>
+      {callout.subvalue ? <div className={`mt-0.5 text-xs ${isDark ? "text-white/65" : "text-slate-500 dark:text-slate-400"}`}>{callout.subvalue}</div> : null}
     </motion.div>
   )
 }
@@ -347,10 +347,11 @@ export default function HeroAnnotatedPortrait({
           </div>
         </div>
 
-        <div className="lg:hidden mt-8 flex flex-col items-center gap-6">
-          <div className="relative w-[min(88vw,340px)] aspect-[3/4] max-h-[420px]">
+        <div className="lg:hidden mt-6 flex flex-col items-center gap-5 w-full">
+          <div className="relative w-[min(92vw,380px)] aspect-[3/4] max-h-[440px]">
             <PortraitImage src={imageSrc} />
           </div>
+          <p className="text-xs font-medium text-muted-foreground">{t("hudSwipeHint")}</p>
           <div className="flex w-full max-w-lg gap-3 overflow-x-auto pb-2 snap-x snap-mandatory px-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {callouts.map((c) => (
               <CalloutCard key={`m-${c.id}`} callout={c} theme={theme} reducedMotion={reducedMotion} isMobile />

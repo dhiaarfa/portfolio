@@ -10,7 +10,7 @@ import ContactForm from "@/components/contact-form"
 import TrainingMethodologySection from "@/components/training-methodology-section"
 import CertificationsSection from "@/components/certifications-section"
 import ClientLogosStrip from "@/components/client-logos-strip"
-import TrainerTestimonialsSection from "@/components/trainer-testimonials-section"
+import { TestimonialsShowcase } from "@/components/testimonials-showcase"
 import TrainerOffersSection from "@/components/trainer-offers-section"
 import TrainerHowWeWorkSection from "@/components/trainer-how-we-work-section"
 import TrainerRoleClarifier from "@/components/trainer-role-clarifier"
@@ -96,7 +96,11 @@ export default function TrainerClientPage() {
         <ClientLogosStrip />
 
         {/* 3. Testimonials */}
-        <TrainerTestimonialsSection />
+        <TestimonialsShowcase
+          tag="training"
+          subtitleKey="testimonialsSubtitleTraining"
+          className="section-compact py-10"
+        />
 
         {/* 4. Measurable results */}
         <section id="trainer-impact" className="w-full section-compact px-4 md:px-8 bg-card">

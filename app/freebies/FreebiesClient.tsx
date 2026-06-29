@@ -4,10 +4,11 @@ import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Download, Lock, CheckCircle, X, Mail, Youtube, BookOpen, ExternalLink, GraduationCap, Wrench } from "lucide-react"
 import Link from "next/link"
-import { PageTestimonials } from "@/components/page-testimonials"
 import { publishedFreebies, type Freebie } from "@/lib/freebies"
 import { learningResources, type LearningResource } from "@/lib/learning-resources"
 import { useLanguage } from "@/components/language-provider"
+import { TestimonialsShowcase } from "@/components/testimonials-showcase"
+import { freebieText } from "@/lib/freebie-i18n"
 
 type Category = "all" | "design" | "training"
 type ResourceFilter = "all" | LearningResource["category"]
@@ -19,12 +20,14 @@ const resourceIcon = (type: LearningResource["type"]) => {
   return BookOpen
 }
 
-const resourceFilterLabels: Record<ResourceFilter, string> = {
-  all: "All topics",
-  design: "Design",
-  training: "Training",
-  development: "Development",
-  marketing: "Marketing",
+function resourceCategoryLabel(cat: LearningResource["category"], t: (k: string) => string) {
+  const map: Record<LearningResource["category"], string> = {
+    design: t("resourceFilter.design"),
+    training: t("resourceFilter.training"),
+    development: t("resourceFilter.development"),
+    marketing: t("resourceFilter.marketing"),
+  }
+  return map[cat]
 }
 
 interface FormData {
@@ -175,7 +178,7 @@ function FreebiesClientInner() {
 
       <section className="pb-8 px-6">
         <div className="max-w-5xl mx-auto">
-          <PageTestimonials />
+          <TestimonialsShowcase showTicker={false} className="py-4" />
         </div>
       </section>
 
@@ -215,13 +218,13 @@ function FreebiesClientInner() {
                   </span>
 
                   <div>
-                    <h3 className="font-bold text-foreground text-base lg:text-lg leading-snug">{freebie.title}</h3>
-                    <p className="text-sm lg:text-base text-muted-foreground mt-2 leading-relaxed">{freebie.description}</p>
+                    <h3 className="font-bold text-foreground text-base lg:text-lg leading-snug">{freebieText(freebie, "title", t)}</h3>
+                    <p className="text-sm lg:text-base text-muted-foreground mt-2 leading-relaxed">{freebieText(freebie, "description", t)}</p>
                   </div>
 
                   <div className="flex items-center justify-between mt-auto pt-3 border-t border-border/60">
-                    <span className="text-xs lg:text-sm text-muted-foreground">{freebie.format}</span>
-                    <span className={`text-xs lg:text-sm font-medium ${colors.icon}`}>{freebie.benefit}</span>
+                    <span className="text-xs lg:text-sm text-muted-foreground">{freebieText(freebie, "format", t)}</span>
+                    <span className={`text-xs lg:text-sm font-medium ${colors.icon}`}>{freebieText(freebie, "benefit", t)}</span>
                   </div>
 
                   {isUnlocked ? (
@@ -281,10 +284,10 @@ function FreebiesClientInner() {
           <div className="text-center mb-8">
             <p className="label mb-2">{t("freebies.learnMore") || "Keep learning"}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-              Videos, tools & suggested reads
+              {t("freebies.learnSectionTitle")}
             </h2>
             <p className="text-muted-foreground text-sm max-w-xl mx-auto">
-              Hand-picked resources on design, training, development, and digital marketing — free to explore.
+              {t("freebies.learnSectionDesc")}
             </p>
           </div>
 
@@ -300,7 +303,7 @@ function FreebiesClientInner() {
                     : "bg-background border border-border text-muted-foreground hover:border-accent/30"
                 }`}
               >
-                {resourceFilterLabels[cat]}
+                {t(`resourceFilter.${cat}`)}
               </button>
             ))}
           </div>
@@ -316,11 +319,12 @@ function FreebiesClientInner() {
                   {resource.youtubeId && (
                     <div className="relative aspect-video bg-muted">
                       <iframe
-                        src={`https://www.youtube-nocookie.com/embed/${resource.youtubeId}`}
-                        title={resource.title}
-                        className="absolute inset-0 h-full w-full"
+                        src={`https://www.youtube-nocookie.com/embed/${resource.youtubeId}?rel=0&modestbranding=1`}
+                        title={t(resource.titleKey)}
+                        className="absolute inset-0 h-full w-full border-0"
                         loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
                       />
                     </div>
@@ -332,19 +336,19 @@ function FreebiesClientInner() {
                       </span>
                       <div>
                         <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                          {resource.category} · {resource.type}
+                          {resourceCategoryLabel(resource.category, t)} · {resource.type}
                         </span>
-                        <h3 className="font-semibold text-foreground leading-snug mt-0.5">{resource.title}</h3>
+                        <h3 className="font-semibold text-foreground leading-snug mt-0.5">{t(resource.titleKey)}</h3>
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">{resource.description}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">{t(resource.descriptionKey)}</p>
                     <a
                       href={resource.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
                     >
-                      {resource.type === "youtube" ? "Watch on YouTube" : "Open resource"}
+                      {resource.type === "youtube" ? t("freebies.watchYoutube") : t("freebies.openResource")}
                       <ExternalLink className="h-3.5 w-3.5" />
                     </a>
                   </div>

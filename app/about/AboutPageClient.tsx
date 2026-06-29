@@ -230,11 +230,8 @@ export default function AboutPageClient() {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section id="testimonials" className="px-4 md:px-8 py-10">
-          <div className="max-w-5xl mx-auto">
-            <PageTestimonials />
-          </div>
+        <section id="testimonials" className="px-4 md:px-8 py-6">
+          <PageTestimonials showTicker={false} />
         </section>
 
         {/* Client logos */}
@@ -371,14 +368,14 @@ export default function AboutPageClient() {
               <h3 className="text-2xl font-bold text-accent text-center">{t("skillsAbilities")}</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {skillsConfig.map((col) => (
-                  <div key={col.category} className="bg-white rounded-3xl p-6 border border-slate-100 shadow-card">
+                  <div key={col.category} className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-100 dark:border-slate-800 shadow-card">
                     <div className={`w-11 h-11 ${col.color} rounded-2xl flex items-center justify-center mb-4`}>
                       <col.icon className="w-5 h-5" />
                     </div>
-                    <h4 className="font-semibold text-slate-900 text-sm mb-4">{col.category}</h4>
+                    <h4 className="font-semibold text-slate-900 dark:text-white text-sm mb-4">{col.category}</h4>
                     <ul className="space-y-2">
                       {col.skills.map((skill) => (
-                        <li key={skill} className="flex items-center gap-2 text-sm text-slate-500">
+                        <li key={skill} className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                           <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
                           {skill}
                         </li>

@@ -14,6 +14,7 @@ import ToolsStackSection from "@/components/tools-stack-section"
 import MarketingSection from "@/components/marketing-section"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
+import { TestimonialsShowcase } from "@/components/testimonials-showcase"
 import { useState } from "react"
 
 const designPhilosophy = [
@@ -49,13 +50,6 @@ const packages = [
     includes: ["Primary logo", "Color palette", "Basic social avatar", "File exports"],
     note: "Fixed scope",
   },
-]
-
-const designTestimonials = [
-  { name: "Yassine Bahri", role: "Digital Strategy Creator · ISG Tunis workshop", quote: "Captured, involved, and trained students who left with solid visual identities and the drive to go further." },
-  { name: "Youssef Touati", role: "CEO, Jasmin Marketing · Direct manager", quote: "Creativity and dedication on every project. Attention to detail and eagerness to learn throughout his internship." },
-  { name: "Skander Chebbi", role: "Graphic Designer · Collaborator", quote: "Symbol of dynamism and accuracy. Added value in design, strategic planning, and external representation." },
-  { name: "Amir Boujelben", role: "MeetUp Pro 1.0 · Event Manager", quote: "Exceptional strategic marketing and creativity. Crucial to promoting the event through engaging campaigns." },
 ]
 
 const categories = ["All", "Brand Identity", "Social Media", "Logo Design", "Packaging"] as const
@@ -332,24 +326,11 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        {/* 9. Testimonials */}
-        <section className="section-compact w-full bg-muted/30 px-4 md:px-8">
-          <div className="mx-auto max-w-5xl">
-            <p className="label mb-2 text-center">Clients & collaborators</p>
-            <h2 className="mb-8 text-center text-3xl font-bold">What people say about the design work</h2>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {designTestimonials.map((t) => (
-                <blockquote key={t.name} className="rounded-2xl border border-border bg-card p-5">
-                  <p className="mb-4 text-sm italic leading-relaxed text-muted-foreground">&ldquo;{t.quote}&rdquo;</p>
-                  <footer>
-                    <p className="text-sm font-semibold">{t.name}</p>
-                    <p className="text-xs text-muted-foreground">{t.role}</p>
-                  </footer>
-                </blockquote>
-              ))}
-            </div>
-          </div>
-        </section>
+        <TestimonialsShowcase
+          tag="design"
+          subtitleKey="testimonialsSubtitleDesign"
+          className="section-compact w-full bg-muted/30 px-4 md:px-8 py-10"
+        />
 
         <ToolsStackSection />
 
