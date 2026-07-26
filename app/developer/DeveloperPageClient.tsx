@@ -12,6 +12,7 @@ import { developerExperience } from "@/lib/profile"
 import { devWorkProjects } from "@/lib/work"
 import { otherDevProjects } from "@/lib/dev-projects"
 import { ExternalLink, Github, Download, ArrowRight } from "lucide-react"
+import { TestimonialsShowcase } from "@/components/testimonials-showcase"
 import ToolsStackSection from "@/components/tools-stack-section"
 
 export default function DeveloperPageClient() {
@@ -335,6 +336,8 @@ export default function DeveloperPageClient() {
             </div>
           </div>
         </section>
+
+        <TestimonialsShowcase className="section-compact w-full bg-muted/30 px-4 md:px-8 py-10" />
 
         <ResourcesInsightsStrip focus="development" className="bg-section-tint" />
 

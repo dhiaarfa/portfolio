@@ -35,7 +35,7 @@ for (const p of pdfPaths) {
 
 // Translation keys used in FreebiesClient
 const freebiesClient = fs.readFileSync(path.join(root, "app", "freebies", "FreebiesClient.tsx"), "utf8")
-const keys = [...freebiesClient.matchAll(/t\("([^"]+)"\)/g)].map((m) => m[1])
+const keys = [...freebiesClient.matchAll(/\bt\("([^"]+)"\)/g)].map((m) => m[1])
 const translations = fs.readFileSync(path.join(root, "lib", "translations.ts"), "utf8")
 
 for (const key of [...new Set(keys)]) {

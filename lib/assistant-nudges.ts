@@ -90,7 +90,7 @@ export const assistantNudges: AssistantNudge[] = [
   {
     id: "behance",
     messageKey: "chatNudgeBehance",
-    href: "https://www.behance.net/dhiaarfa",
+    href: "https://www.behance.net/dhiaa",
     actionKey: "chatNudgeActionBehance",
     paths: ["/designer", "/about", "/"],
     delayMs: 138000,

@@ -132,6 +132,14 @@ export const translations = {
 
     // Skills
     myExpertise: "My Expertise",
+    homeExpertiseLine1: "Three specialized areas.",
+    homeExpertiseLine2: "One cohesive vision.",
+    homeExpertiseDesc:
+      "Design + training + development in one person means no hand-offs, one brand voice, and someone who can both make it and ship it.",
+    homeCreativeAgency: "Creative Agency",
+    homeZiaDesc:
+      "Brand identity, digital campaigns, and visual storytelling for startups, NGOs, and ambitious projects across Tunisia and beyond.",
+    workWithZiaStudio: "Work with Zia Studio",
     skillsAbilities: "Skills & Abilities",
     skillsDescription:
       "A comprehensive skill set combining creativity, technology, and communication for impactful results.",
@@ -430,6 +438,7 @@ export const translations = {
     "freebies.moreComingTitle": "More resources coming",
     "freebies.moreComingDesc": "Want an email when I add a new template or guide?",
     "freebies.notifyBtn": "Notify me",
+    "freebies.learnMore": "Keep learning",
     "freebies.learnSectionTitle": "Videos, tools & suggested reads",
     "freebies.learnSectionDesc": "Hand-picked resources on design, training, development, and digital marketing — free to explore.",
     "freebies.watchYoutube": "Watch on YouTube",
@@ -657,6 +666,14 @@ export const translations = {
 
     // Skills
     myExpertise: "Mon Expertise",
+    homeExpertiseLine1: "Trois domaines spécialisés.",
+    homeExpertiseLine2: "Une vision cohérente.",
+    homeExpertiseDesc:
+      "Design + formation + développement réunis en une seule personne : pas de transmission entre intervenants, une seule voix de marque, et quelqu'un capable de concevoir et de livrer.",
+    homeCreativeAgency: "Agence Créative",
+    homeZiaDesc:
+      "Identité de marque, campagnes digitales et storytelling visuel pour startups, ONG et projets ambitieux en Tunisie et au-delà.",
+    workWithZiaStudio: "Travailler avec Zia Studio",
     skillsAbilities: "Compétences & Capacités",
     skillsDescription:
       "Un ensemble de compétences complet combinant créativité, technologie et communication pour des résultats impactants.",
@@ -955,6 +972,7 @@ export const translations = {
     "freebies.moreComingTitle": "D'autres ressources arrivent",
     "freebies.moreComingDesc": "Voulez-vous un email quand j'ajoute un nouveau modèle ou guide ?",
     "freebies.notifyBtn": "Me notifier",
+    "freebies.learnMore": "Continuer à apprendre",
     "freebies.learnSectionTitle": "Vidéos, outils & lectures suggérées",
     "freebies.learnSectionDesc": "Ressources sélectionnées sur le design, la formation, le dev et le marketing digital — gratuites.",
     "freebies.watchYoutube": "Voir sur YouTube",
@@ -1182,6 +1200,14 @@ export const translations = {
 
     // Skills
     myExpertise: "خبرتي",
+    homeExpertiseLine1: "ثلاثة مجالات متخصصة.",
+    homeExpertiseLine2: "رؤية واحدة متكاملة.",
+    homeExpertiseDesc:
+      "التصميم والتدريب والتطوير في شخص واحد يعني عدم وجود تسليم بين أطراف مختلفة، وصوت علامة تجارية واحد، وشخص قادر على التصميم والتنفيذ معًا.",
+    homeCreativeAgency: "وكالة إبداعية",
+    homeZiaDesc:
+      "هوية العلامة التجارية والحملات الرقمية والسرد البصري للشركات الناشئة والمنظمات غير الحكومية والمشاريع الطموحة في تونس وخارجها.",
+    workWithZiaStudio: "اعمل مع Zia Studio",
     skillsAbilities: "المهارات والقدرات",
     skillsDescription:
       "مجموعة مهارات شاملة تجمع بين الإبداع والتكنولوجيا والاتصال للحصول على نتائج مؤثرة.",
@@ -1480,6 +1506,7 @@ export const translations = {
     "freebies.moreComingTitle": "موارد جديدة قريباً",
     "freebies.moreComingDesc": "تريد بريداً عندما أضيف قالباً أو دليلاً جديداً؟",
     "freebies.notifyBtn": "أبلغني",
+    "freebies.learnMore": "واصل التعلم",
     "freebies.learnSectionTitle": "فيديوهات وأدوات وقراءات مقترحة",
     "freebies.learnSectionDesc": "موارد مختارة في التصميم والتدريب والتطوير والتسويق الرقمي — مجانية.",
     "freebies.watchYoutube": "شاهد على YouTube",

@@ -24,7 +24,7 @@ Packaging and promo posts share the same type hierarchy. Seasonal campaigns (Ram
 
 The identity was adopted across **in-store packaging, Instagram, and seasonal promos**. The client could hand templates to staff without re-explaining fonts or colors each time. That consistency is what made the brand feel established faster than the business age suggested.
 
-**Tools:** Adobe Illustrator, Photoshop, InDesign · **Full set:** [Behance](https://www.behance.net/dhiaarfa)`,
+**Tools:** Adobe Illustrator, Photoshop, InDesign · **Full set:** [Behance](https://www.behance.net/dhiaa)`,
 
   "lone-space": `Lone Space is a creative studio that wanted a **luxurious gold identity** without looking generic. The mark needed to work on dark backgrounds, foil stationery, and digital proposals.
 
@@ -50,7 +50,7 @@ Business cards and letterhead use the same spacing system: generous margins, one
 
 The gold system is used across **cards, letterhead, and client-facing PDFs**. The studio reports that proposals feel more aligned and clients mention the branding before discussing scope.
 
-**Tools:** Illustrator, Photoshop, InDesign · **Full set:** [Behance](https://www.behance.net/dhiaarfa)`,
+**Tools:** Illustrator, Photoshop, InDesign · **Full set:** [Behance](https://www.behance.net/dhiaa)`,
 
   "tafani-travel": `Tafani Travel needed a mark that reads **trustworthy and modern** on a phone screen and on printed offers. Travel buyers decide quickly; the logo has to feel stable, not trendy for six months.
 
@@ -70,7 +70,7 @@ Templates were built for **Instagram posts and story covers** with fixed logo pl
 
 Clearer brand recognition on **social and client proposals within the first month** of rollout. Sales material looked aligned instead of a collection of one-off posts.
 
-**Tools:** Illustrator, Figma, Photoshop · **Full set:** [Behance](https://www.behance.net/dhiaarfa)`,
+**Tools:** Illustrator, Figma, Photoshop · **Full set:** [Behance](https://www.behance.net/dhiaa)`,
 
   "meetup-pro": `MeetUp Pro 1.0 was a **youth networking event** that needed to sell tickets through social before anyone saw the venue. Visuals had to feel energetic, credible, and shareable.
 
@@ -88,7 +88,7 @@ I built a **campaign identity** around bold type, high contrast, and repeatable 
 
 Strong social traction and **sold-out attendance**. Visuals were reused for follow-up editions because the system was template-based, not one-off exports. For the full event breakdown, see the [detailed MeetUp Pro case study](/case-study/meetup-pro).
 
-**Tools:** Illustrator, Photoshop, Canva · **Full set:** [Behance](https://www.behance.net/dhiaarfa)`,
+**Tools:** Illustrator, Photoshop, Canva · **Full set:** [Behance](https://www.behance.net/dhiaa)`,
 
   "traveltodo-campaign": `TravelTodo needed **one campaign look** across billboard, poster, and Instagram. Without a system, outdoor and social would read as separate brands.
 
@@ -108,7 +108,7 @@ One **master layout grid**: headline zone, image window, logo lockup, CTA bar. T
 
 **Unified campaign look** across OOH, poster, and Instagram. Client could approve one system instead of three separate designs.
 
-**Tools:** Photoshop, Illustrator · **Full set:** [Behance](https://www.behance.net/dhiaarfa)`,
+**Tools:** Photoshop, Illustrator · **Full set:** [Behance](https://www.behance.net/dhiaa)`,
 
   digimytch: `DigiMyTech Talent Hub is my **PFE capstone** (Licence MDW, ISET Sousse): a full-stack, AI-powered talent platform built solo in **97 days** at Digimytch SUARL, Ariana. It accompanies Tunisian job seekers from CV creation through interview simulation — with AI embedded at every step, not bolted on as a chat widget. **Graduated with highest honors (Mention Très Bien).**
 

@@ -140,12 +140,12 @@ export default function HomePageClient() {
               {t("myExpertise")}
             </p>
             <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] text-center text-slate-900 dark:text-white leading-snug mb-4">
-              Three specialized areas.
+              {t("homeExpertiseLine1")}
               <br />
-              One cohesive vision.
+              {t("homeExpertiseLine2")}
             </h2>
             <p className="text-center text-muted-foreground text-base lg:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
-              Design + training + development in one person means no hand-offs, one brand voice, and someone who can both make it and ship it.
+              {t("homeExpertiseDesc")}
             </p>
           </FadeUp>
 
@@ -273,12 +273,12 @@ export default function HomePageClient() {
             />
           </div>
           <div className="flex-1 text-center md:text-left">
-            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-2">Creative Agency</p>
+            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-2">{t("homeCreativeAgency")}</p>
             <p className="text-[#F5F5F5] text-lg leading-relaxed mb-6">
-              Brand identity, digital campaigns, and visual storytelling for startups, NGOs, and ambitious projects across Tunisia and beyond.
+              {t("homeZiaDesc")}
             </p>
             <a href="#contact" className="btn-green">
-              Work with Zia Studio
+              {t("workWithZiaStudio")}
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>

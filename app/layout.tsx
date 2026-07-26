@@ -1,4 +1,5 @@
 import type React from "react"
+import type { Viewport } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
@@ -72,6 +73,11 @@ export const metadata = {
     description: "Professional portfolio of Mohamed Dhia Arfa - Expert graphic designer and trainer",
     images: ["/images/photos/dhia-main.png"],
   },
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 }
 
 export default function RootLayout({

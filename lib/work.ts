@@ -189,9 +189,9 @@ export const curatedGallery: GalleryItem[] = [
   { title: "Lone Space Stationery", image: "/images/lone-space-mockup.jpg", category: "Packaging", workSlug: "lone-space" },
   { title: "TravelTodo Billboard", image: "/images/billboard-48x14-ft-mockup-3.jpeg", category: "Social Media", workSlug: "traveltodo-campaign" },
   { title: "Lone Space Business Cards", image: "/images/lone-space-cards.jpg", category: "Logo Design", workSlug: "lone-space" },
-  { title: "Archaeological Museum Sousse", image: "/images/archaeological-museum-sousse.png", category: "Brand Identity", concept: true, externalUrl: "https://www.behance.net/dhiaarfa" },
-  { title: "Walmart Branding + System", image: "/images/walmart-branding.png", category: "Brand Identity", concept: true, externalUrl: "https://www.behance.net/dhiaarfa" },
-  { title: "Football Campaign", image: "/images/argentina-messi-copa-america-outdoor.jpeg", category: "Social Media", externalUrl: "https://www.behance.net/dhiaarfa" },
+  { title: "Archaeological Museum Sousse", image: "/images/archaeological-museum-sousse.png", category: "Brand Identity", concept: true, externalUrl: "https://www.behance.net/dhiaa" },
+  { title: "Walmart Branding + System", image: "/images/walmart-branding.png", category: "Brand Identity", concept: true, externalUrl: "https://www.behance.net/dhiaa" },
+  { title: "Football Campaign", image: "/images/argentina-messi-copa-america-outdoor.jpeg", category: "Social Media", externalUrl: "https://www.behance.net/dhiaa" },
 ]
 
 export function publishedWorkProjects() {

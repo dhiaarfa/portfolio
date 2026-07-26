@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
+import Image from "next/image"
 import { Download, Lock, CheckCircle, X, Mail, Youtube, BookOpen, ExternalLink, GraduationCap, Wrench } from "lucide-react"
 import Link from "next/link"
 import { publishedFreebies, type Freebie } from "@/lib/freebies"
@@ -198,15 +199,15 @@ function FreebiesClientInner() {
                   onClick={() => !isUnlocked && setSelectedFreebie(freebie)}
                 >
                   {freebie.bgImage ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={freebie.bgImage}
-                      alt=""
-                      className="h-36 w-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none"
-                      }}
-                    />
+                    <div className="relative h-36 w-full">
+                      <Image
+                        src={freebie.bgImage}
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover"
+                      />
+                    </div>
                   ) : (
                     <div className={`h-36 w-full ${colors.bg} flex items-center justify-center text-4xl`}>
                       {freebie.emoji}
@@ -282,7 +283,7 @@ function FreebiesClientInner() {
       <section className="pb-16 px-6 bg-muted/20">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8">
-            <p className="label mb-2">{t("freebies.learnMore") || "Keep learning"}</p>
+            <p className="label mb-2">{t("freebies.learnMore")}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               {t("freebies.learnSectionTitle")}
             </h2>
@@ -408,12 +409,15 @@ function FreebiesClientInner() {
             ) : (
               <>
                 {selectedFreebie.bgImage ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={selectedFreebie.bgImage}
-                    alt=""
-                    className="w-full h-32 object-cover rounded-xl mb-4"
-                  />
+                  <div className="relative w-full h-32 rounded-xl overflow-hidden mb-4">
+                    <Image
+                      src={selectedFreebie.bgImage}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      className="object-cover"
+                    />
+                  </div>
                 ) : (
                   <div className="text-2xl mb-2">{selectedFreebie.emoji}</div>
                 )}
