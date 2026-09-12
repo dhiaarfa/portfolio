@@ -67,8 +67,10 @@ export const siteConfig = {
   // Consultation CTA
   ctaText: "Book a Free 30-Min Consultation",
 
-  /** Résumé PDF — add file to public/resume.pdf when available */
-  resumePdfUrl: "/resume.pdf",
+  /** Résumé PDF — was pointing at a file that never existed (public/resume.pdf,
+   *  a 404). Now points at the general CV in public/resumes/ (see lib/resumes.ts,
+   *  which lists all 5 role-specific resumes offered from the navbar dropdown). */
+  resumePdfUrl: "/resumes/mohamed-dhia-arfa-cv.pdf",
 }
 
 export { freebieCatalog as freebies, publishedFreebies, freebieById, freebieDownloadUrl } from "@/lib/freebies"

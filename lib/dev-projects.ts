@@ -61,13 +61,40 @@ export const devProjects: DevProject[] = [
   },
 ]
 
-export const otherDevProjects = [
+export type OtherDevProject = {
+  title: string
+  excerpt: string
+  tech: string[]
+  /** Omit while the project has no public URL yet (e.g. still in progress) — the
+   *  page only renders the "Live" link when this is set, so it never points at
+   *  a placeholder or fabricated domain. */
+  liveUrl?: string
+  repoUrl?: string
+  /** Shown as a small badge when the project isn't shipped yet, e.g. "In progress". */
+  status?: string
+}
+
+export const otherDevProjects: OtherDevProject[] = [
   {
     title: "dhia-portfolio.com",
     excerpt: "This portfolio: Next.js 15, i18n, AI chat, freebies funnel, Lighthouse-focused.",
     liveUrl: "https://dhia-portfolio.com",
     repoUrl: "https://github.com/dhiaarfa/portfolio",
     tech: ["Next.js", "TypeScript", "Vercel"],
+  },
+  {
+    title: "Association Youth Clubs — Official Website",
+    excerpt:
+      "Official site for Association Youth Clubs (YCs), the NGO Dhia founded to coordinate school clubs across Tunisia — advocacy toward education stakeholders plus member training, built around the NAOMIE planning framework.",
+    tech: ["Next.js", "Tailwind"],
+    status: "In progress",
+  },
+  {
+    title: "Amal Bennasr — Space Designer",
+    excerpt:
+      "Portfolio site for an interior/space designer based in Sfax, Tunisia — a calm, editorial project gallery built around light, material, and comfort.",
+    liveUrl: "https://amalbennasr.netlify.app/",
+    tech: ["HTML", "CSS", "JavaScript", "Netlify"],
   },
 ]
 

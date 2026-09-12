@@ -224,7 +224,14 @@ export default function DeveloperPageClient() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   {otherDevProjects.map((p) => (
                     <div key={p.title} className="rounded-2xl border border-border bg-card p-5">
-                      <h4 className="font-semibold">{p.title}</h4>
+                      <div className="flex items-start justify-between gap-2">
+                        <h4 className="font-semibold">{p.title}</h4>
+                        {p.status && (
+                          <span className="shrink-0 text-[10px] font-medium px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                            {p.status}
+                          </span>
+                        )}
+                      </div>
                       <p className="text-sm text-muted-foreground mt-1 mb-3">{p.excerpt}</p>
                       <div className="flex flex-wrap gap-2 mb-3">
                         {p.tech.map((t) => (
@@ -233,14 +240,20 @@ export default function DeveloperPageClient() {
                           </span>
                         ))}
                       </div>
-                      <div className="flex gap-4 text-sm">
-                        <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-accent hover:underline">
-                          Live ↗
-                        </a>
-                        <a href={p.repoUrl} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-accent">
-                          GitHub ↗
-                        </a>
-                      </div>
+                      {(p.liveUrl || p.repoUrl) && (
+                        <div className="flex gap-4 text-sm">
+                          {p.liveUrl && (
+                            <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-accent hover:underline">
+                              Live ↗
+                            </a>
+                          )}
+                          {p.repoUrl && (
+                            <a href={p.repoUrl} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-accent">
+                              GitHub ↗
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

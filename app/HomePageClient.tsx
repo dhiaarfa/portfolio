@@ -106,7 +106,7 @@ export default function HomePageClient() {
             {t("availableForProjects")}
           </div>
           <h1 className="font-display font-extrabold text-[clamp(36px,6vw,64px)] leading-[0.96] tracking-tight text-slate-900 dark:text-white mb-2">
-            Hello, I&apos;m{" "}
+            {t("helloGreeting")}{" "}
             <span className="text-accent">Mohamed Dhia</span>
           </h1>
           <AnimatedRole />

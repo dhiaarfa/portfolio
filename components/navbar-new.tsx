@@ -10,6 +10,8 @@ import { LanguageToggle } from './language-toggle'
 import { useLanguage } from './language-provider'
 import { siteConfig } from '@/lib/site-config'
 import { BehanceIcon } from '@/lib/brand-icon'
+import { ResumeDropdown, ResumeMobileList } from './resume-dropdown'
+import { CopyEmailButton, CopyEmailMobileRow } from './copy-email-button'
 
 const navLinks = [
   { labelKey: 'home', href: '/' },
@@ -95,6 +97,8 @@ export default function Navbar() {
             >
               <BehanceIcon size={36} />
             </a>
+            <CopyEmailButton />
+            <ResumeDropdown />
             <ThemeToggle />
             <LanguageToggle />
             <a
@@ -157,6 +161,10 @@ export default function Navbar() {
                 Behance
               </a>
             </nav>
+            <div className="border-t border-border pt-1">
+              <CopyEmailMobileRow />
+              <ResumeMobileList />
+            </div>
             <div className="px-4 pb-6 pt-3 border-t border-border">
               <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer"
                  className="btn-green w-full justify-center py-3.5 !rounded-xl text-base">

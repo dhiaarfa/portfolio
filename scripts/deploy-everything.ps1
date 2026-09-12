@@ -225,7 +225,13 @@ if ($hasChanges) {
 
 Write-Host ""
 Write-Host "Deploying to Vercel (production)..." -ForegroundColor Cyan
-vercel --prod
+$vercelCmd = Get-Command vercel -ErrorAction SilentlyContinue
+if ($vercelCmd) {
+    vercel --prod
+} else {
+    Write-Host "  'vercel' not found on PATH - using 'npx vercel' instead (downloads it on the fly, no install needed)" -ForegroundColor Yellow
+    npx vercel --prod
+}
 
 Write-Host ""
 Write-Host "All done. Once Vercel finishes, tell Claude the deploy is live and it'll run the full QA pass against the real site." -ForegroundColor Cyan

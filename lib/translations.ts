@@ -27,6 +27,12 @@ export const translations = {
 
     // Hero Section
     hello: "Hello, I'm Mohamed Dhia",
+    // Split greeting used by the homepage hero (app/HomePageClient.tsx) so the
+    // "Mohamed Dhia" name can stay accent-colored while the greeting itself
+    // still translates — the combined "hello" string above was never wired
+    // up (the JSX hardcoded English), so the hero heading stayed in English
+    // even after switching to French/Arabic. See checklist.
+    helloGreeting: "Hello, I'm",
     graphicDesigner: "Graphic Designer",
     trainer: "& Trainer",
     heroDescription:
@@ -353,6 +359,20 @@ export const translations = {
     "nav.freebies": "Freebies",
     "nav.insights": "Insights",
     "nav.webDev": "Web Dev",
+
+    // Resume dropdown (navbar)
+    "nav.resumes": "Resume",
+    resumesMenuTitle: "Choose a resume",
+    resumeGeneral: "General CV",
+    resumeDesigner: "Graphic Designer",
+    resumeTrainerRole: "Trainer",
+    resumeDeveloperRole: "Web Developer",
+    resumeSocialEngagement: "Social Engagement",
+
+    // Copy-email pill (navbar)
+    copyEmailLabel: "Copy email",
+    copyLabel: "Copy",
+    copiedLabel: "Copied",
     "chatTitle": "Ask about my work",
     "chatSubtitle": "Design · Training · Development",
     "chatWelcome": "Hi! I'm Dhia's assistant. Ask about design, training workshops, web projects, or booking a call.",
@@ -565,6 +585,7 @@ export const translations = {
 
     // Hero Section
     hello: "Bonjour, je suis Mohamed Dhia",
+    helloGreeting: "Bonjour, je suis",
     graphicDesigner: "Designer Graphique",
     trainer: "& Formateur",
     heroDescription:
@@ -892,6 +913,20 @@ export const translations = {
     "nav.freebies": "Ressources",
     "nav.insights": "Articles",
     "nav.webDev": "Web Dev",
+
+    // Resume dropdown (navbar)
+    "nav.resumes": "CV",
+    resumesMenuTitle: "Choisir un CV",
+    resumeGeneral: "CV général",
+    resumeDesigner: "Designer Graphique",
+    resumeTrainerRole: "Formateur",
+    resumeDeveloperRole: "Développeur Web",
+    resumeSocialEngagement: "Engagement associatif",
+
+    // Copy-email pill (navbar)
+    copyEmailLabel: "Copier l'email",
+    copyLabel: "Copier",
+    copiedLabel: "Copié",
     "chatTitle": "Questions sur mon travail",
     "chatSubtitle": "Design · Formation · Dev",
     "chatWelcome": "Bonjour ! Je suis l'assistant de Dhia. Posez vos questions sur le design, la formation ou le web.",
@@ -1104,6 +1139,7 @@ export const translations = {
 
     // Hero Section
     hello: "مرحباً، أنا محمد ضياء",
+    helloGreeting: "مرحباً، أنا",
     graphicDesigner: "مصمم جرافيكي",
     trainer: "ومدرب",
     heroDescription:
@@ -1431,6 +1467,20 @@ export const translations = {
     "nav.freebies": "موارد مجانية",
     "nav.insights": "مقالات",
     "nav.webDev": "Web Dev",
+
+    // Resume dropdown (navbar)
+    "nav.resumes": "السيرة الذاتية",
+    resumesMenuTitle: "اختر سيرة ذاتية",
+    resumeGeneral: "السيرة الذاتية العامة",
+    resumeDesigner: "مصمم جرافيكي",
+    resumeTrainerRole: "مدرب",
+    resumeDeveloperRole: "مطور ويب",
+    resumeSocialEngagement: "الانخراط المجتمعي",
+
+    // Copy-email pill (navbar)
+    copyEmailLabel: "نسخ البريد الإلكتروني",
+    copyLabel: "نسخ",
+    copiedLabel: "تم النسخ",
     "chatTitle": "اسأل عن عملي",
     "chatSubtitle": "تصميم · تدريب · تطوير",
     "chatWelcome": "مرحباً! أنا مساعد Dhia. اسأل عن التصميم أو التدريب أو مشاريع الويب.",
