@@ -63,9 +63,9 @@ export const devProjects: DevProject[] = [
 
 export const otherDevProjects = [
   {
-    title: "dhia-portfolio.me",
+    title: "dhia-portfolio.com",
     excerpt: "This portfolio: Next.js 15, i18n, AI chat, freebies funnel, Lighthouse-focused.",
-    liveUrl: "https://dhia-portfolio.me",
+    liveUrl: "https://dhia-portfolio.com",
     repoUrl: "https://github.com/dhiaarfa/portfolio",
     tech: ["Next.js", "TypeScript", "Vercel"],
   },

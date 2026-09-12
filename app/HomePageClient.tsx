@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, BookOpen, Palette, Code } from "lucide-react"
 import Navbar from "@/components/navbar-new"
@@ -95,6 +94,7 @@ export default function HomePageClient() {
     <div className="w-full min-h-screen bg-white dark:bg-slate-950">
       <Navbar />
 
+      <main>
       {/* Hero — annotated portrait HUD */}
       <HeroAnnotatedPortrait theme="light" className="!pb-10">
         <div className="max-w-2xl">
@@ -301,6 +301,7 @@ export default function HomePageClient() {
       <TestimonialsShowcase
         className="bg-white dark:bg-slate-950 section-compact py-12 md:py-16"
         ids={["rayen", "ikram", "youssef", "skander", "amir"]}
+        showTicker={false}
       />
 
       {/* FAQ */}
@@ -310,6 +311,7 @@ export default function HomePageClient() {
 
       {/* Newsletter */}
       <NewsletterSection />
+      </main>
 
       {/* Footer */}
       <Footer />

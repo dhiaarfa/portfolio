@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import TrainerClientPage from "./TrainerClientPage"
-import { pageMetadata } from "@/lib/page-metadata"
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 import { SITE_URL, formatStat } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/trainer",
   title: "Certified Trainer & Youth Development Coach Tunisia | Mohamed Dhia Arfa",
   description:
-    "CNFCPP-certified trainer helping NGOs, schools, and youth organizations run workshops that change behavior. 1000+ participants trained in Arabic, French, and English.",
+    "CNFCPP-certified trainer helping NGOs, schools, and youth organizations run workshops that change behavior. 1,120+ participants trained in Arabic, French, and English.",
   keywords: ["trainer", "CNFCPP certified", "youth development", "leadership training", "Tunisia", "facilitation", "non-formal education", "train the trainer"],
   openGraph: {
     title: "Youth Trainer & Facilitator · Mohamed Dhia Arfa",
@@ -47,6 +47,7 @@ const jsonLd = {
       inLanguage: ["ar", "fr", "en"],
       url: `${SITE_URL}/trainer#training-offers`,
     },
+    breadcrumbJsonLd("Trainer", "/trainer"),
   ],
 }
 

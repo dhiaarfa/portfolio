@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/",
   title: "Mohamed Dhia Arfa — Graphic Designer, Trainer & Web Developer · Tunisia",
   description:
-    "Multi-disciplinary creative based in Tunisia. Brand design via Zia Studio, youth development training (1000+ participants), and Next.js web development. Book a free consultation.",
+    "Multi-disciplinary creative based in Tunisia. Brand design via Zia Studio, youth development training (1,120+ participants), and Next.js web development. Book a free consultation.",
   keywords: [
     "Mohamed Dhia Arfa",
     "graphic designer",

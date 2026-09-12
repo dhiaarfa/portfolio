@@ -1,6 +1,5 @@
 "use client"
 
-import { Globe } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 
 const order = ["en", "fr", "ar"] as const
@@ -18,7 +17,10 @@ export function LanguageToggle() {
     <button
       type="button"
       onClick={handleClick}
-      aria-label="Toggle language"
+      // Includes the visible "EN"/"FR"/"AR" text in the accessible name on purpose —
+      // a plain "Toggle language" label doesn't include what's visibly displayed,
+      // which is a real WCAG 2.5.3 mismatch a Lighthouse audit flagged.
+      aria-label={`Language: ${language.toUpperCase()} — tap to switch`}
       className="w-9 h-9 rounded-full border border-slate-200 dark:border-[#1F1F1F] bg-white dark:bg-[#111111] hover:border-accent/50 flex items-center justify-center gap-1 transition-all duration-200"
     >
       <span className="text-[0.65rem] font-semibold uppercase text-slate-700 dark:text-[#F5F5F5]">

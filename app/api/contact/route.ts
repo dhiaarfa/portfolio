@@ -44,7 +44,7 @@ function buildEmailHTML({
   <div style="max-width:520px;margin:0 auto">
     <div style="background:#16a34a;padding:24px 32px;border-radius:16px 16px 0 0">
       <h1 style="margin:0;color:#ffffff;font-size:18px;font-weight:700">${title}</h1>
-      <p style="margin:6px 0 0;color:rgba(255,255,255,0.75);font-size:12px">dhia-portfolio.me · ${date}</p>
+      <p style="margin:6px 0 0;color:rgba(255,255,255,0.75);font-size:12px">dhia-portfolio.com · ${date}</p>
     </div>
     <div style="background:#ffffff;padding:28px 32px;border:1px solid #e2e8f0;border-top:none">
       ${
@@ -70,7 +70,7 @@ function buildEmailHTML({
     <div style="background:#f8fafc;padding:14px 32px;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 16px 16px">
       <p style="margin:0;font-size:12px;color:#94a3b8">${
         isNewsletter
-          ? "Newsletter signup notification — dhia-portfolio.me"
+          ? "Newsletter signup notification — dhia-portfolio.com"
           : `Reply directly to this email to respond to ${safeName || safeEmail}.`
       }</p>
     </div>
@@ -91,7 +91,7 @@ function buildAutoReplyHTML(firstName: string) {
       <p style="margin:0 0 16px;color:#475569;line-height:1.7;font-size:15px">Thanks for reaching out. I've received your message and will get back to you within 24 hours.</p>
       <p style="margin:0 0 24px;color:#475569;line-height:1.7;font-size:15px">Need a faster response? <a href="https://calendly.com/benarfa367/30min" style="color:#16a34a;font-weight:600;text-decoration:none">Book a free 30-min call</a> directly.</p>
       <hr style="border:none;border-top:1px solid #e2e8f0;margin:0 0 20px">
-      <p style="margin:0;color:#94a3b8;font-size:12px;line-height:1.6"><strong style="color:#475569">Mohamed Dhia Arfa</strong><br>Graphic Designer · Trainer · Web Developer<br><a href="https://dhia-portfolio.me" style="color:#16a34a;text-decoration:none">dhia-portfolio.me</a></p>
+      <p style="margin:0;color:#94a3b8;font-size:12px;line-height:1.6"><strong style="color:#475569">Mohamed Dhia Arfa</strong><br>Graphic Designer · Trainer · Web Developer<br><a href="https://dhia-portfolio.com" style="color:#16a34a;text-decoration:none">dhia-portfolio.com</a></p>
     </div>
   </div>
 </body></html>`
@@ -122,7 +122,7 @@ function visitorFreebieEmailHtml({
       </p>
       <p style="font-size:13px;color:#6b7280">If the button doesn't work, copy this link:<br><a href="${url}">${url}</a></p>
       <hr style="border:0;border-top:1px solid #eee;margin:24px 0">
-      <p style="font-size:13px;color:#6b7280">— Mohamed Dhia · <a href="https://dhia-portfolio.me">dhia-portfolio.me</a></p>
+      <p style="font-size:13px;color:#6b7280">— Mohamed Dhia · <a href="https://dhia-portfolio.com">dhia-portfolio.com</a></p>
     </div>
   </div>`
 }
@@ -240,7 +240,7 @@ export async function POST(req: NextRequest) {
       replyTo: trimmedEmail,
       subject: isNewsletter
         ? `Newsletter signup: ${trimmedEmail}`
-        : `${name || "Contact"} via dhia-portfolio.me — ${subject || "New message"}`,
+        : `${name || "Contact"} via dhia-portfolio.com — ${subject || "New message"}`,
       html: buildEmailHTML({
         type: type || "contact",
         name: name || undefined,

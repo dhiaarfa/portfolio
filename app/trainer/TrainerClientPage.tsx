@@ -26,7 +26,7 @@ export default function TrainerClientPage() {
     { number: formatStat("participantsTrained"), label: "Participants Trained", detail: "Across NGOs, youth clubs & associations" },
     { number: formatStat("trainingHours"), label: "Training Hours", detail: "Non-formal education & skills building" },
     { number: formatStat("facilitationHours"), label: "Facilitation Hours", detail: "Moderation, panels & collaborative spaces" },
-    { number: formatStat("trainingCycles"), label: "Training Cycles Supervised", detail: "From design to delivery & evaluation" },
+    { number: formatStat("trainingCycles"), label: "Training Events", detail: "From design to delivery & evaluation" },
     { number: formatStat("yearsExperience"), label: "Years Experience", detail: "Youth work, civic engagement & training" },
     { number: "15+", label: "Partner Organizations", detail: "NGOs, schools, IFMSA, Rotary, AIESEC & more" },
   ]
@@ -100,6 +100,7 @@ export default function TrainerClientPage() {
           tag="training"
           subtitleKey="testimonialsSubtitleTraining"
           className="section-compact py-10"
+          showTicker={false}
         />
 
         {/* 4. Measurable results */}

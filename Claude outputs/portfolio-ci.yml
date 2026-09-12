@@ -1,0 +1,72 @@
+name: CI
+
+# Wires the existing scripts/test-*.mjs scripts into a real CI gate (checklist §7.3).
+# Runs on every push/PR to main: install → static freebie/translation check → build →
+# boot the built app → smoke-test routes and the /api/contact endpoint against it.
+#
+# Note: `typescript.ignoreBuildErrors` / `eslint.ignoreDuringBuilds` are still both `true`
+# in next.config.js (see checklist §5.4 — deliberately not flipped without a real local
+# build to sanity-check first). That means `npm run build` below won't yet fail on type or
+# lint errors. The `lint` step is run separately and non-blocking for the same reason —
+# once §5.4 is resolved, tighten both steps to fail the build.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SITE_URL: https://dhia-portfolio.com
+      # Real values can be added as repo secrets (Settings → Secrets and variables → Actions)
+      # so the "contact" happy-path in test-api.mjs exercises a real send. Without them the
+      # script still passes — it explicitly tolerates a 500 from /api/contact when no
+      # RESEND_API_KEY is configured.
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      CONTACT_RECEIVER: ${{ secrets.CONTACT_RECEIVER || 'test@example.com' }}
+      DELIVERY_FROM: ${{ secrets.DELIVERY_FROM || 'Mohamed Dhia <hello@dhia-portfolio.com>' }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      OPENROUTER_MODEL: openai/gpt-4o-mini
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate freebies (static — no server needed)
+        run: npm run test:freebies
+
+      - name: Lint (non-blocking — see §5.4 note above)
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Build
+        run: npm run build
+
+      - name: Start built app in background
+        run: npm run start -- -p 3000 &
+
+      - name: Wait for server to come up
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:3000/ > /dev/null; then
+              echo "Server is up"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Server did not respond within 30s"
+          exit 1
+
+      - name: Smoke-test routes
+        run: npm run test:routes -- http://localhost:3000
+
+      - name: Test /api/contact
+        run: npm run test:api -- http://localhost:3000

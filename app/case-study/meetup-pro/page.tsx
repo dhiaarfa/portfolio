@@ -6,7 +6,6 @@ import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import ContactForm from "@/components/contact-form"
-import Image from "next/image"
 
 export default function MeetUpProCaseStudy() {
   return (
@@ -424,7 +423,7 @@ export default function MeetUpProCaseStudy() {
                   <h3 className="font-semibold mb-2">4. Target Audience Research Informs Everything</h3>
                   <p className="text-muted-foreground text-sm">
                     Deep understanding of the target audience—young professionals and entrepreneurs—shaped every design
-                    decision. This audience-centric approach resulted in materials that didn't just look good, but spoke
+                    decision. This audience-centric approach resulted in materials that didn&apos;t just look good, but spoke
                     directly to their aspirations and values.
                   </p>
                 </div>
@@ -452,7 +451,7 @@ export default function MeetUpProCaseStudy() {
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                   I help brands stand out through strategic design and integrated marketing campaigns that drive real
-                  business results. Let's create something impactful for your project.
+                  business results. Let&apos;s create something impactful for your project.
                 </p>
               </div>
 
@@ -483,11 +482,11 @@ export default function MeetUpProCaseStudy() {
             <div className="space-y-12">
               <div className="text-center space-y-4">
                 <p className="text-xs font-medium tracking-widest text-[hsl(var(--zia-green))] dark:text-[hsl(var(--zia-green))]/80 uppercase">
-                  Let's Collaborate
+                  Let&apos;s Collaborate
                 </p>
                 <h2 className="text-4xl md:text-5xl font-bold">Start Your Design Project</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Whether you need branding, marketing design, or a complete campaign strategy, let's discuss how I can
+                  Whether you need branding, marketing design, or a complete campaign strategy, let&apos;s discuss how I can
                   help your business grow.
                 </p>
               </div>

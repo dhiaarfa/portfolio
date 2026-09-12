@@ -7,19 +7,20 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis,
   ResponsiveContainer,
-  Legend,
   Tooltip,
 } from 'recharts'
 import { Globe, Ruler, Zap, CheckCircle } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
 
+// Self-assessed strengths — presented as a single self-rating, not a comparison against
+// an undisclosed "baseline" (the earlier "Partner" series had no real source behind it).
 const data = [
-  { subject: 'Communication', Dhia: 95, Partner: 65 },
-  { subject: 'Creativity', Dhia: 92, Partner: 70 },
-  { subject: 'Reliability', Dhia: 98, Partner: 60 },
-  { subject: 'Methodology', Dhia: 90, Partner: 45 },
-  { subject: 'Multilingual', Dhia: 88, Partner: 35 },
-  { subject: 'Cultural Fit', Dhia: 94, Partner: 55 },
+  { subject: 'Communication', Dhia: 95 },
+  { subject: 'Creativity', Dhia: 92 },
+  { subject: 'Reliability', Dhia: 98 },
+  { subject: 'Methodology', Dhia: 90 },
+  { subject: 'Multilingual', Dhia: 88 },
+  { subject: 'Cultural Fit', Dhia: 94 },
 ]
 
 const valueProps = [
@@ -44,6 +45,9 @@ export default function ValueRadarChart() {
           <p className="text-slate-400 text-sm mt-2 max-w-md mx-auto">
             {t('radarDesc')}
           </p>
+          <p className="text-slate-500 text-xs mt-1 max-w-md mx-auto italic">
+            Self-assessed, not benchmarked against a third party.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -62,23 +66,13 @@ export default function ValueRadarChart() {
                   tick={{ fill: '#475569', fontSize: 9 }}
                 />
                 <Radar
-                  name="Mohamed Dhia"
+                  name="Mohamed Dhia (self-assessed)"
                   dataKey="Dhia"
                   stroke="var(--site-accent)"
                   fill="var(--site-accent)"
                   fillOpacity={0.25}
                   strokeWidth={2}
                 />
-                <Radar
-                  name="Client partner baseline"
-                  dataKey="Partner"
-                  stroke="#475569"
-                  fill="#475569"
-                  fillOpacity={0.1}
-                  strokeWidth={1.5}
-                  strokeDasharray="4 4"
-                />
-                <Legend wrapperStyle={{ color: '#94a3b8', fontSize: '12px' }} />
                 <Tooltip
                   contentStyle={{
                     background: '#0f172a',

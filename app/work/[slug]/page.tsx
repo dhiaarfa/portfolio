@@ -6,7 +6,7 @@ import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import WorkCaseStudyBody from "@/components/work-case-study-body"
 import DevCaseStudyVisuals from "@/components/dev-case-study-visuals"
-import { workBySlug, publishedWorkProjects } from "@/lib/work"
+import { workBySlug, publishedWorkProjects, workOgImage } from "@/lib/work"
 import { getWorkContent } from "@/lib/work-content"
 import { pageMetadata } from "@/lib/page-metadata"
 import { SITE_URL } from "@/lib/profile"
@@ -28,7 +28,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${project.title} · Case Study · Mohamed Dhia`,
     description: project.excerpt,
     ogImage: {
-      url: project.heroImage,
+      // Real 1200x630 branded card, not the raw screenshot (which is an
+      // arbitrary aspect ratio) — see lib/work.ts's workOgImage() and
+      // checklist §2.4/§2.6.
+      url: workOgImage(slug),
       width: 1200,
       height: 630,
       alt: `${project.title} case study`,

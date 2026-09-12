@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
       headers: {
         Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
         "Content-Type": "application/json",
-        "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL ?? "https://dhia-portfolio.me",
+        "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL ?? "https://dhia-portfolio.com",
         "X-Title": "Mohamed Dhia Portfolio",
       },
       body: JSON.stringify({

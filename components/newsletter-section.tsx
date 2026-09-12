@@ -8,7 +8,10 @@ import { useLanguage } from "@/components/language-provider"
 export default function NewsletterSection() {
   const { t } = useLanguage()
   const [email, setEmail] = useState("")
-  const [website, setWebsite] = useState("")
+  // Honeypot field: intentionally has no onChange handler and is read-only — a human
+  // never changes it, so it should always submit empty. A naive bot script that fills
+  // every input programmatically is what this is designed to catch.
+  const [website] = useState("")
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [message, setMessage] = useState("")
 

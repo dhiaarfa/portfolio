@@ -4,14 +4,13 @@ import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import Image from "next/image"
 import { Download, Lock, CheckCircle, X, Mail, Youtube, BookOpen, ExternalLink, GraduationCap, Wrench } from "lucide-react"
-import Link from "next/link"
 import { publishedFreebies, type Freebie } from "@/lib/freebies"
 import { learningResources, type LearningResource } from "@/lib/learning-resources"
 import { useLanguage } from "@/components/language-provider"
 import { TestimonialsShowcase } from "@/components/testimonials-showcase"
 import { freebieText } from "@/lib/freebie-i18n"
 
-type Category = "all" | "design" | "training"
+type Category = "all" | "design" | "training" | "development"
 type ResourceFilter = "all" | LearningResource["category"]
 
 const resourceIcon = (type: LearningResource["type"]) => {
@@ -38,7 +37,7 @@ interface FormData {
 }
 
 function parseCategory(value: string | null): Category {
-  if (value === "design" || value === "training") return value
+  if (value === "design" || value === "training" || value === "development") return value
   return "all"
 }
 
@@ -138,12 +137,25 @@ function FreebiesClientInner() {
       icon: "text-amber-700 dark:text-amber-300",
       badge: "bg-amber-100 dark:bg-amber-900/70 text-amber-800 dark:text-amber-200",
     },
+    blue: {
+      bg: "bg-blue-50 dark:bg-blue-950/40",
+      border: "border-blue-200/80 dark:border-blue-800/60",
+      icon: "text-blue-700 dark:text-blue-300",
+      badge: "bg-blue-100 dark:bg-blue-900/70 text-blue-800 dark:text-blue-200",
+    },
   } as const
 
   const categoryLabel = (cat: Category) => {
     if (cat === "design") return t("freebiesCategoryDesign")
     if (cat === "training") return t("freebiesCategoryTraining")
+    if (cat === "development") return t("freebiesCategoryDevelopment")
     return t("freebiesCategoryAll")
+  }
+
+  const freebieCategoryLabel = (cat: Freebie["category"]) => {
+    if (cat === "design") return t("freebiesCategoryDesign")
+    if (cat === "training") return t("freebiesCategoryTraining")
+    return t("freebiesCategoryDevelopment")
   }
 
   return (
@@ -160,7 +172,7 @@ function FreebiesClientInner() {
         <p className="mt-4 text-sm font-medium text-accent">{t("freebies.socialProof")}</p>
 
         <div className="flex justify-center gap-2 mt-8 flex-wrap">
-          {(["all", "design", "training"] as Category[]).map((cat) => (
+          {(["all", "design", "training", "development"] as Category[]).map((cat) => (
             <button
               key={cat}
               type="button"
@@ -215,7 +227,7 @@ function FreebiesClientInner() {
                   )}
                   <div className="relative z-10 flex flex-col gap-4 p-6 flex-1">
                   <span className={`self-start text-xs font-semibold px-2.5 py-1 rounded-full ${colors.badge}`}>
-                    {freebie.category === "design" ? t("freebiesCategoryDesign") : t("freebiesCategoryTraining")}
+                    {freebieCategoryLabel(freebie.category)}
                   </span>
 
                   <div>
@@ -268,12 +280,15 @@ function FreebiesClientInner() {
                 <h3 className="font-bold text-foreground text-lg">{t("freebies.moreComingTitle")}</h3>
                 <p className="text-sm text-muted-foreground mt-2">{t("freebies.moreComingDesc")}</p>
               </div>
-              <Link
-                href="/contact"
+              {/* "/contact" is not a real route on this site (every other CTA uses
+                  the "#contact" anchor into the footer's contact section, which
+                  is also rendered on this page) — this one was a genuine 404. */}
+              <a
+                href="#contact"
                 className="inline-flex items-center justify-center gap-2 w-full py-3 bg-accent hover:opacity-90 text-white text-sm font-semibold rounded-xl transition-colors"
               >
                 {t("freebies.notifyBtn")}
-              </Link>
+              </a>
             </div>
           )}
         </div>

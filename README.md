@@ -1,4 +1,4 @@
-# dhia-portfolio.me
+# dhia-portfolio.com
 
 Personal portfolio for Mohamed Dhia Arfa - Graphic Designer, Trainer, Web Developer.
 
@@ -8,7 +8,7 @@ Personal portfolio for Mohamed Dhia Arfa - Graphic Designer, Trainer, Web Develo
 - TypeScript
 - Framer Motion
 - Resend (email API for contact form and newsletter)
-- Netlify (hosting)
+- Vercel (hosting)
 
 ## Getting Started
 
@@ -25,7 +25,7 @@ Copy .env.example to .env.local and fill in:
 ``````bash
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxx   # from https://resend.com/api-keys
 CONTACT_RECEIVER=benarfa367@gmail.com    # where contact and newsletter emails are delivered
-NEXT_PUBLIC_SITE_URL=https://dhia-portfolio.me
+NEXT_PUBLIC_SITE_URL=https://dhia-portfolio.com
 ``````
 
 ## Project Structure

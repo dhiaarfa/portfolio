@@ -4,13 +4,13 @@ export const insightContent: Record<string, string> = {
 
 Here's the honest version: **color psychology is not magic.** A blue logo won't *make* a bank trustworthy, and red won't *force* anyone to buy. What color does is set an expectation. Trust is built when the experience matches the expectation the color created. Get that match right and everything downstream feels coherent. Get it wrong and people feel a friction they usually can't name.
 
-### Color sets the expectation; consistency keeps the promise
+## Color sets the expectation; consistency keeps the promise
 
 Think of color as the brand's tone of voice before it speaks. Cool blues and greens tend to read as calm, stable, and competent, which is why so much of fintech and healthcare leans that way. Warm reds and oranges read as energetic and urgent, great for food and entertainment, risky for anything that needs to feel safe. Black and deep neutrals read as premium and serious. None of this is a law; it's a starting bias that your audience brings with them.
 
 The trust part comes from **consistency**, not from the single "right" color. A brand that uses one disciplined palette everywhere (site, packaging, social, signage) feels reliable because the repetition itself signals control. A brand that uses a slightly different green in every place feels careless, and carelessness is the opposite of trust. When I audit a struggling brand, the problem is rarely the color choice. It's that there are eleven slightly different versions of it.
 
-### The 5 mistakes I see most often
+## The 5 mistakes I see most often
 
 **1. Choosing by personal taste, not by audience.** The founder loves purple, so the brand is purple, regardless of who's buying. Your favorite color is irrelevant; your customer's expectations are everything.
 
@@ -22,7 +22,7 @@ The trust part comes from **consistency**, not from the single "right" color. A 
 
 **5. Ignoring cultural meaning.** I work across Arabic, French, and English audiences, and color does not mean the same thing to everyone. Green carries different weight in a Tunisian context than in a Silicon Valley deck. If your brand crosses cultures, your palette has to be chosen with that in mind, not assumed.
 
-### A simple framework you can use today
+## A simple framework you can use today
 
 1. **Start from positioning, not Pinterest.** Write one sentence: "We want people to feel ___ and trust us with ___." Choose color to serve that feeling.
 2. **Pick one primary + neutrals + one accent.** That's it. Generate and lock real values in a tool like [Coolors](https://coolors.co/) so everyone uses the exact same hex.
@@ -36,29 +36,29 @@ Color won't save a bad product or a confusing message. But the right palette, ap
 
   "facilitation-mistakes-youth-workshops": `Energy management is the hardest skill in facilitation, and nobody teaches it. We're taught to prepare content, design slides, and "engage the audience," but with youth groups, holding a room's energy for two or three hours is the actual job. Content is the easy part. After running sessions for well over a thousand young participants, I can tell you the room rarely dies because the material was bad. It dies because of a handful of avoidable facilitation mistakes. Here are the five I see most, and what to do instead.
 
-### Mistake 1: Designing for content coverage instead of energy
+## Mistake 1: Designing for content coverage instead of energy
 
 The instinct is to cram everything you know into the time you have. But a young audience doesn't reward coverage; it rewards rhythm. I plan sessions around an **energy curve**, not a content list: where will attention naturally dip (usually ~20–30 minutes in, and hard after any meal), and what will I do *before* it dips, not after. The reframe that changed my workshops: the goal isn't "what will I teach in this hour?" It's "what will they actually *do*, and how will they feel at minute 45?"
 
 A practical anchor here is David Kolb's experiential learning cycle: concrete experience → reflection → concept → application. If participants only ever *listen*, you've skipped three-quarters of the cycle and most of the energy. Build the loop and engagement takes care of itself. (More on the cycle from the [SessionLab library](https://www.sessionlab.com/library/).)
 
-### Mistake 2: Treating energizers as filler instead of structure
+## Mistake 2: Treating energizers as filler instead of structure
 
 New facilitators drop an icebreaker at the start, then run 150 minutes straight. Energizers aren't a warm-up you do once; they're **punctuation**. I plan a short movement or reset roughly every 20–30 minutes, and I choose them on purpose: to wake the room, to transition between topics, or to mix who's talking to whom. They're not a break *from* the learning; they're part of the architecture that makes the learning land. If you need a starting set, there are dozens of facilitator-tested ones in [SessionLab's energizer library](https://www.sessionlab.com/library/energiser).
 
-### Mistake 3: Talking more than they do
+## Mistake 3: Talking more than they do
 
 If you're the one speaking most of the time, you're the only one whose brain is fully on. I aim to be talking for a minority of the session. The shift is from "presenter" to "facilitator": ask, don't tell; have them discuss in pairs before you reveal; let a participant answer another participant's question. Every minute you hand the floor to the room, the energy comes back to the room. Silence after a question feels uncomfortable to you and productive for them. Let it sit.
 
-### Mistake 4: Ignoring psychological safety
+## Mistake 4: Ignoring psychological safety
 
 Young participants won't bring energy to a space where they're afraid of looking stupid. If the first person who speaks gets corrected sharply, you've just taught everyone else to stay quiet. I spend real effort early making it safe to be wrong: I answer my own icebreaker first, I thank contributions before I refine them, and I never let a participant be embarrassed in front of peers. A safe room is a loud room. An unsafe room is silent, and silence reads as low energy when it's actually fear.
 
-### Mistake 5: Not reading and adjusting in real time
+## Mistake 5: Not reading and adjusting in real time
 
 The most common failure is running the plan you wrote last week instead of facilitating the people in front of you today. The plan is a hypothesis. If the room is flat, I don't push harder through the slides. I change the activity. Stand up, move, switch to small groups, take the energizer I had parked for later. Reading the room and adjusting on the spot is what separates someone delivering content from someone actually facilitating. Always carry more activities than you'll need so you have something to reach for.
 
-### The close that makes it stick
+## The close that makes it stick
 
 End on application, not summary. My favorite closing question is some version of "What's one thing you'll do differently tomorrow because of today?" It pulls the session out of the room and into their lives, and it sends them out with energy instead of relief that it's over.
 
@@ -68,7 +68,7 @@ None of this requires a bigger budget or a perfect slide deck. It requires desig
 
   "why-i-rebuilt-my-portfolio-in-nextjs": `I'm a designer and trainer who builds for the web, so my portfolio is two things at once: a place to show my work, and a piece of work in itself. When I decided to rebuild it, the obvious route was a no-code builder (Webflow, Framer, a Squarespace template). I chose [Next.js](https://nextjs.org/docs) instead. Here's the honest reasoning, including the parts I'd reconsider.
 
-### Why not a no-code builder
+## Why not a no-code builder
 
 No-code tools are genuinely good, and for many people they're the right answer. I went the other way for three reasons.
 
@@ -78,13 +78,13 @@ No-code tools are genuinely good, and for many people they're the right answer. 
 
 **Owning the backend bits.** This was the deciding factor. My freebies and contact forms run through Next.js API routes wired to an email service. The lead-capture flow (someone enters their email, gets the resource, and I get notified) is something I own end to end, not a third-party form with limits. Being able to *ship the API route alongside the UI* is the thing no-code couldn't give me cleanly.
 
-### What worked
+## What worked
 
 - **Static-first.** Most pages are statically generated, so they're fast and cheap to serve, with a single serverless route for email. For a portfolio, that's the right default.
 - **A single source of truth for data.** I moved every stat, certification, and experience entry into one data file so the same number can't say "1,000+" on one page and something else on another. (Learned that one the hard way.)
 - **The site as a portfolio piece.** Building it myself means the codebase *is* a sample, and writing this article is part of that.
 
-### What I'd do differently
+## What I'd do differently
 
 Honesty is more useful than a victory lap, so here's what I got wrong or would change:
 
@@ -96,7 +96,7 @@ Honesty is more useful than a victory lap, so here's what I got wrong or would c
 
 **4. No tests, then surprises.** With no automated checks, small changes occasionally broke things I didn't notice until later. Even a handful of smoke tests (does the nav render, does the form submit, do the stats show real numbers) would have saved me.
 
-### Should *you* use Next.js for a portfolio?
+## Should *you* use Next.js for a portfolio?
 
 If you're a developer, yes. Your portfolio should prove you can build, and this is the most honest proof there is. If you're not, a good no-code builder will get you a beautiful site faster, and that's completely valid; a live site beats a perfect one that never ships. The framework is a means, not the point.
 
@@ -108,13 +108,13 @@ What I keep coming back to is this: the tool you choose should match the story y
 
 After designing social content for cafés, NGOs, and startups across Tunisia, I've learned that visual consistency on social is less about being trendy and more about being **recognizable in half a second**.
 
-### Why consistency beats creativity (most days)
+## Why consistency beats creativity (most days)
 
 A single viral post feels great. A feed that looks like one brand, every day, builds trust. When someone sees your post in a crowded timeline, they should know it's you before they read the handle. That recognition is what makes people follow, save, and eventually buy.
 
 Consistency doesn't mean boring. It means you repeat the same **visual rules** while changing the **content**. Same type hierarchy, same color roles, same spacing rhythm, same photo treatment. The topic changes; the system stays.
 
-### The 4-part system I use with clients
+## The 4-part system I use with clients
 
 **1. One template family, not fifty one-offs.** Build 3–5 Canva or Figma templates for your main post types: announcement, quote, carousel cover, event promo, product highlight. Every post starts from a template, not a blank canvas.
 
@@ -124,14 +124,14 @@ Consistency doesn't mean boring. It means you repeat the same **visual rules** w
 
 **4. Photo rules.** Same aspect ratio per post type. Same filter or none at all. Same margin around logos. If you use overlays, same opacity every time. Random photo crops are the fastest way to break a feed.
 
-### Common mistakes I see in Tunisia
+## Common mistakes I see in Tunisia
 
 - **Mixing Arabic and French layouts without a system.** RTL posts need their own template, not a flipped LTR design. Plan both from the start.
 - **Logo too small or missing.** If the logo isn't readable at phone size, it isn't doing its job.
 - **Trend-chasing filters.** That aesthetic that works for a food blogger will make your B2B brand look unserious.
 - **No grid preview.** Always check how the last nine posts look together before publishing. One off post breaks the grid.
 
-### Quick audit you can do in ten minutes
+## Quick audit you can do in ten minutes
 
 Open your Instagram or LinkedIn grid. Squint. Can you still see a pattern? If it looks like a collage of unrelated brands, pick one template and repost your next five pieces from it. You'll feel the difference immediately.
 
@@ -141,7 +141,7 @@ Open your Instagram or LinkedIn grid. Squint. Can you still see a pattern? If it
 
 Training Needs Assessment (TNA) sounds corporate, but the core idea is simple: before you design anything, find out what people actually need to do differently, what they already know, and what's stopping them.
 
-### What TNA is (and isn't)
+## What TNA is (and isn't)
 
 TNA is not a survey asking "what topics do you want?" People ask for topics. They rarely know what gap is actually costing them performance.
 
@@ -153,7 +153,7 @@ TNA is a structured way to answer four questions:
 
 If you can't answer all four, you're not ready to build slides yet.
 
-### A lightweight TNA process I use before every session
+## A lightweight TNA process I use before every session
 
 **Step 1: Talk to the requester (30 min).** What problem triggered this training? What does success look like in 30 days? Who decided this was a training problem (and not, say, a process or tooling problem)?
 
@@ -165,14 +165,14 @@ If you can't answer all four, you're not ready to build slides yet.
 
 **Step 5: Design backwards.** Start from the application activity at the end. What must participants practice in the room so they're ready to do the behavior on Monday?
 
-### Red flags that mean you skipped TNA
+## Red flags that mean you skipped TNA
 
 - The agenda was copied from last year's session.
 - Learning objectives use words like "understand" and "awareness" but never "demonstrate" or "apply."
 - No one from the target group was consulted.
 - The client asked for three hours but the real gap needs a behavior change campaign, not a workshop.
 
-### Why this matters for youth work specifically
+## Why this matters for youth work specifically
 
 Young participants are quick to detect relevance. If the content feels like it was written for someone else, energy drops fast. TNA is how you earn the right to their attention before you say a word.
 
@@ -182,7 +182,7 @@ Young participants are quick to detect relevance. If the content feels like it w
 
 This isn't a tutorial. It's the honest reasoning I give clients when they ask why I recommend this combo for portfolios, lead capture, dashboards, and MVPs.
 
-### What Supabase gives you that Firebase used to own
+## What Supabase gives you that Firebase used to own
 
 - **Postgres, not a proprietary JSON tree.** Relational data, real queries, foreign keys. When a project grows, you don't hit a schema wall.
 - **Auth that stays out of your way.** Email magic links, OAuth, row-level security. Good enough for 90% of freelance projects.
@@ -191,7 +191,7 @@ This isn't a tutorial. It's the honest reasoning I give clients when they ask wh
 
 Pair that with Next.js App Router and you get server components for speed, API routes for webhooks, and one codebase to deploy on Vercel.
 
-### Where I use it in real projects
+## Where I use it in real projects
 
 **Lead capture and freebies.** Someone submits a form, you store the email, trigger a download link, optionally notify yourself. No Mailchimp paywall for basic flows.
 
@@ -201,7 +201,7 @@ Pair that with Next.js App Router and you get server components for speed, API r
 
 My PFE project, [Digimytch Talent Hub](/developer), is the most complete example: profiles, matching logic, and AI-assisted workflows on this stack.
 
-### What I'd watch out for
+## What I'd watch out for
 
 **1. Don't skip Row Level Security.** Supabase is secure by default only if you configure RLS. Treat "public read" as an explicit decision, not an accident.
 
@@ -211,13 +211,13 @@ My PFE project, [Digimytch Talent Hub](/developer), is the most complete example
 
 **4. Don't over-build auth.** If the client needs enterprise SSO, scope that early. Supabase can do a lot, but know when the project outgrew "freelance MVP."
 
-### When I wouldn't pick this stack
+## When I wouldn't pick this stack
 
 - Pure marketing sites with no user accounts or dynamic data (static Next.js is enough).
 - Heavy real-time gaming or streaming (different architecture entirely).
 - Teams that want zero vendor dependency and self-host everything (Postgres on a VPS, but more ops work).
 
-### The pitch I give clients
+## The pitch I give clients
 
 "You get a fast public site, a real database, secure auth, and room to grow without rewriting everything in six months." That sentence closes projects.
 
@@ -227,7 +227,7 @@ My PFE project, [Digimytch Talent Hub](/developer), is the most complete example
 
 After building identity systems for cafés, NGOs, and startups in Tunisia, I've learned that a guideline document only works if it's **short, visual, and tied to real decisions**.
 
-### What actually belongs in a useful guide
+## What actually belongs in a useful guide
 
 **1. Logo rules on one page.** Clear space, minimum size, wrong vs right examples. Show the broken versions, not just the rules in text. People learn faster from "don't do this" than from abstract measurements.
 
@@ -239,13 +239,13 @@ After building identity systems for cafés, NGOs, and startups in Tunisia, I've 
 
 **5. Voice in five bullets.** Tone, words to avoid, how to address the audience. Keep it short enough to read in two minutes.
 
-### Why long guidelines fail
+## Why long guidelines fail
 
 - **Too much theory, not enough examples.** Clients don't need a history of Swiss design. They need to know what font size to use on Instagram.
 - **No editable files.** A PDF alone is a museum piece. Pair it with source files.
 - **No owner.** Someone on the client side must be named as the person who answers "is this on brand?" questions.
 
-### How I deliver guidelines now
+## How I deliver guidelines now
 
 I ship a **one-page cheat sheet** (PDF + PNG for WhatsApp sharing) plus a Figma/Canva library. The full deck exists for reference, but the cheat sheet is what people actually use.
 
@@ -255,7 +255,7 @@ I ship a **one-page cheat sheet** (PDF + PNG for WhatsApp sharing) plus a Figma/
 
 Here's the distinction I use in every session design.
 
-### Icebreakers: build safety and connection
+## Icebreakers: build safety and connection
 
 **Purpose:** Help strangers become comfortable with each other. Lower social risk. Learn names and something human about each person.
 
@@ -269,7 +269,7 @@ Here's the distinction I use in every session design.
 
 **Examples I use:** Two truths and a wish, human bingo, line-ups by preference ("stand left if you prefer mornings"), name + one skill you'd teach a friend.
 
-### Energizers: reset attention and body
+## Energizers: reset attention and body
 
 **Purpose:** Break cognitive fatigue. Move blood. Shift who's dominating the conversation. Transition between heavy topics.
 
@@ -283,13 +283,13 @@ Here's the distinction I use in every session design.
 
 **Examples:** Stand-sit based on questions, quick group photo challenge, 30-second partner swap and share one word, clap patterns.
 
-### The mistake that kills sessions
+## The mistake that kills sessions
 
 Running an **energizer** at the start when the group doesn't know each other yet. High-energy physical games before psychological safety exists makes quiet participants shut down and dominant ones take over.
 
 Running an **icebreaker** in the middle when the group is flat. A name game won't fix attention fatigue. They need movement.
 
-### A simple planning rule
+## A simple planning rule
 
 - **Day 1, first 15 min:** icebreaker
 - **Every 25 min after:** energizer
@@ -301,7 +301,7 @@ Running an **icebreaker** in the middle when the group is flat. A name game won'
 
 Here's how I ship client chatbots using **Next.js API routes + OpenRouter**, the same stack running on this portfolio.
 
-### Architecture that keeps keys safe
+## Architecture that keeps keys safe
 
 **Never call OpenRouter from the browser.** The flow is:
 
@@ -313,7 +313,7 @@ Here's how I ship client chatbots using **Next.js API routes + OpenRouter**, the
 
 The visitor never sees the key. You control the model, temperature, and max tokens on the server.
 
-### What goes in the system prompt
+## What goes in the system prompt
 
 Keep it factual and bounded:
 - Who you are and what you offer (design, training, dev)
@@ -324,18 +324,18 @@ Keep it factual and bounded:
 
 Update the prompt when services change. Treat it like copy, not config you set once.
 
-### Model choice on a budget
+## Model choice on a budget
 
 For portfolio and small business sites, a fast cheap model is enough for FAQ-style chat. I use OpenRouter to swap models without rewriting integration code. Test with real visitor questions from clients before launch.
 
-### What clients actually get
+## What clients actually get
 
 - Branded chat widget matching their site
 - WhatsApp as a parallel path (not replaced)
 - Rate limiting on the API route to prevent abuse
 - Optional logging of conversations for FAQ improvement
 
-### Common mistakes
+## Common mistakes
 
 **1. No fallback.** Always show email and WhatsApp when the API fails.
 

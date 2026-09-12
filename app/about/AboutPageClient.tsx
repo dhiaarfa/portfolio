@@ -28,7 +28,7 @@ import { BasedInTunisia } from "@/components/based-in-tunisia"
 import { PageTestimonials } from "@/components/page-testimonials"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
-import { aboutExperience, certifications as profileCertifications, profileStats } from "@/lib/profile"
+import { aboutExperience, civicExperience, certifications as profileCertifications, profileStats } from "@/lib/profile"
 import ContactForm from "@/components/contact-form"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 
@@ -123,8 +123,10 @@ const certVisuals: Record<
 }
 
 const experienceVisuals: Record<string, { color: string; Icon: typeof Code }> = {
+  "yougo-travel": { color: "bg-sky-500 text-white", Icon: Smartphone },
+  "digimytch-about": { color: "bg-emerald-500 text-white", Icon: Zap },
   "crit-about": { color: "bg-accent text-white", Icon: Code },
-  "jasmin-crafts": { color: "bg-blue-500 text-white", Icon: TrendingUp },
+  "speranza-about": { color: "bg-blue-500 text-white", Icon: TrendingUp },
   internships: { color: "bg-purple-500 text-white", Icon: Palette },
 }
 
@@ -324,7 +326,7 @@ export default function AboutPageClient() {
                     {[
                       {
                         year: "2023 – 2026",
-                        degree: "Bachelor of Science in Web Development & Multimedia",
+                        degree: "Bachelor of Science in Web Development & Multimedia — with Honors",
                         school: "Higher Institute of Technological Studies (ISET)",
                         location: "Sousse, Tunisia",
                         Icon: GraduationCap,
@@ -430,6 +432,52 @@ export default function AboutPageClient() {
                         </div>
                       )
                     })}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Civic & Social Impact */}
+            <section className="py-4 px-0">
+              <div className="max-w-3xl mx-auto">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-950/40 flex items-center justify-center flex-shrink-0">
+                    <Star className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">Civic &amp; Social Impact</h3>
+                </div>
+
+                <div className="relative">
+                  <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-amber-400 via-slate-200 to-transparent dark:via-slate-700" />
+                  <div className="flex flex-col gap-6">
+                    {civicExperience.map((exp) => (
+                      <div key={exp.id} className="relative pl-12">
+                        <div className="absolute left-0 top-1.5 w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-md">
+                          <Star className="w-4 h-4" />
+                        </div>
+                        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-5 hover:shadow-md transition-shadow">
+                          <div className="flex items-start justify-between gap-3 flex-wrap mb-2">
+                            <div>
+                              <p className="font-bold text-slate-900 dark:text-white text-sm">{exp.role}</p>
+                              <p className="text-sm text-slate-500 dark:text-slate-400">{exp.company}</p>
+                            </div>
+                            <span className="text-xs text-slate-400 bg-slate-50 dark:bg-slate-800 px-3 py-1 rounded-full whitespace-nowrap flex-shrink-0">
+                              {exp.period}
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-3">{exp.description}</p>
+                          {exp.tags && (
+                            <div className="flex flex-wrap gap-1.5">
+                              {exp.tags.map((tag) => (
+                                <span key={tag} className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded-md">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

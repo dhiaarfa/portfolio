@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import DeveloperPageClient from "./DeveloperPageClient"
-import { pageMetadata } from "@/lib/page-metadata"
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 import { SITE_URL } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
 
@@ -36,6 +36,7 @@ const jsonLd = {
       url: "https://digimytch-talent-hub.vercel.app/",
       author: { "@type": "Person", name: "Mohamed Dhia Arfa" },
     },
+    breadcrumbJsonLd("Developer", "/developer"),
   ],
 }
 

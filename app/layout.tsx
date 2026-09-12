@@ -21,13 +21,13 @@ const cairo = Cairo({
 })
 
 export const metadata = {
-  metadataBase: new URL("https://dhia-portfolio.me"),
+  metadataBase: new URL("https://dhia-portfolio.com"),
   title: {
     default: "Mohamed Dhia Arfa — Designer, Trainer & Developer | Tunisia",
     template: "%s | Mohamed Dhia Arfa",
   },
   description:
-    "Designer • Trainer • Developer based in Tunisia. 1000+ participants trained, 450+ hours delivered, 30+ hours of facilitation, 10+ training cycles supervised.",
+    "Designer • Trainer • Developer based in Tunisia. 1,120+ participants trained, 477+ training hours across 51 events, 30+ hours of facilitation.",
   keywords: ["trainer", "youth development", "leadership", "graphic designer", "web developer", "Tunisia", "training programs", "CNFCPP certified"],
   authors: [{ name: "Mohamed Dhia Arfa" }],
   creator: "Mohamed Dhia Arfa",
@@ -54,16 +54,16 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://dhia-portfolio.me",
+    url: "https://dhia-portfolio.com",
     siteName: "Mohamed Dhia Arfa Portfolio",
     title: "Mohamed Dhia Arfa | Designer • Trainer • Developer",
     description: "Professional portfolio of Mohamed Dhia Arfa - Expert graphic designer and trainer",
     images: [
       {
-        url: "/images/photos/dhia-main.png",
+        url: "/images/photos/dhia-og-image.png",
         width: 1200,
         height: 630,
-        alt: "Mohamed Dhia Arfa",
+        alt: "Mohamed Dhia Arfa — Designer, Trainer & Developer",
       },
     ],
   },
@@ -71,7 +71,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Mohamed Dhia Arfa | Designer • Trainer • Developer",
     description: "Professional portfolio of Mohamed Dhia Arfa - Expert graphic designer and trainer",
-    images: ["/images/photos/dhia-main.png"],
+    images: ["/images/photos/dhia-og-image.png"],
   },
 }
 
@@ -140,13 +140,14 @@ export default function RootLayout({
               name: "Mohamed Dhia Arfa",
               alternateName: "Dhia Arfa",
               jobTitle: "Designer, Trainer & Developer",
-              url: "https://dhia-portfolio.me",
-              image: "https://dhia-portfolio.me/images/photos/dhia-main.png",
+              url: "https://dhia-portfolio.com",
+              image: "https://dhia-portfolio.com/images/photos/dhia-og-image.png",
               email: "mohameddhiaarfa@gmail.com",
               telephone: "+216-53-580-272",
               sameAs: [
                 "https://www.linkedin.com/in/dhia-/",
                 "https://behance.net/dhiaa",
+                "https://github.com/dhiaarfa",
               ],
               address: {
                 "@type": "PostalAddress",
@@ -185,23 +186,40 @@ export default function RootLayout({
           }}
         />
         
-        {/* Organization Schema */}
+        {/* Brand Schema — "Zia" is Mohamed Dhia Arfa's personal design/creative brand name,
+            not a separately founded company, so this uses schema.org Brand (not Organization
+            with a "founder" relationship) to avoid implying a legal entity that doesn't exist. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Zia Studio",
-              url: "https://dhia-portfolio.me/designer",
-              founder: {
-                "@type": "Person",
-                name: "Mohamed Dhia Arfa",
-              },
+              "@type": "Brand",
+              name: "Zia",
+              slogan: "Design practice of Mohamed Dhia Arfa",
+              url: "https://dhia-portfolio.com/designer",
               sameAs: [
                 "https://www.linkedin.com/in/dhia-/",
                 "https://behance.net/dhiaa",
               ],
+            }),
+          }}
+        />
+
+        {/* WebSite Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Mohamed Dhia Arfa Portfolio",
+              url: "https://dhia-portfolio.com",
+              inLanguage: ["en", "fr"],
+              author: {
+                "@type": "Person",
+                name: "Mohamed Dhia Arfa",
+              },
             }),
           }}
         />

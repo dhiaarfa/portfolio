@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import DesignerPageClient from "./DesignerPageClient"
-import { pageMetadata } from "@/lib/page-metadata"
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 
 export const dynamic = "force-static"
 
@@ -17,6 +17,13 @@ export const metadata: Metadata = pageMetadata({
   },
 })
 
+const jsonLd = breadcrumbJsonLd("Designer", "/designer")
+
 export default function DesignerPage() {
-  return <DesignerPageClient />
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <DesignerPageClient />
+    </>
+  )
 }

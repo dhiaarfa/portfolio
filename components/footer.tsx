@@ -85,7 +85,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             <li><Link href="/" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("home")}</Link></li>
             <li><Link href="/about" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("about")}</Link></li>
-            <li><Link href="/designer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("work")}</Link></li>
+            <li><Link href="/designer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("branding")}</Link></li>
             <li><Link href="/trainer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("training")}</Link></li>
             <li><Link href="/developer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("nav.webDev")}</Link></li>
             <li><Link href="/freebies" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("nav.freebies")}</Link></li>

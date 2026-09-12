@@ -6,11 +6,17 @@ import remarkGfm from "remark-gfm"
 
 export default function InsightArticleBody({ content }: { content: string }) {
   return (
+    <div className="article-prose max-w-[68ch]">
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
-        h3: ({ children }) => (
-          <h3 className="text-xl lg:text-2xl font-bold text-foreground mt-10 mb-4 leading-snug">{children}</h3>
+        // Rendered as h2, not h3: the page's own <h1> is the article title, and
+        // these are the only subsection headings in the article body — h1 -> h3
+        // was skipping a level (Lighthouse heading-order / WCAG 1.3.1), and the
+        // page's "Related articles" <h2> further down made the mismatch visible
+        // in the DOM order too. The markdown source uses "##" to match.
+        h2: ({ children }) => (
+          <h2 className="text-xl lg:text-2xl font-bold text-foreground mt-10 mb-4 leading-snug">{children}</h2>
         ),
         p: ({ children }) => (
           <p className="text-muted-foreground text-base lg:text-lg leading-relaxed mb-5">{children}</p>
@@ -43,9 +49,9 @@ export default function InsightArticleBody({ content }: { content: string }) {
           )
         },
       }}
-      className="article-prose max-w-[68ch]"
     >
       {content}
     </ReactMarkdown>
+    </div>
   )
 }

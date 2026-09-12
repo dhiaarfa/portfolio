@@ -43,7 +43,7 @@ export function TestimonialsShowcase({
   tag,
   ids,
   limit,
-  showTicker = true,
+  showTicker = false,
   subtitleKey = "testimonialsSubtitle",
 }: Props) {
   const { language, t } = useLanguage()
@@ -122,17 +122,26 @@ export function TestimonialsShowcase({
 
           {items.length > 1 && (
             <div className="mt-4 flex items-center justify-between gap-3">
-              <div className="flex gap-2">
+              {/* gap-4 (not the original gap-2) so the enlarged tap targets below
+                  don't overlap their neighbors — see the button comment. */}
+              <div className="flex gap-4">
                 {items.map((item, i) => (
                   <button
                     key={item.id}
                     type="button"
                     aria-label={`Show testimonial ${i + 1}`}
                     onClick={() => setActive(i)}
-                    className={`h-2 rounded-full transition-all ${
-                      i === active ? `w-6 ${dotColors[item.accent]}` : "w-2 bg-muted-foreground/30"
-                    }`}
-                  />
+                    // -m-2/p-2 expands the actual tap target to a full 24x24px
+                    // (touch-target accessibility minimum, non-overlapping given the
+                    // gap-4 above) without changing the visual dot size.
+                    className="-m-2 flex items-center justify-center p-2"
+                  >
+                    <span
+                      className={`block h-2 rounded-full transition-all ${
+                        i === active ? `w-6 ${dotColors[item.accent]}` : "w-2 bg-muted-foreground/30"
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
               <div className="flex gap-2">

@@ -22,6 +22,7 @@ export const toolsStackGroups: ToolGroup[] = [
       { name: "Lightroom", slug: "adobelightroomclassic" },
       { name: "Canva", slug: "canva" },
       { name: "Blender", slug: "blender" },
+      { name: "Premiere Pro", slug: "adobepremierepro" },
     ],
   },
   {
@@ -40,6 +41,7 @@ export const toolsStackGroups: ToolGroup[] = [
     tools: [
       { name: "React", slug: "react" },
       { name: "Next.js", slug: "nextdotjs" },
+      { name: "Angular", slug: "angular" },
       { name: "TypeScript", slug: "typescript" },
       { name: "Tailwind CSS", slug: "tailwindcss" },
       { name: "Framer Motion", slug: "framer" },
@@ -50,6 +52,10 @@ export const toolsStackGroups: ToolGroup[] = [
     label: "Backend & Infra",
     tools: [
       { name: "Node.js", slug: "nodedotjs" },
+      { name: "NestJS", slug: "nestjs" },
+      { name: "PHP", slug: "php" },
+      { name: "Symfony", slug: "symfony" },
+      { name: "PostgreSQL", slug: "postgresql" },
       { name: "Supabase", slug: "supabase" },
       { name: "Vercel", slug: "vercel" },
       { name: "Git", slug: "git" },
@@ -62,6 +68,7 @@ export const toolsStackGroups: ToolGroup[] = [
     tools: [
       { name: "Notion", slug: "notion" },
       { name: "Trello", slug: "trello" },
+      { name: "Jira", slug: "jira" },
       { name: "Slack", slug: "slack" },
       { name: "Miro", slug: "miro" },
       { name: "Loom", slug: "loom" },

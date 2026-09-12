@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import InsightsPageClient from "./InsightsPageClient"
-import { pageMetadata } from "@/lib/page-metadata"
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 
 export const metadata: Metadata = pageMetadata({
   path: "/insights",
@@ -11,9 +11,12 @@ export const metadata: Metadata = pageMetadata({
     "Tips on graphic design, youth training facilitation, and web development from Mohamed Dhia Arfa, based in Tunisia.",
 })
 
+const jsonLd = breadcrumbJsonLd("Insights", "/insights")
+
 export default function InsightsPage() {
   return (
     <div className="min-h-screen bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Navbar />
       <InsightsPageClient />
       <Footer />

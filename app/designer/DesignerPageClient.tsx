@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Calendar, ArrowRight, Target, Layers, LayoutGrid, Compass, Search, PenTool, Package, Handshake, RefreshCw } from "lucide-react"
+import { Calendar, ArrowRight, Target, Layers, LayoutGrid, Compass, Search, PenTool, Package, Handshake, RefreshCw, Gift } from "lucide-react"
 import { formatStat, designExperience, certifications as profileCertifications } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
 import { featuredWorkProjects, curatedGallery } from "@/lib/work"
@@ -91,6 +91,13 @@ export default function DesignerPageClient() {
                 <a href="#case-studies" className="rounded-[14px] border border-slate-700 px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white">
                   See selected work
                 </a>
+                <Link
+                  href="/freebies?category=design"
+                  className="inline-flex items-center gap-2 rounded-[14px] border border-slate-700 px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white"
+                >
+                  <Gift className="h-4 w-4" />
+                  Get free templates
+                </Link>
               </div>
             </div>
             <div className="relative z-10 flex gap-8 border-t border-slate-800 pt-6">

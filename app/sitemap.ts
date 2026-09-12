@@ -4,7 +4,7 @@ import { publishedInsightArticles } from "@/lib/insights"
 import { publishedWorkProjects } from "@/lib/work"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://dhia-portfolio.me"
+  const baseUrl = "https://dhia-portfolio.com"
   const insightUrls = publishedInsightArticles().map((a) => ({
     url: `${baseUrl}/insights/${a.slug}`,
     lastModified: new Date(),

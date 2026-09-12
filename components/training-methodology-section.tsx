@@ -287,7 +287,7 @@ export default function TrainingMethodologySection() {
               Built on frameworks that work.
             </h3>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-lg mx-auto">
-              These aren't buzzwords. They're the peer-reviewed, internationally recognized models that underpin every session I design.
+              These aren&apos;t buzzwords. They&apos;re the peer-reviewed, internationally recognized models that underpin every session I design.
             </p>
           </div>
 

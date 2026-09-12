@@ -10,12 +10,30 @@ export default function WorkCaseStudyBody({ content }: { content: string }) {
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
-        h3: ({ children }) => (
-          <h3 className="text-xl lg:text-2xl font-bold text-foreground mt-10 mb-4 leading-snug">{children}</h3>
+        // Rendered as h2, not h3: the page's own <h1> is the project title, and
+        // these subsections (The brief / The approach / Outcome / …) are the only
+        // heading level inside the case-study body — h1 -> h3 was skipping a level
+        // (Lighthouse heading-order / WCAG 1.3.1). The markdown source uses "##"
+        // to match.
+        h2: ({ children }) => (
+          <h2 className="text-xl lg:text-2xl font-bold text-foreground mt-10 mb-4 leading-snug">{children}</h2>
         ),
-        p: ({ children }) => (
-          <p className="text-muted-foreground text-base lg:text-lg leading-relaxed mb-5">{children}</p>
-        ),
+        p: ({ children, node }) => {
+          // Markdown always wraps a standalone image in a <p>, but the img
+          // renderer below outputs a <div> (needed for next/image's `fill`
+          // layout) — a <div> can't legally sit inside a <p>, which produced
+          // "In HTML, div cannot be a descendant of p" and a hydration
+          // mismatch on every case-study image. When the paragraph's only
+          // child is an image, render the wrapper as a <div> instead of a
+          // <p> so the nesting stays valid.
+          const soleChild = node?.children?.length === 1 ? node.children[0] : null
+          if (soleChild && soleChild.type === "element" && soleChild.tagName === "img") {
+            return <div className="mb-5">{children}</div>
+          }
+          return (
+            <p className="text-muted-foreground text-base lg:text-lg leading-relaxed mb-5">{children}</p>
+          )
+        },
         ul: ({ children }) => (
           <ul className="list-disc list-inside space-y-2 mb-6 text-muted-foreground text-base lg:text-lg pl-1">{children}</ul>
         ),

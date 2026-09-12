@@ -1,7 +1,7 @@
 "use client"
 
 import { Clock, Users, Presentation, RefreshCw, BookOpen } from "lucide-react"
-import { homepageStatsRow, profileStats, formatStat } from "@/lib/profile"
+import { homepageStatsRow, formatStat } from "@/lib/profile"
 
 const iconMap = {
   Users,

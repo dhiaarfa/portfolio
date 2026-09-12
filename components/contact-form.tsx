@@ -87,13 +87,6 @@ export default function ContactForm() {
     }
   }
 
-  const serviceLabels = {
-    design: "Design Project",
-    development: "Web Development",
-    training: "Training Program",
-    other: "Other",
-  }
-
   return (
     <motion.div
       className="w-full max-w-2xl mx-auto"
@@ -204,7 +197,7 @@ export default function ContactForm() {
             <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div>
               <p className="text-sm font-semibold text-green-700 dark:text-green-300">Message sent successfully!</p>
-              <p className="text-sm text-green-600 dark:text-green-400">I'll get back to you within 24 hours.</p>
+              <p className="text-sm text-green-600 dark:text-green-400">I&apos;ll get back to you within 24 hours.</p>
             </div>
           </motion.div>
         )}
@@ -236,7 +229,7 @@ export default function ContactForm() {
         </motion.button>
 
         <p className="text-xs text-muted-foreground text-center">
-          I'll respond to your message within 24 hours. You can also reach me directly at{" "}
+          I&apos;ll respond to your message within 24 hours. You can also reach me directly at{" "}
           <a href="mailto:mohameddhiaarfa@gmail.com" className="text-accent hover:underline font-medium">
             mohameddhiaarfa@gmail.com
           </a>

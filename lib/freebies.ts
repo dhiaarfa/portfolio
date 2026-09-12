@@ -5,12 +5,12 @@ export type FreebieDelivery =
 export type Freebie = {
   id: string
   title: string
-  category: "design" | "training"
+  category: "design" | "training" | "development"
   emoji: string
   description: string
   format: string
   benefit: string
-  color: "pink" | "amber"
+  color: "pink" | "amber" | "blue"
   bgImage?: string
   delivery: FreebieDelivery
   published: boolean
@@ -90,6 +90,19 @@ export const freebieCatalog: Freebie[] = [
     published: true,
   },
   {
+    id: "nextjs-supabase-checklist",
+    category: "development",
+    emoji: "💻",
+    title: "Next.js + Supabase Starter Checklist",
+    description:
+      "The exact checklist I run through when bootstrapping a new Next.js + Supabase project — auth setup, environment variables, database policies, and deployment, in the right order.",
+    format: "PDF · 2 pages",
+    benefit: "Skip the setup guesswork",
+    color: "blue",
+    delivery: { kind: "pdf", path: "/freebies/nextjs-supabase-checklist.pdf" },
+    published: true,
+  },
+  {
     id: "trainer-checklist",
     category: "training",
     emoji: "✅",
@@ -115,6 +128,6 @@ export function publishedFreebies(): Freebie[] {
 
 export function freebieDownloadUrl(f: Freebie): string {
   if (f.delivery.kind === "canva") return f.delivery.url
-  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://dhia-portfolio.me").replace(/\/$/, "")
+  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://dhia-portfolio.com").replace(/\/$/, "")
   return `${base}${f.delivery.path}`
 }

@@ -1,0 +1,44 @@
+%PDF-1.4
+1 0 obj<< /Type /Catalog /Pages 2 0 R >>endobj
+2 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 >>endobj
+3 0 obj<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources<< /Font<< /F1 5 0 R >> >> >>endobj
+4 0 obj<< /Length 742 >>stream
+BT
+/F1 16 Tf
+72 740 Td
+(Next.js + Supabase Starter Checklist - Mohamed Dhia Arfa) Tj
+0 -28 Td
+/F1 11 Tf
+(Project setup: TypeScript, ESLint, Tailwind, App Router) Tj
+0 -16 Td
+(Env vars: .env.local, .env.example kept in sync, never committed) Tj
+0 -16 Td
+(Supabase: project created, anon + service role keys separated) Tj
+0 -16 Td
+(Auth: providers configured, redirect URLs set for prod + preview) Tj
+0 -16 Td
+(Database: RLS enabled on every table before any real data) Tj
+0 -16 Td
+(Row-level policies written and tested per role, not just admin) Tj
+0 -16 Td
+(API routes: server-only secrets never exposed to the client) Tj
+0 -16 Td
+(Deployment: env vars mirrored in Vercel, preview + production) Tj
+0 -16 Td
+(dhia-portfolio.com) Tj
+0 -16 Td
+ET
+endstream endobj
+5 0 obj<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000056 00000 n 
+0000000111 00000 n 
+0000000233 00000 n 
+0000001024 00000 n 
+trailer<< /Size 6 /Root 1 0 R >>
+startxref
+1092
+%%EOF

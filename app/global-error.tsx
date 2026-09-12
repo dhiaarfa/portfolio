@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react'
+
 export default function GlobalError({
   error,
   reset,
@@ -7,6 +9,10 @@ export default function GlobalError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  useEffect(() => {
+    console.error(error)
+  }, [error])
+
   return (
     <html lang="en">
       <body style={{ fontFamily: 'system-ui, sans-serif', margin: 0, padding: 24, background: '#f8fafc', color: '#0f172a', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
@@ -30,6 +36,9 @@ export default function GlobalError({
           >
             Try again
           </button>
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- global-error
+              replaces the whole root layout, so the app's router/providers may not be
+              mounted here; a plain <a> is the deliberate last-resort fallback. */}
           <a
             href="/"
             style={{

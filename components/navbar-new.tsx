@@ -49,7 +49,12 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto px-4 lg:px-5 flex items-center justify-between gap-3">
 
           <motion.div whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }} whileTap={prefersReducedMotion ? undefined : { scale: 0.92, rotate: -4 }}>
-            <Link href="/" className="flex items-center gap-2 flex-shrink-0 group" aria-label="Home">
+            {/* No aria-label override here on purpose: the visible "Mohamed Dhia" text
+                already gives this link a perfectly good accessible name. An aria-label
+                of "Home" would silently replace that name for screen-reader users while
+                sighted users still see "Mohamed Dhia" — a real WCAG 2.5.3 mismatch that
+                showed up in a Lighthouse accessibility audit. */}
+            <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
               <div className="relative w-9 h-9 rounded-xl overflow-hidden flex-shrink-0 ring-2 ring-[color-mix(in_oklab,var(--site-accent)_35%,transparent)]">
                 <Image src="/images/photos/nav-avatar.png" alt="Mohamed Dhia" width={36} height={36} className="object-cover w-full h-full" priority />
               </div>

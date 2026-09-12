@@ -11,13 +11,15 @@ import { siteConfig } from "@/lib/site-config"
 import { developerExperience } from "@/lib/profile"
 import { devWorkProjects } from "@/lib/work"
 import { otherDevProjects } from "@/lib/dev-projects"
-import { ExternalLink, Github, Download, ArrowRight } from "lucide-react"
+import { ExternalLink, Github, Download, ArrowRight, Gift } from "lucide-react"
 import { TestimonialsShowcase } from "@/components/testimonials-showcase"
 import ToolsStackSection from "@/components/tools-stack-section"
 
 export default function DeveloperPageClient() {
   const projects = devWorkProjects()
-  const devExperience = developerExperience.filter((e) => e.id === "crit-dev" || e.id === "self-directed")
+  const devExperience = developerExperience.filter(
+    (e) => e.id === "digimytch-dev" || e.id === "crit-dev" || e.id === "self-directed"
+  )
 
   const bridgeItems = [
     {
@@ -29,7 +31,7 @@ export default function DeveloperPageClient() {
     {
       title: "Scalable architecture",
       desc: "Modular components with TypeScript and clean APIs.",
-      proof: "dhia-portfolio.me (this site)",
+      proof: "dhia-portfolio.com (this site)",
       href: "https://github.com/dhiaarfa/portfolio",
       external: true,
     },
@@ -102,6 +104,13 @@ export default function DeveloperPageClient() {
                   <Github className="h-4 w-4" />
                   View GitHub
                 </a>
+                <Link
+                  href="/freebies?category=development"
+                  className="inline-flex items-center gap-2 rounded-[14px] border border-slate-700 px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white"
+                >
+                  <Gift className="h-4 w-4" />
+                  Get free checklist
+                </Link>
                 <a href="#contact-form" className="text-sm font-medium text-slate-400 px-2 py-3 hover:text-white transition-colors">
                   Let&apos;s talk →
                 </a>

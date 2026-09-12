@@ -6,6 +6,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const outDir = path.join(__dirname, "..", "public", "freebies")
 
 function escapePdfText(text) {
+  // This generator writes raw bytes into a PDF text string with no /Encoding
+  // declared on the (base-14, non-embedded) Helvetica font, so anything
+  // outside plain ASCII — an em dash "—", a middle dot "·", accented
+  // characters — does not round-trip through PDF's default text encoding.
+  // It silently renders as a dropped/garbled glyph instead of throwing, so a
+  // real find-and-fix required actually opening a generated PDF as an image
+  // to notice a gap where an em dash used to be. Failing loudly here means
+  // the next freebie added with a fancy character breaks the build instead
+  // of shipping a visually broken PDF to a real visitor.
+  if (/[^\x20-\x7E\n]/.test(text)) {
+    throw new Error(
+      `Non-ASCII character in freebie PDF text: ${JSON.stringify(text)} — ` +
+        `use a plain hyphen/ASCII substitute instead (see the em-dash/middle-dot bug this replaced).`,
+    )
+  }
   return text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)")
 }
 
@@ -60,7 +75,7 @@ function buildPdf(title, lines) {
 const files = [
   {
     name: "brand-brief-template.pdf",
-    title: "Brand Brief Template — Mohamed Dhia Arfa",
+    title: "Brand Brief Template - Mohamed Dhia Arfa",
     lines: [
       "Project overview",
       "Background & context",
@@ -70,24 +85,24 @@ const files = [
       "Competitors & references",
       "Deliverables & scope",
       "Timeline & success criteria",
-      "dhia-portfolio.me",
+      "dhia-portfolio.com",
     ],
   },
   {
     name: "color-psychology-guide.pdf",
-    title: "Color Psychology Guide — Mohamed Dhia Arfa",
+    title: "Color Psychology Guide - Mohamed Dhia Arfa",
     lines: [
       "How color shapes brand perception",
-      "Trust · growth · energy · calm · luxury",
+      "Trust - growth - energy - calm - luxury",
       "12 ready palettes with HEX codes",
       "Check contrast before you ship",
       "Use roles: primary, secondary, accent, neutral",
-      "dhia-portfolio.me",
+      "dhia-portfolio.com",
     ],
   },
   {
     name: "workshop-plan-template.pdf",
-    title: "Workshop Planning Template — Mohamed Dhia Arfa",
+    title: "Workshop Planning Template - Mohamed Dhia Arfa",
     lines: [
       "Session objectives & TNA notes",
       "Audience & group size",
@@ -95,24 +110,39 @@ const files = [
       "Activities & materials",
       "Facilitator notes",
       "Evaluation & follow-up",
-      "dhia-portfolio.me",
+      "dhia-portfolio.com",
+    ],
+  },
+  {
+    name: "nextjs-supabase-checklist.pdf",
+    title: "Next.js + Supabase Starter Checklist - Mohamed Dhia Arfa",
+    lines: [
+      "Project setup: TypeScript, ESLint, Tailwind, App Router",
+      "Env vars: .env.local, .env.example kept in sync, never committed",
+      "Supabase: project created, anon + service role keys separated",
+      "Auth: providers configured, redirect URLs set for prod + preview",
+      "Database: RLS enabled on every table before any real data",
+      "Row-level policies written and tested per role, not just admin",
+      "API routes: server-only secrets never exposed to the client",
+      "Deployment: env vars mirrored in Vercel, preview + production",
+      "dhia-portfolio.com",
     ],
   },
   {
     name: "icebreakers-guide.pdf",
-    title: "20 Youth Icebreaker Activities — Mohamed Dhia Arfa",
+    title: "20 Youth Icebreaker Activities - Mohamed Dhia Arfa",
     lines: [
-      "Name · group size · time · materials",
+      "Name - group size - time - materials",
       "Step-by-step facilitation notes",
       "Debrief prompts included",
       "Tested with youth groups in Tunisia",
       "Arabic, French & English friendly",
-      "dhia-portfolio.me",
+      "dhia-portfolio.com",
     ],
   },
   {
     name: "trainer-checklist.pdf",
-    title: "Pre-Training Checklist — Mohamed Dhia Arfa",
+    title: "Pre-Training Checklist - Mohamed Dhia Arfa",
     lines: [
       "Room, tech & materials ready",
       "Participant comms sent",
@@ -120,7 +150,7 @@ const files = [
       "Facilitation notes reviewed",
       "Follow-up scheduled",
       "30 checks before every session",
-      "dhia-portfolio.me",
+      "dhia-portfolio.com",
     ],
   },
 ]

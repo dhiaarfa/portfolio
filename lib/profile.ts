@@ -5,13 +5,15 @@
  * TODO(owner): Confirm items marked below if your records differ.
  */
 
-export const SITE_URL = "https://dhia-portfolio.me"
+export const SITE_URL = "https://dhia-portfolio.com"
 
+// Stats verified against CV_General_Detailed_MohamedDhiaArfa.pdf (Aug 2026): 477+ training
+// hours across 51 events to 1,120+ participants. Previous figures (1000+/450+) were stale.
 export const profileStats = {
-  participantsTrained: { value: 1000, suffix: "+", label: "Participants trained" },
-  trainingHours: { value: 450, suffix: "+", label: "Training hours" },
+  participantsTrained: { value: 1120, suffix: "+", label: "Participants trained" },
+  trainingHours: { value: 477, suffix: "+", label: "Training hours" },
   facilitationHours: { value: 30, suffix: "+", label: "Facilitation hours" },
-  trainingCycles: { value: 10, suffix: "+", label: "Training cycles" },
+  trainingCycles: { value: 51, suffix: "+", label: "Training events" },
   yearsExperience: { value: 7, suffix: "+", label: "Years experience" },
   designProjects: { value: 50, suffix: "+", label: "Design projects" },
   brands: { value: 20, suffix: "+", label: "Brands" },
@@ -31,7 +33,7 @@ export type Certification = {
   year: string
 }
 
-// TODO(owner): CNFCPP year was 2021 / 2022 / 2024 on different pages — using 2024 (About + Designer).
+// CNFCPP year confirmed as Dec 2024 against CV_General_Detailed_MohamedDhiaArfa.pdf.
 export const certifications: Certification[] = [
   {
     id: "cnfcpp",
@@ -57,11 +59,11 @@ export const certifications: Certification[] = [
     issuer: "INCO Academy",
     year: "2024",
   },
-  // TODO(owner): Canva (About) vs GoMyCode (Designer) — using GoMyCode Academy.
+  // Confirmed against CV_GraphicDesigner_MohamedDhiaArfa.pdf: GoMyCode Summer Academy, 2023.
   {
     id: "graphic-design",
-    title: "Graphic Design Certification",
-    issuer: "GoMyCode Academy",
+    title: "Graphic Design with Adobe Illustrator",
+    issuer: "GoMyCode Summer Academy",
     year: "2023",
   },
   {
@@ -89,11 +91,33 @@ export type ExperienceEntry = {
   isCurrent?: boolean
 }
 
-// TODO(owner): Jasmin Crafts & Plants (About) vs Jasmin Marketing (Designer) — kept as separate roles below.
+// Cross-checked against CV_General_Detailed_MohamedDhiaArfa.pdf (Aug 2026):
+// - CRIT Tunisie was Sep–Dec 2025, not 2023 (date was off by two years).
+// - The "Jasmin Crafts & Plants" marketing-manager role with "+40% engagement" doesn't
+//   appear on any CV — that achievement belongs to Speranza Cafe & Resto (Jan–Jun 2025).
+//   Corrected below to avoid crediting the wrong company.
+// - Icom / Phenyx / Jasmin Marketing internships ran 2023–2025, not "2021–2023".
 export const aboutExperience: ExperienceEntry[] = [
   {
+    id: "yougo-travel",
+    period: "Jun 2026 – Present",
+    role: "Travel and Visa Agent",
+    company: "YOUGO TRAVEL",
+    description: "Part-time visa and travel consulting, run alongside design, training, and development work.",
+    tags: ["Part-time"],
+  },
+  {
+    id: "digimytch-about",
+    period: "Feb 2026 – Jun 2026",
+    role: "Web Developer (End of Studies Internship)",
+    company: "Digimytch",
+    description:
+      "Solo-built Digimytch Talent Hub, an AI-powered job platform, across 5 Scrum sprints — AI CV editor, job-matching engine, training catalog, and a voice AI interview simulator.",
+    tags: ["Next.js 15", "Supabase", "AI/LLM", "109 tests"],
+  },
+  {
     id: "crit-about",
-    period: "Sep 2023 – Dec 2023",
+    period: "Sep 2025 – Dec 2025",
     role: "Web Developer & Marketing Manager",
     company: "CRIT Tunisie",
     description:
@@ -101,19 +125,18 @@ export const aboutExperience: ExperienceEntry[] = [
     tags: ["React", "Next.js", "UI/UX", "Strategy"],
   },
   {
-    id: "jasmin-crafts",
-    period: "Jul 2022 – Jul 2023",
+    id: "speranza-about",
+    period: "Jan 2025 – Jun 2025",
     role: "Marketing Manager",
-    company: "Jasmin Crafts & Plants",
+    company: "Speranza Cafe & Resto",
     description:
-      "Managed marketing campaigns, increased engagement by 40%, designed promotional materials and maintained social consistency.",
+      "Managed marketing campaigns, increased engagement by 40%, designed menus, promotional materials, and maintained social consistency.",
     tags: ["Marketing", "Social Media", "Design", "+40% Engagement"],
   },
   {
     id: "internships",
-    period: "2021 – 2023",
+    period: "2023 – 2025",
     role: "Graphic Designer (Internships)",
-    // TODO(owner): Icon vs Icom — using Icom Agency (Designer page spelling).
     company: "Icom Agency, Phenyx Company, Jasmin Marketing & Others",
     description:
       "Produced campaign visuals, brand assets, marketing materials, and collaborated on client-facing design solutions.",
@@ -121,10 +144,33 @@ export const aboutExperience: ExperienceEntry[] = [
   },
 ]
 
+/** NGO / civic & social-impact roles — kept separate from paid professional experience. */
+export const civicExperience: ExperienceEntry[] = [
+  {
+    id: "aiesec-lebanon",
+    period: "Dec 2023 – Jun 2024",
+    role: "National Manager of Business Development",
+    company: "AIESEC in Lebanon",
+    description:
+      "International business-development mandate for AIESEC's Lebanon entity, alongside a Congress Committee Member role at AIESEC Tunisia's Middle East & Africa Summit 2023 (Marketing and Showcasing).",
+    tags: ["Business Development", "International", "Leadership"],
+  },
+]
+
 export const developerExperience: ExperienceEntry[] = [
   {
+    id: "digimytch-dev",
+    period: "Feb 2026 – Jun 2026",
+    role: "Web Developer — End of Studies Internship",
+    company: "Digimytch",
+    description:
+      "Solo-built Digimytch Talent Hub, an AI-powered job platform: AI CV editor, job-matching engine, training catalog, Kanban tracker, and a voice AI interview simulator. Integrated 4 LLMs via OpenRouter with real-time streaming. Built on Next.js 15, React 19, TypeScript, Supabase, and Vercel AI SDK v4. 109 automated tests across 24 files.",
+    tags: ["Next.js 15", "React 19", "Supabase", "Vercel AI SDK", "109 tests"],
+    isCurrent: false,
+  },
+  {
     id: "crit-dev",
-    period: "Sep 2023 – Dec 2023",
+    period: "Sep 2025 – Dec 2025",
     role: "Web Developer",
     company: "CRIT Tunisie",
     description: "Developing responsive web interfaces, optimizing user experience, shipping features to production",
@@ -224,6 +270,13 @@ export const trainingMilestones: TrainingMilestone[] = [
     description: `Delivered ${formatStat("trainingHours")} training hours and ${formatStat("facilitationHours")} facilitation hours for ${formatStat("participantsTrained")} participants across multiple organizations`,
     stats: `${formatStat("participantsTrained")} Participants`,
   },
+  {
+    year: "2026",
+    title: "Multi-Organization Trainer",
+    description:
+      "Currently training at Rayen Academy (since Oct 2025) and Centre Three Alfa Formation (since Apr 2026), following earlier 2024–2025 engagements at Groupe Etoile Formation and Supplier Training & Consulting (STC) — graphic design and digital marketing curricula for youth participants",
+    stats: "2 Active Partners",
+  },
 ]
 
 /** Gallery / featured titles that are concept, spec, or personal practice work */
@@ -247,5 +300,5 @@ export const homepageStatsRow = [
   { statKey: "trainingHours" as const, label: "Training Hours", icon: "Clock" as const },
   { statKey: "designProjects" as const, label: "Design Projects", icon: "BookOpen" as const },
   { statKey: "yearsExperience" as const, label: "Years Experience", icon: "Presentation" as const },
-  { statKey: "trainingCycles" as const, label: "Training Cycles", icon: "RefreshCw" as const },
+  { statKey: "trainingCycles" as const, label: "Training Events", icon: "RefreshCw" as const },
 ]

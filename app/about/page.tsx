@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import AboutPageClient from "./AboutPageClient"
-import { pageMetadata } from "@/lib/page-metadata"
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 
 export const dynamic = "force-static"
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/about",
   title: "About Mohamed Dhia Arfa — Designer, Trainer & Developer · Tunisia",
   description:
-    "Learn about Mohamed Dhia Arfa’s journey as a graphic designer, certified trainer, and web developer based in Tunisia. 7+ years of experience and 1000+ participants trained.",
+    "Learn about Mohamed Dhia Arfa’s journey as a graphic designer, certified trainer, and web developer based in Tunisia. 7+ years of experience and 1,120+ participants trained.",
   keywords: ["about", "Mohamed Dhia Arfa", "designer", "trainer", "developer", "Tunisia", "CNFCPP", "professional journey"],
   openGraph: {
     title: "About Mohamed Dhia Arfa",
@@ -18,6 +18,13 @@ export const metadata: Metadata = pageMetadata({
   },
 })
 
+const jsonLd = breadcrumbJsonLd("About", "/about")
+
 export default function AboutPage() {
-  return <AboutPageClient />
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <AboutPageClient />
+    </>
+  )
 }
