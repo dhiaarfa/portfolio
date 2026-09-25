@@ -4,9 +4,12 @@ import { Link } from "next-view-transitions"
 import Image from "next/image"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import { PhotoProvider, PhotoView } from "react-photo-view"
+import "react-photo-view/dist/react-photo-view.css"
 
 export default function WorkCaseStudyBody({ content }: { content: string }) {
   return (
+    <PhotoProvider>
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
@@ -55,9 +58,11 @@ export default function WorkCaseStudyBody({ content }: { content: string }) {
         ),
         img: ({ src, alt }) =>
           src ? (
-            <div className="relative my-8 aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border bg-muted">
-              <Image src={String(src)} alt={alt ?? ""} fill className="object-cover" sizes="(max-width: 768px) 100vw, 720px" />
-            </div>
+            <PhotoView src={String(src)}>
+              <div className="relative my-8 aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border bg-muted cursor-zoom-in">
+                <Image src={String(src)} alt={alt ?? ""} fill className="object-cover" sizes="(max-width: 768px) 100vw, 720px" />
+              </div>
+            </PhotoView>
           ) : null,
         a: ({ href, children }) => {
           const url = href ?? "#"
@@ -78,5 +83,6 @@ export default function WorkCaseStudyBody({ content }: { content: string }) {
     >
       {content}
     </ReactMarkdown>
+    </PhotoProvider>
   )
 }

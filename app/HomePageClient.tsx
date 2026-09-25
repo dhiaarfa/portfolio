@@ -252,6 +252,7 @@ export default function HomePageClient() {
                 tint: "from-pink-50/95 via-white/97 to-white/98 dark:from-pink-950/30 dark:via-slate-900/97 dark:to-slate-900/98",
                 eyebrowCls: "text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50",
                 tags: ["Brand Identity", "UI/UX", "Motion", "Print"],
+                flagship: "Speranza Café — full brand identity",
                 tagCls: "bg-pink-50 dark:bg-pink-950/40 text-pink-700 dark:text-pink-300 border-pink-200/60 dark:border-pink-900/50",
                 ctaCls: "text-pink-600 dark:text-pink-400",
               },
@@ -269,6 +270,7 @@ export default function HomePageClient() {
                   [siteConfig.stats.trainingHours, "Hours"],
                   [siteConfig.stats.facilitationHours, "Facilitation Hrs"],
                 ],
+                flagship: "IOM Youth Hackathon, Doha — 1st place",
                 ctaCls: "text-amber-600 dark:text-amber-400",
               },
               {
@@ -281,6 +283,7 @@ export default function HomePageClient() {
                 tint: "from-sky-50/95 via-white/97 to-white/98 dark:from-sky-950/30 dark:via-slate-900/97 dark:to-slate-900/98",
                 eyebrowCls: "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50",
                 tags: ["React", "Next.js", "Tailwind", "TypeScript"],
+                flagship: "DigiMyTech Talent Hub — graduation project",
                 tagCls: "bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border-sky-200/60 dark:border-sky-900/50",
                 ctaCls: "text-sky-600 dark:text-sky-400",
               },
@@ -317,6 +320,12 @@ export default function HomePageClient() {
                       <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">
                         {t(card.role.descriptionKey)}
                       </p>
+
+                      {card.flagship && (
+                        <p className="text-xs font-medium text-slate-400 dark:text-slate-500 mb-3 flex items-center gap-1.5">
+                          <span aria-hidden>★</span> {card.flagship}
+                        </p>
+                      )}
 
                       {card.tags && (
                         <div className="flex gap-2 flex-wrap mb-5">

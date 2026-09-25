@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import { Link } from "next-view-transitions"
 import Image from 'next/image'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { Calendar, Linkedin, Menu, Sparkles, X } from 'lucide-react'
+import { Calendar, Linkedin, Menu, Search, Sparkles, X } from 'lucide-react'
 import { ThemeToggle } from './theme-toggle'
 import { LanguageToggle } from './language-toggle'
 import { useLanguage } from './language-provider'
@@ -225,6 +225,15 @@ export default function Navbar() {
               <CopyEmailButton />
               <ResumeDropdown />
             </div>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("dhia:open-search"))}
+              className="hidden sm:flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 bg-slate-100/90 dark:bg-muted/70 text-slate-600 dark:text-slate-300 ring-1 ring-black/10 dark:ring-white/10 hover:text-slate-900 dark:hover:text-white"
+              aria-label="Search (Ctrl/Cmd+K)"
+              title="Search (Ctrl/Cmd+K)"
+            >
+              <Search className="w-4 h-4" />
+            </button>
             <ThemeToggle />
             <LanguageToggle />
             <a

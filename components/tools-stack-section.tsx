@@ -2,6 +2,7 @@
 
 import BrandIcon from "@/lib/brand-icon"
 import { toolsStackGroups } from "@/lib/tools-stack"
+import { Tile } from "@/components/ui/tile"
 
 // One accent per group instead of a flat grey list — matches the color
 // coding used everywhere else on the site (pink for design work, amber for
@@ -48,9 +49,9 @@ export default function ToolsStackSection({
             reads as a small showcase grid rather than a plain list. */}
         <div className="grid sm:grid-cols-2 gap-5">
           {visibleGroups.map((group) => (
-            <div
+            <Tile
               key={group.id}
-              className={`rounded-[28px] border-t-4 border border-slate-200/80 dark:border-border/70 bg-white dark:bg-muted/60 shadow-card px-5 py-6 ${GROUP_ACCENT[group.id] ?? "border-t-accent"}`}
+              className={`border-t-4 ${GROUP_ACCENT[group.id] ?? "border-t-accent"}`}
             >
               <span
                 className={`inline-block text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full mb-5 ${GROUP_BADGE[group.id] ?? "bg-accent-subtle text-accent"}`}
@@ -73,7 +74,7 @@ export default function ToolsStackSection({
                   </div>
                 ))}
               </div>
-            </div>
+            </Tile>
           ))}
         </div>
       </div>

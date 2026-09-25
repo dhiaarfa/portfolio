@@ -1,6 +1,8 @@
 "use client"
 
 import Image from "next/image"
+import { PhotoProvider, PhotoView } from "react-photo-view"
+import "react-photo-view/dist/react-photo-view.css"
 import {
   Brain,
   FileText,
@@ -89,6 +91,7 @@ export default function DevCaseStudyVisuals({ slug }: { slug: string }) {
   if (slug !== "digimytch") return null
 
   return (
+    <PhotoProvider>
     <div className="mb-12 space-y-12">
       {/* Key metrics */}
       <div>
@@ -118,7 +121,8 @@ export default function DevCaseStudyVisuals({ slug }: { slug: string }) {
               key={title}
               className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-accent/30 hover:shadow-md"
             >
-              <div className="relative aspect-[16/10] bg-muted">
+              <PhotoView src={image}>
+              <div className="relative aspect-[16/10] bg-muted cursor-zoom-in">
                 <Image src={image} alt={title} fill className="object-cover object-top transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-3 left-3 flex items-center gap-2">
@@ -128,6 +132,7 @@ export default function DevCaseStudyVisuals({ slug }: { slug: string }) {
                   <span className="text-sm font-semibold text-white">{title}</span>
                 </div>
               </div>
+              </PhotoView>
               <p className="p-4 text-sm leading-relaxed text-muted-foreground">{desc}</p>
             </article>
           ))}
@@ -208,5 +213,6 @@ export default function DevCaseStudyVisuals({ slug }: { slug: string }) {
         </div>
       </div>
     </div>
+    </PhotoProvider>
   )
 }
