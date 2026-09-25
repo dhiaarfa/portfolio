@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import { notFound } from "next/navigation"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
@@ -62,7 +62,7 @@ export default async function InsightArticlePage({ params }: Props) {
     <div className="min-h-screen bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Navbar />
-      <main className="pt-[5.5rem] pb-14 px-6">
+      <main id="main-content" className="pt-[5.5rem] pb-14 px-6">
         <article className="max-w-3xl mx-auto">
           <Link href="/insights" className="text-sm text-accent hover:underline mb-6 inline-block">
             ← Back to Insights
@@ -73,7 +73,7 @@ export default async function InsightArticlePage({ params }: Props) {
             </span>
             <span className="text-xs text-muted-foreground">· {article.readMin} min read</span>
           </div>
-          <h1 className="text-3xl lg:text-4xl font-extrabold text-foreground mb-8 leading-[1.08]">{title}</h1>
+          <h1 className="h1-article text-foreground mb-8">{title}</h1>
           <InsightArticleBody content={content} />
           <InsightArticleCta article={article} />
           {related.length > 0 && (

@@ -2,11 +2,11 @@
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import { usePathname, useRouter } from "next/navigation"
-import { Sparkles, X, Send, Loader2 } from "lucide-react"
+import { X, Send, Loader2 } from "lucide-react"
 import { siteConfig } from "@/lib/site-config"
-import { WhatsAppIcon } from "@/lib/brand-icon"
 import { useLanguage } from "@/components/language-provider"
 import { type AssistantNudge, nudgesForPath } from "@/lib/assistant-nudges"
+import { faqs } from "@/lib/faqs"
 
 type Msg = { role: "user" | "assistant"; content: string }
 
@@ -45,6 +45,15 @@ export default function FloatingActions() {
   const nudgeIndexRef = useRef(0)
   const nudgeTimersRef = useRef<ReturnType<typeof setTimeout>[]>([])
 
+  // The FAQ list used to render in full as its own accordion section at the
+  // bottom of the homepage. Per Dhia's feedback there were too many
+  // questions to show at once there, so they now live here instead — inside
+  // the assistant, one question visible at a time, sliding to the next
+  // every few seconds (same fade/translate pattern as the hero's
+  // AnimatedRole) rather than a wall of chips.
+  const [faqIndex, setFaqIndex] = useState(0)
+  const [faqShow, setFaqShow] = useState(true)
+
   useEffect(() => {
     setMessages((prev) => {
       if (prev.length === 1 && prev[0].role === "assistant") {
@@ -57,6 +66,18 @@ export default function FloatingActions() {
   useEffect(() => {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" })
   }, [messages, chatOpen])
+
+  useEffect(() => {
+    if (!chatOpen || faqs.length <= 1) return
+    const timer = setInterval(() => {
+      setFaqShow(false)
+      setTimeout(() => {
+        setFaqIndex((i) => (i + 1) % faqs.length)
+        setFaqShow(true)
+      }, 250)
+    }, 4500)
+    return () => clearInterval(timer)
+  }, [chatOpen])
 
   const clearNudgeTimers = useCallback(() => {
     nudgeTimersRef.current.forEach(clearTimeout)
@@ -151,12 +172,12 @@ export default function FloatingActions() {
     router.push(nudge.href)
   }
 
-  const send = async () => {
-    const text = input.trim()
-    if (!text || loading) return
+  const sendMessage = async (text: string) => {
+    const trimmed = text.trim()
+    if (!trimmed || loading) return
     setError("")
     setInput("")
-    const next: Msg[] = [...messages, { role: "user", content: text }]
+    const next: Msg[] = [...messages, { role: "user", content: trimmed }]
     setMessages(next)
     setLoading(true)
     try {
@@ -178,7 +199,26 @@ export default function FloatingActions() {
     }
   }
 
-  const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(siteConfig.whatsappMessage)}`
+  const send = () => sendMessage(input)
+
+  // Kept current via a ref (same pattern as showNextNudgeRef below) so the
+  // mount-once "dhia:ask-ai" listener always calls the latest closure
+  // instead of the one captured when the effect first ran.
+  const sendMessageRef = useRef<(text: string) => void>(() => {})
+  sendMessageRef.current = sendMessage
+
+  // Lets the homepage hero's suggestion pills / "ask me anything" bar open
+  // this same floating chat and optionally send a prompt straight away,
+  // without lifting this component's state up into a shared context.
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ prompt?: string }>).detail ?? {}
+      setChatOpen(true)
+      if (detail.prompt) sendMessageRef.current(detail.prompt)
+    }
+    window.addEventListener("dhia:ask-ai", handler)
+    return () => window.removeEventListener("dhia:ask-ai", handler)
+  }, [])
 
   return (
     <>
@@ -229,6 +269,24 @@ export default function FloatingActions() {
             )}
             {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
           </div>
+          {/* One FAQ question at a time instead of a full list — see the
+              faqIndex effect above. Tapping it sends that question straight
+              into the conversation. */}
+          <div className="flex shrink-0 items-center gap-2 border-t border-slate-200 bg-slate-50 px-3 py-2 dark:border-border dark:bg-card/60">
+            <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+              {t("chatSuggestedLabel")}
+            </span>
+            <button
+              type="button"
+              onClick={() => sendMessage(faqs[faqIndex].question)}
+              disabled={loading}
+              className={`min-w-0 flex-1 truncate rounded-full border border-accent/25 bg-accent-subtle px-3 py-1.5 text-left text-xs font-medium text-accent transition-all duration-300 hover:border-accent/50 disabled:opacity-50 ${
+                faqShow ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"
+              }`}
+            >
+              {faqs[faqIndex].question}
+            </button>
+          </div>
           <form
             className="flex shrink-0 gap-2 border-t border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-900"
             onSubmit={(e) => {
@@ -251,62 +309,40 @@ export default function FloatingActions() {
         </div>
       )}
 
-      <div className="fixed bottom-5 left-4 z-50 flex flex-col items-start gap-3 md:left-6">
-        {nudgeVisible && activeNudge && !chatOpen && (
-          <div
-            className="relative w-[min(100vw-5.5rem,280px)] animate-in fade-in slide-in-from-bottom-2 duration-300"
-            role="status"
-            aria-live="polite"
-          >
-            <div className="rounded-2xl border border-slate-200 bg-white px-3.5 py-3 shadow-xl dark:border-slate-600 dark:bg-slate-900">
+      {/* The WhatsApp + AI-assistant trigger buttons that used to live here
+          now live in the navbar (see navbar-new.tsx), restyled to match its
+          neutral control theme instead of their old brand-green fills. This
+          component still owns the chat panel above and the nudge bubble
+          below — the navbar's AI button just dispatches the same
+          "dhia:ask-ai" event the hero's ask bar already used to open it. */}
+      {nudgeVisible && activeNudge && !chatOpen && (
+        <div
+          className="fixed bottom-5 left-4 z-50 w-[min(100vw-2.5rem,280px)] animate-in fade-in slide-in-from-bottom-2 duration-300 md:left-6"
+          role="status"
+          aria-live="polite"
+        >
+          <div className="rounded-2xl border border-slate-200 bg-white px-3.5 py-3 shadow-xl dark:border-slate-600 dark:bg-slate-900">
+            <button
+              type="button"
+              onClick={() => dismissNudge(activeNudge.id, true)}
+              className="absolute right-2 top-2 rounded-md p-0.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              aria-label="Dismiss"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+            <p className="text-[13px] leading-snug text-slate-800 dark:text-slate-100 pr-5">{t(activeNudge.messageKey)}</p>
+            {activeNudge.actionKey && (
               <button
                 type="button"
-                onClick={() => dismissNudge(activeNudge.id, true)}
-                className="absolute right-2 top-2 rounded-md p-0.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                aria-label="Dismiss"
+                onClick={() => handleNudgeAction(activeNudge)}
+                className="mt-2.5 text-[12px] font-semibold text-emerald-700 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300"
               >
-                <X className="h-3.5 w-3.5" />
+                {t(activeNudge.actionKey)} →
               </button>
-              <p className="text-[13px] leading-snug text-slate-800 dark:text-slate-100 pr-5">{t(activeNudge.messageKey)}</p>
-              {activeNudge.actionKey && (
-                <button
-                  type="button"
-                  onClick={() => handleNudgeAction(activeNudge)}
-                  className="mt-2.5 text-[12px] font-semibold text-emerald-700 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300"
-                >
-                  {t(activeNudge.actionKey)} →
-                </button>
-              )}
-            </div>
-            <div className="ml-5 h-2 w-2 rotate-45 border-b border-r border-slate-200 bg-white dark:border-slate-600 dark:bg-slate-900" aria-hidden />
-          </div>
-        )}
-
-        <div className="flex flex-col gap-3">
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Chat on WhatsApp"
-            title="Chat on WhatsApp"
-            className="grid h-12 w-12 place-items-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:scale-105 active:scale-95"
-          >
-            <WhatsAppIcon size={26} />
-          </a>
-          <button
-            type="button"
-            onClick={() => setChatOpen((o) => !o)}
-            aria-label={chatOpen ? "Close AI assistant" : "Ask the AI assistant"}
-            title="Ask the AI assistant"
-            className="relative grid h-12 w-12 place-items-center rounded-full bg-emerald-700 text-white shadow-lg transition hover:scale-105 active:scale-95"
-          >
-            {!chatOpen && nudgeVisible && (
-              <span className="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full bg-amber-400 ring-2 ring-white dark:ring-slate-950" aria-hidden />
             )}
-            {chatOpen ? <X size={22} /> : <Sparkles size={22} />}
-          </button>
+          </div>
         </div>
-      </div>
+      )}
     </>
   )
 }

@@ -166,7 +166,10 @@ export function TestimonialsShowcase({
           )}
         </div>
 
-        {/* Supporting cards — horizontal scroll on mobile */}
+        {/* Supporting cards — softened into the same accent-tinted, rounded
+            language as the featured quote above (was a flat white box with
+            a hard divider line) so the set reads as one smooth, cohesive
+            family instead of a plain grid, per Dhia's feedback. */}
         {rest.length > 0 && (
           <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] md:grid md:grid-cols-3 md:overflow-visible md:pb-0 [&::-webkit-scrollbar]:hidden">
             {rest.slice(0, 3).map((item, i) => {
@@ -180,16 +183,24 @@ export function TestimonialsShowcase({
                   transition={{ delay: i * 0.06 }}
                   viewport={{ once: true }}
                   onClick={() => setActive(items.findIndex((x) => x.id === item.id))}
-                  className={`min-w-[260px] shrink-0 snap-start rounded-2xl border border-border bg-card p-5 text-left transition-all hover:border-accent/30 hover:shadow-md md:min-w-0`}
+                  className={`group relative min-w-[260px] shrink-0 snap-start overflow-hidden rounded-[1.75rem] border p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:min-w-0 ${accentStyles[item.accent]}`}
                 >
-                  <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">&ldquo;{text.quote}&rdquo;</p>
-                  <div className="mt-4 flex items-center gap-3 border-t border-border pt-3">
-                    <div className={`flex h-8 w-8 items-center justify-center rounded-lg text-[10px] font-bold text-white ${dotColors[item.accent]}`}>
+                  <Quote className="pointer-events-none absolute -right-3 -top-3 h-16 w-16 text-foreground opacity-[0.05] transition-transform duration-300 group-hover:scale-110" aria-hidden />
+                  <div className="relative mb-3 flex gap-0.5" aria-hidden>
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <Star key={s} className="h-3 w-3 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <p className="relative line-clamp-3 text-sm leading-relaxed text-foreground/90">&ldquo;{text.quote}&rdquo;</p>
+                  <div className="relative mt-5 flex items-center gap-3">
+                    <div
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white shadow-sm ring-2 ring-white/70 dark:ring-slate-900/60 ${dotColors[item.accent]}`}
+                    >
                       {initials(item.name)}
                     </div>
-                    <div>
-                      <p className="text-xs font-semibold text-foreground">{item.name}</p>
-                      <p className="line-clamp-1 text-[11px] text-muted-foreground">{text.role}</p>
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-semibold text-foreground">{item.name}</p>
+                      <p className="truncate text-xs text-muted-foreground">{text.role}</p>
                     </div>
                   </div>
                 </motion.button>
@@ -201,7 +212,7 @@ export function TestimonialsShowcase({
 
       {/* Marquee ticker */}
       {showTicker && (
-        <div className="mt-10 border-y border-border bg-muted/30 py-4 dark:bg-slate-900/40">
+        <div className="mt-10 border-y border-border bg-muted/30 py-4 dark:bg-card/40">
           <div className="flex animate-ticker gap-12 whitespace-nowrap">
             {[...items, ...items].map((item, i) => {
               const text = testimonialText(item, lang)

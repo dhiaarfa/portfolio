@@ -2,6 +2,7 @@
 
 import { useMemo } from "react"
 import { Calendar } from "lucide-react"
+import Image from "next/image"
 import { motion, useReducedMotion } from "framer-motion"
 import { BasedInTunisia } from "@/components/based-in-tunisia"
 import { useLanguage } from "@/components/language-provider"
@@ -32,6 +33,13 @@ type Props = {
   className?: string
   imageSrc?: string
   showCta?: boolean
+  /** Soft pastel green diagonal wash behind the hero content, light mode
+   *  only — per Dhia's reference screenshot of another portfolio's hero,
+   *  recolored to the site's own green accent instead of that reference's
+   *  purple/pink so it reads as on-brand rather than borrowed. Built from
+   *  --site-accent / --neon-green (see globals.css). Opt-in so it only
+   *  affects the homepage hero, not every page that reuses this component. */
+  gradientBg?: boolean
   children?: React.ReactNode
 }
 
@@ -81,7 +89,7 @@ function CalloutCard({
   const isDark = theme === "dark"
   const cardClass = isDark
     ? "bg-black/40 backdrop-blur-md border-accent/20 text-white"
-    : "bg-white/85 dark:bg-slate-900/90 backdrop-blur-md border-accent/25 dark:border-accent/30 text-slate-900 dark:text-white shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-none"
+    : "bg-white/85 dark:bg-card/90 backdrop-blur-md border-accent/25 dark:border-accent/30 text-slate-900 dark:text-white shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-none"
 
   const motionProps = reducedMotion
     ? {}
@@ -150,15 +158,35 @@ function ConnectorLines({ callouts, reducedMotion }: { callouts: HeroCalloutConf
   )
 }
 
+/** This photo is the LCP (Largest Contentful Paint) element on the homepage —
+ *  a real-user-monitoring check on the live site (Vercel Speed Insights)
+ *  showed the homepage's Real Experience Score sitting at 89 ("needs
+ *  improvement") specifically on LCP (3.41s), while every other metric was
+ *  already "great". Two real causes, both fixed here:
+ *  1) This was a plain `<img>` tag, so every visitor downloaded the full
+ *     1024×1024 source file with no format negotiation (no AVIF/WebP) and
+ *     no responsive sizing for their actual viewport — switched to next/image
+ *     with `priority` (preloads it and marks it fetchpriority="high") and a
+ *     `sizes` matching its real rendered width, so Vercel's image CDN now
+ *     serves a correctly-sized AVIF/WebP instead of the raw JPEG.
+ *  2) It was wrapped in a framer-motion fade-in starting at opacity: 0 —
+ *     Chrome's LCP algorithm can only count a paint once content is
+ *     actually visible, so animating the single largest element on the page
+ *     in from invisible was adding real, measured delay before LCP could
+ *     fire. The surrounding HUD chrome (dots, connector lines, callout
+ *     cards) still animates in — only the photo itself now renders at full
+ *     opacity immediately. */
 function PortraitImage({ src, priority = true }: { src: string; priority?: boolean }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <Image
       src={src}
       alt="Mohamed Dhia Arfa — designer, trainer, and web developer"
-      className="h-full w-full rounded-3xl object-cover object-[center_12%] select-none"
-      loading={priority ? "eager" : "lazy"}
-      decoding="async"
+      fill
+      className="rounded-3xl object-cover object-[center_12%] select-none"
+      sizes="(min-width: 1024px) 440px, (min-width: 640px) 380px, 92vw"
+      priority={priority}
+      fetchPriority={priority ? "high" : undefined}
+      quality={82}
     />
   )
 }
@@ -211,20 +239,27 @@ function HudStage({
           <AnchorDot key={`dot-${c.id}`} x={c.anchor.x} y={c.anchor.y} reducedMotion={reducedMotion} delay={c.delay} />
         ))}
 
-        <motion.div
-          className="absolute z-10"
+        {/* No entrance animation here on purpose — this photo is the page's
+            LCP element (see PortraitImage above), and fading in the single
+            largest element on the page measurably delays LCP. Everything
+            around it (dots, connector lines, callout cards) still animates.
+            The rounded bg-accent-subtle base underneath is a load-state
+            placeholder: next/image with `fill` paints nothing at all until
+            the file has fully arrived, so on a slow connection (or a warm
+            client-side route back to this page) visitors briefly saw a bare
+            gap instead of a photo. This gives them a soft, on-brand colored
+            panel in the right shape/position instead of empty space. */}
+        <div
+          className="absolute z-10 rounded-3xl bg-accent-subtle/60 dark:bg-muted/60 overflow-hidden"
           style={{
             left: `${PHOTO_BOUNDS.x}%`,
             top: `${PHOTO_BOUNDS.y}%`,
             width: `${PHOTO_BOUNDS.w}%`,
             height: `${PHOTO_BOUNDS.h}%`,
           }}
-          initial={reducedMotion ? false : { opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
         >
           <PortraitImage src={imageSrc} />
-        </motion.div>
+        </div>
 
         {callouts.map((c) => (
           <CalloutCard key={c.id} callout={c} theme={theme} reducedMotion={reducedMotion} />
@@ -259,6 +294,7 @@ export default function HeroAnnotatedPortrait({
   className = "",
   imageSrc = HERO_PORTRAIT_SRC,
   showCta = true,
+  gradientBg = false,
   children,
 }: Props) {
   const { t } = useLanguage()
@@ -322,6 +358,16 @@ export default function HeroAnnotatedPortrait({
 
   return (
     <section className={`relative isolate ${sectionBg} px-4 sm:px-6 pt-24 pb-16 lg:pb-20 ${className}`}>
+      {gradientBg && (
+        <div
+          className="pointer-events-none absolute inset-0 dark:hidden"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(var(--neon-green) / 0.16) 0%, color-mix(in oklab, var(--site-accent) 16%, transparent) 45%, hsl(var(--neon-green) / 0.10) 100%)",
+          }}
+          aria-hidden
+        />
+      )}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.07] dark:opacity-[0.08]"
         style={{
@@ -348,7 +394,7 @@ export default function HeroAnnotatedPortrait({
         </div>
 
         <div className="lg:hidden mt-6 flex flex-col items-center gap-5 w-full">
-          <div className="relative w-[min(92vw,380px)] aspect-[3/4] max-h-[440px]">
+          <div className="relative w-[min(92vw,380px)] aspect-[3/4] max-h-[440px] rounded-3xl bg-accent-subtle/60 dark:bg-muted/60 overflow-hidden">
             <PortraitImage src={imageSrc} />
           </div>
           <p className="text-xs font-medium text-muted-foreground">{t("hudSwipeHint")}</p>

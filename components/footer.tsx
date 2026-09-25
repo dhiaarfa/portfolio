@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import { Mail, Linkedin, Instagram, Calendar, Heart, Github } from "lucide-react"
 import { BasedInTunisia } from "@/components/based-in-tunisia"
 import { siteConfig } from "@/lib/site-config"
@@ -10,9 +10,24 @@ export default function Footer() {
   const { t } = useLanguage()
 
   return (
-    <footer id="contact" className="w-full bg-slate-950 text-white">
-      <div className="border-b border-slate-800">
-        <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <footer id="contact" className="w-full bg-[#0A0A0A] text-white">
+      <div className="relative overflow-hidden border-b border-[#2E2E2E]">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.06] bg-cover bg-center grayscale"
+          style={{ backgroundImage: "url(/images/bg/bg-work-session.jpg)" }}
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.14]"
+          style={{
+            backgroundImage: "radial-gradient(var(--site-accent) 1.5px, transparent 1.5px)",
+            backgroundSize: "22px 22px",
+            maskImage: "radial-gradient(ellipse 60% 100% at 100% 50%, black, transparent)",
+            WebkitMaskImage: "radial-gradient(ellipse 60% 100% at 100% 50%, black, transparent)",
+          }}
+          aria-hidden
+        />
+        <div className="relative max-w-5xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
             <p className="label text-accent mb-1">{t("footerLetsWork")}</p>
             <h3 className="font-display font-bold text-2xl sm:text-3xl text-white leading-snug">
@@ -20,14 +35,22 @@ export default function Footer() {
             </h3>
             <p className="text-slate-500 text-sm mt-1">{t("footerCallShort")}</p>
           </div>
-          <a
-            href={siteConfig.calendlyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-green flex-shrink-0 py-4 px-7 !rounded-2xl"
-          >
-            <Calendar className="w-5 h-5" /> {t("bookFreeConsultation")}
-          </a>
+          <div className="flex-shrink-0 flex flex-col items-start sm:items-end gap-2.5">
+            <a
+              href={siteConfig.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-green py-4 px-7 !rounded-2xl"
+            >
+              <Calendar className="w-5 h-5" /> {t("bookFreeConsultation")}
+            </a>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-accent transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5" /> {t("footerAltCta")}
+            </a>
+          </div>
         </div>
       </div>
 
@@ -47,7 +70,7 @@ export default function Footer() {
               href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
+              className="w-9 h-9 bg-[#2E2E2E] rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-4 h-4" />
@@ -56,7 +79,7 @@ export default function Footer() {
               href={siteConfig.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
+              className="w-9 h-9 bg-[#2E2E2E] rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
               aria-label="Instagram"
             >
               <Instagram className="w-4 h-4" />
@@ -65,14 +88,14 @@ export default function Footer() {
               href={siteConfig.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
+              className="w-9 h-9 bg-[#2E2E2E] rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
               aria-label="GitHub"
             >
               <Github className="w-4 h-4" />
             </a>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
+              className="w-9 h-9 bg-[#2E2E2E] rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
               aria-label="Email"
             >
               <Mail className="w-4 h-4" />
@@ -84,7 +107,6 @@ export default function Footer() {
           <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("navigationTitle")}</p>
           <ul className="space-y-2.5">
             <li><Link href="/" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("home")}</Link></li>
-            <li><Link href="/about" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("about")}</Link></li>
             <li><Link href="/designer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("branding")}</Link></li>
             <li><Link href="/trainer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("training")}</Link></li>
             <li><Link href="/developer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("nav.webDev")}</Link></li>
@@ -96,8 +118,25 @@ export default function Footer() {
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("services")}</p>
           <ul className="space-y-2.5">
-            {[t("footerService1"), t("footerService2"), t("footerService3"), t("footerService4"), t("footerService5"), t("bookConsultation")].map((s) => (
-              <li key={s}><span className="text-slate-400 text-sm">{s}</span></li>
+            {[
+              { label: t("footerService1"), href: "/designer#case-studies" },
+              { label: t("footerService2"), href: "/designer#case-studies" },
+              { label: t("footerService3"), href: "/trainer#training-offers" },
+              { label: t("footerService4"), href: "/trainer#training-offers" },
+              { label: t("footerService5"), href: "/developer#projects" },
+              { label: t("bookConsultation"), href: siteConfig.calendlyUrl, external: true },
+            ].map(({ label, href, external }) => (
+              <li key={label}>
+                {external ? (
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-accent text-sm transition-colors">
+                    {label}
+                  </a>
+                ) : (
+                  <Link href={href} className="text-slate-400 hover:text-accent text-sm transition-colors">
+                    {label}
+                  </Link>
+                )}
+              </li>
             ))}
           </ul>
         </div>

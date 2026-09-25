@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import Navbar from "@/components/navbar-new"
@@ -75,7 +75,7 @@ export default async function WorkCaseStudyPage({ params }: Props) {
     <div className="min-h-screen bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Navbar />
-      <main className="pb-14 pt-[5.5rem]">
+      <main id="main-content" className="pb-14 pt-[5.5rem]">
         <article className="mx-auto max-w-4xl px-6">
           <Link
             href={isDev ? "/developer#projects" : "/designer#case-studies"}
@@ -93,7 +93,7 @@ export default async function WorkCaseStudyPage({ params }: Props) {
             {project.concept ? " · Concept" : ""}
             {project.metrics ? ` · ${project.metrics}` : ""}
           </p>
-          <h1 className="font-display mb-4 text-3xl font-extrabold leading-tight text-foreground lg:text-5xl">{project.title}</h1>
+          <h1 className="h1-article mb-4 text-foreground">{project.title}</h1>
           <p className="mb-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">{project.clientLine}</p>
 
           <div className="mb-6 flex flex-wrap gap-3 text-sm">

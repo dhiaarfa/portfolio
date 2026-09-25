@@ -18,7 +18,7 @@ export default function FreebiesPage() {
     <div className="min-h-screen bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Navbar />
-      <main>
+      <main id="main-content">
         <FreebiesClient />
       </main>
       <Footer />

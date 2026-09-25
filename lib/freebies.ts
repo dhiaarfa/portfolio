@@ -99,6 +99,7 @@ export const freebieCatalog: Freebie[] = [
     format: "PDF · 2 pages",
     benefit: "Skip the setup guesswork",
     color: "blue",
+    bgImage: "/images/freebies/nextjs-supabase-checklist.jpg",
     delivery: { kind: "pdf", path: "/freebies/nextjs-supabase-checklist.pdf" },
     published: true,
   },

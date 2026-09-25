@@ -53,7 +53,7 @@ export default function TrainerCaseStudiesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08 }}
               viewport={{ once: true }}
-              className="overflow-hidden rounded-2xl border border-border bg-background"
+              className="overflow-hidden rounded-[28px] border border-border bg-background"
             >
               <div className="relative aspect-[16/10] bg-black">
                 <Image src={study.image} alt={t(study.titleKey)} fill className="object-cover" sizes="(max-width:1024px) 100vw, 50vw" />
@@ -61,8 +61,8 @@ export default function TrainerCaseStudiesSection() {
               <div className="space-y-3 p-5 md:p-6">
                 <div className="flex items-start gap-3">
                   {study.orgLogo && (
-                    <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-white ring-1 ring-border">
-                      <Image src={study.orgLogo} alt="" fill className="object-contain p-1" />
+                    <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full bg-white ring-1 ring-border">
+                      <Image src={study.orgLogo} alt="" fill className="object-contain p-1.5" />
                     </div>
                   )}
                   <div>

@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import Image from "next/image"
 import { Calendar, ArrowRight, Target, Layers, LayoutGrid, Compass, Search, PenTool, Package, Handshake, RefreshCw, Gift } from "lucide-react"
 import { formatStat, designExperience, certifications as profileCertifications } from "@/lib/profile"
@@ -14,7 +14,6 @@ import ToolsStackSection from "@/components/tools-stack-section"
 import MarketingSection from "@/components/marketing-section"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
-import { TestimonialsShowcase } from "@/components/testimonials-showcase"
 import { useState } from "react"
 
 const designPhilosophy = [
@@ -71,14 +70,14 @@ export default function DesignerPageClient() {
     <div className="w-full min-h-screen bg-background">
       <Navbar />
 
-      <main className="w-full pt-0">
+      <main id="main-content" className="w-full pt-0">
         {/* 1. Hero — positioning + work visual */}
-        <section className="min-h-[72vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
-          <div className="relative order-2 flex flex-col justify-between bg-slate-950 p-8 lg:order-1 lg:p-14">
+        <section className="min-h-[68vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+          <div className="relative order-2 flex flex-col justify-between bg-[#0A0A0A] p-8 lg:order-1 lg:p-14">
             <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#22c55e 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
             <div className="relative z-10 my-auto py-6">
               <p className="label mb-4 text-accent">Brand design · Digital marketing · Zia Studio</p>
-              <h1 className="font-display mb-5 text-[clamp(36px,5.5vw,64px)] font-black leading-[0.95] text-white">
+              <h1 className="h1-hero mb-5 text-white">
                 Design that sells — brand identity, campaigns, and marketing strategy for Tunisian brands.
               </h1>
               <p className="mb-8 max-w-md text-[17px] leading-relaxed text-slate-400">
@@ -88,19 +87,19 @@ export default function DesignerPageClient() {
                 <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green">
                   Start a project
                 </a>
-                <a href="#case-studies" className="rounded-[14px] border border-slate-700 px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white">
+                <a href="#case-studies" className="rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white">
                   See selected work
                 </a>
                 <Link
                   href="/freebies?category=design"
-                  className="inline-flex items-center gap-2 rounded-[14px] border border-slate-700 px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white"
+                  className="inline-flex items-center gap-2 rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white"
                 >
                   <Gift className="h-4 w-4" />
                   Get free templates
                 </Link>
               </div>
             </div>
-            <div className="relative z-10 flex gap-8 border-t border-slate-800 pt-6">
+            <div className="relative z-10 flex gap-8 border-t border-[#2E2E2E] pt-6">
               {[
                 [formatStat("designProjects"), "Projects"],
                 [formatStat("yearsExperience"), "Years"],
@@ -113,7 +112,7 @@ export default function DesignerPageClient() {
               ))}
             </div>
           </div>
-          <div className="relative order-1 grid min-h-[45vh] grid-cols-2 grid-rows-2 gap-1 bg-slate-900 lg:order-2 lg:min-h-full">
+          <div className="relative order-1 grid min-h-[45vh] grid-cols-2 grid-rows-2 gap-1 bg-[#1C1C1C] lg:order-2 lg:min-h-full">
             {[
               "/images/lone-space-gold.png",
               "/images/445771850-916829483581375-1053755579034856379-n.png",
@@ -124,7 +123,7 @@ export default function DesignerPageClient() {
                 <Image src={src} alt="" fill className="object-cover" priority={i < 2} sizes="50vw" />
               </div>
             ))}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent lg:bg-gradient-to-r lg:from-slate-950/30" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/40 to-transparent lg:bg-gradient-to-r lg:from-[#0A0A0A]/30" />
           </div>
         </section>
 
@@ -173,7 +172,7 @@ export default function DesignerPageClient() {
         </section>
 
         {/* 4. How we work */}
-        <section className="section-compact w-full bg-muted/30 px-4 md:px-8 dark:bg-slate-950/50">
+        <section className="section-compact w-full bg-muted/30 px-4 md:px-8 dark:bg-background/50">
           <div className="mx-auto max-w-5xl">
             <p className="label mb-2 text-center">Process</p>
             <h2 className="mb-10 text-center text-3xl font-bold md:text-4xl">How we work together</h2>
@@ -332,12 +331,6 @@ export default function DesignerPageClient() {
             </div>
           </div>
         </section>
-
-        <TestimonialsShowcase
-          tag="design"
-          subtitleKey="testimonialsSubtitleDesign"
-          className="section-compact w-full bg-muted/30 px-4 md:px-8 py-10"
-        />
 
         <ToolsStackSection />
 

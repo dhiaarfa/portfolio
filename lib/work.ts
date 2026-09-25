@@ -137,7 +137,7 @@ export const workProjects: WorkProject[] = [
     clientLine: "Corporate recruitment platform for a major staffing firm in Tunisia.",
     excerpt: "Production Next.js site clarifying services, job offers, and contact paths for talents and companies.",
     heroImage: "/images/projects/crit/home.png",
-    cardImage: "/images/projects/crit/home.png",
+    cardImage: "/images/crit-screenshots/homepage.png",
     role: "Web developer · UI implementation",
     timeline: "Sep – Dec 2025",
     outcome: "Shipped responsive corporate site to production during CRIT developer role.",
@@ -218,4 +218,85 @@ export function workBySlug(slug: string) {
  *  checklist §2.4/§2.6. */
 export function workOgImage(slug: string): string {
   return `/images/og/work-${slug}.png`
+}
+
+/** Pixel aspect ratio (width / height) of each dev project's `cardImage`
+ *  above, so the browser-chrome thumbnail frame on /developer never has to
+ *  crop it again — see components/project-browser-frame.tsx. Each source
+ *  screenshot was cropped by hand to end at a clean content boundary
+ *  (before the next section's own nav/chrome bleeds into frame) rather
+ *  than at an arbitrary fixed aspect ratio, so these three ratios differ
+ *  on purpose. */
+export const devCardAspectRatio: Record<string, number> = {
+  digimytch: 757 / 520,
+  "crit-tunisie": 1024 / 672,
+  "best-dates-fruits": 1024 / 357,
+}
+
+/** Visual theme for each dev project's card on /developer — a colour-blocked
+ *  header with a real screenshot "sheet" peeking out of the top, a category
+ *  tag, and a short pipe-separated meta line, inspired by the layered
+ *  bento-card project galleries common in modern product-design portfolios
+ *  (colour-per-project blocks + fanned screenshot previews + a tag +
+ *  compact meta line, rather than a flat browser-window screenshot). Colours
+ *  are original choices in this site's own dark palette (not copied from
+ *  any reference), just varied per project so the grid doesn't read as one
+ *  flat repeated card. */
+export const devCardTheme: Record<
+  string,
+  {
+    gradient: string
+    tag: string
+    meta: string
+    secondaryImage?: string
+    tertiaryImage?: string
+    /** Full screenshot set for this project, shown in the click-to-open
+     *  gallery on /developer — real captures, not just the one card image. */
+    screenshots: string[]
+  }
+> = {
+  digimytch: {
+    gradient: "from-emerald-950 via-emerald-900 to-slate-950",
+    tag: "Web Dev · AI SaaS",
+    meta: "Full-stack · AI integration | 1200+ CVs · 98% satisfaction | PFE Capstone",
+    secondaryImage: "/images/projects/digimytch/kanban.png",
+    tertiaryImage: "/images/projects/digimytch/dashboard.png",
+    screenshots: [
+      "/images/projects/digimytch/landing.png",
+      "/images/projects/digimytch/dashboard.png",
+      "/images/projects/digimytch/kanban.png",
+      "/images/projects/digimytch/analyze-offer.png",
+      "/images/projects/digimytch/offers-scored.png",
+      "/images/projects/digimytch/formations.png",
+      "/images/projects/digimytch/linkedin.png",
+    ],
+  },
+  "crit-tunisie": {
+    gradient: "from-indigo-950 via-indigo-900 to-slate-950",
+    tag: "Web Dev · Corporate",
+    meta: "Web developer · UI implementation | Production site | Sep–Dec 2025",
+    secondaryImage: "/images/crit-screenshots/candidates.png",
+    tertiaryImage: "/images/crit-screenshots/solutions.png",
+    screenshots: [
+      "/images/crit-screenshots/homepage.png",
+      "/images/crit-screenshots/solutions.png",
+      "/images/crit-screenshots/candidates.png",
+      "/images/crit-screenshots/companies.png",
+      "/images/crit-screenshots/contact.png",
+    ],
+  },
+  "best-dates-fruits": {
+    gradient: "from-amber-950 via-orange-950 to-stone-950",
+    tag: "Web Dev · Marketing",
+    meta: "Web development · Marketing site | Live brand site | Client project",
+    secondaryImage: "/images/bdaf-screenshots/products.png",
+    tertiaryImage: "/images/bdaf-screenshots/fruits.png",
+    screenshots: [
+      "/images/bdaf-screenshots/homepage.png",
+      "/images/bdaf-screenshots/products.png",
+      "/images/bdaf-screenshots/fruits.png",
+      "/images/bdaf-screenshots/pastries.png",
+      "/images/bdaf-screenshots/ingredients.png",
+    ],
+  },
 }

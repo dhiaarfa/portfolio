@@ -38,21 +38,24 @@ export default function CertificationsSection() {
             {certifications.map((cert, i) => (
               <motion.div
                 key={i}
-                className="p-6 border border-border rounded-2xl hover:border-accent/40 transition-colors flex flex-col items-center text-center gap-4 bg-background"
-                whileHover={{ y: -2 }}
+                className="relative overflow-hidden p-6 pt-8 border border-border rounded-[28px] hover:border-accent/40 transition-colors flex flex-col items-center text-center gap-4 bg-background"
+                whileHover={{ y: -3 }}
               >
+                <div className="pointer-events-none absolute -top-8 -right-8 w-24 h-24 rounded-full bg-accent-subtle/60" aria-hidden />
                 {cert.logo ? (
-                  <div className="relative w-20 h-20 flex-shrink-0 rounded-2xl overflow-hidden bg-white ring-2 ring-border shadow-sm flex items-center justify-center p-2.5">
+                  <div className="relative w-20 h-20 flex-shrink-0 rounded-full overflow-hidden bg-white ring-2 ring-border shadow-sm flex items-center justify-center p-3">
                     <Image src={cert.logo} alt={cert.organization} width={72} height={72} className="object-contain w-full h-full" />
                   </div>
                 ) : (
-                  <Award className="h-10 w-10 text-muted-foreground flex-shrink-0" />
+                  <div className="relative w-20 h-20 flex-shrink-0 rounded-full bg-accent-subtle flex items-center justify-center">
+                    <Award className="h-9 w-9 text-accent" />
+                  </div>
                 )}
-                <div className="flex-1 min-w-0">
+                <div className="relative flex-1 min-w-0">
                   <h3 className="font-bold text-base leading-snug">{cert.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{cert.organization}</p>
                 </div>
-                <span className="text-xs font-semibold px-3 py-1.5 rounded-full bg-accent-subtle text-accent">
+                <span className="relative text-xs font-semibold px-3 py-1.5 rounded-full bg-accent-subtle text-accent">
                   {cert.year} ✓
                 </span>
               </motion.div>

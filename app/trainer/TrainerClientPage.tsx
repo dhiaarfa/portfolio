@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import { motion } from "framer-motion"
 import { Calendar, Gift } from "lucide-react"
 import Navbar from "@/components/navbar-new"
@@ -10,34 +10,38 @@ import ContactForm from "@/components/contact-form"
 import TrainingMethodologySection from "@/components/training-methodology-section"
 import CertificationsSection from "@/components/certifications-section"
 import ClientLogosStrip from "@/components/client-logos-strip"
-import { TestimonialsShowcase } from "@/components/testimonials-showcase"
 import TrainerOffersSection from "@/components/trainer-offers-section"
 import TrainerHowWeWorkSection from "@/components/trainer-how-we-work-section"
 import TrainerRoleClarifier from "@/components/trainer-role-clarifier"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
-import { formatStat, trainingMilestones } from "@/lib/profile"
+import { formatStat, profileStats, trainingMilestones } from "@/lib/profile"
+import { StatRing } from "@/components/ui/stat-ring"
+import { AnimatedNumber } from "@/components/ui/animated-number"
 
 export default function TrainerClientPage() {
   const { t } = useLanguage()
 
+  // `progress` is stylistic (these are counts, not percentages) — varied per
+  // stat so the row of rings reads as a designed chart rather than six
+  // identical circles with numbers dropped in.
   const impactStats = [
-    { number: formatStat("participantsTrained"), label: "Participants Trained", detail: "Across NGOs, youth clubs & associations" },
-    { number: formatStat("trainingHours"), label: "Training Hours", detail: "Non-formal education & skills building" },
-    { number: formatStat("facilitationHours"), label: "Facilitation Hours", detail: "Moderation, panels & collaborative spaces" },
-    { number: formatStat("trainingCycles"), label: "Training Events", detail: "From design to delivery & evaluation" },
-    { number: formatStat("yearsExperience"), label: "Years Experience", detail: "Youth work, civic engagement & training" },
-    { number: "15+", label: "Partner Organizations", detail: "NGOs, schools, IFMSA, Rotary, AIESEC & more" },
+    { number: formatStat("participantsTrained"), label: "Participants Trained", detail: "Across NGOs, youth clubs & associations", progress: 0.86 },
+    { number: formatStat("trainingHours"), label: "Training Hours", detail: "Non-formal education & skills building", progress: 0.74 },
+    { number: formatStat("facilitationHours"), label: "Facilitation Hours", detail: "Moderation, panels & collaborative spaces", progress: 0.5 },
+    { number: formatStat("trainingCycles"), label: "Training Events", detail: "From design to delivery & evaluation", progress: 0.62 },
+    { number: formatStat("yearsExperience"), label: "Years Experience", detail: "Youth work, civic engagement & training", progress: 0.4 },
+    { number: "15+", label: "Partner Organizations", detail: "NGOs, schools, IFMSA, Rotary, AIESEC & more", progress: 0.58 },
   ]
 
   return (
     <div className="w-full min-h-screen bg-background">
       <Navbar />
 
-      <main className="w-full pt-0">
+      <main id="main-content" className="w-full pt-0">
         {/* 1. Hero — who + outcome + dual CTAs */}
-        <section className="relative min-h-[68vh] flex items-end overflow-hidden bg-slate-950">
+        <section className="relative min-h-[68vh] flex items-end overflow-hidden bg-[#0A0A0A]">
           <div className="absolute inset-0 min-h-[400px]">
             <Image
               src="/images/photos/dhia-trainer-hero.png"
@@ -47,11 +51,11 @@ export default function TrainerClientPage() {
               priority
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/70 to-slate-900/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#1C1C1C]/70 to-[#1C1C1C]/20" />
           </div>
           <div className="relative z-10 max-w-5xl mx-auto px-6 pb-16 pt-32 w-full">
             <p className="label text-green-400 mb-4">{t("trainerHeroTitle")}</p>
-            <h1 className="font-display font-black text-[clamp(36px,5.5vw,56px)] leading-[0.95] text-white tracking-tight mb-4 max-w-3xl">
+            <h1 className="h1-hero text-white mb-4 max-w-3xl">
               I help NGOs, schools, and youth organizations run trainings that actually change behavior.
             </h1>
             <p className="text-slate-300 text-[17px] max-w-2xl leading-relaxed mb-8">
@@ -59,14 +63,19 @@ export default function TrainerClientPage() {
             </p>
             <div className="flex flex-wrap gap-8 mb-8 pb-8 border-b border-white/15">
               {[
-                [formatStat("participantsTrained"), "Participants"],
-                [formatStat("trainingHours"), "Training Hrs"],
-                [formatStat("trainingCycles"), "Cycles"],
-                [formatStat("yearsExperience"), "Yrs Exp"],
-              ].map(([v, l]) => (
-                <div key={l}>
-                  <p className="font-display font-black text-[clamp(26px,4vw,40px)] text-white leading-none">{v}</p>
-                  <p className="text-slate-400 text-[11px] uppercase tracking-wider mt-1">{l}</p>
+                { stat: profileStats.participantsTrained, label: "Participants" },
+                { stat: profileStats.trainingHours, label: "Training Hrs" },
+                { stat: profileStats.trainingCycles, label: "Cycles" },
+                { stat: profileStats.yearsExperience, label: "Yrs Exp" },
+              ].map(({ stat, label }) => (
+                <div key={label}>
+                  <AnimatedNumber
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    instant
+                    className="block font-display font-black text-[clamp(26px,4vw,40px)] text-white leading-none tabular-nums"
+                  />
+                  <p className="text-slate-400 text-[11px] uppercase tracking-wider mt-1">{label}</p>
                 </div>
               ))}
             </div>
@@ -95,14 +104,6 @@ export default function TrainerClientPage() {
         {/* 2. Trusted by */}
         <ClientLogosStrip />
 
-        {/* 3. Testimonials */}
-        <TestimonialsShowcase
-          tag="training"
-          subtitleKey="testimonialsSubtitleTraining"
-          className="section-compact py-10"
-          showTicker={false}
-        />
-
         {/* 4. Measurable results */}
         <section id="trainer-impact" className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-7xl mx-auto">
@@ -118,22 +119,16 @@ export default function TrainerClientPage() {
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold px-2">{t("measurableResults")}</h2>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8 place-items-center">
                 {impactStats.map((stat, i) => (
-                  <motion.div
+                  <StatRing
                     key={stat.label}
-                    className="relative p-4 md:p-5 rounded-2xl md:rounded-3xl border border-border bg-gradient-to-br from-[var(--site-accent)]/10 to-emerald-50 dark:to-emerald-950/20 flex flex-col items-start gap-1 overflow-hidden"
-                    whileHover={{ y: -4, scale: 1.02 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.05 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[var(--site-accent)]/15" />
-                    <p className="text-3xl md:text-4xl font-bold text-[var(--site-accent)]">{stat.number}</p>
-                    <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{stat.label}</p>
-                    <p className="text-[0.7rem] text-muted-foreground leading-snug mt-1">{stat.detail}</p>
-                  </motion.div>
+                    value={stat.number}
+                    label={stat.label}
+                    sublabel={stat.detail}
+                    progress={stat.progress}
+                    delay={i * 0.06}
+                  />
                 ))}
               </div>
             </motion.div>
@@ -227,28 +222,13 @@ export default function TrainerClientPage() {
         {/* 10. Credentials + case studies */}
         <CertificationsSection />
 
-        {/* 11. Free resources (secondary CTA reinforced) */}
-        <section className="w-full py-14 px-4 md:px-8 bg-amber-50 dark:bg-amber-950/20">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="label mb-2 text-amber-800 dark:text-amber-200">Free lead magnet</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">Free training resources</h2>
-            <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-              Workshop template, icebreakers, and facilitator checklist. Real tools from real sessions, free to download.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link href="/freebies?category=training" className="px-6 py-3 bg-amber-600 hover:bg-amber-500 text-white font-semibold rounded-xl transition-colors inline-flex items-center gap-2">
-                <Gift className="h-4 w-4" />
-                Get free resources
-              </Link>
-              <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-amber-600/40 text-amber-900 dark:text-amber-100 font-semibold rounded-xl hover:bg-amber-100/50 dark:hover:bg-amber-900/30 transition-colors inline-flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                Book a discovery call
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* 12. Final CTA + contact */}
+        {/* 11. Final CTA + contact — the hero already offers both "book a
+            call" and "free resources" up front (see Book a Workshop / Get
+            free training resources above), so this used to repeat both
+            verbatim in an amber band right before this section. Removed:
+            the navbar's persistent CTA plus this one closing CTA is enough
+            reinforcement without restating the same two links a third time
+            on one scroll (Master to-do list, Tier 4 — CTA redundancy). */}
         <ResourcesInsightsStrip focus="training" className="bg-section-tint" />
 
         <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">

@@ -38,3 +38,12 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+.env*
+
+# Local debug/log artifacts
+*.log
+_dev_log.txt
+dev-log.txt
+
+# Local Claude Code tool settings
+.claude/

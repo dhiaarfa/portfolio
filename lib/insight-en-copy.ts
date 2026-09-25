@@ -8,6 +8,12 @@ export const insightEnTitles: Record<string, string> = {
   insightsArticle7Title: "Brand guidelines clients actually use (not PDFs that collect dust)",
   insightsArticle8Title: "Icebreakers vs energizers: stop using them interchangeably",
   insightsArticle9Title: "How I add a client chatbot with OpenRouter (without exposing API keys)",
+  insightsArticle10Title: "Designing bilingual brand identities for Tunisia's Arabic-French market",
+  insightsArticle11Title: "What corporate training actually looks like inside a Tunisian SME",
+  insightsArticle12Title: "Freelancing as a developer in Tunisia: getting paid without losing a chunk to fees",
+  insightsArticle13Title: "Packaging design for Tunisian export brands: winning shelf space in the EU",
+  insightsArticle14Title: "Green & digital skills training: closing Tunisia's youth employability gap",
+  insightsArticle15Title: "Why web performance matters more when your users are on Tunisian mobile networks",
 }
 
 export const insightEnExcerpts: Record<string, string> = {
@@ -29,4 +35,16 @@ export const insightEnExcerpts: Record<string, string> = {
     "They solve different problems at different times. A simple rule I use when designing youth session flows.",
   insightsArticle9Excerpt:
     "Next.js API route, system prompt, and the mistakes that make AI widgets feel sketchy or useless.",
+  insightsArticle10Excerpt:
+    "Arabic and French aren't two translations of one layout — they're two different design problems. How I build identity systems that work natively in both.",
+  insightsArticle11Excerpt:
+    "Textbook L&D assumes a training budget and a dedicated HR team. Most Tunisian SMEs have neither. The version of training design that actually survives contact with a 15-person company.",
+  insightsArticle12Excerpt:
+    "International clients, a Tunisian bank account, and a currency that isn't fully convertible. The setup I actually use to get paid reliably.",
+  insightsArticle13Excerpt:
+    "Olive oil, dates, and harissa brands compete on a European shelf against decades of category convention. The packaging decisions that get a Tunisian product picked up, not passed over.",
+  insightsArticle14Excerpt:
+    "Tunisia's youth employability gap isn't a motivation problem — it's a skills-to-market mismatch. What I've learned facilitating green and digital skills programs aimed at closing it.",
+  insightsArticle15Excerpt:
+    "A 3-second load time means something different on fiber than on a Tunisian mobile plan with a data cap. Performance choices I make differently because of it.",
 }

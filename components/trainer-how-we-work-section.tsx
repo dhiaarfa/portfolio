@@ -11,7 +11,7 @@ export default function TrainerHowWeWorkSection() {
   const lang = language === "fr" ? "fr" : language === "ar" ? "ar" : "en"
 
   return (
-    <section className="w-full section-compact px-4 md:px-8 bg-muted/30 dark:bg-slate-950/50">
+    <section className="w-full section-compact px-4 md:px-8 bg-muted/30 dark:bg-background/50">
       <div className="mx-auto max-w-5xl">
         <p className="label mb-2 text-center">
           {lang === "fr" ? "Processus" : lang === "ar" ? "العملية" : "Process"}

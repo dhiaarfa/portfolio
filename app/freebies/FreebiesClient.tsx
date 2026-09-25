@@ -1,13 +1,14 @@
 "use client"
 
 import { useState, useEffect, Suspense } from "react"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 import { useSearchParams } from "next/navigation"
+import { motion } from "framer-motion"
 import Image from "next/image"
 import { Download, Lock, CheckCircle, X, Mail, Youtube, BookOpen, ExternalLink, GraduationCap, Wrench } from "lucide-react"
 import { publishedFreebies, type Freebie } from "@/lib/freebies"
 import { learningResources, type LearningResource } from "@/lib/learning-resources"
 import { useLanguage } from "@/components/language-provider"
-import { TestimonialsShowcase } from "@/components/testimonials-showcase"
 import { freebieText } from "@/lib/freebie-i18n"
 
 type Category = "all" | "design" | "training" | "development"
@@ -53,6 +54,11 @@ function FreebiesClientInner() {
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null)
   const [downloadKind, setDownloadKind] = useState<"pdf" | "canva" | null>(null)
   const [unlockedIds, setUnlockedIds] = useState<string[]>([])
+  // Smooths the grid reflow when a category filter narrows/widens the
+  // result set — items already in view slide to their new slot instead of
+  // the whole grid silently jumping (Master to-do list, Tier 6).
+  const [freebiesGridRef] = useAutoAnimate<HTMLDivElement>()
+  const [resourcesGridRef] = useAutoAnimate<HTMLDivElement>()
 
   useEffect(() => {
     setActiveCategory(parseCategory(searchParams.get("category")))
@@ -162,7 +168,7 @@ function FreebiesClientInner() {
     <>
       <section className="pt-[5.5rem] pb-12 px-6 text-center">
         <p className="label mb-3">{t("freebies.title")}</p>
-        <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-foreground mb-4 leading-tight">
+        <h1 className="h1-article text-foreground mb-4">
           {t("freebies.heroTitle")}{" "}
           <span className="text-accent">{t("freebies.heroHighlight")}</span>
         </h1>
@@ -189,24 +195,22 @@ function FreebiesClientInner() {
         </div>
       </section>
 
-      <section className="pb-8 px-6">
-        <div className="max-w-5xl mx-auto">
-          <TestimonialsShowcase showTicker={false} className="py-4" />
-        </div>
-      </section>
-
       <section className="pb-20 px-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div ref={freebiesGridRef} className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.length === 0 ? (
             <p className="col-span-full text-center text-muted-foreground py-12">{t("freebies.empty")}</p>
           ) : (
-            filtered.map((freebie) => {
+            filtered.map((freebie, i) => {
               const colors = colorMap[freebie.color]
               const isUnlocked = unlockedIds.includes(freebie.id)
 
               return (
-                <div
+                <motion.div
                   key={freebie.id}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
                   className={`relative overflow-hidden rounded-2xl border flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer bg-card ${colors.border}`}
                   onClick={() => !isUnlocked && setSelectedFreebie(freebie)}
                 >
@@ -221,8 +225,37 @@ function FreebiesClientInner() {
                       />
                     </div>
                   ) : (
-                    <div className={`h-36 w-full ${colors.bg} flex items-center justify-center text-4xl`}>
-                      {freebie.emoji}
+                    // A stylized generic preview — not a fake screenshot of the
+                    // real file, just a "this is a downloadable document/template"
+                    // visual cue, since "trust me, it's useful" reads weaker than
+                    // showing something resembling what you're about to get.
+                    <div className={`relative h-36 w-full ${colors.bg} flex items-center justify-center overflow-hidden`}>
+                      <div
+                        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+                        style={{
+                          backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
+                          backgroundSize: "16px 16px",
+                          color: "var(--site-accent)",
+                        }}
+                        aria-hidden
+                      />
+                      {freebie.delivery.kind === "canva" ? (
+                        <div className="relative grid grid-cols-2 gap-1.5 rotate-[-4deg]">
+                          <div className={`h-8 w-14 rounded-md ${colors.badge}`} />
+                          <div className="h-8 w-14 rounded-md bg-white/70 dark:bg-white/10" />
+                          <div className="h-8 w-14 rounded-md bg-white/70 dark:bg-white/10" />
+                          <div className={`h-8 w-14 rounded-md ${colors.badge}`} />
+                        </div>
+                      ) : (
+                        <div className="relative flex h-20 w-16 flex-col gap-1.5 rounded-md bg-white/90 dark:bg-white/10 p-2.5 shadow-sm rotate-[-3deg]">
+                          <div className={`h-1.5 w-8 rounded-full ${colors.badge}`} />
+                          <div className="h-1 w-full rounded-full bg-black/10 dark:bg-white/20" />
+                          <div className="h-1 w-full rounded-full bg-black/10 dark:bg-white/20" />
+                          <div className="h-1 w-3/4 rounded-full bg-black/10 dark:bg-white/20" />
+                          <div className="mt-auto h-1 w-1/2 rounded-full bg-black/10 dark:bg-white/20" />
+                        </div>
+                      )}
+                      <span className="absolute bottom-2 right-3 text-2xl">{freebie.emoji}</span>
                     </div>
                   )}
                   <div className="relative z-10 flex flex-col gap-4 p-6 flex-1">
@@ -266,7 +299,7 @@ function FreebiesClientInner() {
                     </button>
                   )}
                   </div>
-                </div>
+                </motion.div>
               )
             })
           )}
@@ -324,13 +357,17 @@ function FreebiesClientInner() {
             ))}
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredResources.map((resource) => {
+          <div ref={resourcesGridRef} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredResources.map((resource, i) => {
               const Icon = resourceIcon(resource.type)
               return (
-                <article
+                <motion.article
                   key={resource.id}
-                  className="flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-accent/30 hover:shadow-md"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-accent/30 hover:shadow-md hover:-translate-y-1"
                 >
                   {resource.youtubeId && (
                     <div className="relative aspect-video bg-muted">
@@ -368,7 +405,7 @@ function FreebiesClientInner() {
                       <ExternalLink className="h-3.5 w-3.5" />
                     </a>
                   </div>
-                </article>
+                </motion.article>
               )
             })}
           </div>

@@ -10,8 +10,11 @@ import GlobalComponents from "@/components/global-components"
 import { Toaster } from "@/components/ui/sonner"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { ViewTransitions } from "next-view-transitions"
 
-// Typography: Clash Display + Satoshi via Fontshare; Cairo for Arabic
+// Typography: General Sans via Fontshare is now the site's single principal
+// typeface (replacing the earlier Clash Display + Satoshi pairing — per
+// Dhia's reference screenshot of another portfolio's hero); Cairo for Arabic
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -86,6 +89,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    <ViewTransitions>
     <html
       lang="en"
       dir="ltr"
@@ -96,7 +100,20 @@ export default function RootLayout({
         <link rel="icon" href="/favicon-green-portrait.png" sizes="any" />
         <link
           rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&amp;f[]=satoshi@400,500,700&amp;display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap"
+        />
+        {/* Quicksand: rounded, friendly display font used specifically for the
+            homepage hero bio line (per Dhia's reference screenshot) — kept
+            separate from the site's General Sans typeface so it doesn't
+            affect any other text on the site.
+            Fraunces: italic serif accent used only for the rotating-role
+            word in the homepage hero (per Dhia's second reference screenshot
+            — the "end to end." style italic flourish under a headline). */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fraunces:ital,wght@1,500;1,600&display=swap"
         />
         <style>{`
           :root {
@@ -113,7 +130,7 @@ export default function RootLayout({
           body {
             background-color: hsl(var(--background));
             color: hsl(var(--foreground));
-            font-family: 'Satoshi', var(--font-cairo), system-ui, sans-serif;
+            font-family: 'General Sans', var(--font-cairo), system-ui, sans-serif;
           }
         `}</style>
         <link rel="dns-prefetch" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com" />
@@ -225,9 +242,9 @@ export default function RootLayout({
         />
       </head>
       <body className={cn("antialiased overflow-x-hidden min-w-0 font-body")} style={{ backgroundColor: "hsl(var(--background))", color: "hsl(var(--foreground))" }}>
-        <ThemeProvider 
-          attribute="class" 
-          defaultTheme="light" 
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
           enableSystem={false}
           storageKey="theme-preference"
           enableColorScheme={true}
@@ -246,5 +263,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+    </ViewTransitions>
   )
 }

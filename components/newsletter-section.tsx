@@ -52,7 +52,7 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section id="newsletter" className="py-14 bg-slate-950">
+    <section id="newsletter" className="py-14 bg-[#0A0A0A]">
       <div className="max-w-2xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -95,7 +95,7 @@ export default function NewsletterSection() {
               placeholder="you@email.com"
               required
               disabled={status === "loading"}
-              className="flex-1 px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-50 placeholder:text-slate-500 focus:outline-none focus:border-accent text-sm"
+              className="flex-1 px-4 py-3 rounded-xl border border-[#383838] bg-[#1C1C1C] text-slate-50 placeholder:text-slate-500 focus:outline-none focus:border-accent text-sm"
             />
             <button
               type="submit"
@@ -112,7 +112,7 @@ export default function NewsletterSection() {
               )}
             </button>
           </form>
-          <p className="text-[11px] text-slate-500 mt-2">{t("newsletterNoSpam")}</p>
+          <p className="text-xs text-slate-500 mt-2">{t("newsletterNoSpam")}</p>
 
           {/* Status */}
           {status === "success" && (

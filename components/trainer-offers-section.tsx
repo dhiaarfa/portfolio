@@ -48,9 +48,13 @@ export default function TrainerOffersSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
                 viewport={{ once: true }}
-                className="flex flex-col rounded-2xl border border-border bg-card p-6"
+                className="relative overflow-hidden flex flex-col rounded-[28px] border border-border bg-card p-6"
               >
-                <h3 className="mb-1 text-xl font-bold">{name}</h3>
+                <div className="pointer-events-none absolute -top-8 -right-8 w-24 h-24 rounded-full bg-accent-subtle/40" aria-hidden />
+                <span className="relative mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-accent-subtle text-sm font-bold text-accent">
+                  {i + 1}
+                </span>
+                <h3 className="relative mb-1 text-xl font-bold">{name}</h3>
                 <p className="mb-3 text-sm text-accent font-medium">
                   {lang === "fr" ? "Pour :" : lang === "ar" ? "لـ:" : "For:"} {forWho}
                 </p>

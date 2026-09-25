@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { PenTool, GraduationCap, Code2, ArrowRight, Calendar } from "lucide-react"
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import { siteConfig } from "@/lib/site-config"
 import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
@@ -40,8 +40,13 @@ const services = [
 export default function ServicePackages() {
   const { t } = useLanguage()
   return (
-    <section id="services" className="bg-section-tint dark:bg-[#052e16] py-20 px-5">
-      <div className="max-w-4xl mx-auto">
+    <section id="services" className="relative overflow-hidden bg-section-tint dark:bg-[#052e16] py-20 px-5">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.06] bg-cover bg-center grayscale"
+        style={{ backgroundImage: "url(/images/bg/bg-casual.jpg)" }}
+        aria-hidden
+      />
+      <div className="relative max-w-4xl mx-auto">
         <FadeUp>
           <p className="label text-center">{t("myServices")}</p>
           <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] text-center text-slate-900 dark:text-white leading-snug mb-3">

@@ -146,7 +146,7 @@ export default function TrainingMethodologySection() {
             return (
               <div
                 key={pillar.number}
-                className="group rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                className="group rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-card/50 p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
                 {/* Header row */}
                 <div className="flex items-start gap-4 mb-4">
@@ -297,7 +297,7 @@ export default function TrainingMethodologySection() {
                 key={fw.name}
                 className={`rounded-2xl border p-5 h-full hover:-translate-y-0.5 transition-transform ${fw.color}`}
               >
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-white/70 dark:bg-slate-900/40 ${fw.textColor}`}>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-white/70 dark:bg-card/40 ${fw.textColor}`}>
                   <fw.Icon className="w-5 h-5" />
                 </div>
                 <p className={`text-xs font-bold uppercase tracking-wider mb-1 ${fw.textColor}`}>

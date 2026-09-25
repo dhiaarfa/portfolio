@@ -10,14 +10,14 @@ function LogoImage({ logo }: { logo: (typeof organizationLogos)[0] }) {
   const [failed, setFailed] = useState(false)
   if (failed) return null
   return (
-    <div className="flex items-center justify-center h-14 md:h-16 px-2 flex-shrink-0">
+    <div className="flex items-center justify-center h-16 md:h-20 px-2 flex-shrink-0">
       <Image
         src={logo.src}
         alt={logo.name}
         width={logo.width}
         height={logo.height}
         sizes="(max-width: 768px) 120px, 160px"
-        className="object-contain max-h-12 md:max-h-14 w-auto h-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+        className="object-contain max-h-14 md:max-h-16 w-auto h-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
         onError={() => setFailed(true)}
         loading="lazy"
       />
@@ -30,7 +30,7 @@ export default function ClientLogosStrip() {
   const prefersReducedMotion = useReducedMotion()
 
   return (
-    <section className="py-10 md:py-12 border-y border-border bg-muted/30 dark:bg-slate-900/40">
+    <section className="py-10 md:py-12 border-y border-border bg-muted/30 dark:bg-card/40">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <p className="text-center text-sm font-medium text-muted-foreground mb-6">{t("trustedAndCollaboratedWith")}</p>
         <div

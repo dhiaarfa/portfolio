@@ -12,7 +12,7 @@ export default function NavbarPrefetch() {
 
   useEffect(() => {
     // Prefetch all main navigation routes immediately
-    const routes = ["/", "/about", "/designer", "/trainer", "/developer"]
+    const routes = ["/", "/designer", "/trainer", "/developer"]
     
     routes.forEach((route) => {
       router.prefetch(route)

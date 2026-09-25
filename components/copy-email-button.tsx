@@ -25,44 +25,64 @@ export function CopyEmailButton() {
   }
 
   return (
+    // `relative` + a fixed-height ghost element below is what makes this
+    // safe to expand: the ghost reserves the collapsed pill's exact width
+    // in the navbar's normal flex flow (so Resume/Theme/Language/Book-a-call
+    // never shift when this expands), while the actual visible pill is
+    // rendered `absolute` on top of that same spot and grows to the left
+    // without pushing anything. It used to expand inline, which both
+    // shoved every control after it sideways AND — since it had no
+    // position/z-index of its own — could end up visually painted *under*
+    // later, unrelated controls once the row got tight. `z-30` plus
+    // `position: absolute` guarantees it always paints above them instead.
     <div
-      className="hidden md:block"
+      className="relative hidden md:block h-9"
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => {
         setExpanded(false)
         setCopied(false)
       }}
     >
-      {!expanded ? (
-        <button
-          type="button"
-          onClick={() => setExpanded(true)}
-          aria-expanded={false}
-          className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100/90 dark:bg-slate-800/70 border border-slate-200/60 dark:border-slate-700/60 hover:text-slate-900 dark:hover:text-white transition-colors whitespace-nowrap"
-        >
-          <Mail className="w-3.5 h-3.5" />
-          {t("copyEmailLabel")}
-        </button>
-      ) : (
-        <div
-          aria-expanded={true}
-          className="inline-flex items-center gap-2 h-9 pl-3.5 pr-1.5 rounded-full bg-slate-100/90 dark:bg-slate-800/70 border border-slate-200/60 dark:border-slate-700/60 whitespace-nowrap"
-        >
-          <span className="text-xs font-medium text-slate-700 dark:text-slate-200">{siteConfig.email}</span>
+      <div
+        aria-hidden
+        className="invisible inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium whitespace-nowrap"
+      >
+        <Mail className="w-3.5 h-3.5" />
+        {t("copyEmailLabel")}
+      </div>
+
+      <div className="absolute top-0 right-0 z-30">
+        {!expanded ? (
           <button
             type="button"
-            onClick={handleCopy}
-            className={`inline-flex items-center gap-1 px-2.5 h-6 rounded-full text-[11px] font-semibold transition-colors ${
-              copied
-                ? "bg-green-600 text-white"
-                : "bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90"
-            }`}
+            onClick={() => setExpanded(true)}
+            aria-expanded={false}
+            className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100/90 dark:bg-slate-800/70 border border-slate-200/60 dark:border-slate-700/60 hover:text-slate-900 dark:hover:text-white transition-colors whitespace-nowrap"
           >
-            {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-            {copied ? t("copiedLabel") : t("copyLabel")}
+            <Mail className="w-3.5 h-3.5" />
+            {t("copyEmailLabel")}
           </button>
-        </div>
-      )}
+        ) : (
+          <div
+            aria-expanded={true}
+            className="inline-flex items-center gap-2 h-9 pl-3.5 pr-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg whitespace-nowrap"
+          >
+            <span className="text-xs font-medium text-slate-700 dark:text-slate-200">{siteConfig.email}</span>
+            <button
+              type="button"
+              onClick={handleCopy}
+              className={`inline-flex items-center gap-1 px-2.5 h-6 rounded-full text-xs font-semibold transition-colors ${
+                copied
+                  ? "bg-green-600 text-white"
+                  : "bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90"
+              }`}
+            >
+              {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+              {copied ? t("copiedLabel") : t("copyLabel")}
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

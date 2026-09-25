@@ -1,23 +1,25 @@
 "use client"
 
-import Link from "next/link"
-import { ArrowRight, BookOpen, Palette, Code } from "lucide-react"
+import { Link } from "next-view-transitions"
+import { ArrowRight, BookOpen, Palette, Code, Send } from "lucide-react"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { siteConfig } from "@/lib/site-config"
-import { formatStat } from "@/lib/profile"
+import { profileStats } from "@/lib/profile"
+import { AnimatedNumber } from "@/components/ui/animated-number"
 import dynamic from "next/dynamic"
 import ClientLogosStrip from "@/components/client-logos-strip"
+import ToolkitStrip from "@/components/toolkit-strip"
 import HeroAnnotatedPortrait from "@/components/hero-annotated-portrait"
 import StatsSection from "@/components/stats-section"
+import JourneySection from "@/components/journey-section"
 import ServicePackages from "@/components/service-packages"
 const ValueRadarChart = dynamic(() => import("@/components/value-radar-chart"), {
   ssr: false,
   loading: () => <div className="h-64 animate-pulse rounded-2xl bg-muted/40" />,
 })
-import FAQSection from "@/components/faq-section"
 import NewsletterSection from "@/components/newsletter-section"
 import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
@@ -46,12 +48,82 @@ function AnimatedRole() {
   return (
     <p className="text-xl font-medium text-slate-500 dark:text-slate-400">
       {t("homeRotatingPrefix")}{" "}
+      {/* Italic Fraunces serif accent on the rotating word — the "end to
+          end."-style flourish from Dhia's reference screenshot, applied here
+          instead of to a new line of copy since this word already changes
+          per role and doesn't compete with the H1. */}
       <span
-        className={`font-semibold transition-all duration-300 inline-block ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"} ${roles[i].cls}`}
+        className={`font-accent-italic font-semibold transition-all duration-300 inline-block ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"} ${roles[i].cls}`}
       >
         {roles[i].text}
       </span>
     </p>
+  )
+}
+
+/** Opens the floating AI assistant (components/floating-actions.tsx) via a
+ *  DOM CustomEvent instead of prop-drilling or a new shared context — the
+ *  hero's suggestion pills / "ask me anything" bar and the floating widget
+ *  don't otherwise share a parent that could hold this state. Omit `prompt`
+ *  to just open the panel (the "Let's chat" pill); pass it to open and send
+ *  in one step (the other pills, and the ask bar's own submit). */
+function askAI(prompt?: string) {
+  window.dispatchEvent(new CustomEvent("dhia:ask-ai", { detail: { prompt } }))
+}
+
+function HeroAskBar() {
+  const { t } = useLanguage()
+  const [value, setValue] = useState("")
+
+  const pills: Array<{ key: string; onClick: () => void }> = [
+    { key: "heroPillWork", onClick: () => document.getElementById("expertise")?.scrollIntoView({ behavior: "smooth" }) },
+    { key: "heroPillWhatIDo", onClick: () => askAI(t("heroPillWhatIDo")) },
+    { key: "heroPillAvailability", onClick: () => askAI(t("heroPillAvailability")) },
+    { key: "heroPillChat", onClick: () => askAI() },
+    { key: "heroPillResume", onClick: () => window.open(siteConfig.resumePdfUrl, "_blank", "noopener,noreferrer") },
+    { key: "heroPillLinkedin", onClick: () => window.open(siteConfig.linkedin, "_blank", "noopener,noreferrer") },
+  ]
+
+  return (
+    <div className="mt-6 max-w-[480px]">
+      <div className="flex flex-wrap gap-2">
+        {pills.map((pill) => (
+          <button
+            key={pill.key}
+            type="button"
+            onClick={pill.onClick}
+            className="rounded-full border border-slate-200 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-slate-700 backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-accent dark:border-slate-700 dark:bg-card/70 dark:text-slate-300"
+          >
+            {t(pill.key)}
+          </button>
+        ))}
+      </div>
+      <form
+        className="mt-3 flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-2 py-1.5 pl-4 shadow-sm backdrop-blur-sm dark:border-slate-700 dark:bg-card/80"
+        onSubmit={(e) => {
+          e.preventDefault()
+          if (!value.trim()) return
+          askAI(value)
+          setValue("")
+        }}
+      >
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder={t("heroAskPlaceholder")}
+          className="flex-1 bg-transparent text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none dark:text-slate-200 dark:placeholder:text-slate-500"
+        />
+        <button
+          type="submit"
+          aria-label="Send"
+          className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-accent text-white transition-transform hover:scale-105 disabled:opacity-50"
+          disabled={!value.trim()}
+        >
+          <Send className="h-3.5 w-3.5" />
+        </button>
+      </form>
+    </div>
   )
 }
 
@@ -94,9 +166,9 @@ export default function HomePageClient() {
     <div className="w-full min-h-screen bg-white dark:bg-slate-950">
       <Navbar />
 
-      <main>
+      <main id="main-content">
       {/* Hero — annotated portrait HUD */}
-      <HeroAnnotatedPortrait theme="light" className="!pb-10">
+      <HeroAnnotatedPortrait theme="light" gradientBg className="!pb-10">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-sm font-medium bg-accent-subtle dark:bg-accent-subtle border border-accent/30 text-foreground dark:text-accent w-fit">
             <span className="relative flex h-2 w-2">
@@ -105,22 +177,27 @@ export default function HomePageClient() {
             </span>
             {t("availableForProjects")}
           </div>
-          <h1 className="font-display font-extrabold text-[clamp(36px,6vw,64px)] leading-[0.96] tracking-tight text-slate-900 dark:text-white mb-2">
+          <h1 className="h1-hero text-slate-900 dark:text-white mb-2">
             {t("helloGreeting")}{" "}
             <span className="text-accent">Mohamed Dhia</span>
           </h1>
           <AnimatedRole />
-          <p className="mt-4 text-slate-500 dark:text-slate-400 text-lg leading-relaxed max-w-[480px]">
+          {/* Quicksand, fully visible — a subtle accent-colored glow (text-shadow)
+              appears on hover instead of the text fading in from near-invisible. */}
+          <p
+            className="mt-4 text-slate-700 dark:text-slate-300 text-lg leading-relaxed max-w-[480px] transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]"
+            style={{ fontFamily: "'Quicksand', system-ui, sans-serif" }}
+          >
             {t("homeHeroTagline")}
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 mt-5 mb-2">
             {[
-              { value: formatStat("participantsTrained"), label: t("homeMicroYouth") },
-              { value: formatStat("designProjects"), label: t("homeMicroProjects") },
-              { value: formatStat("yearsExperience"), label: t("homeMicroYears") },
-            ].map(({ value, label }) => (
+              { stat: profileStats.participantsTrained, label: t("homeMicroYouth") },
+              { stat: profileStats.designProjects, label: t("homeMicroProjects") },
+              { stat: profileStats.yearsExperience, label: t("homeMicroYears") },
+            ].map(({ stat, label }) => (
               <div key={label} className="flex items-center gap-1.5">
-                <span className="font-bold text-accent text-sm">{value}</span>
+                <AnimatedNumber value={stat.value} suffix={stat.suffix} instant className="font-bold text-accent text-sm tabular-nums" />
                 <span className="text-slate-500 dark:text-slate-400 text-sm">{label}</span>
               </div>
             ))}
@@ -129,6 +206,12 @@ export default function HomePageClient() {
             {t("exploreMyWork")}
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
           </a>
+
+          {/* Suggestion pills + "ask me anything" bar — opens the existing
+              floating AI assistant (see askAI() / floating-actions.tsx)
+              instead of duplicating a second chat UI, per Dhia's reference
+              screenshot of another portfolio's chat-first hero. */}
+          <HeroAskBar />
         </div>
       </HeroAnnotatedPortrait>
 
@@ -149,112 +232,127 @@ export default function HomePageClient() {
             </p>
           </FadeUp>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* TILE 1 — Graphic Designer (large, spans 2 rows) */}
-            {roles[1] && (
-              <Link
-                href={`/${roles[1].slug}`}
-                className="md:row-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-accent/15 dark:border-accent/20 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 p-8 flex flex-col justify-between group cursor-pointer"
-              >
-                    <div>
-                  <div className="w-12 h-12 bg-accent-subtle rounded-2xl flex items-center justify-center mb-6">
-                    <Palette className="w-6 h-6 text-accent" />
-                  </div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-accent mb-2">
-                    {t("design")}
-                  </p>
-                  <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white mb-3">Zia Studio</h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
-                    {t(roles[1].descriptionKey)}
-                  </p>
-                  <div className="flex gap-2 mb-6 flex-wrap">
-                    {["Brand Identity", "UI/UX", "Motion", "Print"].map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs bg-accent-subtle text-accent rounded-full px-3 py-1 font-medium border border-accent/15"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent group-hover/link:gap-2 transition-all">
-                  {t(roles[1].cta)}
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </span>
-              </Link>
-            )}
-
-            {/* TILE 2 — Trainer */}
-            {roles[0] && (
-              <Link
-                href={`/${roles[0].slug}`}
-                className="md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 p-7 flex flex-col group cursor-pointer"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-11 h-11 bg-amber-50 dark:bg-amber-950/50 rounded-xl flex items-center justify-center">
-                    <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                  </div>
-                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 px-3 py-1 rounded-full">
-                    {t("training")}
-                  </span>
-                </div>
-                <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white mb-2">Youth Development</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">
-                  {t(roles[0].descriptionKey)}
-                </p>
-                <div className="flex gap-6 pb-5 border-b border-slate-100 dark:border-slate-800 mb-4">
-                  {[
-                    [`${siteConfig.stats.participants}+`, "Participants"],
-                    [`${siteConfig.stats.trainingHours}+`, "Hours"],
-                    [`${siteConfig.stats.facilitationHours}+`, "Facilitation Hrs"],
-                  ].map(([val, label]) => (
-                    <div key={label}>
-                      <p className="font-display font-bold text-lg text-slate-900 dark:text-white leading-none">{val}</p>
-                      <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{label}</p>
-                    </div>
-                  ))}
-                </div>
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 dark:text-slate-300 group-hover/link:gap-2 transition-all">
-                  {t(roles[0].cta)}
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </span>
-              </Link>
-            )}
-
-            {/* TILE 3 — Developer (dark) */}
-            {roles[2] && (
+          {/* Three role cards, redesigned as one coherent family instead of
+              three differently-styled rectangles: same soft blobby corner
+              radius, same low-opacity portrait-photo watermark, same eyebrow
+              → emoji → title → description → CTA rhythm, so the only thing
+              that changes between them is the accent color and the emoji —
+              per Dhia's feedback that the old tiles were "boring, not
+              coherent" and asking for emojis + faded photos instead of flat
+              icon-in-circle badges. */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {[
+              {
+                role: roles[1],
+                emoji: "🎨",
+                emojiCls: "text-4xl leading-none inline-block transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6",
+                eyebrowKey: "design",
+                title: "Zia Studio",
+                photo: "/images/photos/dhia-designer.png",
+                tint: "from-pink-50/95 via-white/97 to-white/98 dark:from-pink-950/30 dark:via-slate-900/97 dark:to-slate-900/98",
+                eyebrowCls: "text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50",
+                tags: ["Brand Identity", "UI/UX", "Motion", "Print"],
+                tagCls: "bg-pink-50 dark:bg-pink-950/40 text-pink-700 dark:text-pink-300 border-pink-200/60 dark:border-pink-900/50",
+                ctaCls: "text-pink-600 dark:text-pink-400",
+              },
+              {
+                role: roles[0],
+                emoji: "🎓",
+                emojiCls: "text-4xl leading-none inline-block transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6",
+                eyebrowKey: "training",
+                title: "Youth Development",
+                photo: "/images/photos/dhia-trainer.png",
+                tint: "from-amber-50/95 via-white/97 to-white/98 dark:from-amber-950/30 dark:via-slate-900/97 dark:to-slate-900/98",
+                eyebrowCls: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50",
+                stats: [
+                  [siteConfig.stats.participants, "Participants"],
+                  [siteConfig.stats.trainingHours, "Hours"],
+                  [siteConfig.stats.facilitationHours, "Facilitation Hrs"],
+                ],
+                ctaCls: "text-amber-600 dark:text-amber-400",
+              },
+              {
+                role: roles[2],
+                emoji: "💻",
+                emojiCls: "text-4xl leading-none inline-block transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6",
+                eyebrowKey: "webDevelopment",
+                title: "React & Next.js",
+                photo: "/images/photos/dhia-developer.png",
+                tint: "from-sky-50/95 via-white/97 to-white/98 dark:from-sky-950/30 dark:via-slate-900/97 dark:to-slate-900/98",
+                eyebrowCls: "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50",
+                tags: ["React", "Next.js", "Tailwind", "TypeScript"],
+                tagCls: "bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border-sky-200/60 dark:border-sky-900/50",
+                ctaCls: "text-sky-600 dark:text-sky-400",
+              },
+            ].map(
+              (card) =>
+                card.role && (
                   <Link
-                href={`/${roles[2].slug}`}
-                className="md:col-span-2 bg-slate-900 rounded-3xl border border-slate-800 hover:border-accent/30 hover:-translate-y-1 transition-all duration-300 p-7 flex flex-col group cursor-pointer"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-11 h-11 bg-accent-muted rounded-xl flex items-center justify-center">
-                    <Code className="w-5 h-5 text-accent" />
-                  </div>
-                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-accent bg-accent-subtle px-3 py-1 rounded-full">
-                    {t("webDevelopment")}
-                  </span>
-                </div>
-                <h3 className="font-display text-xl font-bold text-white mb-2">React & Next.js</h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-5 flex-1">
-                  {t(roles[2].descriptionKey)}
-                </p>
-                <div className="flex gap-2 flex-wrap mb-5">
-                  {["React", "Next.js", "Tailwind", "TypeScript"].map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs bg-slate-800 text-slate-300 rounded-full px-3 py-1 font-medium border border-slate-700"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent group-hover/link:gap-2 transition-all">
-                  {t(roles[2].cta)}
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </span>
+                    key={card.role.slug}
+                    href={`/${card.role.slug}`}
+                    className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-500 p-7"
+                  >
+                    {/* Low-opacity portrait photo, faded into the card as a
+                        watermark rather than shown as a hard image. */}
+                    <Image
+                      src={card.photo}
+                      alt=""
+                      fill
+                      sizes="360px"
+                      className="object-cover object-top opacity-[0.07] grayscale group-hover:opacity-[0.13] transition-opacity duration-500"
+                      aria-hidden
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${card.tint}`} aria-hidden />
+
+                    <div className="relative flex flex-col flex-1">
+                      <div className="flex items-start justify-between mb-5">
+                        <span className={card.emojiCls} aria-hidden>
+                          {card.emoji}
+                        </span>
+                        <span className={`text-[11px] font-semibold uppercase tracking-[0.14em] px-3 py-1 rounded-full ${card.eyebrowCls}`}>
+                          {t(card.eyebrowKey)}
+                        </span>
+                      </div>
+                      <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white mb-2">{card.title}</h3>
+                      <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">
+                        {t(card.role.descriptionKey)}
+                      </p>
+
+                      {card.tags && (
+                        <div className="flex gap-2 flex-wrap mb-5">
+                          {card.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className={`text-xs font-medium rounded-full px-3 py-1 border ${card.tagCls}`}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {card.stats && (
+                        <div className="flex gap-6 pb-5 border-b border-slate-100 dark:border-slate-800 mb-4">
+                          {card.stats.map(([val, label]) => (
+                            <div key={label}>
+                              <AnimatedNumber
+                                value={Number(val)}
+                                suffix="+"
+                                className="block font-display font-bold text-lg text-slate-900 dark:text-white leading-none tabular-nums"
+                              />
+                              <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{label}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      <span className={`inline-flex items-center gap-1.5 text-sm font-semibold group-hover:gap-2 transition-all ${card.ctaCls}`}>
+                        {t(card.role.cta)}
+                        <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180" />
+                      </span>
+                    </div>
                   </Link>
+                )
             )}
           </div>
         </div>
@@ -288,8 +386,19 @@ export default function HomePageClient() {
       {/* Client Logos */}
       <ClientLogosStrip />
 
+      {/* Toolkit — condensed cross-discipline sample of the full tools/stack
+          table (see /designer, /developer) so it isn't buried on a sub-page
+          (Master to-do list, Tier 6). */}
+      <ToolkitStrip />
+
       {/* Stats */}
       <StatsSection />
+
+      {/* My Journey — compact credentials snapshot (certs, education,
+          experience, civic work) that used to live on the now-removed
+          About page. Kept small on purpose: one tabbed card, one category
+          visible at a time. */}
+      <JourneySection />
 
       {/* Service Packages */}
       <ServicePackages />
@@ -298,14 +407,13 @@ export default function HomePageClient() {
       <ValueRadarChart />
 
       {/* Featured Testimonials */}
-      <TestimonialsShowcase
-        className="bg-white dark:bg-slate-950 section-compact py-12 md:py-16"
-        ids={["rayen", "ikram", "youssef", "skander", "amir"]}
-        showTicker={false}
-      />
-
-      {/* FAQ */}
-      <FAQSection />
+      <div id="testimonials">
+        <TestimonialsShowcase
+          className="bg-white dark:bg-slate-950 section-compact py-12 md:py-16"
+          ids={["rayen", "ikram", "youssef", "skander", "amir"]}
+          showTicker={false}
+        />
+      </div>
 
       <ResourcesInsightsStrip focus="all" className="bg-section-tint" />
 

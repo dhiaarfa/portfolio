@@ -24,6 +24,10 @@ const nextConfig = {
   async redirects() {
     return [
       { source: "/favicon.ico", destination: "/favicon-green-portrait.png", permanent: true },
+      // About page was folded into Home (certs/education/experience now
+      // live there as a compact "My Journey" card) — keep old links/
+      // bookmarks/search results working instead of 404ing.
+      { source: "/about", destination: "/", permanent: true },
     ]
   },
   

@@ -22,7 +22,6 @@ export const DEFAULT_OG_IMAGE: OgImage = {
 /** Per-route OG images for rich link previews on social & messaging apps. */
 export const PAGE_OG_IMAGES: Record<string, OgImage> = {
   "/": DEFAULT_OG_IMAGE,
-  "/about": DEFAULT_OG_IMAGE,
   "/designer": {
     // Real 1200x630 branded card — see checklist §2.4/§2.6: the old value here
     // pointed straight at lone-space-gold.png (an actual 1080x1080 square)

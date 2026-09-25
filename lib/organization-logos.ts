@@ -18,7 +18,7 @@ export const organizationLogos: OrganizationLogo[] = [
   { name: "Association Youth Clubs", src: "/img/organizations/youth-clubs.png", width: 120, height: 60 },
   { name: "CNFCPP", src: "/img/organizations/cnfcpp.png", width: 120, height: 60 },
   { name: "IFMSA", src: "/img/organizations/ifmsa.png", width: 120, height: 60 },
-  { name: "IOM - UN Migration", src: "/img/organizations/iom-logo.jpg", width: 140, height: 60 },
+  { name: "IOM - UN Migration", src: "/img/organizations/iom-logo.png", width: 140, height: 60 },
   { name: "AIESEC", src: "/img/organizations/aiesec.png", width: 120, height: 60 },
   { name: "JCI", src: "/img/organizations/jci.png", width: 120, height: 60 },
   { name: "1000 Challenges", src: "/img/organizations/1000-challenges.png", width: 140, height: 60 },

@@ -8,7 +8,6 @@ export type SiteNavItem = {
 
 export const SITE_NAV_FLOW: SiteNavItem[] = [
   { path: "/", label: "Home", labelFr: "Accueil", labelAr: "الرئيسية" },
-  { path: "/about", label: "About", labelFr: "À propos", labelAr: "نبذة" },
   { path: "/designer", label: "Designer", labelFr: "Design", labelAr: "التصميم" },
   { path: "/trainer", label: "Trainer", labelFr: "Formation", labelAr: "التدريب" },
   { path: "/developer", label: "Developer", labelFr: "Développement", labelAr: "التطوير" },

@@ -30,7 +30,7 @@ export const assistantNudges: AssistantNudge[] = [
     messageKey: "chatNudgeFactDesign",
     href: "/designer",
     actionKey: "chatNudgeActionDesign",
-    paths: ["/", "/about"],
+    paths: ["/"],
     delayMs: 42000,
   },
   {
@@ -48,19 +48,11 @@ export const assistantNudges: AssistantNudge[] = [
     delayMs: 66000,
   },
   {
-    id: "about",
-    messageKey: "chatNudgeAbout",
-    href: "/about",
-    actionKey: "chatNudgeActionAbout",
-    paths: ["/", "/designer", "/trainer", "/developer"],
-    delayMs: 78000,
-  },
-  {
     id: "brand",
     messageKey: "chatNudgeBrand",
     href: "/designer",
     actionKey: "chatNudgeActionBrand",
-    paths: ["/", "/about", "/freebies"],
+    paths: ["/", "/freebies"],
     delayMs: 90000,
   },
   {
@@ -68,7 +60,7 @@ export const assistantNudges: AssistantNudge[] = [
     messageKey: "chatNudgeWorkshop",
     href: "/trainer",
     actionKey: "chatNudgeActionWorkshop",
-    paths: ["/", "/about", "/insights"],
+    paths: ["/", "/insights"],
     delayMs: 102000,
   },
   {
@@ -76,7 +68,7 @@ export const assistantNudges: AssistantNudge[] = [
     messageKey: "chatNudgeDeveloper",
     href: "/developer",
     actionKey: "chatNudgeActionDev",
-    paths: ["/", "/designer", "/about"],
+    paths: ["/", "/designer"],
     delayMs: 114000,
   },
   {
@@ -92,7 +84,7 @@ export const assistantNudges: AssistantNudge[] = [
     messageKey: "chatNudgeBehance",
     href: "https://www.behance.net/dhiaa",
     actionKey: "chatNudgeActionBehance",
-    paths: ["/designer", "/about", "/"],
+    paths: ["/designer", "/"],
     delayMs: 138000,
   },
   {
@@ -111,7 +103,7 @@ export const assistantNudges: AssistantNudge[] = [
   {
     id: "testimonials",
     messageKey: "chatNudgeTestimonials",
-    href: "/about#testimonials",
+    href: "/#testimonials",
     actionKey: "chatNudgeActionTestimonials",
     paths: ["/", "/designer", "/trainer"],
     delayMs: 174000,
@@ -121,7 +113,7 @@ export const assistantNudges: AssistantNudge[] = [
     messageKey: "chatNudgePortfolioSite",
     href: "/developer",
     actionKey: "chatNudgeActionPortfolio",
-    paths: ["/", "/about"],
+    paths: ["/"],
     delayMs: 186000,
   },
   {

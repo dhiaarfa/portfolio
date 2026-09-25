@@ -3,7 +3,6 @@ const BASE = process.argv[2] || "http://localhost:3000"
 
 const routes = [
   "/",
-  "/about",
   "/designer",
   "/work/speranza-cafe",
   "/work/lone-space",

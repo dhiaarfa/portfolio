@@ -151,6 +151,12 @@ export function WhatsAppIcon({ size = 28, className = "" }: { size?: number; cla
   return <SiSvg icon={siWhatsapp} size={size} className={className} mono color="currentColor" />
 }
 
+/** Monochrome Behance glyph (currentColor) for nav buttons that should match
+ * a neutral control theme instead of the branded circular blue PNG logo. */
+export function BehanceMonoIcon({ size = 28, className = "" }: { size?: number; className?: string }) {
+  return <SiSvg icon={siBehance} size={size} className={className} mono color="currentColor" />
+}
+
 /** Compact Behance “Bē” mark for nav buttons — uses official circular logo PNG */
 export function BehanceIcon({
   size = 20,

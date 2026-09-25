@@ -1,8 +1,10 @@
 "use client"
 
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import { ArrowRight } from "lucide-react"
+import { motion } from "framer-motion"
 import { useMemo, useState } from "react"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 import { useLanguage } from "@/components/language-provider"
 import { InsightCover } from "@/components/insight-article-cta"
 import { publishedInsightArticles, type InsightCategory } from "@/lib/insights"
@@ -24,6 +26,9 @@ const serviceLabels: Record<InsightCategory, string> = {
 export default function InsightsPageClient() {
   const { t } = useLanguage()
   const [filter, setFilter] = useState<Filter>("all")
+  // Smooths the list reflow when a category filter narrows/widens the
+  // result set (Master to-do list, Tier 6).
+  const [articlesListRef] = useAutoAnimate<HTMLDivElement>()
   const articles = publishedInsightArticles()
 
   const featured = articles.find((a) => a.featured) ?? articles[0]
@@ -41,10 +46,10 @@ export default function InsightsPageClient() {
   ]
 
   return (
-    <main className="pt-[5.5rem] pb-14 px-6">
+    <main id="main-content" className="pt-[5.5rem] pb-14 px-6">
       <div className="max-w-3xl mx-auto">
         <p className="label mb-3">{t("insights.title")}</p>
-        <h1 className="text-4xl lg:text-5xl font-extrabold text-foreground mb-3 leading-[1.05]">
+        <h1 className="h1-article text-foreground mb-3">
           {t("insights.heroTitle")}
         </h1>
         <p className="text-muted-foreground text-base lg:text-lg mb-4 max-w-[68ch]">{t("insights.subtitle")}</p>
@@ -68,12 +73,19 @@ export default function InsightsPageClient() {
         </div>
 
         {featured && (filter === "all" || featured.category === filter) && (
-          <article className="mb-12 rounded-2xl border border-border overflow-hidden bg-card shadow-card">
+          <motion.article
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-12 rounded-2xl border border-border overflow-hidden bg-card shadow-card transition-shadow hover:shadow-lg"
+          >
             <Link href={`/insights/${featured.slug}`} className="block group">
               <div className="grid md:grid-cols-2 gap-0">
                 <InsightCover
                   category={featured.category}
                   title={t(featured.titleKey)}
+                  slug={featured.slug}
                   className="min-h-[180px] md:min-h-full md:rounded-none rounded-t-2xl"
                 />
                 <div className="p-6 md:p-8 flex flex-col justify-center">
@@ -97,15 +109,27 @@ export default function InsightsPageClient() {
                 </div>
               </div>
             </Link>
-          </article>
+          </motion.article>
         )}
 
-        <div className="flex flex-col gap-8">
-          {filtered.map((article) => (
-            <article key={article.slug} className="border-b border-border pb-8 last:border-0">
+        <div ref={articlesListRef} className="flex flex-col gap-8">
+          {filtered.map((article, i) => (
+            <motion.article
+              key={article.slug}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.4, delay: (i % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              className="border-b border-border pb-8 last:border-0"
+            >
               <div className="grid sm:grid-cols-[180px_1fr] gap-5">
                 <Link href={`/insights/${article.slug}`} className="block shrink-0">
-                  <InsightCover category={article.category} title={t(article.titleKey)} className="h-full min-h-[120px]" />
+                  <InsightCover
+                    category={article.category}
+                    title={t(article.titleKey)}
+                    slug={article.slug}
+                    className="h-full min-h-[120px]"
+                  />
                 </Link>
                 <div>
                   <div className="flex items-center gap-3 mb-3 flex-wrap">
@@ -139,7 +163,7 @@ export default function InsightsPageClient() {
                   </div>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>

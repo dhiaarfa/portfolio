@@ -74,6 +74,31 @@ export const certifications: Certification[] = [
   },
 ]
 
+export type EducationEntry = {
+  id: string
+  year: string
+  degree: string
+  school: string
+  location: string
+}
+
+export const education: EducationEntry[] = [
+  {
+    id: "iset-sousse",
+    year: "2023 – 2026",
+    degree: "Bachelor of Science in Web Development & Multimedia — with Honors",
+    school: "Higher Institute of Technological Studies (ISET)",
+    location: "Sousse, Tunisia",
+  },
+  {
+    id: "high-school",
+    year: "2018 – 2022",
+    degree: "High School Diploma in Computer Science",
+    school: "Farhat Hached Rades High School",
+    location: "Tunisia",
+  },
+]
+
 /** Trainer page credentials block (subset with logos) */
 export const trainerCredentials = [
   { id: "tyt", titleKey: "certTyT" as const, orgKey: "certOrgYouthClubs" as const, year: "2022", logo: "/images/logo-tyt-full-color.png" },

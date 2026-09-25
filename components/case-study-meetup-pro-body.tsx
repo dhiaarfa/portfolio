@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
@@ -17,7 +17,7 @@ export default function MeetUpProCaseStudyBody() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         {/* Hero Section */}
         <section className="w-full section-compact px-4 md:px-8 bg-gradient-to-b from-[hsl(var(--zia-green))]/5 to-background dark:from-[hsl(var(--zia-green))]/10 dark:to-background">
           <div className="max-w-6xl mx-auto">

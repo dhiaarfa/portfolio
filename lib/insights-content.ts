@@ -346,6 +346,152 @@ For portfolio and small business sites, a fast cheap model is enough for FAQ-sty
 **4. Training the bot on fantasy.** If the system prompt claims capabilities you don't offer, you'll get awkward sales calls.
 
 > **Want one on your site?** See how it works here (bottom-left chat), check the [development work](/developer), or [book a free call](https://calendly.com/benarfa367/30min).`,
+
+  "bilingual-branding-tunisia": `The first mistake I see in Tunisian branding is treating Arabic as "French, flipped." A logo gets designed in Latin type, and the Arabic version is an afterthought: same layout mirrored, same weight, same spacing rules, just swapped scripts. It almost never works, and clients can usually feel that something's off even when they can't name it.
+
+Arabic and French aren't the same design problem wearing different letters. They're two different problems that happen to share a brand.
+
+## Why a mirrored layout fails
+
+Arabic script is connected, has no capital letters, and carries meaning in the *shape* of the joins, not just the individual letters. A Latin typeface's weight and spacing rules don't transfer directly. A bold French wordmark that looks confident often turns illegible or clumsy when the same weight is forced onto an Arabic typeface that wasn't built to carry it. And RTL isn't just "text goes right to left": icons, arrows, progress indicators, and even where the eye naturally lands on a page all flip with it.
+
+## What I actually do
+
+**1. Design the identity twice, not once.** Same concept, same color system, same emotional target — but the Arabic wordmark gets its own typeface, its own weight, and its own spacing pass, tested on its own, not derived from the French version.
+
+**2. Pick typefaces that were built as pairs.** Fonts like Cairo, Almarai, or IBM Plex Sans Arabic were designed alongside a Latin counterpart specifically to sit next to each other without one looking like an afterthought. Starting there saves weeks.
+
+**3. Build the RTL layout as its own template.** Don't flip the French template in Figma and call it done. Rebuild the grid so navigation, CTAs, and reading flow feel natural right to left, not mirrored.
+
+**4. Test at small sizes first.** Arabic scripts lose legibility faster than Latin ones at small sizes because of the connecting strokes. If it has to work on a business card or a favicon, start there, not on a billboard mockup.
+
+**5. Respect the cultural register.** Formal MSA reads differently than Tunisian dialect in copy, and the same is true visually — a youth NGO and a notary's office need genuinely different type choices in Arabic, the same way they would in French.
+
+## The payoff
+
+A brand that treats both languages as first-class citizens reads as more credible to both audiences, not just "translated." For a market like Tunisia's, where most serious brands operate in both languages daily, that credibility is not a nice-to-have. It's the baseline people expect.
+
+> **Building a bilingual identity?** I design brand systems that work natively in Arabic and French from day one. [See design work](/designer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+
+  "packaging-design-tunisian-exports": `Tunisian olive oil, dates, and harissa are genuinely excellent products competing on European shelves against decades of category convention: Italian and Spanish olive oil design language, Middle Eastern date packaging clichés, French condiment aisle expectations. Good product alone doesn't win that shelf. Packaging is doing the entire first impression, in about two seconds, before anyone reads a word.
+
+## The shelf is not a portfolio
+
+A common mistake I see from Tunisian producers is designing packaging like a print portfolio piece: intricate patterns, a lot of green-and-gold "heritage" cues, dense text about origin and tradition. It photographs beautifully. It often loses on a crowded EU retail shelf, where the eye is scanning fast and the product has to signal its category and its edge in a glance, not tell its whole story.
+
+## What actually earns the pickup
+
+**1. Category cues first, differentiation second.** A shopper needs to instantly recognize "this is olive oil" before they notice it's Tunisian olive oil. Fighting the category's visual grammar too hard makes a product look unfamiliar rather than premium.
+
+**2. One clear point of difference, said once.** Single-estate, organic, a specific varietal, a founder's story — pick the one true differentiator and make it the loudest thing on the label. Trying to say everything (heritage *and* organic *and* award-winning *and* family-run) usually says nothing.
+
+**3. Typography that reads at arm's length, in two languages.** EU labeling regulation and multilingual markets (French, English, sometimes Arabic) mean your hierarchy has to survive three languages of text without turning into a wall of small type. Design the info hierarchy before you write the copy, not after.
+
+**4. Material and finish signal price point honestly.** A soft-touch matte finish and restrained color palette read as premium; glossy, saturated, pattern-heavy design reads as mass-market regardless of what's inside the bottle. Match the finish to the price point you're actually asking for.
+
+**5. Compliance is part of the design brief, not an afterthought.** EU import labeling requirements (allergens, origin, nutritional info) have to be planned into the layout from the first sketch. I've seen beautiful labels get reprinted at real cost because compliance text was squeezed in at the end.
+
+## The real opportunity
+
+Tunisian producers have a genuine story: Mediterranean terroir, generational know-how, increasingly serious organic and sustainable practices. The brands that win aren't the ones that shout heritage the loudest. They're the ones that translate that story into a label a European buyer can understand and trust in the two seconds they'll actually spend looking at it.
+
+> **Exporting a Tunisian product?** I design packaging systems built for retail shelves and EU compliance from the start. [See design work](/designer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+
+  "corporate-training-tunisian-smes": `Most corporate training frameworks are written for organizations with a training budget line, a dedicated L&D function, and a full day to dedicate to a workshop. Walk into a 15-person Tunisian SME and none of those three things exist. The owner is also the trainer's point of contact, HR, and sometimes the delivery driver. If your training design assumes otherwise, it dies on contact with reality.
+
+## Design for the constraints that actually exist
+
+**Time is the scarcest resource, not budget.** I've had SME clients who could pay for a full-day program but genuinely could not spare staff for more than two hours without production stopping. The honest fix isn't cutting content randomly; it's redesigning around a tighter, higher-density session and following up with short reinforcement touchpoints instead of one long day.
+
+**There's no HR buffer between you and the room.** In a larger organization, HR filters expectations, handles logistics, and absorbs friction. In an SME, you're often dealing directly with the owner, who has skin in every outcome and very little patience for theory that doesn't map to next week's operations. Case studies and exercises need to use their actual products, their actual customers, their actual numbers, not generic examples.
+
+## What I actually change
+
+**1. Needs assessment happens over coffee, not a survey link.** A 15-person team won't fill out a proper TNA questionnaire. A 30-minute conversation with the owner and two staff members, asking what specifically went wrong last month, gets better data.
+
+**2. One module, one applied skill.** Not a broad leadership or communication curriculum. One specific, checkable thing they can do differently by Monday: how to handle a specific type of customer complaint, how to run a five-minute daily huddle, how to write a clearer WhatsApp message to a supplier.
+
+**3. Build in ownership follow-through, not a training day and gone.** A short voice-note check-in a week later ("did you try the huddle format? what happened?") costs almost nothing and multiplies retention. SME owners remember trainers who follow up more than trainers who deliver a polished session and disappear.
+
+**4. Price and package around cash flow reality, not corporate rate cards.** A modular, pay-as-you-go structure (one core session plus optional add-ons) fits SME budgeting far better than a single large invoice.
+
+## The upside
+
+SMEs are actually a rewarding audience once you stop importing a corporate template: decisions move fast, feedback is immediate and honest, and the impact of a well-placed two-hour session is visible within weeks, not buried in an annual engagement survey.
+
+> **Training a small team?** I design sessions around what a lean team can actually absorb and apply. [See training work](/trainer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+
+  "green-digital-skills-youth-tunisia": `A lot of youth training in Tunisia still treats "digital skills" and "green skills" as two separate tracks, taught by two separate programs, to two separate cohorts. In practice, the jobs actually opening up (in energy efficiency, sustainable agriculture, circular-economy startups, remote and freelance digital work) increasingly need both at once. Facilitating programs that sit at that intersection changed how I design sessions.
+
+## The gap isn't motivation, it's translation
+
+Young participants in these programs are rarely short on ambition. What's usually missing is a clear, credible bridge between "I learned this in a workshop" and "I can point to this as proof to an employer or a client." A certificate alone doesn't close that gap; a portfolio of applied work does.
+
+## What actually moves the needle
+
+**1. Every session ends with an artifact, not just notes.** A basic website, a one-page energy-audit report, a social content calendar for a real local business — something a participant can screenshot and put in front of an employer, not a worksheet that goes in a folder.
+
+**2. Bring in real local employers as evaluators, not just trainers.** When a participant's final project gets feedback from an actual small business owner or an NGO program lead instead of only the facilitator, the stakes and the credibility both go up.
+
+**3. Teach the freelance and remote-work path explicitly.** For a meaningful share of Tunisian youth, the fastest route to income isn't a local job opening; it's freelance or remote digital work for international clients. Skipping platforms, invoicing, and cross-border payment basics leaves a real skill gap unaddressed.
+
+**4. Make sustainability tangible, not abstract.** "Green skills" lands better as concrete practice (auditing a small workshop's energy use, redesigning a packaging process to cut waste) than as a lecture on climate policy. Participants engage with what they can measure and change this month.
+
+**5. Design for uneven starting points in the same room.** These cohorts often mix participants with strong digital literacy and others starting from near zero. Peer-teaching structures (pairing a stronger and weaker participant on each task) keep everyone moving instead of losing the room's slower half.
+
+## Why this matters beyond the workshop
+
+Programs at this intersection (I've had the chance to facilitate several, including cohorts explicitly framed around green and digital skills) are one of the more promising levers for youth employability here: they don't require participants to relocate, they build toward real freelance or green-economy income, and they give young people something concrete to show, not just something to say they attended.
+
+> **Designing a youth program?** I facilitate green and digital skills training built around real, portfolio-ready outcomes. [See training work](/trainer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+
+  "freelance-developer-tunisia-payments": `Getting paid as a Tunisian freelance developer sounds like a solved problem until you actually try to do it. A US or European client wants to pay in dollars or euros. Tunisia's dinar isn't freely convertible, banks ask questions about incoming foreign transfers, and the "just use PayPal" advice you'll find online doesn't hold up well here. This is the actual setup I use, and what I'd tell a developer starting from zero.
+
+## The core problem
+
+It's not that you can't get paid. It's that the naive paths (a client wiring your local bank account directly, or relying on PayPal alone) come with friction, fees, or outright limitations that eat into a freelancer's margin and cause real delays. Plan the payment rail before you sign the contract, not after the invoice is already due.
+
+## What I actually use
+
+**1. A multi-currency account as the landing spot.** Services like Wise or Payoneer let a client pay into an account that holds USD/EUR without an immediate, forced conversion at a bad rate. That alone avoids the worst of the friction.
+
+**2. Convert to dinar deliberately, not automatically.** Watch the actual exchange rate you're getting versus the mid-market rate. The spread between them is where freelancers quietly lose the most money, more than any platform fee.
+
+**3. Invoice properly, every time, even for small clients.** A clear invoice with your details, the client's, the scope, and the amount protects you if a bank asks questions about an incoming transfer, and it makes you look like a business, not a hobbyist, which matters for repeat client trust.
+
+**4. Understand what your bank will ask for.** Larger incoming transfers can trigger compliance questions locally. Keeping simple records (contracts, invoices) ready in advance turns a possible delay into a five-minute conversation.
+
+**5. Price in the friction.** If a payment path costs you 3-5% in fees and spread, that's a real cost of doing business, not something to absorb silently. Either build it into your rate or choose clients and platforms where the reliable path is cheaper.
+
+## The bigger picture
+
+None of this is unique to Tunisia, but the specific combination (partial currency convertibility, banks less used to freelance income than salaried transfers, and international clients who've never heard of any of this) means a Tunisian freelancer who plans the payment infrastructure upfront looks and operates far more professionally than one who's improvising every invoice.
+
+> **Freelancing and want the setup that works?** I share the exact tools and process I use for client payments. [See development work](/developer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+
+  "web-performance-tunisia-hosting": `A 3-second load time is a mild inconvenience on fiber in Paris. On a Tunisian mobile plan with a data cap and inconsistent 4G coverage outside the main cities, it's often the difference between a visitor staying or leaving before your homepage even paints. I design and think about performance differently because a meaningful share of my clients' actual visitors are on exactly that connection.
+
+## The assumption that quietly breaks sites
+
+Most performance advice online is written and tested on strong, cheap, unlimited connections. It's easy to ship a site that scores fine in a lab test on office wifi and still feels sluggish for a real visitor on a Tunisian mobile network with real latency and a real data budget they're conscious of.
+
+## What I actually prioritize
+
+**1. Image weight over image count.** Every unoptimized hero image is data a visitor pays for, literally, on a capped plan. I compress aggressively, serve modern formats (WebP/AVIF), and size images for the actual device rather than shipping one oversized asset to everyone.
+
+**2. Fewer, smaller third-party scripts.** Analytics, chat widgets, and font embeds each add a network round trip. On low-latency fiber that's invisible. On higher-latency mobile networks, three or four of those round trips stack into real, felt delay. I audit third-party scripts the way I'd audit spend: cut what isn't earning its cost.
+
+**3. Static generation and CDN edge delivery over server round trips.** A statically generated page served from a CDN edge point close to the visitor beats a server-rendered page recalculated on every request, especially when the round trip to the server is already slower on mobile. Next.js's static generation is one of the reasons I lean on it for content-heavy pages.
+
+**4. Design the loading state, don't just hope it's fast.** Skeleton states and progressive image loading make a site *feel* fast even during the seconds a slower connection genuinely needs, which matters more for perceived performance than shaving another 200ms off an already-decent load time.
+
+**5. Test on throttled connections, not just your own wifi.** Chrome DevTools' network throttling to a "Slow 4G" profile before shipping catches problems a fast office connection will always hide from you.
+
+## Why this is a business decision, not just a technical one
+
+For a Tunisian business whose customers are mostly on mobile data, a slow site isn't a technical debt item to fix later. It's lost leads and lost sales happening today, invisibly, because the people who bounced never showed up in an analytics dashboard to complain.
+
+> **Want a site built for how your actual visitors browse?** I build for real-world connections, not just lab conditions. [See development work](/developer) or [book a free call](https://calendly.com/benarfa367/30min).`,
 }
 
 export function getInsightContent(slug: string): string | undefined {
