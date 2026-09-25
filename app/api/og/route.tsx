@@ -34,10 +34,39 @@ const MIME_BY_EXT: Record<string, string> = {
   ".svg": "image/svg+xml",
 }
 
-async function loadLocalImageAsDataUri(publicPath: string) {
+// Several project images in /public carry a ".png" extension but are
+// actually JPEG-encoded (e.g. dhia-trainer-hero.png, digimytch/landing.png,
+// crit/home.png) — likely from an export tool that didn't re-encode on
+// rename. A data URI that declares the wrong MIME type for its bytes
+// fails to decode in Satori/resvg (silently: no thrown error, blank
+// image), so the real format is sniffed from the file's magic bytes
+// instead of trusted from the extension, and the extension is only a
+// fallback for a format this doesn't recognize (e.g. SVG, which has no
+// fixed byte signature).
+function detectMimeFromBytes(bytes: Buffer, publicPath: string): string {
+  if (bytes.length >= 8 && bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47) {
+    return "image/png"
+  }
+  if (bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) {
+    return "image/jpeg"
+  }
+  if (
+    bytes.length >= 12 &&
+    bytes[0] === 0x52 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[3] === 0x46 &&
+    bytes[8] === 0x57 && bytes[9] === 0x45 && bytes[10] === 0x42 && bytes[11] === 0x50
+  ) {
+    return "image/webp"
+  }
+  if (bytes.length >= 6 && bytes[0] === 0x47 && bytes[1] === 0x49 && bytes[2] === 0x46) {
+    return "image/gif"
+  }
   const ext = publicPath.slice(publicPath.lastIndexOf(".")).toLowerCase()
-  const mime = MIME_BY_EXT[ext] ?? "image/png"
+  return MIME_BY_EXT[ext] ?? "image/png"
+}
+
+async function loadLocalImageAsDataUri(publicPath: string) {
   const bytes = await readFile(join(process.cwd(), "public", publicPath))
+  const mime = detectMimeFromBytes(bytes, publicPath)
   return `data:${mime};base64,${bytes.toString("base64")}`
 }
 
@@ -156,7 +185,7 @@ export async function GET(req: Request) {
             alt=""
             width={W - LEFT_W}
             height={H}
-            style={{ objectFit: "cover", objectPosition: top ? "top" : "center" }}
+            style={{ display: "flex", objectFit: "cover", objectPosition: top ? "top" : "center" }}
           />
           <div
             style={{
