@@ -25,6 +25,22 @@ async function loadFonts() {
   return fontsCache
 }
 
+const MIME_BY_EXT: Record<string, string> = {
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp",
+  ".gif": "image/gif",
+  ".svg": "image/svg+xml",
+}
+
+async function loadLocalImageAsDataUri(publicPath: string) {
+  const ext = publicPath.slice(publicPath.lastIndexOf(".")).toLowerCase()
+  const mime = MIME_BY_EXT[ext] ?? "image/png"
+  const bytes = await readFile(join(process.cwd(), "public", publicPath))
+  return `data:${mime};base64,${bytes.toString("base64")}`
+}
+
 /**
  * Dynamic replacement for scripts/gen-og-images.py's static PNGs (Master
  * to-do list, Tier 6 — @vercel/og). Same dark/lime brand layout: a left
@@ -45,13 +61,18 @@ export async function GET(req: Request) {
   const top = searchParams.get("top") === "1"
 
   const { bold, instrumentBold, instrumentReg } = await loadFonts()
-  // Resolve against the incoming request's own origin (not a hardcoded
-  // SITE_URL) so this works from any host that actually serves the
-  // request — the production domain, a Vercel preview/*.vercel.app
-  // deployment, or localhost — without depending on DNS/domain config
-  // elsewhere ever matching lib/profile.ts's SITE_URL constant.
-  const origin = new URL(req.url).origin
-  const imageUrl = image.startsWith("http") ? image : `${origin}${image}`
+  // Local /public-relative images are read straight off disk and inlined
+  // as a data URI instead of fetched over HTTP from this same deployment.
+  // An internal self-fetch was tried first and silently broke in
+  // production: Vercel's deployment protection intercepted the
+  // unauthenticated server-side request and returned an HTML challenge
+  // page instead of the image, which Satori then failed to decode
+  // ("Unsupported image type: unknown"). Reading the file directly avoids
+  // that network hop entirely — same approach already used for fonts
+  // below — and works regardless of DNS/domain/protection state. A
+  // genuinely external image (an http(s) URL) still goes through Satori's
+  // normal remote-image fetch.
+  const imageUrl = image.startsWith("http") ? image : await loadLocalImageAsDataUri(image)
 
   return new ImageResponse(
     (

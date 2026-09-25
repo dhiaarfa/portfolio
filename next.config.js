@@ -86,6 +86,14 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "@radix-ui/react-accordion", "@radix-ui/react-dialog"],
   },
+
+  // app/api/og/route.tsx reads project photos straight off disk (avoids a
+  // self-fetch that Vercel's deployment protection was intercepting) using
+  // a runtime query-param path Next's tracer can't statically discover, so
+  // the whole images folder is force-included in that function's bundle.
+  outputFileTracingIncludes: {
+    "/api/og": ["./public/images/**/*"],
+  },
 }
 
 module.exports = nextConfig
