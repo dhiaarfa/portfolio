@@ -5,6 +5,7 @@ import { Link } from "next-view-transitions"
 import { motion } from "framer-motion"
 import { Calendar, Gift } from "lucide-react"
 import Navbar from "@/components/navbar-new"
+import RoleHero from "@/components/role-hero"
 import Footer from "@/components/footer"
 import ContactForm from "@/components/contact-form"
 import TrainingMethodologySection from "@/components/training-methodology-section"
@@ -41,19 +42,22 @@ export default function TrainerClientPage() {
 
       <main id="main-content" className="w-full pt-0">
         {/* 1. Hero — who + outcome + dual CTAs */}
-        <section className="relative min-h-[68vh] flex items-end overflow-hidden bg-[#0A0A0A]">
-          <div className="absolute inset-0 min-h-[400px]">
-            <Image
-              src="/images/photos/dhia-trainer-hero.png"
-              alt="Dhia facilitating a youth training workshop"
-              fill
-              className="object-cover object-top"
-              priority
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#1C1C1C]/70 to-[#1C1C1C]/20" />
-          </div>
-          <div className="relative z-10 max-w-5xl mx-auto px-6 pb-16 pt-32 w-full">
+        <RoleHero
+          variant="background"
+          media={
+            <>
+              <Image
+                src="/images/photos/dhia-trainer-hero.png"
+                alt="Dhia facilitating a youth training workshop"
+                fill
+                className="object-cover object-top"
+                priority
+                sizes="100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#1C1C1C]/70 to-[#1C1C1C]/20" />
+            </>
+          }
+        >
             <p className="label text-green-400 mb-4">{t("trainerHeroTitle")}</p>
             <h1 className="h1-hero text-white mb-4 max-w-3xl">
               I help NGOs, schools, and youth organizations run trainings that actually change behavior.
@@ -98,8 +102,7 @@ export default function TrainerClientPage() {
                 View training portfolio
               </a>
             </div>
-          </div>
-        </section>
+        </RoleHero>
 
         {/* 2. Trusted by */}
         <ClientLogosStrip />

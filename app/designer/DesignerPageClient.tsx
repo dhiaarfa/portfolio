@@ -8,6 +8,7 @@ import { siteConfig } from "@/lib/site-config"
 import { featuredWorkProjects, curatedGallery } from "@/lib/work"
 import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
+import RoleHero from "@/components/role-hero"
 import Footer from "@/components/footer"
 import ContactForm from "@/components/contact-form"
 import ToolsStackSection from "@/components/tools-stack-section"
@@ -72,34 +73,29 @@ export default function DesignerPageClient() {
 
       <main id="main-content" className="w-full pt-0">
         {/* 1. Hero — positioning + work visual */}
-        <section className="min-h-[68vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
-          <div className="relative order-2 flex flex-col justify-between bg-[#0A0A0A] p-8 lg:order-1 lg:p-14">
+        <RoleHero
+          variant="split-edge"
+          decoration={
             <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#22c55e 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
-            <div className="relative z-10 my-auto py-6">
-              <p className="label mb-4 text-accent">Brand design · Digital marketing · Zia Studio</p>
-              <h1 className="h1-hero mb-5 text-white">
-                Design that sells — brand identity, campaigns, and marketing strategy for Tunisian brands.
-              </h1>
-              <p className="mb-8 max-w-md text-[17px] leading-relaxed text-slate-400">
-                I&apos;m not just a designer — I conceive digital marketing strategies, run social campaigns, and build visual systems that convert. From logo to launch for cafés, startups, and NGOs across Tunisia.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green">
-                  Start a project
-                </a>
-                <a href="#case-studies" className="rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white">
-                  See selected work
-                </a>
-                <Link
-                  href="/freebies?category=design"
-                  className="inline-flex items-center gap-2 rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white"
-                >
-                  <Gift className="h-4 w-4" />
-                  Get free templates
-                </Link>
-              </div>
-            </div>
-            <div className="relative z-10 flex gap-8 border-t border-[#2E2E2E] pt-6">
+          }
+          mediaClassName="grid grid-cols-2 grid-rows-2 gap-1 bg-[#1C1C1C]"
+          media={
+            <>
+              {[
+                "/images/lone-space-gold.png",
+                "/images/445771850-916829483581375-1053755579034856379-n.png",
+                "/images/tafani-white-png.png",
+                "/images/meetuppro-thumbnail.png",
+              ].map((src, i) => (
+                <div key={src} className="relative overflow-hidden">
+                  <Image src={src} alt="" fill className="object-cover" priority={i < 2} sizes="50vw" />
+                </div>
+              ))}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/40 to-transparent lg:bg-gradient-to-r lg:from-[#0A0A0A]/30" />
+            </>
+          }
+          footer={
+            <div className="flex gap-8 border-t border-[#2E2E2E] pt-6">
               {[
                 [formatStat("designProjects"), "Projects"],
                 [formatStat("yearsExperience"), "Years"],
@@ -111,21 +107,31 @@ export default function DesignerPageClient() {
                 </div>
               ))}
             </div>
+          }
+        >
+          <p className="label mb-4 text-accent">Brand design · Digital marketing · Zia Studio</p>
+          <h1 className="h1-hero mb-5 text-white">
+            Design that sells — brand identity, campaigns, and marketing strategy for Tunisian brands.
+          </h1>
+          <p className="mb-8 max-w-md text-[17px] leading-relaxed text-slate-400">
+            I&apos;m not just a designer — I conceive digital marketing strategies, run social campaigns, and build visual systems that convert. From logo to launch for cafés, startups, and NGOs across Tunisia.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green">
+              Start a project
+            </a>
+            <a href="#case-studies" className="rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white">
+              See selected work
+            </a>
+            <Link
+              href="/freebies?category=design"
+              className="inline-flex items-center gap-2 rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white"
+            >
+              <Gift className="h-4 w-4" />
+              Get free templates
+            </Link>
           </div>
-          <div className="relative order-1 grid min-h-[45vh] grid-cols-2 grid-rows-2 gap-1 bg-[#1C1C1C] lg:order-2 lg:min-h-full">
-            {[
-              "/images/lone-space-gold.png",
-              "/images/445771850-916829483581375-1053755579034856379-n.png",
-              "/images/tafani-white-png.png",
-              "/images/meetuppro-thumbnail.png",
-            ].map((src, i) => (
-              <div key={src} className="relative overflow-hidden">
-                <Image src={src} alt="" fill className="object-cover" priority={i < 2} sizes="50vw" />
-              </div>
-            ))}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/40 to-transparent lg:bg-gradient-to-r lg:from-[#0A0A0A]/30" />
-          </div>
-        </section>
+        </RoleHero>
 
         {/* 2. Client logos */}
         <ClientLogosStrip />

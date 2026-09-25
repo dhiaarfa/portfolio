@@ -203,6 +203,13 @@ function FreebiesClientInner() {
             filtered.map((freebie, i) => {
               const colors = colorMap[freebie.color]
               const isUnlocked = unlockedIds.includes(freebie.id)
+              // First tile in whatever's currently filtered gets a bigger
+              // "featured" bento treatment (wider span, taller preview) —
+              // positional rather than a hardcoded freebie id, so it holds
+              // up under every category filter instead of only looking
+              // right for one specific item. Needs at least 3 results or
+              // the span reads as a layout bug instead of a design choice.
+              const isFeaturedTile = i === 0 && filtered.length > 2
 
               return (
                 <motion.div
@@ -211,11 +218,11 @@ function FreebiesClientInner() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.4, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                  className={`relative overflow-hidden rounded-2xl border flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer bg-card ${colors.border}`}
+                  className={`relative overflow-hidden rounded-2xl border flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer bg-card ${colors.border} ${isFeaturedTile ? "sm:col-span-2" : ""}`}
                   onClick={() => !isUnlocked && setSelectedFreebie(freebie)}
                 >
                   {freebie.bgImage ? (
-                    <div className="relative h-36 w-full">
+                    <div className={`relative w-full ${isFeaturedTile ? "h-48 sm:h-56" : "h-36"}`}>
                       <Image
                         src={freebie.bgImage}
                         alt=""
@@ -229,7 +236,7 @@ function FreebiesClientInner() {
                     // real file, just a "this is a downloadable document/template"
                     // visual cue, since "trust me, it's useful" reads weaker than
                     // showing something resembling what you're about to get.
-                    <div className={`relative h-36 w-full ${colors.bg} flex items-center justify-center overflow-hidden`}>
+                    <div className={`relative w-full ${isFeaturedTile ? "h-48 sm:h-56" : "h-36"} ${colors.bg} flex items-center justify-center overflow-hidden`}>
                       <div
                         className="pointer-events-none absolute inset-0 opacity-[0.35]"
                         style={{
@@ -264,7 +271,7 @@ function FreebiesClientInner() {
                   </span>
 
                   <div>
-                    <h3 className="font-bold text-foreground text-base lg:text-lg leading-snug">{freebieText(freebie, "title", t)}</h3>
+                    <h3 className={`font-bold text-foreground leading-snug ${isFeaturedTile ? "text-lg lg:text-xl" : "text-base lg:text-lg"}`}>{freebieText(freebie, "title", t)}</h3>
                     <p className="text-sm lg:text-base text-muted-foreground mt-2 leading-relaxed">{freebieText(freebie, "description", t)}</p>
                   </div>
 

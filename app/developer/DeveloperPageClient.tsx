@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Link } from "next-view-transitions"
 import Navbar from "@/components/navbar-new"
+import RoleHero from "@/components/role-hero"
 import Footer from "@/components/footer"
 import Image from "next/image"
 import ContactForm from "@/components/contact-form"
@@ -87,67 +88,69 @@ export default function DeveloperPageClient() {
 
       <main id="main-content" className="w-full pt-0">
         {/* Hero */}
-        <section className="bg-[#0A0A0A] text-white min-h-[68vh] flex items-center px-6 py-16 section-compact relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#22c55e 1px, transparent 1px), linear-gradient(90deg, #22c55e 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
-          <div className="pointer-events-none absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full bg-accent/8 blur-[100px]" />
-          <div className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-14 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-[#2E2E2E]/80 border border-[#383838]/60 rounded-lg px-4 py-2 mb-8 font-mono text-sm">
-                <span className="text-accent">$</span>
-                <span className="text-slate-300">dhia --role developer</span>
-                <span className="text-accent animate-[pulse_1s_ease-in-out_infinite] font-bold ml-1">█</span>
+        <RoleHero
+          variant="split-contained"
+          decoration={
+            <>
+              <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#22c55e 1px, transparent 1px), linear-gradient(90deg, #22c55e 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+              <div className="pointer-events-none absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full bg-accent/8 blur-[100px]" />
+            </>
+          }
+          media={
+            <div className="bg-[#2E2E2E] rounded-2xl overflow-hidden border border-[#383838]/60 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
+              <div className="flex items-center gap-1.5 px-4 py-3 bg-[#1C1C1C]/60 border-b border-[#383838]/60">
+                <span className="w-3 h-3 rounded-full bg-red-500/80" />
+                <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <span className="w-3 h-3 rounded-full bg-accent/80" />
+                <span className="ml-4 font-mono text-slate-500 text-xs">dhia.dev</span>
               </div>
-              <h1 className="h1-hero mb-4">
-                Design-trained developer<br /><span className="text-accent">who ships.</span>
-              </h1>
-              <p className="text-slate-400 text-[17px] leading-relaxed max-w-md mb-8">
-                Turning designs into fast, scalable digital experiences. React · Next.js · Design-first mindset.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a href="#projects" className="btn-green">View projects</a>
-                <a
-                  href={siteConfig.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/40 hover:text-white"
-                >
-                  <Github className="h-4 w-4" />
-                  View GitHub
-                </a>
-                <Link
-                  href="/freebies?category=development"
-                  className="inline-flex items-center gap-2 rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white"
-                >
-                  <Gift className="h-4 w-4" />
-                  Get free checklist
-                </Link>
-                <a href="#contact-form" className="text-sm font-medium text-slate-400 px-2 py-3 hover:text-white transition-colors">
-                  Let&apos;s talk →
-                </a>
-              </div>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a
-                  href={siteConfig.resumePdfUrl}
-                  className="inline-flex items-center gap-2 text-xs font-medium text-slate-500 hover:text-accent transition-colors"
-                >
-                  <Download className="h-3.5 w-3.5" />
-                  Download résumé (PDF)
-                </a>
-              </div>
+              <Image src="/images/photos/dhia-developer.png" alt="Dhia — Developer" width={380} height={400} className="w-full object-cover" />
             </div>
-            <div className="hidden lg:block">
-              <div className="bg-[#2E2E2E] rounded-2xl overflow-hidden border border-[#383838]/60 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
-                <div className="flex items-center gap-1.5 px-4 py-3 bg-[#1C1C1C]/60 border-b border-[#383838]/60">
-                  <span className="w-3 h-3 rounded-full bg-red-500/80" />
-                  <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <span className="w-3 h-3 rounded-full bg-accent/80" />
-                  <span className="ml-4 font-mono text-slate-500 text-xs">dhia.dev</span>
-                </div>
-                <Image src="/images/photos/dhia-developer.png" alt="Dhia — Developer" width={380} height={400} className="w-full object-cover" />
-              </div>
-            </div>
+          }
+        >
+          <div className="inline-flex items-center gap-2 bg-[#2E2E2E]/80 border border-[#383838]/60 rounded-lg px-4 py-2 mb-8 font-mono text-sm">
+            <span className="text-accent">$</span>
+            <span className="text-slate-300">dhia --role developer</span>
+            <span className="text-accent animate-[pulse_1s_ease-in-out_infinite] font-bold ml-1">█</span>
           </div>
-        </section>
+          <h1 className="h1-hero mb-4">
+            Design-trained developer<br /><span className="text-accent">who ships.</span>
+          </h1>
+          <p className="text-slate-400 text-[17px] leading-relaxed max-w-md mb-8">
+            Turning designs into fast, scalable digital experiences. React · Next.js · Design-first mindset.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a href="#projects" className="btn-green">View projects</a>
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/40 hover:text-white"
+            >
+              <Github className="h-4 w-4" />
+              View GitHub
+            </a>
+            <Link
+              href="/freebies?category=development"
+              className="inline-flex items-center gap-2 rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white"
+            >
+              <Gift className="h-4 w-4" />
+              Get free checklist
+            </Link>
+            <a href="#contact-form" className="text-sm font-medium text-slate-400 px-2 py-3 hover:text-white transition-colors">
+              Let&apos;s talk →
+            </a>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a
+              href={siteConfig.resumePdfUrl}
+              className="inline-flex items-center gap-2 text-xs font-medium text-slate-500 hover:text-accent transition-colors"
+            >
+              <Download className="h-3.5 w-3.5" />
+              Download résumé (PDF)
+            </a>
+          </div>
+        </RoleHero>
 
         {/* Featured projects */}
         <section id="projects" className="w-full section-compact px-4 md:px-8">

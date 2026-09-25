@@ -216,8 +216,82 @@ export function workBySlug(slug: string) {
  *  ratios (square, portrait, 4:3...) that were being declared as 1200x630,
  *  which is why case-study links were previewing cropped/broken. See
  *  checklist §2.4/§2.6. */
+const CASE_STUDY_OG: Record<
+  string,
+  { kicker: string; title: string; subhead: string; image: string; small?: boolean; top?: boolean }
+> = {
+  "speranza-cafe": {
+    kicker: "Case Study \u00b7 Brand Identity",
+    title: "Speranza Caf\u00e9",
+    subhead:
+      "Logo, packaging system, and social templates for a local caf\u00e9 with a gold-and-cream visual language.",
+    image: "/images/445771850-916829483581375-1053755579034856379-n.png",
+  },
+  "lone-space": {
+    kicker: "Case Study \u00b7 Brand Identity",
+    title: "Lone Space",
+    subhead: "Full visual identity: logotype, gold foil system, business cards, and brand collateral.",
+    image: "/images/lone-space-gold.png",
+  },
+  "tafani-travel": {
+    kicker: "Case Study \u00b7 Brand Identity",
+    title: "Tafani Travel",
+    subhead: "Logo and brand system built for clarity across web, social, and travel collateral.",
+    image: "/images/tafani-white-png.png",
+  },
+  "meetup-pro": {
+    kicker: "Case Study \u00b7 Social Media",
+    title: "MeetUp Pro 1.0",
+    subhead: "Event identity, social campaign assets, and promotional design for a sold-out meetup.",
+    image: "/images/meetuppro-thumbnail.png",
+  },
+  "traveltodo-campaign": {
+    kicker: "Case Study \u00b7 Social Media",
+    title: "TravelTodo Campaign",
+    subhead: "Billboard, poster, and feed assets with a consistent campaign look across formats.",
+    image: "/images/billboard-48x14-ft-mockup-3.jpeg",
+  },
+  digimytch: {
+    kicker: "Case Study \u00b7 Web Dev",
+    title: "DigiMyTech Talent Hub",
+    subhead: "Next.js app with Supabase auth/DB and OpenRouter LLM workflows baked into the product.",
+    image: "/images/projects/digimytch/landing.png",
+    top: true,
+    small: true,
+  },
+  "crit-tunisie": {
+    kicker: "Case Study \u00b7 Web Dev",
+    title: "CRIT Tunisie",
+    subhead: "Production Next.js site clarifying services, job offers, and contact paths for talents and companies.",
+    image: "/images/projects/crit/home.png",
+    top: true,
+  },
+  "best-dates-fruits": {
+    kicker: "Case Study \u00b7 Web Dev",
+    title: "Best Dates and Fruits",
+    subhead: "Marketing site with product sections, seasonal storytelling, and clear contact conversion paths.",
+    image: "/images/bdaf-thumbnail.png",
+  },
+}
+
+/** Real 1200x630 branded OG card for a case study — rendered on-demand by
+ *  app/api/og/route.tsx (Satori/@vercel/og). Replaces using `heroImage`
+ *  directly in social metadata: those are raw project screenshots/mockups
+ *  at arbitrary aspect ratios (square, portrait, 4:3...) that were being
+ *  declared as 1200x630, which is why case-study links were
+ *  previewing cropped/broken. See checklist §2.4/§2.6/§6.2. */
 export function workOgImage(slug: string): string {
-  return `/images/og/work-${slug}.png`
+  const entry = CASE_STUDY_OG[slug]
+  if (!entry) return `/api/og?${new URLSearchParams({ title: "Mohamed Dhia Arfa" })}`
+  const params = new URLSearchParams({
+    kicker: entry.kicker,
+    title: entry.title,
+    subhead: entry.subhead,
+    image: entry.image,
+  })
+  if (entry.small) params.set("small", "1")
+  if (entry.top) params.set("top", "1")
+  return `/api/og?${params}`
 }
 
 /** Pixel aspect ratio (width / height) of each dev project's `cardImage`

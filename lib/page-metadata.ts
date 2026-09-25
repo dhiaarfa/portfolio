@@ -23,24 +23,40 @@ export const DEFAULT_OG_IMAGE: OgImage = {
 export const PAGE_OG_IMAGES: Record<string, OgImage> = {
   "/": DEFAULT_OG_IMAGE,
   "/designer": {
-    // Real 1200x630 branded card — see checklist §2.4/§2.6: the old value here
-    // pointed straight at lone-space-gold.png (an actual 1080x1080 square)
-    // while claiming 1200x630, so social previews were cropping it badly.
-    url: "/images/og/pillar-designer.png",
+    // Generated live by app/api/og/route.tsx (@vercel/og) instead of a
+    // static PNG from scripts/gen-og-images.py — see checklist §2.4/§2.6
+    // for why this needed to be a real 1200x630 card in the first place,
+    // and the Master to-do list (Tier 6) for the @vercel/og migration.
+    url: `/api/og?${new URLSearchParams({
+      kicker: "Designer · Brand & Marketing",
+      title: "Mohamed Dhia Arfa",
+      subhead: "Design that sells — brand identity, campaigns, and marketing strategy for Tunisian brands.",
+      image: "/images/lone-space-gold.png",
+    })}`,
     width: 1200,
     height: 630,
     alt: "Mohamed Dhia Arfa — Brand designer, Zia Studio",
   },
   "/trainer": {
-    // Old value (dhia-trainer-hero.png) is actually 1024x682, not 1200x630.
-    url: "/images/og/pillar-trainer.png",
+    url: `/api/og?${new URLSearchParams({
+      kicker: "Trainer & Educator",
+      title: "Mohamed Dhia Arfa",
+      subhead: "I help NGOs, schools, and youth organizations run trainings that actually change behavior.",
+      image: "/images/photos/dhia-trainer-hero.png",
+      top: "1",
+    })}`,
     width: 1200,
     height: 630,
     alt: "Mohamed Dhia Arfa — Certified youth trainer in Tunisia",
   },
   "/developer": {
-    // Old value (digimytch/landing.png) is actually a 757x1024 portrait screenshot.
-    url: "/images/og/pillar-developer.png",
+    url: `/api/og?${new URLSearchParams({
+      kicker: "Developer · Full-Stack",
+      title: "Mohamed Dhia Arfa",
+      subhead: "Design-trained developer who ships. React, Next.js, Supabase.",
+      image: "/images/projects/digimytch/landing.png",
+      top: "1",
+    })}`,
     width: 1200,
     height: 630,
     alt: "Mohamed Dhia Arfa — Full-stack developer",
