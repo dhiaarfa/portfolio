@@ -47,3 +47,6 @@ dev-log.txt
 
 # Local Claude Code tool settings
 .claude/
+
+build_log*.txt
+deploy_log*.txt
