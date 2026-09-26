@@ -198,7 +198,12 @@ export default function Footer() {
       <div className="border-t border-border">
         <div className="max-w-5xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-muted-foreground text-xs">
           <span>© 2026 Mohamed Dhia Arfa · {t("allRightsReserved")}</span>
-          <span className="flex items-center gap-1">Built with <Heart className="w-3 h-3 text-green-600 mx-0.5 fill-[var(--site-accent)]" /> using Next.js & Tailwind</span>
+          {/* dir="ltr" pins this as one English phrase -- it's a flex row,
+              and under RTL a flex row's main axis reverses too, so without
+              this the three children (text/heart/text) visually reordered
+              into "using Next.js & Tailwind [heart] Built with", reading
+              backwards even though each individual phrase is still English. */}
+          <span dir="ltr" className="flex items-center gap-1">Built with <Heart className="w-3 h-3 text-green-600 mx-0.5 fill-[var(--site-accent)]" /> using Next.js & Tailwind</span>
         </div>
       </div>
     </footer>
