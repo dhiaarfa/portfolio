@@ -3,6 +3,7 @@
 import { Clock, Users, Presentation, RefreshCw, BookOpen } from "lucide-react"
 import { homepageStatsRow, profileStats } from "@/lib/profile"
 import { AnimatedNumber } from "@/components/ui/animated-number"
+import { useLanguage } from "@/components/language-provider"
 
 const iconMap = {
   Users,
@@ -13,8 +14,9 @@ const iconMap = {
 } as const
 
 export default function StatsSection() {
+  const { t } = useLanguage()
   const stats = homepageStatsRow.map((row) => ({
-    label: row.label,
+    label: t(row.labelKey),
     value: profileStats[row.statKey].value,
     suffix: profileStats[row.statKey].suffix,
     Icon: iconMap[row.icon],
@@ -34,7 +36,7 @@ export default function StatsSection() {
         aria-hidden
       />
       <div className="relative max-w-4xl mx-auto">
-        <p className="label text-center text-accent mb-8">By the numbers</p>
+        <p className="label text-center text-accent mb-8">{t("byTheNumbersLabel")}</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-border">
           {stats.map((s) => (
             <div key={s.label} className="flex flex-col items-center text-center py-4 sm:px-4 sm:py-0">

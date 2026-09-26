@@ -5,8 +5,22 @@ export type ToolDef = {
 
 export type ToolGroup = {
   id: string
+  /** English fallback label (used as a React key and for any consumer that
+   *  doesn't localize). Components should prefer TOOL_GROUP_LABEL_KEYS[id]
+   *  through t() -- see components/tools-stack-section.tsx. */
   label: string
   tools: ToolDef[]
+}
+
+/** Maps each group id to its translations.ts key. Added because these
+ *  group labels were hardcoded English and never went through t(), so they
+ *  stayed in English even in French/Arabic mode. */
+export const TOOL_GROUP_LABEL_KEYS: Record<string, string> = {
+  design: "toolsGroupDesign",
+  ai: "toolsGroupAi",
+  frontend: "toolsGroupFrontend",
+  backend: "toolsGroupBackend",
+  productivity: "toolsGroupProductivity",
 }
 
 export const toolsStackGroups: ToolGroup[] = [

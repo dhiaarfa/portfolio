@@ -479,13 +479,21 @@ html.custom-cursor-active * {
 }
 
 /* Utility font classes */
+/* .font-display and .font-heading were missing var(--font-cairo) from their
+   fallback chain (only .font-body had it) -- General Sans has no Arabic
+   glyphs, so every heading site-wide silently fell back past it to a
+   generic system-ui Arabic font while body text correctly used Cairo,
+   making headings and paragraphs visibly different typefaces in Arabic
+   (reported as "incoherence in fonts"). Adding Cairo here only changes
+   which font Arabic *glyphs* resolve to -- Latin text still renders in
+   General Sans exactly as before. */
 .font-display {
-  font-family: 'General Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'General Sans', var(--font-cairo), system-ui, -apple-system, sans-serif;
   letter-spacing: 0.01em;
 }
 
 .font-heading {
-  font-family: 'General Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'General Sans', var(--font-cairo), system-ui, -apple-system, sans-serif;
 }
 
 .font-body {
@@ -495,10 +503,19 @@ html.custom-cursor-active * {
 
 /* Italic serif accent — used sparingly (e.g. the rotating-role word in the
    homepage hero) for the "end to end."-style flourish under a bold sans
-   headline, per Dhia's reference screenshot. Never used for body copy. */
+   headline, per Dhia's reference screenshot. Never used for body copy.
+   Same Arabic-fallback gap as above (Fraunces has no Arabic glyphs), plus
+   Arabic has no real italic form -- a faux-obliqued Arabic glyph reads as
+   broken, not stylish -- so Arabic gets Cairo upright instead of inheriting
+   whatever generic serif the browser happens to pick. */
 .font-accent-italic {
   font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
   font-style: italic;
+}
+
+[dir="rtl"] .font-accent-italic {
+  font-family: var(--font-cairo), sans-serif;
+  font-style: normal;
 }
 
 /* Card shadows from design token system */

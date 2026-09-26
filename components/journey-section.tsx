@@ -29,7 +29,7 @@ export default function JourneySection() {
     { id: "certifications", label: t("certificationsHeading"), Icon: Award },
     { id: "education", label: t("aboutEducation"), Icon: GraduationCap },
     { id: "experience", label: t("professionalExperience"), Icon: Briefcase },
-    { id: "civic", label: "Civic Impact", Icon: Star },
+    { id: "civic", label: t("civicImpactTab"), Icon: Star },
   ]
 
   const rows: Record<TabId, Row[]> = {

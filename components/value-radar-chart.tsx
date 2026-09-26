@@ -17,13 +17,16 @@ import { useLanguage } from '@/components/language-provider'
 // feedback the exact percentages read as arbitrary/annoying "chiffres" for
 // a self-assessed soft-skill list. A plain labeled chip grid states the
 // strengths without pretending they're precisely measured.
-const traits: { Icon: LucideIcon; subject: string }[] = [
-  { Icon: MessageCircle, subject: 'Communication' },
-  { Icon: Palette, subject: 'Creativity' },
-  { Icon: Handshake, subject: 'Reliability' },
-  { Icon: Brain, subject: 'Methodology' },
-  { Icon: Globe, subject: 'Multilingual' },
-  { Icon: Sparkles, subject: 'Cultural Fit' },
+// subjectKey points into translations.ts -- these were hardcoded English
+// labels and never translated, so they stayed in English even in French/
+// Arabic mode while the surrounding section copy was already localized.
+const traits: { Icon: LucideIcon; subjectKey: string }[] = [
+  { Icon: MessageCircle, subjectKey: 'radarCommunication' },
+  { Icon: Palette, subjectKey: 'radarCreativity' },
+  { Icon: Handshake, subjectKey: 'radarReliability' },
+  { Icon: Brain, subjectKey: 'radarMethodology' },
+  { Icon: Globe, subjectKey: 'radarMultilingual' },
+  { Icon: Sparkles, subjectKey: 'radarCulturalFit' },
 ]
 
 const valueProps: { Icon: LucideIcon; titleKey: string; descKey: string }[] = [
@@ -75,7 +78,7 @@ export default function ValueRadarChart() {
             <div ref={barsRef} className="grid grid-cols-2 gap-2.5">
               {traits.map((tr, i) => (
                 <motion.div
-                  key={tr.subject}
+                  key={tr.subjectKey}
                   className="flex items-center gap-2 rounded-xl border border-border bg-background/60 px-3 py-2.5"
                   initial={{ opacity: 0, y: 8 }}
                   animate={barsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
@@ -84,7 +87,7 @@ export default function ValueRadarChart() {
                   <span className="w-7 h-7 rounded-full bg-accent-subtle flex items-center justify-center shrink-0">
                     <tr.Icon className="w-3.5 h-3.5 text-accent" aria-hidden />
                   </span>
-                  <span className="text-xs font-semibold text-slate-900 dark:text-white">{tr.subject}</span>
+                  <span className="text-xs font-semibold text-slate-900 dark:text-white">{t(tr.subjectKey)}</span>
                 </motion.div>
               ))}
             </div>

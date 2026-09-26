@@ -320,10 +320,13 @@ export function isConceptProject(title: string): boolean {
 }
 
 /** Homepage stats section row definitions */
+// labelKey points into translations.ts -- labels used to be hardcoded
+// English here (never translated), so this row stayed in English even in
+// French/Arabic mode.
 export const homepageStatsRow = [
-  { statKey: "participantsTrained" as const, label: "Participants Trained", icon: "Users" as const },
-  { statKey: "trainingHours" as const, label: "Training Hours", icon: "Clock" as const },
-  { statKey: "designProjects" as const, label: "Design Projects", icon: "BookOpen" as const },
-  { statKey: "yearsExperience" as const, label: "Years Experience", icon: "Presentation" as const },
-  { statKey: "trainingCycles" as const, label: "Training Events", icon: "RefreshCw" as const },
+  { statKey: "participantsTrained" as const, labelKey: "statParticipantsTrained" as const, icon: "Users" as const },
+  { statKey: "trainingHours" as const, labelKey: "statTrainingHoursLabel" as const, icon: "Clock" as const },
+  { statKey: "designProjects" as const, labelKey: "statDesignProjectsLabel" as const, icon: "BookOpen" as const },
+  { statKey: "yearsExperience" as const, labelKey: "statYearsExperienceLabel" as const, icon: "Presentation" as const },
+  { statKey: "trainingCycles" as const, labelKey: "statTrainingEventsLabel" as const, icon: "RefreshCw" as const },
 ]

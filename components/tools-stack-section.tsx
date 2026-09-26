@@ -1,8 +1,9 @@
 "use client"
 
 import BrandIcon from "@/lib/brand-icon"
-import { toolsStackGroups } from "@/lib/tools-stack"
+import { toolsStackGroups, TOOL_GROUP_LABEL_KEYS } from "@/lib/tools-stack"
 import { Tile } from "@/components/ui/tile"
+import { useLanguage } from "@/components/language-provider"
 
 // One accent per group instead of a flat grey list, matches the color
 // coding used everywhere else on the site (pink for design work, amber for
@@ -32,6 +33,7 @@ export default function ToolsStackSection({
   /** Filter to specific group ids, e.g. ["frontend", "backend", "ai"] */
   groups?: string[]
 }) {
+  const { t } = useLanguage()
   const visibleGroups = groups?.length
     ? toolsStackGroups.filter((g) => groups.includes(g.id))
     : toolsStackGroups
@@ -39,9 +41,9 @@ export default function ToolsStackSection({
   return (
     <section className={compact ? "py-10 px-6" : "py-16 px-6 bg-card"}>
       <div className="max-w-5xl mx-auto">
-        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2 text-center">Tools & Stack</p>
+        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2 text-center">{t("toolsStackKicker")}</p>
         <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-10">
-          {compact ? "Dev stack I ship with" : "Software I work with daily"}
+          {compact ? t("toolsStackHeadingCompact") : t("toolsStackHeading")}
         </h3>
 
         {/* One horizontal row per category, stacked under each other, instead
@@ -58,7 +60,7 @@ export default function ToolsStackSection({
               <span
                 className={`shrink-0 inline-block w-fit text-[12px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full ${GROUP_BADGE[group.id] ?? "bg-accent-subtle text-accent"}`}
               >
-                {group.label}
+                {t(TOOL_GROUP_LABEL_KEYS[group.id] ?? group.label) || group.label}
               </span>
 
               <div className="flex flex-wrap items-center gap-x-5 gap-y-3 sm:pl-4 sm:border-l sm:border-slate-200/70 dark:sm:border-border/60">

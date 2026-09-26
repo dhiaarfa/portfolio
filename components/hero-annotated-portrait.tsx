@@ -297,9 +297,22 @@ export default function HeroAnnotatedPortrait({
   gradientBg = false,
   children,
 }: Props) {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const reducedMotion = useReducedMotion() ?? false
   const isDark = theme === "dark"
+  // Every anchor/card coordinate below was hand-tuned assuming this HUD
+  // sits on the *visually right* side of the hero (true in LTR). Under
+  // Arabic, the grid column this component lives in automatically swaps to
+  // the left (CSS Grid respects dir=rtl for auto-placement), but these are
+  // raw `left: x%` absolute positions, not logical properties, so they
+  // don't mirror on their own -- cards tuned to hug the container's right
+  // edge (x up to 94) instead overflowed off its now-left-sited container
+  // straight into the heading text next to it. Mirroring x around the
+  // container's own center (100 - x) keeps every card inside its own
+  // container in both directions, symmetric the same way the portrait's
+  // PHOTO_BOUNDS already is.
+  const isRtl = language === "ar"
+  const mx = (x: number) => (isRtl ? 100 - x : x)
 
   const callouts: HeroCalloutConfig[] = useMemo(
     () => [
@@ -317,8 +330,8 @@ export default function HeroAnnotatedPortrait({
             <BasedInTunisia className="mt-1 opacity-80" />
           </>
         ),
-        anchor: { x: 58, y: 10 },
-        card: { x: 92, y: 12 },
+        anchor: { x: mx(58), y: 10 },
+        card: { x: mx(92), y: 12 },
         cardMaxWidth: 230,
         bracket: true,
         delay: 0,
@@ -335,8 +348,8 @@ export default function HeroAnnotatedPortrait({
             {t("availableForProjects")}
           </span>
         ),
-        anchor: { x: 22, y: 34 },
-        card: { x: 6, y: 30 },
+        anchor: { x: mx(22), y: 34 },
+        card: { x: mx(6), y: 30 },
         cardMaxWidth: 195,
         delay: 0.1,
       },
@@ -354,13 +367,13 @@ export default function HeroAnnotatedPortrait({
             <span className="opacity-70">* {formatStat("trainingHours")} {t("hudImpactHoursNote")}</span>
           </>
         ),
-        anchor: { x: 78, y: 34 },
-        card: { x: 94, y: 32 },
+        anchor: { x: mx(78), y: 34 },
+        card: { x: mx(94), y: 32 },
         cardMaxWidth: 170,
         delay: 0.2,
       },
     ],
-    [t, reducedMotion]
+    [t, reducedMotion, isRtl]
   )
 
   const sectionBg = isDark ? "bg-slate-950 text-white" : "bg-white dark:bg-background text-slate-900 dark:text-white"

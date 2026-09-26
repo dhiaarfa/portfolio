@@ -129,7 +129,7 @@ function HeroAskBar() {
 }
 
 export default function HomePageClient() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const roles = [
     {
       title: "Trainer",
@@ -187,7 +187,13 @@ export default function HomePageClient() {
               appears on hover instead of the text fading in from near-invisible. */}
           <p
             className="mt-4 text-slate-700 dark:text-slate-300 text-lg leading-relaxed max-w-[480px] transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]"
-            style={{ fontFamily: "'Quicksand', system-ui, sans-serif" }}
+            // Quicksand has no Arabic glyphs, so without a language check
+            // Arabic here silently fell back to a generic system Arabic
+            // font that doesn't match Cairo everywhere else on the page
+            // (reported as "incoherence in fonts"). Use Cairo directly for
+            // Arabic instead of hoping the fallback chain lands somewhere
+            // reasonable.
+            style={{ fontFamily: language === "ar" ? "var(--font-cairo), sans-serif" : "'Quicksand', system-ui, sans-serif" }}
           >
             {t("homeHeroTagline")}
           </p>
@@ -262,14 +268,14 @@ export default function HomePageClient() {
                 icon: Users,
                 iconCls: "w-9 h-9 p-2 rounded-xl bg-amber-100 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6",
                 eyebrowKey: "training",
-                title: "Youth Development",
+                title: t("pillarYouthDevelopment"),
                 photo: "/images/photos/dhia-trainer.png",
                 tint: "from-amber-50/95 via-white/97 to-white/98 dark:from-amber-950/30 dark:via-card/97 dark:to-card/98",
                 eyebrowCls: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50",
                 stats: [
-                  [siteConfig.stats.participants, "Participants"],
-                  [siteConfig.stats.trainingHours, "Hours"],
-                  [siteConfig.stats.facilitationHours, "Facilitation Hrs"],
+                  [siteConfig.stats.participants, t("statLabelParticipants")],
+                  [siteConfig.stats.trainingHours, t("statLabelHours")],
+                  [siteConfig.stats.facilitationHours, t("statLabelFacilitationHrs")],
                 ],
                 flagship: "IOM Youth Hackathon, Doha, 1st place",
                 ctaCls: "text-amber-600 dark:text-amber-400",
@@ -279,7 +285,7 @@ export default function HomePageClient() {
                 icon: Code2,
                 iconCls: "w-9 h-9 p-2 rounded-xl bg-sky-100 text-sky-600 dark:bg-sky-950/60 dark:text-sky-400 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6",
                 eyebrowKey: "webDevelopment",
-                title: "Full-Stack Development",
+                title: t("pillarFullStackDevelopment"),
                 photo: "/images/photos/dhia-developer.png",
                 tint: "from-sky-50/95 via-white/97 to-white/98 dark:from-sky-950/30 dark:via-card/97 dark:to-card/98",
                 eyebrowCls: "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50",
