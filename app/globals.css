@@ -412,6 +412,22 @@ html.custom-cursor-active * {
     @apply border-border outline-ring/50; /* Updated from diff */
   }
 
+  /* Global keyboard-focus fallback: guarantees every interactive element
+     gets a visible focus ring even if it doesn't opt into its own
+     focus-visible:ring-* utility. Components that already set their own
+     focus-visible treatment (e.g. shadcn's ring + outline-none) take
+     precedence since their utility classes load after this base rule. */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
   html {
     color-scheme: light dark;
   }
