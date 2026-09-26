@@ -1,6 +1,7 @@
 "use client"
 
 import { Link } from "next-view-transitions"
+import Image from "next/image"
 import {
   Palette,
   Users,
@@ -86,11 +87,13 @@ export function InsightCover({
   category,
   title,
   slug,
+  image,
   className = "",
 }: {
   category: InsightArticleMeta["category"]
   title: string
   slug?: string
+  image?: string
   className?: string
 }) {
   // These were previously very low-opacity gradients (/30, /20, /40) sitting
@@ -111,12 +114,19 @@ export function InsightCover({
   }
   const icon = (slug && slugIcons[slug]) || icons[category]
 
+  // A real photo per article, when given, replaces the flat color-gradient
+  // placeholder block entirely -- the gradient stays only as a fallback for
+  // any article that somehow has none.
   return (
     <div
-      className={`relative overflow-hidden rounded-xl bg-gradient-to-br ${gradients[category]} ${className}`}
+      className={`relative overflow-hidden rounded-xl ${image ? "bg-slate-900" : `bg-gradient-to-br ${gradients[category]}`} ${className}`}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.16),transparent_50%)]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-transparent" />
+      {image ? (
+        <Image src={image} alt="" fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
+      ) : (
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.16),transparent_50%)]" />
+      )}
+      <div className={`absolute inset-0 bg-gradient-to-t ${image ? "from-black/75 via-black/20 to-black/5" : "from-black/55 via-black/5 to-transparent"}`} />
       <div className="absolute right-3 top-3">{icon}</div>
       <div className="relative flex h-full min-h-[120px] flex-col justify-end p-4">
         <span className="text-[10px] font-semibold uppercase tracking-wider text-white/85">

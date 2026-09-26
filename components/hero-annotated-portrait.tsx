@@ -307,10 +307,19 @@ export default function HeroAnnotatedPortrait({
         id: "identity",
         label: t("hudLabelSubject"),
         value: "Mohamed Dhia Arfa",
-        subvalue: `${t("graphicDesigner")} · ${t("aboutCertifiedTrainer")} · ${t("aboutWebDeveloper")}`,
+        // Location folded in here (was its own floating HUD card lower on
+        // the photo, which read as an oddly placed orphan card) since it's
+        // the same kind of personal-info line as the role subtitle above it.
+        subvalue: (
+          <>
+            {t("graphicDesigner")} · {t("aboutCertifiedTrainer")} · {t("aboutWebDeveloper")}
+            <br />
+            <BasedInTunisia className="mt-1 opacity-80" />
+          </>
+        ),
         anchor: { x: 58, y: 10 },
         card: { x: 92, y: 12 },
-        cardMaxWidth: 215,
+        cardMaxWidth: 230,
         bracket: true,
         delay: 0,
       },
@@ -349,19 +358,6 @@ export default function HeroAnnotatedPortrait({
         card: { x: 94, y: 32 },
         cardMaxWidth: 170,
         delay: 0.2,
-      },
-      {
-        // Moved up to sit with the other three HUD callouts (identity/status/
-        // stat all cluster between y:10-34) instead of floating alone near
-        // the bottom of the photo, per Dhia's "move it near its brothers" ask.
-        // Placed in the same left column as "status" (x ~ 6-22), just below it.
-        id: "location",
-        label: t("hudLabelLocation"),
-        value: <BasedInTunisia className="text-sm font-semibold" />,
-        anchor: { x: 24, y: 56 },
-        card: { x: 6, y: 58 },
-        cardMaxWidth: 195,
-        delay: 0.3,
       },
     ],
     [t, reducedMotion]

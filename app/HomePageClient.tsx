@@ -180,7 +180,7 @@ export default function HomePageClient() {
           </div>
           <h1 className="h1-hero text-slate-900 dark:text-white mb-2">
             {t("helloGreeting")}{" "}
-            <span className="text-accent">Mohamed Dhia</span>
+            <span className="text-accent">Dhia</span>
           </h1>
           <AnimatedRole />
           {/* Quicksand, fully visible, a subtle accent-colored glow (text-shadow)

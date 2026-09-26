@@ -307,7 +307,7 @@ export const devCardAspectRatio: Record<string, number> = {
   // homepage (Master to-do / user request: the old screenshots were too
   // low-res and didn't represent the sites well).
   "crit-tunisie": 1024 / 1024,
-  "best-dates-fruits": 900 / 506,
+  "best-dates-fruits": 800 / 453, // updated: real homepage screenshot replaced the old stock dates photo
 }
 
 /** Visual theme for each dev project's card on /developer, a colour-blocked

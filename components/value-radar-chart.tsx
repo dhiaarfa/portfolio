@@ -13,13 +13,17 @@ import { useLanguage } from '@/components/language-provider'
 // (Spotify Wrapped / Duolingo style) instead of a boardroom radar chart.
 // Icons are Lucide (not emoji) so this section reads as part of the same
 // icon system as the nav, footer, and every other section on the site.
-const traits: { Icon: LucideIcon; subject: string; value: number }[] = [
-  { Icon: MessageCircle, subject: 'Communication', value: 95 },
-  { Icon: Palette, subject: 'Creativity', value: 92 },
-  { Icon: Handshake, subject: 'Reliability', value: 98 },
-  { Icon: Brain, subject: 'Methodology', value: 90 },
-  { Icon: Globe, subject: 'Multilingual', value: 88 },
-  { Icon: Sparkles, subject: 'Cultural Fit', value: 94 },
+// No numeric self-ratings (was "Communication 95%", etc.) -- per Dhia's
+// feedback the exact percentages read as arbitrary/annoying "chiffres" for
+// a self-assessed soft-skill list. A plain labeled chip grid states the
+// strengths without pretending they're precisely measured.
+const traits: { Icon: LucideIcon; subject: string }[] = [
+  { Icon: MessageCircle, subject: 'Communication' },
+  { Icon: Palette, subject: 'Creativity' },
+  { Icon: Handshake, subject: 'Reliability' },
+  { Icon: Brain, subject: 'Methodology' },
+  { Icon: Globe, subject: 'Multilingual' },
+  { Icon: Sparkles, subject: 'Cultural Fit' },
 ]
 
 const valueProps: { Icon: LucideIcon; titleKey: string; descKey: string }[] = [
@@ -65,32 +69,22 @@ export default function ValueRadarChart() {
 
         <div className="rounded-2xl border border-border bg-card p-4 md:p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
-            {/* Skill bars, each fills in with a short staggered delay once
-                scrolled into view. Rounded, gradient-free, single accent
-                color: reads cleaner and more "app stat" than a filled
-                polygon, and takes noticeably less vertical space. */}
-            <div ref={barsRef} className="flex flex-col gap-3">
+            {/* Plain labeled chips, no percentage/progress-bar framing --
+                reads as a straightforward list of strengths rather than a
+                fake-precise scorecard. */}
+            <div ref={barsRef} className="grid grid-cols-2 gap-2.5">
               {traits.map((tr, i) => (
                 <motion.div
                   key={tr.subject}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={barsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-                  transition={{ duration: 0.4, delay: i * 0.07 }}
+                  className="flex items-center gap-2 rounded-xl border border-border bg-background/60 px-3 py-2.5"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={barsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                  transition={{ duration: 0.35, delay: i * 0.06 }}
                 >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-900 dark:text-white">
-                      <tr.Icon className="w-3.5 h-3.5 text-accent" aria-hidden /> {tr.subject}
-                    </span>
-                    <span className="text-xs font-bold text-accent tabular-nums">{tr.value}%</span>
-                  </div>
-                  <div className="h-1.5 rounded-full bg-border overflow-hidden">
-                    <motion.div
-                      className="h-full rounded-full bg-accent"
-                      initial={{ width: 0 }}
-                      animate={barsInView ? { width: `${tr.value}%` } : { width: 0 }}
-                      transition={{ duration: 0.7, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                    />
-                  </div>
+                  <span className="w-7 h-7 rounded-full bg-accent-subtle flex items-center justify-center shrink-0">
+                    <tr.Icon className="w-3.5 h-3.5 text-accent" aria-hidden />
+                  </span>
+                  <span className="text-xs font-semibold text-slate-900 dark:text-white">{tr.subject}</span>
                 </motion.div>
               ))}
             </div>
@@ -119,9 +113,6 @@ export default function ValueRadarChart() {
               ))}
             </div>
           </div>
-          <p className="text-center text-xs text-muted-foreground mt-3">
-            Self-assessed, not benchmarked against a third party
-          </p>
         </div>
       </div>
     </section>

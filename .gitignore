@@ -50,3 +50,5 @@ dev-log.txt
 
 build_log*.txt
 deploy_log*.txt
+build-out*.log
+build-log*.txt

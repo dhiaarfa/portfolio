@@ -86,6 +86,7 @@ export default function InsightsPageClient() {
                   category={featured.category}
                   title={t(featured.titleKey)}
                   slug={featured.slug}
+                  image={featured.thumbnail}
                   className="min-h-[180px] md:min-h-full md:rounded-none rounded-t-2xl"
                 />
                 <div className="p-6 md:p-8 flex flex-col justify-center">
@@ -134,6 +135,7 @@ export default function InsightsPageClient() {
                       category={article.category}
                       title={t(article.titleKey)}
                       slug={article.slug}
+                      image={article.thumbnail}
                       className={isWide ? "h-44 sm:h-full min-h-[160px]" : "h-40 w-full"}
                     />
                   </Link>

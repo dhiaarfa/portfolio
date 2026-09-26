@@ -11,11 +11,16 @@ export type InsightArticleMeta = {
   published: boolean
   featured?: boolean
   servicePath: "/designer" | "/trainer" | "/developer"
+  // Real photo per article (was a flat category-color gradient block for
+  // every card -- read as generic placeholders, not tied to what each
+  // article is actually about).
+  thumbnail: string
 }
 
 export const insightArticles: InsightArticleMeta[] = [
   {
     slug: "brand-colors-and-trust",
+    thumbnail: "/images/insights/brand-colors-and-trust.jpg",
     category: "Design",
     categoryKey: "insightsCatDesign",
     readMin: 4,
@@ -27,6 +32,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "facilitation-mistakes-youth-workshops",
+    thumbnail: "/images/insights/facilitation-mistakes-youth-workshops.jpg",
     category: "Training",
     categoryKey: "insightsCatTraining",
     readMin: 6,
@@ -39,6 +45,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "why-i-rebuilt-my-portfolio-in-nextjs",
+    thumbnail: "/images/insights/why-i-rebuilt-my-portfolio-in-nextjs.jpg",
     category: "Development",
     categoryKey: "insightsCatDev",
     readMin: 5,
@@ -50,6 +57,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "social-media-visual-consistency",
+    thumbnail: "/images/insights/social-media-visual-consistency.jpg",
     category: "Design",
     categoryKey: "insightsCatDesign",
     readMin: 5,
@@ -61,6 +69,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "training-needs-assessment-basics",
+    thumbnail: "/images/insights/training-needs-assessment-basics.jpg",
     category: "Training",
     categoryKey: "insightsCatTraining",
     readMin: 5,
@@ -72,6 +81,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "supabase-nextjs-for-freelancers",
+    thumbnail: "/images/insights/supabase-nextjs-for-freelancers.jpg",
     category: "Development",
     categoryKey: "insightsCatDev",
     readMin: 6,
@@ -83,6 +93,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "brand-guidelines-that-get-used",
+    thumbnail: "/images/insights/brand-guidelines-that-get-used.jpg",
     category: "Design",
     categoryKey: "insightsCatDesign",
     readMin: 5,
@@ -94,6 +105,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "icebreakers-vs-energizers",
+    thumbnail: "/images/insights/icebreakers-vs-energizers.jpg",
     category: "Training",
     categoryKey: "insightsCatTraining",
     readMin: 4,
@@ -105,6 +117,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "client-chatbot-with-openrouter",
+    thumbnail: "/images/insights/client-chatbot-with-openrouter.jpg",
     category: "Development",
     categoryKey: "insightsCatDev",
     readMin: 5,
@@ -116,6 +129,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "bilingual-branding-tunisia",
+    thumbnail: "/images/insights/bilingual-branding-tunisia.jpg",
     category: "Design",
     categoryKey: "insightsCatDesign",
     readMin: 5,
@@ -127,6 +141,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "corporate-training-tunisian-smes",
+    thumbnail: "/images/insights/corporate-training-tunisian-smes.jpg",
     category: "Training",
     categoryKey: "insightsCatTraining",
     readMin: 5,
@@ -138,6 +153,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "freelance-developer-tunisia-payments",
+    thumbnail: "/images/insights/freelance-developer-tunisia-payments.jpg",
     category: "Development",
     categoryKey: "insightsCatDev",
     readMin: 5,
@@ -149,6 +165,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "packaging-design-tunisian-exports",
+    thumbnail: "/images/insights/packaging-design-tunisian-exports.jpg",
     category: "Design",
     categoryKey: "insightsCatDesign",
     readMin: 5,
@@ -160,6 +177,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "green-digital-skills-youth-tunisia",
+    thumbnail: "/images/insights/green-digital-skills-youth-tunisia.jpg",
     category: "Training",
     categoryKey: "insightsCatTraining",
     readMin: 6,
@@ -171,6 +189,7 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "web-performance-tunisia-hosting",
+    thumbnail: "/images/insights/web-performance-tunisia-hosting.jpg",
     category: "Development",
     categoryKey: "insightsCatDev",
     readMin: 5,

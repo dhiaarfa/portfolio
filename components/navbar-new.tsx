@@ -126,10 +126,10 @@ export default function Navbar() {
             whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.92, rotate: -4 }}
           >
-            {/* No aria-label override here on purpose: the visible "Mohamed Dhia" text
+            {/* No aria-label override here on purpose: the visible "Dhia" text
                 already gives this link a perfectly good accessible name. An aria-label
                 of "Home" would silently replace that name for screen-reader users while
-                sighted users still see "Mohamed Dhia", a real WCAG 2.5.3 mismatch that
+                sighted users still see "Dhia", a real WCAG 2.5.3 mismatch that
                 showed up in a Lighthouse accessibility audit.
                 shrink-0 on this wrapper (and whitespace-nowrap below) keeps the
                 name and tagline on one line each, without it, the flex row's
@@ -140,7 +140,7 @@ export default function Navbar() {
                 <Image src="/images/photos/nav-avatar.png" alt="Mohamed Dhia" width={36} height={36} className="object-cover w-full h-full" priority />
               </div>
               <div className="hidden sm:block leading-tight shrink-0">
-                <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none whitespace-nowrap">Mohamed Dhia</p>
+                <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none whitespace-nowrap">Dhia</p>
                 <p className="text-[10px] text-slate-400 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5 whitespace-nowrap">Designer · Trainer · Dev</p>
               </div>
             </Link>

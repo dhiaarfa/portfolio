@@ -26,12 +26,15 @@ import { AnimatedNumber } from "@/components/ui/animated-number"
 // already used elsewhere on the site), for the compact photo-led timeline
 // below -- purely illustrative of that period, not a claim about the exact
 // event named in the milestone's title.
+// One consistent portrait (the site's own icon photo) for every node instead
+// of a different, unrelated photo per year -- per Dhia's "irrelevant photos,
+// just use my website icon photo portrait for all instead" request.
 const milestonePhotos: Record<string, string> = {
-  "2019": "/images/bg/bg-exhibition.jpg",
-  "2022": "/images/bg/bg-work-session.jpg",
-  "2024": "/images/trainer/scorp-camp-25.png",
-  "2025": "/images/trainer/iom-hackathon-doha-2024.png",
-  "2026": "/images/trainer/tnhrt-carthaginian-camp.png",
+  "2019": "/images/photos/dhia-main.png",
+  "2022": "/images/photos/dhia-main.png",
+  "2024": "/images/photos/dhia-main.png",
+  "2025": "/images/photos/dhia-main.png",
+  "2026": "/images/photos/dhia-main.png",
 }
 
 export default function TrainerClientPage() {
@@ -191,12 +194,11 @@ export default function TrainerClientPage() {
                 <div className="grid md:grid-cols-2 gap-0 md:max-h-[320px]">
                   <div className="relative aspect-[16/10] md:aspect-auto md:h-full">
                     <Image
-                      src="/images/dhia/speaking-mic.png"
+                      src="/images/dhia/speaking-mic-crop.png"
                       alt="Mohamed Dhia facilitating a training session"
                       fill
                       className="object-cover object-center"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      style={{ objectPosition: "center top" }}
                     />
                   </div>
                   <div className="p-6 md:p-8 flex flex-col justify-center bg-card/50">
