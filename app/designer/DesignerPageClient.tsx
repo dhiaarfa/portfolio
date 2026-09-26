@@ -76,7 +76,7 @@ export default function DesignerPageClient() {
         <RoleHero
           variant="split-edge"
           decoration={
-            <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#22c55e 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
+            <div className="pointer-events-none absolute inset-0 opacity-[0.03] bg-dot-grid" />
           }
           mediaClassName="relative bg-[#1C1C1C]"
           media={

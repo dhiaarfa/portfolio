@@ -41,10 +41,8 @@ export default function Footer() {
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.14]"
+          className="pointer-events-none absolute inset-0 opacity-[0.14] bg-dot-grid"
           style={{
-            backgroundImage: "radial-gradient(var(--site-accent) 1.5px, transparent 1.5px)",
-            backgroundSize: "22px 22px",
             maskImage: "radial-gradient(ellipse 60% 100% at 100% 50%, black, transparent)",
             WebkitMaskImage: "radial-gradient(ellipse 60% 100% at 100% 50%, black, transparent)",
           }}

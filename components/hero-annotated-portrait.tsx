@@ -390,13 +390,7 @@ export default function HeroAnnotatedPortrait({
           aria-hidden
         />
       )}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.07] dark:opacity-[0.08]"
-        style={{
-          backgroundImage: "radial-gradient(var(--site-accent) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
-        }}
-      />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.07] dark:opacity-[0.08] bg-dot-grid" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl">
         <div className={children ? "grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,44%)_minmax(0,56%)] lg:gap-8" : ""}>

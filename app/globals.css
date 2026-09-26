@@ -518,6 +518,20 @@ html.custom-cursor-active * {
   font-style: normal;
 }
 
+/* The site's one recurring signature decorative motif -- a faint dot-grid
+   wash used behind the homepage hero, the footer's CTA band, the 404 page,
+   and the Designer hero. Before this, each usage hand-rolled its own
+   inline radial-gradient with slightly different dot size (1px/1.5px),
+   spacing (16-28px), and in one case a hardcoded hex instead of the accent
+   token -- close enough to look like copy-paste drift rather than one
+   deliberate signature texture. Callers still control their own opacity
+   and optional mask (each context's fade/placement is legitimately
+   different), just not the shape of the dot itself. */
+.bg-dot-grid {
+  background-image: radial-gradient(var(--site-accent) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
 /* Card shadows from design token system */
 .shadow-card {
   box-shadow: var(--shadow-card);
