@@ -480,7 +480,7 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* Capabilities with proof links */}
-        <section className="py-16 px-6 bg-slate-50 dark:bg-card">
+        <section className="py-16 px-6 bg-card">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold text-center mb-10">What I build today</h2>
             <div className="grid sm:grid-cols-3 gap-5">
