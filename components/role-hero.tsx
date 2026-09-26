@@ -51,7 +51,12 @@ export default function RoleHero({
   if (variant === "split-edge") {
     return (
       <section className={cn("min-h-[68vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden", className)}>
-        <div className="relative order-2 flex flex-col justify-between bg-[#0A0A0A] p-8 lg:order-1 lg:p-14">
+        {/* Was hardcoded bg-[#0A0A0A] regardless of site theme -- rendered
+            permanently dark even in light mode (same bug class already
+            fixed on the Developer hero). The media panel on the other side
+            is a photo collage and can stay visually rich either way; only
+            this text panel needed to become theme-aware. */}
+        <div className="relative order-2 flex flex-col justify-between bg-background p-8 lg:order-1 lg:p-14">
           {decoration}
           <div className="relative z-10 my-auto py-6">{children}</div>
           {footer && <div className="relative z-10">{footer}</div>}

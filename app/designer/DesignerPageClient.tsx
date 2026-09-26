@@ -78,54 +78,68 @@ export default function DesignerPageClient() {
           decoration={
             <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#22c55e 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
           }
-          mediaClassName="grid grid-cols-2 grid-rows-2 gap-1 bg-[#1C1C1C]"
+          mediaClassName="relative bg-[#1C1C1C]"
           media={
             <>
-              {[
-                "/images/lone-space-gold.png",
-                "/images/445771850-916829483581375-1053755579034856379-n.png",
-                "/images/tafani-white-png.png",
-                "/images/meetuppro-thumbnail.png",
-              ].map((src, i) => (
-                <div key={src} className="relative overflow-hidden">
-                  <Image src={src} alt="" fill className="object-cover" priority={i < 2} sizes="50vw" />
-                </div>
-              ))}
+              {/* Was a flat 2x2 grid of 4 project logos. Dhia asked for more
+                  detail: every curated project now tiles as small squares,
+                  repeating the list to fill the whole panel, with a frosted
+                  blur layer over the mosaic instead of the images sitting
+                  fully sharp -- reads as a rich "wall of work" texture
+                  behind the hero rather than 4 isolated logos. */}
+              <div className="absolute inset-0 grid grid-cols-5 sm:grid-cols-6 auto-rows-fr gap-[2px]">
+                {Array.from({ length: 30 }).map((_, i) => {
+                  const item = curatedGallery[i % curatedGallery.length]
+                  return (
+                    <div key={i} className="relative overflow-hidden">
+                      <Image
+                        src={item.image}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        priority={i < 6}
+                        sizes="(min-width: 1024px) 17vw, 20vw"
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+              <div className="pointer-events-none absolute inset-0 backdrop-blur-md bg-black/10" />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/40 to-transparent lg:bg-gradient-to-r lg:from-[#0A0A0A]/30" />
             </>
           }
           footer={
-            <div className="flex gap-8 border-t border-[#2E2E2E] pt-6">
+            <div className="flex gap-8 border-t border-border pt-6">
               {[
                 [formatStat("designProjects"), "Projects"],
                 [formatStat("yearsExperience"), "Years"],
                 [formatStat("brands"), "Brands"],
               ].map(([v, l]) => (
                 <div key={l}>
-                  <p className="font-display text-2xl font-black leading-none text-white">{v}</p>
-                  <p className="mt-1 text-[12px] uppercase tracking-widest text-slate-500">{l}</p>
+                  <p className="font-display text-2xl font-black leading-none text-foreground">{v}</p>
+                  <p className="mt-1 text-[12px] uppercase tracking-widest text-muted-foreground">{l}</p>
                 </div>
               ))}
             </div>
           }
         >
           <p className="label mb-4 text-accent">Brand design · Digital marketing · Zia Studio</p>
-          <h1 className="h1-hero mb-5 text-white">
+          <h1 className="h1-hero mb-5 text-foreground">
             Design that sells, brand identity, campaigns, and marketing strategy for Tunisian brands.
           </h1>
-          <p className="mb-8 max-w-md text-[17px] leading-relaxed text-slate-400">
+          <p className="mb-8 max-w-md text-[17px] leading-relaxed text-muted-foreground">
             I&apos;m not just a designer, I conceive digital marketing strategies, run social campaigns, and build visual systems that convert. From logo to launch for cafés, startups, and NGOs across Tunisia.
           </p>
           <div className="flex flex-wrap gap-3">
             <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green">
               Start a project
             </a>
-            <a href="#case-studies" className="rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white">
+            <a href="#case-studies" className="rounded-[14px] border border-border px-6 py-3 font-medium text-muted-foreground transition-all hover:border-accent/60 hover:text-foreground">
               See selected work
             </a>
             <Link
               href="/freebies?category=design"
-              className="inline-flex items-center gap-2 rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-[14px] border border-border px-6 py-3 font-medium text-muted-foreground transition-all hover:border-accent/60 hover:text-foreground"
             >
               <Gift className="h-4 w-4" />
               Get free templates
