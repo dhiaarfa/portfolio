@@ -618,6 +618,15 @@ export const translations = {
     toolsGroupBackend: "Backend & Infra",
     toolsGroupProductivity: "Productivity & Facilitation",
     toolsStackHeadingCompact: "Dev stack I ship with",
+
+    // 404 page -- was fully hardcoded English, never localized.
+    notFoundHeading: "This page wandered off-brief.",
+    notFoundDesc: "Wrong link, moved page, or a typo, either way, it's not here. Here are three places that definitely are.",
+    notFoundDesignLabel: "Design",
+    notFoundTrainingLabel: "Training",
+    notFoundWebDevLabel: "Web Dev",
+    notFoundGoHome: "Go home",
+    notFoundFreeResources: "Free resources",
   },
   fr: {
     // Navigation
@@ -1231,6 +1240,14 @@ export const translations = {
     toolsGroupBackend: "Backend & Infra",
     toolsGroupProductivity: "Productivité & Animation",
     toolsStackHeadingCompact: "Stack technique que j'utilise",
+
+    notFoundHeading: "Cette page s'est perdue.",
+    notFoundDesc: "Lien erroné, page déplacée ou faute de frappe, elle n'est pas ici. Voici trois endroits qui le sont sûrement.",
+    notFoundDesignLabel: "Design",
+    notFoundTrainingLabel: "Formation",
+    notFoundWebDevLabel: "Web Dev",
+    notFoundGoHome: "Accueil",
+    notFoundFreeResources: "Ressources gratuites",
   },
   ar: {
     // Navigation
@@ -1844,6 +1861,14 @@ export const translations = {
     toolsGroupBackend: "الخلفية والبنية التحتية",
     toolsGroupProductivity: "الإنتاجية والتيسير",
     toolsStackHeadingCompact: "الأدوات التقنية التي أستخدمها",
+
+    notFoundHeading: "هذه الصفحة ضلّت طريقها.",
+    notFoundDesc: "رابط خاطئ، صفحة منقولة، أو خطأ إملائي، المهم أنها ليست هنا. إليك ثلاث وجهات موجودة بالتأكيد.",
+    notFoundDesignLabel: "تصميم",
+    notFoundTrainingLabel: "تدريب",
+    notFoundWebDevLabel: "تطوير ويب",
+    notFoundGoHome: "الرئيسية",
+    notFoundFreeResources: "موارد مجانية",
   },
 }
 

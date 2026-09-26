@@ -1,9 +1,13 @@
+"use client"
+
 import { Link } from "next-view-transitions"
 import { Compass, Palette, Code2 } from "lucide-react"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
+import { useLanguage } from "@/components/language-provider"
 
 export default function NotFound() {
+  const { t } = useLanguage()
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
@@ -44,10 +48,10 @@ export default function NotFound() {
           </div>
           <p className="text-7xl sm:text-8xl font-display font-black text-accent mb-2 leading-none">404</p>
           <h1 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
-            This page wandered off-brief.
+            {t("notFoundHeading")}
           </h1>
           <p className="text-muted-foreground text-base lg:text-lg mb-8 leading-relaxed">
-            Wrong link, moved page, or a typo, either way, it&apos;s not here. Here are three places that definitely are.
+            {t("notFoundDesc")}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
@@ -58,7 +62,7 @@ export default function NotFound() {
               <span className="grid h-10 w-10 place-items-center rounded-full bg-pink-50 dark:bg-pink-950/40 text-pink-600 dark:text-pink-400">
                 <Palette className="h-5 w-5" />
               </span>
-              <span className="text-sm font-semibold text-foreground">Design</span>
+              <span className="text-sm font-semibold text-foreground">{t("notFoundDesignLabel")}</span>
             </Link>
             <Link
               href="/trainer"
@@ -67,7 +71,7 @@ export default function NotFound() {
               <span className="grid h-10 w-10 place-items-center rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400">
                 <Compass className="h-5 w-5" />
               </span>
-              <span className="text-sm font-semibold text-foreground">Training</span>
+              <span className="text-sm font-semibold text-foreground">{t("notFoundTrainingLabel")}</span>
             </Link>
             <Link
               href="/developer"
@@ -76,19 +80,19 @@ export default function NotFound() {
               <span className="grid h-10 w-10 place-items-center rounded-full bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400">
                 <Code2 className="h-5 w-5" />
               </span>
-              <span className="text-sm font-semibold text-foreground">Web Dev</span>
+              <span className="text-sm font-semibold text-foreground">{t("notFoundWebDevLabel")}</span>
             </Link>
           </div>
 
           <div className="flex flex-wrap gap-3 justify-center">
             <Link href="/" className="btn-green">
-              Go home
+              {t("notFoundGoHome")}
             </Link>
             <Link href="/freebies" className="btn-outline">
-              Free resources
+              {t("notFoundFreeResources")}
             </Link>
             <Link href="/#contact" className="btn-outline">
-              Contact
+              {t("contact")}
             </Link>
           </div>
         </div>
