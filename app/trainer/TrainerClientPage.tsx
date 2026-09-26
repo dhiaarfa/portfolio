@@ -10,6 +10,7 @@ import Footer from "@/components/footer"
 import ContactForm from "@/components/contact-form"
 import TrainingMethodologySection from "@/components/training-methodology-section"
 import CertificationsSection from "@/components/certifications-section"
+import ToolsStackSection from "@/components/tools-stack-section"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import TrainerOffersSection from "@/components/trainer-offers-section"
 import TrainerHowWeWorkSection from "@/components/trainer-how-we-work-section"
@@ -20,6 +21,18 @@ import { siteConfig } from "@/lib/site-config"
 import { formatStat, profileStats, trainingMilestones } from "@/lib/profile"
 import { StatRing } from "@/components/ui/stat-ring"
 import { AnimatedNumber } from "@/components/ui/animated-number"
+
+// One real photo per timeline era (Dhia's own event/training photos,
+// already used elsewhere on the site), for the compact photo-led timeline
+// below -- purely illustrative of that period, not a claim about the exact
+// event named in the milestone's title.
+const milestonePhotos: Record<string, string> = {
+  "2019": "/images/bg/bg-exhibition.jpg",
+  "2022": "/images/bg/bg-work-session.jpg",
+  "2024": "/images/trainer/scorp-camp-25.png",
+  "2025": "/images/trainer/iom-hackathon-doha-2024.png",
+  "2026": "/images/trainer/tnhrt-carthaginian-camp.png",
+}
 
 export default function TrainerClientPage() {
   const { t } = useLanguage()
@@ -166,9 +179,17 @@ export default function TrainerClientPage() {
                 <p className="text-muted-foreground text-lg max-w-3xl">{t("trainerJourneyIntro")}</p>
               </div>
 
+              {/* Was a 50/50 grid with the image forced to aspect-square --
+                  on a wide desktop viewport that made the row extremely
+                  tall (the image's own width dictated its height), so the
+                  short text column ended up centered inside a huge box with
+                  a lot of empty space below it ("beaucoup de gaspillage").
+                  Fixed by capping the row's overall height and letting the
+                  image use a normal landscape aspect ratio instead of a
+                  square, so both columns stay compact and proportional. */}
               <div className="rounded-2xl overflow-hidden border border-border shadow-lg bg-gradient-to-br from-background to-card">
-                <div className="grid md:grid-cols-2 gap-0">
-                  <div className="relative aspect-[4/3] md:aspect-square">
+                <div className="grid md:grid-cols-2 gap-0 md:max-h-[320px]">
+                  <div className="relative aspect-[16/10] md:aspect-auto md:h-full">
                     <Image
                       src="/images/dhia/speaking-mic.png"
                       alt="Mohamed Dhia facilitating a training session"
@@ -192,35 +213,59 @@ export default function TrainerClientPage() {
                 </div>
               </div>
 
-              <div className="space-y-8">
-                {trainingMilestones.map((milestone, i) => (
-                  <motion.div
-                    key={milestone.year}
-                    className="group relative"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 items-start p-5 sm:p-6 md:p-8 border border-border rounded-2xl md:rounded-3xl hover:border-foreground/30 transition-all hover:bg-card">
-                      <div className="space-y-1 md:space-y-2">
-                        <p className="text-xs md:text-sm font-medium text-muted-foreground">YEAR</p>
-                        <h3 className="text-3xl md:text-4xl font-bold">{milestone.year}</h3>
+              {/* Was 5 large bordered boxes, each with a giant standalone
+                  "YEAR" + 4xl digit taking a full grid column purely for
+                  decoration -- tall, repetitive, and static (no motion once
+                  the page had loaded). Replaced with a compact connected
+                  timeline: a real photo from that era sits in each node on
+                  the connecting line, and the year moves into a small pill
+                  next to the title instead of its own oversized block, so
+                  the whole thing takes roughly half the vertical space and
+                  reads as a photo-led story rather than a data table. */}
+              <div className="relative pl-16 sm:pl-20">
+                <div className="absolute left-[27px] sm:left-[31px] top-2 bottom-2 w-px bg-border" aria-hidden />
+                <div className="space-y-6">
+                  {trainingMilestones.map((milestone, i) => (
+                    <motion.div
+                      key={milestone.year}
+                      className="group relative"
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.45, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                      viewport={{ once: true, margin: "-60px" }}
+                    >
+                      <div className="absolute -left-16 sm:-left-20 top-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-background ring-1 ring-border shadow-sm">
+                        <Image
+                          src={milestonePhotos[milestone.year]}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          sizes="64px"
+                          aria-hidden
+                        />
                       </div>
-                      <div className="space-y-3 md:space-y-4 md:col-span-2">
-                        <h4 className="text-2xl font-bold">{milestone.title}</h4>
-                        <p className="text-muted-foreground leading-relaxed">{milestone.description}</p>
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-background border border-border rounded-full text-sm font-medium">
-                          {milestone.stats}
+                      <div className="rounded-2xl border border-border p-4 sm:p-5 transition-all group-hover:border-foreground/30 group-hover:bg-card">
+                        <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                          <span className="text-xs font-bold text-accent bg-accent/10 rounded-full px-2.5 py-0.5">{milestone.year}</span>
+                          <h4 className="text-lg sm:text-xl font-bold">{milestone.title}</h4>
                         </div>
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-3">{milestone.description}</p>
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-background border border-border rounded-full text-xs font-medium">
+                          {milestone.stats}
+                        </span>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
         </section>
+
+        {/* Facilitation-relevant slice of the full tools table -- the
+            complete list lives on the homepage now (see HomePageClient.tsx),
+            per Dhia's ask to avoid repeating the whole table on every page. */}
+        <ToolsStackSection compact groups={["productivity"]} />
 
         {/* 10. Credentials + case studies */}
         <CertificationsSection />

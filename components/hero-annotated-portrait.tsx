@@ -335,18 +335,31 @@ export default function HeroAnnotatedPortrait({
         id: "stat",
         label: t("hudLabelImpact"),
         value: formatStat("participantsTrained"),
-        subvalue: t("homePeopleTrained"),
+        // Footnoted with the real training-hours figure so "1,120+ people
+        // trained" reads as a specific, verifiable claim (over how many
+        // hours) rather than a bare headline number.
+        subvalue: (
+          <>
+            {t("homePeopleTrained")}
+            <br />
+            <span className="opacity-70">* {formatStat("trainingHours")} {t("hudImpactHoursNote")}</span>
+          </>
+        ),
         anchor: { x: 78, y: 34 },
         card: { x: 94, y: 32 },
         cardMaxWidth: 170,
         delay: 0.2,
       },
       {
+        // Moved up to sit with the other three HUD callouts (identity/status/
+        // stat all cluster between y:10-34) instead of floating alone near
+        // the bottom of the photo, per Dhia's "move it near its brothers" ask.
+        // Placed in the same left column as "status" (x ~ 6-22), just below it.
         id: "location",
         label: t("hudLabelLocation"),
         value: <BasedInTunisia className="text-sm font-semibold" />,
-        anchor: { x: 50, y: 78 },
-        card: { x: 88, y: 84 },
+        anchor: { x: 24, y: 56 },
+        card: { x: 6, y: 58 },
         cardMaxWidth: 195,
         delay: 0.3,
       },

@@ -111,7 +111,7 @@ export default function DeveloperPageClient() {
           <h1 className="h1-hero mb-4">
             Design-trained developer<br /><span className="text-accent">who ships.</span>
           </h1>
-          <p className="text-slate-400 text-[17px] leading-relaxed max-w-md mb-8">
+          <p className="text-muted-foreground text-[17px] leading-relaxed max-w-md mb-8">
             Turning designs into fast, scalable digital experiences. React · Next.js · Design-first mindset.
           </p>
           <div className="flex flex-wrap gap-3">
@@ -120,26 +120,26 @@ export default function DeveloperPageClient() {
               href={siteConfig.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/40 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-[14px] border border-border px-6 py-3 font-medium text-muted-foreground transition-all hover:border-accent/40 hover:text-foreground"
             >
               <Github className="h-4 w-4" />
               View GitHub
             </a>
             <Link
               href="/freebies?category=development"
-              className="inline-flex items-center gap-2 rounded-[14px] border border-[#383838] px-6 py-3 font-medium text-slate-300 transition-all hover:border-accent/60 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-[14px] border border-border px-6 py-3 font-medium text-muted-foreground transition-all hover:border-accent/60 hover:text-foreground"
             >
               <Gift className="h-4 w-4" />
               Get free checklist
             </Link>
-            <a href="#contact-form" className="text-sm font-medium text-slate-400 px-2 py-3 hover:text-white transition-colors">
+            <a href="#contact-form" className="text-sm font-medium text-muted-foreground px-2 py-3 hover:text-foreground transition-colors">
               Let&apos;s talk →
             </a>
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href={siteConfig.resumePdfUrl}
-              className="inline-flex items-center gap-2 text-xs font-medium text-slate-500 hover:text-accent transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground hover:text-accent transition-colors"
             >
               <Download className="h-3.5 w-3.5" />
               Download résumé (PDF)

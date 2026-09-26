@@ -1,13 +1,30 @@
 "use client"
 
+import { useState } from "react"
 import { Link } from "next-view-transitions"
-import { Mail, Linkedin, Instagram, Calendar, Heart, Github } from "lucide-react"
+import Image from "next/image"
+import { Mail, Linkedin, Instagram, Calendar, Heart, Github, Check } from "lucide-react"
 import { BasedInTunisia } from "@/components/based-in-tunisia"
 import { siteConfig } from "@/lib/site-config"
 import { useLanguage } from "@/components/language-provider"
 
 export default function Footer() {
   const { t } = useLanguage()
+  // "mailto:" links silently do nothing when the visitor's browser/OS has no
+  // default mail client configured -- common on a lot of setups -- so this
+  // link also copies the address to the clipboard, giving visible feedback
+  // (a checkmark + "Copied") even when no mail app actually opens.
+  const [emailCopied, setEmailCopied] = useState(false)
+  async function handleAltEmailClick() {
+    try {
+      await navigator.clipboard.writeText(siteConfig.email)
+      setEmailCopied(true)
+      window.setTimeout(() => setEmailCopied(false), 1800)
+    } catch {
+      // Clipboard can fail (permissions, insecure context); the mailto: href
+      // still fires as a normal link click either way.
+    }
+  }
 
   return (
     <footer id="contact" className="relative w-full bg-card text-foreground">
@@ -52,9 +69,19 @@ export default function Footer() {
             </a>
             <a
               href={`mailto:${siteConfig.email}`}
+              onClick={handleAltEmailClick}
               className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
             >
-              <Mail className="w-3.5 h-3.5" /> {t("footerAltCta")}
+              {emailCopied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
+                  <span className="text-green-600 dark:text-green-400">{t("copiedLabel")} · {siteConfig.email}</span>
+                </>
+              ) : (
+                <>
+                  <Mail className="w-3.5 h-3.5" /> {t("footerAltCta")}
+                </>
+              )}
             </a>
           </div>
         </div>
@@ -63,8 +90,8 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
         <div>
           <div className="flex items-center gap-2.5 mb-4">
-            <div className="w-8 h-8 bg-accent rounded-xl flex items-center justify-center">
-              <span className="text-white font-black text-sm font-display">D</span>
+            <div className="relative w-8 h-8 rounded-xl overflow-hidden shrink-0 ring-1 ring-border">
+              <Image src="/images/photos/nav-avatar.png" alt="" fill className="object-cover" aria-hidden />
             </div>
             <span className="font-display font-bold text-foreground text-sm">Mohamed Dhia</span>
           </div>

@@ -12,6 +12,7 @@ import { AnimatedNumber } from "@/components/ui/animated-number"
 import dynamic from "next/dynamic"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import ToolkitStrip from "@/components/toolkit-strip"
+import ToolsStackSection from "@/components/tools-stack-section"
 import HeroAnnotatedPortrait from "@/components/hero-annotated-portrait"
 import StatsSection from "@/components/stats-section"
 import JourneySection from "@/components/journey-section"
@@ -319,12 +320,6 @@ export default function HomePageClient() {
                         {t(card.role.descriptionKey)}
                       </p>
 
-                      {card.flagship && (
-                        <p className="text-xs font-medium text-slate-400 dark:text-slate-500 mb-3 flex items-center gap-1.5">
-                          <span aria-hidden>★</span> {card.flagship}
-                        </p>
-                      )}
-
                       {card.tags && (
                         <div className="flex gap-2 flex-wrap mb-5">
                           {card.tags.map((tag) => (
@@ -365,8 +360,14 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      {/* Zia Studio, dedicated section */}
-      <section className="section-compact px-6 bg-[#0A0A0A] dark:bg-[#0A0A0A]">
+      {/* Zia Studio, dedicated section. Was hardcoded to the same near-black
+          background in both light and dark mode -- always rendered dark
+          regardless of the visitor's theme, which is the bug being fixed
+          here. Now uses the site's theme-aware bg-card token like every
+          other section (the logo itself already has its own black lockup
+          backdrop baked into the PNG, so it still reads as a framed logo
+          either way). */}
+      <section className="section-compact px-6 bg-card">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="flex-shrink-0 rounded-2xl overflow-hidden">
             <Image
@@ -379,7 +380,7 @@ export default function HomePageClient() {
           </div>
           <div className="flex-1 text-center md:text-left">
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-2">{t("homeCreativeAgency")}</p>
-            <p className="text-[#F5F5F5] text-lg leading-relaxed mb-6">
+            <p className="text-foreground text-lg leading-relaxed mb-6">
               {t("homeZiaDesc")}
             </p>
             <a href="#contact" className="btn-green">
@@ -393,10 +394,17 @@ export default function HomePageClient() {
       {/* Client Logos */}
       <ClientLogosStrip />
 
-      {/* Toolkit, condensed cross-discipline sample of the full tools/stack
-          table (see /designer, /developer) so it isn't buried on a sub-page
-          (Master to-do list, Tier 6). */}
+      {/* Toolkit, condensed cross-discipline sample -- the small icon strip
+          visitors see first. */}
       <ToolkitStrip />
+
+      {/* Full "Software I work with daily" table. Moved here from the
+          Designer page per Dhia's ask -- it covers all disciplines (design,
+          AI, frontend, backend, facilitation), so it belongs on the
+          homepage rather than under just one pillar page. Designer/Trainer/
+          Developer each now show only their own relevant slice (see
+          DesignerPageClient.tsx / TrainerClientPage.tsx / DeveloperPageClient.tsx). */}
+      <ToolsStackSection />
 
       {/* Stats */}
       <StatsSection />

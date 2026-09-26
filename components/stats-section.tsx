@@ -44,7 +44,7 @@ export default function StatsSection() {
               <AnimatedNumber
                 value={s.value}
                 suffix={s.suffix}
-                className="font-display font-extrabold leading-none text-slate-900 dark:text-white text-[clamp(28px,4vw,44px)] tabular-nums"
+                className="font-display font-bold leading-none text-slate-900 dark:text-white text-[clamp(28px,4vw,44px)] tabular-nums"
               />
               <p className="label text-muted-foreground mt-2">{s.label}</p>
             </div>

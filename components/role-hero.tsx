@@ -64,7 +64,14 @@ export default function RoleHero({
   return (
     <section
       className={cn(
-        "bg-[#0A0A0A] text-white min-h-[68vh] flex items-center px-6 py-16 relative overflow-hidden",
+        // Was hardcoded bg-[#0A0A0A] text-white regardless of site theme --
+        // rendered as a permanently-dark hero even in light mode (the
+        // "developer page looks dark in light mode" bug). Now theme-aware
+        // like the rest of the site; the terminal-style media mockup this
+        // variant is paired with stays intentionally dark on its own (a
+        // code-editor look is expected to stay dark, like a syntax-
+        // highlighted code block), so only this outer shell changes.
+        "bg-background text-foreground min-h-[68vh] flex items-center px-6 py-16 relative overflow-hidden",
         className
       )}
     >

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import { Award, GraduationCap, Briefcase, Star } from "lucide-react"
 import { certifications, education, aboutExperience, civicExperience } from "@/lib/profile"
 import { useLanguage } from "@/components/language-provider"
@@ -72,18 +73,33 @@ export default function JourneySection() {
           ))}
         </div>
 
-        <div className="rounded-2xl border border-border bg-card divide-y divide-border overflow-hidden">
-          {rows[tab].map((r) => (
-            <div key={r.id} className="flex items-center justify-between gap-3 px-4 py-2.5">
-              <div className="min-w-0">
-                <p className="text-sm font-medium text-slate-900 dark:text-white truncate">{r.title}</p>
-                <p className="text-xs text-muted-foreground truncate">{r.sub}</p>
-              </div>
-              <span className="text-xs font-semibold text-muted-foreground shrink-0 whitespace-nowrap">
-                {r.when}
-              </span>
-            </div>
-          ))}
+        <div className="relative rounded-2xl border border-border bg-card overflow-hidden">
+          {/* Switching tabs used to swap content instantly with no
+              transition -- felt like a static table rather than an
+              interactive section. Each tab's rows now cross-fade + slide in
+              as a group when the active tab changes. */}
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={tab}
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -12 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              className="divide-y divide-border"
+            >
+              {rows[tab].map((r) => (
+                <div key={r.id} className="flex items-center justify-between gap-3 px-4 py-2.5">
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-slate-900 dark:text-white truncate">{r.title}</p>
+                    <p className="text-xs text-muted-foreground truncate">{r.sub}</p>
+                  </div>
+                  <span className="text-xs font-semibold text-muted-foreground shrink-0 whitespace-nowrap">
+                    {r.when}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

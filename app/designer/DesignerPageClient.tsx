@@ -338,7 +338,10 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        <ToolsStackSection />
+        {/* Only the design-relevant slice of the full stack lives here now
+            -- the complete list moved to the homepage (see HomePageClient.tsx),
+            per Dhia's ask to avoid repeating the whole table on every page. */}
+        <ToolsStackSection compact groups={["design", "ai"]} />
 
         {/* The hero already offers "Start a project" and the Behance archive
             link up front, and the contact-form section right below closes
