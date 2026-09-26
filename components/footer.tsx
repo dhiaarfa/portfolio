@@ -10,14 +10,14 @@ export default function Footer() {
   const { t } = useLanguage()
 
   return (
-    <footer id="contact" className="relative w-full bg-[#0A0A0A] text-white">
+    <footer id="contact" className="relative w-full bg-card text-foreground">
       {/* Seam fade: softens the hard edge between whatever section precedes
-          the footer and its solid dark background (Master to-do, Tier 2). */}
+          the footer and its background (Master to-do, Tier 2). */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-20 sm:h-28 -translate-y-full bg-gradient-to-b from-transparent to-background"
         aria-hidden
       />
-      <div className="relative overflow-hidden border-b border-[#2E2E2E]">
+      <div className="relative overflow-hidden border-b border-border">
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.06] bg-cover bg-center grayscale"
           style={{ backgroundImage: "url(/images/bg/bg-work-session.jpg)" }}
@@ -36,10 +36,10 @@ export default function Footer() {
         <div className="relative max-w-5xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
             <p className="label text-accent mb-1">{t("footerLetsWork")}</p>
-            <h3 className="font-display font-bold text-2xl sm:text-3xl text-white leading-snug">
+            <h3 className="font-display font-bold text-2xl sm:text-3xl text-foreground leading-snug">
               {t("footerReadyProject")}
             </h3>
-            <p className="text-slate-500 text-sm mt-1">{t("footerCallShort")}</p>
+            <p className="text-muted-foreground text-sm mt-1">{t("footerCallShort")}</p>
           </div>
           <div className="flex-shrink-0 flex flex-col items-start sm:items-end gap-2.5">
             <a
@@ -52,7 +52,7 @@ export default function Footer() {
             </a>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-accent transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
             >
               <Mail className="w-3.5 h-3.5" /> {t("footerAltCta")}
             </a>
@@ -66,9 +66,9 @@ export default function Footer() {
             <div className="w-8 h-8 bg-accent rounded-xl flex items-center justify-center">
               <span className="text-white font-black text-sm font-display">D</span>
             </div>
-            <span className="font-display font-bold text-white text-sm">Mohamed Dhia</span>
+            <span className="font-display font-bold text-foreground text-sm">Mohamed Dhia</span>
           </div>
-          <p className="text-slate-500 text-xs leading-relaxed mb-5">
+          <p className="text-muted-foreground text-xs leading-relaxed mb-5">
             {t("footerDesc")}
           </p>
           <div className="flex gap-2.5">
@@ -76,7 +76,7 @@ export default function Footer() {
               href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 bg-[#2E2E2E] rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
+              className="w-9 h-9 bg-muted rounded-xl flex items-center justify-center text-muted-foreground hover:bg-accent hover:text-white transition-all duration-200"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-4 h-4" />
@@ -85,7 +85,7 @@ export default function Footer() {
               href={siteConfig.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 bg-[#2E2E2E] rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
+              className="w-9 h-9 bg-muted rounded-xl flex items-center justify-center text-muted-foreground hover:bg-accent hover:text-white transition-all duration-200"
               aria-label="Instagram"
             >
               <Instagram className="w-4 h-4" />
@@ -94,14 +94,14 @@ export default function Footer() {
               href={siteConfig.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 bg-[#2E2E2E] rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
+              className="w-9 h-9 bg-muted rounded-xl flex items-center justify-center text-muted-foreground hover:bg-accent hover:text-white transition-all duration-200"
               aria-label="GitHub"
             >
               <Github className="w-4 h-4" />
             </a>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="w-9 h-9 bg-[#2E2E2E] rounded-xl flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all duration-200"
+              className="w-9 h-9 bg-muted rounded-xl flex items-center justify-center text-muted-foreground hover:bg-accent hover:text-white transition-all duration-200"
               aria-label="Email"
             >
               <Mail className="w-4 h-4" />
@@ -110,19 +110,19 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("navigationTitle")}</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground/70 mb-4">{t("navigationTitle")}</p>
           <ul className="space-y-2.5">
-            <li><Link href="/" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("home")}</Link></li>
-            <li><Link href="/designer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("branding")}</Link></li>
-            <li><Link href="/trainer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("training")}</Link></li>
-            <li><Link href="/developer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("nav.webDev")}</Link></li>
-            <li><Link href="/freebies" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("nav.freebies")}</Link></li>
-            <li><Link href="/insights" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("nav.insights")}</Link></li>
+            <li><Link href="/" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("home")}</Link></li>
+            <li><Link href="/designer" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("branding")}</Link></li>
+            <li><Link href="/trainer" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("training")}</Link></li>
+            <li><Link href="/developer" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("nav.webDev")}</Link></li>
+            <li><Link href="/freebies" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("nav.freebies")}</Link></li>
+            <li><Link href="/insights" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("nav.insights")}</Link></li>
           </ul>
         </div>
 
         <div>
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("services")}</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground/70 mb-4">{t("services")}</p>
           <ul className="space-y-2.5">
             {[
               { label: t("footerService1"), href: "/designer#case-studies" },
@@ -134,11 +134,11 @@ export default function Footer() {
             ].map(({ label, href, external }) => (
               <li key={label}>
                 {external ? (
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-accent text-sm transition-colors">
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent text-sm transition-colors">
                     {label}
                   </a>
                 ) : (
-                  <Link href={href} className="text-slate-400 hover:text-accent text-sm transition-colors">
+                  <Link href={href} className="text-muted-foreground hover:text-accent text-sm transition-colors">
                     {label}
                   </Link>
                 )}
@@ -148,15 +148,15 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("contact")}</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground/70 mb-4">{t("contact")}</p>
           <div className="space-y-3">
             <a
               href={`mailto:${siteConfig.email}`}
-              className="flex items-center gap-2.5 text-slate-400 hover:text-accent text-sm transition-colors"
+              className="flex items-center gap-2.5 text-muted-foreground hover:text-accent text-sm transition-colors"
             >
               <Mail className="w-4 h-4 flex-shrink-0" /> {siteConfig.email}
             </a>
-            <div className="flex items-center gap-2.5 text-slate-400 text-sm">
+            <div className="flex items-center gap-2.5 text-muted-foreground text-sm">
               <BasedInTunisia />
             </div>
             <div className="flex items-center gap-2 mt-3">
@@ -164,14 +164,14 @@ export default function Footer() {
                 <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75" />
                 <span className="relative h-2 w-2 rounded-full bg-green-500" />
               </span>
-              <span className="text-green-400 text-xs font-medium">{t("availableForProjects")}</span>
+              <span className="text-green-600 dark:text-green-400 text-xs font-medium">{t("availableForProjects")}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-slate-800">
-        <div className="max-w-5xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-slate-600 text-xs">
+      <div className="border-t border-border">
+        <div className="max-w-5xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-muted-foreground text-xs">
           <span>© 2026 Mohamed Dhia Arfa · {t("allRightsReserved")}</span>
           <span className="flex items-center gap-1">Built with <Heart className="w-3 h-3 text-green-600 mx-0.5 fill-[var(--site-accent)]" /> using Next.js & Tailwind</span>
         </div>

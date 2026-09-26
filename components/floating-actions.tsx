@@ -47,7 +47,7 @@ export default function FloatingActions() {
 
   // The FAQ list used to render in full as its own accordion section at the
   // bottom of the homepage. Per Dhia's feedback there were too many
-  // questions to show at once there, so they now live here instead — inside
+  // questions to show at once there, so they now live here instead, inside
   // the assistant, one question visible at a time, sliding to the next
   // every few seconds (same fade/translate pattern as the hero's
   // AnimatedRole) rather than a wall of chips.
@@ -269,7 +269,7 @@ export default function FloatingActions() {
             )}
             {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
           </div>
-          {/* One FAQ question at a time instead of a full list — see the
+          {/* One FAQ question at a time instead of a full list, see the
               faqIndex effect above. Tapping it sends that question straight
               into the conversation. */}
           <div className="flex shrink-0 items-center gap-2 border-t border-slate-200 bg-slate-50 px-3 py-2 dark:border-border dark:bg-card/60">
@@ -313,7 +313,7 @@ export default function FloatingActions() {
           now live in the navbar (see navbar-new.tsx), restyled to match its
           neutral control theme instead of their old brand-green fills. This
           component still owns the chat panel above and the nudge bubble
-          below — the navbar's AI button just dispatches the same
+          below, the navbar's AI button just dispatches the same
           "dhia:ask-ai" event the hero's ask bar already used to open it. */}
       {nudgeVisible && activeNudge && !chatOpen && (
         <div

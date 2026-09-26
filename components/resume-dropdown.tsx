@@ -12,7 +12,7 @@ import {
 import { useLanguage } from "./language-provider"
 import { resumeOptions } from "@/lib/resumes"
 
-/** Navbar "Resume" button — lets a visitor pick which role-specific resume to
+/** Navbar "Resume" button, lets a visitor pick which role-specific resume to
  *  open (General / Designer / Trainer / Developer / Social Engagement)
  *  instead of guessing which one applies to them. */
 export function ResumeDropdown() {
@@ -23,7 +23,7 @@ export function ResumeDropdown() {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          // rounded-full to match CopyEmailButton — both are h-9 labeled
+          // rounded-full to match CopyEmailButton, both are h-9 labeled
           // pills in the same cluster and previously used two different
           // corner radii (rounded-xl here vs rounded-full there).
           className="hidden md:inline-flex items-center gap-1.5 h-9 px-3 rounded-full text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100/90 dark:bg-muted/70 border border-slate-200/60 dark:border-border/60 hover:text-slate-900 dark:hover:text-white transition-colors whitespace-nowrap"
@@ -49,7 +49,7 @@ export function ResumeDropdown() {
 }
 
 /** Same 5 options as a flat list, for the mobile slide-out menu (no dropdown
- *  affordance there — a full-height menu already has room to list them). */
+ *  affordance there, a full-height menu already has room to list them). */
 export function ResumeMobileList() {
   const { t } = useLanguage()
 

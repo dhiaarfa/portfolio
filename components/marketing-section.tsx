@@ -125,7 +125,7 @@ export default function MarketingSection() {
             <p className="label">Beyond pixels</p>
             <h2 className="text-slate-900 dark:text-white">Digital marketing &amp; brand strategy</h2>
             <p className="text-muted-foreground text-lg max-w-2xl">
-              I don&apos;t stop at visuals — I help brands define positioning, plan social campaigns, write content
+              I don&apos;t stop at visuals, I help brands define positioning, plan social campaigns, write content
               pillars, and measure what works. Design and marketing as one system, not two separate hires.
             </p>
           </div>

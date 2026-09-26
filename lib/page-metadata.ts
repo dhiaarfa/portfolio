@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import { SITE_URL } from "@/lib/profile"
 
-/** Shape of an OG/Twitter preview image — kept as a general type (not `typeof DEFAULT_OG_IMAGE`)
+/** Shape of an OG/Twitter preview image, kept as a general type (not `typeof DEFAULT_OG_IMAGE`)
  *  so every route can have its own url/alt text without TypeScript narrowing them all to
  *  DEFAULT_OG_IMAGE's exact literal values (this was a real, previously-suppressed type
- *  error — see checklist §5.4/§7 for how it was found). */
+ *  error, see checklist §5.4/§7 for how it was found). */
 type OgImage = {
   url: string
   width: number
@@ -16,7 +16,7 @@ export const DEFAULT_OG_IMAGE: OgImage = {
   url: "/images/photos/dhia-og-image.png",
   width: 1200,
   height: 630,
-  alt: "Mohamed Dhia Arfa — Designer, Trainer & Web Developer",
+  alt: "Mohamed Dhia Arfa, Designer, Trainer & Web Developer",
 }
 
 /** Per-route OG images for rich link previews on social & messaging apps. */
@@ -24,18 +24,18 @@ export const PAGE_OG_IMAGES: Record<string, OgImage> = {
   "/": DEFAULT_OG_IMAGE,
   "/designer": {
     // Generated live by app/api/og/route.tsx (@vercel/og) instead of a
-    // static PNG from scripts/gen-og-images.py — see checklist §2.4/§2.6
+    // static PNG from scripts/gen-og-images.py, see checklist §2.4/§2.6
     // for why this needed to be a real 1200x630 card in the first place,
     // and the Master to-do list (Tier 6) for the @vercel/og migration.
     url: `/api/og?${new URLSearchParams({
       kicker: "Designer · Brand & Marketing",
       title: "Mohamed Dhia Arfa",
-      subhead: "Design that sells — brand identity, campaigns, and marketing strategy for Tunisian brands.",
+      subhead: "Design that sells, brand identity, campaigns, and marketing strategy for Tunisian brands.",
       image: "/images/lone-space-gold.png",
     })}`,
     width: 1200,
     height: 630,
-    alt: "Mohamed Dhia Arfa — Brand designer, Zia Studio",
+    alt: "Mohamed Dhia Arfa, Brand designer, Zia Studio",
   },
   "/trainer": {
     url: `/api/og?${new URLSearchParams({
@@ -47,7 +47,7 @@ export const PAGE_OG_IMAGES: Record<string, OgImage> = {
     })}`,
     width: 1200,
     height: 630,
-    alt: "Mohamed Dhia Arfa — Certified youth trainer in Tunisia",
+    alt: "Mohamed Dhia Arfa, Certified youth trainer in Tunisia",
   },
   "/developer": {
     url: `/api/og?${new URLSearchParams({
@@ -59,7 +59,7 @@ export const PAGE_OG_IMAGES: Record<string, OgImage> = {
     })}`,
     width: 1200,
     height: 630,
-    alt: "Mohamed Dhia Arfa — Full-stack developer",
+    alt: "Mohamed Dhia Arfa, Full-stack developer",
   },
   "/freebies": {
     url: "/images/photos/dhia-og-image.png",

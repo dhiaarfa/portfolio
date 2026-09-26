@@ -15,7 +15,7 @@ export default function WorkCaseStudyBody({ content }: { content: string }) {
       components={{
         // Rendered as h2, not h3: the page's own <h1> is the project title, and
         // these subsections (The brief / The approach / Outcome / …) are the only
-        // heading level inside the case-study body — h1 -> h3 was skipping a level
+        // heading level inside the case-study body, h1 -> h3 was skipping a level
         // (Lighthouse heading-order / WCAG 1.3.1). The markdown source uses "##"
         // to match.
         h2: ({ children }) => (
@@ -24,7 +24,7 @@ export default function WorkCaseStudyBody({ content }: { content: string }) {
         p: ({ children, node }) => {
           // Markdown always wraps a standalone image in a <p>, but the img
           // renderer below outputs a <div> (needed for next/image's `fill`
-          // layout) — a <div> can't legally sit inside a <p>, which produced
+          // layout), a <div> can't legally sit inside a <p>, which produced
           // "In HTML, div cannot be a descendant of p" and a hydration
           // mismatch on every case-study image. When the paragraph's only
           // child is an image, render the wrapper as a <div> instead of a

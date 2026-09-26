@@ -55,7 +55,7 @@ function FreebiesClientInner() {
   const [downloadKind, setDownloadKind] = useState<"pdf" | "canva" | null>(null)
   const [unlockedIds, setUnlockedIds] = useState<string[]>([])
   // Smooths the grid reflow when a category filter narrows/widens the
-  // result set — items already in view slide to their new slot instead of
+  // result set, items already in view slide to their new slot instead of
   // the whole grid silently jumping (Master to-do list, Tier 6).
   const [freebiesGridRef] = useAutoAnimate<HTMLDivElement>()
   const [resourcesGridRef] = useAutoAnimate<HTMLDivElement>()
@@ -232,7 +232,7 @@ function FreebiesClientInner() {
                       />
                     </div>
                   ) : (
-                    // A stylized generic preview — not a fake screenshot of the
+                    // A stylized generic preview, not a fake screenshot of the
                     // real file, just a "this is a downloadable document/template"
                     // visual cue, since "trust me, it's useful" reads weaker than
                     // showing something resembling what you're about to get.
@@ -322,7 +322,7 @@ function FreebiesClientInner() {
               </div>
               {/* "/contact" is not a real route on this site (every other CTA uses
                   the "#contact" anchor into the footer's contact section, which
-                  is also rendered on this page) — this one was a genuine 404. */}
+                  is also rendered on this page), this one was a genuine 404. */}
               <a
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 w-full py-3 bg-accent hover:opacity-90 text-white text-sm font-semibold rounded-xl transition-colors"
@@ -386,6 +386,18 @@ function FreebiesClientInner() {
                         referrerPolicy="strict-origin-when-cross-origin"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
+                      />
+                    </div>
+                  )}
+                  {resource.image && (
+                    <div className="relative aspect-video bg-muted overflow-hidden">
+                      <Image
+                        src={resource.image}
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover"
+                        aria-hidden
                       />
                     </div>
                   )}

@@ -16,11 +16,11 @@ export const allTestimonials: TestimonialItem[] = [
     id: "yassine",
     name: "Yassine Bahri",
     quoteEn:
-      "Co-facilitated a graphic design workshop at ISG Tunis — captured, involved, and trained students who left with solid visual identities.",
+      "Co-facilitated a graphic design workshop at ISG Tunis, captured, involved, and trained students who left with solid visual identities.",
     quoteFr:
-      "A co-animé un workshop design graphique à l'ISG — capter, impliquer, former. Les étudiants sont repartis avec des identités visuelles solides.",
+      "A co-animé un workshop design graphique à l'ISG, capter, impliquer, former. Les étudiants sont repartis avec des identités visuelles solides.",
     quoteAr:
-      "شارك في تيسير ورشة تصميم جرافيك — يلفت الانتباه ويشرك الطلاب الذين غادروا بهويات بصرية قوية.",
+      "شارك في تيسير ورشة تصميم جرافيك، يلفت الانتباه ويشرك الطلاب الذين غادروا بهويات بصرية قوية.",
     roleEn: "Digital Strategy Creator · ISG Tunis workshop co-facilitator",
     roleFr: "Stratégies digitales · Co-animation ISG Tunis",
     roleAr: "استراتيجيات رقمية · ورشة ISG تونس",

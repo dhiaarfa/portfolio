@@ -1,7 +1,7 @@
 "use client"
 
 import { Link } from "next-view-transitions"
-import { ArrowRight, BookOpen, Palette, Code, Send } from "lucide-react"
+import { ArrowRight, BookOpen, Palette, Users, Code, Code2, Send } from "lucide-react"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
 import Image from "next/image"
@@ -48,7 +48,7 @@ function AnimatedRole() {
   return (
     <p className="text-xl font-medium text-slate-500 dark:text-slate-400">
       {t("homeRotatingPrefix")}{" "}
-      {/* Italic Fraunces serif accent on the rotating word — the "end to
+      {/* Italic Fraunces serif accent on the rotating word, the "end to
           end."-style flourish from Dhia's reference screenshot, applied here
           instead of to a new line of copy since this word already changes
           per role and doesn't compete with the H1. */}
@@ -62,7 +62,7 @@ function AnimatedRole() {
 }
 
 /** Opens the floating AI assistant (components/floating-actions.tsx) via a
- *  DOM CustomEvent instead of prop-drilling or a new shared context — the
+ *  DOM CustomEvent instead of prop-drilling or a new shared context, the
  *  hero's suggestion pills / "ask me anything" bar and the floating widget
  *  don't otherwise share a parent that could hold this state. Omit `prompt`
  *  to just open the panel (the "Let's chat" pill); pass it to open and send
@@ -167,7 +167,7 @@ export default function HomePageClient() {
       <Navbar />
 
       <main id="main-content">
-      {/* Hero — annotated portrait HUD */}
+      {/* Hero, annotated portrait HUD */}
       <HeroAnnotatedPortrait theme="light" gradientBg className="!pb-10">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-sm font-medium bg-accent-subtle dark:bg-accent-subtle border border-accent/30 text-foreground dark:text-accent w-fit">
@@ -182,7 +182,7 @@ export default function HomePageClient() {
             <span className="text-accent">Mohamed Dhia</span>
           </h1>
           <AnimatedRole />
-          {/* Quicksand, fully visible — a subtle accent-colored glow (text-shadow)
+          {/* Quicksand, fully visible, a subtle accent-colored glow (text-shadow)
               appears on hover instead of the text fading in from near-invisible. */}
           <p
             className="mt-4 text-slate-700 dark:text-slate-300 text-lg leading-relaxed max-w-[480px] transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]"
@@ -207,7 +207,7 @@ export default function HomePageClient() {
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
           </a>
 
-          {/* Suggestion pills + "ask me anything" bar — opens the existing
+          {/* Suggestion pills + "ask me anything" bar, opens the existing
               floating AI assistant (see askAI() / floating-actions.tsx)
               instead of duplicating a second chat UI, per Dhia's reference
               screenshot of another portfolio's chat-first hero. */}
@@ -244,22 +244,22 @@ export default function HomePageClient() {
             {[
               {
                 role: roles[1],
-                emoji: "🎨",
-                emojiCls: "text-4xl leading-none inline-block transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6",
+                icon: Palette,
+                iconCls: "w-9 h-9 p-2 rounded-xl bg-pink-100 text-pink-600 dark:bg-pink-950/60 dark:text-pink-400 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6",
                 eyebrowKey: "design",
                 title: "Zia Studio",
                 photo: "/images/photos/dhia-designer.png",
                 tint: "from-pink-50/95 via-white/97 to-white/98 dark:from-pink-950/30 dark:via-card/97 dark:to-card/98",
                 eyebrowCls: "text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50",
                 tags: ["Brand Identity", "UI/UX", "Motion", "Print"],
-                flagship: "Speranza Café — full brand identity",
+                flagship: "Speranza Café, full brand identity",
                 tagCls: "bg-pink-50 dark:bg-pink-950/40 text-pink-700 dark:text-pink-300 border-pink-200/60 dark:border-pink-900/50",
                 ctaCls: "text-pink-600 dark:text-pink-400",
               },
               {
                 role: roles[0],
-                emoji: "🎓",
-                emojiCls: "text-4xl leading-none inline-block transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6",
+                icon: Users,
+                iconCls: "w-9 h-9 p-2 rounded-xl bg-amber-100 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6",
                 eyebrowKey: "training",
                 title: "Youth Development",
                 photo: "/images/photos/dhia-trainer.png",
@@ -270,20 +270,20 @@ export default function HomePageClient() {
                   [siteConfig.stats.trainingHours, "Hours"],
                   [siteConfig.stats.facilitationHours, "Facilitation Hrs"],
                 ],
-                flagship: "IOM Youth Hackathon, Doha — 1st place",
+                flagship: "IOM Youth Hackathon, Doha, 1st place",
                 ctaCls: "text-amber-600 dark:text-amber-400",
               },
               {
                 role: roles[2],
-                emoji: "💻",
-                emojiCls: "text-4xl leading-none inline-block transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6",
+                icon: Code2,
+                iconCls: "w-9 h-9 p-2 rounded-xl bg-sky-100 text-sky-600 dark:bg-sky-950/60 dark:text-sky-400 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6",
                 eyebrowKey: "webDevelopment",
-                title: "React & Next.js",
+                title: "Full-Stack Development",
                 photo: "/images/photos/dhia-developer.png",
                 tint: "from-sky-50/95 via-white/97 to-white/98 dark:from-sky-950/30 dark:via-card/97 dark:to-card/98",
                 eyebrowCls: "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50",
                 tags: ["React", "Next.js", "Tailwind", "TypeScript"],
-                flagship: "DigiMyTech Talent Hub — graduation project",
+                flagship: "DigiMyTech Talent Hub, graduation project",
                 tagCls: "bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border-sky-200/60 dark:border-sky-900/50",
                 ctaCls: "text-sky-600 dark:text-sky-400",
               },
@@ -309,9 +309,7 @@ export default function HomePageClient() {
 
                     <div className="relative flex flex-col flex-1">
                       <div className="flex items-start justify-between mb-5">
-                        <span className={card.emojiCls} aria-hidden>
-                          {card.emoji}
-                        </span>
+                        <card.icon className={card.iconCls} aria-hidden />
                         <span className={`text-[12px] font-semibold uppercase tracking-[0.14em] px-3 py-1 rounded-full ${card.eyebrowCls}`}>
                           {t(card.eyebrowKey)}
                         </span>
@@ -343,7 +341,7 @@ export default function HomePageClient() {
                       {card.stats && (
                         <div className="flex gap-6 pb-5 border-b border-slate-100 dark:border-border mb-4">
                           {card.stats.map(([val, label]) => (
-                            <div key={label}>
+                            <div key={label} className="min-w-[64px]">
                               <AnimatedNumber
                                 value={Number(val)}
                                 suffix="+"
@@ -367,7 +365,7 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      {/* Zia Studio — dedicated section */}
+      {/* Zia Studio, dedicated section */}
       <section className="section-compact px-6 bg-[#0A0A0A] dark:bg-[#0A0A0A]">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="flex-shrink-0 rounded-2xl overflow-hidden">
@@ -395,7 +393,7 @@ export default function HomePageClient() {
       {/* Client Logos */}
       <ClientLogosStrip />
 
-      {/* Toolkit — condensed cross-discipline sample of the full tools/stack
+      {/* Toolkit, condensed cross-discipline sample of the full tools/stack
           table (see /designer, /developer) so it isn't buried on a sub-page
           (Master to-do list, Tier 6). */}
       <ToolkitStrip />
@@ -403,7 +401,7 @@ export default function HomePageClient() {
       {/* Stats */}
       <StatsSection />
 
-      {/* My Journey — compact credentials snapshot (certs, education,
+      {/* My Journey, compact credentials snapshot (certs, education,
           experience, civic work) that used to live on the now-removed
           About page. Kept small on purpose: one tabbed card, one category
           visible at a time. */}

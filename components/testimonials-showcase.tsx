@@ -123,7 +123,7 @@ export function TestimonialsShowcase({
           {items.length > 1 && (
             <div className="mt-4 flex items-center justify-between gap-3">
               {/* gap-4 (not the original gap-2) so the enlarged tap targets below
-                  don't overlap their neighbors — see the button comment. */}
+                  don't overlap their neighbors, see the button comment. */}
               <div className="flex gap-4">
                 {items.map((item, i) => (
                   <button
@@ -166,7 +166,7 @@ export function TestimonialsShowcase({
           )}
         </div>
 
-        {/* Supporting cards — softened into the same accent-tinted, rounded
+        {/* Supporting cards, softened into the same accent-tinted, rounded
             language as the featured quote above (was a flat white box with
             a hard divider line) so the set reads as one smooth, cohesive
             family instead of a plain grid, per Dhia's feedback. */}
@@ -222,7 +222,7 @@ export function TestimonialsShowcase({
                   <span className="text-sm text-muted-foreground italic max-w-md truncate">
                     &ldquo;{text.quote.slice(0, 90)}…&rdquo;
                   </span>
-                  <span className="text-xs font-semibold text-foreground">— {item.name}</span>
+                  <span className="text-xs font-semibold text-foreground">{item.name}</span>
                 </div>
               )
             })}

@@ -8,7 +8,7 @@ export default function NotFound() {
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
       <main id="main-content" className="relative flex-1 flex items-center justify-center px-6 pt-24 pb-16 overflow-hidden">
-        {/* Dot-network motif, echoing the homepage hero — a 404 is still a
+        {/* Dot-network motif, echoing the homepage hero, a 404 is still a
             moment where a visitor is evaluating the site, so it gets the
             same visual language instead of a generic bare card. */}
         <div
@@ -49,7 +49,7 @@ export default function NotFound() {
             This page wandered off-brief.
           </h1>
           <p className="text-muted-foreground text-base lg:text-lg mb-8 leading-relaxed">
-            Wrong link, moved page, or a typo — either way, it&apos;s not here. Here are three places that definitely are.
+            Wrong link, moved page, or a typo, either way, it&apos;s not here. Here are three places that definitely are.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">

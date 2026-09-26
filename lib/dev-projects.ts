@@ -65,7 +65,7 @@ export type OtherDevProject = {
   title: string
   excerpt: string
   tech: string[]
-  /** Omit while the project has no public URL yet (e.g. still in progress) — the
+  /** Omit while the project has no public URL yet (e.g. still in progress), the
    *  page only renders the "Live" link when this is set, so it never points at
    *  a placeholder or fabricated domain. */
   liveUrl?: string
@@ -77,22 +77,23 @@ export type OtherDevProject = {
 export const otherDevProjects: OtherDevProject[] = [
   {
     title: "dhia-portfolio.com",
-    excerpt: "This portfolio: Next.js 15, i18n, AI chat, freebies funnel, Lighthouse-focused.",
+    excerpt:
+      "The site you're looking at right now: built with Next.js 15, available in English, French, and Arabic, with a built-in AI chat guide, a free-resource download system, and tuned for fast load times and accessibility.",
     liveUrl: "https://dhia-portfolio.com",
     repoUrl: "https://github.com/dhiaarfa/portfolio",
     tech: ["Next.js", "TypeScript", "Vercel"],
   },
   {
-    title: "Association Youth Clubs — Official Website",
+    title: "Association Youth Clubs, Official Website",
     excerpt:
-      "Official site for Association Youth Clubs (YCs), the NGO Dhia founded to coordinate school clubs across Tunisia — advocacy toward education stakeholders plus member training, built around the NAOMIE planning framework.",
+      "Official site for Association Youth Clubs (YCs), the NGO Dhia founded to coordinate school clubs across Tunisia, advocacy toward education stakeholders plus member training, built around the NAOMIE planning framework.",
     tech: ["Next.js", "Tailwind"],
     status: "In progress",
   },
   {
-    title: "Amal Bennasr — Space Designer",
+    title: "Amal Bennasr, Space Designer",
     excerpt:
-      "Portfolio site for an interior/space designer based in Sfax, Tunisia — a calm, editorial project gallery built around light, material, and comfort.",
+      "Portfolio site for an interior/space designer based in Sfax, Tunisia, a calm, editorial project gallery built around light, material, and comfort.",
     liveUrl: "https://amalbennasr.netlify.app/",
     tech: ["HTML", "CSS", "JavaScript", "Netlify"],
   },

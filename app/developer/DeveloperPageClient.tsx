@@ -10,7 +10,6 @@ import Image from "next/image"
 import ContactForm from "@/components/contact-form"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { siteConfig } from "@/lib/site-config"
-import { developerExperience } from "@/lib/profile"
 import { devWorkProjects, devCardAspectRatio, devCardTheme } from "@/lib/work"
 import { otherDevProjects } from "@/lib/dev-projects"
 import { ExternalLink, Github, Download, ArrowRight, Gift, Clock, FolderGit2, Images } from "lucide-react"
@@ -21,17 +20,13 @@ import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext
 export default function DeveloperPageClient() {
   const projects = devWorkProjects()
   // Which project's full screenshot pack is open in the lightbox (by slug),
-  // or null when closed — one Dialog reused for every card instead of one
+  // or null when closed, one Dialog reused for every card instead of one
   // per project.
   const [galleryOpen, setGalleryOpen] = useState<string | null>(null)
   const activeProject = projects.find((p) => p.slug === galleryOpen)
   const activeTheme = activeProject ? devCardTheme[activeProject.slug] : undefined
   const activeScreenshots =
     activeTheme?.screenshots?.length ? activeTheme.screenshots : activeProject ? [activeProject.cardImage] : []
-  const devExperience = developerExperience.filter(
-    (e) => e.id === "digimytch-dev" || e.id === "crit-dev" || e.id === "self-directed"
-  )
-
   const bridgeItems = [
     {
       title: "UI/UX focused components",
@@ -104,7 +99,7 @@ export default function DeveloperPageClient() {
                 <span className="w-3 h-3 rounded-full bg-accent/80" />
                 <span className="ml-4 font-mono text-slate-500 text-xs">dhia.dev</span>
               </div>
-              <Image src="/images/photos/dhia-developer.png" alt="Dhia — Developer" width={380} height={400} className="w-full object-cover" />
+              <Image src="/images/photos/dhia-developer.png" alt="Dhia, Developer" width={380} height={400} className="w-full object-cover" />
             </div>
           }
         >
@@ -177,7 +172,7 @@ export default function DeveloperPageClient() {
                     className={`group relative overflow-hidden rounded-3xl border-2 border-border bg-card transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.25)] dark:hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)] ${i === 0 ? "lg:col-span-2" : ""}`}
                   >
                     {/* Colour-blocked header: real screenshot "sheet(s)" peek out of
-                        the top, over a project-specific dark gradient — a category
+                        the top, over a project-specific dark gradient, a category
                         tag, bold title and compact meta line sit below the peek. */}
                     <div className={`relative overflow-visible bg-gradient-to-br ${theme?.gradient ?? "from-slate-900 to-slate-950"} pt-14 pb-5 px-6`}>
                       <div className="pointer-events-none absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "16px 16px" }} />
@@ -185,12 +180,12 @@ export default function DeveloperPageClient() {
                         {String(i + 1).padStart(2, "0")}
                       </span>
 
-                      {/* Peeking screenshot "sheet(s)" — sized by a fixed HEIGHT with
+                      {/* Peeking screenshot "sheet(s)", sized by a fixed HEIGHT with
                           width left to the image's own aspect ratio (not the other
                           way around), so a tall or wide source screenshot always
                           shows as one small, legible thumbnail instead of a huge
                           cropped fragment. The whole stack is a real button: this
-                          is only a preview of the pack — clicking opens every
+                          is only a preview of the pack, clicking opens every
                           screenshot for this project in a lightbox carousel, and
                           a "View N screens" pill fades in on hover/focus as the
                           affordance for that. */}
@@ -303,7 +298,7 @@ export default function DeveloperPageClient() {
                 })}
               </div>
 
-              {/* Screenshot pack lightbox — one Dialog reused for every card.
+              {/* Screenshot pack lightbox, one Dialog reused for every card.
                   Opens on click of a card's screenshot stack and carousels
                   through every real screenshot for that project. */}
               <Dialog open={!!galleryOpen} onOpenChange={(open) => !open && setGalleryOpen(null)}>
@@ -314,7 +309,7 @@ export default function DeveloperPageClient() {
                   {activeProject && (
                     <>
                       <DialogTitle className="sr-only">
-                        {activeProject.title} — screenshots
+                        {activeProject.title}, screenshots
                       </DialogTitle>
                       <Carousel className="w-full" opts={{ loop: true }}>
                         <CarouselContent className="ml-0">
@@ -323,7 +318,7 @@ export default function DeveloperPageClient() {
                               <div className="relative h-[55vh] w-full bg-slate-900 sm:h-[70vh]">
                                 <Image
                                   src={src}
-                                  alt={`${activeProject.title} — screenshot ${idx + 1} of ${activeScreenshots.length}`}
+                                  alt={`${activeProject.title}, screenshot ${idx + 1} of ${activeScreenshots.length}`}
                                   fill
                                   className="object-contain"
                                   sizes="(max-width: 768px) 100vw, 768px"
@@ -427,28 +422,10 @@ export default function DeveloperPageClient() {
           </div>
         </section>
 
-        {/* Dev experience (slim) */}
-        <section className="w-full section-compact px-4 md:px-8 bg-card">
-          <div className="max-w-4xl mx-auto">
-            <p className="label mb-2 text-center">Experience</p>
-            <h2 className="text-2xl font-bold text-center mb-8">Dev-relevant roles</h2>
-            <div className="grid md:grid-cols-2 gap-5">
-              {devExperience.map((exp, i) => (
-                <div key={exp.id} className="relative overflow-hidden rounded-[28px] border border-border p-5 bg-background">
-                  <div className="pointer-events-none absolute -top-8 -right-8 w-20 h-20 rounded-full bg-accent-subtle/40" aria-hidden />
-                  <span className="relative mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-accent-subtle text-sm font-bold text-accent">
-                    {i + 1}
-                  </span>
-                  <p className="relative text-xs text-muted-foreground">{exp.period}</p>
-                  <h3 className="relative font-bold mt-1">{exp.role}</h3>
-                  <p className="relative text-sm text-accent font-medium">{exp.company}</p>
-                  <p className="relative text-sm text-muted-foreground mt-2">{exp.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
+        {/* Dev-relevant roles section removed (Master to-do): it restated the
+            same jobs/timeline already covered by the projects above and by
+            the site-wide Journey/credentials section, so it was pure
+            repetition rather than new information. */}
         <ToolsStackSection compact groups={["frontend", "backend", "ai"]} />
 
         {/* Design-to-Development Bridge */}
@@ -513,9 +490,9 @@ export default function DeveloperPageClient() {
 
         {/* The hero already offers the GitHub link up front, and the
             contact-form section right below closes the page with the same
-            "let's talk" ask — so the generic "Let's build together" band
+            "let's talk" ask, so the generic "Let's build together" band
             that used to sit here just restated both a third time on one
-            scroll. Removed (Master to-do list, Tier 4 — CTA redundancy),
+            scroll. Removed (Master to-do list, Tier 4, CTA redundancy),
             same fix already applied on /trainer. */}
         <ResourcesInsightsStrip focus="development" className="bg-section-tint" />
 

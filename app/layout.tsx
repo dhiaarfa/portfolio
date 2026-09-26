@@ -13,7 +13,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ViewTransitions } from "next-view-transitions"
 
 // Typography: General Sans via Fontshare is now the site's single principal
-// typeface (replacing the earlier Clash Display + Satoshi pairing — per
+// typeface (replacing the earlier Clash Display + Satoshi pairing, per
 // Dhia's reference screenshot of another portfolio's hero); Cairo for Arabic
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -26,7 +26,7 @@ const cairo = Cairo({
 export const metadata = {
   metadataBase: new URL("https://dhia-portfolio.com"),
   title: {
-    default: "Mohamed Dhia Arfa — Designer, Trainer & Developer | Tunisia",
+    default: "Mohamed Dhia Arfa, Designer, Trainer & Developer | Tunisia",
     template: "%s | Mohamed Dhia Arfa",
   },
   description:
@@ -66,7 +66,7 @@ export const metadata = {
         url: "/images/photos/dhia-og-image.png",
         width: 1200,
         height: 630,
-        alt: "Mohamed Dhia Arfa — Designer, Trainer & Developer",
+        alt: "Mohamed Dhia Arfa, Designer, Trainer & Developer",
       },
     ],
   },
@@ -103,12 +103,12 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap"
         />
         {/* Quicksand: rounded, friendly display font used specifically for the
-            homepage hero bio line (per Dhia's reference screenshot) — kept
+            homepage hero bio line (per Dhia's reference screenshot), kept
             separate from the site's General Sans typeface so it doesn't
             affect any other text on the site.
             Fraunces: italic serif accent used only for the rotating-role
             word in the homepage hero (per Dhia's second reference screenshot
-            — the "end to end." style italic flourish under a headline). */}
+           , the "end to end." style italic flourish under a headline). */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -203,7 +203,7 @@ export default function RootLayout({
           }}
         />
         
-        {/* Brand Schema — "Zia" is Mohamed Dhia Arfa's personal design/creative brand name,
+        {/* Brand Schema, "Zia" is Mohamed Dhia Arfa's personal design/creative brand name,
             not a separately founded company, so this uses schema.org Brand (not Organization
             with a "founder" relationship) to avoid implying a legal entity that doesn't exist. */}
         <script

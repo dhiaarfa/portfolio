@@ -6,7 +6,7 @@ import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 
 export const metadata: Metadata = pageMetadata({
   path: "/insights",
-  title: "Insights — Design, Training & Development | Mohamed Dhia",
+  title: "Insights, Design, Training & Development | Mohamed Dhia",
   description:
     "Tips on graphic design, youth training facilitation, and web development from Mohamed Dhia Arfa, based in Tunisia.",
 })

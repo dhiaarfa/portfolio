@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react"
 import { getTranslation, type Language, type TranslationKey, translations } from "@/lib/translations"
+import { detectLanguage } from "@/lib/detect-language"
 
 interface LanguageContextType {
   language: Language
@@ -15,8 +16,25 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>("en")
 
   useEffect(() => {
-    const storedLang = (localStorage.getItem("language") as Language | null) || "en"
-    const nextLang: Language = storedLang in translations ? storedLang : "en"
+    const stored = localStorage.getItem("language") as Language | null
+    let nextLang: Language
+
+    if (stored && stored in translations) {
+      nextLang = stored
+    } else {
+      // First visit, no saved preference yet -- guess from the browser/OS
+      // language instead of always defaulting to English, then remember the
+      // guess so this only ever runs once per visitor.
+      const browserLocales =
+        typeof navigator !== "undefined"
+          ? navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language]
+          : []
+      nextLang = detectLanguage(browserLocales)
+      localStorage.setItem("language", nextLang)
+    }
+
     setLanguageState(nextLang)
     document.documentElement.lang = nextLang
     document.documentElement.dir = nextLang === "ar" ? "rtl" : "ltr"

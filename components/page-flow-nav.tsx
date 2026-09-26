@@ -16,7 +16,7 @@ export default function PageFlowNav() {
   // page content happens to sit there. A real screenshot audit caught it
   // sitting directly on top of body copy (the About page's location badge,
   // the Branding & Design intro paragraph) whenever a page's hero content
-  // reached the middle of the viewport — which most heroes do by design.
+  // reached the middle of the viewport, which most heroes do by design.
   // Rather than tune a magic offset per page, it now only appears once
   // you've scrolled past a typical hero, where there's reliably empty
   // margin beside the content on both sides.
@@ -36,7 +36,7 @@ export default function PageFlowNav() {
     language === "fr" ? item.labelFr : language === "ar" ? item.labelAr : item.label
 
   // Icon-only by default (the label only appears on hover, in a popover that
-  // pushes outward rather than staying inline) — the earlier version kept an
+  // pushes outward rather than staying inline), the earlier version kept an
   // always-visible text label next to the icon, which made the collision
   // above worse by widening the hit area considerably.
   const pillClass =

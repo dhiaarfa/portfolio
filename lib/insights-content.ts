@@ -357,7 +357,7 @@ Arabic script is connected, has no capital letters, and carries meaning in the *
 
 ## What I actually do
 
-**1. Design the identity twice, not once.** Same concept, same color system, same emotional target — but the Arabic wordmark gets its own typeface, its own weight, and its own spacing pass, tested on its own, not derived from the French version.
+**1. Design the identity twice, not once.** Same concept, same color system, same emotional target, but the Arabic wordmark gets its own typeface, its own weight, and its own spacing pass, tested on its own, not derived from the French version.
 
 **2. Pick typefaces that were built as pairs.** Fonts like Cairo, Almarai, or IBM Plex Sans Arabic were designed alongside a Latin counterpart specifically to sit next to each other without one looking like an afterthought. Starting there saves weeks.
 
@@ -365,7 +365,7 @@ Arabic script is connected, has no capital letters, and carries meaning in the *
 
 **4. Test at small sizes first.** Arabic scripts lose legibility faster than Latin ones at small sizes because of the connecting strokes. If it has to work on a business card or a favicon, start there, not on a billboard mockup.
 
-**5. Respect the cultural register.** Formal MSA reads differently than Tunisian dialect in copy, and the same is true visually — a youth NGO and a notary's office need genuinely different type choices in Arabic, the same way they would in French.
+**5. Respect the cultural register.** Formal MSA reads differently than Tunisian dialect in copy, and the same is true visually, a youth NGO and a notary's office need genuinely different type choices in Arabic, the same way they would in French.
 
 ## The payoff
 
@@ -383,7 +383,7 @@ A common mistake I see from Tunisian producers is designing packaging like a pri
 
 **1. Category cues first, differentiation second.** A shopper needs to instantly recognize "this is olive oil" before they notice it's Tunisian olive oil. Fighting the category's visual grammar too hard makes a product look unfamiliar rather than premium.
 
-**2. One clear point of difference, said once.** Single-estate, organic, a specific varietal, a founder's story — pick the one true differentiator and make it the loudest thing on the label. Trying to say everything (heritage *and* organic *and* award-winning *and* family-run) usually says nothing.
+**2. One clear point of difference, said once.** Single-estate, organic, a specific varietal, a founder's story, pick the one true differentiator and make it the loudest thing on the label. Trying to say everything (heritage *and* organic *and* award-winning *and* family-run) usually says nothing.
 
 **3. Typography that reads at arm's length, in two languages.** EU labeling regulation and multilingual markets (French, English, sometimes Arabic) mean your hierarchy has to survive three languages of text without turning into a wall of small type. Design the info hierarchy before you write the copy, not after.
 
@@ -429,7 +429,7 @@ Young participants in these programs are rarely short on ambition. What's usuall
 
 ## What actually moves the needle
 
-**1. Every session ends with an artifact, not just notes.** A basic website, a one-page energy-audit report, a social content calendar for a real local business — something a participant can screenshot and put in front of an employer, not a worksheet that goes in a folder.
+**1. Every session ends with an artifact, not just notes.** A basic website, a one-page energy-audit report, a social content calendar for a real local business, something a participant can screenshot and put in front of an employer, not a worksheet that goes in a folder.
 
 **2. Bring in real local employers as evaluators, not just trainers.** When a participant's final project gets feedback from an actual small business owner or an NGO program lead instead of only the facilitator, the stakes and the credibility both go up.
 

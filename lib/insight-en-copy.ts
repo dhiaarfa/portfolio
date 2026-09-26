@@ -36,7 +36,7 @@ export const insightEnExcerpts: Record<string, string> = {
   insightsArticle9Excerpt:
     "Next.js API route, system prompt, and the mistakes that make AI widgets feel sketchy or useless.",
   insightsArticle10Excerpt:
-    "Arabic and French aren't two translations of one layout — they're two different design problems. How I build identity systems that work natively in both.",
+    "Arabic and French aren't two translations of one layout, they're two different design problems. How I build identity systems that work natively in both.",
   insightsArticle11Excerpt:
     "Textbook L&D assumes a training budget and a dedicated HR team. Most Tunisian SMEs have neither. The version of training design that actually survives contact with a 15-person company.",
   insightsArticle12Excerpt:
@@ -44,7 +44,7 @@ export const insightEnExcerpts: Record<string, string> = {
   insightsArticle13Excerpt:
     "Olive oil, dates, and harissa brands compete on a European shelf against decades of category convention. The packaging decisions that get a Tunisian product picked up, not passed over.",
   insightsArticle14Excerpt:
-    "Tunisia's youth employability gap isn't a motivation problem — it's a skills-to-market mismatch. What I've learned facilitating green and digital skills programs aimed at closing it.",
+    "Tunisia's youth employability gap isn't a motivation problem, it's a skills-to-market mismatch. What I've learned facilitating green and digital skills programs aimed at closing it.",
   insightsArticle15Excerpt:
     "A 3-second load time means something different on fiber than on a Tunisian mobile plan with a data cap. Performance choices I make differently because of it.",
 }

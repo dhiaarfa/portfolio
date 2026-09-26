@@ -52,7 +52,7 @@ export const siteConfig = {
     ] as Array<{ title: string; src: string; height?: number }>,
   },
 
-  // Stats — sourced from lib/profile.ts (single source of truth)
+  // Stats, sourced from lib/profile.ts (single source of truth)
   stats: {
     yearsExperience: profileStats.yearsExperience.value,
     participants: profileStats.participantsTrained.value,
@@ -67,7 +67,7 @@ export const siteConfig = {
   // Consultation CTA
   ctaText: "Book a Free 30-Min Consultation",
 
-  /** Résumé PDF — was pointing at a file that never existed (public/resume.pdf,
+  /** Résumé PDF, was pointing at a file that never existed (public/resume.pdf,
    *  a 404). Now points at the general CV in public/resumes/ (see lib/resumes.ts,
    *  which lists all 5 role-specific resumes offered from the navbar dropdown). */
   resumePdfUrl: "/resumes/mohamed-dhia-arfa-cv.pdf",

@@ -16,7 +16,7 @@ import { publishedWorkProjects } from "@/lib/work"
 import { publishedInsightArticles } from "@/lib/insights"
 
 /**
- * Site-wide ⌘K quick search — built on the shadcn `Command` primitives that
+ * Site-wide ⌘K quick search, built on the shadcn `Command` primitives that
  * were already scaffolded (components/ui/command.tsx) but never wired to
  * anything (Master to-do list, Tier 6). Indexes the 4 main pages, the 8
  * case studies, and all published Insights articles; opens with ⌘K / Ctrl+K

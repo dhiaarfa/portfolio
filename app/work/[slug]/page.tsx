@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: project.excerpt,
     ogImage: {
       // Real 1200x630 branded card, not the raw screenshot (which is an
-      // arbitrary aspect ratio) — see lib/work.ts's workOgImage() and
+      // arbitrary aspect ratio), see lib/work.ts's workOgImage() and
       // checklist §2.4/§2.6.
       url: workOgImage(slug),
       width: 1200,

@@ -95,7 +95,7 @@ export function InsightCover({
 }) {
   // These were previously very low-opacity gradients (/30, /20, /40) sitting
   // over a near-white card background, which washed out to a pale tint with
-  // white text on top of it — on a real screenshot audit the text was
+  // white text on top of it, on a real screenshot audit the text was
   // essentially unreadable and the whole cover looked like an empty
   // placeholder block. Full-strength gradients plus a dedicated dark scrim
   // for the text zone fix the contrast regardless of category color.

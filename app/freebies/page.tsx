@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/freebies",
   title: "Free Design & Training Resources | Mohamed Dhia Arfa",
   description:
-    "Free templates, guides, and tools from Mohamed Dhia — graphic designer and youth trainer based in Tunisia. Download instantly.",
+    "Free templates, guides, and tools from Mohamed Dhia, graphic designer and youth trainer based in Tunisia. Download instantly.",
 })
 
 const jsonLd = breadcrumbJsonLd("Freebies", "/freebies")

@@ -70,7 +70,7 @@ function buildEmailHTML({
     <div style="background:#f8fafc;padding:14px 32px;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 16px 16px">
       <p style="margin:0;font-size:12px;color:#94a3b8">${
         isNewsletter
-          ? "Newsletter signup notification — dhia-portfolio.com"
+          ? "Newsletter signup notification, dhia-portfolio.com"
           : `Reply directly to this email to respond to ${safeName || safeEmail}.`
       }</p>
     </div>
@@ -122,7 +122,7 @@ function visitorFreebieEmailHtml({
       </p>
       <p style="font-size:13px;color:#6b7280">If the button doesn't work, copy this link:<br><a href="${url}">${url}</a></p>
       <hr style="border:0;border-top:1px solid #eee;margin:24px 0">
-      <p style="font-size:13px;color:#6b7280">— Mohamed Dhia · <a href="https://dhia-portfolio.com">dhia-portfolio.com</a></p>
+      <p style="font-size:13px;color:#6b7280">Mohamed Dhia · <a href="https://dhia-portfolio.com">dhia-portfolio.com</a></p>
     </div>
   </div>`
 }
@@ -207,7 +207,7 @@ export async function POST(req: NextRequest) {
           console.error("[EMAIL] visitor delivery email failed", err)
         }
       } else {
-        console.warn("[EMAIL] RESEND_API_KEY not set — freebie delivered on-page only")
+        console.warn("[EMAIL] RESEND_API_KEY not set, freebie delivered on-page only")
       }
 
       return NextResponse.json({
@@ -240,7 +240,7 @@ export async function POST(req: NextRequest) {
       replyTo: trimmedEmail,
       subject: isNewsletter
         ? `Newsletter signup: ${trimmedEmail}`
-        : `${name || "Contact"} via dhia-portfolio.com — ${subject || "New message"}`,
+        : `${name || "Contact"} via dhia-portfolio.com, ${subject || "New message"}`,
       html: buildEmailHTML({
         type: type || "contact",
         name: name || undefined,

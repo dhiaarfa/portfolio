@@ -157,14 +157,14 @@ export function BehanceMonoIcon({ size = 28, className = "" }: { size?: number; 
   return <SiSvg icon={siBehance} size={size} className={className} mono color="currentColor" />
 }
 
-/** Compact Behance “Bē” mark for nav buttons — uses official circular logo PNG */
+/** Compact Behance “Bē” mark for nav buttons, uses official circular logo PNG */
 export function BehanceIcon({
   size = 20,
   className = "",
 }: {
   size?: number
   className?: string
-  /** @deprecated color prop ignored — logo PNG includes brand colors */
+  /** @deprecated color prop ignored, logo PNG includes brand colors */
   color?: string
 }) {
   return (

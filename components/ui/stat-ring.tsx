@@ -4,14 +4,14 @@ import { useRef } from "react"
 import { motion, useInView, useReducedMotion } from "framer-motion"
 
 /**
- * A radial "impact ring" stat display — replaces the flat rectangular
+ * A radial "impact ring" stat display, replaces the flat rectangular
  * number boxes used across the site (About's "Measurable Results",
  * Trainer's stat row) with an actual circular chart element, per the
  * site-wide request to move away from square boxes toward rounder,
  * more visual, chart-like presentation.
  *
  * `progress` (0–1) is deliberately stylistic, not a literal percentage —
- * these are absolute counts (participants, hours), not ratios — but
+ * these are absolute counts (participants, hours), not ratios, but
  * varying it per stat (rather than one fixed fill) keeps the row from
  * looking like decoration repeated four times with no meaning.
  */

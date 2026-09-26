@@ -9,7 +9,7 @@ export type AssistantNudge = {
   delayMs: number
 }
 
-/** Rotating proactive prompts — shown as bubbles above the AI button */
+/** Rotating proactive prompts, shown as bubbles above the AI button */
 export const assistantNudges: AssistantNudge[] = [
   { id: "welcome", messageKey: "chatNudgeWelcome", actionKey: "chatNudgeActionChat", delayMs: 4000 },
   {

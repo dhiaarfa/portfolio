@@ -26,7 +26,7 @@ The identity was adopted across **in-store packaging, Instagram, and seasonal pr
 
 ## Trade-off
 
-Locking the system this early meant prioritizing **consistency over experimentation** — every post fits the same grid and palette, which made the feed cohesive fast but left less room for one-off creative swings on individual posts. Given how quickly the client needed to post daily, that was the right call, but it's a real trade-off, not a free win.
+Locking the system this early meant prioritizing **consistency over experimentation**, every post fits the same grid and palette, which made the feed cohesive fast but left less room for one-off creative swings on individual posts. Given how quickly the client needed to post daily, that was the right call, but it's a real trade-off, not a free win.
 
 ## What I'd do differently
 
@@ -60,7 +60,7 @@ The gold system is used across **cards, letterhead, and client-facing PDFs**. Th
 
 ## Trade-off
 
-A metallic gold system reads beautifully in print, but flat digital gold doesn't always hold up the same way across screens with different brightness and color calibration — I chose one flat digital gold tone for consistency rather than adapting it per platform, which trades a bit of visual richness on-screen for a system that's simple to apply correctly every time.
+A metallic gold system reads beautifully in print, but flat digital gold doesn't always hold up the same way across screens with different brightness and color calibration, I chose one flat digital gold tone for consistency rather than adapting it per platform, which trades a bit of visual richness on-screen for a system that's simple to apply correctly every time.
 
 ## What I'd do differently
 
@@ -88,11 +88,11 @@ Clearer brand recognition on **social and client proposals within the first mont
 
 ## Trade-off
 
-Travel branding leans hard on palm trees, sunsets, and postcard imagery — I deliberately avoided that in favor of a cleaner, more corporate-trustworthy mark. That gained credibility with buyers deciding quickly, but it also means the logo is less immediately "travel-coded" at a glance than a more literal competitor mark would be.
+Travel branding leans hard on palm trees, sunsets, and postcard imagery, I deliberately avoided that in favor of a cleaner, more corporate-trustworthy mark. That gained credibility with buyers deciding quickly, but it also means the logo is less immediately "travel-coded" at a glance than a more literal competitor mark would be.
 
 ## What I'd do differently
 
-I'd introduce a secondary graphic motif earlier — something distinct enough to signal "travel" at a glance without leaning on cliché imagery — rather than asking the typography and color alone to carry that signal.
+I'd introduce a secondary graphic motif earlier, something distinct enough to signal "travel" at a glance without leaning on cliché imagery, rather than asking the typography and color alone to carry that signal.
 
 **Tools:** Illustrator, Figma, Photoshop · **Full set:** [Behance](https://www.behance.net/dhiaa)`,
 
@@ -142,15 +142,15 @@ One **master layout grid**: headline zone, image window, logo lockup, CTA bar. T
 
 ## Trade-off
 
-Using one master grid across every format made client approval fast and kept the campaign coherent, but a billboard read at highway speed and a square Instagram post viewed up close don't actually have the same design needs — the shared grid meant neither format was pushed to fully exploit its own strengths.
+Using one master grid across every format made client approval fast and kept the campaign coherent, but a billboard read at highway speed and a square Instagram post viewed up close don't actually have the same design needs, the shared grid meant neither format was pushed to fully exploit its own strengths.
 
 ## What I'd do differently
 
-I'd bring format-specific crops into the client review earlier instead of scaling one approved layout across every size — a billboard can carry one bold statement; a feed post can carry more detail. Treating them identically left some value on the table in both directions.
+I'd bring format-specific crops into the client review earlier instead of scaling one approved layout across every size, a billboard can carry one bold statement; a feed post can carry more detail. Treating them identically left some value on the table in both directions.
 
 **Tools:** Photoshop, Illustrator · **Full set:** [Behance](https://www.behance.net/dhiaa)`,
 
-  digimytch: `DigiMyTech Talent Hub is my **PFE capstone** (Licence MDW, ISET Sousse): a full-stack, AI-powered talent platform built solo in **97 days** at Digimytch SUARL, Ariana. It accompanies Tunisian job seekers from CV creation through interview simulation — with AI embedded at every step, not bolted on as a chat widget. **Graduated with highest honors (Mention Très Bien).**
+  digimytch: `DigiMyTech Talent Hub is my **PFE capstone** (Licence MDW, ISET Sousse): a full-stack, AI-powered talent platform built solo in **97 days** at Digimytch SUARL, Ariana. It accompanies Tunisian job seekers from CV creation through interview simulation, with AI embedded at every step, not bolted on as a chat widget. **Graduated with highest honors (Mention Très Bien).**
 
 ## Context & problem
 
@@ -160,11 +160,11 @@ I conducted field analysis at Digimytch with the CTO, CEO (Product Owner), and m
 
 ## Five integrated modules
 
-1. **Smart CV editor** — Structured editor with streaming AI assistant, PDF/Word/OCR import, high-fidelity PDF export via @react-pdf/renderer, and AI quality scoring by category.
-2. **Job matching engine** — Deterministic 0–100 compatibility score (not LLM-generated) with NFD tokenization for accent-insensitive skill matching, plus AI-generated explanation in 3–5 sentences.
-3. **Training catalog** — 21 formations ranked by detected skill gaps from matching results — "Recommended for you" instead of a generic list.
-4. **Application Kanban** — Four columns (To do, Applied, Interview, Offer) with timestamped status history and soft-delete archiving.
-5. **Interview simulator** — 8 dynamically generated questions, voice mode (Web Speech API on Chrome/Edge) or full text fallback, personalized debrief per answer.
+1. **Smart CV editor**, Structured editor with streaming AI assistant, PDF/Word/OCR import, high-fidelity PDF export via @react-pdf/renderer, and AI quality scoring by category.
+2. **Job matching engine**, Deterministic 0–100 compatibility score (not LLM-generated) with NFD tokenization for accent-insensitive skill matching, plus AI-generated explanation in 3–5 sentences.
+3. **Training catalog**, 21 formations ranked by detected skill gaps from matching results, "Recommended for you" instead of a generic list.
+4. **Application Kanban**, Four columns (To do, Applied, Interview, Offer) with timestamped status history and soft-delete archiving.
+5. **Interview simulator**, 8 dynamically generated questions, voice mode (Web Speech API on Chrome/Edge) or full text fallback, personalized debrief per answer.
 
 ![](/images/projects/digimytch/landing.png)
 
@@ -182,7 +182,7 @@ I conducted field analysis at Digimytch with the CTO, CEO (Product Owner), and m
 
 Three-tier architecture: **Next.js 15 + React 19 + Tailwind** (presentation), **Server Actions + Zod DTOs** (business logic with Repository pattern), **Supabase PostgreSQL + Storage + JWT Auth** (data with Row Level Security on every user table).
 
-AI layer: **Vercel AI SDK v4** streaming to **OpenRouter Free** models — Kimi K2.6 for CV, Gemma 4 26B for cover letters, Llama 3.3 70B for interviews. Each Server Action validates JWT before calling OpenRouter; responses stream directly to React without a REST middle layer.
+AI layer: **Vercel AI SDK v4** streaming to **OpenRouter Free** models, Kimi K2.6 for CV, Gemma 4 26B for cover letters, Llama 3.3 70B for interviews. Each Server Action validates JWT before calling OpenRouter; responses stream directly to React without a REST middle layer.
 
 ## Scrum delivery (5 sprints)
 
@@ -195,17 +195,17 @@ AI layer: **Vercel AI SDK v4** streaming to **OpenRouter Free** models — Kimi 
 | Sprint 4 | Kanban & admin | Application tracker, formation import via AI |
 | Sprint 5 | Interview AI | Voice simulator, debrief, 109 tests green |
 
-**21 user stories delivered** out of 21 planned. Solo developer on every sprint — conception, code, tests, documentation.
+**21 user stories delivered** out of 21 planned. Solo developer on every sprint, conception, code, tests, documentation.
 
 ## The interesting technical challenge
 
-The most significant design decision was building the matching score as a **deterministic algorithm** (\`src/lib/matching.ts\`) rather than an LLM call. Same profile + same offer = same score every time — tested explicitly in the test suite. Users can trust and audit the number; the AI only generates the natural-language explanation on top.
+The most significant design decision was building the matching score as a **deterministic algorithm** (\`src/lib/matching.ts\`) rather than an LLM call. Same profile + same offer = same score every time, tested explicitly in the test suite. Users can trust and audit the number; the AI only generates the natural-language explanation on top.
 
 Other hard problems: token budget management on free OpenRouter models, Supabase SSR session sync (\`syncProfileToAuthSession\`), and a React state bug causing duplicate formation recommendations (fixed by resetting state between matching calls).
 
 ## Quality & security
 
-- **109 automated tests** across 24 files (Node.js native test runner) — all passing at defense
+- **109 automated tests** across 24 files (Node.js native test runner), all passing at defense
 - Rate limiting (60s / 10 requests), CSP, HSTS, prompt injection sanitization via Zod
 - RLS on all 10 PostgreSQL tables; admin access via JWT \`app_metadata.is_admin\`
 

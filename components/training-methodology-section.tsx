@@ -1,6 +1,8 @@
 'use client'
 
-import { Brain, Users, Target, Repeat, MessageSquare, Lightbulb, Search, Rocket, RefreshCw, LayoutGrid, Globe } from 'lucide-react'
+import { useState } from 'react'
+import Image from 'next/image'
+import { Brain, Users, Target, Repeat, MessageSquare, Lightbulb, Search, Rocket, RefreshCw, LayoutGrid, Globe, ChevronDown } from 'lucide-react'
 
 // ─── Data ─────────────────────────────────────────────────────────────────
 
@@ -13,6 +15,7 @@ const pillars = [
     accentColor: 'text-amber-600 dark:text-amber-400',
     title: 'Needs Before Content',
     subtitle: 'Training Needs Assessment (TNA)',
+    photo: '/images/bg/bg-work-session.jpg',
     description:
       "Every session starts with a question, not a slide deck. Before designing anything, I map what participants already know, what they misunderstand, what they need to do differently after the training, and what barriers they'll face when applying it. This is why my sessions feel relevant: they are built around real gaps, not assumed ones.",
     quote: '"A training that doesn\'t answer a real need is just an event."',
@@ -25,6 +28,7 @@ const pillars = [
     accentColor: 'text-green-600 dark:text-green-400',
     title: 'Learning Through Experience',
     subtitle: "Kolb's Experiential Learning Cycle",
+    photo: '/images/trainer/scorp-camp-25.png',
     description:
       "I design sessions that follow the natural learning cycle: participants start with a lived experience or a physical activity, then reflect on it, then connect it to theory, then apply it in a new context. For example, instead of explaining learning styles by lecture, I have participants physically position themselves in the room based on how they prefer to learn. Then we debrief and connect to theory. The insight lasts because it was felt first.",
     quote: '"People forget what they heard. They remember what they lived."',
@@ -37,8 +41,9 @@ const pillars = [
     accentColor: 'text-purple-600 dark:text-purple-400',
     title: 'Designing for Every Learner',
     subtitle: "McCarthy's 4MAT Instructional Design Model",
+    photo: '/images/bg/bg-exhibition.jpg',
     description:
-      "Not everyone processes information the same way. Some participants need to understand why before engaging. Others want the theory immediately. Others learn by doing. Others by reflecting and imagining. I use the 4MAT framework (grounded in Kolb's theory and developed by Bernice McCarthy) to design sessions that move through all four quadrants: emotional connection → conceptual understanding → practical application → creative synthesis. No learner is left behind.",
+      "Not everyone processes information the same way. Some participants need to understand why before engaging. Others want the theory immediately. Others learn by doing. Others by reflecting and imagining. I use the 4MAT framework (grounded in Kolb's theory and developed by Bernice McCarthy) to design sessions that move through all four quadrants: emotional connection, conceptual understanding, practical application, creative synthesis. No learner is left behind.",
     quote: '"The best session design is one where every participant finds their entry point."',
   },
   {
@@ -49,6 +54,7 @@ const pillars = [
     accentColor: 'text-blue-600 dark:text-blue-400',
     title: 'Human-Centered Facilitation',
     subtitle: 'Group Dynamics & Psychological Safety',
+    photo: '/images/trainer/tnhrt-carthaginian-camp.png',
     description:
       "Content is only 30% of a training. The other 70% is the room: how people feel, who dominates, who stays silent, whether participants trust each other enough to be honest. I actively manage group dynamics: creating psychological safety from the first minute, using techniques to surface quiet voices, and redirecting dominant ones without embarrassment. My goal is to turn a group of strangers into a learning community.",
     quote: '"You can have the best content in the world. If the room isn\'t safe, nothing lands."',
@@ -61,6 +67,7 @@ const pillars = [
     accentColor: 'text-rose-600 dark:text-rose-400',
     title: 'Training People to Train',
     subtitle: 'Train-the-Trainer & Cascade Methodology',
+    photo: '/images/trainer/iom-hackathon-doha-2024.png',
     description:
       "Many of my sessions are designed with a multiplier effect in mind. I don't just train participants. I train future trainers. Through micro-training exercises, small-group session design, and structured peer feedback, participants leave not only with knowledge but with the ability and confidence to facilitate others. I have applied this approach in TNHRT (Training New Human Rights Trainers) workshops at international level.",
     quote: '"The most powerful outcome of a training is a room full of future trainers."',
@@ -73,6 +80,7 @@ const pillars = [
     accentColor: 'text-teal-600 dark:text-teal-400',
     title: 'Capable Actors, Not Informed Listeners',
     subtitle: 'Non-Formal Education & Action-Oriented Learning',
+    photo: '/images/bg/bg-speaking.jpg',
     description:
       "The final measure of any training is not what participants know when they leave the room. It is what they do in the week after. Every session I design ends with a clear answer to: 'What will you do differently tomorrow?' I work in the non-formal education tradition, where learning is participatory, values-based, and connected to real-world action. Participants leave as advocates, facilitators, and change-makers.",
     quote: '"Information without action is trivia. Training should change behavior."',
@@ -117,6 +125,13 @@ const frameworks = [
 // ─── Component ─────────────────────────────────────────────────────────────
 
 export default function TrainingMethodologySection() {
+  // Each pillar card starts collapsed, showing only the title/subtitle and a
+  // 2-line description clamp -- the full description + pull quote reveal
+  // when the visitor clicks the arrow. Keeps the section from reading as a
+  // wall of text while still making the full methodology available.
+  const [openCards, setOpenCards] = useState<Record<string, boolean>>({})
+  const toggle = (key: string) => setOpenCards((prev) => ({ ...prev, [key]: !prev[key] }))
+
   return (
     <section className="py-20 px-6 bg-white dark:bg-background">
       <div className="max-w-5xl mx-auto">
@@ -143,13 +158,26 @@ export default function TrainingMethodologySection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
           {pillars.map((pillar) => {
             const Icon = pillar.icon
+            const isOpen = !!openCards[pillar.number]
             return (
               <div
                 key={pillar.number}
-                className="group rounded-2xl border border-slate-100 dark:border-border bg-slate-50/50 dark:bg-card/50 p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                className="group relative overflow-hidden rounded-2xl border border-slate-100 dark:border-border bg-slate-50/50 dark:bg-card/50 p-7 hover:shadow-lg transition-all duration-300"
               >
+                {/* Relevant real event photo, kept very faint so it reads as
+                    texture rather than competing with the text (Master
+                    to-do: visual interest without adding more reading). */}
+                <Image
+                  src={pillar.photo}
+                  alt=""
+                  fill
+                  aria-hidden
+                  className="object-cover opacity-[0.12] dark:opacity-[0.16] pointer-events-none select-none"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+
                 {/* Header row */}
-                <div className="flex items-start gap-4 mb-4">
+                <div className="relative flex items-start gap-4 mb-4">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${pillar.iconBg}`}>
                     <Icon className={`w-5 h-5 ${pillar.iconColor}`} />
                   </div>
@@ -167,17 +195,35 @@ export default function TrainingMethodologySection() {
                       {pillar.title}
                     </h3>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => toggle(pillar.number)}
+                    aria-expanded={isOpen}
+                    aria-label={isOpen ? `Show less about ${pillar.title}` : `Read more about ${pillar.title}`}
+                    className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border border-slate-200 dark:border-border text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-muted transition-colors"
+                  >
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+                  </button>
                 </div>
 
-                {/* Description */}
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                {/* Description: 2-line teaser, full text + quote on expand */}
+                <p
+                  className={`relative text-sm text-slate-600 dark:text-slate-400 leading-relaxed ${
+                    isOpen ? "mb-4" : "mb-0 line-clamp-2"
+                  }`}
+                >
                   {pillar.description}
                 </p>
 
-                {/* Pull quote */}
-                <p className={`text-xs font-medium italic border-l-2 pl-3 ${pillar.accentColor} border-current opacity-75`}>
-                  {pillar.quote}
-                </p>
+                <div
+                  className={`relative overflow-hidden transition-all duration-300 ease-out ${
+                    isOpen ? "max-h-24 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <p className={`text-xs font-medium italic border-l-2 pl-3 ${pillar.accentColor} border-current opacity-75`}>
+                    {pillar.quote}
+                  </p>
+                </div>
               </div>
             )
           })}
@@ -318,4 +364,3 @@ export default function TrainingMethodologySection() {
     </section>
   )
 }
-

@@ -72,7 +72,7 @@ export default function DesignerPageClient() {
       <Navbar />
 
       <main id="main-content" className="w-full pt-0">
-        {/* 1. Hero — positioning + work visual */}
+        {/* 1. Hero, positioning + work visual */}
         <RoleHero
           variant="split-edge"
           decoration={
@@ -111,10 +111,10 @@ export default function DesignerPageClient() {
         >
           <p className="label mb-4 text-accent">Brand design · Digital marketing · Zia Studio</p>
           <h1 className="h1-hero mb-5 text-white">
-            Design that sells — brand identity, campaigns, and marketing strategy for Tunisian brands.
+            Design that sells, brand identity, campaigns, and marketing strategy for Tunisian brands.
           </h1>
           <p className="mb-8 max-w-md text-[17px] leading-relaxed text-slate-400">
-            I&apos;m not just a designer — I conceive digital marketing strategies, run social campaigns, and build visual systems that convert. From logo to launch for cafés, startups, and NGOs across Tunisia.
+            I&apos;m not just a designer, I conceive digital marketing strategies, run social campaigns, and build visual systems that convert. From logo to launch for cafés, startups, and NGOs across Tunisia.
           </p>
           <div className="flex flex-wrap gap-3">
             <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green">
@@ -342,7 +342,7 @@ export default function DesignerPageClient() {
 
         {/* The hero already offers "Start a project" and the Behance archive
             link up front, and the contact-form section right below closes
-            the page with the same ask — so the generic "Ready to sharpen
+            the page with the same ask, so the generic "Ready to sharpen
             your brand?" band that used to sit here just restated both a
             third time on one scroll. Removed (Master to-do list, Tier 4 —
             CTA redundancy), same fix already applied on /trainer. */}

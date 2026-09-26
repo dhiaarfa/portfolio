@@ -6,14 +6,14 @@ import { useInView, useReducedMotion } from "framer-motion"
 /**
  * Counts a number up from 0 the first time it scrolls into view, then holds.
  * Replaces static stat figures (1,120+ / 477+ / 50+ / 7+ ...) with a small,
- * cheap piece of motion — the kind of first-view "count up" pattern seen
+ * cheap piece of motion, the kind of first-view "count up" pattern seen
  * constantly on award-recognized portfolio sites specifically because a
  * static stat row is otherwise easy to skim right past.
  *
  * `instant` skips the count-up and shows the final value immediately. Use it
  * for a stat row that sits above the fold (a hero): those are visible on
  * the very first paint with no scroll required, so the "reveal on scroll"
- * premise doesn't apply — every visitor was instead seeing the number sit
+ * premise doesn't apply, every visitor was instead seeing the number sit
  * at "0" for the first ~1.4s of every page load, which reads as a stat that
  * hasn't loaded rather than a nice animation.
  */

@@ -8,7 +8,7 @@ import { useLanguage } from "@/components/language-provider"
 export default function NewsletterSection() {
   const { t } = useLanguage()
   const [email, setEmail] = useState("")
-  // Honeypot field: intentionally has no onChange handler and is read-only — a human
+  // Honeypot field: intentionally has no onChange handler and is read-only, a human
   // never changes it, so it should always submit empty. A naive bot script that fills
   // every input programmatically is what this is designed to catch.
   const [website] = useState("")
@@ -52,7 +52,7 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section id="newsletter" className="py-14 bg-[#0A0A0A]">
+    <section id="newsletter" className="py-14 bg-card">
       <div className="max-w-2xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,21 +62,21 @@ export default function NewsletterSection() {
         >
           {/* Icon */}
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-accent-muted mb-4">
-            <Mail className="w-6 h-6 text-green-400" />
+            <Mail className="w-6 h-6 text-green-500 dark:text-green-400" />
           </div>
 
           {/* Headline */}
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
             {t("getDesignInsights")}
           </h2>
-          <p className="mt-3 text-sm text-slate-400">
+          <p className="mt-3 text-sm text-muted-foreground">
             {t("newsletterTagline")}
           </p>
 
           {/* Value props */}
           <div className="flex flex-wrap justify-center gap-4 mb-2 mt-4">
             {[t("newsletterBenefit1"), t("newsletterBenefit2"), t("newsletterBenefit3")].map((item) => (
-              <span key={item} className="text-xs text-slate-500">
+              <span key={item} className="text-xs text-muted-foreground/80">
                 {item}
               </span>
             ))}
@@ -95,7 +95,7 @@ export default function NewsletterSection() {
               placeholder="you@email.com"
               required
               disabled={status === "loading"}
-              className="flex-1 px-4 py-3 rounded-xl border border-[#383838] bg-[#1C1C1C] text-slate-50 placeholder:text-slate-500 focus:outline-none focus:border-accent text-sm"
+              className="flex-1 px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent text-sm"
             />
             <button
               type="submit"
@@ -112,14 +112,14 @@ export default function NewsletterSection() {
               )}
             </button>
           </form>
-          <p className="text-xs text-slate-500 mt-2">{t("newsletterNoSpam")}</p>
+          <p className="text-xs text-muted-foreground mt-2">{t("newsletterNoSpam")}</p>
 
           {/* Status */}
           {status === "success" && (
             <motion.p
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-4 text-sm text-green-400 flex items-center justify-center gap-2"
+              className="mt-4 text-sm text-green-600 dark:text-green-400 flex items-center justify-center gap-2"
             >
               <CheckCircle2 className="w-4 h-4" />
               {message}

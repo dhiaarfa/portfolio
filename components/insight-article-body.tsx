@@ -11,7 +11,7 @@ export default function InsightArticleBody({ content }: { content: string }) {
       remarkPlugins={[remarkGfm]}
       components={{
         // Rendered as h2, not h3: the page's own <h1> is the article title, and
-        // these are the only subsection headings in the article body — h1 -> h3
+        // these are the only subsection headings in the article body, h1 -> h3
         // was skipping a level (Lighthouse heading-order / WCAG 1.3.1), and the
         // page's "Related articles" <h2> further down made the mismatch visible
         // in the DOM order too. The markdown source uses "##" to match.

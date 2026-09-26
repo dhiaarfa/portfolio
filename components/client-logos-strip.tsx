@@ -10,17 +10,23 @@ function LogoImage({ logo }: { logo: (typeof organizationLogos)[0] }) {
   const [failed, setFailed] = useState(false)
   if (failed) return null
   return (
+    // A light backdrop chip behind every mark in dark mode: several of these
+    // logos are dark-colored artwork (near-black wordmarks, dark navy
+    // shields) that simply disappear against the site's dark background
+    // otherwise. Transparent in light mode where that's never an issue.
     <div className="flex items-center justify-center h-16 md:h-20 px-2 flex-shrink-0">
-      <Image
-        src={logo.src}
-        alt={logo.name}
-        width={logo.width}
-        height={logo.height}
-        sizes="(max-width: 768px) 120px, 160px"
-        className="object-contain max-h-14 md:max-h-16 w-auto h-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-        onError={() => setFailed(true)}
-        loading="lazy"
-      />
+      <div className="flex items-center justify-center rounded-xl dark:bg-white/95 px-3 py-2 transition-colors">
+        <Image
+          src={logo.src}
+          alt={logo.name}
+          width={logo.width}
+          height={logo.height}
+          sizes="(max-width: 768px) 120px, 160px"
+          className="object-contain max-h-14 md:max-h-16 w-auto h-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+          onError={() => setFailed(true)}
+          loading="eager"
+        />
+      </div>
     </div>
   )
 }

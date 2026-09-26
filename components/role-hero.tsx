@@ -9,7 +9,7 @@ type RoleHeroProps = {
    *  spanning the whole section, text + a contained media card side by
    *  side (Developer). Three distinct, hand-tuned looks kept as named
    *  variants of one shared component rather than flattened into a single
-   *  layout — the differences (full-bleed photo vs. image collage vs.
+   *  layout, the differences (full-bleed photo vs. image collage vs.
    *  terminal mockup) are a deliberate differentiator between the three
    *  disciplines. See Master to-do list Tier 4. */
   variant: "background" | "split-edge" | "split-contained"

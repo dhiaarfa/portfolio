@@ -32,12 +32,12 @@ export default function Navbar() {
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30)
-    // Sync immediately on attach — not just on the next scroll event. Without
+    // Sync immediately on attach, not just on the next scroll event. Without
     // this, a page that's already scrolled by the time this effect runs
     // (slow hydration, a browser-restored scroll position after refresh, or
     // a quick scroll that finishes before React hooks up) never fires
     // another 'scroll' event, so `scrolled` would stay stuck at its initial
-    // `false` forever — a permanently transparent header sitting on top of
+    // `false` forever, a permanently transparent header sitting on top of
     // the page content. This was the "navbar becomes transparent above the
     // content when I scroll" bug.
     fn()
@@ -49,7 +49,7 @@ export default function Navbar() {
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : '' }, [open])
 
   const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(siteConfig.whatsappMessage)}`
-  // Opens the same floating chat panel FloatingActions renders — that
+  // Opens the same floating chat panel FloatingActions renders, that
   // component listens for this event (it's also how the hero's ask bar
   // opens the assistant) rather than the button living where the panel does.
   const openAssistant = () => {
@@ -75,12 +75,12 @@ export default function Navbar() {
         {/* Was a fixed max-w-6xl (1152px) with a plain flex justify-between
             row. Two real problems with that: (1) on any screen wider than
             ~1200px it left large, static, unused margins that never grew
-            with the viewport — not "responsive", just capped; and (2) a
+            with the viewport, not "responsive", just capped; and (2) a
             flex row with justify-between only centers a middle item when
             the two flanking items happen to be equal width. They aren't
             here (the logo block is much narrower than the controls
             cluster), so the nav pill was always sitting left of true
-            center — the actual root cause of the recurring "navbar isn't
+            center, the actual root cause of the recurring "navbar isn't
             centered" reports, independent of the earlier overflow fix.
             A CSS grid with 1fr / auto / 1fr columns fixes both at once:
             the two 1fr edge columns always split the remaining space
@@ -88,12 +88,12 @@ export default function Navbar() {
             no static cap), and an auto-width middle column between two
             equal flexible columns is mathematically centered on the row
             regardless of how wide the logo or controls blocks are. */}
-        {/* minmax(0,1fr) — not plain 1fr — on both flanking columns. Plain
+        {/* minmax(0,1fr), not plain 1fr, on both flanking columns. Plain
           `1fr` has an implicit minimum of its content's min-content width,
           so when the two sides hold very different amounts of content (a
           ~200px logo vs an ~800px cluster of controls) each 1fr track
           expands to fit its own content first and only splits the
-          LEFTOVER space evenly — that's what was silently pushing the
+          LEFTOVER space evenly, that's what was silently pushing the
           centered nav pill ~250px left of true center. minmax(0, 1fr)
           removes that content-based minimum so both tracks are forced to
           the same width regardless of what's inside them, which is what
@@ -104,19 +104,19 @@ export default function Navbar() {
           otherwise. When the right-hand controls cluster's natural content
           width was wider than its equal 1fr share, that default auto
           min-width silently forced the column wider than the left one
-          again — undoing the fix above and re-off-centering the nav pill.
+          again, undoing the fix above and re-off-centering the nav pill.
           `min-w-0` on both the logo wrapper and the controls wrapper below
           removes that per-item override so the two edge columns actually
           end up pixel-equal, which is what actually centers the middle nav. */}
       {/* Deliberately no longer a perfect 1fr/1fr split (your ask): the logo
           block only ever needs ~200px, but the controls cluster (icons +
           Copy email + Resume + Theme + Language + Book a call) genuinely
-          needs more like 600px+ once everything's visible — an even split
+          needs more like 600px+ once everything's visible, an even split
           was giving both sides the same width regardless, which left the
           controls side cramped (that's what was crowding the Copy email
           pill) while the logo side sat on unused space. 0.7fr/1.3fr keeps
           the same "both sides scale with viewport width" behavior as
-          before, just biased toward the side that actually needs it — the
+          before, just biased toward the side that actually needs it, the
           nav pill shifts left with it since its left edge is wherever the
           logo column ends. */}
       <div className="max-w-[100rem] w-full mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20 grid grid-cols-[minmax(0,0.7fr)_auto_minmax(0,1.3fr)] items-center gap-3">
@@ -129,10 +129,10 @@ export default function Navbar() {
             {/* No aria-label override here on purpose: the visible "Mohamed Dhia" text
                 already gives this link a perfectly good accessible name. An aria-label
                 of "Home" would silently replace that name for screen-reader users while
-                sighted users still see "Mohamed Dhia" — a real WCAG 2.5.3 mismatch that
+                sighted users still see "Mohamed Dhia", a real WCAG 2.5.3 mismatch that
                 showed up in a Lighthouse accessibility audit.
                 shrink-0 on this wrapper (and whitespace-nowrap below) keeps the
-                name and tagline on one line each — without it, the flex row's
+                name and tagline on one line each, without it, the flex row's
                 default shrink behavior could squeeze this block narrower than
                 its text and force an awkward mid-word wrap. */}
             <Link href="/" className="flex items-center gap-2 shrink-0 group">
@@ -148,7 +148,7 @@ export default function Navbar() {
 
           {/* The full pill nav + full icon cluster genuinely doesn't fit
               together below ~1280px (7 nav links + logo + 5-9 controls
-              easily exceeds 1024px) — using `lg` here was the real cause of
+              easily exceeds 1024px), using `lg` here was the real cause of
               the "navbar overflows / isn't centered" bug. `xl` gives both
               enough room, and the hamburger menu below covers every one of
               these links and controls in the 1024-1279 gap. */}
@@ -188,7 +188,7 @@ export default function Navbar() {
                 xl   (1280+): nav + Theme + Language + Book a call only
                 1600+:        + Resume
                 1900+:        + Behance / LinkedIn / WhatsApp
-              Nothing is lost below 1900px — every one of these is still one
+              Nothing is lost below 1900px, every one of these is still one
               tap away in the xl:hidden mobile menu below. */}
           <div className="flex items-center gap-1 min-w-0 justify-self-end">
             <a
@@ -228,7 +228,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => window.dispatchEvent(new CustomEvent("dhia:open-search"))}
-              className="hidden sm:flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 bg-slate-100/90 dark:bg-muted/70 text-slate-600 dark:text-slate-300 ring-1 ring-black/10 dark:ring-white/10 hover:text-slate-900 dark:hover:text-white"
+              className="hidden sm:flex w-9 h-9 rounded-full items-center justify-center transition-all duration-200 hover:scale-105 active:scale-90 shrink-0 bg-slate-100/90 dark:bg-muted/70 text-slate-600 dark:text-slate-300 ring-1 ring-black/10 dark:ring-white/10 hover:text-slate-900 dark:hover:text-white"
               aria-label="Search (Ctrl/Cmd+K)"
               title="Search (Ctrl/Cmd+K)"
             >
@@ -247,7 +247,7 @@ export default function Navbar() {
             </a>
 
             {/* w-9 h-9 to match every other control in this cluster (icon
-                buttons, theme/language toggles) — it was w-10 h-10 before,
+                buttons, theme/language toggles), it was w-10 h-10 before,
                 the one visibly oversized button in an otherwise consistent
                 36px row. */}
             <button

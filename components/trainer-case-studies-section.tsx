@@ -93,7 +93,7 @@ export default function TrainerCaseStudiesSection() {
                 {quote && (
                   <blockquote className="border-l-2 border-accent pl-3 text-sm italic text-muted-foreground">
                     &ldquo;{quote}&rdquo;
-                    {quoteAuthor && <footer className="mt-1 not-italic text-xs font-medium text-foreground">— {quoteAuthor}</footer>}
+                    {quoteAuthor && <footer className="mt-1 not-italic text-xs font-medium text-foreground">{quoteAuthor}</footer>}
                   </blockquote>
                 )}
               </div>

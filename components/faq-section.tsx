@@ -10,7 +10,7 @@ import {
 import { faqs } from "@/lib/faqs"
 
 // This full accordion section is no longer rendered on the homepage (see
-// lib/faqs.ts) — the same questions now surface as one-at-a-time
+// lib/faqs.ts), the same questions now surface as one-at-a-time
 // suggestions inside the floating AI assistant instead. Left in place,
 // unused, in case a dedicated FAQ page or section is wanted again later.
 

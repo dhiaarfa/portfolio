@@ -39,7 +39,7 @@ export const pageTestimonials: PageTestimonial[] = [
     name: "Skander Chebbi",
     role: "Graphic Designer · Collaborator",
     quote:
-      "I would highly recommend working with Dhia — a symbol of dynamism and accuracy. He brought added value in graphic design, strategic planning, logistics, and external representation.",
+      "I would highly recommend working with Dhia, a symbol of dynamism and accuracy. He brought added value in graphic design, strategic planning, logistics, and external representation.",
   },
   {
     name: "Amir Boujelben",

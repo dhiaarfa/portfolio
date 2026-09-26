@@ -4,7 +4,7 @@ import BrandIcon from "@/lib/brand-icon"
 import { toolsStackGroups } from "@/lib/tools-stack"
 import { Tile } from "@/components/ui/tile"
 
-// One accent per group instead of a flat grey list — matches the color
+// One accent per group instead of a flat grey list, matches the color
 // coding used everywhere else on the site (pink for design work, amber for
 // training, blue for dev). Card border/badge only; icons keep their own
 // brand colors so this doesn't fight with them.
@@ -44,31 +44,30 @@ export default function ToolsStackSection({
           {compact ? "Dev stack I ship with" : "Software I work with daily"}
         </h3>
 
-        {/* One card per category instead of stacked full-width rows — each
-            card gets its own colored top edge and badge so the section
-            reads as a small showcase grid rather than a plain list. */}
-        <div className="grid sm:grid-cols-2 gap-5">
+        {/* One horizontal row per category, stacked under each other, instead
+            of a 2-column grid of tall cards each padded around a small icon
+            grid -- that layout burned a lot of vertical space per tool.
+            A row keeps every icon at reading height and lets the row simply
+            wrap onto more lines on narrow screens. */}
+        <div className="flex flex-col gap-4">
           {visibleGroups.map((group) => (
             <Tile
               key={group.id}
-              className={`border-t-4 ${GROUP_ACCENT[group.id] ?? "border-t-accent"}`}
+              className={`!py-4 !px-5 border-t-4 ${GROUP_ACCENT[group.id] ?? "border-t-accent"} flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5`}
             >
               <span
-                className={`inline-block text-[12px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full mb-5 ${GROUP_BADGE[group.id] ?? "bg-accent-subtle text-accent"}`}
+                className={`shrink-0 inline-block w-fit text-[12px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full ${GROUP_BADGE[group.id] ?? "bg-accent-subtle text-accent"}`}
               >
                 {group.label}
               </span>
 
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-3 sm:pl-4 sm:border-l sm:border-slate-200/70 dark:sm:border-border/60">
                 {group.tools.map((tool) => (
-                  <div
-                    key={tool.name}
-                    className="flex flex-col items-center gap-2 rounded-2xl p-2.5 hover:bg-slate-50 dark:hover:bg-card/50 transition-colors"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-card border border-slate-200/70 dark:border-border/60 flex items-center justify-center shadow-sm">
-                      <BrandIcon slug={tool.slug} size={24} />
+                  <div key={tool.name} className="flex items-center gap-2">
+                    <div className="w-8 h-8 shrink-0 rounded-lg bg-slate-50 dark:bg-card border border-slate-200/70 dark:border-border/60 flex items-center justify-center shadow-sm">
+                      <BrandIcon slug={tool.slug} size={18} />
                     </div>
-                    <p className="text-xs font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">
+                    <p className="text-xs font-medium text-slate-600 dark:text-slate-300 whitespace-nowrap">
                       {tool.name}
                     </p>
                   </div>

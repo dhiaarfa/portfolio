@@ -36,7 +36,7 @@ const MIME_BY_EXT: Record<string, string> = {
 
 // Several project images in /public carry a ".png" extension but are
 // actually JPEG-encoded (e.g. dhia-trainer-hero.png, digimytch/landing.png,
-// crit/home.png) — likely from an export tool that didn't re-encode on
+// crit/home.png), likely from an export tool that didn't re-encode on
 // rename. A data URI that declares the wrong MIME type for its bytes
 // fails to decode in Satori/resvg (silently: no thrown error, blank
 // image), so the real format is sniffed from the file's magic bytes
@@ -72,7 +72,7 @@ async function loadLocalImageAsDataUri(publicPath: string) {
 
 /**
  * Dynamic replacement for scripts/gen-og-images.py's static PNGs (Master
- * to-do list, Tier 6 — @vercel/og). Same dark/lime brand layout: a left
+ * to-do list, Tier 6, @vercel/og). Same dark/lime brand layout: a left
  * text panel (kicker, title, subhead, footer) and a right panel with the
  * project/hero image, vignetted into the dark background at the seam.
  * Query params mirror the old script's per-image dict: kicker, title,
@@ -97,8 +97,8 @@ export async function GET(req: Request) {
   // unauthenticated server-side request and returned an HTML challenge
   // page instead of the image, which Satori then failed to decode
   // ("Unsupported image type: unknown"). Reading the file directly avoids
-  // that network hop entirely — same approach already used for fonts
-  // below — and works regardless of DNS/domain/protection state. A
+  // that network hop entirely, same approach already used for fonts
+  // below, and works regardless of DNS/domain/protection state. A
   // genuinely external image (an http(s) URL) still goes through Satori's
   // normal remote-image fetch.
   const imageUrl = image.startsWith("http") ? image : await loadLocalImageAsDataUri(image)

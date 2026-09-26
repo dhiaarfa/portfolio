@@ -95,7 +95,7 @@ export const freebieCatalog: Freebie[] = [
     emoji: "💻",
     title: "Next.js + Supabase Starter Checklist",
     description:
-      "The exact checklist I run through when bootstrapping a new Next.js + Supabase project — auth setup, environment variables, database policies, and deployment, in the right order.",
+      "The exact checklist I run through when bootstrapping a new Next.js + Supabase project, auth setup, environment variables, database policies, and deployment, in the right order.",
     format: "PDF · 2 pages",
     benefit: "Skip the setup guesswork",
     color: "blue",

@@ -26,5 +26,5 @@ export const organizationLogos: OrganizationLogo[] = [
   { name: "Three Alfa Formation", src: "/img/organizations/three-alfa-formation.png", width: 150, height: 60 },
   { name: "Enactus ISG Tunis", src: "/img/organizations/enactus-isg-tunis.png", width: 160, height: 60 },
   { name: "UN Sustainable Development Goals", src: "/img/organizations/un-sdgs.png", width: 72, height: 60 },
-  { name: "ADN — Académie de Dialogue National", src: "/img/organizations/adn-academie-dialogue.png", width: 110, height: 60 },
+  { name: "ADN, Académie de Dialogue National", src: "/img/organizations/adn-academie-dialogue.png", width: 110, height: 60 },
 ]

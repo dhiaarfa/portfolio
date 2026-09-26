@@ -5,9 +5,9 @@ import { motion, useInView } from 'framer-motion'
 import { MessageCircle, Palette, Handshake, Brain, Globe, Sparkles, Puzzle, Drama, Trophy, type LucideIcon } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
 
-// Self-assessed strengths — presented as a single self-rating, not a comparison against
+// Self-assessed strengths, presented as a single self-rating, not a comparison against
 // an undisclosed "baseline" (the earlier "Partner" series had no real source behind it).
-// Was a radar/hexagon chart (recharts) — replaced with a set of animated skill
+// Was a radar/hexagon chart (recharts), replaced with a set of animated skill
 // bars: smoother (no hard polygon edges), lighter (no recharts bundle for
 // this section), and reads as a more modern/Gen-Z "stat bar" pattern
 // (Spotify Wrapped / Duolingo style) instead of a boardroom radar chart.
@@ -32,7 +32,7 @@ const valueProps: { Icon: LucideIcon; titleKey: string; descKey: string }[] = [
 export default function ValueRadarChart() {
   const { t } = useLanguage()
   const barsRef = useRef<HTMLDivElement>(null)
-  // Bars fill in on scroll rather than on mount — gated behind useInView so
+  // Bars fill in on scroll rather than on mount, gated behind useInView so
   // the fill animation actually reads as a reveal instead of something that
   // already finished before the visitor scrolls this far.
   const barsInView = useInView(barsRef, { once: true, margin: '-80px' })
@@ -65,7 +65,7 @@ export default function ValueRadarChart() {
 
         <div className="rounded-2xl border border-border bg-card p-4 md:p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
-            {/* Skill bars — each fills in with a short staggered delay once
+            {/* Skill bars, each fills in with a short staggered delay once
                 scrolled into view. Rounded, gradient-free, single accent
                 color: reads cleaner and more "app stat" than a filled
                 polygon, and takes noticeably less vertical space. */}
@@ -90,7 +90,7 @@ export default function ValueRadarChart() {
               ))}
             </div>
 
-            {/* Value props — one compact row per item, same rhythm as the
+            {/* Value props, one compact row per item, same rhythm as the
                 Journey card's rows, instead of large individually-animated
                 bento tiles. */}
             <div className="divide-y divide-border rounded-xl border border-border overflow-hidden">

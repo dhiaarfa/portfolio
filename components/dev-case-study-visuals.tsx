@@ -84,7 +84,7 @@ function Cell({ value }: { value: boolean | string }) {
   if (value === true) return <CheckCircle2 className="mx-auto h-5 w-5 text-accent" aria-label="Yes" />
   if (value === "partial")
     return <span className="text-xs font-medium text-amber-600 dark:text-amber-400">Partial</span>
-  return <span className="text-muted-foreground/40">—</span>
+  return <span className="text-muted-foreground/40">·</span>
 }
 
 export default function DevCaseStudyVisuals({ slug }: { slug: string }) {
@@ -170,7 +170,7 @@ export default function DevCaseStudyVisuals({ slug }: { slug: string }) {
       {/* Competitive comparison */}
       <div>
         <p className="label mb-2">Market positioning</p>
-        <h3 className="mb-4 text-xl font-bold text-foreground lg:text-2xl">Built for Tunisia — not a US import</h3>
+        <h3 className="mb-4 text-xl font-bold text-foreground lg:text-2xl">Built for Tunisia, not a US import</h3>
         <div className="overflow-x-auto rounded-2xl border border-border">
           <table className="w-full min-w-[520px] text-sm">
             <thead>

@@ -50,7 +50,7 @@ export default function MeetUpProCaseStudyBody() {
 
                 <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
                   Event identity, social campaign assets, and on-site promotional design for a youth networking
-                  event that needed to sell tickets through social before anyone saw the venue — resulting in
+                  event that needed to sell tickets through social before anyone saw the venue, resulting in
                   sold-out attendance and a template system reused across follow-up editions.
                 </p>
 
@@ -154,7 +154,7 @@ export default function MeetUpProCaseStudyBody() {
                   <h3 className="text-xl font-semibold mb-3">Production System</h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Standardized photography slots so the team could swap in new speaker faces themselves without
-                    breaking alignment — the system had to outlast my own involvement.
+                    breaking alignment, the system had to outlast my own involvement.
                   </p>
                 </div>
               </div>

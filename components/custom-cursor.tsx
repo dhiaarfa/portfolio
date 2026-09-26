@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } 
 /**
  * A custom accent-colored cursor (dot + trailing ring) that replaces the OS
  * pointer on desktop/mouse visitors, with a one-time expanding "welcome"
- * ripple the moment someone lands on the site — the "different cursor when
+ * ripple the moment someone lands on the site, the "different cursor when
  * people first enter" ask. Skipped entirely on touch devices and for
  * prefers-reduced-motion, and the native cursor is restored automatically
  * (see the `.custom-cursor-active` rule in globals.css) if this never
@@ -68,7 +68,7 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* One-time entrance ripple — the "different cursor when you first
+      {/* One-time entrance ripple, the "different cursor when you first
           enter" moment. Expands from the visitor's first pointer position
           and fades, then never appears again this session. */}
       <AnimatePresence>

@@ -1,13 +1,25 @@
 "use client"
 
 import { useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import { Mail, Copy, Check } from "lucide-react"
 import { siteConfig } from "@/lib/site-config"
 import { useLanguage } from "./language-provider"
 
-/** Navbar pill that expands on hover (or tap, for touch/keyboard users) to
+/** Navbar control that expands on hover (or tap, for touch/keyboard users) to
  *  reveal the email address and a one-click copy button, instead of making
- *  visitors open their mail app just to grab the address. */
+ *  visitors open their mail app just to grab the address.
+ *
+ *  Sizing: the collapsed state is a plain 36px icon circle (same footprint as
+ *  the Behance/WhatsApp icon buttons next to it), not a labelled pill --
+ *  smaller and visually consistent with its neighbors.
+ *
+ *  Space: the invisible ghost below is sized to the FULL EXPANDED pill
+ *  (email address + copy button), not just the collapsed icon. That reserves
+ *  the maximum width this control will ever need in the navbar's normal flex
+ *  flow from the very first render, so expanding on hover never grows into
+ *  and hides the icons to its left -- the space was already set aside.
+ */
 export function CopyEmailButton() {
   const [expanded, setExpanded] = useState(false)
   const [copied, setCopied] = useState(false)
@@ -19,22 +31,12 @@ export function CopyEmailButton() {
       setCopied(true)
       window.setTimeout(() => setCopied(false), 1800)
     } catch {
-      // Clipboard API can fail (permissions, insecure context) — the email is
+      // Clipboard API can fail (permissions, insecure context) -- the email is
       // still visible in the expanded pill for the visitor to select by hand.
     }
   }
 
   return (
-    // `relative` + a fixed-height ghost element below is what makes this
-    // safe to expand: the ghost reserves the collapsed pill's exact width
-    // in the navbar's normal flex flow (so Resume/Theme/Language/Book-a-call
-    // never shift when this expands), while the actual visible pill is
-    // rendered `absolute` on top of that same spot and grows to the left
-    // without pushing anything. It used to expand inline, which both
-    // shoved every control after it sideways AND — since it had no
-    // position/z-index of its own — could end up visually painted *under*
-    // later, unrelated controls once the row got tight. `z-30` plus
-    // `position: absolute` guarantees it always paints above them instead.
     <div
       className="relative hidden md:block h-9"
       onMouseEnter={() => setExpanded(true)}
@@ -43,45 +45,87 @@ export function CopyEmailButton() {
         setCopied(false)
       }}
     >
+      {/* Ghost: invisible, reserves the expanded pill's width permanently. */}
       <div
         aria-hidden
-        className="invisible inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium whitespace-nowrap"
+        className="invisible inline-flex items-center gap-2 h-9 pl-3.5 pr-1.5 rounded-full text-xs font-medium whitespace-nowrap"
       >
-        <Mail className="w-3.5 h-3.5" />
-        {t("copyEmailLabel")}
+        <span>{siteConfig.email}</span>
+        <span className="inline-flex items-center gap-1 px-2.5 h-6 rounded-full text-xs font-semibold">
+          <Copy className="w-3 h-3" />
+          {t("copyLabel")}
+        </span>
       </div>
 
-      <div className="absolute top-0 right-0 z-30">
-        {!expanded ? (
-          <button
-            type="button"
-            onClick={() => setExpanded(true)}
-            aria-expanded={false}
-            className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100/90 dark:bg-muted/70 border border-slate-200/60 dark:border-border/60 hover:text-slate-900 dark:hover:text-white transition-colors whitespace-nowrap"
-          >
-            <Mail className="w-3.5 h-3.5" />
-            {t("copyEmailLabel")}
-          </button>
-        ) : (
-          <div
-            aria-expanded={true}
-            className="inline-flex items-center gap-2 h-9 pl-3.5 pr-1.5 rounded-full bg-white dark:bg-muted border border-slate-200 dark:border-border shadow-lg whitespace-nowrap"
-          >
-            <span className="text-xs font-medium text-slate-700 dark:text-slate-200">{siteConfig.email}</span>
-            <button
+      <div className="absolute top-0 right-0 z-30 h-9">
+        <AnimatePresence initial={false} mode="wait">
+          {!expanded ? (
+            <motion.button
+              key="collapsed"
               type="button"
-              onClick={handleCopy}
-              className={`inline-flex items-center gap-1 px-2.5 h-6 rounded-full text-xs font-semibold transition-colors ${
-                copied
-                  ? "bg-green-600 text-white"
-                  : "bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90"
-              }`}
+              onClick={() => setExpanded(true)}
+              aria-expanded={false}
+              aria-label={t("copyEmailLabel")}
+              title={t("copyEmailLabel")}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              className="absolute top-0 right-0 w-9 h-9 inline-flex items-center justify-center rounded-full text-slate-600 dark:text-slate-300 bg-slate-100/90 dark:bg-muted/70 border border-slate-200/60 dark:border-border/60 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-muted transition-colors"
             >
-              {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-              {copied ? t("copiedLabel") : t("copyLabel")}
-            </button>
-          </div>
-        )}
+              <Mail className="w-4 h-4" />
+            </motion.button>
+          ) : (
+            <motion.div
+              key="expanded"
+              aria-expanded={true}
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              className="absolute top-0 right-0 inline-flex items-center gap-2 h-9 pl-3.5 pr-1.5 rounded-full bg-white dark:bg-muted border border-slate-200 dark:border-border shadow-lg whitespace-nowrap"
+            >
+              <span className="text-xs font-medium text-slate-700 dark:text-slate-200">{siteConfig.email}</span>
+              <button
+                type="button"
+                onClick={handleCopy}
+                className={`inline-flex items-center gap-1 px-2.5 h-6 rounded-full text-xs font-semibold overflow-hidden transition-colors duration-200 active:scale-95 ${
+                  copied
+                    ? "bg-green-600 text-white"
+                    : "bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90"
+                }`}
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  {copied ? (
+                    <motion.span
+                      key="copied"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                      className="inline-flex items-center gap-1"
+                    >
+                      <Check className="w-3 h-3" />
+                      {t("copiedLabel")}
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      key="copy"
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 6 }}
+                      transition={{ duration: 0.15 }}
+                      className="inline-flex items-center gap-1"
+                    >
+                      <Copy className="w-3 h-3" />
+                      {t("copyLabel")}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   )
@@ -99,7 +143,7 @@ export function CopyEmailMobileRow() {
       setCopied(true)
       window.setTimeout(() => setCopied(false), 1800)
     } catch {
-      // Same fallback as the desktop version — nothing more to do here.
+      // Same fallback as the desktop version -- nothing more to do here.
     }
   }
 
@@ -114,12 +158,37 @@ export function CopyEmailMobileRow() {
         <span className="truncate">{siteConfig.email}</span>
       </span>
       <span
-        className={`shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold ${
+        className={`shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-colors duration-200 ${
           copied ? "bg-green-600 text-white" : "bg-slate-900 text-white dark:bg-white dark:text-slate-900"
         }`}
       >
-        {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-        {copied ? t("copiedLabel") : t("copyLabel")}
+        <AnimatePresence mode="wait" initial={false}>
+          {copied ? (
+            <motion.span
+              key="copied"
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.15 }}
+              className="inline-flex items-center gap-1"
+            >
+              <Check className="w-3 h-3" />
+              {t("copiedLabel")}
+            </motion.span>
+          ) : (
+            <motion.span
+              key="copy"
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 4 }}
+              transition={{ duration: 0.15 }}
+              className="inline-flex items-center gap-1"
+            >
+              <Copy className="w-3 h-3" />
+              {t("copyLabel")}
+            </motion.span>
+          )}
+        </AnimatePresence>
       </span>
     </button>
   )

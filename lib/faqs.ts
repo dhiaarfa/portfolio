@@ -1,6 +1,6 @@
 // Shared FAQ data. Previously lived only inside components/faq-section.tsx
 // as a full accordion section rendered at the bottom of the homepage. Per
-// Dhia's feedback, that dedicated section was removed — the same questions
+// Dhia's feedback, that dedicated section was removed, the same questions
 // now surface instead as one-at-a-time suggestions inside the floating AI
 // assistant (components/floating-actions.tsx), so both places read from
 // this single list instead of duplicating the copy.

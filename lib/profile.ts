@@ -1,6 +1,6 @@
 /**
  * Single source of truth for profile stats, credentials, and experience.
- * All pages should import from here — do not hard-code conflicting values in JSX.
+ * All pages should import from here, do not hard-code conflicting values in JSX.
  *
  * TODO(owner): Confirm items marked below if your records differ.
  */
@@ -86,7 +86,7 @@ export const education: EducationEntry[] = [
   {
     id: "iset-sousse",
     year: "2023 – 2026",
-    degree: "Bachelor of Science in Web Development & Multimedia — with Honors",
+    degree: "Bachelor of Science in Web Development & Multimedia, with Honors",
     school: "Higher Institute of Technological Studies (ISET)",
     location: "Sousse, Tunisia",
   },
@@ -119,7 +119,7 @@ export type ExperienceEntry = {
 // Cross-checked against CV_General_Detailed_MohamedDhiaArfa.pdf (Aug 2026):
 // - CRIT Tunisie was Sep–Dec 2025, not 2023 (date was off by two years).
 // - The "Jasmin Crafts & Plants" marketing-manager role with "+40% engagement" doesn't
-//   appear on any CV — that achievement belongs to Speranza Cafe & Resto (Jan–Jun 2025).
+//   appear on any CV, that achievement belongs to Speranza Cafe & Resto (Jan–Jun 2025).
 //   Corrected below to avoid crediting the wrong company.
 // - Icom / Phenyx / Jasmin Marketing internships ran 2023–2025, not "2021–2023".
 export const aboutExperience: ExperienceEntry[] = [
@@ -137,7 +137,7 @@ export const aboutExperience: ExperienceEntry[] = [
     role: "Web Developer (End of Studies Internship)",
     company: "Digimytch",
     description:
-      "Solo-built Digimytch Talent Hub, an AI-powered job platform, across 5 Scrum sprints — AI CV editor, job-matching engine, training catalog, and a voice AI interview simulator.",
+      "Solo-built Digimytch Talent Hub, an AI-powered job platform, across 5 Scrum sprints, AI CV editor, job-matching engine, training catalog, and a voice AI interview simulator.",
     tags: ["Next.js 15", "Supabase", "AI/LLM", "109 tests"],
   },
   {
@@ -169,7 +169,7 @@ export const aboutExperience: ExperienceEntry[] = [
   },
 ]
 
-/** NGO / civic & social-impact roles — kept separate from paid professional experience. */
+/** NGO / civic & social-impact roles, kept separate from paid professional experience. */
 export const civicExperience: ExperienceEntry[] = [
   {
     id: "aiesec-lebanon",
@@ -186,7 +186,7 @@ export const developerExperience: ExperienceEntry[] = [
   {
     id: "digimytch-dev",
     period: "Feb 2026 – Jun 2026",
-    role: "Web Developer — End of Studies Internship",
+    role: "Web Developer, End of Studies Internship",
     company: "Digimytch",
     description:
       "Solo-built Digimytch Talent Hub, an AI-powered job platform: AI CV editor, job-matching engine, training catalog, Kanban tracker, and a voice AI interview simulator. Integrated 4 LLMs via OpenRouter with real-time streaming. Built on Next.js 15, React 19, TypeScript, Supabase, and Vercel AI SDK v4. 109 automated tests across 24 files.",
@@ -227,9 +227,9 @@ export const designExperience: ExperienceEntry[] = [
   {
     id: "zia",
     period: "2020 – Present",
-    role: "Zia Studio — Design Studio Operations",
+    role: "Zia Studio, Design Studio Operations",
     company: "Solo-led Creative Practice",
-    description: "Full-service creative design studio — branding, UI/UX, visual identity systems.",
+    description: "Full-service creative design studio, branding, UI/UX, visual identity systems.",
   },
   {
     id: "icom",
@@ -299,7 +299,7 @@ export const trainingMilestones: TrainingMilestone[] = [
     year: "2026",
     title: "Multi-Organization Trainer",
     description:
-      "Currently training at Rayen Academy (since Oct 2025) and Centre Three Alfa Formation (since Apr 2026), following earlier 2024–2025 engagements at Groupe Etoile Formation and Supplier Training & Consulting (STC) — graphic design and digital marketing curricula for youth participants",
+      "Currently training at Rayen Academy (since Oct 2025) and Centre Three Alfa Formation (since Apr 2026), following earlier 2024–2025 engagements at Groupe Etoile Formation and Supplier Training & Consulting (STC), graphic design and digital marketing curricula for youth participants",
     stats: "2 Active Partners",
   },
 ]

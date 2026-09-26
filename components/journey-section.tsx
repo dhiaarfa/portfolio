@@ -6,7 +6,7 @@ import { certifications, education, aboutExperience, civicExperience } from "@/l
 import { useLanguage } from "@/components/language-provider"
 
 // Kept off the About page (removed) but the underlying data is still worth
-// having on Home — just compressed into one small tabbed card instead of
+// having on Home, just compressed into one small tabbed card instead of
 // four separate full-width sections with timelines and colored badges.
 // Only one tab's rows render at a time, so this never grows past a handful
 // of short lines no matter how much career history gets added later.

@@ -2,12 +2,12 @@ export type ResumeOption = {
   id: string
   /** Translation key for this resume's label in the dropdown. */
   labelKey: string
-  /** Path under /public — served directly, no build step needed. */
+  /** Path under /public, served directly, no build step needed. */
   fileUrl: string
 }
 
 /** The 5 role-specific resumes offered from the navbar's Resume dropdown.
- *  Files live in public/resumes/ — add a new PDF there and an entry here to
+ *  Files live in public/resumes/, add a new PDF there and an entry here to
  *  offer another one; nothing else needs to change. */
 export const resumeOptions: ResumeOption[] = [
   { id: "general", labelKey: "resumeGeneral", fileUrl: "/resumes/mohamed-dhia-arfa-cv.pdf" },

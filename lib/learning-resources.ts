@@ -7,6 +7,10 @@ export type LearningResource = {
   category: "design" | "training" | "development" | "marketing"
   /** YouTube video ID for embeds */
   youtubeId?: string
+  /** Relevant cover photo for the non-YouTube resources (those get a real
+   *  embed thumbnail instead), shown the same way so every card in the
+   *  grid carries a real image rather than a plain icon badge. */
+  image?: string
 }
 
 export const learningResources: LearningResource[] = [
@@ -71,6 +75,7 @@ export const learningResources: LearningResource[] = [
     type: "article",
     url: "https://developer.mozilla.org/en-US/docs/Learn",
     category: "development",
+    image: "/images/resources/mdn-html.jpg",
   },
   {
     id: "canva-design-school",
@@ -79,6 +84,7 @@ export const learningResources: LearningResource[] = [
     type: "course",
     url: "https://www.canva.com/designschool/",
     category: "design",
+    image: "/images/resources/canva-design-school.jpg",
   },
   {
     id: "salience-learning",
@@ -87,6 +93,7 @@ export const learningResources: LearningResource[] = [
     type: "article",
     url: "https://www.salto-youth.net/",
     category: "training",
+    image: "/images/resources/salto-youth.jpg",
   },
   {
     id: "google-analytics",
@@ -95,6 +102,7 @@ export const learningResources: LearningResource[] = [
     type: "course",
     url: "https://skillshop.withgoogle.com/",
     category: "marketing",
+    image: "/images/resources/google-analytics.jpg",
   },
   {
     id: "supabase-docs",
@@ -103,6 +111,7 @@ export const learningResources: LearningResource[] = [
     type: "tool",
     url: "https://supabase.com/docs",
     category: "development",
+    image: "/images/resources/supabase-docs.jpg",
   },
   {
     id: "behance-inspiration",
@@ -111,6 +120,7 @@ export const learningResources: LearningResource[] = [
     type: "tool",
     url: "https://www.behance.net/search/projects?field=102",
     category: "design",
+    image: "/images/resources/behance-inspiration.jpg",
   },
 ]
 

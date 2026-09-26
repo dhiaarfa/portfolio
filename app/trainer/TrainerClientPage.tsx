@@ -24,7 +24,7 @@ import { AnimatedNumber } from "@/components/ui/animated-number"
 export default function TrainerClientPage() {
   const { t } = useLanguage()
 
-  // `progress` is stylistic (these are counts, not percentages) — varied per
+  // `progress` is stylistic (these are counts, not percentages), varied per
   // stat so the row of rings reads as a designed chart rather than six
   // identical circles with numbers dropped in.
   const impactStats = [
@@ -41,7 +41,7 @@ export default function TrainerClientPage() {
       <Navbar />
 
       <main id="main-content" className="w-full pt-0">
-        {/* 1. Hero — who + outcome + dual CTAs */}
+        {/* 1. Hero, who + outcome + dual CTAs */}
         <RoleHero
           variant="background"
           media={
@@ -225,13 +225,13 @@ export default function TrainerClientPage() {
         {/* 10. Credentials + case studies */}
         <CertificationsSection />
 
-        {/* 11. Final CTA + contact — the hero already offers both "book a
+        {/* 11. Final CTA + contact, the hero already offers both "book a
             call" and "free resources" up front (see Book a Workshop / Get
             free training resources above), so this used to repeat both
             verbatim in an amber band right before this section. Removed:
             the navbar's persistent CTA plus this one closing CTA is enough
             reinforcement without restating the same two links a third time
-            on one scroll (Master to-do list, Tier 4 — CTA redundancy). */}
+            on one scroll (Master to-do list, Tier 4, CTA redundancy). */}
         <ResourcesInsightsStrip focus="training" className="bg-section-tint" />
 
         <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">

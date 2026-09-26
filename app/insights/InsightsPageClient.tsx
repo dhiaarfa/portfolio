@@ -116,7 +116,7 @@ export default function InsightsPageClient() {
           {filtered.map((article, i) => {
             // Positional "wide" tile every 3rd card gives the grid a bento
             // rhythm instead of a flat uniform tile wall (Master to-do,
-            // Tier 6) — same pattern used on /freebies.
+            // Tier 6), same pattern used on /freebies.
             const isWide = i % 3 === 0 && filtered.length > 2
 
             return (

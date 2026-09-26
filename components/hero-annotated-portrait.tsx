@@ -34,7 +34,7 @@ type Props = {
   imageSrc?: string
   showCta?: boolean
   /** Soft pastel green diagonal wash behind the hero content, light mode
-   *  only — per Dhia's reference screenshot of another portfolio's hero,
+   *  only, per Dhia's reference screenshot of another portfolio's hero,
    *  recolored to the site's own green accent instead of that reference's
    *  purple/pink so it reads as on-brand rather than borrowed. Built from
    *  --site-accent / --neon-green (see globals.css). Opt-in so it only
@@ -165,7 +165,7 @@ function ConnectorLines({ callouts, reducedMotion }: { callouts: HeroCalloutConf
  *  already "great". Two real causes, both fixed here:
  *  1) This was a plain `<img>` tag, so every visitor downloaded the full
  *     1024×1024 source file with no format negotiation (no AVIF/WebP) and
- *     no responsive sizing for their actual viewport — switched to next/image
+ *     no responsive sizing for their actual viewport, switched to next/image
  *     with `priority` (preloads it and marks it fetchpriority="high") and a
  *     `sizes` matching its real rendered width, so Vercel's image CDN now
  *     serves a correctly-sized AVIF/WebP instead of the raw JPEG.
@@ -174,13 +174,13 @@ function ConnectorLines({ callouts, reducedMotion }: { callouts: HeroCalloutConf
  *     actually visible, so animating the single largest element on the page
  *     in from invisible was adding real, measured delay before LCP could
  *     fire. The surrounding HUD chrome (dots, connector lines, callout
- *     cards) still animates in — only the photo itself now renders at full
+ *     cards) still animates in, only the photo itself now renders at full
  *     opacity immediately. */
 function PortraitImage({ src, priority = true }: { src: string; priority?: boolean }) {
   return (
     <Image
       src={src}
-      alt="Mohamed Dhia Arfa — designer, trainer, and web developer"
+      alt="Mohamed Dhia Arfa, designer, trainer, and web developer"
       fill
       className="rounded-3xl object-cover object-[center_12%] select-none"
       sizes="(min-width: 1024px) 440px, (min-width: 640px) 380px, 92vw"
@@ -239,7 +239,7 @@ function HudStage({
           <AnchorDot key={`dot-${c.id}`} x={c.anchor.x} y={c.anchor.y} reducedMotion={reducedMotion} delay={c.delay} />
         ))}
 
-        {/* No entrance animation here on purpose — this photo is the page's
+        {/* No entrance animation here on purpose, this photo is the page's
             LCP element (see PortraitImage above), and fading in the single
             largest element on the page measurably delays LCP. Everything
             around it (dots, connector lines, callout cards) still animates.
