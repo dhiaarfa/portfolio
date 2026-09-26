@@ -37,7 +37,7 @@ export default function ToolsStackSection({
     : toolsStackGroups
 
   return (
-    <section className={compact ? "py-10 px-6" : "py-16 px-6 bg-slate-50 dark:bg-card"}>
+    <section className={compact ? "py-10 px-6" : "py-16 px-6 bg-card"}>
       <div className="max-w-5xl mx-auto">
         <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2 text-center">Tools & Stack</p>
         <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-10">
