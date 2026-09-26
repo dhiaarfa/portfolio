@@ -61,7 +61,18 @@ export default function RoleHero({
           <div className="relative z-10 my-auto py-6">{children}</div>
           {footer && <div className="relative z-10">{footer}</div>}
         </div>
-        <div className={cn("relative order-1 min-h-[45vh] lg:order-2 lg:min-h-full", mediaClassName)}>{media}</div>
+        <div className={cn("relative order-1 min-h-[45vh] lg:order-2 lg:min-h-full", mediaClassName)}>
+          {media}
+          {/* Blend the hard seam between the text panel and the media
+              panel into a soft transition instead of an abrupt color cut.
+              Mobile stacks media-on-top/text-below, so the fade sits at
+              the media's bottom edge; desktop sits side-by-side, so the
+              fade sits at the media's inner (left) edge. Both fade to
+              bg-background so they blend into whatever the text panel's
+              background actually is (theme-aware, not a hardcoded hex). */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background to-transparent lg:hidden" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-28 bg-gradient-to-r from-background via-background/70 to-transparent lg:block xl:w-36" />
+        </div>
       </section>
     )
   }
