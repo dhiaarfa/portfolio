@@ -24,6 +24,27 @@ import {
 } from "simple-icons"
 import { LOCAL_ICON_SVGS } from "@/lib/local-icon-svgs"
 
+/** Brand marks whose official logo is pure black (or near-black) with a
+ *  transparent background -- fine on the white/light chips these render in
+ *  during light mode, but invisible on the dark:bg-card chips used in dark
+ *  mode (reported: Next.js/Vercel/GitHub/Angular icons disappearing in
+ *  "Tools I work with daily"). Rather than hand-pick a replacement color
+ *  per icon, invert them in dark mode -- pure black on a transparent
+ *  background inverts to pure white with alpha untouched, which reads
+ *  correctly against every dark chip on the site without affecting any
+ *  icon that already has real brand color. */
+const DARK_MODE_INVERT_SLUGS = new Set([
+  "nextdotjs",
+  "vercel",
+  "github",
+  "notion",
+  "openai",
+  "angular",
+  "symfony",
+  "midjourney",
+  "apple",
+])
+
 /** High-fidelity PNGs for Adobe apps where inline SVG colors were wrong */
 const LOCAL_ICON_IMAGES: Record<string, string> = {
   adobeindesign: "/images/icons/indesign.png",
@@ -109,6 +130,9 @@ function SiSvg({
 
 export default function BrandIcon({ slug, size = 28, className = "", mono, color }: BrandIconProps) {
   const key = slug.toLowerCase()
+  const invertClass = !mono && !color && DARK_MODE_INVERT_SLUGS.has(key) ? "dark:invert" : ""
+  const mergedClassName = invertClass ? `${className} ${invertClass}`.trim() : className
+
   const png = LOCAL_ICON_IMAGES[key]
   if (png) {
     return (
@@ -118,7 +142,7 @@ export default function BrandIcon({ slug, size = 28, className = "", mono, color
         alt=""
         width={size}
         height={size}
-        className={`object-contain rounded-[5px] ${className}`}
+        className={`object-contain rounded-[5px] ${mergedClassName}`}
         loading="lazy"
       />
     )
@@ -126,12 +150,12 @@ export default function BrandIcon({ slug, size = 28, className = "", mono, color
 
   const localSvg = LOCAL_ICON_SVGS[key]
   if (localSvg) {
-    return <InlineSvgMarkup svg={localSvg} size={size} className={className} />
+    return <InlineSvgMarkup svg={localSvg} size={size} className={mergedClassName} />
   }
 
   const icon = SI_BY_SLUG[key]
   if (icon) {
-    return <SiSvg icon={icon} size={size} className={className} mono={mono} color={color} />
+    return <SiSvg icon={icon} size={size} className={mergedClassName} mono={mono} color={color} />
   }
 
   return (
@@ -141,7 +165,7 @@ export default function BrandIcon({ slug, size = 28, className = "", mono, color
       alt=""
       width={size}
       height={size}
-      className={`object-contain ${className}`}
+      className={`object-contain ${mergedClassName}`}
       loading="lazy"
     />
   )
