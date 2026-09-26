@@ -27,6 +27,12 @@ export default function StatsSection() {
         style={{ backgroundImage: "url(/images/bg/bg-graduation.jpg)" }}
         aria-hidden
       />
+      {/* Seam fade: eases the transition from the section above into this
+          tinted band (Master to-do, Tier 2). */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-background to-transparent"
+        aria-hidden
+      />
       <div className="relative max-w-4xl mx-auto">
         <p className="label text-center text-accent mb-8">By the numbers</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-border">

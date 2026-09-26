@@ -159,7 +159,7 @@ export default function Navbar() {
                 <Link key={link.href} href={link.href}
                   className="relative px-2 py-1.5 rounded-xl text-[12px] xl:text-[13px] font-medium whitespace-nowrap transition-colors duration-150 select-none">
                   {active && (
-                    <span className="absolute inset-0 bg-white dark:bg-slate-700 rounded-xl shadow-sm" />
+                    <span className="absolute inset-0 bg-white dark:bg-secondary rounded-xl shadow-sm" />
                   )}
                   <span className={`relative z-10 ${
                     active ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
@@ -269,7 +269,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.15 }}
-            className="fixed inset-0 z-40 bg-white dark:bg-slate-950 flex flex-col pt-[68px] overflow-y-auto xl:hidden"
+            className="fixed inset-0 z-40 bg-white dark:bg-background flex flex-col pt-[68px] overflow-y-auto xl:hidden"
           >
             <nav className="flex flex-col gap-1 px-4 py-4 flex-1">
               {navLinks.map((link) => {
@@ -297,7 +297,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200"
               >
-                <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 text-slate-600 dark:text-slate-300">
+                <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-muted flex items-center justify-center shrink-0 text-slate-600 dark:text-slate-300">
                   <BehanceMonoIcon size={15} />
                 </span>
                 Behance
@@ -308,7 +308,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200"
               >
-                <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 text-slate-600 dark:text-slate-300">
+                <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-muted flex items-center justify-center shrink-0 text-slate-600 dark:text-slate-300">
                   <Linkedin className="w-3.5 h-3.5" />
                 </span>
                 LinkedIn
@@ -319,7 +319,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200"
               >
-                <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 text-slate-600 dark:text-slate-300">
+                <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-muted flex items-center justify-center shrink-0 text-slate-600 dark:text-slate-300">
                   <WhatsAppIcon size={16} />
                 </span>
                 WhatsApp
@@ -329,7 +329,7 @@ export default function Navbar() {
                 onClick={openAssistant}
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200 text-left"
               >
-                <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 text-slate-600 dark:text-slate-300">
+                <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-muted flex items-center justify-center shrink-0 text-slate-600 dark:text-slate-300">
                   <Sparkles className="w-4 h-4" />
                 </span>
                 Ask the AI assistant

@@ -36,7 +36,7 @@ export default function ToolkitStrip() {
               <div className="w-10 h-10 rounded-xl bg-white dark:bg-card border border-slate-200/70 dark:border-border/60 flex items-center justify-center shadow-sm">
                 <BrandIcon slug={tool.slug} size={20} />
               </div>
-              <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 text-center leading-tight">
+              <p className="text-[12px] font-medium text-slate-500 dark:text-slate-400 text-center leading-tight">
                 {tool.name}
               </p>
             </div>

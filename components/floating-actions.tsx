@@ -232,12 +232,12 @@ export default function FloatingActions() {
 
       {chatOpen && (
         <div
-          className="fixed bottom-[7.5rem] left-4 md:left-6 z-[70] w-[min(100vw-2rem,380px)] h-[min(62vh,480px)] flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.35)] ring-1 ring-black/10 dark:border-slate-600 dark:bg-slate-900 dark:ring-white/10"
+          className="fixed bottom-[7.5rem] left-4 md:left-6 z-[70] w-[min(100vw-2rem,380px)] h-[min(62vh,480px)] flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.35)] ring-1 ring-black/10 dark:border-border dark:bg-card dark:ring-white/10"
           onClick={(e) => e.stopPropagation()}
           role="dialog"
           aria-label={t("chatTitle")}
         >
-          <div className="flex shrink-0 items-center justify-between border-b border-slate-200 bg-slate-900 px-4 py-3 text-white dark:border-slate-700">
+          <div className="flex shrink-0 items-center justify-between border-b border-slate-200 bg-slate-900 px-4 py-3 text-white dark:border-border">
             <div>
               <p className="text-sm font-semibold">{t("chatTitle")}</p>
               <p className="text-xs opacity-90">{t("chatSubtitle")}</p>
@@ -248,7 +248,7 @@ export default function FloatingActions() {
           </div>
           <div
             ref={listRef}
-            className="flex-1 space-y-3 overflow-y-auto bg-slate-100 p-4 text-[15px] dark:bg-slate-950"
+            className="flex-1 space-y-3 overflow-y-auto bg-slate-100 p-4 text-[15px] dark:bg-background"
           >
             {messages.map((m, i) => (
               <div
@@ -256,7 +256,7 @@ export default function FloatingActions() {
                 className={`max-w-[92%] rounded-2xl px-3.5 py-2.5 leading-relaxed shadow-sm ${
                   m.role === "user"
                     ? "ml-auto bg-accent text-white"
-                    : "mr-auto border border-slate-200 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+                    : "mr-auto border border-slate-200 bg-white text-slate-900 dark:border-border dark:bg-muted dark:text-slate-100"
                 }`}
               >
                 {m.content}
@@ -288,7 +288,7 @@ export default function FloatingActions() {
             </button>
           </div>
           <form
-            className="flex shrink-0 gap-2 border-t border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-900"
+            className="flex shrink-0 gap-2 border-t border-slate-200 bg-white p-3 dark:border-border dark:bg-card"
             onSubmit={(e) => {
               e.preventDefault()
               send()
@@ -299,7 +299,7 @@ export default function FloatingActions() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={t("chatPlaceholder")}
-              className="flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-[15px] text-slate-900 focus:outline-none focus:ring-2 focus:ring-accent/40 dark:border-slate-600 dark:bg-slate-800 dark:text-white"
+              className="flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-[15px] text-slate-900 focus:outline-none focus:ring-2 focus:ring-accent/40 dark:border-border dark:bg-muted dark:text-white"
               disabled={loading}
             />
             <button type="submit" disabled={loading || !input.trim()} className="rounded-xl bg-accent p-2.5 text-white disabled:opacity-50" aria-label="Send">
@@ -321,7 +321,7 @@ export default function FloatingActions() {
           role="status"
           aria-live="polite"
         >
-          <div className="rounded-2xl border border-slate-200 bg-white px-3.5 py-3 shadow-xl dark:border-slate-600 dark:bg-slate-900">
+          <div className="rounded-2xl border border-slate-200 bg-white px-3.5 py-3 shadow-xl dark:border-border dark:bg-card">
             <button
               type="button"
               onClick={() => dismissNudge(activeNudge.id, true)}

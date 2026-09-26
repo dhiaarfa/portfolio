@@ -10,7 +10,13 @@ export default function Footer() {
   const { t } = useLanguage()
 
   return (
-    <footer id="contact" className="w-full bg-[#0A0A0A] text-white">
+    <footer id="contact" className="relative w-full bg-[#0A0A0A] text-white">
+      {/* Seam fade: softens the hard edge between whatever section precedes
+          the footer and its solid dark background (Master to-do, Tier 2). */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-20 sm:h-28 -translate-y-full bg-gradient-to-b from-transparent to-background"
+        aria-hidden
+      />
       <div className="relative overflow-hidden border-b border-[#2E2E2E]">
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.06] bg-cover bg-center grayscale"
@@ -104,7 +110,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("navigationTitle")}</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("navigationTitle")}</p>
           <ul className="space-y-2.5">
             <li><Link href="/" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("home")}</Link></li>
             <li><Link href="/designer" className="text-slate-400 hover:text-accent text-sm transition-colors">{t("branding")}</Link></li>
@@ -116,7 +122,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("services")}</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("services")}</p>
           <ul className="space-y-2.5">
             {[
               { label: t("footerService1"), href: "/designer#case-studies" },
@@ -142,7 +148,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("contact")}</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-slate-600 mb-4">{t("contact")}</p>
           <div className="space-y-3">
             <a
               href={`mailto:${siteConfig.email}`}

@@ -57,7 +57,7 @@ export function CopyEmailButton() {
             type="button"
             onClick={() => setExpanded(true)}
             aria-expanded={false}
-            className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100/90 dark:bg-slate-800/70 border border-slate-200/60 dark:border-slate-700/60 hover:text-slate-900 dark:hover:text-white transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100/90 dark:bg-muted/70 border border-slate-200/60 dark:border-border/60 hover:text-slate-900 dark:hover:text-white transition-colors whitespace-nowrap"
           >
             <Mail className="w-3.5 h-3.5" />
             {t("copyEmailLabel")}
@@ -65,7 +65,7 @@ export function CopyEmailButton() {
         ) : (
           <div
             aria-expanded={true}
-            className="inline-flex items-center gap-2 h-9 pl-3.5 pr-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg whitespace-nowrap"
+            className="inline-flex items-center gap-2 h-9 pl-3.5 pr-1.5 rounded-full bg-white dark:bg-muted border border-slate-200 dark:border-border shadow-lg whitespace-nowrap"
           >
             <span className="text-xs font-medium text-slate-700 dark:text-slate-200">{siteConfig.email}</span>
             <button
@@ -107,7 +107,7 @@ export function CopyEmailMobileRow() {
     <button
       type="button"
       onClick={handleCopy}
-      className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-900/60 w-full text-left"
+      className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-card/60 w-full text-left"
     >
       <span className="flex items-center gap-2 min-w-0">
         <Mail className="w-4 h-4 shrink-0 text-slate-400" />

@@ -181,7 +181,7 @@ export default function DeveloperPageClient() {
                         tag, bold title and compact meta line sit below the peek. */}
                     <div className={`relative overflow-visible bg-gradient-to-br ${theme?.gradient ?? "from-slate-900 to-slate-950"} pt-14 pb-5 px-6`}>
                       <div className="pointer-events-none absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "16px 16px" }} />
-                      <span className="absolute top-4 right-5 z-10 font-mono text-[11px] font-semibold text-white/40 tracking-wider">
+                      <span className="absolute top-4 right-5 z-10 font-mono text-[12px] font-semibold text-white/40 tracking-wider">
                         {String(i + 1).padStart(2, "0")}
                       </span>
 
@@ -480,7 +480,7 @@ export default function DeveloperPageClient() {
         </section>
 
         {/* Capabilities with proof links */}
-        <section className="py-16 px-6 bg-slate-50 dark:bg-slate-900">
+        <section className="py-16 px-6 bg-slate-50 dark:bg-card">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold text-center mb-10">What I build today</h2>
             <div className="grid sm:grid-cols-3 gap-5">
@@ -511,25 +511,12 @@ export default function DeveloperPageClient() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="w-full section-compact px-4 md:px-8">
-          <div className="max-w-2xl mx-auto text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Let&apos;s build together</h2>
-            <p className="text-muted-foreground">
-              I respond within 24 hours. View the code on GitHub or book a quick call.
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <a href={siteConfig.github} target="_blank" rel="noopener noreferrer" className="btn-green inline-flex items-center gap-2">
-                <Github className="h-4 w-4" />
-                View GitHub
-              </a>
-              <a href="#contact-form" className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-xl font-semibold hover:border-accent/40 transition-colors">
-                Let&apos;s talk
-              </a>
-            </div>
-          </div>
-        </section>
-
+        {/* The hero already offers the GitHub link up front, and the
+            contact-form section right below closes the page with the same
+            "let's talk" ask — so the generic "Let's build together" band
+            that used to sit here just restated both a third time on one
+            scroll. Removed (Master to-do list, Tier 4 — CTA redundancy),
+            same fix already applied on /trainer. */}
         <ResourcesInsightsStrip focus="development" className="bg-section-tint" />
 
         <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">

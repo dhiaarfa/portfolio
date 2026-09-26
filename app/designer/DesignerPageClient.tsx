@@ -2,7 +2,7 @@
 
 import { Link } from "next-view-transitions"
 import Image from "next/image"
-import { Calendar, ArrowRight, Target, Layers, LayoutGrid, Compass, Search, PenTool, Package, Handshake, RefreshCw, Gift } from "lucide-react"
+import { ArrowRight, Target, Layers, LayoutGrid, Compass, Search, PenTool, Package, RefreshCw, Gift } from "lucide-react"
 import { formatStat, designExperience, certifications as profileCertifications } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
 import { featuredWorkProjects, curatedGallery } from "@/lib/work"
@@ -103,7 +103,7 @@ export default function DesignerPageClient() {
               ].map(([v, l]) => (
                 <div key={l}>
                   <p className="font-display text-2xl font-black leading-none text-white">{v}</p>
-                  <p className="mt-1 text-[11px] uppercase tracking-widest text-slate-500">{l}</p>
+                  <p className="mt-1 text-[12px] uppercase tracking-widest text-slate-500">{l}</p>
                 </div>
               ))}
             </div>
@@ -259,7 +259,7 @@ export default function DesignerPageClient() {
                   type="button"
                   onClick={() => setActiveCategory(cat)}
                   className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                    activeCategory === cat ? "bg-accent text-white shadow-md" : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300"
+                    activeCategory === cat ? "bg-accent text-white shadow-md" : "bg-slate-100 text-slate-600 dark:bg-muted dark:text-slate-300"
                   }`}
                 >
                   {cat}
@@ -340,24 +340,12 @@ export default function DesignerPageClient() {
 
         <ToolsStackSection />
 
-        {/* Final CTA */}
-        <section className="section-compact w-full px-4 md:px-8">
-          <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <Handshake className="mx-auto h-10 w-10 text-accent" />
-            <h2 className="text-3xl font-bold md:text-4xl">Ready to sharpen your brand?</h2>
-            <p className="text-muted-foreground">One primary path: tell me about your project. I respond within 24 hours.</p>
-            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green inline-flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                Start a project
-              </a>
-              <a href={siteConfig.behance} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-accent">
-                Full archive on Behance ↗
-              </a>
-            </div>
-          </div>
-        </section>
-
+        {/* The hero already offers "Start a project" and the Behance archive
+            link up front, and the contact-form section right below closes
+            the page with the same ask — so the generic "Ready to sharpen
+            your brand?" band that used to sit here just restated both a
+            third time on one scroll. Removed (Master to-do list, Tier 4 —
+            CTA redundancy), same fix already applied on /trainer. */}
         <ResourcesInsightsStrip focus="design" className="bg-section-tint" />
 
         <section id="contact-form" className="section-compact w-full bg-card px-4 md:px-8">

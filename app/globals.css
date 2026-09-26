@@ -51,38 +51,19 @@ html.theme-transition a {
   background-color: hsl(var(--muted));
 }
 
-/* ─── DARK MODE: one neutral gray system, not two ─── */
-/* --background/--card/--muted/--border above are plain neutral gray (0%
-   saturation). Tailwind's slate-700 through slate-950 carry a slight blue
-   tint instead, so any section, card or button still built with
-   dark:bg-slate-900 (or a border/gradient version of it) shows up a visibly
-   different, bluer black than everything built on the token system. This
-   pulls every dark: slate utility already in the codebase onto the same
-   neutral surfaces so the whole site reads as one palette. */
-.dark\:bg-slate-950:is(.dark *) { background-color: hsl(var(--background)) !important; }
-.dark\:bg-slate-900:is(.dark *) { background-color: hsl(var(--card)) !important; }
-.dark\:bg-slate-800:is(.dark *) { background-color: hsl(var(--muted)) !important; }
-.dark\:bg-slate-700:is(.dark *) { background-color: hsl(var(--secondary)) !important; }
+/* ─── DARK MODE SURFACES: @radix-ui/colors gray/gray-dark scale ───
+   The former fix here forced literal dark:bg-slate-* utilities onto
+   the token colors with !important overrides, because raw Tailwind
+   slate carries a blue tint that didn't match this site's neutral
+   gray system. That denylist is gone: every component now uses the
+   real semantic utilities (dark:bg-card, dark:bg-muted, dark:bg-
+   secondary, dark:border-border, ...) which already resolve through
+   --background/--card/--muted/--secondary/--border below — themselves
+   now sourced from @radix-ui/colors' gray/gray-dark scale instead of
+   hand-picked lightness values, so there's one real token system, not
+   a patch on top of Tailwind's default palette. */
 
-.dark\:border-slate-950:is(.dark *),
-.dark\:border-slate-900:is(.dark *),
-.dark\:border-slate-800:is(.dark *),
-.dark\:border-slate-700:is(.dark *) { border-color: hsl(var(--border)) !important; }
 
-.dark\:via-slate-950:is(.dark *),
-.dark\:via-slate-900:is(.dark *) { --tw-gradient-via: hsl(var(--card)) !important; }
-.dark\:via-slate-800:is(.dark *),
-.dark\:via-slate-700:is(.dark *) { --tw-gradient-via: hsl(var(--muted)) !important; }
-
-.dark\:to-slate-950:is(.dark *),
-.dark\:to-slate-900:is(.dark *) { --tw-gradient-to: hsl(var(--card)) !important; }
-.dark\:to-slate-800:is(.dark *),
-.dark\:to-slate-700:is(.dark *) { --tw-gradient-to: hsl(var(--muted)) !important; }
-
-.dark\:hover\:bg-slate-950:is(.dark *):hover,
-.dark\:hover\:bg-slate-900:is(.dark *):hover { background-color: hsl(var(--card)) !important; }
-.dark\:hover\:bg-slate-800:is(.dark *):hover,
-.dark\:hover\:bg-slate-700:is(.dark *):hover { background-color: hsl(var(--muted)) !important; }
 
 /* ─── TYPOGRAPHY — readable desktop sizes ─── */
 @media (min-width: 1024px) {
@@ -162,7 +143,7 @@ html.custom-cursor-active * {
 /* ─── SECTION LABELS ─── */
 .label {
   display: block;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -252,25 +233,25 @@ html.custom-cursor-active * {
 :root {
   /* Light mode colors - shadcn base tokens */
   color-scheme: light dark;
-  --background: 0 0% 100%; /* Preserving existing value */
-  --foreground: 0 0% 5%; /* Preserving existing value */
-  --card: 0 0% 98%; /* Preserving existing value */
-  --card-foreground: 0 0% 5%; /* Preserving existing value */
-  --muted: 0 0% 90%; /* Preserving existing value */
-  --muted-foreground: 0 0% 45%; /* Preserving existing value */
+  --background: 0 0% 98.8%; /* @radix-ui/colors gray-1 #fcfcfc */
+  --foreground: 0 0% 12.5%; /* @radix-ui/colors gray-12 #202020 */
+  --card: 0 0% 97.6%; /* @radix-ui/colors gray-2 #f9f9f9 */
+  --card-foreground: 0 0% 12.5%; /* @radix-ui/colors gray-12 */
+  --muted: 0 0% 91%; /* @radix-ui/colors gray-4 #e8e8e8 */
+  --muted-foreground: 0 0% 39.2%; /* @radix-ui/colors gray-11 #646464 */
   --accent: var(--zia-green);
   --accent-foreground: 0 0% 5%;
-  --border: 0 0% 92%; /* Preserving existing value */
+  --border: 0 0% 85.1%; /* @radix-ui/colors gray-6 #d9d9d9 */
   --radius: 1.5rem; /* Preserving existing value */
-  --primary: 0 0% 5%; /* Preserving existing value */
-  --primary-foreground: 0 0% 100%; /* Preserving existing value */
-  --secondary: 0 0% 90%; /* Preserving existing value */
-  --secondary-foreground: 0 0% 5%; /* Preserving existing value */
+  --primary: 0 0% 12.5%; /* @radix-ui/colors gray-12 */
+  --primary-foreground: 0 0% 98.8%; /* @radix-ui/colors gray-1 */
+  --secondary: 0 0% 87.8%; /* @radix-ui/colors gray-5 #e0e0e0 */
+  --secondary-foreground: 0 0% 12.5%; /* @radix-ui/colors gray-12 */
   --destructive: 0 84.2% 60.2%; /* Preserving existing value */
   --destructive-foreground: 0 0% 100%; /* Preserving existing value */
-  --popover: 0 0% 100%; /* Preserving existing value */
-  --popover-foreground: 0 0% 5%; /* Preserving existing value */
-  --input: 0 0% 92%; /* Preserving existing value */
+  --popover: 0 0% 98.8%; /* @radix-ui/colors gray-1 */
+  --popover-foreground: 0 0% 12.5%; /* @radix-ui/colors gray-12 */
+  --input: 0 0% 85.1%; /* @radix-ui/colors gray-6 */
   --ring: var(--zia-green);
 
   /* Shadcn default chart colors (added from diff) */
@@ -332,24 +313,24 @@ html.custom-cursor-active * {
 
 .dark {
   color-scheme: dark;
-  --background: 0 0% 4%;
-  --foreground: 0 0% 96%;
-  --card: 0 0% 11%;
-  --card-foreground: 0 0% 96%;
-  --muted: 0 0% 18%;
-  --muted-foreground: 0 0% 78%;
+  --background: 0 0% 6.7%; /* @radix-ui/colors gray-1 dark #111111 */
+  --foreground: 0 0% 93.3%; /* @radix-ui/colors gray-12 dark #eeeeee */
+  --card: 0 0% 9.8%; /* @radix-ui/colors gray-2 dark #191919 */
+  --card-foreground: 0 0% 93.3%; /* @radix-ui/colors gray-12 dark */
+  --muted: 0 0% 16.5%; /* @radix-ui/colors gray-4 dark #2a2a2a */
+  --muted-foreground: 0 0% 70.6%; /* @radix-ui/colors gray-11 dark #b4b4b4 */
   --accent: var(--zia-green);
-  --accent-foreground: 0 0% 7%;
-  --border: 0 0% 18%;
-  --primary: 0 0% 96%;
-  --primary-foreground: 0 0% 7%;
-  --secondary: 0 0% 22%;
-  --secondary-foreground: 0 0% 96%;
+  --accent-foreground: 0 0% 6.7%; /* @radix-ui/colors gray-1 dark */
+  --border: 0 0% 22.7%; /* @radix-ui/colors gray-6 dark #3a3a3a */
+  --primary: 0 0% 93.3%; /* @radix-ui/colors gray-12 dark */
+  --primary-foreground: 0 0% 6.7%; /* @radix-ui/colors gray-1 dark */
+  --secondary: 0 0% 19.2%; /* @radix-ui/colors gray-5 dark #313131 */
+  --secondary-foreground: 0 0% 93.3%; /* @radix-ui/colors gray-12 dark */
   --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 7%;
-  --popover: 0 0% 11%;
-  --popover-foreground: 0 0% 96%;
-  --input: 0 0% 18%;
+  --destructive-foreground: 0 0% 6.7%; /* @radix-ui/colors gray-1 dark */
+  --popover: 0 0% 9.8%; /* @radix-ui/colors gray-2 dark */
+  --popover-foreground: 0 0% 93.3%; /* @radix-ui/colors gray-12 dark */
+  --input: 0 0% 22.7%; /* @radix-ui/colors gray-6 dark */
   --ring: var(--zia-green);
 
   /* Shadcn default chart colors (added from diff) */

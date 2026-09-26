@@ -54,7 +54,7 @@ export default function ToolsStackSection({
               className={`border-t-4 ${GROUP_ACCENT[group.id] ?? "border-t-accent"}`}
             >
               <span
-                className={`inline-block text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full mb-5 ${GROUP_BADGE[group.id] ?? "bg-accent-subtle text-accent"}`}
+                className={`inline-block text-[12px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full mb-5 ${GROUP_BADGE[group.id] ?? "bg-accent-subtle text-accent"}`}
               >
                 {group.label}
               </span>

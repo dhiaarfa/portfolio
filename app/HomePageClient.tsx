@@ -92,14 +92,14 @@ function HeroAskBar() {
             key={pill.key}
             type="button"
             onClick={pill.onClick}
-            className="rounded-full border border-slate-200 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-slate-700 backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-accent dark:border-slate-700 dark:bg-card/70 dark:text-slate-300"
+            className="rounded-full border border-slate-200 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-slate-700 backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-accent dark:border-border dark:bg-card/70 dark:text-slate-300"
           >
             {t(pill.key)}
           </button>
         ))}
       </div>
       <form
-        className="mt-3 flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-2 py-1.5 pl-4 shadow-sm backdrop-blur-sm dark:border-slate-700 dark:bg-card/80"
+        className="mt-3 flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-2 py-1.5 pl-4 shadow-sm backdrop-blur-sm dark:border-border dark:bg-card/80"
         onSubmit={(e) => {
           e.preventDefault()
           if (!value.trim()) return
@@ -163,7 +163,7 @@ export default function HomePageClient() {
   ]
 
   return (
-    <div className="w-full min-h-screen bg-white dark:bg-slate-950">
+    <div className="w-full min-h-screen bg-white dark:bg-background">
       <Navbar />
 
       <main id="main-content">
@@ -249,7 +249,7 @@ export default function HomePageClient() {
                 eyebrowKey: "design",
                 title: "Zia Studio",
                 photo: "/images/photos/dhia-designer.png",
-                tint: "from-pink-50/95 via-white/97 to-white/98 dark:from-pink-950/30 dark:via-slate-900/97 dark:to-slate-900/98",
+                tint: "from-pink-50/95 via-white/97 to-white/98 dark:from-pink-950/30 dark:via-card/97 dark:to-card/98",
                 eyebrowCls: "text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50",
                 tags: ["Brand Identity", "UI/UX", "Motion", "Print"],
                 flagship: "Speranza Café — full brand identity",
@@ -263,7 +263,7 @@ export default function HomePageClient() {
                 eyebrowKey: "training",
                 title: "Youth Development",
                 photo: "/images/photos/dhia-trainer.png",
-                tint: "from-amber-50/95 via-white/97 to-white/98 dark:from-amber-950/30 dark:via-slate-900/97 dark:to-slate-900/98",
+                tint: "from-amber-50/95 via-white/97 to-white/98 dark:from-amber-950/30 dark:via-card/97 dark:to-card/98",
                 eyebrowCls: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50",
                 stats: [
                   [siteConfig.stats.participants, "Participants"],
@@ -280,7 +280,7 @@ export default function HomePageClient() {
                 eyebrowKey: "webDevelopment",
                 title: "React & Next.js",
                 photo: "/images/photos/dhia-developer.png",
-                tint: "from-sky-50/95 via-white/97 to-white/98 dark:from-sky-950/30 dark:via-slate-900/97 dark:to-slate-900/98",
+                tint: "from-sky-50/95 via-white/97 to-white/98 dark:from-sky-950/30 dark:via-card/97 dark:to-card/98",
                 eyebrowCls: "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50",
                 tags: ["React", "Next.js", "Tailwind", "TypeScript"],
                 flagship: "DigiMyTech Talent Hub — graduation project",
@@ -293,7 +293,7 @@ export default function HomePageClient() {
                   <Link
                     key={card.role.slug}
                     href={`/${card.role.slug}`}
-                    className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-500 p-7"
+                    className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-slate-100 dark:border-border shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-500 p-7"
                   >
                     {/* Low-opacity portrait photo, faded into the card as a
                         watermark rather than shown as a hard image. */}
@@ -312,7 +312,7 @@ export default function HomePageClient() {
                         <span className={card.emojiCls} aria-hidden>
                           {card.emoji}
                         </span>
-                        <span className={`text-[11px] font-semibold uppercase tracking-[0.14em] px-3 py-1 rounded-full ${card.eyebrowCls}`}>
+                        <span className={`text-[12px] font-semibold uppercase tracking-[0.14em] px-3 py-1 rounded-full ${card.eyebrowCls}`}>
                           {t(card.eyebrowKey)}
                         </span>
                       </div>
@@ -341,7 +341,7 @@ export default function HomePageClient() {
                       )}
 
                       {card.stats && (
-                        <div className="flex gap-6 pb-5 border-b border-slate-100 dark:border-slate-800 mb-4">
+                        <div className="flex gap-6 pb-5 border-b border-slate-100 dark:border-border mb-4">
                           {card.stats.map(([val, label]) => (
                             <div key={label}>
                               <AnimatedNumber
@@ -418,7 +418,7 @@ export default function HomePageClient() {
       {/* Featured Testimonials */}
       <div id="testimonials">
         <TestimonialsShowcase
-          className="bg-white dark:bg-slate-950 section-compact py-12 md:py-16"
+          className="bg-white dark:bg-background section-compact py-12 md:py-16"
           ids={["rayen", "ikram", "youssef", "skander", "amir"]}
           showTicker={false}
         />

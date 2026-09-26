@@ -112,59 +112,66 @@ export default function InsightsPageClient() {
           </motion.article>
         )}
 
-        <div ref={articlesListRef} className="flex flex-col gap-8">
-          {filtered.map((article, i) => (
-            <motion.article
-              key={article.slug}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: (i % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              className="border-b border-border pb-8 last:border-0"
-            >
-              <div className="grid sm:grid-cols-[180px_1fr] gap-5">
-                <Link href={`/insights/${article.slug}`} className="block shrink-0">
-                  <InsightCover
-                    category={article.category}
-                    title={t(article.titleKey)}
-                    slug={article.slug}
-                    className="h-full min-h-[120px]"
-                  />
-                </Link>
-                <div>
-                  <div className="flex items-center gap-3 mb-3 flex-wrap">
-                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${categoryColors[article.categoryKey]}`}>
-                      {t(article.categoryKey)}
-                    </span>
-                    <span className="text-xs text-muted-foreground">· {article.readMin} min</span>
-                  </div>
-                  <h2 className="text-xl lg:text-2xl font-bold text-foreground mb-2">
-                    <Link href={`/insights/${article.slug}`} className="hover:text-accent transition-colors">
-                      {t(article.titleKey)}
-                    </Link>
-                  </h2>
-                  <p className="text-muted-foreground text-sm lg:text-base leading-relaxed max-w-[68ch]">
-                    {t(article.excerptKey)}
-                  </p>
-                  <div className="mt-4 flex flex-wrap items-center gap-4">
-                    <Link
-                      href={`/insights/${article.slug}`}
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:gap-2 transition-all"
-                    >
-                      {t("insights.readArticle")}
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                    <Link
-                      href={article.servicePath}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {t("insights.viewServices")} → {t(serviceLabels[article.category])}
-                    </Link>
+        <div ref={articlesListRef} className="grid sm:grid-cols-2 gap-6">
+          {filtered.map((article, i) => {
+            // Positional "wide" tile every 3rd card gives the grid a bento
+            // rhythm instead of a flat uniform tile wall (Master to-do,
+            // Tier 6) — same pattern used on /freebies.
+            const isWide = i % 3 === 0 && filtered.length > 2
+
+            return (
+              <motion.article
+                key={article.slug}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.4, delay: (i % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                className={`group rounded-2xl border border-border bg-card overflow-hidden flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 ${isWide ? "sm:col-span-2" : ""}`}
+              >
+                <div className={isWide ? "grid sm:grid-cols-[1fr_1.1fr] gap-0" : "contents"}>
+                  <Link href={`/insights/${article.slug}`} className="block">
+                    <InsightCover
+                      category={article.category}
+                      title={t(article.titleKey)}
+                      slug={article.slug}
+                      className={isWide ? "h-44 sm:h-full min-h-[160px]" : "h-40 w-full"}
+                    />
+                  </Link>
+                  <div className="p-5 sm:p-6 flex flex-col">
+                    <div className="flex items-center gap-3 mb-3 flex-wrap">
+                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${categoryColors[article.categoryKey]}`}>
+                        {t(article.categoryKey)}
+                      </span>
+                      <span className="text-xs text-muted-foreground">· {article.readMin} min</span>
+                    </div>
+                    <h2 className="text-lg lg:text-xl font-bold text-foreground mb-2">
+                      <Link href={`/insights/${article.slug}`} className="group-hover:text-accent transition-colors">
+                        {t(article.titleKey)}
+                      </Link>
+                    </h2>
+                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                      {t(article.excerptKey)}
+                    </p>
+                    <div className="mt-4 flex flex-wrap items-center gap-4">
+                      <Link
+                        href={`/insights/${article.slug}`}
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:gap-2 transition-all"
+                      >
+                        {t("insights.readArticle")}
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                      <Link
+                        href={article.servicePath}
+                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {t("insights.viewServices")} → {t(serviceLabels[article.category])}
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.article>
-          ))}
+              </motion.article>
+            )
+          })}
         </div>
       </div>
     </main>

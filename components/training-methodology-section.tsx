@@ -118,7 +118,7 @@ const frameworks = [
 
 export default function TrainingMethodologySection() {
   return (
-    <section className="py-20 px-6 bg-white dark:bg-slate-950">
+    <section className="py-20 px-6 bg-white dark:bg-background">
       <div className="max-w-5xl mx-auto">
 
         {/* ── Section Header ── */}
@@ -146,7 +146,7 @@ export default function TrainingMethodologySection() {
             return (
               <div
                 key={pillar.number}
-                className="group rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-card/50 p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                className="group rounded-2xl border border-slate-100 dark:border-border bg-slate-50/50 dark:bg-card/50 p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
                 {/* Header row */}
                 <div className="flex items-start gap-4 mb-4">

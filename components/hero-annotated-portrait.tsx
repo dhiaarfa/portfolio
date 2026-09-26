@@ -354,7 +354,7 @@ export default function HeroAnnotatedPortrait({
     [t, reducedMotion]
   )
 
-  const sectionBg = isDark ? "bg-slate-950 text-white" : "bg-white dark:bg-slate-950 text-slate-900 dark:text-white"
+  const sectionBg = isDark ? "bg-slate-950 text-white" : "bg-white dark:bg-background text-slate-900 dark:text-white"
 
   return (
     <section className={`relative isolate ${sectionBg} px-4 sm:px-6 pt-24 pb-16 lg:pb-20 ${className}`}>

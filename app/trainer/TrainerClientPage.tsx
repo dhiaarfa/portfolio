@@ -79,7 +79,7 @@ export default function TrainerClientPage() {
                     instant
                     className="block font-display font-black text-[clamp(26px,4vw,40px)] text-white leading-none tabular-nums"
                   />
-                  <p className="text-slate-400 text-[11px] uppercase tracking-wider mt-1">{label}</p>
+                  <p className="text-slate-400 text-[12px] uppercase tracking-wider mt-1">{label}</p>
                 </div>
               ))}
             </div>
