@@ -64,7 +64,7 @@ export default function RoleHero({
   return (
     <section
       className={cn(
-        "bg-[#0A0A0A] text-white min-h-[68vh] flex items-center px-6 py-16 section-compact relative overflow-hidden",
+        "bg-[#0A0A0A] text-white min-h-[68vh] flex items-center px-6 py-16 relative overflow-hidden",
         className
       )}
     >

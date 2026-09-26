@@ -65,7 +65,7 @@ export default function ToolsStackSection({
                     key={tool.name}
                     className="flex flex-col items-center gap-2 rounded-2xl p-2.5 hover:bg-slate-50 dark:hover:bg-card/50 transition-colors"
                   >
-                    <div className="w-11 h-11 rounded-xl bg-slate-50 dark:bg-card border border-slate-200/70 dark:border-border/60 flex items-center justify-center shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-card border border-slate-200/70 dark:border-border/60 flex items-center justify-center shadow-sm">
                       <BrandIcon slug={tool.slug} size={24} />
                     </div>
                     <p className="text-xs font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">

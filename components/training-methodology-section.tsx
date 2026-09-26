@@ -150,7 +150,7 @@ export default function TrainingMethodologySection() {
               >
                 {/* Header row */}
                 <div className="flex items-start gap-4 mb-4">
-                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${pillar.iconBg}`}>
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${pillar.iconBg}`}>
                     <Icon className={`w-5 h-5 ${pillar.iconColor}`} />
                   </div>
                   <div className="flex-1 min-w-0">

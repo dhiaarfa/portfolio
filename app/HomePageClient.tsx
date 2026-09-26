@@ -418,7 +418,7 @@ export default function HomePageClient() {
       {/* Featured Testimonials */}
       <div id="testimonials">
         <TestimonialsShowcase
-          className="bg-white dark:bg-background section-compact py-12 md:py-16"
+          className="bg-white dark:bg-background py-12 md:py-16"
           ids={["rayen", "ikram", "youssef", "skander", "amir"]}
           showTicker={false}
         />
