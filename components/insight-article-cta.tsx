@@ -128,12 +128,23 @@ export function InsightCover({
       )}
       <div className={`absolute inset-0 bg-gradient-to-t ${image ? "from-black/75 via-black/20 to-black/5" : "from-black/55 via-black/5 to-transparent"}`} />
       <div className="absolute right-3 top-3">{icon}</div>
-      <div className="relative flex h-full min-h-[120px] flex-col justify-end p-4">
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-white/85">
-          {category}
-        </span>
-        <p className="mt-1 line-clamp-3 text-sm font-bold leading-snug text-white">{title}</p>
-      </div>
+      {/* The category + title caption below was originally the only way to
+          convey what a flat-color placeholder block was about. Once a real
+          photo is supplied it's shown a second time as a proper <h2> right
+          under the cover in every card that renders one (InsightsPageClient,
+          the article page's related-posts, etc.), so keeping this caption
+          for image covers duplicated the exact same text twice in the same
+          glance. Restricting it to the true fallback case (no image) keeps
+          the original placeholder-legibility intent intact without the
+          redundancy on every article that now has a real cover photo. */}
+      {!image && (
+        <div className="relative flex h-full min-h-[120px] flex-col justify-end p-4">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-white/85">
+            {category}
+          </span>
+          <p className="mt-1 line-clamp-3 text-sm font-bold leading-snug text-white">{title}</p>
+        </div>
+      )}
     </div>
   )
 }
