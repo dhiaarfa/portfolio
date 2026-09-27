@@ -20,7 +20,18 @@ export default function MeetUpProCaseStudyBody() {
       <main id="main-content" className="min-h-screen">
         {/* Hero Section */}
         <section className="w-full section-compact px-4 md:px-8 bg-gradient-to-b from-[hsl(var(--zia-green))]/5 to-background dark:from-[hsl(var(--zia-green))]/10 dark:to-background">
-          <div className="max-w-6xl mx-auto">
+          {/* pt-[5.5rem] stacks on top of section-compact's own padding-top
+              (put on this inner wrapper, not the section itself, so it can't
+              collide with section-compact's own padding-top rule on the
+              same element regardless of CSS load order). Sep 2026
+              mobile-parity pass: the fixed/sticky Navbar is ~68-70px tall
+              and this was the only hero on the site relying on
+              section-compact's plain 2.5rem/3rem top padding alone, so
+              "Back to Design Work" rendered partially underneath the
+              header on every viewport, not just mobile.
+              work-case-study-client.tsx already uses this same pt-[5.5rem]
+              value for the identical reason. */}
+          <div className="max-w-6xl mx-auto pt-[5.5rem]">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

@@ -51,34 +51,65 @@ export const internationalLocations: InternationalLocation[] = [
   { id: "qatar", flagEmoji: "\u{1F1F6}\u{1F1E6}", nameKey: "mapLocQatar", exampleKey: "mapExQatar" },
 ]
 
-// Hand-approximated Tunisia coastline/border, as [lon, lat] pairs, clockwise
-// from the NW. This is a simplified silhouette for a decorative map, not
-// survey-grade cartography -- accuracy of the DOTS (real city coordinates
-// above) matters far more here than the exact coastline curve.
+// Tunisia coastline/border, as [lon, lat] pairs, clockwise from Tabarka in
+// the NW. Re-digitized Sep 2026 against a real governorate-boundary
+// reference map (Dhia flagged the previous hand-drawn silhouette as
+// visibly wrong-shaped) -- this version traces the actual named
+// landmarks that make Tunisia's outline recognizable: the Cap Bon
+// peninsula and the Gulf of Tunis bay it wraps around, the Gulf of
+// Hammamet indent, the Sousse/Monastir/Mahdia "Sahel" bulge, the deep
+// Gulf of Gabes indent, the Zarzis/Ben Gardane bulge near the Libya
+// border, and the Kasserine/Le Kef/Jendouba zigzag of the western
+// Algeria border. Still a simplified silhouette for a decorative map,
+// not survey-grade cartography, but every vertex below corresponds to a
+// real coastal town or border landmark rather than an arbitrary guess.
+// Cropped at 32N (south of Gabes/Medenine) to keep the empty far-south
+// desert from dominating the map -- every dot above sits in the
+// northern two-thirds this outline actually covers.
 export const TUNISIA_OUTLINE: [number, number][] = [
-  [8.4, 36.9],
-  [8.6, 37.25],
-  [9.6, 37.3],
-  [10.3, 37.15],
-  [11.1, 37.0],
-  [10.9, 36.6],
-  [10.65, 36.3],
-  [10.65, 35.9],
-  [10.9, 35.5],
-  [10.75, 35.0],
-  [10.9, 34.75],
-  [10.6, 34.3],
-  [10.3, 33.9],
-  [10.6, 33.5],
-  [11.5, 33.15],
-  [10.3, 32.1],
-  [9.0, 32.0],
-  [7.9, 32.5],
-  [8.0, 33.5],
-  [7.6, 34.5],
-  [8.2, 35.3],
-  [8.4, 36.0],
-  [8.2, 36.5],
+  [8.76, 36.95], // Tabarka
+  [8.6, 37.1],
+  [9.0, 37.22], // Cap Serrat
+  [9.6, 37.23],
+  [9.87, 37.27], // Bizerte
+  [9.75, 37.34], // Cap Blanc -- northernmost point
+  [10.05, 37.2], // Ras Jebel
+  [10.3, 37.0], // Gulf of Tunis, north shore
+  [10.25, 36.82], // Gulf of Tunis indent (La Goulette / Tunis)
+  [10.55, 36.88], // Gulf of Tunis, east shore
+  [10.85, 37.0], // Cap Bon peninsula base
+  [11.07, 37.06], // El Haouaria -- Cap Bon tip (Ras Addar)
+  [11.1, 36.85], // Kelibia
+  [10.98, 36.71], // Korba
+  [10.75, 36.5],
+  [10.55, 36.4], // Hammamet -- gulf indent
+  [10.64, 36.1],
+  [10.64, 35.83], // Sousse
+  [10.83, 35.76], // Monastir peninsula tip
+  [11.06, 35.5], // Mahdia -- Sahel bulge
+  [11.11, 35.23], // Chebba
+  [10.85, 34.9],
+  [10.76, 34.74], // Sfax
+  [10.3, 34.3], // La Skhira
+  [10.1, 33.95], // Gabes -- gulf indent
+  [10.35, 33.7],
+  [10.75, 33.55],
+  [11.11, 33.5], // Zarzis
+  [11.22, 33.15], // Ben Gardane
+  [11.5, 33.05], // Ras Ajdir, Libya border
+  [11.0, 32.7],
+  [10.4, 32.35],
+  [9.9, 32.05],
+  [9.3, 32.0],
+  [8.5, 32.1],
+  [7.9, 32.55],
+  [7.6, 33.1],
+  [7.55, 33.8],
+  [8.0, 34.5], // Kasserine area, western border
+  [8.35, 35.2],
+  [8.15, 35.85], // Le Kef
+  [8.35, 36.4], // Jendouba
+  [8.6, 36.75],
 ]
 
 export const MAP_VIEWBOX = { width: 360, height: 580 }

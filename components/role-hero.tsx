@@ -92,9 +92,16 @@ export default function RoleHero({
       )}
     >
       {decoration}
-      <div className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-14 items-center">
+      <div className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-10 lg:gap-14 items-center">
         <div>{children}</div>
-        <div className={cn("hidden lg:block", mediaClassName)}>{media}</div>
+        {/* Mobile-parity fix (Sep 2026): this was `hidden lg:block`, so the
+            Developer hero's terminal mockup -- the one visual centerpiece
+            of this variant -- never rendered at all below the lg
+            breakpoint, not resized or reflowed, just gone. The outer grid
+            is already grid-cols-1 on mobile, so simply letting this block
+            render lets it fall in its natural place below the text
+            content instead of hiding it. */}
+        <div className={cn("w-full max-w-md mx-auto lg:max-w-none lg:mx-0", mediaClassName)}>{media}</div>
       </div>
     </section>
   )

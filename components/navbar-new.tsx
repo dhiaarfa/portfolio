@@ -56,6 +56,15 @@ export default function Navbar() {
     setOpen(false)
     window.dispatchEvent(new CustomEvent('dhia:ask-ai'))
   }
+  // Mobile-parity fix (Sep 2026): the Ctrl/Cmd+K search button in the
+  // desktop control cluster is `hidden sm:flex` -- below 640px it
+  // disappeared with no equivalent anywhere in the xl:hidden drawer, so
+  // search was a feature phone visitors silently couldn't reach at all.
+  // Same open/close event as the desktop button, just triggered from here.
+  const openSearch = () => {
+    setOpen(false)
+    window.dispatchEvent(new CustomEvent('dhia:open-search'))
+  }
 
   return (
     <>
@@ -324,6 +333,16 @@ export default function Navbar() {
                 </span>
                 WhatsApp
               </a>
+              <button
+                type="button"
+                onClick={openSearch}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200 text-left"
+              >
+                <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-muted flex items-center justify-center shrink-0 text-slate-600 dark:text-slate-300">
+                  <Search className="w-4 h-4" />
+                </span>
+                {t("navSearch")}
+              </button>
               <button
                 type="button"
                 onClick={openAssistant}
