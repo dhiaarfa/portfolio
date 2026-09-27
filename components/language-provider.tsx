@@ -12,10 +12,32 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("en")
+export function LanguageProvider({
+  children,
+  initialLanguage,
+}: {
+  children: React.ReactNode
+  /** Set only by app/[locale]/layout.tsx for the /fr/* and /ar/* route tree,
+   *  where the URL itself declares the language server-side. When present,
+   *  this skips the browser-locale guess and localStorage read entirely --
+   *  the URL is authoritative there, not the visitor's saved preference.
+   *  Unprefixed routes never pass this, so their behavior is unchanged. */
+  initialLanguage?: Language
+}) {
+  const [language, setLanguageState] = useState<Language>(initialLanguage ?? "en")
 
   useEffect(() => {
+    if (initialLanguage) {
+      // URL-declared locale (a /fr/* or /ar/* route): just sync the <html>
+      // attributes the root layout can't set server-side for this segment,
+      // and persist it so navigating back to an unprefixed page later still
+      // remembers the visitor picked French/Arabic.
+      document.documentElement.lang = initialLanguage
+      document.documentElement.dir = initialLanguage === "ar" ? "rtl" : "ltr"
+      localStorage.setItem("language", initialLanguage)
+      return
+    }
+
     const stored = localStorage.getItem("language") as Language | null
     let nextLang: Language
 
@@ -38,7 +60,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLanguageState(nextLang)
     document.documentElement.lang = nextLang
     document.documentElement.dir = nextLang === "ar" ? "rtl" : "ltr"
-  }, [])
+  }, [initialLanguage])
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang)

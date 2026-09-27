@@ -87,6 +87,22 @@ export function breadcrumbJsonLd(name: string, path: string) {
   }
 }
 
+type SiteLocale = "en" | "fr" | "ar"
+
+const OG_LOCALE: Record<SiteLocale, string> = {
+  en: "en_US",
+  fr: "fr_FR",
+  ar: "ar_AR",
+}
+
+/** Builds the absolute URL for `base` (an unprefixed path like "/" or
+ *  "/designer") in a given site locale, matching the app/[locale]/*
+ *  route tree's /fr/* and /ar/* prefixing scheme. */
+function localizedUrl(base: string, locale: SiteLocale): string {
+  const suffix = base === "/" ? "" : base
+  return locale === "en" ? (base === "/" ? SITE_URL : `${SITE_URL}${suffix}`) : `${SITE_URL}/${locale}${suffix}`
+}
+
 type PageMetaInput = {
   path: string
   title: string
@@ -95,6 +111,16 @@ type PageMetaInput = {
   openGraph?: Metadata["openGraph"]
   /** Override default route OG image */
   ogImage?: OgImage
+  /** Which site locale this specific page is rendering in. Defaults to
+   *  "en" for every existing unprefixed page (no behavior change there). */
+  locale?: SiteLocale
+  /** The canonical UNPREFIXED base path this page has real translated
+   *  content for (e.g. "/designer", or "/" for home) -- pass this from
+   *  BOTH the English page and its /fr, /ar twins so all three emit the
+   *  same reciprocal hreflang set. Omit entirely for pages with no
+   *  translated twin (e.g. individual /insights/[slug] articles, which
+   *  are English-only, see checklist for why). */
+  hreflangPath?: string
 }
 
 /** Per-route metadata with canonical, Open Graph, and Twitter cards. */
@@ -105,6 +131,8 @@ export function pageMetadata({
   keywords,
   openGraph,
   ogImage,
+  locale = "en",
+  hreflangPath,
 }: PageMetaInput): Metadata {
   const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`
   const image = ogImage ?? PAGE_OG_IMAGES[path] ?? DEFAULT_OG_IMAGE
@@ -118,12 +146,22 @@ export function pageMetadata({
     ...(keywords ? { keywords } : {}),
     alternates: {
       canonical: url,
+      ...(hreflangPath
+        ? {
+            languages: {
+              en: localizedUrl(hreflangPath, "en"),
+              fr: localizedUrl(hreflangPath, "fr"),
+              ar: localizedUrl(hreflangPath, "ar"),
+              "x-default": localizedUrl(hreflangPath, "en"),
+            },
+          }
+        : {}),
     },
     openGraph: {
       type: "website",
       url,
       siteName: "Mohamed Dhia Arfa Portfolio",
-      locale: "en_US",
+      locale: OG_LOCALE[locale],
       title: ogTitle,
       description: ogDescription,
       images: [image],
