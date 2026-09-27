@@ -210,7 +210,7 @@ export const trainingCaseStudies: TrainingCaseStudy[] = [
     outcomeFr: "Les équipes ont produit des prototypes actionnables avec une meilleure collaboration interculturelle.",
     outcomeAr: "أنتجت الفرق نماذج أولية قابلة للتطبيق مع تعاون interculturel أقوى.",
     image: "/images/trainer/iom-hackathon-doha-2024.png",
-    orgLogo: "/img/organizations/iom-logo.jpg",
+    orgLogo: "/img/organizations/iom-logo.png",
     published: true,
   },
 ]
