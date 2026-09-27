@@ -8,8 +8,24 @@ import { BasedInTunisia } from "@/components/based-in-tunisia"
 import { siteConfig } from "@/lib/site-config"
 import { useLanguage } from "@/components/language-provider"
 
-export default function Footer() {
+type FooterProps = {
+  // Contextual conversion copy per discipline page (audit finding, Sep
+  // 2026): the CTA band used to say the same generic "Ready to start a
+  // project?" everywhere. Left undefined (home, /freebies, /insights,
+  // /case-study/*), it keeps that original generic copy exactly as before.
+  variant?: "design" | "training" | "development"
+}
+
+const variantCopyKeys = {
+  design: { heading: "footerReadyProjectDesign", sub: "footerCallShortDesign" },
+  training: { heading: "footerReadyProjectTraining", sub: "footerCallShortTraining" },
+  development: { heading: "footerReadyProjectDevelopment", sub: "footerCallShortDevelopment" },
+} as const
+
+export default function Footer({ variant }: FooterProps = {}) {
   const { t } = useLanguage()
+  const heading = t(variant ? variantCopyKeys[variant].heading : "footerReadyProject")
+  const subtext = t(variant ? variantCopyKeys[variant].sub : "footerCallShort")
   // "mailto:" links silently do nothing when the visitor's browser/OS has no
   // default mail client configured -- common on a lot of setups -- so this
   // link also copies the address to the clipboard, giving visible feedback
@@ -52,9 +68,9 @@ export default function Footer() {
           <div>
             <p className="label text-accent mb-1">{t("footerLetsWork")}</p>
             <h3 className="font-display font-bold text-2xl sm:text-3xl text-foreground leading-snug">
-              {t("footerReadyProject")}
+              {heading}
             </h3>
-            <p className="text-muted-foreground text-sm mt-1">{t("footerCallShort")}</p>
+            <p className="text-muted-foreground text-sm mt-1">{subtext}</p>
           </div>
           <div className="flex-shrink-0 flex flex-col items-start sm:items-end gap-2.5">
             <a

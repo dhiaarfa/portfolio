@@ -1,8 +1,30 @@
 import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
+import { z } from "zod"
 import { freebieById, freebieDownloadUrl } from "@/lib/freebies"
 import { escHtml } from "@/lib/html-escape"
 import { checkRateLimit } from "@/lib/rate-limit"
+
+// Request shape validation (audit hardening pass, Sep 2026). Bounds are
+// generous on purpose -- e.g. no message *minimum* length, since the client
+// form (contact-form.tsx) only requires non-empty, and a strict minimum here
+// would silently reject real short messages that already passed client-side
+// validation. `subject` mirrors contact-form.tsx's <select> values exactly
+// (design/development/training/other) but stays optional/untyped for the
+// newsletter and freebie flows, which never send it.
+const MAX_BODY_BYTES = 15_000
+
+const ContactRequestSchema = z.object({
+  type: z.enum(["contact", "newsletter", "freebie"]).optional(),
+  name: z.string().trim().max(150).optional(),
+  email: z.string().trim().max(200).email("Please enter a valid email address."),
+  subject: z.string().trim().max(150).optional(),
+  message: z.string().trim().max(5000).optional(),
+  freebieId: z.string().trim().max(200).optional(),
+  // Honeypot -- a real visitor never fills this (it's visually hidden), so
+  // any non-empty value marks the submission as a bot.
+  website: z.string().max(500).optional(),
+})
 
 function getSender() {
   return (
@@ -129,10 +151,24 @@ function visitorFreebieEmailHtml({
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json()
-    const { name, email, subject, message, type, freebieId, website } = body
+    const contentLength = Number(req.headers.get("content-length") || 0)
+    if (contentLength > MAX_BODY_BYTES) {
+      return NextResponse.json({ error: "Request too large." }, { status: 413 })
+    }
+
+    const rawBody = await req.json()
+    const parsed = ContactRequestSchema.safeParse(rawBody)
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.issues[0]?.message || "Invalid request." },
+        { status: 400 },
+      )
+    }
+    const { name, email, subject, message, type, freebieId, website } = parsed.data
 
     if (website) {
+      // Honeypot tripped -- respond as if it succeeded so a bot doesn't
+      // learn its submission was rejected, but do nothing further.
       return NextResponse.json({ success: true })
     }
 
@@ -168,6 +204,9 @@ export async function POST(req: NextRequest) {
     const safeName = escHtml(name) || "there"
 
     if (type === "freebie") {
+      if (!freebieId) {
+        return NextResponse.json({ error: "Resource not available." }, { status: 404 })
+      }
       const freebie = freebieById(freebieId)
       if (!freebie) {
         return NextResponse.json({ error: "Resource not available." }, { status: 404 })

@@ -312,7 +312,7 @@ export default function TrainerClientPage() {
         </section>
       </main>
 
-      <Footer />
+      <Footer variant="training" />
     </div>
   )
 }

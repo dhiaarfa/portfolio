@@ -284,6 +284,7 @@ export default function DesignerPageClient() {
                   key={cat}
                   type="button"
                   onClick={() => setActiveCategory(cat)}
+                  aria-pressed={activeCategory === cat}
                   className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all ${
                     activeCategory === cat ? "bg-accent text-white shadow-md" : "bg-muted text-muted-foreground"
                   }`}
@@ -406,7 +407,7 @@ export default function DesignerPageClient() {
         </section>
       </main>
 
-      <Footer />
+      <Footer variant="design" />
     </div>
   )
 }

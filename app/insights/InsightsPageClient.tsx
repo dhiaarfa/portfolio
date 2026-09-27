@@ -61,6 +61,7 @@ export default function InsightsPageClient() {
               key={f.id}
               type="button"
               onClick={() => setFilter(f.id)}
+              aria-pressed={filter === f.id}
               className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                 filter === f.id
                   ? "bg-accent text-white shadow-md shadow-green-500/20"

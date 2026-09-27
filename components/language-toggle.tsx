@@ -38,6 +38,11 @@ export function LanguageToggle() {
       // a plain "Toggle language" label doesn't include what's visibly displayed,
       // which is a real WCAG 2.5.3 mismatch a Lighthouse audit flagged.
       aria-label={`Language: ${language.toUpperCase()}, tap to switch`}
+      // Announces the language change to screen readers -- the visible
+      // "EN"/"FR"/"AR" text swaps silently otherwise, so anyone not looking
+      // at the button has no signal the switch happened (a real audit
+      // finding: aria-live missing on this control).
+      aria-live="polite"
       // Same bg-slate-100/90 + ring-1 treatment as every other icon-only
       // navbar control, for one consistent button language instead of two.
       className="w-9 h-9 rounded-full bg-slate-100/90 dark:bg-muted/70 ring-1 ring-black/10 dark:ring-white/10 hover:scale-105 flex items-center justify-center gap-1 transition-all duration-200"

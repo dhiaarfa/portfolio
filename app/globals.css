@@ -656,6 +656,20 @@ select {
   animation: ticker 40s linear infinite;
 }
 
+/* The testimonials ticker (and the other two plain-CSS keyframe loops below)
+   are outside Framer Motion, so useReducedMotion() never touches them --
+   a real gap a 3-way audit (Sep 2026) caught: someone with
+   prefers-reduced-motion set still got an infinite auto-scrolling marquee.
+   This is the one catch-all needed since every other animation on the site
+   already goes through Framer Motion's per-component handling. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker,
+  .animate-float,
+  .animate-fade-up {
+    animation: none;
+  }
+}
+
 /* Modern button effects */
 .btn-modern {
   position: relative;

@@ -183,6 +183,7 @@ function FreebiesClientInner() {
               key={cat}
               type="button"
               onClick={() => setActiveCategory(cat)}
+              aria-pressed={activeCategory === cat}
               className={`px-5 py-2.5 rounded-xl text-sm lg:text-base font-medium transition-all ${
                 activeCategory === cat
                   ? "bg-accent text-white shadow-md shadow-green-500/20"

@@ -510,7 +510,7 @@ export default function DeveloperPageClient() {
         </section>
       </main>
 
-      <Footer />
+      <Footer variant="development" />
     </div>
   )
 }
