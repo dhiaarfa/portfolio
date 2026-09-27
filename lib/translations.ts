@@ -139,6 +139,15 @@ export const translations = {
 
     // Skills
     myExpertise: "My Expertise",
+    whichDoorEyebrow: "Not sure where to start?",
+    whichDoorHeading: "Pick what you need, I'll filter the rest",
+    whichDoorAll: "Everything",
+    whichDoorDesigner: "Design & Branding",
+    whichDoorTrainer: "Training & Facilitation",
+    whichDoorDeveloper: "Web Development",
+    whichDoorDevNoTestimonials:
+      "Client testimonials for web development are still coming in \u2014 in the meantime, see the live demos and code.",
+    whichDoorDevSeeWork: "See my dev work",
     homeExpertiseLine1: "Three specialized areas.",
     homeExpertiseLine2: "One cohesive vision.",
     homeExpertiseDesc:
@@ -1123,6 +1132,15 @@ export const translations = {
 
     // Skills
     myExpertise: "Mon Expertise",
+    whichDoorEyebrow: "Pas s\u00fbr par o\u00f9 commencer\u00a0?",
+    whichDoorHeading: "Choisissez ce qu'il vous faut, je filtre le reste",
+    whichDoorAll: "Tout",
+    whichDoorDesigner: "Design & Identit\u00e9",
+    whichDoorTrainer: "Formation & Facilitation",
+    whichDoorDeveloper: "D\u00e9veloppement Web",
+    whichDoorDevNoTestimonials:
+      "Les t\u00e9moignages clients pour le d\u00e9veloppement web arrivent encore \u2014 en attendant, d\u00e9couvrez les d\u00e9mos live et le code.",
+    whichDoorDevSeeWork: "Voir mes projets dev",
     homeExpertiseLine1: "Trois domaines spécialisés.",
     homeExpertiseLine2: "Une vision cohérente.",
     homeExpertiseDesc:
@@ -2103,6 +2121,15 @@ export const translations = {
 
     // Skills
     myExpertise: "خبرتي",
+    whichDoorEyebrow: "لست متأكدًا من أين تبدأ؟",
+    whichDoorHeading: "اختر ما تحتاجه، وسأعرض لك الباقي",
+    whichDoorAll: "الكل",
+    whichDoorDesigner: "التصميم والهوية",
+    whichDoorTrainer: "التدريب والتيسير",
+    whichDoorDeveloper: "تطوير الويب",
+    whichDoorDevNoTestimonials:
+      "شهادات العملاء الخاصة بتطوير الويب ما زالت قليلة حاليًا \u2014 في هذه الأثناء، يمكنك مشاهدة العروض الحية والكود المصدري.",
+    whichDoorDevSeeWork: "شاهد أعمالي في التطوير",
     homeExpertiseLine1: "ثلاثة مجالات متخصصة.",
     homeExpertiseLine2: "رؤية واحدة متكاملة.",
     homeExpertiseDesc:
