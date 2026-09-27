@@ -40,8 +40,16 @@ const services = [
   },
 ] as const
 
-export default function ServicePackages() {
+type Props = {
+  /** Checklist item 6.13's "which door" filter -- when set, shows only the
+   *  matching card instead of all 3. Undefined/null (the default) is the
+   *  original, unfiltered behavior. */
+  pillar?: "designer" | "trainer" | "developer" | null
+}
+
+export default function ServicePackages({ pillar }: Props = {}) {
   const { t } = useLanguage()
+  const visibleServices = pillar ? services.filter((s) => s.href === `/${pillar}`) : services
   return (
     <section id="services" className="relative overflow-hidden bg-section-tint dark:bg-[#052e16] py-20 px-5">
       <div
@@ -60,7 +68,7 @@ export default function ServicePackages() {
           </p>
         </FadeUp>
         <div className="flex flex-col gap-4">
-          {services.map((s, i) => (
+          {visibleServices.map((s, i) => (
             <motion.div
               key={s.titleKey}
               initial={{ opacity: 0, y: 20 }}

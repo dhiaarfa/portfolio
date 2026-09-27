@@ -26,6 +26,8 @@ import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { TestimonialsShowcase } from "@/components/testimonials-showcase"
+import WhichDoorSelector from "@/components/which-door-selector"
+import { type Pillar, pillarToInsightsFocus, pillarToTestimonialTag } from "@/lib/which-door"
 
 function AnimatedRole() {
   const { t } = useLanguage()
@@ -130,6 +132,7 @@ function HeroAskBar() {
 
 export default function HomePageClient() {
   const { t, language } = useLanguage()
+  const [pillar, setPillar] = useState<Pillar>(null)
   const roles = [
     {
       title: "Trainer",
@@ -421,22 +424,43 @@ export default function HomePageClient() {
           visible at a time. */}
       <JourneySection />
 
+      {/* "Which door do you need?" filter (checklist 6.13) -- narrows the
+          Service Packages, Testimonials, and Insights/Freebies sections
+          below to one pillar at a time. Defaults to showing everything. */}
+      <WhichDoorSelector active={pillar} onChange={setPillar} />
+
       {/* Service Packages */}
-      <ServicePackages />
+      <ServicePackages pillar={pillar} />
 
       {/* Working with me – radar chart */}
       <ValueRadarChart />
 
-      {/* Featured Testimonials */}
+      {/* Featured Testimonials -- when the developer pillar is selected,
+          no client testimonial in lib/testimonials.ts is actually about a
+          web-dev engagement, so this shows an honest fallback instead of
+          either nothing unexplained or a misleading tag match. */}
       <div id="testimonials">
-        <TestimonialsShowcase
-          className="bg-white dark:bg-background py-12 md:py-16"
-          ids={["rayen", "ikram", "youssef", "skander", "amir"]}
-          showTicker={false}
-        />
+        {pillar === "developer" ? (
+          <div className="bg-white dark:bg-background py-12 md:py-16 px-4 text-center">
+            <p className="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto">
+              {t("whichDoorDevNoTestimonials")}{" "}
+              <Link href="/developer" className="text-accent font-semibold hover:underline">
+                {t("whichDoorDevSeeWork")}
+              </Link>
+            </p>
+          </div>
+        ) : (
+          <TestimonialsShowcase
+            className="bg-white dark:bg-background py-12 md:py-16"
+            {...(pillar
+              ? { tag: pillarToTestimonialTag(pillar) }
+              : { ids: ["rayen", "ikram", "youssef", "skander", "amir"] })}
+            showTicker={false}
+          />
+        )}
       </div>
 
-      <ResourcesInsightsStrip focus="all" className="bg-section-tint" />
+      <ResourcesInsightsStrip focus={pillarToInsightsFocus(pillar)} className="bg-section-tint" />
 
       {/* Newsletter */}
       <NewsletterSection />
