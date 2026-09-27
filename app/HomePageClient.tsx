@@ -131,7 +131,7 @@ function HeroAskBar() {
 }
 
 export default function HomePageClient() {
-  const { t, language } = useLanguage()
+  const { t } = useLanguage()
   const [pillar, setPillar] = useState<Pillar>(null)
   const roles = [
     {
@@ -181,25 +181,21 @@ export default function HomePageClient() {
             </span>
             {t("availableForProjects")}
           </div>
-          <h1 className="h1-hero text-slate-900 dark:text-white mb-2">
+          {/* 3-way audit synthesis (Sep 2026): promotes the existing,
+              already-translated positioning tagline into the literal <h1>
+              (previously just the name greeting), so the page's core
+              positioning statement is the actual top heading rather than a
+              paragraph below it. The greeting moves to a small kicker line
+              above; the hover-glow treatment Dhia asked for on the tagline
+              carries over onto the h1 itself instead of being dropped. */}
+          <p className="text-base sm:text-lg font-medium text-slate-500 dark:text-slate-400 mb-2">
             {t("helloGreeting")}{" "}
-            <span className="text-accent">Dhia</span>
+            <span className="text-accent font-semibold">Dhia</span>
+          </p>
+          <h1 className="h1-hero text-slate-900 dark:text-white mb-2 transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]">
+            {t("homeHeroTagline")}
           </h1>
           <AnimatedRole />
-          {/* Quicksand, fully visible, a subtle accent-colored glow (text-shadow)
-              appears on hover instead of the text fading in from near-invisible. */}
-          <p
-            className="mt-4 text-slate-700 dark:text-slate-300 text-lg leading-relaxed max-w-[480px] transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]"
-            // Quicksand has no Arabic glyphs, so without a language check
-            // Arabic here silently fell back to a generic system Arabic
-            // font that doesn't match Cairo everywhere else on the page
-            // (reported as "incoherence in fonts"). Use Cairo directly for
-            // Arabic instead of hoping the fallback chain lands somewhere
-            // reasonable.
-            style={{ fontFamily: language === "ar" ? "var(--font-cairo), sans-serif" : "'Quicksand', system-ui, sans-serif" }}
-          >
-            {t("homeHeroTagline")}
-          </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 mt-5 mb-2">
             {[
               { stat: profileStats.participantsTrained, label: t("homeMicroYouth") },
