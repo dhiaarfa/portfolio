@@ -999,6 +999,36 @@ export const translations = {
     archDataLayer: "Data & AI",
     archDataNote: "RLS + streaming LLM",
     devContactSubtext: "Share your timeline and vision. I'll reply within 24 hours.",
+
+    // Trainer impact map (Sep 2026) -- real events from the "Delivered
+    // Trainings" and "Delivered Facilitations" sheets, see lib/impact-map-data.ts
+    trainerImpactMapEyebrow: "Where It Happened",
+    trainerImpactMapTitle: "Geography of Impact",
+    trainerImpactMapDesc:
+      "Real training and facilitation events, mapped: Tunisia's governorates, international work in Morocco and Qatar, and sessions delivered entirely online.",
+    mapLocTunis: "Tunis",
+    mapExTunis: "Université Centrale, ISG Tunis, Cité des Sciences, TIMUN TBS, and more",
+    mapLocAriana: "Ariana",
+    mapExAriana: "ESPRIT Ariana, Startup Village, Lycée Khaireddine",
+    mapLocBenArous: "Ben Arous",
+    mapExBenArous: "Apvision Morneg, Hammam Lif, Radès",
+    mapLocSousse: "Sousse",
+    mapExSousse: "École Polytechnique de Sousse, AssociaMed, ISEPSI, Gate Training",
+    mapLocSfax: "Sfax",
+    mapExSfax: "Complexe des Jeunes, ESPIN, Lycée Pilote Sekiet Ezzit",
+    mapLocNabeul: "Nabeul",
+    mapExNabeul: "Rotaract Nabeul-Néapolis, Hammamet, Kélibia",
+    mapLocMonastir: "Monastir",
+    mapExMonastir: "Amir Palace, Association YOUTH CLUBs Camp 5.0",
+    mapLocMorocco: "Morocco",
+    mapExMorocco: "Marrakech — IFMSA SCORP Camp, training new trainers (TNT & TNHRT), Aug 2025",
+    mapLocQatar: "Qatar",
+    mapExQatar: "Doha — International Hackathon, MigApp for migrant integration, Dec 2024",
+    mapBeyondTunisia: "Beyond Tunisia",
+    mapOnlineTitle: "Online & Remote",
+    mapOnlineDesc:
+      "No pin fits a video call -- these sessions reached people wherever they were: TIMUN TBS, Epsylone Training Center, Creatos TBS, Zouari Training Center, and more.",
+    mapTapHint: "Tap or hover a region to see examples",
   },
   fr: {
     // Navigation
@@ -1992,6 +2022,35 @@ export const translations = {
     archDataLayer: "Données & IA",
     archDataNote: "RLS + LLM en streaming",
     devContactSubtext: "Partagez votre calendrier et votre vision. Je vous réponds sous 24 heures.",
+
+    // Trainer impact map (Sep 2026)
+    trainerImpactMapEyebrow: "Là où c'est arrivé",
+    trainerImpactMapTitle: "Géographie de l'impact",
+    trainerImpactMapDesc:
+      "Des événements de formation et de facilitation réels, cartographiés : les gouvernorats de Tunisie, un rayonnement international au Maroc et au Qatar, et des sessions données entièrement en ligne.",
+    mapLocTunis: "Tunis",
+    mapExTunis: "Université Centrale, ISG Tunis, Cité des Sciences, TIMUN TBS, et plus",
+    mapLocAriana: "Ariana",
+    mapExAriana: "ESPRIT Ariana, Startup Village, Lycée Khaireddine",
+    mapLocBenArous: "Ben Arous",
+    mapExBenArous: "Apvision Morneg, Hammam Lif, Radès",
+    mapLocSousse: "Sousse",
+    mapExSousse: "École Polytechnique de Sousse, AssociaMed, ISEPSI, Gate Training",
+    mapLocSfax: "Sfax",
+    mapExSfax: "Complexe des Jeunes, ESPIN, Lycée Pilote Sekiet Ezzit",
+    mapLocNabeul: "Nabeul",
+    mapExNabeul: "Rotaract Nabeul-Néapolis, Hammamet, Kélibia",
+    mapLocMonastir: "Monastir",
+    mapExMonastir: "Amir Palace, Camp 5.0 de l'Association YOUTH CLUBs",
+    mapLocMorocco: "Maroc",
+    mapExMorocco: "Marrakech — Camp SCORP de l'IFMSA, formation de nouveaux formateurs (TNT & TNHRT), août 2025",
+    mapLocQatar: "Qatar",
+    mapExQatar: "Doha — Hackathon international, MigApp pour l'intégration des migrants, déc. 2024",
+    mapBeyondTunisia: "Au-delà de la Tunisie",
+    mapOnlineTitle: "En ligne et à distance",
+    mapOnlineDesc:
+      "Aucune épingle ne convient à un appel vidéo -- ces sessions ont touché des participants où qu'ils soient : TIMUN TBS, Epsylone Training Center, Creatos TBS, Zouari Training Center, et d'autres.",
+    mapTapHint: "Touchez ou survolez une région pour voir des exemples",
   },
   ar: {
     // Navigation
@@ -2985,6 +3044,35 @@ export const translations = {
     archDataLayer: "البيانات والذكاء الاصطناعي",
     archDataNote: "RLS + نموذج لغوي بالبث المباشر",
     devContactSubtext: "شارك جدولك الزمني ورؤيتك، وسأرد عليك خلال 24 ساعة.",
+
+    // Trainer impact map (Sep 2026)
+    trainerImpactMapEyebrow: "أين حدث ذلك",
+    trainerImpactMapTitle: "جغرافيا الأثر",
+    trainerImpactMapDesc:
+      "فعاليات تدريب وتيسير حقيقية، موزّعة على خريطة: ولايات تونس، وامتداد دولي في المغرب وقطر، وجلسات قُدّمت بالكامل عبر الإنترنت.",
+    mapLocTunis: "تونس العاصمة",
+    mapExTunis: "الجامعة المركزية، المعهد العالي للإدارة بتونس، مدينة العلوم، TIMUN TBS، وغيرها",
+    mapLocAriana: "أريانة",
+    mapExAriana: "إسبري أريانة، Startup Village، المعهد النموذجي خير الدين",
+    mapLocBenArous: "بن عروس",
+    mapExBenArous: "أبفيجن مرناق، حمام الأنف، رادس",
+    mapLocSousse: "سوسة",
+    mapExSousse: "المدرسة التحضيرية للهندسة بسوسة، أسوسيامد، ISEPSI، Gate Training",
+    mapLocSfax: "صفاقس",
+    mapExSfax: "المجمع الشبابي، ESPIN، المعهد النموذجي بسكيت الزيت",
+    mapLocNabeul: "نابل",
+    mapExNabeul: "روتاراكت نابل-نيابوليس، الحمّامات، قليبية",
+    mapLocMonastir: "المنستير",
+    mapExMonastir: "أمير بالاس، مخيّم 5.0 لجمعية اليوث كلوبس",
+    mapLocMorocco: "المغرب",
+    mapExMorocco: "مراكش — مخيّم SCORP التابع لـ IFMSA، تدريب مدرّبين جدد (TNT وTNHRT)، أوت 2025",
+    mapLocQatar: "قطر",
+    mapExQatar: "الدوحة — هاكاثون دولي، MigApp لإدماج المهاجرين، ديسمبر 2024",
+    mapBeyondTunisia: "خارج تونس",
+    mapOnlineTitle: "عن بُعد وعبر الإنترنت",
+    mapOnlineDesc:
+      "لا توجد نقطة على الخريطة تناسب مكالمة فيديو -- هذه الجلسات وصلت إلى المشاركين أينما كانوا: TIMUN TBS، Epsylone Training Center، Creatos TBS، Zouari Training Center، وغيرها.",
+    mapTapHint: "المس أو مرّر فوق منطقة لرؤية أمثلة",
   },
 }
 

@@ -16,6 +16,7 @@ import TrainerOffersSection from "@/components/trainer-offers-section"
 import TrainerHowWeWorkSection from "@/components/trainer-how-we-work-section"
 import TrainerRoleClarifier from "@/components/trainer-role-clarifier"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
+import TrainerImpactMap from "@/components/trainer-impact-map"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
 import { formatStat, profileStats, trainingMilestones } from "@/lib/profile"
@@ -153,6 +154,13 @@ export default function TrainerClientPage() {
             </motion.div>
           </div>
         </section>
+
+        {/* 4.5. Where it happened -- real geographic footprint (Tunisia
+            governorates + Morocco/Qatar + online), sourced from the
+            "Delivered Trainings"/"Delivered Facilitations" sheets. Sits
+            right after the numbers so "here's the impact" is immediately
+            followed by "here's where it happened". */}
+        <TrainerImpactMap />
 
         {/* 5. Bookable offers */}
         <TrainerOffersSection />
