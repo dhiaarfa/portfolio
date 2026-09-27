@@ -47,11 +47,14 @@ export const metadata = {
     },
   },
   icons: {
+    // Properly-sized variants (2.5KB/49KB/44KB) instead of serving the
+    // full 1024x1024 source (1.17MB) for every icon slot regardless of
+    // the size actually requested -- found during a performance sweep.
     icon: [
-      { url: "/favicon-green-portrait.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-green-portrait.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
     ],
-    apple: [{ url: "/favicon-green-portrait.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/favicon-180.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.json",
   openGraph: {
@@ -97,7 +100,7 @@ export default function RootLayout({
       className={`scroll-smooth theme-transition ${cairo.variable}`}
     >
       <head>
-        <link rel="icon" href="/favicon-green-portrait.png" sizes="any" />
+        <link rel="icon" href="/favicon-192.png" sizes="any" />
         <link
           rel="stylesheet"
           href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap"

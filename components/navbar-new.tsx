@@ -137,7 +137,7 @@ export default function Navbar() {
                 its text and force an awkward mid-word wrap. */}
             <Link href="/" className="flex items-center gap-2 shrink-0 group">
               <div className="relative w-9 h-9 rounded-xl overflow-hidden shrink-0 ring-2 ring-[color-mix(in_oklab,var(--site-accent)_35%,transparent)]">
-                <Image src="/images/photos/nav-avatar.png" alt="Mohamed Dhia" width={36} height={36} className="object-cover w-full h-full" priority />
+                <Image src="/images/photos/dhia-main.png" alt="Mohamed Dhia" width={36} height={36} className="object-cover w-full h-full" priority />
               </div>
               <div className="hidden sm:block leading-tight shrink-0">
                 <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none whitespace-nowrap">Dhia</p>

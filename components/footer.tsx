@@ -89,7 +89,7 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-2.5 mb-4">
             <div className="relative w-8 h-8 rounded-xl overflow-hidden shrink-0 ring-1 ring-border">
-              <Image src="/images/photos/nav-avatar.png" alt="" fill className="object-cover" aria-hidden />
+              <Image src="/images/photos/dhia-main.png" alt="" fill className="object-cover" aria-hidden />
             </div>
             <span className="font-display font-bold text-foreground text-sm">Dhia</span>
           </div>
