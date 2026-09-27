@@ -1,3 +1,5 @@
+import type { TranslationKey } from "./translations"
+
 export type InsightCategory = "Design" | "Training" | "Development"
 
 export type InsightArticleMeta = {
@@ -5,8 +7,8 @@ export type InsightArticleMeta = {
   category: InsightCategory
   categoryKey: "insightsCatDesign" | "insightsCatTraining" | "insightsCatDev"
   readMin: number
-  titleKey: string
-  excerptKey: string
+  titleKey: TranslationKey
+  excerptKey: TranslationKey
   date: string
   published: boolean
   featured?: boolean

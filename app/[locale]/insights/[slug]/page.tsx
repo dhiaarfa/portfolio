@@ -5,45 +5,52 @@ import Footer from "@/components/footer"
 import InsightArticleClient from "@/components/insight-article-client"
 import { insightBySlug, publishedInsightArticles, relatedInsights } from "@/lib/insights"
 import { getInsightContent } from "@/lib/insights-content"
-import { insightEnExcerpts, insightEnTitles } from "@/lib/insight-en-copy"
+import { getTranslation, type Language } from "@/lib/translations"
 import { pageMetadata } from "@/lib/page-metadata"
 import { SITE_URL } from "@/lib/profile"
 
-type Props = { params: Promise<{ slug: string }> }
+type Props = { params: Promise<{ locale: string; slug: string }> }
 
 export async function generateStaticParams() {
   return publishedInsightArticles().map((a) => ({ slug: a.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
+  const { locale, slug } = await params
+  if (locale !== "fr" && locale !== "ar") return {}
   const article = insightBySlug(slug)
   if (!article) return {}
 
-  const title = insightEnTitles[article.titleKey] ?? article.slug
-  const description = insightEnExcerpts[article.excerptKey] ?? ""
+  const title = getTranslation(locale, article.titleKey)
+  const description = getTranslation(locale, article.excerptKey)
+  const suffix = locale === "fr" ? "Insights" : "رؤى"
 
   return pageMetadata({
-    path: `/insights/${slug}`,
-    title: `${title} | Insights · Mohamed Dhia`,
+    path: `/${locale}/insights/${slug}`,
+    title: `${title} | ${suffix} · Mohamed Dhia`,
     description,
+    locale: locale as Language,
+    hreflangPath: `/insights/${slug}`,
     openGraph: { type: "article" },
   })
 }
 
-export default async function InsightArticlePage({ params }: Props) {
-  const { slug } = await params
+export default async function LocaleInsightArticlePage({ params }: Props) {
+  const { locale, slug } = await params
+  if (locale !== "fr" && locale !== "ar") notFound()
+
   const article = insightBySlug(slug)
   const content = getInsightContent(slug)
   if (!article || !content) notFound()
 
-  const title = insightEnTitles[article.titleKey] ?? article.slug
-  const url = `${SITE_URL}/insights/${slug}`
+  const title = getTranslation(locale, article.titleKey)
+  const url = `${SITE_URL}/${locale}/insights/${slug}`
   const related = relatedInsights(article)
 
-  // JSON-LD stays in English, matching the convention elsewhere on this site
-  // (SEO structured data isn't localized) -- only the visible article body
-  // and page chrome react to the language toggle, via InsightArticleClient.
+  // JSON-LD stays in English, matching the convention on the unprefixed
+  // /insights/[slug] route and on /[locale]/work/[slug] (SEO structured
+  // data isn't localized elsewhere on this site) -- only the url field
+  // points at this locale's page.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",

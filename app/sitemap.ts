@@ -19,8 +19,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   // /fr and /ar twins of the pages with real translated content (see
-  // app/[locale]/*). Individual /insights/[slug] articles are English-only
-  // and deliberately excluded, see checklist.
+  // app/[locale]/*). Individual /insights/[slug] articles now have real
+  // fr/ar bodies too (see lib/insights-content.ts), so they're included
+  // below alongside the work case studies.
   const localizedBases = ["", "/designer", "/trainer", "/developer", "/freebies", "/insights"]
   const localeUrls = (["fr", "ar"] as const).flatMap((locale) =>
     localizedBases.map((base) => ({
@@ -36,6 +37,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.55,
+    }))
+  )
+  const localizedInsightUrls = (["fr", "ar"] as const).flatMap((locale) =>
+    publishedInsightArticles().map((a) => ({
+      url: `${baseUrl}/${locale}/insights/${a.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
     }))
   )
 
@@ -86,5 +95,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...workUrls,
     ...localeUrls,
     ...localizedWorkUrls,
+    ...localizedInsightUrls,
   ]
 }

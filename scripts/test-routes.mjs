@@ -15,6 +15,8 @@ const routes = [
   "/insights/brand-colors-and-trust",
   "/insights/facilitation-mistakes-youth-workshops",
   "/insights/why-i-rebuilt-my-portfolio-in-nextjs",
+  "/fr/insights/brand-colors-and-trust",
+  "/ar/insights/facilitation-mistakes-youth-workshops",
   "/case-study/meetup-pro",
   "/freebies/brand-brief-template.pdf",
   "/this-route-should-404",

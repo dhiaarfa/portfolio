@@ -18,8 +18,8 @@ export function LanguageToggle() {
     // On a route that has a real translated /fr or /ar twin (see
     // lib/locale-routes.ts), navigate there so the URL and <html lang>
     // are correct from the server, not just the in-page text. Everywhere
-    // else (e.g. individual English-only insight articles), fall back to
-    // the original in-place context switch exactly as before.
+    // else (e.g. /case-study/*), fall back to the original in-place
+    // context switch exactly as before.
     const target = pathname ? getLocalizedPath(pathname, next) : null
     if (target && target !== pathname) {
       setLanguage(next)

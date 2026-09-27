@@ -2,18 +2,19 @@ import type { Language } from "@/lib/translations"
 
 /**
  * The route tree also published under /fr/* and /ar/* (see app/[locale]/*).
- * Every other route (individual /insights/[slug] articles, /case-study/*,
- * etc.) has no translated twin yet, so the language toggle changes only the
- * in-page text there instead of navigating -- see checklist for why insight
- * article bodies are still English-only.
+ * Individual /insights/[slug] articles now have real fr/ar bodies too (see
+ * lib/insights-content.ts), so they get a locale twin like /work/[slug].
+ * Everything else (e.g. /case-study/*) has no translated twin, so the
+ * language toggle changes only the in-page text there instead of navigating.
  */
 const WORK_SLUG_RE = /^\/work\/[^/]+$/
+const INSIGHT_SLUG_RE = /^\/insights\/[^/]+$/
 
 function isLocalizedBase(base: string): boolean {
   if (base === "/" || base === "/designer" || base === "/trainer" || base === "/developer" || base === "/freebies" || base === "/insights") {
     return true
   }
-  return WORK_SLUG_RE.test(base)
+  return WORK_SLUG_RE.test(base) || INSIGHT_SLUG_RE.test(base)
 }
 
 /** Strips a leading /fr or /ar prefix from `pathname`, returning the
