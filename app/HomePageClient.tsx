@@ -349,6 +349,7 @@ export default function HomePageClient() {
                               <AnimatedNumber
                                 value={Number(val)}
                                 suffix="+"
+                                instant
                                 className="block font-display font-bold text-lg text-slate-900 dark:text-white leading-none tabular-nums"
                               />
                               <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{label}</p>

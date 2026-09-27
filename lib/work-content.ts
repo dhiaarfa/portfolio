@@ -17,11 +17,11 @@ Color roles were locked early: cream for backgrounds, deep brown for text, gold 
 
 ## The system in use
 
-![](/images/speranza-benna.jpg)
+![Speranza Café packaging and social post design](/images/speranza-benna.jpg)
 
 Packaging and promo posts share the same type hierarchy. Seasonal campaigns (Ramadan, summer drinks) swap photography but keep the frame, logo placement, and accent color.
 
-![](/images/speranza-pasta.jpg)
+![Speranza Café pasta product packaging design](/images/speranza-pasta.jpg)
 
 ## Outcome
 
@@ -50,11 +50,11 @@ Les rôles de couleur ont été fixés tôt : crème pour les fonds, brun profon
 
 ## Le système en usage
 
-![](/images/speranza-benna.jpg)
+![Design d'emballage et de publications promotionnelles Speranza Café](/images/speranza-benna.jpg)
 
 Les publications d'emballage et de promotion partagent la même hiérarchie typographique. Les campagnes saisonnières (Ramadan, boissons d'été) changent de photographie tout en gardant le cadre, l'emplacement du logo et la couleur d'accent.
 
-![](/images/speranza-pasta.jpg)
+![Design d'emballage du produit pâtes Speranza Café](/images/speranza-pasta.jpg)
 
 ## Résultat
 
@@ -83,11 +83,11 @@ La vidéo ne faisait pas partie du brief initial, et Instagram a depuis évolué
 
 ## النظام قيد الاستخدام
 
-![](/images/speranza-benna.jpg)
+![تصميم تغليف ومنشورات ترويجية لعلامة Speranza Café](/images/speranza-benna.jpg)
 
 تشترك منشورات التغليف والترويج في نفس التسلسل الهرمي للخط. تُغيّر الحملات الموسمية (رمضان، مشروبات الصيف) الصور مع الحفاظ على الإطار وموضع الشعار واللون المميز.
 
-![](/images/speranza-pasta.jpg)
+![تصميم تغليف منتج المعكرونة لعلامة Speranza Café](/images/speranza-pasta.jpg)
 
 ## النتيجة
 
@@ -115,15 +115,15 @@ Create a full identity: logotype, monogram, business cards, letterhead, and soci
 
 I designed a **combination mark**: a geometric monogram paired with a refined wordmark. Gold is used as a spot color for print and as a flat metallic tone for digital. Light and dark versions were built from day one so the logo never gets forced onto the wrong background.
 
-![](/images/lone-space-gold.png)
+![Lone Space logo in gold, light and dark variants](/images/lone-space-gold.png)
 
 ## Stationery & print
 
 Business cards and letterhead use the same spacing system: generous margins, one accent line, monogram as a subtle watermark on letterhead. Print specs were documented so reprints stay consistent.
 
-![](/images/lone-space-cards.jpg)
+![Lone Space business cards and letterhead mockup](/images/lone-space-cards.jpg)
 
-![](/images/lone-space-mockup.jpg)
+![Lone Space brand stationery mockup](/images/lone-space-mockup.jpg)
 
 ## Outcome
 
@@ -148,15 +148,15 @@ Créer une identité complète : logotype, monogramme, cartes de visite, en-têt
 
 J'ai conçu une **marque combinée** : un monogramme géométrique associé à un logotype raffiné. L'or est utilisé comme couleur d'accompagnement pour l'impression et comme ton métallique plat pour le numérique. Des versions claires et sombres ont été créées dès le départ pour que le logo ne soit jamais forcé sur le mauvais fond.
 
-![](/images/lone-space-gold.png)
+![Logo Lone Space en doré, versions claire et sombre](/images/lone-space-gold.png)
 
 ## Papeterie et impression
 
 Les cartes de visite et l'en-tête de lettre utilisent le même système d'espacement : marges généreuses, une ligne d'accent, monogramme en filigrane discret sur l'en-tête. Les spécifications d'impression ont été documentées pour que les réimpressions restent cohérentes.
 
-![](/images/lone-space-cards.jpg)
+![Maquette de cartes de visite et papier à en-tête Lone Space](/images/lone-space-cards.jpg)
 
-![](/images/lone-space-mockup.jpg)
+![Maquette d'identité de marque Lone Space](/images/lone-space-mockup.jpg)
 
 ## Résultat
 
@@ -181,15 +181,15 @@ Je testerais le ton d'or numérique sur un plus large éventail d'écrans de té
 
 صممت **علامة مركّبة**: رمزاً هندسياً مقروناً بشعار نصي أنيق. يُستخدم الذهبي كلون مباشر للطباعة وكدرجة معدنية مسطحة للاستخدام الرقمي. تم تصميم نسختين فاتحة وداكنة منذ البداية حتى لا يُفرض الشعار أبداً على خلفية غير مناسبة.
 
-![](/images/lone-space-gold.png)
+![شعار Lone Space بالذهبي مع نسختيه الفاتحة والداكنة](/images/lone-space-gold.png)
 
 ## القرطاسية والطباعة
 
 تستخدم بطاقات العمل وترويسة الرسائل نفس نظام التباعد: هوامش سخية، خط تمييز واحد، ورمز مختصر كعلامة مائية خفيفة على الترويسة. تم توثيق مواصفات الطباعة حتى تبقى إعادة الطباعة متسقة.
 
-![](/images/lone-space-cards.jpg)
+![نموذج بطاقات العمل وترويسة الرسائل لعلامة Lone Space](/images/lone-space-cards.jpg)
 
-![](/images/lone-space-mockup.jpg)
+![نموذج هوية العلامة التجارية Lone Space](/images/lone-space-mockup.jpg)
 
 ## النتيجة
 
@@ -219,7 +219,7 @@ I pushed for **clarity over decoration**: a clean symbol suggesting movement and
 
 Templates were built for **Instagram posts and story covers** with fixed logo placement and photo overlay rules so non-designers can publish on busy days.
 
-![](/images/tafani-white-png.png)
+![Tafani Travel Instagram post and story templates](/images/tafani-white-png.png)
 
 ## Outcome
 
@@ -246,7 +246,7 @@ J'ai privilégié **la clarté plutôt que la décoration** : un symbole épuré
 
 Des templates ont été créés pour **les publications Instagram et les couvertures de story** avec un emplacement de logo fixe et des règles de surimpression photo, pour que des non-designers puissent publier les jours chargés.
 
-![](/images/tafani-white-png.png)
+![Templates Instagram (publications et stories) pour Tafani Travel](/images/tafani-white-png.png)
 
 ## Résultat
 
@@ -273,7 +273,7 @@ J'introduirais un motif graphique secondaire plus tôt, quelque chose d'assez di
 
 تم تصميم قوالب لـ **منشورات إنستغرام وأغلفة القصص** مع موضع ثابت للشعار وقواعد تراكب للصور، حتى يتمكن غير المصممين من النشر في الأيام المزدحمة.
 
-![](/images/tafani-white-png.png)
+![قوالب إنستغرام (منشورات وقصص) لعلامة Tafani Travel](/images/tafani-white-png.png)
 
 ## النتيجة
 
@@ -301,7 +301,7 @@ Event branding, social campaign assets, and on-site promotional design. Timeline
 
 I built a **campaign identity** around bold type, high contrast, and repeatable layouts: speaker cards, countdown stories, and registration CTAs all share one grid. Photography slots were standardized so the team could swap faces without breaking alignment.
 
-![](/images/meetuppro-thumbnail.png)
+![MeetUp Pro campaign identity: speaker cards and countdown stories](/images/meetuppro-thumbnail.png)
 
 ## Outcome
 
@@ -326,7 +326,7 @@ Image de marque événementielle, contenus de campagne pour les réseaux sociaux
 
 J'ai construit une **identité de campagne** autour d'une typographie audacieuse, d'un fort contraste et de mises en page réutilisables : cartes d'intervenants, stories de compte à rebours et appels à l'inscription partagent tous une même grille. Les emplacements photo ont été standardisés pour que l'équipe puisse changer les visages sans casser l'alignement.
 
-![](/images/meetuppro-thumbnail.png)
+![Identité de campagne MeetUp Pro : cartes d'intervenants et stories de compte à rebours](/images/meetuppro-thumbnail.png)
 
 ## Résultat
 
@@ -351,7 +351,7 @@ Avec plus de délai, je concevrais deux ou trois variantes de template plutôt q
 
 بنيت **هوية حملة** حول خط جريء وتباين عالٍ وتخطيطات قابلة لإعادة الاستخدام: بطاقات المتحدثين، قصص العد التنازلي، ودعوات التسجيل، جميعها تشترك في شبكة واحدة. تم توحيد مساحات الصور حتى يتمكن الفريق من تغيير الوجوه دون كسر المحاذاة.
 
-![](/images/meetuppro-thumbnail.png)
+![هوية حملة MeetUp Pro: بطاقات المتحدثين وقصص العد التنازلي](/images/meetuppro-thumbnail.png)
 
 ## النتيجة
 
@@ -379,9 +379,9 @@ Seasonal travel promotion: large-format outdoor mockup, print poster, and feed a
 
 One **master layout grid**: headline zone, image window, logo lockup, CTA bar. The same grid scales from billboard proportion to square social. Mockups were used to sell the concept before print spend.
 
-![](/images/billboard-48x14-ft-mockup-3.jpeg)
+![TravelToDo campaign billboard mockup at 48x14 ft](/images/billboard-48x14-ft-mockup-3.jpeg)
 
-![](/images/affiche-traveltodo.jpg)
+![TravelToDo campaign poster design](/images/affiche-traveltodo.jpg)
 
 ## Outcome
 
@@ -406,9 +406,9 @@ Promotion de voyage saisonnière : maquette d'affichage grand format, affiche im
 
 Une **grille maîtresse unique** : zone de titre, fenêtre image, bloc-logo, barre d'appel à l'action. La même grille s'adapte du format panneau d'affichage au format carré des réseaux sociaux. Des maquettes ont servi à vendre le concept avant l'engagement des dépenses d'impression.
 
-![](/images/billboard-48x14-ft-mockup-3.jpeg)
+![Maquette de panneau d'affichage TravelToDo (48x14 pieds)](/images/billboard-48x14-ft-mockup-3.jpeg)
 
-![](/images/affiche-traveltodo.jpg)
+![Affiche de campagne TravelToDo](/images/affiche-traveltodo.jpg)
 
 ## Résultat
 
@@ -433,9 +433,9 @@ J'apporterais des recadrages spécifiques à chaque format plus tôt dans la rev
 
 شبكة رئيسية **واحدة**: منطقة العنوان، نافذة الصورة، كتلة الشعار، شريط الدعوة إلى الإجراء. تتوسّع نفس الشبكة من نسبة اللوحة الإعلانية إلى المربع الخاص بوسائل التواصل. استُخدمت النماذج لبيع الفكرة قبل الالتزام بتكاليف الطباعة.
 
-![](/images/billboard-48x14-ft-mockup-3.jpeg)
+![نموذج لوحة إعلانية لحملة TravelToDo بمقاس 48×14 قدم](/images/billboard-48x14-ft-mockup-3.jpeg)
 
-![](/images/affiche-traveltodo.jpg)
+![ملصق حملة TravelToDo الإعلانية](/images/affiche-traveltodo.jpg)
 
 ## النتيجة
 
@@ -469,17 +469,17 @@ I conducted field analysis at Digimytch with the CTO, CEO (Product Owner), and m
 4. **Application Kanban**, Four columns (To do, Applied, Interview, Offer) with timestamped status history and soft-delete archiving.
 5. **Interview simulator**, 8 dynamically generated questions, voice mode (Web Speech API on Chrome/Edge) or full text fallback, personalized debrief per answer.
 
-![](/images/projects/digimytch/landing.png)
+![DigiMyTech landing page screenshot](/images/projects/digimytch/landing.png)
 
-![](/images/projects/digimytch/dashboard.png)
+![DigiMyTech candidate dashboard screenshot](/images/projects/digimytch/dashboard.png)
 
-![](/images/projects/digimytch/analyze-offer.png)
+![DigiMyTech AI job-offer analysis screenshot](/images/projects/digimytch/analyze-offer.png)
 
-![](/images/projects/digimytch/linkedin.png)
+![DigiMyTech LinkedIn-style profile screenshot](/images/projects/digimytch/linkedin.png)
 
-![](/images/projects/digimytch/kanban.png)
+![DigiMyTech application-tracking kanban board screenshot](/images/projects/digimytch/kanban.png)
 
-![](/images/projects/digimytch/formations.png)
+![DigiMyTech training module screenshot](/images/projects/digimytch/formations.png)
 
 ## Architecture & stack
 
@@ -541,17 +541,17 @@ J'ai mené une analyse de terrain chez Digimytch avec le CTO et le CEO (Product 
 4. **Kanban de candidatures** — Quatre colonnes (À faire, Postulé, Entretien, Offre) avec historique de statut horodaté et archivage par suppression douce.
 5. **Simulateur d'entretien** — 8 questions générées dynamiquement, mode vocal (Web Speech API sur Chrome/Edge) ou repli texte complet, débriefing personnalisé par réponse.
 
-![](/images/projects/digimytch/landing.png)
+![Capture d'écran de la page d'accueil DigiMyTech](/images/projects/digimytch/landing.png)
 
-![](/images/projects/digimytch/dashboard.png)
+![Capture d'écran du tableau de bord candidat DigiMyTech](/images/projects/digimytch/dashboard.png)
 
-![](/images/projects/digimytch/analyze-offer.png)
+![Capture d'écran de l'analyse d'offre d'emploi par IA sur DigiMyTech](/images/projects/digimytch/analyze-offer.png)
 
-![](/images/projects/digimytch/linkedin.png)
+![Capture d'écran du profil façon LinkedIn sur DigiMyTech](/images/projects/digimytch/linkedin.png)
 
-![](/images/projects/digimytch/kanban.png)
+![Capture d'écran du tableau kanban de suivi des candidatures DigiMyTech](/images/projects/digimytch/kanban.png)
 
-![](/images/projects/digimytch/formations.png)
+![Capture d'écran du module de formations DigiMyTech](/images/projects/digimytch/formations.png)
 
 ## Architecture et stack technique
 
@@ -613,17 +613,17 @@ Recherche vectorielle via pgvector pour faire correspondre « ingénieur JavaScr
 4. **لوحة كانبان للطلبات** — أربعة أعمدة (للقيام به، تم التقديم، مقابلة، عرض عمل) مع سجل حالة موسوم بالوقت وأرشفة بحذف ناعم.
 5. **محاكي المقابلات** — 8 أسئلة تُولَّد ديناميكياً، وضع صوتي (Web Speech API على Chrome/Edge) أو نص كامل كبديل، وتقرير تفصيلي شخصي لكل إجابة.
 
-![](/images/projects/digimytch/landing.png)
+![لقطة شاشة للصفحة الرئيسية لمنصة DigiMyTech](/images/projects/digimytch/landing.png)
 
-![](/images/projects/digimytch/dashboard.png)
+![لقطة شاشة للوحة تحكم المرشح في DigiMyTech](/images/projects/digimytch/dashboard.png)
 
-![](/images/projects/digimytch/analyze-offer.png)
+![لقطة شاشة لتحليل عرض العمل بالذكاء الاصطناعي في DigiMyTech](/images/projects/digimytch/analyze-offer.png)
 
-![](/images/projects/digimytch/linkedin.png)
+![لقطة شاشة للملف الشخصي على طراز LinkedIn في DigiMyTech](/images/projects/digimytch/linkedin.png)
 
-![](/images/projects/digimytch/kanban.png)
+![لقطة شاشة للوحة كانبان لتتبع الطلبات في DigiMyTech](/images/projects/digimytch/kanban.png)
 
-![](/images/projects/digimytch/formations.png)
+![لقطة شاشة لوحدة التكوينات في DigiMyTech](/images/projects/digimytch/formations.png)
 
 ## البنية والتقنيات
 
@@ -684,11 +684,11 @@ CRIT needed a modern web presence: clear service pages, job offer discovery, and
 - UI implementation from design direction: service sections, job listings layout, contact flows
 - Performance-conscious markup and component structure for maintainability
 
-![](/images/projects/crit/home.png)
+![CRIT Tunisie homepage screenshot](/images/projects/crit/home.png)
 
-![](/images/projects/crit/jobs.png)
+![CRIT Tunisie job listings page screenshot](/images/projects/crit/jobs.png)
 
-![](/images/projects/crit/services.png)
+![CRIT Tunisie services page screenshot](/images/projects/crit/services.png)
 
 ## Outcome
 
@@ -707,11 +707,11 @@ CRIT avait besoin d'une présence web moderne : pages de services claires, déco
 - Implémentation UI à partir de la direction design : sections de services, mise en page des offres d'emploi, parcours de contact
 - Balisage soucieux de la performance et structure de composants pensée pour la maintenabilité
 
-![](/images/projects/crit/home.png)
+![Capture d'écran de la page d'accueil de CRIT Tunisie](/images/projects/crit/home.png)
 
-![](/images/projects/crit/jobs.png)
+![Capture d'écran de la page des offres d'emploi de CRIT Tunisie](/images/projects/crit/jobs.png)
 
-![](/images/projects/crit/services.png)
+![Capture d'écran de la page des services de CRIT Tunisie](/images/projects/crit/services.png)
 
 ## Résultat
 
@@ -730,11 +730,11 @@ Mis en **production** sur [crit-tunisie.net](https://crit-tunisie.net/). Ce fut 
 - تنفيذ واجهة المستخدم انطلاقاً من التوجيه التصميمي: أقسام الخدمات، تخطيط عروض العمل، مسارات التواصل
 - ترميز يراعي الأداء وبنية مكوّنات مصممة لسهولة الصيانة
 
-![](/images/projects/crit/home.png)
+![لقطة شاشة للصفحة الرئيسية لموقع CRIT تونس](/images/projects/crit/home.png)
 
-![](/images/projects/crit/jobs.png)
+![لقطة شاشة لصفحة عروض العمل في CRIT تونس](/images/projects/crit/jobs.png)
 
-![](/images/projects/crit/services.png)
+![لقطة شاشة لصفحة الخدمات في CRIT تونس](/images/projects/crit/services.png)
 
 ## النتيجة
 
@@ -756,7 +756,7 @@ The brand had strong product photography but no web presence that matched the qu
 - Clean typography and spacing aligned with the brand's warm palette
 - Contact and inquiry paths for wholesale and retail
 
-![](/images/bdaf-thumbnail.png)
+![Best Dates & Fruits e-commerce site screenshot](/images/bdaf-thumbnail.png)
 
 ## Outcome
 
@@ -775,7 +775,7 @@ La marque disposait d'une excellente photographie produit mais d'aucune présenc
 - Typographie et espacement soignés, alignés avec la palette chaleureuse de la marque
 - Parcours de contact et de demande pour la vente en gros et au détail
 
-![](/images/bdaf-thumbnail.png)
+![Capture d'écran du site e-commerce Best Dates & Fruits](/images/bdaf-thumbnail.png)
 
 ## Résultat
 
@@ -794,7 +794,7 @@ En ligne sur [bestdatesandfruits.com](https://bestdatesandfruits.com/). Une réf
 - خط وتباعد أنيقان يتماشيان مع اللوحة الدافئة للعلامة التجارية
 - مسارات تواصل واستفسار لعمليات البيع بالجملة والتجزئة
 
-![](/images/bdaf-thumbnail.png)
+![لقطة شاشة لموقع Best Dates & Fruits للتجارة الإلكترونية](/images/bdaf-thumbnail.png)
 
 ## النتيجة
 
