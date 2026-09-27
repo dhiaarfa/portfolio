@@ -4,10 +4,12 @@ import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { Mail, AlertCircle, CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
+import { useLanguage } from "@/components/language-provider"
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export default function ContactForm() {
+  const { t } = useLanguage()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,19 +28,19 @@ export default function ContactForm() {
 
   const validate = () => {
     if (!formData.name?.trim()) {
-      toast.error("Please enter your name.")
+      toast.error(t("toastEnterName"))
       return false
     }
     if (!formData.email?.trim()) {
-      toast.error("Please enter your email.")
+      toast.error(t("toastEnterEmail"))
       return false
     }
     if (!EMAIL_REGEX.test(formData.email.trim())) {
-      toast.error("Please enter a valid email address.")
+      toast.error(t("toastInvalidEmail"))
       return false
     }
     if (!formData.message?.trim()) {
-      toast.error("Please enter a message.")
+      toast.error(t("toastEnterMessage"))
       return false
     }
     return true
@@ -69,21 +71,21 @@ export default function ContactForm() {
 
       if (!response.ok) {
         setStatus("error")
-        setErrorMessage(data.error || "Failed to send message.")
+        setErrorMessage(data.error || t("errorFailedSend"))
         setErrorHint(data.hint || "")
-        toast.error("Something went wrong. Try again or email me directly.")
+        toast.error(t("toastGenericError"))
         return
       }
 
       setStatus("success")
       setFormData({ name: "", email: "", message: "", service: "design", website: "" })
-      toast.success("Message sent! I'll get back to you soon.")
+      toast.success(t("toastMessageSent"))
       setTimeout(() => setStatus("idle"), 5000)
     } catch {
       setStatus("error")
-      setErrorMessage("Network error. Please try again.")
+      setErrorMessage(t("errorNetwork"))
       setErrorHint("")
-      toast.error("Something went wrong. Try again or email me directly.")
+      toast.error(t("toastGenericError"))
     }
   }
 
@@ -100,7 +102,7 @@ export default function ContactForm() {
         {/* Name Field */}
         <div className="space-y-2">
           <label htmlFor="name" className="block text-sm font-semibold">
-            Your Name <span className="text-accent">*</span>
+            {t("contactFormNameLabel")} <span className="text-accent">*</span>
           </label>
           <input
             type="text"
@@ -109,7 +111,7 @@ export default function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            placeholder="Enter your full name"
+            placeholder={t("contactFormNamePlaceholder")}
             className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           />
@@ -118,7 +120,7 @@ export default function ContactForm() {
         {/* Email Field */}
         <div className="space-y-2">
           <label htmlFor="email" className="block text-sm font-semibold">
-            Email Address <span className="text-accent">*</span>
+            {t("contactFormEmailLabel")} <span className="text-accent">*</span>
           </label>
           <input
             type="email"
@@ -127,7 +129,7 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            placeholder="your.email@example.com"
+            placeholder={t("contactFormEmailPlaceholder")}
             className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           />
@@ -136,7 +138,7 @@ export default function ContactForm() {
         {/* Service Type Dropdown */}
         <div className="space-y-2">
           <label htmlFor="service" className="block text-sm font-semibold">
-            What can I help with? <span className="text-accent">*</span>
+            {t("contactFormServiceLabel")} <span className="text-accent">*</span>
           </label>
           <select
             id="service"
@@ -147,17 +149,17 @@ export default function ContactForm() {
             className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all touch-manipulation text-base"
             disabled={status === "loading"}
           >
-            <option value="design">Design Project</option>
-            <option value="development">Web Development</option>
-            <option value="training">Training Program</option>
-            <option value="other">Other</option>
+            <option value="design">{t("contactFormServiceDesign")}</option>
+            <option value="development">{t("contactFormServiceDevelopment")}</option>
+            <option value="training">{t("contactFormServiceTraining")}</option>
+            <option value="other">{t("contactFormServiceOther")}</option>
           </select>
         </div>
 
         {/* Message Field */}
         <div className="space-y-2">
           <label htmlFor="message" className="block text-sm font-semibold">
-            Your Message <span className="text-accent">*</span>
+            {t("contactFormMessageLabel")} <span className="text-accent">*</span>
           </label>
           <textarea
             id="message"
@@ -165,7 +167,7 @@ export default function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             required
-            placeholder="Tell me about your project, timeline, and any specific requirements..."
+            placeholder={t("contactFormMessagePlaceholder")}
             rows={5}
             className="w-full px-4 py-3 min-h-[120px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all resize-none touch-manipulation text-base"
             disabled={status === "loading"}
@@ -196,8 +198,8 @@ export default function ContactForm() {
           >
             <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-semibold text-green-700 dark:text-green-300">Message sent successfully!</p>
-              <p className="text-sm text-green-600 dark:text-green-400">I&apos;ll get back to you within 24 hours.</p>
+              <p className="text-sm font-semibold text-green-700 dark:text-green-300">{t("contactFormSuccessTitle")}</p>
+              <p className="text-sm text-green-600 dark:text-green-400">{t("contactFormSuccessDesc")}</p>
             </div>
           </motion.div>
         )}
@@ -213,23 +215,23 @@ export default function ContactForm() {
           {status === "loading" ? (
             <>
               <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              Sending...
+              {t("contactFormSending")}
             </>
           ) : status === "success" ? (
             <>
               <CheckCircle2 className="w-5 h-5" />
-              Message Sent
+              {t("contactFormSent")}
             </>
           ) : (
             <>
               <Mail className="w-5 h-5" />
-              Send Message
+              {t("contactFormSendMessage")}
             </>
           )}
         </motion.button>
 
         <p className="text-xs text-muted-foreground text-center">
-          I&apos;ll respond to your message within 24 hours. You can also reach me directly at{" "}
+          {t("contactFormFooterNote")}{" "}
           <a href="mailto:mohameddhiaarfa@gmail.com" className="text-accent hover:underline font-medium">
             mohameddhiaarfa@gmail.com
           </a>

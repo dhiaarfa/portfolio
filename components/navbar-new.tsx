@@ -63,7 +63,7 @@ export default function Navbar() {
         href="#main-content"
         className="fixed left-3 top-3 z-[100] -translate-y-20 focus:translate-y-0 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-lg transition-transform duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
       >
-        Skip to content
+        {t("skipToContent")}
       </a>
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-[background,padding,box-shadow] duration-200 ${
@@ -141,7 +141,7 @@ export default function Navbar() {
               </div>
               <div className="hidden sm:block leading-tight shrink-0">
                 <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none whitespace-nowrap">Dhia</p>
-                <p className="text-[10px] text-slate-400 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5 whitespace-nowrap">Designer · Trainer · Dev</p>
+                <p className="text-[10px] text-slate-400 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5 whitespace-nowrap">{t("navTagline")}</p>
               </div>
             </Link>
           </motion.div>

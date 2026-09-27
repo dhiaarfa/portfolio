@@ -10,14 +10,16 @@ import Image from "next/image"
 import ContactForm from "@/components/contact-form"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { siteConfig } from "@/lib/site-config"
-import { devWorkProjects, devCardAspectRatio, devCardTheme } from "@/lib/work"
+import { devWorkProjects, devCardAspectRatio, devCardTheme, localizedWork } from "@/lib/work"
 import { otherDevProjects } from "@/lib/dev-projects"
 import { ExternalLink, Github, Download, ArrowRight, Gift, Clock, FolderGit2, Images } from "lucide-react"
 import ToolsStackSection from "@/components/tools-stack-section"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
+import { useLanguage } from "@/components/language-provider"
 
 export default function DeveloperPageClient() {
+  const { t, language } = useLanguage()
   const projects = devWorkProjects()
   // Which project's full screenshot pack is open in the lightbox (by slug),
   // or null when closed, one Dialog reused for every card instead of one
@@ -29,49 +31,49 @@ export default function DeveloperPageClient() {
     activeTheme?.screenshots?.length ? activeTheme.screenshots : activeProject ? [activeProject.cardImage] : []
   const bridgeItems = [
     {
-      title: "UI/UX focused components",
-      desc: "Pixel-perfect React from design systems.",
-      proof: "DigiMyTech · CRIT Tunisie",
+      titleKey: "bridgeUiuxTitle",
+      descKey: "bridgeUiuxDesc",
+      proofKey: "bridgeUiuxProof",
       href: "/work/digimytch",
     },
     {
-      title: "Scalable architecture",
-      desc: "Modular components with TypeScript and clean APIs.",
-      proof: "dhia-portfolio.com (this site)",
+      titleKey: "bridgeScalableTitle",
+      descKey: "bridgeScalableDesc",
+      proofKey: "bridgeScalableProof",
       href: "https://github.com/dhiaarfa/portfolio",
       external: true,
     },
     {
-      title: "Performance optimized",
-      desc: "Next.js with image optimization and Core Web Vitals focus.",
-      proof: "Portfolio · client sites",
+      titleKey: "bridgePerfTitle",
+      descKey: "bridgePerfDesc",
+      proofKey: "bridgePerfProof",
       href: "/work/best-dates-fruits",
     },
     {
-      title: "Rapid prototyping",
-      desc: "Wireframes to working prototypes quickly.",
-      proof: "Best Dates & Fruits",
+      titleKey: "bridgeProtoTitle",
+      descKey: "bridgeProtoDesc",
+      proofKey: "bridgeProtoProof",
       href: "/work/best-dates-fruits",
     },
   ]
 
   const capabilities = [
     {
-      title: "Responsive web interfaces",
-      desc: "Mobile-first React with accessible markup.",
+      titleKey: "capResponsiveTitle",
+      descKey: "capResponsiveDesc",
       tags: ["React", "Tailwind", "Framer Motion"],
       href: "/work/crit-tunisie",
     },
     {
-      title: "React component architecture",
-      desc: "TypeScript, reusable systems, ShadCN-style patterns.",
+      titleKey: "capReactArchTitle",
+      descKey: "capReactArchDesc",
       tags: ["TypeScript", "Next.js", "Component API"],
       href: "https://github.com/dhiaarfa/portfolio",
       external: true,
     },
     {
-      title: "AI-integrated products",
-      desc: "LLM workflows in product UX, not bolt-on chat widgets.",
+      titleKey: "capAiTitle",
+      descKey: "capAiDesc",
       tags: ["OpenRouter", "Supabase", "Next.js"],
       href: "/work/digimytch",
     },
@@ -109,13 +111,13 @@ export default function DeveloperPageClient() {
             <span className="text-accent animate-[pulse_1s_ease-in-out_infinite] font-bold ml-1">█</span>
           </div>
           <h1 className="h1-hero mb-4">
-            Design-trained developer<br /><span className="text-accent">who ships.</span>
+            {t("devHeroHeadlinePart1")}<br /><span className="text-accent">{t("devHeroHeadlinePart2")}</span>
           </h1>
           <p className="text-muted-foreground text-[17px] leading-relaxed max-w-md mb-8">
-            Turning designs into fast, scalable digital experiences. React · Next.js · Design-first mindset.
+            {t("devHeroSubtext")}
           </p>
           <div className="flex flex-wrap gap-3">
-            <a href="#projects" className="btn-green">View projects</a>
+            <a href="#projects" className="btn-green">{t("devBtnViewProjects")}</a>
             <a
               href={siteConfig.github}
               target="_blank"
@@ -123,17 +125,17 @@ export default function DeveloperPageClient() {
               className="inline-flex items-center gap-2 rounded-[14px] border border-border px-6 py-3 font-medium text-muted-foreground transition-all hover:border-accent/40 hover:text-foreground"
             >
               <Github className="h-4 w-4" />
-              View GitHub
+              {t("devBtnViewGithub")}
             </a>
             <Link
               href="/freebies?category=development"
               className="inline-flex items-center gap-2 rounded-[14px] border border-border px-6 py-3 font-medium text-muted-foreground transition-all hover:border-accent/60 hover:text-foreground"
             >
               <Gift className="h-4 w-4" />
-              Get free checklist
+              {t("devBtnGetFreeChecklist")}
             </Link>
             <a href="#contact-form" className="text-sm font-medium text-muted-foreground px-2 py-3 hover:text-foreground transition-colors">
-              Let&apos;s talk →
+              {t("devBtnLetsTalk")}
             </a>
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
@@ -142,7 +144,7 @@ export default function DeveloperPageClient() {
               className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground hover:text-accent transition-colors"
             >
               <Download className="h-3.5 w-3.5" />
-              Download résumé (PDF)
+              {t("downloadResumePdf")}
             </a>
           </div>
         </RoleHero>
@@ -152,15 +154,16 @@ export default function DeveloperPageClient() {
           <div className="max-w-7xl mx-auto">
             <div className="space-y-10">
               <div className="text-center space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Featured</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Projects with live demos & case studies</h2>
+                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">{t("devFeaturedLabel")}</p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">{t("devFeaturedHeading")}</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
-                  Screenshot, stack, live link, GitHub, and a written case study for each. DigiMyTech is the headline AI capstone.
+                  {t("devFeaturedIntro")}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {projects.map((project, i) => {
+                  const lw = localizedWork(project, language)
                   const theme = devCardTheme[project.slug]
                   return (
                   <motion.article
@@ -192,7 +195,7 @@ export default function DeveloperPageClient() {
                       <button
                         type="button"
                         onClick={() => setGalleryOpen(project.slug)}
-                        aria-label={`View all ${(theme?.screenshots?.length ?? 1)} screenshots of ${project.title}`}
+                        aria-label={t("devViewScreensAriaLabel", { count: theme?.screenshots?.length ?? 1, title: project.title })}
                         className="group/gallery relative flex w-full justify-center items-end gap-3 -mt-20 sm:-mt-24 mb-5 cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       >
                         {theme?.secondaryImage && (
@@ -227,7 +230,7 @@ export default function DeveloperPageClient() {
                         <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover/gallery:opacity-100 group-focus-visible/gallery:opacity-100">
                           <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-bold text-slate-900 shadow-xl">
                             <Images className="h-3.5 w-3.5" />
-                            View {theme?.screenshots?.length ?? 1} screens
+                            {t("devViewScreensPill", { count: theme?.screenshots?.length ?? 1 })}
                           </span>
                         </span>
                       </button>
@@ -251,10 +254,10 @@ export default function DeveloperPageClient() {
 
                     <div className="p-6 space-y-4">
                       <div>
-                        {project.metrics && (
-                          <p className="text-sm font-medium text-accent">{project.metrics}</p>
+                        {lw.metrics && (
+                          <p className="text-sm font-medium text-accent">{lw.metrics}</p>
                         )}
-                        <p className="text-sm text-muted-foreground mt-2">{project.excerpt}</p>
+                        <p className="text-sm text-muted-foreground mt-2">{lw.excerpt}</p>
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {project.tools.map((t) => (
@@ -263,7 +266,7 @@ export default function DeveloperPageClient() {
                           </span>
                         ))}
                       </div>
-                      <p className="text-xs text-muted-foreground">{project.outcome}</p>
+                      <p className="text-xs text-muted-foreground">{lw.outcome}</p>
                       <div className="flex flex-wrap items-center gap-4 border-t border-border/60 mt-1 pt-4">
                         {project.liveUrl && (
                           <a
@@ -273,7 +276,7 @@ export default function DeveloperPageClient() {
                             className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition-transform hover:-translate-y-0.5"
                           >
                             <ExternalLink className="h-4 w-4" />
-                            Live demo
+                            {t("devLiveDemo")}
                           </a>
                         )}
                         {project.repoUrl && (
@@ -284,11 +287,11 @@ export default function DeveloperPageClient() {
                             className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-transform hover:-translate-y-0.5 hover:text-accent"
                           >
                             <Github className="h-4 w-4" />
-                            GitHub
+                            {t("devGithubLabel")}
                           </a>
                         )}
                         <Link href={`/work/${project.slug}`} className="group/link ml-auto inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground transition-colors hover:text-accent">
-                          Case study
+                          {t("caseStudyLabel")}
                           <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
                         </Link>
                       </div>
@@ -338,7 +341,7 @@ export default function DeveloperPageClient() {
                       <div className="flex items-center justify-between gap-3 border-t border-slate-800 px-5 py-3.5">
                         <div>
                           <p className="text-sm font-semibold text-white">{activeProject.title}</p>
-                          <p className="text-xs text-slate-400">{activeScreenshots.length} screenshots</p>
+                          <p className="text-xs text-slate-400">{t("devScreenshotsCount", { count: activeScreenshots.length })}</p>
                         </div>
                         {activeProject.liveUrl && (
                           <a
@@ -348,7 +351,7 @@ export default function DeveloperPageClient() {
                             className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline"
                           >
                             <ExternalLink className="h-3.5 w-3.5" />
-                            Live demo
+                            {t("devLiveDemo")}
                           </a>
                         )}
                       </div>
@@ -359,7 +362,7 @@ export default function DeveloperPageClient() {
 
               {/* Other noteworthy */}
               <div className="pt-8 border-t border-border">
-                <h3 className="text-lg font-bold mb-4">Other noteworthy</h3>
+                <h3 className="text-lg font-bold mb-4">{t("devOtherNoteworthy")}</h3>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {otherDevProjects.map((p) => (
                     <div
@@ -377,8 +380,8 @@ export default function DeveloperPageClient() {
                               href={p.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              aria-label={`Open ${p.title} live site`}
-                              title="Live site"
+                              aria-label={t("devOpenLiveSiteAria", { title: p.title })}
+                              title={t("devLiveSiteTitle")}
                               className="flex w-8 h-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent/10 hover:text-accent"
                             >
                               <ExternalLink className="w-4 h-4" />
@@ -389,8 +392,8 @@ export default function DeveloperPageClient() {
                               href={p.repoUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              aria-label={`Open ${p.title} on GitHub`}
-                              title="GitHub"
+                              aria-label={t("devOpenGithubAria", { title: p.title })}
+                              title={t("devGithubLabel")}
                               className="flex w-8 h-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent/10 hover:text-accent"
                             >
                               <Github className="w-4 h-4" />
@@ -431,23 +434,23 @@ export default function DeveloperPageClient() {
         {/* Design-to-Development Bridge */}
         <section className="w-full section-compact px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">Design-to-development bridge</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">{t("devBridgeHeading")}</h2>
             <p className="text-muted-foreground mb-10 max-w-2xl">
-              Graphic design and UI/UX background means I translate vision into code without losing intent. Each claim links to proof.
+              {t("devBridgeIntro")}
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               {bridgeItems.map((item) => (
-                <div key={item.title} className="relative overflow-hidden rounded-[28px] border border-border p-5">
+                <div key={item.titleKey} className="relative overflow-hidden rounded-[28px] border border-border p-5">
                   <div className="pointer-events-none absolute -top-8 -right-8 w-20 h-20 rounded-full bg-accent-subtle/40" aria-hidden />
-                  <h3 className="relative font-semibold mb-2">{item.title}</h3>
-                  <p className="relative text-sm text-muted-foreground mb-3">{item.desc}</p>
+                  <h3 className="relative font-semibold mb-2">{t(item.titleKey)}</h3>
+                  <p className="relative text-sm text-muted-foreground mb-3">{t(item.descKey)}</p>
                   {"external" in item && item.external ? (
                     <a href={item.href} target="_blank" rel="noopener noreferrer" className="relative inline-block text-sm font-medium text-accent hover:underline">
-                      Proof: {item.proof} ↗
+                      {t("devProofExternal", { proof: t(item.proofKey) })}
                     </a>
                   ) : (
                     <Link href={item.href} className="relative inline-block text-sm font-medium text-accent hover:underline">
-                      Proof: {item.proof} →
+                      {t("devProofInternal", { proof: t(item.proofKey) })}
                     </Link>
                   )}
                 </div>
@@ -459,13 +462,13 @@ export default function DeveloperPageClient() {
         {/* Capabilities with proof links */}
         <section className="py-16 px-6 bg-card">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-center mb-10">What I build today</h2>
+            <h2 className="text-2xl font-bold text-center mb-10">{t("devBuildTodayHeading")}</h2>
             <div className="grid sm:grid-cols-3 gap-5">
               {capabilities.map((cap) => (
-                <div key={cap.title} className="relative overflow-hidden rounded-[28px] border border-border bg-card p-5 flex flex-col">
+                <div key={cap.titleKey} className="relative overflow-hidden rounded-[28px] border border-border bg-card p-5 flex flex-col">
                   <div className="pointer-events-none absolute -top-8 -right-8 w-20 h-20 rounded-full bg-accent-subtle/40" aria-hidden />
-                  <h3 className="relative font-bold text-sm mb-2">{cap.title}</h3>
-                  <p className="relative text-xs text-muted-foreground mb-4 flex-1">{cap.desc}</p>
+                  <h3 className="relative font-bold text-sm mb-2">{t(cap.titleKey)}</h3>
+                  <p className="relative text-xs text-muted-foreground mb-4 flex-1">{t(cap.descKey)}</p>
                   <div className="relative flex flex-wrap gap-1.5 mb-4">
                     {cap.tags.map((tag) => (
                       <span key={tag} className="text-[10px] bg-muted px-2 py-0.5 rounded-full text-muted-foreground">
@@ -475,11 +478,11 @@ export default function DeveloperPageClient() {
                   </div>
                   {cap.external ? (
                     <a href={cap.href} target="_blank" rel="noopener noreferrer" className="relative text-xs font-semibold text-accent hover:underline">
-                      See proof ↗
+                      {t("devSeeProofExternal")}
                     </a>
                   ) : (
                     <Link href={cap.href} className="relative text-xs font-semibold text-accent hover:underline">
-                      See case study →
+                      {t("devSeeCaseStudyInternal")}
                     </Link>
                   )}
                 </div>
@@ -499,8 +502,8 @@ export default function DeveloperPageClient() {
         <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="text-center space-y-3">
-              <h2 className="text-3xl font-bold">Ready for a web project?</h2>
-              <p className="text-muted-foreground">Share your timeline and vision. I&apos;ll reply within 24 hours.</p>
+              <h2 className="text-3xl font-bold">{t("devContactHeading")}</h2>
+              <p className="text-muted-foreground">{t("devContactSubtext")}</p>
             </div>
             <ContactForm />
           </div>

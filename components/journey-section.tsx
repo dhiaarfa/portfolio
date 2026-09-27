@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Award, GraduationCap, Briefcase, Star } from "lucide-react"
-import { certifications, education, aboutExperience, civicExperience } from "@/lib/profile"
+import { certifications, education, aboutExperience, civicExperience, localizedCertification, localizedEducation, localizedExperience } from "@/lib/profile"
 import { useLanguage } from "@/components/language-provider"
 
 // Kept off the About page (removed) but the underlying data is still worth
@@ -22,7 +22,7 @@ type TabId = "certifications" | "education" | "experience" | "civic"
 type Row = { id: string; title: string; sub: string; when: string }
 
 export default function JourneySection() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [tab, setTab] = useState<TabId>("certifications")
 
   const tabs: { id: TabId; label: string; Icon: typeof Award }[] = [
@@ -33,10 +33,22 @@ export default function JourneySection() {
   ]
 
   const rows: Record<TabId, Row[]> = {
-    certifications: sortedCerts.map((c) => ({ id: c.id, title: c.title, sub: c.issuer, when: c.year })),
-    education: education.map((e) => ({ id: e.id, title: e.degree, sub: `${e.school} · ${e.location}`, when: e.year })),
-    experience: aboutExperience.map((x) => ({ id: x.id, title: x.role, sub: x.company, when: x.period })),
-    civic: civicExperience.map((x) => ({ id: x.id, title: x.role, sub: x.company, when: x.period })),
+    certifications: sortedCerts.map((c) => {
+      const lc = localizedCertification(c, language)
+      return { id: c.id, title: lc.title, sub: lc.issuer, when: lc.year }
+    }),
+    education: education.map((e) => {
+      const le = localizedEducation(e, language)
+      return { id: e.id, title: le.degree, sub: `${le.school} · ${le.location}`, when: le.year }
+    }),
+    experience: aboutExperience.map((x) => {
+      const lx = localizedExperience(x, language)
+      return { id: x.id, title: lx.role, sub: lx.company, when: lx.period }
+    }),
+    civic: civicExperience.map((x) => {
+      const lx = localizedExperience(x, language)
+      return { id: x.id, title: lx.role, sub: lx.company, when: lx.period }
+    }),
   }
 
   return (

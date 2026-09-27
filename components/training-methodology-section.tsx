@@ -3,8 +3,11 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Brain, Users, Target, Repeat, MessageSquare, Lightbulb, Search, Rocket, RefreshCw, LayoutGrid, Globe, ChevronDown } from 'lucide-react'
+import { useLanguage } from '@/components/language-provider'
 
 // ─── Data ─────────────────────────────────────────────────────────────────
+// title/subtitle/description/quote are translation keys (see lib/translations.ts) --
+// this whole section used to be hardcoded English with no useLanguage import at all.
 
 const pillars = [
   {
@@ -13,12 +16,11 @@ const pillars = [
     iconBg: 'bg-amber-50 dark:bg-amber-950',
     iconColor: 'text-amber-600 dark:text-amber-400',
     accentColor: 'text-amber-600 dark:text-amber-400',
-    title: 'Needs Before Content',
-    subtitle: 'Training Needs Assessment (TNA)',
+    titleKey: 'pillarTnaTitle',
+    subtitleKey: 'pillarTnaSubtitle',
     photo: '/images/bg/bg-work-session.jpg',
-    description:
-      "Every session starts with a question, not a slide deck. Before designing anything, I map what participants already know, what they misunderstand, what they need to do differently after the training, and what barriers they'll face when applying it. This is why my sessions feel relevant: they are built around real gaps, not assumed ones.",
-    quote: '"A training that doesn\'t answer a real need is just an event."',
+    descKey: 'pillarTnaDesc',
+    quoteKey: 'pillarTnaQuote',
   },
   {
     number: '02',
@@ -26,12 +28,11 @@ const pillars = [
     iconBg: 'bg-green-50 dark:bg-green-950',
     iconColor: 'text-green-600 dark:text-green-400',
     accentColor: 'text-green-600 dark:text-green-400',
-    title: 'Learning Through Experience',
-    subtitle: "Kolb's Experiential Learning Cycle",
+    titleKey: 'pillarKolbTitle',
+    subtitleKey: 'pillarKolbSubtitle',
     photo: '/images/trainer/scorp-camp-25.png',
-    description:
-      "I design sessions that follow the natural learning cycle: participants start with a lived experience or a physical activity, then reflect on it, then connect it to theory, then apply it in a new context. For example, instead of explaining learning styles by lecture, I have participants physically position themselves in the room based on how they prefer to learn. Then we debrief and connect to theory. The insight lasts because it was felt first.",
-    quote: '"People forget what they heard. They remember what they lived."',
+    descKey: 'pillarKolbDesc',
+    quoteKey: 'pillarKolbQuote',
   },
   {
     number: '03',
@@ -39,12 +40,11 @@ const pillars = [
     iconBg: 'bg-purple-50 dark:bg-purple-950',
     iconColor: 'text-purple-600 dark:text-purple-400',
     accentColor: 'text-purple-600 dark:text-purple-400',
-    title: 'Designing for Every Learner',
-    subtitle: "McCarthy's 4MAT Instructional Design Model",
+    titleKey: 'pillar4matTitle',
+    subtitleKey: 'pillar4matSubtitle',
     photo: '/images/bg/bg-exhibition.jpg',
-    description:
-      "Not everyone processes information the same way. Some participants need to understand why before engaging. Others want the theory immediately. Others learn by doing. Others by reflecting and imagining. I use the 4MAT framework (grounded in Kolb's theory and developed by Bernice McCarthy) to design sessions that move through all four quadrants: emotional connection, conceptual understanding, practical application, creative synthesis. No learner is left behind.",
-    quote: '"The best session design is one where every participant finds their entry point."',
+    descKey: 'pillar4matDesc',
+    quoteKey: 'pillar4matQuote',
   },
   {
     number: '04',
@@ -52,12 +52,11 @@ const pillars = [
     iconBg: 'bg-blue-50 dark:bg-blue-950',
     iconColor: 'text-blue-600 dark:text-blue-400',
     accentColor: 'text-blue-600 dark:text-blue-400',
-    title: 'Human-Centered Facilitation',
-    subtitle: 'Group Dynamics & Psychological Safety',
+    titleKey: 'pillarGroupTitle',
+    subtitleKey: 'pillarGroupSubtitle',
     photo: '/images/trainer/tnhrt-carthaginian-camp.png',
-    description:
-      "Content is only 30% of a training. The other 70% is the room: how people feel, who dominates, who stays silent, whether participants trust each other enough to be honest. I actively manage group dynamics: creating psychological safety from the first minute, using techniques to surface quiet voices, and redirecting dominant ones without embarrassment. My goal is to turn a group of strangers into a learning community.",
-    quote: '"You can have the best content in the world. If the room isn\'t safe, nothing lands."',
+    descKey: 'pillarGroupDesc',
+    quoteKey: 'pillarGroupQuote',
   },
   {
     number: '05',
@@ -65,12 +64,11 @@ const pillars = [
     iconBg: 'bg-rose-50 dark:bg-rose-950',
     iconColor: 'text-rose-600 dark:text-rose-400',
     accentColor: 'text-rose-600 dark:text-rose-400',
-    title: 'Training People to Train',
-    subtitle: 'Train-the-Trainer & Cascade Methodology',
+    titleKey: 'pillarTotTitle',
+    subtitleKey: 'pillarTotSubtitle',
     photo: '/images/trainer/iom-hackathon-doha-2024.png',
-    description:
-      "Many of my sessions are designed with a multiplier effect in mind. I don't just train participants. I train future trainers. Through micro-training exercises, small-group session design, and structured peer feedback, participants leave not only with knowledge but with the ability and confidence to facilitate others. I have applied this approach in TNHRT (Training New Human Rights Trainers) workshops at international level.",
-    quote: '"The most powerful outcome of a training is a room full of future trainers."',
+    descKey: 'pillarTotDesc',
+    quoteKey: 'pillarTotQuote',
   },
   {
     number: '06',
@@ -78,44 +76,43 @@ const pillars = [
     iconBg: 'bg-teal-50 dark:bg-teal-950',
     iconColor: 'text-teal-600 dark:text-teal-400',
     accentColor: 'text-teal-600 dark:text-teal-400',
-    title: 'Capable Actors, Not Informed Listeners',
-    subtitle: 'Non-Formal Education & Action-Oriented Learning',
+    titleKey: 'pillarNfeTitle',
+    subtitleKey: 'pillarNfeSubtitle',
     photo: '/images/bg/bg-speaking.jpg',
-    description:
-      "The final measure of any training is not what participants know when they leave the room. It is what they do in the week after. Every session I design ends with a clear answer to: 'What will you do differently tomorrow?' I work in the non-formal education tradition, where learning is participatory, values-based, and connected to real-world action. Participants leave as advocates, facilitators, and change-makers.",
-    quote: '"Information without action is trivia. Training should change behavior."',
+    descKey: 'pillarNfeDesc',
+    quoteKey: 'pillarNfeQuote',
   },
 ]
 
 const frameworks = [
   {
-    name: "Kolb's Experiential\nLearning Theory",
+    nameKey: 'frameworkKolbName',
     year: '1984',
-    description: 'The foundational model behind how adults learn through concrete experience, reflection, and application.',
+    descKey: 'frameworkKolbDesc',
     color: 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/30',
     textColor: 'text-green-700 dark:text-green-400',
     Icon: RefreshCw,
   },
   {
-    name: "McCarthy's 4MAT\nInstructional Design",
+    nameKey: 'framework4matName',
     year: '1979',
-    description: 'An 8-step learning cycle that ensures every session engages all learner types, from emotional connection to creative application.',
+    descKey: 'framework4matDesc',
     color: 'border-purple-200 dark:border-purple-800 bg-purple-50/50 dark:bg-purple-950/30',
     textColor: 'text-purple-700 dark:text-purple-400',
     Icon: LayoutGrid,
   },
   {
-    name: "Dewey's Reflective\nPractice",
+    nameKey: 'frameworkDeweyName',
     year: '1933',
-    description: 'Learning as an active process of problem-solving, testing, and revising, not passive reception of information.',
+    descKey: 'frameworkDeweyDesc',
     color: 'border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/30',
     textColor: 'text-amber-700 dark:text-amber-400',
     Icon: Lightbulb,
   },
   {
-    name: 'Non-Formal Education\n(NFE) Principles',
+    nameKey: 'frameworkNfeName',
     year: 'Council of Europe',
-    description: 'Participatory, values-based, learner-centered education outside formal systems. The tradition behind youth and human rights training.',
+    descKey: 'frameworkNfeDesc',
     color: 'border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/30',
     textColor: 'text-blue-700 dark:text-blue-400',
     Icon: Globe,
@@ -125,6 +122,7 @@ const frameworks = [
 // ─── Component ─────────────────────────────────────────────────────────────
 
 export default function TrainingMethodologySection() {
+  const { t } = useLanguage()
   // Each pillar card starts collapsed, showing only the title/subtitle and a
   // 2-line description clamp -- the full description + pull quote reveal
   // when the visitor clicks the arrow. Keeps the section from reading as a
@@ -139,17 +137,17 @@ export default function TrainingMethodologySection() {
         {/* ── Section Header ── */}
         <div className="mb-16">
           <p className="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-widest mb-3">
-            Training Methodology
+            {t("methodologyKicker")}
           </p>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
-                Why my trainings work.<br />
-                <span className="text-amber-600 dark:text-amber-400">The philosophy behind the practice.</span>
+                {t("methodologyHeading1")}<br />
+                <span className="text-amber-600 dark:text-amber-400">{t("methodologyHeading2")}</span>
               </h2>
             </div>
             <p className="text-slate-500 dark:text-slate-400 max-w-sm text-sm leading-relaxed lg:text-right">
-              Every session I design and facilitate is grounded in internationally recognized instructional design frameworks, adapted for real people, real needs, and real contexts.
+              {t("methodologyIntro")}
             </p>
           </div>
         </div>
@@ -188,18 +186,18 @@ export default function TrainingMethodologySection() {
                       </span>
                       <span className="text-xs text-slate-400 dark:text-slate-500">·</span>
                       <span className="text-xs text-slate-500 dark:text-slate-400 font-medium truncate">
-                        {pillar.subtitle}
+                        {t(pillar.subtitleKey)}
                       </span>
                     </div>
                     <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug">
-                      {pillar.title}
+                      {t(pillar.titleKey)}
                     </h3>
                   </div>
                   <button
                     type="button"
                     onClick={() => toggle(pillar.number)}
                     aria-expanded={isOpen}
-                    aria-label={isOpen ? `Show less about ${pillar.title}` : `Read more about ${pillar.title}`}
+                    aria-label={isOpen ? t("pillarShowLess") : t("pillarReadMore")}
                     className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border border-slate-200 dark:border-border text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-muted transition-colors"
                   >
                     <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
@@ -212,7 +210,7 @@ export default function TrainingMethodologySection() {
                     isOpen ? "mb-4" : "mb-0 line-clamp-2"
                   }`}
                 >
-                  {pillar.description}
+                  {t(pillar.descKey)}
                 </p>
 
                 <div
@@ -221,7 +219,7 @@ export default function TrainingMethodologySection() {
                   }`}
                 >
                   <p className={`text-xs font-medium italic border-l-2 pl-3 ${pillar.accentColor} border-current opacity-75`}>
-                    {pillar.quote}
+                    {t(pillar.quoteKey)}
                   </p>
                 </div>
               </div>
@@ -232,57 +230,53 @@ export default function TrainingMethodologySection() {
         {/* ── KOLB CYCLE VISUAL ── */}
         <div className="my-16 bg-slate-900 rounded-3xl p-8 sm:p-12">
           <p className="text-sm font-semibold text-amber-400 uppercase tracking-widest mb-2 text-center">
-            How I Design Every Session
+            {t("kolbDiagramKicker")}
           </p>
           <h3 className="text-xl font-bold text-white text-center mb-10">
-            Kolb&apos;s Experiential Learning Cycle in practice
+            {t("kolbDiagramHeading")}
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
                 step: '01',
-                phase: 'Concrete Experience',
+                phaseKey: 'kolbPhase1Title',
                 color: 'bg-green-600',
                 borderColor: 'border-green-500',
                 textColor: 'text-green-400',
                 Icon: Target,
-                description:
-                  'Start with an activity, exercise, or real situation. Participants live the experience before any theory.',
-                example: 'Physical positioning exercise for learning styles',
+                descKey: 'kolbPhase1Desc',
+                exampleKey: 'kolbPhase1Example',
               },
               {
                 step: '02',
-                phase: 'Reflective Observation',
+                phaseKey: 'kolbPhase2Title',
                 color: 'bg-blue-600',
                 borderColor: 'border-blue-500',
                 textColor: 'text-blue-400',
                 Icon: Search,
-                description:
-                  'Group debrief: What happened? What did you notice? What surprised you?',
-                example: '"What did you observe about your choices?"',
+                descKey: 'kolbPhase2Desc',
+                exampleKey: 'kolbPhase2Example',
               },
               {
                 step: '03',
-                phase: 'Abstract Conceptualisation',
+                phaseKey: 'kolbPhase3Title',
                 color: 'bg-purple-600',
                 borderColor: 'border-purple-500',
                 textColor: 'text-purple-400',
                 Icon: Lightbulb,
-                description:
-                  'Now the theory is introduced, and it makes sense because participants already lived it.',
-                example: "VARK model, Kolb's theory, 4MAT framework",
+                descKey: 'kolbPhase3Desc',
+                exampleKey: 'kolbPhase3Example',
               },
               {
                 step: '04',
-                phase: 'Active Experimentation',
+                phaseKey: 'kolbPhase4Title',
                 color: 'bg-amber-600',
                 borderColor: 'border-amber-500',
                 textColor: 'text-amber-400',
                 Icon: Rocket,
-                description:
-                  'Apply the concept in a new context. Design a session, facilitate a mini-training, test a skill.',
-                example: 'Participants design and deliver their own 10-min session',
+                descKey: 'kolbPhase4Desc',
+                exampleKey: 'kolbPhase4Example',
               },
             ].map((phase, i) => (
               <div
@@ -295,14 +289,14 @@ export default function TrainingMethodologySection() {
                 </div>
 
                 <div className={`inline-block px-2.5 py-1 rounded-lg ${phase.color} mb-3`}>
-                  <p className="text-xs font-bold text-white">{phase.phase}</p>
+                  <p className="text-xs font-bold text-white">{t(phase.phaseKey)}</p>
                 </div>
 
-                <p className="text-xs text-slate-300 leading-relaxed mb-3">{phase.description}</p>
+                <p className="text-xs text-slate-300 leading-relaxed mb-3">{t(phase.descKey)}</p>
 
                 <div className="border-t border-slate-700 pt-3">
-                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Real example</p>
-                  <p className="text-xs text-slate-400 italic">{phase.example}</p>
+                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">{t("kolbRealExampleLabel")}</p>
+                  <p className="text-xs text-slate-400 italic">{t(phase.exampleKey)}</p>
                 </div>
 
                 {i < 3 && (
@@ -318,7 +312,7 @@ export default function TrainingMethodologySection() {
 
           <div className="text-center mt-6">
             <span className="text-xs text-slate-500 italic">
-              ↺ This cycle repeats. Each application becomes the next concrete experience
+              ↺ {t("kolbCycleRepeatsNote")}
             </span>
           </div>
         </div>
@@ -327,20 +321,20 @@ export default function TrainingMethodologySection() {
         <div>
           <div className="text-center mb-8">
             <p className="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-2">
-              Theoretical Foundations
+              {t("foundationsKicker")}
             </p>
             <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-              Built on frameworks that work.
+              {t("foundationsHeading")}
             </h3>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-lg mx-auto">
-              These aren&apos;t buzzwords. They&apos;re the peer-reviewed, internationally recognized models that underpin every session I design.
+              {t("foundationsIntro")}
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {frameworks.map((fw) => (
               <div
-                key={fw.name}
+                key={fw.nameKey}
                 className={`rounded-2xl border p-5 h-full hover:-translate-y-0.5 transition-transform ${fw.color}`}
               >
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-white/70 dark:bg-card/40 ${fw.textColor}`}>
@@ -350,10 +344,10 @@ export default function TrainingMethodologySection() {
                   {fw.year}
                 </p>
                 <h4 className="font-bold text-slate-900 dark:text-white text-sm leading-snug mb-2 whitespace-pre-line">
-                  {fw.name}
+                  {t(fw.nameKey)}
                 </h4>
                 <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                  {fw.description}
+                  {t(fw.descKey)}
                 </p>
               </div>
             ))}

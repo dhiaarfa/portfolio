@@ -26,10 +26,16 @@ export function formatStat(key: keyof typeof profileStats): string {
   return `${s.value.toLocaleString()}${s.suffix}`
 }
 
+export type ProfileLocale = "en" | "fr" | "ar"
+
 export type Certification = {
   id: string
   title: string
+  titleFr?: string
+  titleAr?: string
   issuer: string
+  issuerFr?: string
+  issuerAr?: string
   year: string
 }
 
@@ -38,24 +44,34 @@ export const certifications: Certification[] = [
   {
     id: "cnfcpp",
     title: "National Certified Trainer (CNFCPP)",
+    titleFr: "Formateur Certifié National (CNFCPP)",
+    titleAr: "مدرّب معتمد وطنياً (CNFCPP)",
     issuer: "Tunisia · National Certification",
+    issuerFr: "Tunisie · Certification Nationale",
+    issuerAr: "تونس · شهادة وطنية",
     year: "2024",
   },
   {
     id: "youth-clubs",
     title: "Certified Trainer",
+    titleFr: "Formateur Certifié",
+    titleAr: "مدرّب معتمد",
     issuer: "Association YOUTH CLUBs",
     year: "2025",
   },
   {
     id: "hubspot",
     title: "Social Media Marketing",
+    titleFr: "Marketing des Réseaux Sociaux",
+    titleAr: "التسويق عبر وسائل التواصل الاجتماعي",
     issuer: "HubSpot Academy",
     year: "2024",
   },
   {
     id: "inco",
     title: "Green Digital Skills",
+    titleFr: "Compétences Numériques Vertes",
+    titleAr: "المهارات الرقمية الخضراء",
     issuer: "INCO Academy",
     year: "2024",
   },
@@ -63,13 +79,19 @@ export const certifications: Certification[] = [
   {
     id: "graphic-design",
     title: "Graphic Design with Adobe Illustrator",
+    titleFr: "Design Graphique avec Adobe Illustrator",
+    titleAr: "التصميم الجرافيكي باستخدام Adobe Illustrator",
     issuer: "GoMyCode Summer Academy",
     year: "2023",
   },
   {
     id: "entrepreneur-leader",
     title: "Certified Trainer Entrepreneur Leader",
+    titleFr: "Formateur Certifié Leader Entrepreneur",
+    titleAr: "مدرّب معتمد قائد رياديّ",
     issuer: "International Certification",
+    issuerFr: "Certification Internationale",
+    issuerAr: "شهادة دولية",
     year: "2025",
   },
 ]
@@ -78,8 +100,12 @@ export type EducationEntry = {
   id: string
   year: string
   degree: string
+  degreeFr?: string
+  degreeAr?: string
   school: string
   location: string
+  locationFr?: string
+  locationAr?: string
 }
 
 export const education: EducationEntry[] = [
@@ -87,17 +113,47 @@ export const education: EducationEntry[] = [
     id: "iset-sousse",
     year: "2023 – 2026",
     degree: "Bachelor of Science in Web Development & Multimedia, with Honors",
+    degreeFr: "Licence en Développement Web et Multimédia, avec Mention",
+    degreeAr: "إجازة في تطوير الويب والوسائط المتعددة، بامتياز",
     school: "Higher Institute of Technological Studies (ISET)",
     location: "Sousse, Tunisia",
+    locationFr: "Sousse, Tunisie",
+    locationAr: "سوسة، تونس",
   },
   {
     id: "high-school",
     year: "2018 – 2022",
     degree: "High School Diploma in Computer Science",
+    degreeFr: "Baccalauréat en Informatique",
+    degreeAr: "شهادة البكالوريا في الإعلامية",
     school: "Farhat Hached Rades High School",
     location: "Tunisia",
+    locationFr: "Tunisie",
+    locationAr: "تونس",
   },
 ]
+
+/** Resolve a Certification's title/issuer for the active language, falling
+ * back to the English value when no fr/ar override is set (most issuers are
+ * organization proper nouns and are never overridden). */
+export function localizedCertification(cert: Certification, locale: ProfileLocale) {
+  return {
+    title: locale === "fr" ? cert.titleFr ?? cert.title : locale === "ar" ? cert.titleAr ?? cert.title : cert.title,
+    issuer: locale === "fr" ? cert.issuerFr ?? cert.issuer : locale === "ar" ? cert.issuerAr ?? cert.issuer : cert.issuer,
+    year: cert.year,
+  }
+}
+
+/** Resolve an EducationEntry's degree/location for the active language.
+ * `school` is left untranslated -- it's an institution's proper name. */
+export function localizedEducation(entry: EducationEntry, locale: ProfileLocale) {
+  return {
+    degree: locale === "fr" ? entry.degreeFr ?? entry.degree : locale === "ar" ? entry.degreeAr ?? entry.degree : entry.degree,
+    school: entry.school,
+    location: locale === "fr" ? entry.locationFr ?? entry.location : locale === "ar" ? entry.locationAr ?? entry.location : entry.location,
+    year: entry.year,
+  }
+}
 
 /** Trainer page credentials block (subset with logos) */
 export const trainerCredentials = [
@@ -110,10 +166,23 @@ export type ExperienceEntry = {
   id: string
   period: string
   role: string
+  roleFr?: string
+  roleAr?: string
   company: string
   description: string
   tags?: string[]
   isCurrent?: boolean
+}
+
+/** Resolve an ExperienceEntry's role for the active language. `company` and
+ * `period` are left as-is -- proper nouns and dates aren't translated. */
+export function localizedExperience(entry: ExperienceEntry, locale: ProfileLocale) {
+  return {
+    role: locale === "fr" ? entry.roleFr ?? entry.role : locale === "ar" ? entry.roleAr ?? entry.role : entry.role,
+    company: entry.company,
+    period: entry.period,
+    description: entry.description,
+  }
 }
 
 // Cross-checked against CV_General_Detailed_MohamedDhiaArfa.pdf (Aug 2026):
@@ -127,6 +196,8 @@ export const aboutExperience: ExperienceEntry[] = [
     id: "yougo-travel",
     period: "Jun 2026 – Present",
     role: "Travel and Visa Agent",
+    roleFr: "Agent de Voyage et Visa",
+    roleAr: "وكيل سفر وتأشيرات",
     company: "YOUGO TRAVEL",
     description: "Part-time visa and travel consulting, run alongside design, training, and development work.",
     tags: ["Part-time"],
@@ -135,6 +206,8 @@ export const aboutExperience: ExperienceEntry[] = [
     id: "digimytch-about",
     period: "Feb 2026 – Jun 2026",
     role: "Web Developer (End of Studies Internship)",
+    roleFr: "Développeur Web (Stage de Fin d'Études)",
+    roleAr: "مطوّر ويب (تدريب ختم الدروس)",
     company: "Digimytch",
     description:
       "Solo-built Digimytch Talent Hub, an AI-powered job platform, across 5 Scrum sprints, AI CV editor, job-matching engine, training catalog, and a voice AI interview simulator.",
@@ -144,6 +217,8 @@ export const aboutExperience: ExperienceEntry[] = [
     id: "crit-about",
     period: "Sep 2025 – Dec 2025",
     role: "Web Developer & Marketing Manager",
+    roleFr: "Développeur Web et Responsable Marketing",
+    roleAr: "مطوّر ويب ومدير تسويق",
     company: "CRIT Tunisie",
     description:
       "Developed responsive web interfaces using React/Next.js, optimized UI/UX, and improved digital strategy.",
@@ -153,6 +228,8 @@ export const aboutExperience: ExperienceEntry[] = [
     id: "speranza-about",
     period: "Jan 2025 – Jun 2025",
     role: "Marketing Manager",
+    roleFr: "Responsable Marketing",
+    roleAr: "مدير تسويق",
     company: "Speranza Cafe & Resto",
     description:
       "Managed marketing campaigns, increased engagement by 40%, designed menus, promotional materials, and maintained social consistency.",
@@ -162,6 +239,8 @@ export const aboutExperience: ExperienceEntry[] = [
     id: "internships",
     period: "2023 – 2025",
     role: "Graphic Designer (Internships)",
+    roleFr: "Designer Graphique (Stages)",
+    roleAr: "مصمم جرافيك (تدريبات)",
     company: "Icom Agency, Phenyx Company, Jasmin Marketing & Others",
     description:
       "Produced campaign visuals, brand assets, marketing materials, and collaborated on client-facing design solutions.",
@@ -175,6 +254,8 @@ export const civicExperience: ExperienceEntry[] = [
     id: "aiesec-lebanon",
     period: "Dec 2023 – Jun 2024",
     role: "National Manager of Business Development",
+    roleFr: "Responsable National du Développement Commercial",
+    roleAr: "مدير وطني لتطوير الأعمال",
     company: "AIESEC in Lebanon",
     description:
       "International business-development mandate for AIESEC's Lebanon entity, alongside a Congress Committee Member role at AIESEC Tunisia's Middle East & Africa Summit 2023 (Marketing and Showcasing).",
@@ -228,6 +309,8 @@ export const designExperience: ExperienceEntry[] = [
     id: "zia",
     period: "2020 – Present",
     role: "Zia Studio, Design Studio Operations",
+    roleFr: "Zia Studio, Direction du Studio de Design",
+    roleAr: "استوديو Zia، إدارة استوديو التصميم",
     company: "Solo-led Creative Practice",
     description: "Full-service creative design studio, branding, UI/UX, visual identity systems.",
   },
@@ -235,6 +318,8 @@ export const designExperience: ExperienceEntry[] = [
     id: "icom",
     period: "Jan – Feb 2025",
     role: "Graphic Designer",
+    roleFr: "Designer Graphique",
+    roleAr: "مصمم جرافيك",
     company: "Icom Agency",
     description: "Led design projects, brand identity systems, campaign visuals.",
   },
@@ -242,6 +327,8 @@ export const designExperience: ExperienceEntry[] = [
     id: "phenyx",
     period: "Oct – Nov 2024",
     role: "Graphic Designer",
+    roleFr: "Designer Graphique",
+    roleAr: "مصمم جرافيك",
     company: "Phenyx Company",
     description: "Marketing materials, brand assets, visual communications.",
   },
@@ -249,6 +336,8 @@ export const designExperience: ExperienceEntry[] = [
     id: "jasmin-marketing",
     period: "Dec 2023 – Jan 2024",
     role: "Graphic Designer",
+    roleFr: "Designer Graphique",
+    roleAr: "مصمم جرافيك",
     company: "Jasmin Marketing",
     description: "Campaign visuals, promotional materials, brand assets.",
   },
@@ -256,6 +345,8 @@ export const designExperience: ExperienceEntry[] = [
     id: "funcoach",
     period: "Jun – Jul 2021",
     role: "Design & Creative Training",
+    roleFr: "Formation en Design et Créativité",
+    roleAr: "تدريب في التصميم والإبداع",
     company: "FunCoach Space, Sousse",
     description: "Design training, mentoring emerging designers.",
   },
@@ -263,44 +354,53 @@ export const designExperience: ExperienceEntry[] = [
 
 export type TrainingMilestone = {
   year: string
-  title: string
-  description: string
-  stats: string
+  titleKey: string
+  descKey: string
+  statsKey: string
+  /** Optional params to interpolate into descKey/statsKey via t(key, params) -- only the
+   * 2025 entry needs this, for the dynamic hour/participant counts. */
+  params?: Record<string, string>
 }
 
+// titleKey/descKey/statsKey point into lib/translations.ts -- this used to be hardcoded
+// English (never translated), so the training timeline stayed in English even in
+// French/Arabic mode. Rendered via t() in app/trainer/TrainerClientPage.tsx.
 /** Chronological training journey (2019 → 2025) */
 export const trainingMilestones: TrainingMilestone[] = [
   {
     year: "2019",
-    title: "Youth Development Leader & Activist",
-    description: "Started youth development and civic engagement initiatives, driving social impact",
-    stats: "Advocacy Start",
+    titleKey: "milestone2019Title",
+    descKey: "milestone2019Desc",
+    statsKey: "milestone2019Stats",
   },
   {
     year: "2022",
-    title: "Training Pioneer",
-    description: "Began delivering comprehensive training through ONGs, social programs, and youth events",
-    stats: "Training Launch",
+    titleKey: "milestone2022Title",
+    descKey: "milestone2022Desc",
+    statsKey: "milestone2022Stats",
   },
   {
     year: "2024",
-    title: "National Certified Trainer (CNFCPP)",
-    description:
-      "Achieved official certification from National Center for Continuing Training and Professional Promotion",
-    stats: "Professional Credentials",
+    titleKey: "milestone2024Title",
+    descKey: "milestone2024Desc",
+    statsKey: "milestone2024Stats",
   },
   {
     year: "2025",
-    title: "Certified Trainer & Impact Leader",
-    description: `Delivered ${formatStat("trainingHours")} training hours and ${formatStat("facilitationHours")} facilitation hours for ${formatStat("participantsTrained")} participants across multiple organizations`,
-    stats: `${formatStat("participantsTrained")} Participants`,
+    titleKey: "milestone2025Title",
+    descKey: "milestone2025Desc",
+    statsKey: "milestone2025Stats",
+    params: {
+      hours: formatStat("trainingHours"),
+      facHours: formatStat("facilitationHours"),
+      participants: formatStat("participantsTrained"),
+    },
   },
   {
     year: "2026",
-    title: "Multi-Organization Trainer",
-    description:
-      "Currently training at Rayen Academy (since Oct 2025) and Centre Three Alfa Formation (since Apr 2026), following earlier 2024–2025 engagements at Groupe Etoile Formation and Supplier Training & Consulting (STC), graphic design and digital marketing curricula for youth participants",
-    stats: "2 Active Partners",
+    titleKey: "milestone2026Title",
+    descKey: "milestone2026Desc",
+    statsKey: "milestone2026Stats",
   },
 ]
 

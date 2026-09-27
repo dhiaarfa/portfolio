@@ -7,7 +7,7 @@ import { detectLanguage } from "@/lib/detect-language"
 interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string
+  t: (key: string, params?: Record<string, string | number>) => string
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -48,10 +48,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }
 
   const t = useMemo(() => {
-    return (key: string): string => {
+    return (key: string, params?: Record<string, string | number>): string => {
       const isKnownKey = Object.prototype.hasOwnProperty.call(translations.en, key)
       if (!isKnownKey) return key
-      return getTranslation(language, key as TranslationKey)
+      return getTranslation(language, key as TranslationKey, params)
     }
   }, [language])
 

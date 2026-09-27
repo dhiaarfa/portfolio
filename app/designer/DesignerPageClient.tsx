@@ -3,9 +3,9 @@
 import { Link } from "next-view-transitions"
 import Image from "next/image"
 import { ArrowRight, Target, Layers, LayoutGrid, Compass, Search, PenTool, Package, RefreshCw, Gift } from "lucide-react"
-import { formatStat, designExperience, certifications as profileCertifications } from "@/lib/profile"
+import { formatStat, designExperience, certifications as profileCertifications, localizedExperience, localizedCertification } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
-import { featuredWorkProjects, curatedGallery } from "@/lib/work"
+import { featuredWorkProjects, curatedGallery, categoryKey, localizedWork } from "@/lib/work"
 import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
 import RoleHero from "@/components/role-hero"
@@ -16,51 +16,60 @@ import MarketingSection from "@/components/marketing-section"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { useState } from "react"
+import { useLanguage } from "@/components/language-provider"
 
 const designPhilosophy = [
-  { title: "Brand Identity Systems", description: "Logos plus color, type, and usage rules so every touchpoint feels like one brand.", Icon: Layers },
-  { title: "Creative Direction", description: "Visual choices tied to business goals, not decoration for its own sake.", Icon: Target },
-  { title: "Visual Design & UI/UX", description: "Interfaces and campaigns that are clear, usable, and on-brand.", Icon: LayoutGrid },
-  { title: "Design Consulting", description: "Guidance on systems, templates, and how your team keeps consistency.", Icon: Compass },
+  { titleKey: "philosophyBrandTitle", descKey: "philosophyBrandDesc", Icon: Layers },
+  { titleKey: "philosophyDirectionTitle", descKey: "philosophyDirectionDesc", Icon: Target },
+  { titleKey: "philosophyVisualTitle", descKey: "philosophyVisualDesc", Icon: LayoutGrid },
+  { titleKey: "philosophyConsultingTitle", descKey: "philosophyConsultingDesc", Icon: Compass },
 ]
 
 const howWeWork = [
-  { step: "01", title: "Discovery & brief", desc: "Goals, audience, competitors, and deliverables locked before pixels.", Icon: Search },
-  { step: "02", title: "Concept directions", desc: "2–3 visual routes with rationale. You pick a direction with confidence.", Icon: PenTool },
-  { step: "03", title: "Design & iterate", desc: "Refine the system across logo, templates, and key applications.", Icon: RefreshCw },
-  { step: "04", title: "Handover & assets", desc: "Export kit, templates, and usage notes so your team can run with it.", Icon: Package },
+  { step: "01", titleKey: "howWeWorkStep1Title", descKey: "howWeWorkStep1Desc", Icon: Search },
+  { step: "02", titleKey: "howWeWorkStep2Title", descKey: "howWeWorkStep2Desc", Icon: PenTool },
+  { step: "03", titleKey: "howWeWorkStep3Title", descKey: "howWeWorkStep3Desc", Icon: RefreshCw },
+  { step: "04", titleKey: "howWeWorkStep4Title", descKey: "howWeWorkStep4Desc", Icon: Package },
 ]
 
 const packages = [
   {
-    name: "Brand Identity",
-    desc: "Logo, color, typography, and core templates for startups and SMEs.",
-    includes: ["Logo suite", "Color & type system", "Social templates", "Brand usage guide"],
-    note: "From custom quote",
+    nameKey: "packageBrandIdentityName",
+    descKey: "packageBrandIdentityDesc",
+    includeKeys: ["packageBrandIdentityInclude1", "packageBrandIdentityInclude2", "packageBrandIdentityInclude3", "packageBrandIdentityInclude4"],
+    noteKey: "packageBrandIdentityNote",
   },
   {
-    name: "Social & Campaigns",
-    desc: "Feed systems, promos, and campaign visuals for active brands.",
-    includes: ["Template family", "Campaign key visual", "Story & post formats", "Canva/Figma handoff"],
-    note: "Project-based",
+    nameKey: "packageSocialName",
+    descKey: "packageSocialDesc",
+    includeKeys: ["packageSocialInclude1", "packageSocialInclude2", "packageSocialInclude3", "packageSocialInclude4"],
+    noteKey: "packageSocialNote",
   },
   {
-    name: "Logo & Essentials",
-    desc: "Fast turnaround for new businesses that need a credible mark quickly.",
-    includes: ["Primary logo", "Color palette", "Basic social avatar", "File exports"],
-    note: "Fixed scope",
+    nameKey: "packageLogoName",
+    descKey: "packageLogoDesc",
+    includeKeys: ["packageLogoInclude1", "packageLogoInclude2", "packageLogoInclude3", "packageLogoInclude4"],
+    noteKey: "packageLogoNote",
   },
 ]
 
 const categories = ["All", "Brand Identity", "Social Media", "Logo Design", "Packaging"] as const
+const categoryLabelKeys: Record<(typeof categories)[number], string> = {
+  All: "categoryAll",
+  "Brand Identity": "categoryBrandIdentity",
+  "Social Media": "categorySocialMedia",
+  "Logo Design": "categoryLogoDesign",
+  Packaging: "categoryPackaging",
+}
 
 export default function DesignerPageClient() {
+  const { t, language } = useLanguage()
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("All")
   const featured = featuredWorkProjects()
   const workExperience = designExperience.slice(0, 3)
-  const certifications = profileCertifications
-    .filter((c) => ["graphic-design", "hubspot", "inco"].includes(c.id))
-    .map((c) => ({ title: c.title, issuer: c.issuer, year: c.year }))
+  const certifications = profileCertifications.filter((c) =>
+    ["graphic-design", "hubspot", "inco"].includes(c.id)
+  )
 
   const filteredGallery =
     activeCategory === "All"
@@ -111,9 +120,9 @@ export default function DesignerPageClient() {
           footer={
             <div className="flex gap-8 border-t border-border pt-6">
               {[
-                [formatStat("designProjects"), "Projects"],
-                [formatStat("yearsExperience"), "Years"],
-                [formatStat("brands"), "Brands"],
+                [formatStat("designProjects"), t("designerStatProjects")],
+                [formatStat("yearsExperience"), t("designerStatYears")],
+                [formatStat("brands"), t("designerStatBrands")],
               ].map(([v, l]) => (
                 <div key={l}>
                   <p className="font-display text-2xl font-black leading-none text-foreground">{v}</p>
@@ -123,26 +132,26 @@ export default function DesignerPageClient() {
             </div>
           }
         >
-          <p className="label mb-4 text-accent">Brand design · Digital marketing · Zia Studio</p>
+          <p className="label mb-4 text-accent">{t("designerHeroLabel")}</p>
           <h1 className="h1-hero mb-5 text-foreground">
-            Design that sells, brand identity, campaigns, and marketing strategy for Tunisian brands.
+            {t("designerHeroHeadline")}
           </h1>
           <p className="mb-8 max-w-md text-[17px] leading-relaxed text-muted-foreground">
-            I&apos;m not just a designer, I conceive digital marketing strategies, run social campaigns, and build visual systems that convert. From logo to launch for cafés, startups, and NGOs across Tunisia.
+            {t("designerHeroSubtext")}
           </p>
           <div className="flex flex-wrap gap-3">
             <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green">
-              Start a project
+              {t("designerBtnStartProject")}
             </a>
             <a href="#case-studies" className="rounded-[14px] border border-border px-6 py-3 font-medium text-muted-foreground transition-all hover:border-accent/60 hover:text-foreground">
-              See selected work
+              {t("designerBtnSeeSelectedWork")}
             </a>
             <Link
               href="/freebies?category=design"
               className="inline-flex items-center gap-2 rounded-[14px] border border-border px-6 py-3 font-medium text-muted-foreground transition-all hover:border-accent/60 hover:text-foreground"
             >
               <Gift className="h-4 w-4" />
-              Get free templates
+              {t("designerBtnGetFreeTemplates")}
             </Link>
           </div>
         </RoleHero>
@@ -156,13 +165,15 @@ export default function DesignerPageClient() {
         {/* 3. Featured case studies */}
         <section id="case-studies" className="section-compact w-full px-4 md:px-8">
           <div className="mx-auto max-w-7xl">
-            <p className="label mb-2">Case studies</p>
-            <h2 className="mb-3 text-3xl font-bold md:text-4xl">Selected work, with context</h2>
+            <p className="label mb-2">{t("designerCaseStudiesLabel")}</p>
+            <h2 className="mb-3 text-3xl font-bold md:text-4xl">{t("designerCaseStudiesHeading")}</h2>
             <p className="mb-10 max-w-2xl text-muted-foreground">
-              Problem, process, and outcome for each project. Not just thumbnails.
+              {t("designerCaseStudiesIntro")}
             </p>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {featured.map((project, i) => (
+              {featured.map((project, i) => {
+                const lw = localizedWork(project, language)
+                return (
                 <motion.article
                   key={project.slug}
                   initial={{ opacity: 0, y: 16 }}
@@ -176,17 +187,18 @@ export default function DesignerPageClient() {
                       <Image src={project.cardImage} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
                     </div>
                     <div className="space-y-2 p-5">
-                      <span className="text-xs font-semibold uppercase tracking-wide text-accent">{project.category}</span>
+                      <span className="text-xs font-semibold uppercase tracking-wide text-accent">{t(categoryKey(project.category))}</span>
                       <h3 className="text-lg font-bold">{project.title}</h3>
-                      <p className="text-sm text-muted-foreground line-clamp-2">{project.excerpt}</p>
-                      <p className="text-xs text-muted-foreground">{project.role} · {project.timeline}</p>
+                      <p className="text-sm text-muted-foreground line-clamp-2">{lw.excerpt}</p>
+                      <p className="text-xs text-muted-foreground">{lw.role} · {lw.timeline}</p>
                       <span className="inline-flex items-center gap-1 pt-1 text-sm font-semibold text-accent">
-                        View case study <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                        {t("designerViewCaseStudy")} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                       </span>
                     </div>
                   </Link>
                 </motion.article>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>
@@ -194,8 +206,8 @@ export default function DesignerPageClient() {
         {/* 4. How we work */}
         <section className="section-compact w-full bg-muted/30 px-4 md:px-8 dark:bg-background/50">
           <div className="mx-auto max-w-5xl">
-            <p className="label mb-2 text-center">Process</p>
-            <h2 className="mb-10 text-center text-3xl font-bold md:text-4xl">How we work together</h2>
+            <p className="label mb-2 text-center">{t("designerProcessLabel")}</p>
+            <h2 className="mb-10 text-center text-3xl font-bold md:text-4xl">{t("designerProcessHeading")}</h2>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {howWeWork.map((step) => (
                 <div key={step.step} className="rounded-2xl border border-border bg-card p-5">
@@ -205,8 +217,8 @@ export default function DesignerPageClient() {
                     </span>
                     <span className="font-display text-2xl font-black text-muted-foreground/40">{step.step}</span>
                   </div>
-                  <h3 className="mb-2 font-semibold">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
+                  <h3 className="mb-2 font-semibold">{t(step.titleKey)}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{t(step.descKey)}</p>
                 </div>
               ))}
             </div>
@@ -216,24 +228,24 @@ export default function DesignerPageClient() {
         {/* 5. Services / packages */}
         <section className="section-compact w-full px-4 md:px-8">
           <div className="mx-auto max-w-5xl">
-            <p className="label mb-2">Services</p>
-            <h2 className="mb-10 text-3xl font-bold md:text-4xl">What I design for clients</h2>
+            <p className="label mb-2">{t("designerServicesLabel")}</p>
+            <h2 className="mb-10 text-3xl font-bold md:text-4xl">{t("designerServicesHeading")}</h2>
             <div className="grid gap-5 md:grid-cols-3">
               {packages.map((pkg) => (
-                <div key={pkg.name} className="flex flex-col rounded-2xl border border-border bg-card p-6">
-                  <h3 className="mb-2 text-lg font-bold">{pkg.name}</h3>
-                  <p className="mb-4 text-sm text-muted-foreground">{pkg.desc}</p>
+                <div key={pkg.nameKey} className="flex flex-col rounded-2xl border border-border bg-card p-6">
+                  <h3 className="mb-2 text-lg font-bold">{t(pkg.nameKey)}</h3>
+                  <p className="mb-4 text-sm text-muted-foreground">{t(pkg.descKey)}</p>
                   <ul className="mb-6 flex-1 space-y-2">
-                    {pkg.includes.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    {pkg.includeKeys.map((itemKey) => (
+                      <li key={itemKey} className="flex items-start gap-2 text-sm text-muted-foreground">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                        {item}
+                        {t(itemKey)}
                       </li>
                     ))}
                   </ul>
-                  <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-accent">{pkg.note}</p>
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-accent">{t(pkg.noteKey)}</p>
                   <a href="#contact-form" className="text-sm font-semibold text-foreground hover:text-accent">
-                    Start a project →
+                    {t("designerStartProjectArrow")}
                   </a>
                 </div>
               ))}
@@ -244,17 +256,17 @@ export default function DesignerPageClient() {
         {/* 6. Design philosophy */}
         <section className="section-compact w-full bg-gradient-to-b from-background via-accent/5 to-background px-4 md:px-8">
           <div className="mx-auto max-w-7xl">
-            <p className="label mb-2">Approach</p>
-            <h2 className="mb-8 text-3xl font-bold md:text-4xl">Design philosophy in four moves</h2>
+            <p className="label mb-2">{t("designerApproachLabel")}</p>
+            <h2 className="mb-8 text-3xl font-bold md:text-4xl">{t("designerApproachHeading")}</h2>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
               {designPhilosophy.map((item, i) => (
-                <div key={item.title} className="rounded-2xl border border-accent/20 bg-card p-5 shadow-sm">
+                <div key={item.titleKey} className="rounded-2xl border border-accent/20 bg-card p-5 shadow-sm">
                   <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-subtle text-accent">
                     <item.Icon className="h-5 w-5" />
                   </div>
-                  <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Step 0{i + 1}</p>
-                  <h3 className="mb-2 text-sm font-semibold">{item.title}</h3>
-                  <p className="text-xs leading-relaxed text-muted-foreground">{item.description}</p>
+                  <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{t("designerStepPrefix", { n: i + 1 })}</p>
+                  <h3 className="mb-2 text-sm font-semibold">{t(item.titleKey)}</h3>
+                  <p className="text-xs leading-relaxed text-muted-foreground">{t(item.descKey)}</p>
                 </div>
               ))}
             </div>
@@ -264,8 +276,8 @@ export default function DesignerPageClient() {
         {/* 7. Curated gallery */}
         <section id="gallery" className="section-compact w-full px-4 md:px-8">
           <div className="mx-auto max-w-7xl">
-            <p className="label mb-2">Portfolio</p>
-            <h2 className="mb-6 text-3xl font-bold md:text-4xl">More selected work</h2>
+            <p className="label mb-2">{t("designerPortfolioLabel")}</p>
+            <h2 className="mb-6 text-3xl font-bold md:text-4xl">{t("designerPortfolioHeading")}</h2>
             <div className="mb-8 flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
               {categories.map((cat) => (
                 <button
@@ -276,7 +288,7 @@ export default function DesignerPageClient() {
                     activeCategory === cat ? "bg-accent text-white shadow-md" : "bg-muted text-muted-foreground"
                   }`}
                 >
-                  {cat}
+                  {t(categoryLabelKeys[cat])}
                 </button>
               ))}
             </div>
@@ -299,12 +311,12 @@ export default function DesignerPageClient() {
                     <div className="absolute inset-0 flex items-end bg-slate-900/0 p-3 transition-all group-hover:bg-slate-900/70">
                       {project.concept && (
                         <span className="absolute left-3 top-3 rounded-full bg-amber-500/90 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
-                          Concept
+                          {t("galleryConceptBadge")}
                         </span>
                       )}
                       <div className="translate-y-2 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
                         <p className="text-sm font-semibold text-white">{project.title}</p>
-                        <p className="text-xs text-white/70">{internal ? "Case study" : "Behance"}</p>
+                        <p className="text-xs text-white/70">{internal ? t("caseStudyLabel") : t("galleryBehanceLabel")}</p>
                       </div>
                     </div>
                   </Wrapper>
@@ -313,7 +325,7 @@ export default function DesignerPageClient() {
             </div>
             <div className="mt-8 text-center">
               <a href={siteConfig.behance} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-accent hover:underline">
-                See full archive on Behance ↗
+                {t("designerSeeFullArchive")}
               </a>
             </div>
           </div>
@@ -323,30 +335,36 @@ export default function DesignerPageClient() {
         <section className="section-compact w-full px-4 md:px-8">
           <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2">
             <div>
-              <p className="label mb-2">Experience</p>
-              <h2 className="mb-6 text-2xl font-bold">Selected studio journey</h2>
+              <p className="label mb-2">{t("designerExperienceLabel")}</p>
+              <h2 className="mb-6 text-2xl font-bold">{t("designerExperienceHeading")}</h2>
               <div className="space-y-4">
-                {workExperience.map((job) => (
-                  <div key={job.company} className="rounded-xl border border-border p-4">
-                    <p className="font-semibold text-sm">{job.role}</p>
-                    <p className="text-xs text-muted-foreground">{job.company} · {job.period}</p>
-                  </div>
-                ))}
+                {workExperience.map((job) => {
+                  const lj = localizedExperience(job, language)
+                  return (
+                    <div key={job.company} className="rounded-xl border border-border p-4">
+                      <p className="font-semibold text-sm">{lj.role}</p>
+                      <p className="text-xs text-muted-foreground">{lj.company} · {lj.period}</p>
+                    </div>
+                  )
+                })}
               </div>
             </div>
             <div>
-              <p className="label mb-2">Credentials</p>
-              <h2 className="mb-6 text-2xl font-bold">Design-relevant certifications</h2>
+              <p className="label mb-2">{t("designerCredentialsLabel")}</p>
+              <h2 className="mb-6 text-2xl font-bold">{t("designerCredentialsHeading")}</h2>
               <div className="space-y-3">
-                {certifications.map((cert) => (
-                  <div key={cert.title} className="flex items-center justify-between rounded-xl border border-border p-4">
-                    <div>
-                      <p className="text-sm font-semibold">{cert.title}</p>
-                      <p className="text-xs text-muted-foreground">{cert.issuer}</p>
+                {certifications.map((cert) => {
+                  const lc = localizedCertification(cert, language)
+                  return (
+                    <div key={cert.title} className="flex items-center justify-between rounded-xl border border-border p-4">
+                      <div>
+                        <p className="text-sm font-semibold">{lc.title}</p>
+                        <p className="text-xs text-muted-foreground">{lc.issuer}</p>
+                      </div>
+                      <span className="text-xs font-bold text-accent">{lc.year}</span>
                     </div>
-                    <span className="text-xs font-bold text-accent">{cert.year}</span>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -368,8 +386,8 @@ export default function DesignerPageClient() {
         <section id="contact-form" className="section-compact w-full bg-card px-4 md:px-8">
           <div className="mx-auto max-w-4xl space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold">Tell me about your project</h2>
-              <p className="mt-2 text-muted-foreground">Brand identity, social campaigns, or a full visual system.</p>
+              <h2 className="text-3xl font-bold">{t("designerContactHeading")}</h2>
+              <p className="mt-2 text-muted-foreground">{t("designerContactSubtext")}</p>
             </div>
             <ContactForm />
           </div>
@@ -378,11 +396,11 @@ export default function DesignerPageClient() {
         <section className="w-full bg-pink-50 px-4 py-10 dark:bg-pink-950/20 md:px-8">
           <div className="mx-auto flex max-w-3xl flex-col items-center justify-between gap-4 sm:flex-row">
             <div>
-              <p className="font-bold text-slate-900 dark:text-white">Free design templates</p>
-              <p className="text-sm text-muted-foreground">Brand brief, color guide, and workshop tools I use with clients.</p>
+              <p className="font-bold text-slate-900 dark:text-white">{t("designerFreeTemplatesTitle")}</p>
+              <p className="text-sm text-muted-foreground">{t("designerFreeTemplatesDesc")}</p>
             </div>
             <Link href="/freebies?category=design" className="whitespace-nowrap rounded-xl bg-pink-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-pink-500">
-              Get free templates
+              {t("designerBtnGetFreeTemplates")}
             </Link>
           </div>
         </section>

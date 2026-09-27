@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useLanguage } from "@/components/language-provider"
 import {
   Target,
   Smartphone,
@@ -53,63 +54,70 @@ const tintStyles: Record<Tint, { wash: string; ring: string; badge: string; chip
 // language as the rest of the site (nav, footer, skill bars) rather than
 // mixing in emoji, whose weight/style shifts per OS and font.
 const experiences: {
-  role: string
+  roleKey: string
   company?: string
-  year: string
-  metrics: [string, string]
-  description: string
+  yearKey?: string
+  year?: string
+  metricValueKey?: string
+  metricValue?: string
+  metricLabelKey: string
+  descKey: string
   Icon: LucideIcon
   tint: Tint
 }[] = [
   {
-    role: "Marketing Manager",
+    roleKey: "expMktMgrSperanzaRole",
     company: "Speranza Café & Resto",
     year: "2025",
-    metrics: ["+40%", "Social Media Engagement"],
-    description: "Increased social media engagement by 40%. Managed daily content & promotions.",
+    metricValue: "+40%",
+    metricLabelKey: "expMktMgrSperanzaMetricLabel",
+    descKey: "expMktMgrSperanzaDesc",
     Icon: TrendingUp,
     tint: "pink",
   },
   {
-    role: "Marketing Manager",
+    roleKey: "expMktMgrCritRole",
     company: "CRIT Tunisie",
     year: "2025",
-    metrics: ["+80%", "User Experience"],
-    description: "Managed digital presence and campaigns. Improved user experience and branding.",
+    metricValue: "+80%",
+    metricLabelKey: "expMktMgrCritMetricLabel",
+    descKey: "expMktMgrCritDesc",
     Icon: Megaphone,
     tint: "sky",
   },
   {
-    role: "Freelance Brand Consultant",
-    year: "2020–Present",
-    metrics: ["20+", "Clients"],
-    description:
-      "Worked with clients in travel, tech, and education to develop digital strategies and brand visuals.",
+    roleKey: "expFreelanceRole",
+    yearKey: "expFreelanceYear",
+    metricValue: "20+",
+    metricLabelKey: "expFreelanceMetricLabel",
+    descKey: "expFreelanceDesc",
     Icon: Compass,
     tint: "amber",
   },
   {
-    role: "Marketing Lead",
+    roleKey: "expAiesecRole",
     company: "AIESEC Tunisia",
     year: "2022–2024",
-    metrics: ["National", "Campaigns"],
-    description: "Led marketing initiatives, brand storytelling, and national campaign execution.",
+    metricValueKey: "expAiesecMetricValue",
+    metricLabelKey: "expAiesecMetricLabel",
+    descKey: "expAiesecDesc",
     Icon: Globe,
     tint: "violet",
   },
 ]
 
-const skills: { name: string; Icon: LucideIcon; tint: Tint }[] = [
-  { name: "Branding", Icon: Target, tint: "pink" },
-  { name: "Social Media", Icon: Smartphone, tint: "sky" },
-  { name: "Content Strategy", Icon: PenLine, tint: "amber" },
-  { name: "Adobe Suite", Icon: Palette, tint: "violet" },
-  { name: "Meta Business", Icon: BarChart3, tint: "sky" },
-  { name: "Copywriting", Icon: FileText, tint: "amber" },
-  { name: "UI/UX Collab", Icon: Handshake, tint: "pink" },
+const skills: { nameKey: string; Icon: LucideIcon; tint: Tint }[] = [
+  { nameKey: "skillBranding", Icon: Target, tint: "pink" },
+  { nameKey: "skillSocialMedia", Icon: Smartphone, tint: "sky" },
+  { nameKey: "skillContentStrategy", Icon: PenLine, tint: "amber" },
+  { nameKey: "skillAdobeSuite", Icon: Palette, tint: "violet" },
+  { nameKey: "skillMetaBusiness", Icon: BarChart3, tint: "sky" },
+  { nameKey: "skillCopywriting", Icon: FileText, tint: "amber" },
+  { nameKey: "skillUiUxCollab", Icon: Handshake, tint: "pink" },
 ]
 
 export default function MarketingSection() {
+  const { t } = useLanguage()
   return (
     <section id="marketing" className="w-full py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -122,28 +130,27 @@ export default function MarketingSection() {
         >
           {/* Header */}
           <div className="space-y-4">
-            <p className="label">Beyond pixels</p>
-            <h2 className="text-slate-900 dark:text-white">Digital marketing &amp; brand strategy</h2>
+            <p className="label">{t("marketingLabel")}</p>
+            <h2 className="text-slate-900 dark:text-white">{t("marketingHeading")}</h2>
             <p className="text-muted-foreground text-lg max-w-2xl">
-              I don&apos;t stop at visuals, I help brands define positioning, plan social campaigns, write content
-              pillars, and measure what works. Design and marketing as one system, not two separate hires.
+              {t("marketingIntro")}
             </p>
           </div>
 
           {/* Skills Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
             {skills.map((skill, i) => {
-              const t = tintStyles[skill.tint]
+              const ts = tintStyles[skill.tint]
               return (
                 <motion.div
                   key={i}
-                  className={`relative overflow-hidden rounded-[1.5rem] ring-1 ${t.ring} bg-gradient-to-br ${t.wash} px-4 py-5 flex flex-col items-center text-center gap-2.5 hover:-translate-y-1 hover:shadow-md transition-all duration-300`}
+                  className={`relative overflow-hidden rounded-[1.5rem] ring-1 ${ts.ring} bg-gradient-to-br ${ts.wash} px-4 py-5 flex flex-col items-center text-center gap-2.5 hover:-translate-y-1 hover:shadow-md transition-all duration-300`}
                   whileHover={{ y: -2 }}
                 >
-                  <div className={`w-10 h-10 rounded-full ${t.badge} flex items-center justify-center`}>
-                    <skill.Icon className={`w-5 h-5 ${t.icon}`} aria-hidden />
+                  <div className={`w-10 h-10 rounded-full ${ts.badge} flex items-center justify-center`}>
+                    <skill.Icon className={`w-5 h-5 ${ts.icon}`} aria-hidden />
                   </div>
-                  <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">{skill.name}</p>
+                  <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">{t(skill.nameKey)}</p>
                 </motion.div>
               )
             })}
@@ -152,28 +159,28 @@ export default function MarketingSection() {
           {/* Experience Cards Grid */}
           <div className="grid md:grid-cols-2 gap-6">
             {experiences.map((exp, i) => {
-              const t = tintStyles[exp.tint]
+              const ts = tintStyles[exp.tint]
               return (
                 <motion.div
                   key={i}
-                  className={`group relative overflow-hidden p-6 md:p-8 rounded-[2rem] ring-1 ${t.ring} bg-gradient-to-br ${t.wash} hover:-translate-y-1.5 hover:shadow-card-hover transition-all duration-500`}
+                  className={`group relative overflow-hidden p-6 md:p-8 rounded-[2rem] ring-1 ${ts.ring} bg-gradient-to-br ${ts.wash} hover:-translate-y-1.5 hover:shadow-card-hover transition-all duration-500`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                   viewport={{ once: true }}
                 >
                   <exp.Icon
-                    className={`pointer-events-none absolute -top-4 -right-2 w-24 h-24 opacity-[0.08] group-hover:scale-110 group-hover:opacity-[0.12] transition-all duration-500 ${t.icon}`}
+                    className={`pointer-events-none absolute -top-4 -right-2 w-24 h-24 opacity-[0.08] group-hover:scale-110 group-hover:opacity-[0.12] transition-all duration-500 ${ts.icon}`}
                     strokeWidth={1.25}
                     aria-hidden
                   />
                   <div className="relative space-y-4">
                     <div className="flex items-start gap-3">
-                      <div className={`w-12 h-12 rounded-full ${t.badge} flex items-center justify-center flex-shrink-0`}>
-                        <exp.Icon className={`w-5 h-5 ${t.icon}`} aria-hidden />
+                      <div className={`w-12 h-12 rounded-full ${ts.badge} flex items-center justify-center flex-shrink-0`}>
+                        <exp.Icon className={`w-5 h-5 ${ts.icon}`} aria-hidden />
                       </div>
                       <div className="flex flex-col gap-1 pt-1">
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">{exp.role}</h3>
+                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t(exp.roleKey)}</h3>
                         {exp.company && (
                           <p className="text-sm font-semibold text-muted-foreground">{exp.company}</p>
                         )}
@@ -181,15 +188,15 @@ export default function MarketingSection() {
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <div className={`px-3 py-1.5 rounded-full text-sm font-bold ${t.chip}`}>
-                        {exp.metrics[0]}
+                      <div className={`px-3 py-1.5 rounded-full text-sm font-bold ${ts.chip}`}>
+                        {exp.metricValueKey ? t(exp.metricValueKey) : exp.metricValue}
                       </div>
-                      <p className="text-xs text-muted-foreground font-medium">{exp.metrics[1]}</p>
+                      <p className="text-xs text-muted-foreground font-medium">{t(exp.metricLabelKey)}</p>
                     </div>
 
-                    <p className="text-muted-foreground text-sm leading-relaxed">{exp.description}</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{t(exp.descKey)}</p>
 
-                    <p className="text-xs text-muted-foreground font-medium pt-2">{exp.year}</p>
+                    <p className="text-xs text-muted-foreground font-medium pt-2">{exp.yearKey ? t(exp.yearKey) : exp.year}</p>
                   </div>
                 </motion.div>
               )

@@ -23,6 +23,20 @@ export type WorkProject = {
   metrics?: string
   nextSlug?: string
   published: boolean
+  /** Localized variants of the fields above (French/Arabic). English lives
+   *  in the base fields. Falls back to English when a locale isn't set. */
+  clientLineFr?: string
+  clientLineAr?: string
+  excerptFr?: string
+  excerptAr?: string
+  roleFr?: string
+  roleAr?: string
+  timelineFr?: string
+  timelineAr?: string
+  outcomeFr?: string
+  outcomeAr?: string
+  metricsFr?: string
+  metricsAr?: string
 }
 
 export const workProjects: WorkProject[] = [
@@ -36,6 +50,16 @@ export const workProjects: WorkProject[] = [
     role: "Logo · Brand identity · Packaging · Social",
     timeline: "4 weeks",
     outcome: "Identity adopted across in-store packaging, Instagram, and seasonal promos.",
+    clientLineFr: "Une marque de café tunisienne ayant besoin d'une identité chaleureuse et premium pour son emballage et ses réseaux sociaux.",
+    clientLineAr: "علامة مقهى تونسية بحاجة إلى هوية دافئة وراقية عبر التغليف ووسائل التواصل الاجتماعي.",
+    excerptFr: "Logo, système d'emballage et templates réseaux sociaux pour un café local au langage visuel or et crème.",
+    excerptAr: "شعار، نظام تغليف، وقوالب لوسائل التواصل الاجتماعي لمقهى محلي بلغة بصرية ذهبية وكريمية.",
+    roleFr: "Logo · Identité de marque · Emballage · Réseaux sociaux",
+    roleAr: "شعار · هوية بصرية · تغليف · وسائل التواصل الاجتماعي",
+    timelineFr: "4 semaines",
+    timelineAr: "4 أسابيع",
+    outcomeFr: "Identité adoptée sur l'emballage en boutique, Instagram et les promotions saisonnières.",
+    outcomeAr: "تم اعتماد الهوية في التغليف داخل المقهى، وعلى إنستغرام، وفي العروض الموسمية.",
     category: "Brand Identity",
     kind: "design",
     featured: true,
@@ -53,6 +77,16 @@ export const workProjects: WorkProject[] = [
     role: "Brand identity · Logo · Stationery · Print",
     timeline: "3 weeks",
     outcome: "Cohesive gold system used across cards, letterhead, and client-facing materials.",
+    clientLineFr: "Un studio créatif souhaitant une identité dorée et luxueuse pour sa papeterie et ses supports imprimés.",
+    clientLineAr: "استوديو إبداعي يريد هوية ذهبية فاخرة لقرطاسيته ومطبوعاته.",
+    excerptFr: "Identité visuelle complète : logotype, système doré, cartes de visite et supports de marque.",
+    excerptAr: "هوية بصرية كاملة: شعار، نظام ذهبي، بطاقات عمل، ومواد العلامة التجارية.",
+    roleFr: "Identité de marque · Logo · Papeterie · Impression",
+    roleAr: "هوية بصرية · شعار · قرطاسية · طباعة",
+    timelineFr: "3 semaines",
+    timelineAr: "3 أسابيع",
+    outcomeFr: "Système doré cohérent utilisé sur les cartes, l'en-tête de lettre et les supports clients.",
+    outcomeAr: "نظام ذهبي متماسك يُستخدم على البطاقات والترويسة والمواد الموجهة للعملاء.",
     category: "Brand Identity",
     kind: "design",
     featured: true,
@@ -70,6 +104,16 @@ export const workProjects: WorkProject[] = [
     role: "Logo · Brand identity · Social templates",
     timeline: "2 weeks",
     outcome: "Cleaner brand recognition on social and client proposals within the first month.",
+    clientLineFr: "Une agence de voyage ayant besoin d'une marque moderne et digne de confiance pour ses supports numériques et imprimés.",
+    clientLineAr: "وكالة سفر بحاجة إلى شعار عصري وموثوق لمنصاتها الرقمية والمطبوعة.",
+    excerptFr: "Logo et système de marque conçus pour la clarté sur le web, les réseaux sociaux et les supports de voyage.",
+    excerptAr: "شعار ونظام هوية مصمّمان لتحقيق الوضوح عبر الويب ووسائل التواصل الاجتماعي ومواد السفر.",
+    roleFr: "Logo · Identité de marque · Templates réseaux sociaux",
+    roleAr: "شعار · هوية بصرية · قوالب لوسائل التواصل",
+    timelineFr: "2 semaines",
+    timelineAr: "أسبوعان",
+    outcomeFr: "Meilleure reconnaissance de marque sur les réseaux sociaux et les propositions clients dès le premier mois.",
+    outcomeAr: "تحسّن التعرف على العلامة التجارية على وسائل التواصل وفي عروض العملاء خلال الشهر الأول.",
     category: "Brand Identity",
     kind: "design",
     featured: true,
@@ -87,6 +131,16 @@ export const workProjects: WorkProject[] = [
     role: "Event branding · Social media · Campaign design",
     timeline: "6 weeks",
     outcome: "Strong social traction and sold-out attendance; visuals reused across follow-up events.",
+    clientLineFr: "Un événement de networking pour jeunes ayant besoin de visuels audacieux et d'une image de marque sur place.",
+    clientLineAr: "فعالية تواصل للشباب بحاجة إلى تصاميم جريئة لوسائل التواصل وهوية بصرية في الموقع.",
+    excerptFr: "Identité événementielle, contenus de campagne pour les réseaux sociaux et design promotionnel pour un meetup complet.",
+    excerptAr: "هوية الفعالية، عناصر حملة لوسائل التواصل الاجتماعي، وتصميم ترويجي لتجمّع نفدت تذاكره بالكامل.",
+    roleFr: "Image de marque événementielle · Réseaux sociaux · Design de campagne",
+    roleAr: "هوية الفعاليات · وسائل التواصل الاجتماعي · تصميم الحملات",
+    timelineFr: "6 semaines",
+    timelineAr: "6 أسابيع",
+    outcomeFr: "Forte traction sur les réseaux sociaux et événement complet ; visuels réutilisés pour les éditions suivantes.",
+    outcomeAr: "تفاعل قوي على وسائل التواصل ونفاد كامل التذاكر؛ أُعيد استخدام التصاميم في فعاليات لاحقة.",
     category: "Social Media",
     kind: "design",
     featured: true,
@@ -104,6 +158,16 @@ export const workProjects: WorkProject[] = [
     role: "Campaign design · Social · OOH mockups",
     timeline: "2 weeks",
     outcome: "Unified campaign look across billboard, poster, and Instagram formats.",
+    clientLineFr: "Visuels de campagne réseaux sociaux et affichage extérieur pour une promotion saisonnière d'une marque de voyage.",
+    clientLineAr: "تصاميم حملة لوسائل التواصل الاجتماعي والإعلانات الخارجية لعلامة سفر بمناسبة عرض موسمي.",
+    excerptFr: "Panneau d'affichage, affiche et contenus pour le feed avec une identité de campagne cohérente sur tous les formats.",
+    excerptAr: "لوحة إعلانية، ملصق، وعناصر لموجز وسائل التواصل بمظهر حملة موحّد عبر جميع الصيغ.",
+    roleFr: "Design de campagne · Réseaux sociaux · Maquettes d'affichage extérieur",
+    roleAr: "تصميم الحملات · وسائل التواصل الاجتماعي · نماذج الإعلانات الخارجية",
+    timelineFr: "2 semaines",
+    timelineAr: "أسبوعان",
+    outcomeFr: "Identité de campagne unifiée sur le panneau d'affichage, l'affiche et Instagram.",
+    outcomeAr: "مظهر حملة موحّد عبر اللوحة الإعلانية والملصق وإنستغرام.",
     category: "Social Media",
     kind: "design",
     featured: true,
@@ -121,6 +185,16 @@ export const workProjects: WorkProject[] = [
     role: "Full-stack · AI integration · Product design",
     timeline: "PFE · 2025",
     outcome: "1200+ CVs processed in beta · 98% user satisfaction reported in testing",
+    clientLineFr: "Projet de fin d'études : une plateforme de carrière propulsée par l'IA pour la préparation de CV, le matching de compétences et le suivi de candidatures.",
+    clientLineAr: "مشروع تخرج (PFE): منصة توظيف مدعومة بالذكاء الاصطناعي لإعداد السير الذاتية، ومطابقة المهارات، وتتبّع الطلبات.",
+    excerptFr: "Application Next.js avec authentification/BDD Supabase et workflows LLM OpenRouter intégrés au produit, pas un simple widget de chat flottant.",
+    excerptAr: "تطبيق Next.js مع مصادقة وقاعدة بيانات Supabase وسير عمل نماذج لغوية عبر OpenRouter مدمجة في صميم المنتج، وليست مجرد أداة دردشة عائمة.",
+    roleFr: "Full-stack · Intégration IA · Design produit",
+    roleAr: "تطوير شامل (Full-stack) · دمج الذكاء الاصطناعي · تصميم المنتج",
+    timelineFr: "PFE · 2025",
+    timelineAr: "مشروع تخرج · 2025",
+    outcomeFr: "Plus de 1200 CV traités en bêta · 98 % de satisfaction utilisateur rapportée lors des tests",
+    outcomeAr: "أكثر من 1200 سيرة ذاتية تمت معالجتها في النسخة التجريبية · نسبة رضا 98% من المستخدمين خلال الاختبار",
     category: "Web Dev",
     kind: "dev",
     featured: true,
@@ -128,6 +202,8 @@ export const workProjects: WorkProject[] = [
     liveUrl: "https://digimytch-talent-hub.vercel.app/",
     repoUrl: "https://github.com/dhiaarfa",
     metrics: "1200+ CVs · 98% satisfaction",
+    metricsFr: "1200+ CV · 98 % de satisfaction",
+    metricsAr: "أكثر من 1200 سيرة ذاتية · رضا 98%",
     nextSlug: "crit-tunisie",
     published: true,
   },
@@ -141,6 +217,16 @@ export const workProjects: WorkProject[] = [
     role: "Web developer · UI implementation",
     timeline: "Sep – Dec 2025",
     outcome: "Shipped responsive corporate site to production during CRIT developer role.",
+    clientLineFr: "Plateforme de recrutement d'entreprise pour un grand cabinet de recrutement en Tunisie.",
+    clientLineAr: "منصة توظيف لشركة رئيسية للاستقدام والتوظيف في تونس.",
+    excerptFr: "Site Next.js en production clarifiant les services, les offres d'emploi et les parcours de contact pour les talents et les entreprises.",
+    excerptAr: "موقع Next.js في الإنتاج يوضّح الخدمات وعروض العمل ومسارات التواصل للكفاءات والشركات.",
+    roleFr: "Développeur web · Implémentation UI",
+    roleAr: "مطوّر ويب · تنفيذ واجهة المستخدم",
+    timelineFr: "Sept. – déc. 2025",
+    timelineAr: "سبتمبر – ديسمبر 2025",
+    outcomeFr: "Site corporate responsive mis en production durant le poste de développeur chez CRIT.",
+    outcomeAr: "إطلاق موقع مؤسسي متجاوب إلى بيئة الإنتاج خلال منصب المطوّر لدى CRIT.",
     category: "Web Dev",
     kind: "dev",
     featured: true,
@@ -160,6 +246,16 @@ export const workProjects: WorkProject[] = [
     role: "Web development · Marketing site",
     timeline: "Client project",
     outcome: "Live brand site with product-focused layout and contact funnel.",
+    clientLineFr: "Marque tunisienne de dattes premium ayant besoin d'une présence web crédible et d'une narration produit.",
+    clientLineAr: "علامة تونسية فاخرة للتمور بحاجة إلى حضور رقمي موثوق وسرد مقنع للمنتج.",
+    excerptFr: "Site marketing avec sections produits, narration saisonnière et parcours de contact clairs.",
+    excerptAr: "موقع تسويقي بأقسام للمنتجات، وسرد موسمي، ومسارات تواصل واضحة لتحويل الزوار.",
+    roleFr: "Développement web · Site marketing",
+    roleAr: "تطوير الويب · موقع تسويقي",
+    timelineFr: "Projet client",
+    timelineAr: "مشروع لعميل",
+    outcomeFr: "Site de marque en ligne avec une mise en page centrée produit et un tunnel de contact.",
+    outcomeAr: "موقع علامة تجارية مباشر بتصميم يركّز على المنتج وقمع تواصل واضح.",
     category: "Web Dev",
     kind: "dev",
     featured: true,
@@ -208,6 +304,57 @@ export function devWorkProjects() {
 
 export function workBySlug(slug: string) {
   return workProjects.find((p) => p.slug === slug && p.published)
+}
+
+/** Translation key (from lib/translations.ts) for a WorkCategory's display
+ *  label, used anywhere `project.category` is rendered as visible text. */
+export function categoryKey(category: WorkCategory): string {
+  const map: Record<WorkCategory, string> = {
+    "Brand Identity": "categoryBrandIdentity",
+    "Social Media": "categorySocialMedia",
+    "Logo Design": "categoryLogoDesign",
+    Packaging: "categoryPackaging",
+    "UI/UX": "categoryUiUx",
+    "Web Dev": "categoryWebDev",
+  }
+  return map[category]
+}
+
+export type WorkLocale = "en" | "fr" | "ar"
+
+/** Resolve a project's localized shell fields (clientLine/excerpt/role/
+ *  timeline/outcome/metrics), falling back to English when a locale-specific
+ *  field isn't set on the project. Does not touch `title` (kept as the
+ *  project's real name in every language) or `tools` (proper nouns). */
+export function localizedWork(project: WorkProject, locale: WorkLocale) {
+  if (locale === "fr") {
+    return {
+      clientLine: project.clientLineFr ?? project.clientLine,
+      excerpt: project.excerptFr ?? project.excerpt,
+      role: project.roleFr ?? project.role,
+      timeline: project.timelineFr ?? project.timeline,
+      outcome: project.outcomeFr ?? project.outcome,
+      metrics: project.metricsFr ?? project.metrics,
+    }
+  }
+  if (locale === "ar") {
+    return {
+      clientLine: project.clientLineAr ?? project.clientLine,
+      excerpt: project.excerptAr ?? project.excerpt,
+      role: project.roleAr ?? project.role,
+      timeline: project.timelineAr ?? project.timeline,
+      outcome: project.outcomeAr ?? project.outcome,
+      metrics: project.metricsAr ?? project.metrics,
+    }
+  }
+  return {
+    clientLine: project.clientLine,
+    excerpt: project.excerpt,
+    role: project.role,
+    timeline: project.timeline,
+    outcome: project.outcome,
+    metrics: project.metrics,
+  }
 }
 
 /** Real 1200x630 branded OG card for a case study, generated by

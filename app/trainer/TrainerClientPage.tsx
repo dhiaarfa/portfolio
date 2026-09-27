@@ -44,12 +44,12 @@ export default function TrainerClientPage() {
   // stat so the row of rings reads as a designed chart rather than six
   // identical circles with numbers dropped in.
   const impactStats = [
-    { number: formatStat("participantsTrained"), label: "Participants Trained", detail: "Across NGOs, youth clubs & associations", progress: 0.86 },
-    { number: formatStat("trainingHours"), label: "Training Hours", detail: "Non-formal education & skills building", progress: 0.74 },
-    { number: formatStat("facilitationHours"), label: "Facilitation Hours", detail: "Moderation, panels & collaborative spaces", progress: 0.5 },
-    { number: formatStat("trainingCycles"), label: "Training Events", detail: "From design to delivery & evaluation", progress: 0.62 },
-    { number: formatStat("yearsExperience"), label: "Years Experience", detail: "Youth work, civic engagement & training", progress: 0.4 },
-    { number: "15+", label: "Partner Organizations", detail: "NGOs, schools, IFMSA, Rotary, AIESEC & more", progress: 0.58 },
+    { number: formatStat("participantsTrained"), label: t("impactStatParticipantsLabel"), detail: t("impactStatParticipantsDetail"), progress: 0.86 },
+    { number: formatStat("trainingHours"), label: t("impactStatHoursLabel"), detail: t("impactStatHoursDetail"), progress: 0.74 },
+    { number: formatStat("facilitationHours"), label: t("impactStatFacilitationLabel"), detail: t("impactStatFacilitationDetail"), progress: 0.5 },
+    { number: formatStat("trainingCycles"), label: t("impactStatEventsLabel"), detail: t("impactStatEventsDetail"), progress: 0.62 },
+    { number: formatStat("yearsExperience"), label: t("impactStatYearsLabel"), detail: t("impactStatYearsDetail"), progress: 0.4 },
+    { number: "15+", label: t("impactStatPartnersLabel"), detail: t("impactStatPartnersDetail"), progress: 0.58 },
   ]
 
   return (
@@ -76,17 +76,17 @@ export default function TrainerClientPage() {
         >
             <p className="label text-green-400 mb-4">{t("trainerHeroTitle")}</p>
             <h1 className="h1-hero text-white mb-4 max-w-3xl">
-              I help NGOs, schools, and youth organizations run trainings that actually change behavior.
+              {t("trainerHeroHeadline")}
             </h1>
             <p className="text-slate-300 text-[17px] max-w-2xl leading-relaxed mb-8">
-              {formatStat("participantsTrained")} participants trained across Tunisia and beyond. CNFCPP-certified facilitator in Arabic, French, and English. Workshops, multi-session programs, and train-the-trainer.
+              {formatStat("participantsTrained")} {t("trainerHeroSubtitleRest")}
             </p>
             <div className="flex flex-wrap gap-8 mb-8 pb-8 border-b border-white/15">
               {[
-                { stat: profileStats.participantsTrained, label: "Participants" },
-                { stat: profileStats.trainingHours, label: "Training Hrs" },
-                { stat: profileStats.trainingCycles, label: "Cycles" },
-                { stat: profileStats.yearsExperience, label: "Yrs Exp" },
+                { stat: profileStats.participantsTrained, label: t("trainerStatParticipants") },
+                { stat: profileStats.trainingHours, label: t("trainerStatTrainingHrs") },
+                { stat: profileStats.trainingCycles, label: t("trainerStatCycles") },
+                { stat: profileStats.yearsExperience, label: t("trainerStatYrsExp") },
               ].map(({ stat, label }) => (
                 <div key={label}>
                   <AnimatedNumber
@@ -102,20 +102,20 @@ export default function TrainerClientPage() {
             <div className="flex flex-wrap gap-3">
               <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green inline-flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
-                Book a Workshop
+                {t("trainerBtnBookWorkshop")}
               </a>
               <Link
                 href="/freebies?category=training"
                 className="inline-flex items-center gap-2 rounded-[14px] border border-white/25 px-6 py-3 font-medium text-white transition-all hover:border-white/50 hover:bg-white/5"
               >
                 <Gift className="h-4 w-4" />
-                Get free training resources
+                {t("trainerBtnFreeResources")}
               </Link>
               <a
                 href="#training-portfolio"
                 className="inline-flex items-center rounded-[14px] border border-white/15 px-6 py-3 text-sm font-medium text-slate-300 transition-all hover:border-white/40 hover:text-white"
               >
-                View training portfolio
+                {t("trainerBtnViewPortfolio")}
               </a>
             </div>
         </RoleHero>
@@ -202,14 +202,14 @@ export default function TrainerClientPage() {
                     />
                   </div>
                   <div className="p-6 md:p-8 flex flex-col justify-center bg-card/50">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-3">In Action</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-3">{t("trainerInActionTitle")}</h3>
                     <p className="text-muted-foreground leading-relaxed mb-4">
-                      Real facilitation with clarity, energy, and measurable learning outcomes. Every session is designed so participants leave as capable actors, not passive listeners.
+                      {t("trainerInActionDesc")}
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 bg-[var(--site-accent)]/10 text-[var(--site-accent)] rounded-full text-sm font-medium">Interactive Sessions</span>
-                      <span className="px-3 py-1 bg-[var(--site-accent)]/10 text-[var(--site-accent)] rounded-full text-sm font-medium">Youth Development</span>
-                      <span className="px-3 py-1 bg-[var(--site-accent)]/10 text-[var(--site-accent)] rounded-full text-sm font-medium">Leadership Training</span>
+                      <span className="px-3 py-1 bg-[var(--site-accent)]/10 text-[var(--site-accent)] rounded-full text-sm font-medium">{t("tagInteractiveSessions")}</span>
+                      <span className="px-3 py-1 bg-[var(--site-accent)]/10 text-[var(--site-accent)] rounded-full text-sm font-medium">{t("tagYouthDevelopment")}</span>
+                      <span className="px-3 py-1 bg-[var(--site-accent)]/10 text-[var(--site-accent)] rounded-full text-sm font-medium">{t("tagLeadershipTraining")}</span>
                     </div>
                   </div>
                 </div>
@@ -249,11 +249,11 @@ export default function TrainerClientPage() {
                       <div className="rounded-2xl border border-border p-4 sm:p-5 transition-all group-hover:border-foreground/30 group-hover:bg-card">
                         <div className="flex flex-wrap items-center gap-2 mb-1.5">
                           <span className="text-xs font-bold text-accent bg-accent/10 rounded-full px-2.5 py-0.5">{milestone.year}</span>
-                          <h4 className="text-lg sm:text-xl font-bold">{milestone.title}</h4>
+                          <h4 className="text-lg sm:text-xl font-bold">{t(milestone.titleKey)}</h4>
                         </div>
-                        <p className="text-muted-foreground text-sm leading-relaxed mb-3">{milestone.description}</p>
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-3">{t(milestone.descKey, milestone.params)}</p>
                         <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-background border border-border rounded-full text-xs font-medium">
-                          {milestone.stats}
+                          {t(milestone.statsKey, milestone.params)}
                         </span>
                       </div>
                     </motion.div>
@@ -295,7 +295,7 @@ export default function TrainerClientPage() {
                   className="btn-green inline-flex items-center gap-2 mt-2"
                 >
                   <Calendar className="h-4 w-4" />
-                  Book on Calendly (2 clicks)
+                  {t("trainerBookCalendly")}
                 </a>
               </div>
               <ContactForm />
