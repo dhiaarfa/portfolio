@@ -75,9 +75,9 @@ const nextConfig = {
   },
   
   // Build optimizations
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
+  // Next 16 removed the `eslint` next.config.js key entirely — next build
+  // (Turbopack) no longer runs ESLint at all, lint is a fully separate
+  // `next lint` step (already wired into .github/workflows/ci.yml).
   typescript: {
     ignoreBuildErrors: false,
   },
