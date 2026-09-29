@@ -1,5 +1,7 @@
 "use client"
 
+import { Link } from "next-view-transitions"
+import { ArrowRight } from "lucide-react"
 import BrandIcon from "@/lib/brand-icon"
 import { useLanguage } from "@/components/language-provider"
 
@@ -41,6 +43,24 @@ export default function ToolkitStrip() {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Implementation-prompts pass (Sep 2026), P5 "Collapse tools/stack
+            noise on Home": this strip used to be immediately followed by
+            the full grouped ToolsStackSection (design/AI/frontend/backend/
+            productivity, every tool listed again) -- Designer, Trainer and
+            Developer each already show their own filtered slice of that
+            same data, so the full table on Home was a third copy of it.
+            Replaced with a single link to where the complete breakdown
+            actually lives. */}
+        <div className="mt-8 text-center">
+          <Link
+            href="/developer"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
+          >
+            {t("toolkitStripFullStackLink")}
+            <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
+          </Link>
         </div>
       </div>
     </section>

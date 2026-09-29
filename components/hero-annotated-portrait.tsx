@@ -336,42 +336,15 @@ export default function HeroAnnotatedPortrait({
         bracket: true,
         delay: 0,
       },
-      {
-        id: "status",
-        label: t("hudLabelStatus"),
-        value: (
-          <span className="inline-flex items-center gap-2">
-            <span className="relative flex h-2 w-2" aria-hidden>
-              {!reducedMotion && <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-60" />}
-              <span className="relative h-2 w-2 rounded-full bg-accent" />
-            </span>
-            {t("availableForProjects")}
-          </span>
-        ),
-        anchor: { x: mx(22), y: 34 },
-        card: { x: mx(6), y: 30 },
-        cardMaxWidth: 195,
-        delay: 0.1,
-      },
-      {
-        id: "stat",
-        label: t("hudLabelImpact"),
-        value: formatStat("participantsTrained"),
-        // Footnoted with the real training-hours figure so "1,120+ people
-        // trained" reads as a specific, verifiable claim (over how many
-        // hours) rather than a bare headline number.
-        subvalue: (
-          <>
-            {t("homePeopleTrained")}
-            <br />
-            <span className="opacity-70">* {formatStat("trainingHours")} {t("hudImpactHoursNote")}</span>
-          </>
-        ),
-        anchor: { x: mx(78), y: 34 },
-        card: { x: mx(94), y: 32 },
-        cardMaxWidth: 170,
-        delay: 0.2,
-      },
+      // Implementation-prompts pass (Sep 2026), P12 "Soften floating-card
+      // clutter": this used to also carry "status" (Available for
+      // projects) and "stat" (participants trained) callout cards, both
+      // pure restatements of facts already shown elsewhere in the hero --
+      // the availability badge above the H1, and the participants-trained
+      // number in the micro-stats row right under it. Removed rather than
+      // kept as a second copy; "identity" stays since it's the only card
+      // that adds something the rest of the hero doesn't already say
+      // (the full role list + location).
     ],
     [t, reducedMotion, isRtl]
   )

@@ -1,18 +1,17 @@
 "use client"
 
 import { Link } from "next-view-transitions"
-import { ArrowRight, BookOpen, Palette, Users, Code, Code2, Send } from "lucide-react"
+import { ArrowRight, BookOpen, Palette, Users, Code, Code2, Send, Calendar, Download, Linkedin, Sparkles } from "lucide-react"
 import Navbar from "@/components/navbar-new"
+import { WhatsAppIcon } from "@/lib/brand-icon"
 import Footer from "@/components/footer"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { siteConfig } from "@/lib/site-config"
-import { profileStats } from "@/lib/profile"
 import { AnimatedNumber } from "@/components/ui/animated-number"
 import dynamic from "next/dynamic"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import ToolkitStrip from "@/components/toolkit-strip"
-import ToolsStackSection from "@/components/tools-stack-section"
 import HeroAnnotatedPortrait from "@/components/hero-annotated-portrait"
 import StatsSection from "@/components/stats-section"
 import JourneySection from "@/components/journey-section"
@@ -78,55 +77,42 @@ function HeroAskBar() {
   const { t } = useLanguage()
   const [value, setValue] = useState("")
 
-  const pills: Array<{ key: string; onClick: () => void }> = [
-    { key: "heroPillWork", onClick: () => document.getElementById("expertise")?.scrollIntoView({ behavior: "smooth" }) },
-    { key: "heroPillWhatIDo", onClick: () => askAI(t("heroPillWhatIDo")) },
-    { key: "heroPillAvailability", onClick: () => askAI(t("heroPillAvailability")) },
-    { key: "heroPillChat", onClick: () => askAI() },
-    { key: "heroPillResume", onClick: () => window.open(siteConfig.resumePdfUrl, "_blank", "noopener,noreferrer") },
-    { key: "heroPillLinkedin", onClick: () => window.open(siteConfig.linkedin, "_blank", "noopener,noreferrer") },
-  ]
-
+  // Implementation-prompts pass (Sep 2026), P1 "Hero CTA hierarchy": this
+  // used to also render 6 canned-question pills (Work/What I Do/
+  // Availability/Chat/Resume/LinkedIn) above this input, competing with the
+  // primary Book-a-call / secondary Explore-work pair for attention. Resume
+  // and LinkedIn moved into the compact icon row next to those buttons;
+  // the canned questions were redundant with that same row plus the
+  // floating assistant, so they're gone rather than relocated. Only the
+  // free-text ask input remains here, visually de-emphasized (smaller,
+  // muted) since it's now a secondary path, not the first thing offered.
   return (
-    <div className="mt-6 max-w-[480px]">
-      <div className="flex flex-wrap gap-2">
-        {pills.map((pill) => (
-          <button
-            key={pill.key}
-            type="button"
-            onClick={pill.onClick}
-            className="rounded-full border border-slate-200 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-slate-700 backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-accent dark:border-border dark:bg-card/70 dark:text-slate-300"
-          >
-            {t(pill.key)}
-          </button>
-        ))}
-      </div>
-      <form
-        className="mt-3 flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-2 py-1.5 pl-4 shadow-sm backdrop-blur-sm dark:border-border dark:bg-card/80"
-        onSubmit={(e) => {
-          e.preventDefault()
-          if (!value.trim()) return
-          askAI(value)
-          setValue("")
-        }}
+    <form
+      className="mt-5 flex max-w-[420px] items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 px-2 py-1 pl-4 backdrop-blur-sm dark:border-border/70 dark:bg-card/50"
+      onSubmit={(e) => {
+        e.preventDefault()
+        if (!value.trim()) return
+        askAI(value)
+        setValue("")
+      }}
+    >
+      <Sparkles className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder={t("heroAskPlaceholder")}
+        className="flex-1 bg-transparent text-xs text-slate-600 placeholder:text-slate-400 focus:outline-none dark:text-slate-300 dark:placeholder:text-slate-500"
+      />
+      <button
+        type="submit"
+        aria-label="Send"
+        className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-white transition-transform hover:scale-105 disabled:opacity-40"
+        disabled={!value.trim()}
       >
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder={t("heroAskPlaceholder")}
-          className="flex-1 bg-transparent text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none dark:text-slate-200 dark:placeholder:text-slate-500"
-        />
-        <button
-          type="submit"
-          aria-label="Send"
-          className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-accent text-white transition-transform hover:scale-105 disabled:opacity-50"
-          disabled={!value.trim()}
-        >
-          <Send className="h-3.5 w-3.5" />
-        </button>
-      </form>
-    </div>
+        <Send className="h-3 w-3" />
+      </button>
+    </form>
   )
 }
 
@@ -196,27 +182,60 @@ export default function HomePageClient() {
             {t("homeHeroTagline")}
           </h1>
           <AnimatedRole />
-          <div className="flex flex-wrap gap-x-6 gap-y-2 mt-5 mb-2">
+          {/* Implementation-prompts pass (Sep 2026), P2 "Kill duplicate
+              stats": this hero used to also carry its own 3-number micro
+              stats row (participants/projects/years), a partial repeat of
+              the fuller 5-stat StatsSection ("By the numbers") further down
+              this same page. Removed here rather than there -- StatsSection
+              has the complete, correctly-labeled set (it also includes
+              training hours and event count that this row didn't), so
+              keeping it as the one stats strip on Home loses nothing and
+              also declutters the hero itself. */}
+          {/* Implementation-prompts pass (Sep 2026), P1 "Hero CTA
+              hierarchy": one primary + one secondary action, everything
+              else (resume/LinkedIn/WhatsApp/email/AI chat) demoted to a
+              compact icon row below so it doesn't compete with booking. */}
+          <div className="flex flex-wrap items-center gap-3 mt-4">
+            <a
+              href={siteConfig.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-green"
+            >
+              <Calendar className="w-4 h-4" />
+              {t("bookFreeConsultation")}
+            </a>
+            <a href="#expertise" className="btn-outline group inline-flex">
+              {t("exploreMyWork")}
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
+            </a>
+          </div>
+
+          <div className="flex items-center gap-2 mt-4">
             {[
-              { stat: profileStats.participantsTrained, label: t("homeMicroYouth") },
-              { stat: profileStats.designProjects, label: t("homeMicroProjects") },
-              { stat: profileStats.yearsExperience, label: t("homeMicroYears") },
-            ].map(({ stat, label }) => (
-              <div key={label} className="flex items-center gap-1.5">
-                <AnimatedNumber value={stat.value} suffix={stat.suffix} instant className="font-bold text-accent text-sm tabular-nums" />
-                <span className="text-slate-500 dark:text-slate-400 text-sm">{label}</span>
-              </div>
+              { href: siteConfig.resumePdfUrl, icon: Download, label: t("downloadResumePdf"), external: true },
+              { href: siteConfig.linkedin, icon: Linkedin, label: "LinkedIn", external: true },
+              { href: `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(siteConfig.whatsappMessage)}`, icon: WhatsAppIcon, label: "WhatsApp", external: true },
+              { href: `mailto:${siteConfig.email}`, icon: null, label: "Email", external: false },
+            ].map(({ href, icon: Icon, label, external }) => (
+              <a
+                key={label}
+                href={href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                aria-label={label}
+                title={label}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-600 backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-accent dark:border-border dark:bg-card/70 dark:text-slate-300"
+              >
+                {Icon ? <Icon className="h-4 w-4" /> : <span className="text-[10px] font-bold">@</span>}
+              </a>
             ))}
           </div>
-          <a href="#expertise" className="btn-outline group mt-4 inline-flex">
-            {t("exploreMyWork")}
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
-          </a>
 
-          {/* Suggestion pills + "ask me anything" bar, opens the existing
+          {/* De-emphasized "ask me anything" input, opens the existing
               floating AI assistant (see askAI() / floating-actions.tsx)
-              instead of duplicating a second chat UI, per Dhia's reference
-              screenshot of another portfolio's chat-first hero. */}
+              instead of duplicating a second chat UI. Sits after the
+              primary/secondary CTAs and icon row per P1, not competing
+              with booking for first attention. */}
           <HeroAskBar />
         </div>
       </HeroAnnotatedPortrait>
@@ -404,13 +423,15 @@ export default function HomePageClient() {
           visitors see first. */}
       <ToolkitStrip />
 
-      {/* Full "Software I work with daily" table. Moved here from the
-          Designer page per Dhia's ask -- it covers all disciplines (design,
-          AI, frontend, backend, facilitation), so it belongs on the
-          homepage rather than under just one pillar page. Designer/Trainer/
-          Developer each now show only their own relevant slice (see
-          DesignerPageClient.tsx / TrainerClientPage.tsx / DeveloperPageClient.tsx). */}
-      <ToolsStackSection />
+      {/* Implementation-prompts pass (Sep 2026), P5 "Collapse tools/stack
+          noise on Home": the full grouped table used to render here, right
+          after ToolkitStrip's own condensed preview of the same tools --
+          two back-to-back renderings of one dataset, on top of Designer/
+          Trainer/Developer each already showing their own filtered slice
+          of it (see DesignerPageClient.tsx / TrainerClientPage.tsx /
+          DeveloperPageClient.tsx). Removed here; ToolkitStrip above now
+          links to /developer for the complete breakdown instead of
+          repeating it. */}
 
       {/* Stats */}
       <StatsSection />

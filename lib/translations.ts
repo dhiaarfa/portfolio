@@ -234,6 +234,7 @@ export const translations = {
     trustedByOrgs: "Trusted by organizations worldwide",
     trustedAndCollaboratedWith: "Trusted and collaborated with",
     toolkitStripLabel: "Tools I work with daily",
+    toolkitStripFullStackLink: "See the full stack",
 
     // Contact
     collaborateTogether: "Collaborate Together",
@@ -1274,6 +1275,7 @@ export const translations = {
     trustedByOrgs: "Ils nous font confiance dans le monde entier",
     trustedAndCollaboratedWith: "Ils nous font confiance et collaborent avec nous",
     toolkitStripLabel: "Outils que j'utilise au quotidien",
+    toolkitStripFullStackLink: "Voir la stack complète",
 
     // Contact
     collaborateTogether: "Collaborons Ensemble",
@@ -2303,6 +2305,7 @@ export const translations = {
     trustedByOrgs: "موثوق به من منظمات حول العالم",
     trustedAndCollaboratedWith: "موثوق به ومعتمد عليه في التعاون",
     toolkitStripLabel: "الأدوات التي أستخدمها يومياً",
+    toolkitStripFullStackLink: "عرض كل الأدوات",
 
     // Contact
     collaborateTogether: "دعنا نتعاون",
