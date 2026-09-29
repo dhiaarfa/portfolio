@@ -43,6 +43,14 @@ const DARK_MODE_INVERT_SLUGS = new Set([
   "symfony",
   "midjourney",
   "apple",
+  // Reported: Illustrator/Photoshop (near-black inline SVG fills, #330000
+  // and #001e36) and Miro/Kahoot (simple-icons hex #050038 and #46178F,
+  // both near-black/very dark) were unreadable on the dark:bg-card chips
+  // used in dark mode -- same root cause as the icons above.
+  "adobeillustrator",
+  "adobephotoshop",
+  "miro",
+  "kahoot",
 ])
 
 /** High-fidelity PNGs for Adobe apps where inline SVG colors were wrong */

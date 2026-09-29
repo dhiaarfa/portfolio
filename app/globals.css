@@ -573,6 +573,21 @@ html.custom-cursor-active * {
   text-wrap: balance;
 }
 
+/* Home hero specifically holds a full-sentence positioning statement (the
+   promoted tagline, see HomePageClient.tsx), not a 2-4 word headline like
+   the Designer/Trainer/Developer heroes that share .h1-hero above -- at the
+   same clamp/line-height that sentence wrapped into a huge multi-line block
+   and visibly inflated the whole hero section. Same family/weight, smaller
+   scale and slightly looser leading so a full sentence reads comfortably. */
+.h1-hero-tagline {
+  font-family: 'General Sans', system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  text-wrap: balance;
+}
+
 /* Canonical article/detail H1 — used for Insights articles, Work case
    studies, and the Freebies hero, which read as a page title rather than a
    full marketing headline and don't need hero-scale type. */

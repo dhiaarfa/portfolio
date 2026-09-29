@@ -192,7 +192,7 @@ export default function HomePageClient() {
             {t("helloGreeting")}{" "}
             <span className="text-accent font-semibold">Dhia</span>
           </p>
-          <h1 className="h1-hero text-slate-900 dark:text-white mb-2 transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]">
+          <h1 className="h1-hero-tagline text-slate-900 dark:text-white mb-2 transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]">
             {t("homeHeroTagline")}
           </h1>
           <AnimatedRole />
