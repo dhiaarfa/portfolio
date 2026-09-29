@@ -245,6 +245,21 @@ export default function Navbar() {
             </button>
             <ThemeToggle />
             <LanguageToggle />
+            {/* Compact icon-only CTA, visible below md so the primary
+                "book a call" action isn't only reachable through the
+                hamburger menu on phones (Dhia's ask: more should be usable
+                without opening the drawer). The full labeled pill below
+                still takes over from md up. */}
+            <a
+              href={siteConfig.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="md:hidden flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 bg-accent text-white"
+              aria-label={pathname === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
+              title={pathname === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
+            >
+              <Calendar className="w-4 h-4" />
+            </a>
             <a
               href={siteConfig.calendlyUrl}
               target="_blank"

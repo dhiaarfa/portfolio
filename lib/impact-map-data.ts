@@ -52,64 +52,94 @@ export const internationalLocations: InternationalLocation[] = [
 ]
 
 // Tunisia coastline/border, as [lon, lat] pairs, clockwise from Tabarka in
-// the NW. Re-digitized Sep 2026 against a real governorate-boundary
-// reference map (Dhia flagged the previous hand-drawn silhouette as
-// visibly wrong-shaped) -- this version traces the actual named
-// landmarks that make Tunisia's outline recognizable: the Cap Bon
-// peninsula and the Gulf of Tunis bay it wraps around, the Gulf of
-// Hammamet indent, the Sousse/Monastir/Mahdia "Sahel" bulge, the deep
-// Gulf of Gabes indent, the Zarzis/Ben Gardane bulge near the Libya
-// border, and the Kasserine/Le Kef/Jendouba zigzag of the western
-// Algeria border. Still a simplified silhouette for a decorative map,
-// not survey-grade cartography, but every vertex below corresponds to a
-// real coastal town or border landmark rather than an arbitrary guess.
-// Cropped at 32N (south of Gabes/Medenine) to keep the empty far-south
-// desert from dominating the map -- every dot above sits in the
-// northern two-thirds this outline actually covers.
+// the NW. Re-digitized again Sep 2026 -- the previous hand-traced version
+// (itself a fix for an even earlier wrong silhouette) was still off, so
+// this one is generated directly from the accurate governorate-boundary
+// reference image Dhia supplied: the shape's exterior contour was
+// extracted from that image with OpenCV (threshold -> largest external
+// contour -> Douglas-Peucker simplification to ~70 points), then each
+// pixel was converted to real lon/lat via an affine fit against Tunisia's
+// published bounding coordinates (~7.52-11.50E, ~30.23-37.35N). This is
+// the actual traced shape, not a manual approximation of named landmarks.
+// Still cropped at 32N (south of Gabes/Medenine) to keep the empty
+// far-south desert from dominating the map, same reasoning as before --
+// every dot above sits in the northern two-thirds this outline covers;
+// the crop point is a clean interpolated cut at exactly lat 32, not a
+// hand-picked approximation.
 export const TUNISIA_OUTLINE: [number, number][] = [
-  [8.76, 36.95], // Tabarka
-  [8.6, 37.1],
-  [9.0, 37.22], // Cap Serrat
-  [9.6, 37.23],
-  [9.87, 37.27], // Bizerte
-  [9.75, 37.34], // Cap Blanc -- northernmost point
-  [10.05, 37.2], // Ras Jebel
-  [10.3, 37.0], // Gulf of Tunis, north shore
-  [10.25, 36.82], // Gulf of Tunis indent (La Goulette / Tunis)
-  [10.55, 36.88], // Gulf of Tunis, east shore
-  [10.85, 37.0], // Cap Bon peninsula base
-  [11.07, 37.06], // El Haouaria -- Cap Bon tip (Ras Addar)
-  [11.1, 36.85], // Kelibia
-  [10.98, 36.71], // Korba
-  [10.75, 36.5],
-  [10.55, 36.4], // Hammamet -- gulf indent
-  [10.64, 36.1],
-  [10.64, 35.83], // Sousse
-  [10.83, 35.76], // Monastir peninsula tip
-  [11.06, 35.5], // Mahdia -- Sahel bulge
-  [11.11, 35.23], // Chebba
-  [10.85, 34.9],
-  [10.76, 34.74], // Sfax
-  [10.3, 34.3], // La Skhira
-  [10.1, 33.95], // Gabes -- gulf indent
-  [10.35, 33.7],
-  [10.75, 33.55],
-  [11.11, 33.5], // Zarzis
-  [11.22, 33.15], // Ben Gardane
-  [11.5, 33.05], // Ras Ajdir, Libya border
-  [11.0, 32.7],
-  [10.4, 32.35],
-  [9.9, 32.05],
-  [9.3, 32.0],
-  [8.5, 32.1],
-  [7.9, 32.55],
-  [7.6, 33.1],
-  [7.55, 33.8],
-  [8.0, 34.5], // Kasserine area, western border
-  [8.35, 35.2],
-  [8.15, 35.85], // Le Kef
-  [8.35, 36.4], // Jendouba
-  [8.6, 36.75],
+  [8.797, 36.946], // Tabarka
+  [9.162, 37.23],
+  [9.717, 37.35], // Cap Blanc -- northernmost point
+  [9.817, 37.322],
+  [9.833, 37.251],
+  [10.008, 37.251], // Bizerte area
+  [10.223, 37.152],
+  [10.148, 36.982],
+  [10.306, 36.84],
+  [10.256, 36.776],
+  [10.298, 36.684],
+  [10.447, 36.705],
+  [10.513, 36.833],
+  [10.654, 36.854],
+  [10.928, 37.067], // El Haouaria -- Cap Bon tip (Ras Addar)
+  [11.069, 36.819], // Kelibia
+  [10.944, 36.712],
+  [10.77, 36.394],
+  [10.513, 36.294], // Hammamet -- gulf indent
+  [10.447, 36.039],
+  [10.588, 35.763], // Sousse
+  [10.762, 35.713],
+  [10.812, 35.614],
+  [11.011, 35.536], // Mahdia -- Sahel bulge
+  [11.002, 35.232],
+  [11.102, 35.133],
+  [10.87, 34.863],
+  [10.828, 34.707], // Sfax
+  [10.58, 34.53],
+  [10.538, 34.431],
+  [10.09, 34.212],
+  [10.008, 33.999], // Gabes -- gulf indent
+  [10.14, 33.772],
+  [10.389, 33.588],
+  [10.629, 33.638],
+  [10.679, 33.829],
+  [10.87, 33.822],
+  [11.002, 33.73],
+  [10.878, 33.581],
+  [11.061, 33.482], // Zarzis
+  [11.052, 33.326],
+  [11.235, 33.227],
+  [11.243, 33.149],
+  [11.45, 33.106], // Ben Gardane
+  [11.392, 32.582],
+  [11.5, 32.412], // Ras Ajdir, Libya border
+  [10.837, 32.086],
+  [10.775, 32], // cut at 32N (east) -- see file header
+  [9.033, 32], // cut at 32N (west) -- see file header
+  [9.021, 32.044],
+  [8.366, 32.476],
+  [8.333, 32.759],
+  [8.142, 33.014],
+  [7.794, 33.135],
+  [7.769, 33.347],
+  [7.595, 33.581],
+  [7.52, 33.857],
+  [7.57, 34.013],
+  [7.802, 34.162],
+  [7.893, 34.353], // Kasserine area, western border
+  [8.216, 34.509],
+  [8.324, 34.991],
+  [8.415, 35.097],
+  [8.316, 35.239],
+  [8.357, 35.487],
+  [8.258, 35.721],
+  [8.366, 36.351], // Le Kef
+  [8.2, 36.394],
+  [8.192, 36.472],
+  [8.44, 36.606], // Jendouba
+  [8.415, 36.727],
+  [8.598, 36.783],
+  [8.614, 36.925],
 ]
 
 export const MAP_VIEWBOX = { width: 360, height: 580 }
