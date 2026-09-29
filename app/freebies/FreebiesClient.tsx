@@ -10,6 +10,7 @@ import { publishedFreebies, type Freebie } from "@/lib/freebies"
 import { learningResources, type LearningResource } from "@/lib/learning-resources"
 import { useLanguage } from "@/components/language-provider"
 import { freebieText } from "@/lib/freebie-i18n"
+import { siteConfig } from "@/lib/site-config"
 
 type Category = "all" | "design" | "training" | "development"
 type ResourceFilter = "all" | LearningResource["category"]
@@ -477,6 +478,22 @@ function FreebiesClientInner() {
                 <p className="mt-4 text-sm text-muted-foreground">
                   {t("freebies.emailCopy")} <b>{formData.email}</b>
                 </p>
+
+                {/* Implementation-prompts pass (Sep 2026), P15 "Freebies ->
+                    conversion path": a quiet next step after the download,
+                    not a hard sell -- one line + one outline link to the
+                    same Calendly used everywhere else on the site. */}
+                <div className="mt-6 pt-5 border-t border-border">
+                  <p className="text-sm text-muted-foreground mb-3">{t("freebies.conversionNudge")}</p>
+                  <a
+                    href={siteConfig.calendlyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground transition hover:bg-muted"
+                  >
+                    {t("bookFreeConsultation")}
+                  </a>
+                </div>
               </div>
             ) : (
               <>

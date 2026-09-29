@@ -16,6 +16,7 @@ import HeroAnnotatedPortrait from "@/components/hero-annotated-portrait"
 import StatsSection from "@/components/stats-section"
 import JourneySection from "@/components/journey-section"
 import ServicePackages from "@/components/service-packages"
+import HowWeWorkSection from "@/components/how-we-work-section"
 const ValueRadarChart = dynamic(() => import("@/components/value-radar-chart"), {
   ssr: false,
   loading: () => <div className="h-64 animate-pulse rounded-2xl bg-muted/40" />,
@@ -211,6 +212,13 @@ export default function HomePageClient() {
             </a>
           </div>
 
+          {/* Implementation-prompts pass (Sep 2026), P18 "Contact/booking
+              microcopy": reuses the footer's existing "footerCallShort"
+              string ("30-min call - no commitment") right under the primary
+              CTA so the reassurance sits next to both booking entry points,
+              not just the footer's. */}
+          <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{t("footerCallShort")}</p>
+
           <div className="flex items-center gap-2 mt-4">
             {[
               { href: siteConfig.resumePdfUrl, icon: Download, label: t("downloadResumePdf"), external: true },
@@ -384,6 +392,12 @@ export default function HomePageClient() {
           </div>
         </div>
       </section>
+
+      {/* Implementation-prompts pass (Sep 2026), P4 "How we work": placed
+          right after the expertise cards per the prompt brief, before Zia
+          Studio -- first-time visitors now see what happens after booking
+          before they hit the Zia Studio / stats / testimonials content. */}
+      <HowWeWorkSection />
 
       {/* Zia Studio, dedicated section. Was hardcoded to the same near-black
           background in both light and dark mode -- always rendered dark
