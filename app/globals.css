@@ -287,7 +287,20 @@ html.custom-cursor-active * {
 [dir="rtl"] label,
 [dir="rtl"] input,
 [dir="rtl"] textarea {
-  font-family: var(--font-cairo), 'Noto Sans Arabic', var(--font-dm-sans), sans-serif;
+  /* Sep 30 follow-up fix: this list used to end in `var(--font-dm-sans)`,
+     a custom property that is never defined anywhere in the codebase (DM
+     Sans was removed during the Inter migration and this reference was
+     never cleaned up). An undefined var() reference makes the WHOLE
+     font-family declaration invalid at computed-value time -- not just
+     that one token -- which silently fell back to the inherited/initial
+     value. That was harmless while this rule only matched <html> (nothing
+     renders text directly on <html>), but once the selector above was
+     expanded to also match body/h1-h6/p/a/etc., it started computing to
+     the browser's bare default serif font (e.g. "Times New Roman") on
+     every one of them instead of Cairo -- confirmed live via
+     getComputedStyle() immediately after deploying the selector fix.
+     Dropping the dangling reference restores the intended Cairo stack. */
+  font-family: var(--font-cairo), 'Noto Sans Arabic', sans-serif;
   letter-spacing: 0 !important;
   word-spacing: 0.05em;
   line-height: 1.85;
