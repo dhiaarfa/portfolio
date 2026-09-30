@@ -127,9 +127,15 @@ html.theme-transition a {
 .border-accent\/20 { border-color: color-mix(in oklab, var(--site-accent) 20%, transparent); }
 .border-accent\/30 { border-color: color-mix(in oklab, var(--site-accent) 30%, transparent); }
 .border-accent\/50 { border-color: color-mix(in oklab, var(--site-accent) 50%, transparent); }
-.gradient-accent { background: linear-gradient(135deg, #059669 0%, #16a34a 100%); }
+/* Sourced directly from Dhia's reference photo (Sep 30): sampled real pixel
+ * values from the dark-forest-green corner through the bright-lime core.
+ * Decorative-only -- the bright end drops well below 4.5:1 against white,
+ * so this is for surfaces with no white text on top (hero glows, dividers,
+ * card accents), never for buttons. See .btn-green below for the
+ * text-safe cropped version of the same gradient. */
+.gradient-accent { background: linear-gradient(135deg, #0b4a12 0%, #3d8f12 45%, #8ed80c 100%); }
 .shadow-accent\/20 { box-shadow: 0 2px 8px color-mix(in oklab, var(--site-accent) 20%, transparent); }
-.dark .gradient-accent { background: linear-gradient(135deg, #10b981 0%, #22c55e 100%); }
+.dark .gradient-accent { background: linear-gradient(135deg, #123f10 0%, #4ea312 45%, #a3e60d 100%); }
 
 /* Native cursor is hidden only once CustomCursor (components/custom-cursor.tsx)
    has confirmed a fine pointer is present and mounted its own dot+ring —
@@ -195,15 +201,24 @@ html.custom-cursor-active * {
  * (non-`!`) utility classes can once again correctly show/hide/override
  * these buttons by breakpoint. */
 @layer components {
+  /* Gradient sourced from Dhia's reference photo (Sep 30), cropped to just
+   * its dark-forest-to-medium-leafy segment -- NOT the full vivid range
+   * (see .gradient-accent above for that). Both stops individually
+   * contrast-checked against white text: #0b4a12 = 10.49:1, #297210 =
+   * 5.99:1 at rest, and the hover state's brightness(1.1) filter still
+   * keeps the lightest point at ~5.18:1 -- comfortably clear of the 4.5:1
+   * WCAG AA minimum at every point along the gradient, in both states.
+   * This was the whole point of the request: the real reference gradient,
+   * with white button text staying 100% legible, not just "close enough". */
   .btn-green {
     display: inline-flex; align-items: center; gap: var(--space-1);
-    background: var(--site-accent); color: white;
+    background: linear-gradient(135deg, #0b4a12 0%, #297210 100%); color: white;
     font-size: 14px; font-weight: 600;
     padding: 12px 24px; border-radius: 9999px;
     box-shadow: 0 0 0 1px color-mix(in oklab, var(--site-accent) 30%, transparent);
     border: none; cursor: pointer; white-space: nowrap;
     text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
   }
   .btn-green:hover {
     filter: brightness(1.1);
@@ -223,6 +238,12 @@ html.custom-cursor-active * {
   .btn-outline:hover {
     border-color: var(--site-accent); color: var(--site-accent);
     background: color-mix(in oklab, var(--site-accent) 8%, transparent);
+  }
+  /* Same text-safe gradient as .btn-green, for small icon-only accent
+   * buttons that carry white content but aren't full pills (the navbar's
+   * compact mobile "book a call" button). */
+  .bg-accent-gradient {
+    background: linear-gradient(135deg, #0b4a12 0%, #297210 100%);
   }
 }
 @layer components {

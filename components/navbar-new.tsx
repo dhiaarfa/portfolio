@@ -254,7 +254,7 @@ export default function Navbar() {
               href={siteConfig.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="md:hidden flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 bg-accent text-white"
+              className="md:hidden flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 bg-accent-gradient text-white"
               aria-label={pathname === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
               title={pathname === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
             >
@@ -289,10 +289,17 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.15 }}
+            // Sep 30 per Dhia's ask ("navbar in phone mode starts from the
+            // top right"): the menu now visibly grows out of the hamburger
+            // button itself (which sits at the top-right corner of the
+            // header) instead of a generic slide-down-from-top fade, so
+            // opening it reads as "coming from that corner" rather than
+            // materializing out of nowhere.
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.92 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            style={{ transformOrigin: "top right" }}
             className="fixed inset-0 z-40 bg-white dark:bg-background flex flex-col pt-[68px] overflow-y-auto xl:hidden"
           >
             <nav className="flex flex-col gap-1 px-4 py-4 flex-1">

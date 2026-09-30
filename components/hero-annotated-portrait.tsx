@@ -208,11 +208,17 @@ function HudStage({
   reducedMotion: boolean
   t: (key: string) => string
 }) {
-  const stageHeight = compact ? "h-[480px]" : "h-[560px]"
+  // Reduced Sep 30 per Dhia's direct feedback ("so surprising and not good
+  // with that size") -- was 640px/560px(480 compact), a size that made the
+  // photo dominate roughly half the hero at common widths. PHOTO_BOUNDS
+  // (68%/86% of the stage) and every callout anchor/card position below
+  // are percentage-based within this stage, so shrinking it scales the
+  // whole HUD proportionally without needing to retune any coordinates.
+  const stageHeight = compact ? "h-[400px]" : "h-[460px]"
 
   return (
     <div className="flex flex-col items-center">
-      <div className={`relative mx-auto w-full max-w-[640px] px-2 sm:px-4 ${stageHeight}`}>
+      <div className={`relative mx-auto w-full max-w-[520px] px-2 sm:px-4 ${stageHeight}`}>
         <div
           className="pointer-events-none absolute z-0 rounded-full blur-3xl"
           style={{
@@ -390,8 +396,11 @@ export default function HeroAnnotatedPortrait({
           </div>
         </div>
 
+        {/* Reduced Sep 30 alongside the desktop stage per Dhia's feedback
+          * ("so surprising and not good with that size") -- was
+          * min(92vw,380px)/440px, matching the ~19% desktop reduction. */}
         <div className="lg:hidden mt-6 flex flex-col items-center gap-5 w-full">
-          <div className="relative w-[min(92vw,380px)] aspect-[3/4] max-h-[440px] rounded-3xl bg-accent-subtle/60 dark:bg-muted/60 overflow-hidden">
+          <div className="relative w-[min(78vw,310px)] aspect-[3/4] max-h-[360px] rounded-3xl bg-accent-subtle/60 dark:bg-muted/60 overflow-hidden">
             <PortraitImage src={imageSrc} />
           </div>
           <p className="text-xs font-medium text-muted-foreground">{t("hudSwipeHint")}</p>

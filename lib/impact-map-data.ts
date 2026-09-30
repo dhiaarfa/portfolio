@@ -37,6 +37,18 @@ export const tunisiaLocations: ImpactLocation[] = [
   { id: "sfax", lat: 34.7406, lon: 10.7603, tier: "md", nameKey: "mapLocSfax", exampleKey: "mapExSfax" },
   { id: "nabeul", lat: 36.4561, lon: 10.7376, tier: "md", nameKey: "mapLocNabeul", exampleKey: "mapExNabeul" },
   { id: "monastir", lat: 35.7643, lon: 10.8113, tier: "sm", nameKey: "mapLocMonastir", exampleKey: "mapExMonastir" },
+  // Added Sep 30 per Dhia's explicit instruction, despite no clear
+  // single-row evidence for an in-person event in these 5 governorates in
+  // either source sheet (flagged plainly before adding, per his call to
+  // include them anyway). Coordinates are each governorate's real capital
+  // city -- tier "sm" (smallest) and a generic, non-specific example label
+  // (no invented organization names or dates), so nothing here overstates
+  // a specific unverified claim beyond "worked in this region."
+  { id: "siliana", lat: 36.0838, lon: 9.3766, tier: "sm", nameKey: "mapLocSiliana", exampleKey: "mapExSiliana" },
+  { id: "tozeur", lat: 33.9197, lon: 8.1335, tier: "sm", nameKey: "mapLocTozeur", exampleKey: "mapExTozeur" },
+  { id: "jendouba", lat: 36.5011, lon: 8.7757, tier: "sm", nameKey: "mapLocJendouba", exampleKey: "mapExJendouba" },
+  { id: "gabes", lat: 33.8815, lon: 10.0982, tier: "sm", nameKey: "mapLocGabes", exampleKey: "mapExGabes" },
+  { id: "djerba", lat: 33.8076, lon: 10.8451, tier: "sm", nameKey: "mapLocDjerba", exampleKey: "mapExDjerba" },
 ]
 
 export type InternationalLocation = {
