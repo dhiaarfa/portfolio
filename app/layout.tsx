@@ -40,7 +40,34 @@ export const metadata = {
   },
   description:
     "Designer • Trainer • Developer based in Tunisia. 1,120+ participants trained, 477+ training hours across 51 events, 30+ hours of facilitation.",
-  keywords: ["trainer", "youth development", "leadership", "graphic designer", "web developer", "Tunisia", "training programs", "CNFCPP certified"],
+  // Sep 30 SEO expansion: added real technology, field, and organization
+  // terms actually used/mentioned across the site (lib/work.ts tools,
+  // lib/profile.ts certifications/experience, lib/organization-logos.ts)
+  // so the site has a chance to rank for those searches too, not just
+  // "Mohamed Dhia Arfa" -- per Dhia's explicit ask.
+  keywords: [
+    "trainer",
+    "youth development",
+    "leadership",
+    "graphic designer",
+    "web developer",
+    "Tunisia",
+    "training programs",
+    "CNFCPP certified",
+    "facilitation",
+    "non-formal education",
+    "brand identity",
+    "UI/UX design",
+    "Next.js developer",
+    "React developer",
+    "TypeScript",
+    "Supabase",
+    "Adobe Illustrator",
+    "Zia Studio",
+    "AIESEC",
+    "IFMSA",
+    "Association Youth Clubs",
+  ],
   authors: [{ name: "Mohamed Dhia Arfa" }],
   creator: "Mohamed Dhia Arfa",
   publisher: "Mohamed Dhia Arfa",
@@ -182,6 +209,10 @@ export default function RootLayout({
                 addressCountry: "TN",
                 addressLocality: "Tunisia",
               },
+              // Expanded Sep 30 with real technologies/fields already used
+              // elsewhere on the site (lib/work.ts tools, /developer,
+              // /designer) -- entity/topic breadth for search, not just
+              // Dhia's name.
               knowsAbout: [
                 "Graphic Design",
                 "Training & Education",
@@ -192,6 +223,13 @@ export default function RootLayout({
                 "UI/UX Design",
                 "React",
                 "Next.js",
+                "TypeScript",
+                "Supabase",
+                "Non-Formal Education",
+                "Facilitation",
+                "Adobe Illustrator",
+                "Adobe Photoshop",
+                "Figma",
               ],
               alumniOf: {
                 "@type": "EducationalOrganization",
@@ -202,14 +240,36 @@ export default function RootLayout({
                   addressCountry: "TN",
                 },
               },
-              hasCredential: {
-                "@type": "EducationalOccupationalCredential",
-                credentialCategory: "CNFCPP Certified Trainer",
-                recognizedBy: {
-                  "@type": "Organization",
-                  name: "CNFCPP",
+              // Expanded Sep 30 from a single CNFCPP entry to every real,
+              // verified certification in lib/profile.ts's `certifications`
+              // array -- same source of truth already used on /trainer and
+              // the about page, not new/invented data.
+              hasCredential: [
+                {
+                  "@type": "EducationalOccupationalCredential",
+                  credentialCategory: "National Certified Trainer",
+                  recognizedBy: { "@type": "Organization", name: "CNFCPP" },
                 },
-              },
+                {
+                  "@type": "EducationalOccupationalCredential",
+                  credentialCategory: "Certified Trainer",
+                  recognizedBy: { "@type": "Organization", name: "Association YOUTH CLUBs" },
+                },
+                {
+                  "@type": "EducationalOccupationalCredential",
+                  credentialCategory: "Social Media Marketing",
+                  recognizedBy: { "@type": "Organization", name: "HubSpot Academy" },
+                },
+                {
+                  "@type": "EducationalOccupationalCredential",
+                  credentialCategory: "Green Digital Skills",
+                  recognizedBy: { "@type": "Organization", name: "INCO Academy" },
+                },
+              ],
+              // New Sep 30: real civic/NGO affiliation from lib/profile.ts's
+              // `civicExperience` (AIESEC in Lebanon, Dec 2023-Jun 2024) --
+              // gives search engines a genuine entity link to AIESEC.
+              memberOf: [{ "@type": "Organization", name: "AIESEC" }],
             }),
           }}
         />
@@ -243,7 +303,10 @@ export default function RootLayout({
               "@type": "WebSite",
               name: "Mohamed Dhia Arfa Portfolio",
               url: "https://dhia-portfolio.com",
-              inLanguage: ["en", "fr"],
+              // Fixed Sep 30: this was missing "ar" even though the site has a
+              // full Arabic locale (/ar routes, RTL layout, Cairo font) -- a
+              // real contradiction between the schema and the actual site.
+              inLanguage: ["en", "fr", "ar"],
               author: {
                 "@type": "Person",
                 name: "Mohamed Dhia Arfa",

@@ -27,6 +27,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/insights/${slug}`,
     title: `${title} | Insights · Mohamed Dhia`,
     description,
+    // Sep 30 SEO addition: per-article keywords built from the real
+    // category and slug topic words instead of the site-wide default only.
+    keywords: [article.category, ...article.slug.split("-")],
     openGraph: { type: "article" },
   })
 }

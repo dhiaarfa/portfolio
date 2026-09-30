@@ -28,6 +28,13 @@ const nextConfig = {
       // live there as a compact "My Journey" card) — keep old links/
       // bookmarks/search results working instead of 404ing.
       { source: "/about", destination: "/", permanent: true },
+      // Sep 30 SEO fix: /case-study/meetup-pro was a legacy standalone route
+      // duplicating /work/meetup-pro (same project, different title/body,
+      // both indexable -- a real duplicate-content problem an earlier audit
+      // had already flagged and that was never actually fixed). The page
+      // and its dedicated body component are deleted; this redirect covers
+      // any bookmark, backlink, or search-indexed URL still pointing at it.
+      { source: "/case-study/meetup-pro", destination: "/work/meetup-pro", permanent: true },
       // Sep 30 SEO fix: metadataBase, every canonical tag, and every
       // OpenGraph/JSON-LD url in app/layout.tsx all declare the apex
       // domain (dhia-portfolio.com, no www) as canonical -- but if

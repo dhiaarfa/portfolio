@@ -233,6 +233,13 @@ export const translations = {
     trustedByTrainees: "Trusted by trainees and organizations for impactful workshops and training programs.",
     trustedByOrgs: "Trusted by organizations worldwide",
     trustedAndCollaboratedWith: "Trusted and collaborated with",
+    // Sep 30 SEO addition: real names of every organization already shown as a
+    // logo above, spelled out as crawlable text (not just image alt attributes)
+    // so search engines can associate this page with these real entities --
+    // matches Dhia's ask to be found by people searching those org names, not
+    // just his own name. The list itself is rendered from lib/organization-logos.ts
+    // (same data as the logo strip), this is only the lead-in sentence.
+    collaboratedWithListPrefix: "Delivered training, facilitation, or design work with:",
     toolkitStripLabel: "Tools I work with daily",
     toolkitStripFullStackLink: "See the full stack",
     homeHowWeWorkLabel: "How We Work",
@@ -1294,6 +1301,7 @@ export const translations = {
     trustedByTrainees: "Apprécié par les stagiaires et organisations pour des ateliers et formations impactants.",
     trustedByOrgs: "Ils nous font confiance dans le monde entier",
     trustedAndCollaboratedWith: "Ils nous font confiance et collaborent avec nous",
+    collaboratedWithListPrefix: "Formation, facilitation ou design réalisés avec :",
     toolkitStripLabel: "Outils que j'utilise au quotidien",
     toolkitStripFullStackLink: "Voir la stack complète",
     homeHowWeWorkLabel: "Comment ça marche",
@@ -2344,6 +2352,7 @@ export const translations = {
     trustedByTrainees: "موثوق به من المتدربين والمنظمات لورش العمل والبرامج التدريبية المؤثرة.",
     trustedByOrgs: "موثوق به من منظمات حول العالم",
     trustedAndCollaboratedWith: "موثوق به ومعتمد عليه في التعاون",
+    collaboratedWithListPrefix: "تدريب أو تيسير أو تصميم تم إنجازه مع:",
     toolkitStripLabel: "الأدوات التي أستخدمها يومياً",
     toolkitStripFullStackLink: "عرض كل الأدوات",
     homeHowWeWorkLabel: "كيف نعمل",

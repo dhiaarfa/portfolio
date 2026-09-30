@@ -9,6 +9,7 @@ const baseInsightsMetadata = pageMetadata({
   title: "Insights, Design, Training & Development | Mohamed Dhia",
   description:
     "Tips on graphic design, youth training facilitation, and web development from Mohamed Dhia Arfa, based in Tunisia.",
+  keywords: ["graphic design tips", "youth training facilitation", "web development", "Next.js", "brand identity", "workshop facilitation", "Tunisia"],
 })
 
 export const metadata: Metadata = {

@@ -21,6 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/work/${slug}`,
     title: `${project.title} · Case Study · Mohamed Dhia`,
     description: project.excerpt,
+    // Sep 30 SEO addition: real per-project keywords (client/brand name,
+    // category, and the actual tools/tech used) instead of relying on the
+    // site-wide default -- lets each case study rank for the specific
+    // technologies and project names it's actually about.
+    keywords: [project.title, project.category, ...project.tools],
     ogImage: {
       // Real 1200x630 branded card, not the raw screenshot (which is an
       // arbitrary aspect ratio), see lib/work.ts's workOgImage() and

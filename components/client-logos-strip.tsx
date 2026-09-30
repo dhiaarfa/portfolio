@@ -64,6 +64,16 @@ export default function ClientLogosStrip() {
             </motion.div>
           )}
         </div>
+        {/* Sep 30 SEO addition: the logos above only carry these org names as
+          * <img alt>, a weak signal search engines barely weigh. This renders
+          * the same real names (lib/organization-logos.ts) as actual visible,
+          * crawlable text, so the page has genuine on-page relevance for
+          * someone searching any of these organizations by name, not just
+          * "Mohamed Dhia Arfa". Nothing here is invented -- same list, same
+          * names, already used for the logos rendered above. */}
+        <p className="mt-6 text-center text-xs text-muted-foreground/70 max-w-4xl mx-auto leading-relaxed px-4">
+          {t("collaboratedWithListPrefix")} {organizationLogos.map((logo) => logo.name).join(" · ")}
+        </p>
       </div>
     </section>
   )

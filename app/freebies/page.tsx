@@ -9,6 +9,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Free Design & Training Resources | Mohamed Dhia Arfa",
   description:
     "Free templates, guides, and tools from Mohamed Dhia, graphic designer and youth trainer based in Tunisia. Download instantly.",
+  keywords: ["free design templates", "free training resources", "graphic design freebies", "youth training guides", "Tunisia", "Canva templates", "workshop resources"],
 })
 
 const jsonLd = breadcrumbJsonLd("Freebies", "/freebies")

@@ -85,12 +85,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.6,
     },
-    {
-      url: `${baseUrl}/case-study/meetup-pro`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
+    // Sep 30 SEO fix: /case-study/meetup-pro (a duplicate of /work/meetup-pro,
+    // see next.config.js redirects) is deleted and now 301s -- a sitemap
+    // should only ever list canonical, 200-status URLs, never a redirecting
+    // one, so this entry is removed rather than pointed at a dead route.
     ...insightUrls,
     ...workUrls,
     ...localeUrls,
