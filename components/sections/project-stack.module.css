@@ -1,0 +1,230 @@
+/*
+ * Paired 1:1 with ProjectStack.tsx -- these values (card size, radius,
+ * padding, cover proportions, gap, --stick/--step/--gap, perspective,
+ * transform-origin, mobile breakpoint, reduced-motion rules) are locked to
+ * Dhia's spec from the GetLayers.ai "Cards Almanac" replica. Don't change
+ * them without also checking the scroll-engine math in the component.
+ *
+ * Custom properties live on .wrapper (not :root) so two instances on the
+ * same page (Home's Web stack + Design stack) never share or clobber each
+ * other's --i / --veil values.
+ */
+
+.wrapper {
+  --card-w: min(940px, 88vw);
+  --card-h: 400px;
+  --stick: 20vh; /* where the first card pins */
+  --step: 30px; /* each next card pins this much lower -> visible strip */
+  --gap: 70vh; /* scroll distance between cards */
+  --ink: #1f1f1f;
+  --muted: #9b9b9b;
+  --card-bg: #ffffff;
+  --chip-bg: #efefef;
+  position: relative;
+}
+
+/* ---------- Header ---------- */
+.head {
+  text-align: center;
+  padding: 12vh 20px 7vh;
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: var(--site-accent, #e0452b);
+  text-transform: uppercase;
+}
+.title {
+  margin-top: 14px;
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.sub {
+  margin: 18px auto 0;
+  max-width: 430px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #8e8e8e;
+}
+
+/* ---------- Stack ---------- */
+.stack {
+  position: relative;
+  padding-bottom: 30vh;
+}
+.slot {
+  position: sticky;
+  top: calc(var(--stick) + var(--i) * var(--step));
+  height: var(--card-h);
+  margin-bottom: var(--gap);
+  display: flex;
+  justify-content: center;
+  perspective: 1400px;
+}
+.slot:last-child {
+  margin-bottom: 0;
+}
+.card {
+  width: var(--card-w);
+  height: 100%;
+  background: var(--card-bg);
+  border-radius: 22px;
+  padding: 18px;
+  display: flex;
+  gap: 28px;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.03),
+    0 24px 60px -24px rgba(0, 0, 0, 0.22),
+    0 6px 18px -8px rgba(0, 0, 0, 0.08);
+  transform-origin: 50% 0%;
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+a.card {
+  cursor: pointer;
+}
+.card::after {
+  /* greying veil for covered cards */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #f3f3f2;
+  opacity: var(--veil, 0);
+  pointer-events: none;
+}
+.cover {
+  flex: 0 0 40.5%;
+  height: 100%;
+  border-radius: 13px;
+  overflow: hidden;
+  background: #111;
+  position: relative;
+}
+.coverInner {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+.coverImg {
+  object-fit: cover;
+}
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 10px 0 0;
+  will-change: opacity;
+  min-width: 0;
+}
+.meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+.name {
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.desc {
+  margin-top: 10px;
+  font-size: 17px;
+  line-height: 1.45;
+  color: #262626;
+  max-width: 470px;
+}
+.foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chip {
+  font-size: 12px;
+  color: #6b6b6b;
+  background: var(--chip-bg);
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+.plus {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 0;
+  background: #1a1a1a;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  flex-shrink: 0;
+}
+.plus svg {
+  width: 14px;
+  height: 14px;
+}
+.card:hover .plus {
+  transform: rotate(90deg);
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    --card-h: auto;
+    --step: 22px;
+    --gap: 55vh;
+    --stick: 12vh;
+  }
+  .slot {
+    height: auto;
+  }
+  .card {
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px;
+    height: auto;
+  }
+  .cover {
+    flex: none;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  .body {
+    padding: 0 6px 6px;
+  }
+  .desc {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  .foot {
+    margin-top: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slot {
+    position: relative;
+    top: auto;
+    margin-bottom: 24px;
+  }
+  .card,
+  .coverInner,
+  .body {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

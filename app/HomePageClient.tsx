@@ -17,6 +17,8 @@ import StatsSection from "@/components/stats-section"
 import JourneySection from "@/components/journey-section"
 import ServicePackages from "@/components/service-packages"
 import HowWeWorkSection from "@/components/how-we-work-section"
+import ProjectStack from "@/components/sections/ProjectStack"
+import { webProjects, designProjects } from "@/data/projects"
 const ValueRadarChart = dynamic(() => import("@/components/value-radar-chart"), {
   ssr: false,
   loading: () => <div className="h-64 animate-pulse rounded-2xl bg-muted/40" />,
@@ -440,6 +442,23 @@ export default function HomePageClient() {
       {/* Toolkit, condensed cross-discipline sample -- the small icon strip
           visitors see first. */}
       <ToolkitStrip />
+
+      {/* Cards Almanac-style project stacks (Dhia's port of the GetLayers.ai
+          effect, Sep 2026) -- one for web dev, one for design, placed right
+          after the toolkit strip so "here's what I work with" is
+          immediately followed by "here's what I built with it". */}
+      <ProjectStack
+        eyebrow="Selected work · Web"
+        title="Things I've built"
+        subtitle="Full-stack products shipped end to end — from database to deployment. Scroll through the stack."
+        projects={webProjects}
+      />
+      <ProjectStack
+        eyebrow="Selected work · Design"
+        title="Brands & visuals"
+        subtitle="Identity, campaigns and art direction — each one pinned, then the next slides over it."
+        projects={designProjects}
+      />
 
       {/* Implementation-prompts pass (Sep 2026), P5 "Collapse tools/stack
           noise on Home": the full grouped table used to render here, right
