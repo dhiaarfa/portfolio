@@ -51,6 +51,10 @@ const DARK_MODE_INVERT_SLUGS = new Set([
   "adobephotoshop",
   "miro",
   "kahoot",
+  // Cursor's simple-icons mark is pure black (#000000) -- same treatment
+  // as the icons above, needed the moment Cursor was added to the AI
+  // Tools list (see lib/tools-stack.ts).
+  "cursor",
 ])
 
 /** High-fidelity PNGs for Adobe apps where inline SVG colors were wrong */

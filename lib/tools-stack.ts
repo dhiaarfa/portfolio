@@ -47,6 +47,11 @@ export const toolsStackGroups: ToolGroup[] = [
       { name: "Midjourney", slug: "midjourney" },
       { name: "Claude", slug: "claude" },
       { name: "OpenRouter", slug: "openrouter" },
+      // Added per Dhia's own stated workflow (item 4.9 on the master
+      // checklist: "you mentioned using way more tools than even the CVs
+      // show"). Cursor is confirmed as an AI-native coding tool he
+      // integrates into his workflow.
+      { name: "Cursor", slug: "cursor" },
     ],
   },
   {
