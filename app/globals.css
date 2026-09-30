@@ -178,38 +178,57 @@ html.custom-cursor-active * {
   box-shadow: 0 8px 28px color-mix(in oklab, var(--site-accent) 25%, transparent) !important;
 }
 
-/* ─── BUTTONS (unified accent) ─── */
-.btn-green {
-  display: inline-flex; align-items: center; gap: var(--space-1);
-  background: var(--site-accent); color: white;
-  font-size: 14px; font-weight: 600;
-  padding: 12px 24px; border-radius: 9999px;
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--site-accent) 30%, transparent);
-  border: none; cursor: pointer; white-space: nowrap;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+/* ─── BUTTONS (unified accent) ───
+ * Wrapped in @layer components (Sep 30 fix): these were plain, unlayered
+ * rules while every Tailwind utility class lives inside Tailwind v4's own
+ * `utilities` layer. Per the CSS Cascade Layers spec, ANY unlayered rule
+ * always wins over ANY layered rule for the same property, regardless of
+ * specificity or source order -- so `display: inline-flex` here was
+ * silently beating Tailwind's `hidden`/`md:inline-flex`/`md:hidden` on
+ * every element that combined `.btn-green` with a responsive-visibility
+ * utility. That's exactly what caused the navbar's "Book a free call"
+ * button to render fully expanded (with the calendar-icon compact button
+ * ALSO showing) at every viewport width, overflowing the mobile controls
+ * cluster and visually covering the logo/avatar (Dhia's screenshot report,
+ * Sep 30). Putting these in @layer components restores the intended
+ * Tailwind layer order (base < components < utilities), so ordinary
+ * (non-`!`) utility classes can once again correctly show/hide/override
+ * these buttons by breakpoint. */
+@layer components {
+  .btn-green {
+    display: inline-flex; align-items: center; gap: var(--space-1);
+    background: var(--site-accent); color: white;
+    font-size: 14px; font-weight: 600;
+    padding: 12px 24px; border-radius: 9999px;
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--site-accent) 30%, transparent);
+    border: none; cursor: pointer; white-space: nowrap;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .btn-green:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 4px 20px color-mix(in oklab, var(--site-accent) 35%, transparent);
+    transform: translateY(-2px);
+  }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: #334155;
+    font-size: 14px; font-weight: 500;
+    padding: 11px 24px; border-radius: 14px;
+    border: 1.5px solid #e2e8f0;
+    cursor: pointer; white-space: nowrap;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .btn-outline:hover {
+    border-color: var(--site-accent); color: var(--site-accent);
+    background: color-mix(in oklab, var(--site-accent) 8%, transparent);
+  }
 }
-.btn-green:hover {
-  filter: brightness(1.1);
-  box-shadow: 0 4px 20px color-mix(in oklab, var(--site-accent) 35%, transparent);
-  transform: translateY(-2px);
+@layer components {
+  .dark .btn-outline { color: #F5F5F5; border-color: #1F1F1F; }
+  .dark .btn-outline:hover { border-color: var(--site-accent); color: var(--site-accent); background: color-mix(in oklab, var(--site-accent) 12%, transparent); }
 }
-.btn-outline {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: transparent; color: #334155;
-  font-size: 14px; font-weight: 500;
-  padding: 11px 24px; border-radius: 14px;
-  border: 1.5px solid #e2e8f0;
-  cursor: pointer; white-space: nowrap;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-.btn-outline:hover {
-  border-color: var(--site-accent); color: var(--site-accent);
-  background: color-mix(in oklab, var(--site-accent) 8%, transparent);
-}
-.dark .btn-outline { color: #F5F5F5; border-color: #1F1F1F; }
-.dark .btn-outline:hover { border-color: var(--site-accent); color: var(--site-accent); background: color-mix(in oklab, var(--site-accent) 12%, transparent); }
 
 /* ─── RTL Arabic font ─── */
 [dir="rtl"] {
