@@ -28,6 +28,22 @@ const nextConfig = {
       // live there as a compact "My Journey" card) — keep old links/
       // bookmarks/search results working instead of 404ing.
       { source: "/about", destination: "/", permanent: true },
+      // Sep 30 SEO fix: metadataBase, every canonical tag, and every
+      // OpenGraph/JSON-LD url in app/layout.tsx all declare the apex
+      // domain (dhia-portfolio.com, no www) as canonical -- but if
+      // www.dhia-portfolio.com is also added as a domain in Vercel and
+      // serves the same content without redirecting, that's a real
+      // canonical/host mismatch (search engines can see it as two copies
+      // of the same site with conflicting signals about which one is
+      // "real"). This host-based redirect enforces the apex as canonical
+      // at the framework level, independent of however the domains are
+      // configured in Vercel's dashboard.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.dhia-portfolio.com" }],
+        destination: "https://dhia-portfolio.com/:path*",
+        permanent: true,
+      },
     ]
   },
   
