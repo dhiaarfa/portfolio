@@ -3,7 +3,7 @@ import type { Viewport } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
-import { Cairo } from "next/font/google"
+import { Cairo, Inter } from "next/font/google"
 import { cn } from "@/lib/utils"
 import MotionProvider from "@/components/motion-provider"
 import GlobalComponents from "@/components/global-components"
@@ -12,9 +12,18 @@ import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ViewTransitions } from "next-view-transitions"
 
-// Typography: General Sans via Fontshare is now the site's single principal
-// typeface (replacing the earlier Clash Display + Satoshi pairing, per
-// Dhia's reference screenshot of another portfolio's hero); Cairo for Arabic
+// Typography (Sep 30): Inter is now the site's single principal typeface
+// (replacing General Sans/Fontshare, which is no longer loaded anywhere --
+// see globals.css for the --font-sans token this feeds). Cairo stays for
+// Arabic, since Inter has no Arabic glyphs; Quicksand/Fraunces stay as
+// deliberate decorative accents on specific hero elements, untouched.
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-inter",
+  display: "swap",
+})
+
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -97,26 +106,26 @@ export default function RootLayout({
       lang="en"
       dir="ltr"
       suppressHydrationWarning
-      className={`scroll-smooth theme-transition ${cairo.variable}`}
+      className={`scroll-smooth theme-transition ${inter.variable} ${cairo.variable}`}
     >
       <head>
         <link rel="icon" href="/favicon-192.png" sizes="any" />
-        <link
-          rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap"
-        />
-        {/* Quicksand: rounded, friendly display font used specifically for the
-            homepage hero bio line (per Dhia's reference screenshot), kept
-            separate from the site's General Sans typeface so it doesn't
-            affect any other text on the site.
+        {/* General Sans/Fontshare removed Sep 30 -- Inter (loaded via
+            next/font/google above, self-hosted, no runtime request to
+            Fontshare) is now the site's default typeface. See globals.css
+            for the --font-sans token.
             Fraunces: italic serif accent used only for the rotating-role
-            word in the homepage hero (per Dhia's second reference screenshot
-           , the "end to end." style italic flourish under a headline). */}
+            word in the homepage hero (per Dhia's reference screenshot, the
+            "end to end." style italic flourish under a headline) -- kept as
+            a deliberate exception. Quicksand was imported here but never
+            actually applied anywhere in the codebase (no .font-* class or
+            inline style referenced it), so it's dropped as dead weight
+            rather than carried forward unused. */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fraunces:ital,wght@1,500;1,600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,500;1,600&display=swap"
         />
         <style>{`
           :root {
@@ -133,7 +142,6 @@ export default function RootLayout({
           body {
             background-color: hsl(var(--background));
             color: hsl(var(--foreground));
-            font-family: 'General Sans', var(--font-cairo), system-ui, sans-serif;
           }
         `}</style>
         <link rel="dns-prefetch" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com" />
@@ -249,7 +257,17 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="light"
           enableSystem={false}
-          storageKey="theme-preference"
+          // Bumped Sep 30 per Dhia's "restore light mode as default" ask:
+          // the provider was already correctly configured for light-by-
+          // default (enableSystem is false, so OS dark-mode preference was
+          // never the cause), but any visitor -- including Dhia himself,
+          // from earlier testing -- who'd previously toggled dark had that
+          // choice persisted under the old key and kept seeing dark on
+          // return visits. Changing the key invalidates every old stored
+          // value so everyone falls back to the real default (light) once,
+          // while the toggle itself still works and persists normally
+          // from here on under the new key.
+          storageKey="theme-preference-v2"
           enableColorScheme={true}
           themes={["light", "dark"]}
           disableTransitionOnChange={false}

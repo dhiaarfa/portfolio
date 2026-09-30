@@ -393,7 +393,12 @@ html.custom-cursor-active * {
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  /* Site default typeface (Sep 30): Inter, loaded in app/layout.tsx via
+     next/font/google as --font-inter. Cairo is inserted right after it
+     (not at the very end) so Arabic glyphs -- which Inter doesn't have --
+     still resolve to Cairo's design instead of falling through to a
+     generic system font; Latin text is unaffected since Inter covers it. */
+  --font-sans: var(--font-inter), var(--font-cairo), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   /* These wrap the raw "H S% L%" triplets below in hsl(...) so the Tailwind
      utilities generated from them (bg-popover, bg-card, bg-background,
      text-foreground, border-border, and every shadcn primitive built on
@@ -473,7 +478,11 @@ html.custom-cursor-active * {
   }
 
   body {
-    font-family: 'General Sans', var(--font-cairo), 'Noto Color Emoji', 'Apple Color Emoji', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "cv11", "ss01", "ss03";
     @apply bg-background text-foreground;
   }
 
@@ -493,7 +502,7 @@ html.custom-cursor-active * {
   h5,
   h6 {
     letter-spacing: 0.005em;
-    font-family: 'General Sans', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
   }
 
   /* Coherent default weight per heading level — a plain <h1>/<h2>/<h3> with
@@ -504,7 +513,13 @@ html.custom-cursor-active * {
      every heading bold-by-default; a utility class on a specific heading
      (e.g. font-black on a hero h1) still wins, since utilities load after
      this base layer. */
-  h1 { font-size: clamp(2.75rem, 7.5vw, 5.25rem); font-weight: 800; }
+  /* h1's clamp floor is 2.75rem (44px), always past the 40px "large title"
+     threshold, so it gets Inter's tight tracking-[-0.04em]/leading-none
+     treatment site-wide by default here rather than needing that pair of
+     utility classes repeated on every hero/page h1 individually. h2/h3 can
+     fall below 40px on small viewports (their clamps dip to 28px), so they
+     keep the gentler shared letter-spacing above instead. */
+  h1 { font-size: clamp(2.75rem, 7.5vw, 5.25rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
   h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; }
   h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 700; }
   h4, h5, h6 { font-weight: 600; }
@@ -514,30 +529,25 @@ html.custom-cursor-active * {
   button,
   li,
   span {
-    font-family: 'General Sans', var(--font-cairo), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
   }
 }
 
 /* Utility font classes */
-/* .font-display and .font-heading were missing var(--font-cairo) from their
-   fallback chain (only .font-body had it) -- General Sans has no Arabic
-   glyphs, so every heading site-wide silently fell back past it to a
-   generic system-ui Arabic font while body text correctly used Cairo,
-   making headings and paragraphs visibly different typefaces in Arabic
-   (reported as "incoherence in fonts"). Adding Cairo here only changes
-   which font Arabic *glyphs* resolve to -- Latin text still renders in
-   General Sans exactly as before. */
+/* Cairo is already folded into --font-sans itself (see the @theme inline
+   block above), so these three just point at the shared token now --
+   General Sans is gone from the codebase entirely as of Sep 30. */
 .font-display {
-  font-family: 'General Sans', var(--font-cairo), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   letter-spacing: 0.01em;
 }
 
 .font-heading {
-  font-family: 'General Sans', var(--font-cairo), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
 }
 
 .font-body {
-  font-family: 'General Sans', var(--font-cairo), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   letter-spacing: 0.005em;
 }
 
@@ -595,7 +605,7 @@ html.custom-cursor-active * {
    different family, and no explicit weight) is very likely what read as
    "fonts not coherent" between sections. */
 .font-serif {
-  font-family: 'General Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-weight: 700;
   letter-spacing: 0.005em;
 }
@@ -605,10 +615,13 @@ html.custom-cursor-active * {
    instead of each page picking its own clamp() range and mixing
    font-extrabold with font-black. */
 .h1-hero {
-  font-family: 'General Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-weight: 800;
-  letter-spacing: -0.01em;
-  line-height: 0.95;
+  /* Tightened to -0.04em/leading-none for Inter (Sep 30 font switch) -- its
+     upper clamp bound (4rem/64px) is well past the 40px "large title"
+     threshold where tight tracking reads best. */
+  letter-spacing: -0.04em;
+  line-height: 1;
   font-size: clamp(2.25rem, 6vw, 4rem);
   text-wrap: balance;
 }
@@ -620,7 +633,7 @@ html.custom-cursor-active * {
    and visibly inflated the whole hero section. Same family/weight, smaller
    scale and slightly looser leading so a full sentence reads comfortably. */
 .h1-hero-tagline {
-  font-family: 'General Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-weight: 700;
   letter-spacing: -0.005em;
   line-height: 1.2;
@@ -632,10 +645,12 @@ html.custom-cursor-active * {
    studies, and the Freebies hero, which read as a page title rather than a
    full marketing headline and don't need hero-scale type. */
 .h1-article {
-  font-family: 'General Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-weight: 800;
-  letter-spacing: -0.005em;
-  line-height: 1.1;
+  /* Tightened for Inter (Sep 30) -- upper clamp bound (3rem/48px) clears
+     the 40px "large title" threshold even though the lower bound doesn't. */
+  letter-spacing: -0.04em;
+  line-height: 1;
   font-size: clamp(1.875rem, 4vw, 3rem);
   text-wrap: balance;
 }
