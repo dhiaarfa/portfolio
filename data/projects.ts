@@ -9,12 +9,12 @@ import type { Project } from "@/components/sections/ProjectStack"
 
 export const webProjects: Project[] = [
   {
-    name: "Digimytch Talent Hub",
+    name: "DigiMyTech Talent Hub",
     meta: "2026 · Graduation project (PFE) · Solo build",
     description:
       "AI-powered job platform built solo across 5 Scrum sprints — multi-LLM routing via OpenRouter, 109 automated tests across 24 files, deployed on Vercel.",
     tags: ["Next.js 15", "Supabase", "AI SDK"],
-    image: "/projects/digimytch-talent-hub.webp",
+    image: "/images/projects/digimytch/landing.png",
   },
   {
     name: "dhia-portfolio.com",
@@ -29,7 +29,7 @@ export const webProjects: Project[] = [
     meta: "Client project · Web",
     description: "TODO: 1-2 sentence description of the CRIT Tunisie web project (what it does, your role).",
     tags: ["TODO"],
-    image: "/projects/crit-tunisie-web.webp",
+    image: "/images/crit-screenshots/homepage.png",
     href: "https://crit-tunisie.net",
   },
   {
@@ -37,7 +37,7 @@ export const webProjects: Project[] = [
     meta: "Client project · Web",
     description: "TODO: 1-2 sentence description of the Best Dates & Fruits web project (what it does, your role).",
     tags: ["TODO"],
-    image: "/projects/best-dates-and-fruits.webp",
+    image: "/images/bdaf-thumbnail.png",
     href: "https://bestdatesandfruits.com",
   },
 ]
@@ -48,14 +48,14 @@ export const designProjects: Project[] = [
     meta: "Event · Branding & campaign",
     description: "Branded and ran the campaign for the event: 200+ attendees and 800+ leads.",
     tags: ["Branding", "Campaign"],
-    image: "/projects/meetup-pro.webp",
+    image: "/images/meetuppro-thumbnail.png",
   },
   {
-    name: "Tafeni",
+    name: "Tafani Travel",
     meta: "Client project · Branding",
-    description: "TODO: 1-2 sentence description of the Tafeni branding project (what it is, what you delivered).",
+    description: "TODO: 1-2 sentence description of the Tafani Travel branding project (what it is, what you delivered).",
     tags: ["TODO"],
-    image: "/projects/tafeni.webp",
+    image: "/images/tafani-white-png.png",
   },
   {
     name: "Nakkla",
@@ -65,11 +65,11 @@ export const designProjects: Project[] = [
     image: "/projects/nakkla.webp",
   },
   {
-    name: "One Space",
+    name: "Lone Space",
     meta: "Client project · Branding",
-    description: "TODO: 1-2 sentence description of the One Space branding project (what it is, what you delivered).",
+    description: "TODO: 1-2 sentence description of the Lone Space branding project (what it is, what you delivered).",
     tags: ["TODO"],
-    image: "/projects/one-space.webp",
+    image: "/images/lone-space-gold.png",
   },
   {
     name: "CRIT Tunisie",
