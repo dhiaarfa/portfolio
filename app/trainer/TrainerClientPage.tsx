@@ -76,7 +76,7 @@ export default function TrainerClientPage() {
           }
         >
             <p className="label text-green-400 mb-4">{t("trainerHeroTitle")}</p>
-            <h1 className="h1-hero text-white mb-4 max-w-3xl">
+            <h1 className="h1-hero-tagline text-white mb-4 max-w-3xl">
               {t("trainerHeroHeadline")}
             </h1>
             <p className="text-slate-300 text-[17px] max-w-2xl leading-relaxed mb-8">

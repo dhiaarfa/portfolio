@@ -180,7 +180,11 @@ export default function HomePageClient() {
             <span className="text-accent font-semibold">Dhia</span>
           </p>
           <h1 className="h1-hero-tagline text-slate-900 dark:text-white mb-2 transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]">
-            {t("homeHeroTagline")}
+            {/* Dhia's ask: a real line break after "build." rather than
+                whatever the browser's own wrap happens to land on. */}
+            {t("homeHeroTaglinePart1")}
+            <br />
+            {t("homeHeroTaglinePart2")}
           </h1>
           <AnimatedRole />
           {/* Implementation-prompts pass (Sep 2026), P2 "Kill duplicate

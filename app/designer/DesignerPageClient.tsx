@@ -133,7 +133,7 @@ export default function DesignerPageClient() {
           }
         >
           <p className="label mb-4 text-accent">{t("designerHeroLabel")}</p>
-          <h1 className="h1-hero mb-5 text-foreground">
+          <h1 className="h1-hero-tagline mb-5 text-foreground">
             {t("designerHeroHeadline")}
           </h1>
           <p className="mb-8 max-w-md text-[17px] leading-relaxed text-muted-foreground">

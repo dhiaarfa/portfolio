@@ -110,7 +110,7 @@ export default function DeveloperPageClient() {
             <span className="text-slate-300">dhia --role developer</span>
             <span className="text-accent animate-[pulse_1s_ease-in-out_infinite] font-bold ml-1">█</span>
           </div>
-          <h1 className="h1-hero mb-4">
+          <h1 className="h1-hero-tagline mb-4">
             {t("devHeroHeadlinePart1")}<br /><span className="text-accent">{t("devHeroHeadlinePart2")}</span>
           </h1>
           <p className="text-muted-foreground text-[17px] leading-relaxed max-w-md mb-8">
