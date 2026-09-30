@@ -142,6 +142,7 @@ export default function ProjectStack({ eyebrow, title, subtitle, projects }: Pro
                       alt={project.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 380px"
+                      quality={92}
                       className={styles.coverImg}
                     />
                   </div>

@@ -98,9 +98,18 @@
   overflow: hidden;
   text-decoration: none;
   color: inherit;
+  transition: box-shadow 0.35s ease;
 }
 a.card {
   cursor: pointer;
+}
+/* Hover only affects box-shadow -- never transform/opacity, which stay
+ * fully owned by the scroll engine's inline styles every frame. */
+a.card:hover {
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.03),
+    0 32px 70px -20px rgba(0, 0, 0, 0.3),
+    0 10px 26px -8px rgba(0, 0, 0, 0.14);
 }
 .card::after {
   /* greying veil for covered cards */
@@ -119,6 +128,7 @@ a.card {
   overflow: hidden;
   background: #111;
   position: relative;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 .coverInner {
   position: absolute;
@@ -128,6 +138,7 @@ a.card {
 }
 .coverImg {
   object-fit: cover;
+  image-rendering: -webkit-optimize-contrast;
 }
 .body {
   flex: 1;
@@ -173,6 +184,11 @@ a.card {
   background: var(--chip-bg);
   padding: 6px 12px;
   border-radius: 999px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+a.card:hover .chip {
+  background: #e6e6e4;
+  color: #3d3d3d;
 }
 .plus {
   width: 36px;
@@ -183,7 +199,7 @@ a.card {
   color: #fff;
   display: grid;
   place-items: center;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.25s ease;
   flex-shrink: 0;
 }
 .plus svg {
@@ -192,6 +208,7 @@ a.card {
 }
 .card:hover .plus {
   transform: rotate(90deg);
+  background: var(--site-accent, #1a1a1a);
 }
 
 @media (max-width: 767px) {

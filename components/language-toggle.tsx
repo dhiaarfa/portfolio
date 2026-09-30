@@ -1,55 +1,59 @@
 "use client"
 
 import { useRouter, usePathname } from "next/navigation"
+import { Languages, Check } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { getLocalizedPath } from "@/lib/locale-routes"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
-const order = ["en", "fr", "ar"] as const
+const LANGUAGES = [
+  { code: "en", label: "English" },
+  { code: "fr", label: "Français" },
+  { code: "ar", label: "العربية" },
+] as const
 
 export function LanguageToggle() {
   const { language, setLanguage } = useLanguage()
   const router = useRouter()
   const pathname = usePathname()
 
-  const handleClick = () => {
-    const idx = order.indexOf(language)
-    const next = order[(idx + 1) % order.length]
-
-    // On a route that has a real translated /fr or /ar twin (see
-    // lib/locale-routes.ts), navigate there so the URL and <html lang>
-    // are correct from the server, not just the in-page text. Everywhere
-    // else (e.g. /case-study/*), fall back to the original in-place
-    // context switch exactly as before.
+  const handleSelect = (next: (typeof LANGUAGES)[number]["code"]) => {
+    if (next === language) return
     const target = pathname ? getLocalizedPath(pathname, next) : null
-    if (target && target !== pathname) {
-      setLanguage(next)
-      router.push(target)
-      return
-    }
-
     setLanguage(next)
+    if (target && target !== pathname) {
+      router.push(target)
+    }
   }
 
   return (
-    <button
-      type="button"
-      onClick={handleClick}
-      // Includes the visible "EN"/"FR"/"AR" text in the accessible name on purpose --
-      // a plain "Toggle language" label doesn't include what's visibly displayed,
-      // which is a real WCAG 2.5.3 mismatch a Lighthouse audit flagged.
-      aria-label={`Language: ${language.toUpperCase()}, tap to switch`}
-      // Announces the language change to screen readers -- the visible
-      // "EN"/"FR"/"AR" text swaps silently otherwise, so anyone not looking
-      // at the button has no signal the switch happened (a real audit
-      // finding: aria-live missing on this control).
-      aria-live="polite"
-      // Same bg-slate-100/90 + ring-1 treatment as every other icon-only
-      // navbar control, for one consistent button language instead of two.
-      className="w-9 h-9 rounded-full bg-slate-100/90 dark:bg-muted/70 ring-1 ring-black/10 dark:ring-white/10 hover:scale-105 flex items-center justify-center gap-1 transition-all duration-200"
-    >
-      <span className="text-[0.65rem] font-semibold uppercase text-slate-600 dark:text-slate-300">
-        {language}
-      </span>
-    </button>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          aria-label={`Language: ${language.toUpperCase()}, open language menu`}
+          className="w-9 h-9 rounded-full bg-slate-100/90 dark:bg-muted/70 ring-1 ring-black/10 dark:ring-white/10 hover:scale-105 flex items-center justify-center transition-all duration-200"
+        >
+          <Languages className="w-4 h-4 text-slate-600 dark:text-slate-300" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-[9rem]">
+        {LANGUAGES.map(({ code, label }) => (
+          <DropdownMenuItem
+            key={code}
+            onSelect={() => handleSelect(code)}
+            className="flex items-center justify-between gap-2 cursor-pointer"
+          >
+            <span>{label}</span>
+            {language === code ? <Check className="w-3.5 h-3.5 text-primary" /> : null}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

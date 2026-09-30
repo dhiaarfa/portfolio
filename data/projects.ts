@@ -12,14 +12,15 @@ export const webProjects: Project[] = [
     name: "DigiMyTech Talent Hub",
     meta: "2026 · Graduation project (PFE) · Solo build",
     description:
-      "AI-powered job platform built solo across 5 Scrum sprints — multi-LLM routing via OpenRouter, 109 automated tests across 24 files, deployed on Vercel.",
+      "Built solo, end to end, across 5 Scrum sprints -- multi-LLM routing through OpenRouter, 109 automated tests spanning 24 files, deployed on Vercel. My graduation project, built the way I'd build for a real client.",
     tags: ["Next.js 15", "Supabase", "AI SDK"],
     image: "/images/projects/digimytch/landing.png",
   },
   {
     name: "dhia-portfolio.com",
     meta: "2026 · Personal site",
-    description: "My portfolio, built with Next.js 15, Tailwind v4 and Framer Motion, deployed on Vercel.",
+    description:
+      "The site you're on right now -- Next.js 15, Tailwind v4, and Framer Motion, shipped on Vercel. Click through for a closer look at the code and the motion details.",
     tags: ["Next.js", "Tailwind v4", "Framer Motion"],
     image: "/projects/dhia-portfolio.webp",
     href: "https://dhia-portfolio.com",
@@ -28,7 +29,7 @@ export const webProjects: Project[] = [
     name: "CRIT Tunisie",
     meta: "Client project · Web developer",
     description:
-      "Production Next.js site clarifying services, job offers, and contact paths for talents and companies -- shipped during my developer role at CRIT (Sep-Dec 2025).",
+      "A production Next.js site I shipped as CRIT's developer (Sep-Dec 2025), built to make it simple for talents and companies to find the right service and reach out. Have a look.",
     tags: ["Next.js", "React", "Tailwind"],
     image: "/images/crit-screenshots/homepage.png",
     href: "https://crit-tunisie.net",
@@ -37,7 +38,7 @@ export const webProjects: Project[] = [
     name: "Best Dates & Fruits",
     meta: "Client project · Web",
     description:
-      "Marketing site for a premium Tunisian dates brand -- product sections, seasonal storytelling, and a clear contact-to-conversion path.",
+      "A marketing site for a premium Tunisian dates brand -- product storytelling, seasonal sections, and a clean path from browsing to contact. See it live.",
     tags: ["Next.js", "Tailwind"],
     image: "/images/bdaf-thumbnail.png",
     href: "https://bestdatesandfruits.com",
@@ -48,7 +49,8 @@ export const designProjects: Project[] = [
   {
     name: "MeetUp Pro",
     meta: "Event · Branding & campaign",
-    description: "Branded and ran the campaign for the event: 200+ attendees and 800+ leads.",
+    description:
+      "Owned the branding and campaign end to end for this event -- and it worked: 200+ people through the door and 800+ leads captured.",
     tags: ["Branding", "Campaign"],
     image: "/images/meetuppro-thumbnail.png",
   },
@@ -56,7 +58,7 @@ export const designProjects: Project[] = [
     name: "Tafani Travel",
     meta: "Client project · Branding",
     description:
-      "Logo and brand system for a travel agency -- built for clarity across web, social, and travel collateral.",
+      "A logo and full brand system for a travel agency, designed to stay sharp and consistent everywhere it shows up -- web, social, and printed travel collateral.",
     tags: ["Illustrator", "Figma", "Photoshop"],
     image: "/images/tafani-white-png.png",
   },
@@ -64,7 +66,7 @@ export const designProjects: Project[] = [
     name: "Nakkla",
     meta: "Client project · Packaging",
     description:
-      "Packaging design for Delice Nakkla, a product line under Best Dates & Fruits -- box system and illustration work for their dried-fruit and date treats.",
+      "Packaging design for Delice Nakkla, a Best Dates & Fruits product line -- box system and illustration work that makes dried-fruit treats feel like a gift, not just a snack.",
     tags: ["Packaging", "Illustrator"],
     image: "/projects/nakkla.jpg",
   },
@@ -72,7 +74,7 @@ export const designProjects: Project[] = [
     name: "Lone Space",
     meta: "Client project · Branding",
     description:
-      "Full visual identity for a creative studio -- logotype, gold-foil system, business cards, and brand collateral.",
+      "A full visual identity for this creative studio -- logotype, gold-foil system, business cards, and brand collateral, built to feel as premium as the work it represents.",
     tags: ["Illustrator", "Photoshop", "InDesign"],
     image: "/images/lone-space-gold.png",
   },
@@ -80,7 +82,7 @@ export const designProjects: Project[] = [
     name: "CRIT Tunisie",
     meta: "Client project · Brand identity",
     description:
-      "Logo mark and brand identity for CRIT Tunisie, a corporate recruitment firm -- the mark used across their site, stand designs, and client-facing materials.",
+      "Designed the logo mark and brand identity for CRIT Tunisie, a corporate recruitment firm -- now the face of their site, stand designs, and everything client-facing.",
     tags: ["Illustrator", "Brand Identity"],
     image: "/projects/crit-tunisie-brand.png",
   },
