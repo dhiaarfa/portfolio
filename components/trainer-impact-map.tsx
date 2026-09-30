@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { Radio } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import {
+  DJERBA_OUTLINE,
   MAP_VIEWBOX,
   TUNISIA_OUTLINE,
   internationalLocations,
@@ -49,6 +50,10 @@ export default function TrainerImpactMap() {
 
   const outlinePath = useMemo(
     () => smoothClosedPath(TUNISIA_OUTLINE.map(([lon, lat]) => projectLonLat(lon, lat))),
+    []
+  )
+  const djerbaPath = useMemo(
+    () => smoothClosedPath(DJERBA_OUTLINE.map(([lon, lat]) => projectLonLat(lon, lat))),
     []
   )
 
@@ -107,6 +112,14 @@ export default function TrainerImpactMap() {
                 >
                   <path
                     d={outlinePath}
+                    className="fill-[var(--site-accent)]/[7%] stroke-[var(--site-accent)]"
+                    strokeOpacity={0.4}
+                    strokeWidth={1.5}
+                  />
+                  {/* Djerba -- a real island, rendered as its own separate
+                      closed path rather than joined to the mainland ring. */}
+                  <path
+                    d={djerbaPath}
                     className="fill-[var(--site-accent)]/[7%] stroke-[var(--site-accent)]"
                     strokeOpacity={0.4}
                     strokeWidth={1.5}

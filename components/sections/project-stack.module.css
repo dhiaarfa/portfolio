@@ -51,6 +51,18 @@
   color: #8e8e8e;
 }
 
+/* Header text sits directly on the page background (which flips dark),
+ * unlike the cards themselves -- those keep --card-bg: #ffffff and their
+ * dark text (--ink/--muted) always, by design, in both themes, so only the
+ * .head text needs a dark-mode override here. Without this, "Things I've
+ * built" rendered near-black-on-near-black in dark mode (Dhia's report). */
+:global(.dark) .title {
+  color: #f5f5f5;
+}
+:global(.dark) .sub {
+  color: #b8b8b8;
+}
+
 /* ---------- Stack ---------- */
 .stack {
   position: relative;

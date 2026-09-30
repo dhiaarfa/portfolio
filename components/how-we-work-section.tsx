@@ -12,9 +12,9 @@ import { siteConfig } from "@/lib/site-config"
 // one CTA at the end so it doesn't add a second competing action to the
 // hero (P1 already settled that).
 const STEPS = [
-  { Icon: PhoneCall, titleKey: "howWeWorkStep1Title", descKey: "howWeWorkStep1Desc" },
-  { Icon: FileCheck2, titleKey: "howWeWorkStep2Title", descKey: "howWeWorkStep2Desc" },
-  { Icon: PackageCheck, titleKey: "howWeWorkStep3Title", descKey: "howWeWorkStep3Desc" },
+  { Icon: PhoneCall, titleKey: "homeHowWeWorkStep1Title", descKey: "homeHowWeWorkStep1Desc" },
+  { Icon: FileCheck2, titleKey: "homeHowWeWorkStep2Title", descKey: "homeHowWeWorkStep2Desc" },
+  { Icon: PackageCheck, titleKey: "homeHowWeWorkStep3Title", descKey: "homeHowWeWorkStep3Desc" },
 ] as const
 
 export default function HowWeWorkSection() {
@@ -24,10 +24,10 @@ export default function HowWeWorkSection() {
     <section className="section-compact px-4">
       <div className="max-w-5xl mx-auto">
         <p className="text-xs font-semibold uppercase tracking-widest text-accent text-center mb-1">
-          {t("howWeWorkLabel")}
+          {t("homeHowWeWorkLabel")}
         </p>
         <h2 className="text-xl sm:text-2xl font-bold text-center text-slate-900 dark:text-white mb-8">
-          {t("howWeWorkTitle")}
+          {t("homeHowWeWorkTitle")}
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">

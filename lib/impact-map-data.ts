@@ -51,95 +51,64 @@ export const internationalLocations: InternationalLocation[] = [
   { id: "qatar", flagEmoji: "\u{1F1F6}\u{1F1E6}", nameKey: "mapLocQatar", exampleKey: "mapExQatar" },
 ]
 
-// Tunisia coastline/border, as [lon, lat] pairs, clockwise from Tabarka in
-// the NW. Re-digitized again Sep 2026 -- the previous hand-traced version
-// (itself a fix for an even earlier wrong silhouette) was still off, so
-// this one is generated directly from the accurate governorate-boundary
-// reference image Dhia supplied: the shape's exterior contour was
-// extracted from that image with OpenCV (threshold -> largest external
-// contour -> Douglas-Peucker simplification to ~70 points), then each
-// pixel was converted to real lon/lat via an affine fit against Tunisia's
-// published bounding coordinates (~7.52-11.50E, ~30.23-37.35N). This is
-// the actual traced shape, not a manual approximation of named landmarks.
-// Still cropped at 32N (south of Gabes/Medenine) to keep the empty
-// far-south desert from dominating the map, same reasoning as before --
-// every dot above sits in the northern two-thirds this outline covers;
-// the crop point is a clean interpolated cut at exactly lat 32, not a
-// hand-picked approximation.
+// Tunisia mainland coastline/border, as [lon, lat] pairs. Rebuilt Sep 2026
+// from real Natural Earth boundary data (world-atlas's countries-10m.json,
+// via topojson-client/topojson-simplify), not hand-traced -- extracted the
+// real Tunisia MultiPolygon, clipped the mainland ring to lat >= 32N with
+// Sutherland-Hodgman half-plane clipping (same crop rationale as before:
+// keeps the empty far-south desert from dominating the map; every dot
+// above sits in the northern two-thirds this outline covers), then
+// simplified with Douglas-Peucker to ~130 points -- far more accurate than
+// the previous ~70-point manual approximation, verified visually against
+// the projection math before being applied here (Cap Bon, the Hammamet and
+// Gabes gulf indents, the Sousse/Monastir/Mahdia Sahel bulge, and the
+// Kasserine/Le Kef/Jendouba western border all land correctly).
 export const TUNISIA_OUTLINE: [number, number][] = [
-  [8.797, 36.946], // Tabarka
-  [9.162, 37.23],
-  [9.717, 37.35], // Cap Blanc -- northernmost point
-  [9.817, 37.322],
-  [9.833, 37.251],
-  [10.008, 37.251], // Bizerte area
-  [10.223, 37.152],
-  [10.148, 36.982],
-  [10.306, 36.84],
-  [10.256, 36.776],
-  [10.298, 36.684],
-  [10.447, 36.705],
-  [10.513, 36.833],
-  [10.654, 36.854],
-  [10.928, 37.067], // El Haouaria -- Cap Bon tip (Ras Addar)
-  [11.069, 36.819], // Kelibia
-  [10.944, 36.712],
-  [10.77, 36.394],
-  [10.513, 36.294], // Hammamet -- gulf indent
-  [10.447, 36.039],
-  [10.588, 35.763], // Sousse
-  [10.762, 35.713],
-  [10.812, 35.614],
-  [11.011, 35.536], // Mahdia -- Sahel bulge
-  [11.002, 35.232],
-  [11.102, 35.133],
-  [10.87, 34.863],
-  [10.828, 34.707], // Sfax
-  [10.58, 34.53],
-  [10.538, 34.431],
-  [10.09, 34.212],
-  [10.008, 33.999], // Gabes -- gulf indent
-  [10.14, 33.772],
-  [10.389, 33.588],
-  [10.629, 33.638],
-  [10.679, 33.829],
-  [10.87, 33.822],
-  [11.002, 33.73],
-  [10.878, 33.581],
-  [11.061, 33.482], // Zarzis
-  [11.052, 33.326],
-  [11.235, 33.227],
-  [11.243, 33.149],
-  [11.45, 33.106], // Ben Gardane
-  [11.392, 32.582],
-  [11.5, 32.412], // Ras Ajdir, Libya border
-  [10.837, 32.086],
-  [10.775, 32], // cut at 32N (east) -- see file header
-  [9.033, 32], // cut at 32N (west) -- see file header
-  [9.021, 32.044],
-  [8.366, 32.476],
-  [8.333, 32.759],
-  [8.142, 33.014],
-  [7.794, 33.135],
-  [7.769, 33.347],
-  [7.595, 33.581],
-  [7.52, 33.857],
-  [7.57, 34.013],
-  [7.802, 34.162],
-  [7.893, 34.353], // Kasserine area, western border
-  [8.216, 34.509],
-  [8.324, 34.991],
-  [8.415, 35.097],
-  [8.316, 35.239],
-  [8.357, 35.487],
-  [8.258, 35.721],
-  [8.366, 36.351], // Le Kef
-  [8.2, 36.394],
-  [8.192, 36.472],
-  [8.44, 36.606], // Jendouba
-  [8.415, 36.727],
-  [8.598, 36.783],
-  [8.614, 36.925],
+  [10.765, 32.0], [9.063, 32.0], [9.02, 32.105], [8.332, 32.526],
+  [8.282, 32.837], [8.087, 33.095], [7.724, 33.232], [7.709, 33.414],
+  [7.497, 33.801], [7.479, 33.894], [7.519, 34.095], [7.63, 34.199],
+  [7.767, 34.245], [7.832, 34.414], [8.095, 34.53], [8.228, 34.637],
+  [8.21, 34.681], [8.271, 34.763], [8.249, 34.902], [8.3, 35.067],
+  [8.433, 35.241], [8.293, 35.326], [8.289, 35.403], [8.336, 35.508],
+  [8.329, 35.621], [8.242, 35.827], [8.357, 36.43], [8.167, 36.491],
+  [8.17, 36.526], [8.429, 36.663], [8.462, 36.732], [8.411, 36.785],
+  [8.642, 36.837], [8.602, 36.94], [8.825, 36.979], [9.038, 37.153],
+  [9.211, 37.234], [9.344, 37.235], [9.743, 37.345], [9.859, 37.328],
+  [9.862, 37.271], [9.772, 37.213], [9.808, 37.154], [9.88, 37.149],
+  [9.927, 37.197], [9.819, 37.227], [9.884, 37.264], [10.06, 37.264],
+  [10.255, 37.191], [10.273, 37.178], [10.129, 37.159], [10.219, 37.129],
+  [10.226, 37.095], [10.176, 37.077], [10.183, 37.028], [10.348, 36.881],
+  [10.298, 36.822], [10.255, 36.847], [10.19, 36.798], [10.248, 36.786],
+  [10.273, 36.817], [10.356, 36.73], [10.518, 36.756], [10.568, 36.864],
+  [10.734, 36.896], [10.888, 37.006], [10.903, 37.05], [11.014, 37.085],
+  [11.061, 37.063], [11.047, 37.021], [11.137, 36.871], [11.022, 36.788],
+  [10.798, 36.452], [10.55, 36.378], [10.478, 36.217], [10.474, 36.112],
+  [10.518, 35.981], [10.622, 35.842], [10.744, 35.77], [10.824, 35.78],
+  [10.842, 35.699], [11.04, 35.638], [11.054, 35.614], [11.018, 35.603],
+  [11.014, 35.555], [11.086, 35.506], [11.05, 35.459], [11.043, 35.334],
+  [11.158, 35.219], [11.112, 35.206], [11.014, 35.093], [11.018, 35.033],
+  [10.917, 34.957], [10.917, 34.873], [10.86, 34.838], [10.87, 34.797],
+  [10.701, 34.655], [10.626, 34.633], [10.582, 34.532], [10.431, 34.497],
+  [10.377, 34.424], [10.287, 34.414], [10.125, 34.326], [10.006, 34.171],
+  [10.071, 33.946], [10.33, 33.703], [10.489, 33.647], [10.716, 33.706],
+  [10.737, 33.603], [10.672, 33.546], [10.737, 33.478], [10.91, 33.539],
+  [10.932, 33.575], [10.906, 33.617], [10.935, 33.637], [11.043, 33.618],
+  [11.112, 33.541], [11.101, 33.363], [11.295, 33.287], [11.133, 33.311],
+  [11.122, 33.281], [11.169, 33.222], [11.432, 33.193], [11.353, 33.259],
+  [11.504, 33.181], [11.45, 32.637], [11.562, 32.507], [11.547, 32.435],
+  [10.874, 32.136],
+]
+
+// Djerba island, as [lon, lat] pairs, rendered as its own separate closed
+// path in the map component (it's a real island, not attached to the
+// mainland) -- same Natural Earth extraction and simplification as the
+// mainland outline above.
+export const DJERBA_OUTLINE: [number, number][] = [
+  [10.888, 33.64], [10.87, 33.654], [10.878, 33.688], [10.827, 33.73],
+  [10.809, 33.735], [10.78, 33.703], [10.762, 33.699], [10.741, 33.715],
+  [10.726, 33.759], [10.748, 33.813], [10.737, 33.885], [10.773, 33.897],
+  [10.899, 33.88], [10.932, 33.897], [10.993, 33.841], [11.061, 33.801],
+  [10.971, 33.738], [10.957, 33.698], [10.957, 33.733], [10.942, 33.728],
 ]
 
 export const MAP_VIEWBOX = { width: 360, height: 580 }

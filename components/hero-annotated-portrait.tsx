@@ -331,8 +331,16 @@ export default function HeroAnnotatedPortrait({
           </>
         ),
         anchor: { x: mx(58), y: 10 },
-        card: { x: mx(92), y: 12 },
-        cardMaxWidth: 230,
+        // x was 92 with a 230px card (half-width ~18% of the ~640px
+        // stage) -- its right edge landed past the container's own right
+        // edge, which is fine when there's page margin outside it but
+        // gets clipped by the viewport at widths where there isn't (the
+        // exact bug Dhia screenshotted: the card cut off by the browser
+        // edge). Pulled in to 74 with a slightly narrower max-width so the
+        // right edge lands safely inside the stage at every width this
+        // component renders at (lg breakpoint and up).
+        card: { x: mx(74), y: 12 },
+        cardMaxWidth: 210,
         bracket: true,
         delay: 0,
       },
