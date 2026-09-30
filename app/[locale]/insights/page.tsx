@@ -10,13 +10,15 @@ type Props = { params: Promise<{ locale: string }> }
 
 const META: Record<"fr" | "ar", { title: string; description: string; breadcrumb: string }> = {
   fr: {
-    title: "Insights, Design, Formation & Développement | Mohamed Dhia",
+    // Sep 30 fix: matches app/insights/page.tsx's English title -- was
+    // missing "Arfa"/"عرفة", inconsistent with every other page's full name.
+    title: "Insights, Design, Formation & Développement | Mohamed Dhia Arfa",
     description:
       "Conseils sur le design graphique, l'animation de formations pour jeunes et le développement web, par Mohamed Dhia Arfa, basé en Tunisie.",
     breadcrumb: "Insights",
   },
   ar: {
-    title: "رؤى في التصميم والتدريب والتطوير | محمد ضياء",
+    title: "رؤى في التصميم والتدريب والتطوير | محمد ضياء عرفة",
     description: "نصائح حول التصميم الجرافيكي، وتيسير التدريبات الشبابية، وتطوير الويب من محمد ضياء عرفة، المقيم في تونس.",
     breadcrumb: "رؤى",
   },

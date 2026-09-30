@@ -141,7 +141,18 @@ export function pageMetadata({
     (openGraph && "description" in openGraph && openGraph.description) || description
 
   return {
-    title,
+    // Sep 30 CRITICAL fix, found live via getComputedStyle/tab-title check
+    // in a real browser: every page here already writes its own complete,
+    // final title (most end in "Mohamed Dhia Arfa" or "Mohamed Dhia"
+    // themselves) -- but returning it as a plain string let the root
+    // layout's title.template ("%s | Mohamed Dhia Arfa") run on top of it,
+    // producing titles like "Web Developer Tunisia | React & Next.js ·
+    // Mohamed Dhia Arfa | Mohamed Dhia Arfa" (name duplicated) live on
+    // /developer, /insights, /trainer and every other route using this
+    // function -- confirmed via each page's actual <title> in a live
+    // browser tab, not just source review. `absolute` bypasses the parent
+    // template entirely so each page's title renders exactly as written.
+    title: { absolute: title },
     description,
     ...(keywords ? { keywords } : {}),
     alternates: {

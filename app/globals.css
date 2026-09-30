@@ -251,8 +251,42 @@ html.custom-cursor-active * {
   .dark .btn-outline:hover { border-color: var(--site-accent); color: var(--site-accent); background: color-mix(in oklab, var(--site-accent) 12%, transparent); }
 }
 
-/* ─── RTL Arabic font ─── */
-[dir="rtl"] {
+/* ─── RTL Arabic font ───
+   Sep 30 CRITICAL fix, found via live getComputedStyle() verification in a
+   real browser: this rule was written as bare `[dir="rtl"] { ... }`, which
+   only matches the element `dir="rtl"` is actually set on (`<html>`) -- it
+   does NOT cascade to descendants via an attribute selector the way
+   inheritance would. Every element that actually renders Arabic text
+   (body, h1-h6, p, a, button, li, span, input, textarea, label) has its
+   own explicit font-family/letter-spacing declared elsewhere (in
+   `@layer base`), which layer-precedence rules make LOWER priority than
+   this unlayered block -- but only for elements this selector actually
+   matches. Since it never matched body/h1/p/etc. at all, those layered
+   declarations had no unlayered competitor here and won by default,
+   silently no-opping this entire block below the <html> tag itself.
+   Confirmed live: computed font-family on /ar's <body> and <h1> was
+   "Inter, ... Cairo, ..." (Inter first) instead of the intended
+   Cairo-primary stack, and h1's letter-spacing/line-height stayed at the
+   Latin defaults (-0.04em / 1) instead of this block's 0 / 1.85. Fixed by
+   explicitly listing every text-bearing descendant so the (still
+   unlayered, still layer-priority-winning) declarations actually reach
+   the elements that render text. */
+[dir="rtl"],
+[dir="rtl"] body,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6,
+[dir="rtl"] p,
+[dir="rtl"] a,
+[dir="rtl"] button,
+[dir="rtl"] li,
+[dir="rtl"] span,
+[dir="rtl"] label,
+[dir="rtl"] input,
+[dir="rtl"] textarea {
   font-family: var(--font-cairo), 'Noto Sans Arabic', var(--font-dm-sans), sans-serif;
   letter-spacing: 0 !important;
   word-spacing: 0.05em;
