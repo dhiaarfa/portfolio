@@ -23,7 +23,7 @@ export const webProjects: Project[] = [
       "The site you're on right now -- Next.js 15, Tailwind v4, and Framer Motion, shipped on Vercel. Click through for a closer look at the code and the motion details.",
     tags: ["Next.js", "Tailwind v4", "Framer Motion"],
     image: "/projects/dhia-portfolio.webp",
-    href: "https://dhia-portfolio.com",
+    href: "https://www.dhia-portfolio.com",
   },
   {
     name: "CRIT Tunisie",

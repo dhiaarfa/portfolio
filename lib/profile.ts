@@ -5,7 +5,20 @@
  * TODO(owner): Confirm items marked below if your records differ.
  */
 
-export const SITE_URL = "https://dhia-portfolio.com"
+// Sep 30 CRITICAL fix: Vercel's actual project configuration serves
+// https://www.dhia-portfolio.com as the primary/production domain and
+// redirects the apex (dhia-portfolio.com) into it -- confirmed live via
+// curl (apex -> 308 -> www). Every canonical URL in this codebase
+// (including a same-day next.config.js redirect forcing the opposite
+// direction, www -> apex) previously assumed the apex was canonical,
+// which combined with Vercel's real apex->www redirect created a live
+// INFINITE REDIRECT LOOP on every single page and on robots.txt/sitemap.xml.
+// Switched to www here (and everywhere this constant is used) to match
+// what Vercel actually serves, and removed the conflicting next.config.js
+// redirect. If apex is preferred as canonical instead, that must be set
+// as the primary domain in Vercel's Project Settings -> Domains first,
+// then this should be reverted.
+export const SITE_URL = "https://www.dhia-portfolio.com"
 
 // Stats verified against CV_General_Detailed_MohamedDhiaArfa.pdf (Aug 2026): 477+ training
 // hours across 51 events to 1,120+ participants. Previous figures (1000+/450+) were stale.

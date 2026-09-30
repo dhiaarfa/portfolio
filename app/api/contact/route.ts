@@ -113,7 +113,7 @@ function buildAutoReplyHTML(firstName: string) {
       <p style="margin:0 0 16px;color:#475569;line-height:1.7;font-size:15px">Thanks for reaching out. I've received your message and will get back to you within 24 hours.</p>
       <p style="margin:0 0 24px;color:#475569;line-height:1.7;font-size:15px">Need a faster response? <a href="https://calendly.com/benarfa367/30min" style="color:#16a34a;font-weight:600;text-decoration:none">Book a free 30-min call</a> directly.</p>
       <hr style="border:none;border-top:1px solid #e2e8f0;margin:0 0 20px">
-      <p style="margin:0;color:#94a3b8;font-size:12px;line-height:1.6"><strong style="color:#475569">Mohamed Dhia Arfa</strong><br>Graphic Designer · Trainer · Web Developer<br><a href="https://dhia-portfolio.com" style="color:#16a34a;text-decoration:none">dhia-portfolio.com</a></p>
+      <p style="margin:0;color:#94a3b8;font-size:12px;line-height:1.6"><strong style="color:#475569">Mohamed Dhia Arfa</strong><br>Graphic Designer · Trainer · Web Developer<br><a href="https://www.dhia-portfolio.com" style="color:#16a34a;text-decoration:none">dhia-portfolio.com</a></p>
     </div>
   </div>
 </body></html>`
@@ -144,7 +144,7 @@ function visitorFreebieEmailHtml({
       </p>
       <p style="font-size:13px;color:#6b7280">If the button doesn't work, copy this link:<br><a href="${url}">${url}</a></p>
       <hr style="border:0;border-top:1px solid #eee;margin:24px 0">
-      <p style="font-size:13px;color:#6b7280">Mohamed Dhia · <a href="https://dhia-portfolio.com">dhia-portfolio.com</a></p>
+      <p style="font-size:13px;color:#6b7280">Mohamed Dhia · <a href="https://www.dhia-portfolio.com">dhia-portfolio.com</a></p>
     </div>
   </div>`
 }

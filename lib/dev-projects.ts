@@ -79,7 +79,7 @@ export const otherDevProjects: OtherDevProject[] = [
     title: "dhia-portfolio.com",
     excerpt:
       "The site you're looking at right now: built with Next.js 15, available in English, French, and Arabic, with a built-in AI chat guide, a free-resource download system, and tuned for fast load times and accessibility.",
-    liveUrl: "https://dhia-portfolio.com",
+    liveUrl: "https://www.dhia-portfolio.com",
     repoUrl: "https://github.com/dhiaarfa/portfolio",
     tech: ["Next.js", "TypeScript", "Vercel"],
   },

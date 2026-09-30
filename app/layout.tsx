@@ -33,7 +33,11 @@ const cairo = Cairo({
 })
 
 export const metadata = {
-  metadataBase: new URL("https://dhia-portfolio.com"),
+  // Sep 30 CRITICAL fix: see lib/profile.ts's SITE_URL comment -- Vercel
+  // actually serves www as the primary domain and redirects apex into it,
+  // the opposite of what this (and every other canonical URL here) assumed,
+  // which produced a live infinite redirect loop on every page.
+  metadataBase: new URL("https://www.dhia-portfolio.com"),
   title: {
     default: "Mohamed Dhia Arfa, Designer, Trainer & Developer | Tunisia",
     template: "%s | Mohamed Dhia Arfa",
@@ -96,7 +100,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://dhia-portfolio.com",
+    url: "https://www.dhia-portfolio.com",
     siteName: "Mohamed Dhia Arfa Portfolio",
     title: "Mohamed Dhia Arfa | Designer • Trainer • Developer",
     description: "Professional portfolio of Mohamed Dhia Arfa - Expert graphic designer and trainer",
@@ -195,8 +199,8 @@ export default function RootLayout({
               name: "Mohamed Dhia Arfa",
               alternateName: "Dhia Arfa",
               jobTitle: "Designer, Trainer & Developer",
-              url: "https://dhia-portfolio.com",
-              image: "https://dhia-portfolio.com/images/photos/dhia-og-image.png",
+              url: "https://www.dhia-portfolio.com",
+              image: "https://www.dhia-portfolio.com/images/photos/dhia-og-image.png",
               email: "mohameddhiaarfa@gmail.com",
               telephone: "+216-53-580-272",
               sameAs: [
@@ -285,7 +289,7 @@ export default function RootLayout({
               "@type": "Brand",
               name: "Zia",
               slogan: "Design practice of Mohamed Dhia Arfa",
-              url: "https://dhia-portfolio.com/designer",
+              url: "https://www.dhia-portfolio.com/designer",
               sameAs: [
                 "https://www.linkedin.com/in/dhia-/",
                 "https://behance.net/dhiaa",
@@ -302,7 +306,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Mohamed Dhia Arfa Portfolio",
-              url: "https://dhia-portfolio.com",
+              url: "https://www.dhia-portfolio.com",
               // Fixed Sep 30: this was missing "ar" even though the site has a
               // full Arabic locale (/ar routes, RTL layout, Cairo font) -- a
               // real contradiction between the schema and the actual site.

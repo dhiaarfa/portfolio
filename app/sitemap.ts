@@ -4,7 +4,11 @@ import { publishedInsightArticles } from "@/lib/insights"
 import { publishedWorkProjects } from "@/lib/work"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://dhia-portfolio.com"
+  // Sep 30 CRITICAL fix: matches lib/profile.ts's SITE_URL -- see its comment.
+  // Vercel serves www as the real primary domain; this was apex, which
+  // combined with the live apex->www redirect meant every sitemap URL
+  // 308'd forever instead of resolving.
+  const baseUrl = "https://www.dhia-portfolio.com"
   const insightUrls = publishedInsightArticles().map((a) => ({
     url: `${baseUrl}/insights/${a.slug}`,
     lastModified: new Date(),

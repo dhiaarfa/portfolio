@@ -129,6 +129,6 @@ export function publishedFreebies(): Freebie[] {
 
 export function freebieDownloadUrl(f: Freebie): string {
   if (f.delivery.kind === "canva") return f.delivery.url
-  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://dhia-portfolio.com").replace(/\/$/, "")
+  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.dhia-portfolio.com").replace(/\/$/, "")
   return `${base}${f.delivery.path}`
 }
