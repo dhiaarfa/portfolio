@@ -167,33 +167,47 @@ function FreebiesClientInner() {
 
   return (
     <>
-      <section className="pt-[5.5rem] pb-12 px-6 text-center">
-        <p className="label mb-3">{t("freebies.title")}</p>
-        <h1 className="h1-article text-foreground mb-4">
-          {t("freebies.heroTitle")}{" "}
-          <span className="text-accent">{t("freebies.heroHighlight")}</span>
-        </h1>
-        <p className="text-muted-foreground max-w-xl mx-auto text-base lg:text-lg leading-relaxed">
-          {t("freebies.subtitle")}
-        </p>
-        <p className="mt-4 text-sm font-medium text-accent">{t("freebies.socialProof")}</p>
+      <section className="relative overflow-hidden pt-[5.5rem] pb-12 px-6 text-center">
+        {/* Dot-grid wash, the same signature texture used on Home/Designer/
+            404/footer -- Freebies and Insights were the two pages where the
+            hero "spirit" was completely absent (flat bare header), per the
+            site-wide consistency audit. */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.12] dark:opacity-[0.16] bg-dot-grid"
+          style={{
+            maskImage: "radial-gradient(ellipse 60% 60% at 50% 40%, black, transparent)",
+            WebkitMaskImage: "radial-gradient(ellipse 60% 60% at 50% 40%, black, transparent)",
+          }}
+          aria-hidden
+        />
+        <div className="relative">
+          <p className="label mb-3">{t("freebies.title")}</p>
+          <h1 className="h1-article text-foreground mb-4">
+            {t("freebies.heroTitle")}{" "}
+            <span className="text-accent">{t("freebies.heroHighlight")}</span>
+          </h1>
+          <p className="text-muted-foreground max-w-xl mx-auto text-base lg:text-lg leading-relaxed">
+            {t("freebies.subtitle")}
+          </p>
+          <p className="mt-4 text-sm font-medium text-accent">{t("freebies.socialProof")}</p>
 
-        <div className="flex justify-center gap-2 mt-8 flex-wrap">
-          {(["all", "design", "training", "development"] as Category[]).map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setActiveCategory(cat)}
-              aria-pressed={activeCategory === cat}
-              className={`px-5 py-2.5 rounded-xl text-sm lg:text-base font-medium transition-all ${
-                activeCategory === cat
-                  ? "bg-accent text-white shadow-md shadow-green-500/20"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
-              }`}
-            >
-              {categoryLabel(cat)}
-            </button>
-          ))}
+          <div className="flex justify-center gap-2 mt-8 flex-wrap">
+            {(["all", "design", "training", "development"] as Category[]).map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setActiveCategory(cat)}
+                aria-pressed={activeCategory === cat}
+                className={`px-5 py-2.5 rounded-xl text-sm lg:text-base font-medium transition-all ${
+                  activeCategory === cat
+                    ? "bg-accent text-white shadow-md shadow-green-500/20"
+                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                }`}
+              >
+                {categoryLabel(cat)}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 

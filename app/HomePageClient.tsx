@@ -292,7 +292,10 @@ export default function HomePageClient() {
                 iconCls: "w-9 h-9 p-2 rounded-xl bg-amber-100 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6",
                 eyebrowKey: "training",
                 title: t("pillarYouthDevelopment"),
-                photo: "/images/photos/dhia-trainer.png",
+                // Real NGO-training photo (Association Youth Clubs workshop)
+                // in place of the generic branded headshot, per the Oct 2026
+                // photo-placement pass.
+                photo: "/images/photos/dhia-trainer-ngo.png",
                 tint: "from-amber-50/95 via-white/97 to-white/98 dark:from-amber-950/30 dark:via-card/97 dark:to-card/98",
                 eyebrowCls: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50",
                 stats: [
@@ -309,7 +312,9 @@ export default function HomePageClient() {
                 iconCls: "w-9 h-9 p-2 rounded-xl bg-sky-100 text-sky-600 dark:bg-sky-950/60 dark:text-sky-400 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6",
                 eyebrowKey: "webDevelopment",
                 title: t("pillarFullStackDevelopment"),
-                photo: "/images/photos/dhia-developer.png",
+                // Real "at the laptop" photo, matching the Developer hero
+                // swap, per the Oct 2026 photo-placement pass.
+                photo: "/images/photos/dhia-developer-pc.jpg",
                 tint: "from-sky-50/95 via-white/97 to-white/98 dark:from-sky-950/30 dark:via-card/97 dark:to-card/98",
                 eyebrowCls: "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50",
                 tags: ["React", "Next.js", "Tailwind", "TypeScript"],

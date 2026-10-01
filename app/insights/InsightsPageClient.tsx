@@ -48,29 +48,47 @@ export default function InsightsPageClient() {
   return (
     <main id="main-content" className="pt-[5.5rem] pb-14 px-6">
       <div className="max-w-3xl mx-auto">
-        <p className="label mb-3">{t("insights.title")}</p>
-        <h1 className="h1-article text-foreground mb-3">
-          {t("insights.heroTitle")}
-        </h1>
-        <p className="text-muted-foreground text-base lg:text-lg mb-4 max-w-[68ch]">{t("insights.subtitle")}</p>
-        <p className="text-sm lg:text-base text-muted-foreground mb-8 max-w-[68ch]">{t("insights.note")}</p>
+        {/* Dot-grid wash, the same signature texture used on Home/Designer/
+            404/footer -- Freebies and Insights were the two pages where the
+            hero "spirit" was completely absent (flat bare header), per the
+            site-wide consistency audit. Scoped to the header block only (not
+            the whole page) so it never risks clipping the article grid's
+            hover/motion effects below. */}
+        <div className="relative overflow-hidden">
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.12] dark:opacity-[0.16] bg-dot-grid"
+            style={{
+              maskImage: "radial-gradient(ellipse 70% 60% at 30% 20%, black, transparent)",
+              WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 30% 20%, black, transparent)",
+            }}
+            aria-hidden
+          />
+          <div className="relative">
+            <p className="label mb-3">{t("insights.title")}</p>
+            <h1 className="h1-article text-foreground mb-3">
+              {t("insights.heroTitle")}
+            </h1>
+            <p className="text-muted-foreground text-base lg:text-lg mb-4 max-w-[68ch]">{t("insights.subtitle")}</p>
+            <p className="text-sm lg:text-base text-muted-foreground mb-8 max-w-[68ch]">{t("insights.note")}</p>
 
-        <div className="flex flex-wrap gap-2 mb-10">
-          {filters.map((f) => (
-            <button
-              key={f.id}
-              type="button"
-              onClick={() => setFilter(f.id)}
-              aria-pressed={filter === f.id}
-              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                filter === f.id
-                  ? "bg-accent text-white shadow-md shadow-green-500/20"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
-              }`}
-            >
-              {f.label}
-            </button>
-          ))}
+            <div className="flex flex-wrap gap-2 mb-10">
+              {filters.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  onClick={() => setFilter(f.id)}
+                  aria-pressed={filter === f.id}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                    filter === f.id
+                      ? "bg-accent text-white shadow-md shadow-green-500/20"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80"
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {featured && (filter === "all" || featured.category === filter) && (

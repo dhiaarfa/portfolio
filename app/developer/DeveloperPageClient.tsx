@@ -101,7 +101,11 @@ export default function DeveloperPageClient() {
                 <span className="w-3 h-3 rounded-full bg-accent/80" />
                 <span className="ml-4 font-mono text-slate-500 text-xs">dhia.dev</span>
               </div>
-              <Image src="/images/photos/dhia-developer.png" alt="Dhia, Developer" width={380} height={400} className="w-full object-cover" />
+              {/* Real "Dhia at the keyboard" photo, replacing the generic
+                  branded headshot that was previously reused here -- per
+                  Dhia's request to put an actual photo of him with a laptop
+                  in this hero instead. */}
+              <Image src="/images/photos/dhia-developer-pc.jpg" alt="Dhia working at his laptop" width={380} height={460} className="w-full object-cover" />
             </div>
           }
         >

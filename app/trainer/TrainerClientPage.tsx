@@ -39,7 +39,7 @@ const milestonePhotos: Record<string, string> = {
 }
 
 export default function TrainerClientPage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
 
   // `progress` is stylistic (these are counts, not percentages), varied per
   // stat so the row of rings reads as a designed chart rather than six
@@ -120,6 +120,50 @@ export default function TrainerClientPage() {
               </a>
             </div>
         </RoleHero>
+
+        {/* Real facilitation-moment photos (group photo + two candid session
+            shots), added per Dhia's Oct 2026 request to put authentic
+            training photos somewhere relevant. Deliberately generic
+            captions -- unlike the named case studies further down, these
+            aren't tied to one specific client/event. */}
+        <section className="w-full section-compact px-4 md:px-8">
+          <div className="max-w-6xl mx-auto">
+            <p className="label mb-6 text-center">
+              {language === "fr" ? "Sur le terrain" : language === "ar" ? "في الميدان" : "In the field"}
+            </p>
+            <div className="space-y-4">
+              <div className="relative aspect-[21/9] rounded-2xl overflow-hidden border border-border">
+                <Image
+                  src="/images/trainer/moment-group.jpg"
+                  alt="Dhia with a youth-training program cohort"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border">
+                  <Image
+                    src="/images/trainer/moment-keynote.png"
+                    alt="Dhia facilitating a training session"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 640px) 33vw, 50vw"
+                  />
+                </div>
+                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border">
+                  <Image
+                    src="/images/trainer/moment-workshop.jpg"
+                    alt="Dhia leading a workshop"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 640px) 33vw, 50vw"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* 2. Trusted by */}
         <ClientLogosStrip />
