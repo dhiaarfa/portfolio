@@ -10,11 +10,12 @@ import { FadeUp } from "@/components/ui/motion"
 // title/desc/cta were hardcoded English strings here and never went
 // through t(), so these three cards stayed in English even in French/
 // Arabic mode -- now keyed into translations.ts instead.
+// Charte-graphique pass (Oct 2026): dropped the per-service pink/amber/blue
+// icon tile for the one green gradient (see .bg-accent-gradient) used
+// everywhere else on the site.
 const services = [
   {
     icon: PenTool,
-    bg: "bg-pink-50 dark:bg-pink-950/40",
-    ic: "text-pink-600 dark:text-pink-400",
     titleKey: "servicePackageDesignTitle",
     descKey: "servicePackageDesignDesc",
     href: "/designer",
@@ -22,8 +23,6 @@ const services = [
   },
   {
     icon: GraduationCap,
-    bg: "bg-amber-50 dark:bg-amber-950/40",
-    ic: "text-amber-600 dark:text-amber-400",
     titleKey: "servicePackageTrainingTitle",
     descKey: "servicePackageTrainingDesc",
     href: "/trainer",
@@ -31,8 +30,6 @@ const services = [
   },
   {
     icon: Code2,
-    bg: "bg-blue-50 dark:bg-blue-950/40",
-    ic: "text-blue-600 dark:text-blue-400",
     titleKey: "servicePackageDevTitle",
     descKey: "servicePackageDevDesc",
     href: "/developer",
@@ -52,9 +49,14 @@ export default function ServicePackages({ pillar }: Props = {}) {
   const visibleServices = pillar ? services.filter((s) => s.href === `/${pillar}`) : services
   return (
     <section id="services" className="relative overflow-hidden bg-section-tint dark:bg-[#052e16] py-20 px-5">
+      {/* Charte-graphique pass (Oct 2026): swapped the faint background
+          photo for the site's dot-grid texture. */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06] bg-cover bg-center grayscale"
-        style={{ backgroundImage: "url(/images/bg/bg-casual.jpg)" }}
+        className="pointer-events-none absolute inset-0 opacity-[0.14] bg-dot-grid"
+        style={{
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 0%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 0%, black, transparent)",
+        }}
         aria-hidden
       />
       <div className="relative max-w-4xl mx-auto">
@@ -90,8 +92,8 @@ export default function ServicePackages({ pillar }: Props = {}) {
                   copy for horizontal space, while sm:+ recombines them into
                   the original single row via sm:contents. */}
               <div className="flex items-center gap-5 sm:contents">
-                <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${s.bg} flex items-center justify-center flex-shrink-0`}>
-                  <s.icon className={`w-6 h-6 sm:w-7 sm:h-7 ${s.ic}`} />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-accent-gradient flex items-center justify-center flex-shrink-0">
+                  <s.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-display font-semibold text-slate-900 dark:text-white text-[15px] sm:text-base mb-0.5">{t(s.titleKey)}</h3>
@@ -100,7 +102,7 @@ export default function ServicePackages({ pillar }: Props = {}) {
               </div>
               <Link
                 href={s.href}
-                className="self-start pl-[68px] sm:pl-0 sm:self-auto flex-shrink-0 flex items-center gap-1.5 text-sm font-medium text-green-600 dark:text-green-400 group/row"
+                className="self-start pl-[68px] sm:pl-0 sm:self-auto flex-shrink-0 flex items-center gap-1.5 text-sm font-medium text-accent group/row"
               >
                 {t(s.ctaKey)}
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/row:translate-x-1 rtl:rotate-180" />

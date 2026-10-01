@@ -51,11 +51,9 @@ export default function Footer({ variant }: FooterProps = {}) {
         aria-hidden
       />
       <div className="relative overflow-hidden border-b border-border">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.06] bg-cover bg-center grayscale"
-          style={{ backgroundImage: "url(/images/bg/bg-work-session.jpg)" }}
-          aria-hidden
-        />
+        {/* Dot-grid texture only -- the faint background photo that used
+            to sit under this (Charte-graphique pass, Oct 2026) read as
+            visual clutter, not texture, and has been removed. */}
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.14] bg-dot-grid"
           style={{

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import { Brain, Users, Target, Repeat, MessageSquare, Lightbulb, Search, Rocket, RefreshCw, LayoutGrid, Globe, ChevronDown } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
 
@@ -9,112 +8,98 @@ import { useLanguage } from '@/components/language-provider'
 // title/subtitle/description/quote are translation keys (see lib/translations.ts) --
 // this whole section used to be hardcoded English with no useLanguage import at all.
 
+// Charte-graphique pass (Oct 2026): each pillar used to get its own hue
+// (amber/green/purple/blue/rose/teal) plus a faint full-bleed event photo
+// behind the text -- both retired. Every pillar now shares one icon
+// treatment (bg-accent-gradient) and one accent color; the photo watermark
+// is gone (it read as clutter, not texture) in favor of the same
+// dot-grid surface used across the rest of the site.
 const pillars = [
   {
     number: '01',
     icon: Target,
-    iconBg: 'bg-amber-50 dark:bg-amber-950',
-    iconColor: 'text-amber-600 dark:text-amber-400',
-    accentColor: 'text-amber-600 dark:text-amber-400',
     titleKey: 'pillarTnaTitle',
     subtitleKey: 'pillarTnaSubtitle',
-    photo: '/images/bg/bg-work-session.jpg',
     descKey: 'pillarTnaDesc',
     quoteKey: 'pillarTnaQuote',
   },
   {
     number: '02',
     icon: Repeat,
-    iconBg: 'bg-green-50 dark:bg-green-950',
-    iconColor: 'text-green-600 dark:text-green-400',
-    accentColor: 'text-green-600 dark:text-green-400',
     titleKey: 'pillarKolbTitle',
     subtitleKey: 'pillarKolbSubtitle',
-    photo: '/images/trainer/scorp-camp-25.png',
     descKey: 'pillarKolbDesc',
     quoteKey: 'pillarKolbQuote',
   },
   {
     number: '03',
     icon: Brain,
-    iconBg: 'bg-purple-50 dark:bg-purple-950',
-    iconColor: 'text-purple-600 dark:text-purple-400',
-    accentColor: 'text-purple-600 dark:text-purple-400',
     titleKey: 'pillar4matTitle',
     subtitleKey: 'pillar4matSubtitle',
-    photo: '/images/bg/bg-exhibition.jpg',
     descKey: 'pillar4matDesc',
     quoteKey: 'pillar4matQuote',
   },
   {
     number: '04',
     icon: Users,
-    iconBg: 'bg-blue-50 dark:bg-blue-950',
-    iconColor: 'text-blue-600 dark:text-blue-400',
-    accentColor: 'text-blue-600 dark:text-blue-400',
     titleKey: 'pillarGroupTitle',
     subtitleKey: 'pillarGroupSubtitle',
-    photo: '/images/trainer/tnhrt-carthaginian-camp.png',
     descKey: 'pillarGroupDesc',
     quoteKey: 'pillarGroupQuote',
   },
   {
     number: '05',
     icon: Lightbulb,
-    iconBg: 'bg-rose-50 dark:bg-rose-950',
-    iconColor: 'text-rose-600 dark:text-rose-400',
-    accentColor: 'text-rose-600 dark:text-rose-400',
     titleKey: 'pillarTotTitle',
     subtitleKey: 'pillarTotSubtitle',
-    photo: '/images/trainer/iom-hackathon-doha-2024.png',
     descKey: 'pillarTotDesc',
     quoteKey: 'pillarTotQuote',
   },
   {
     number: '06',
     icon: MessageSquare,
-    iconBg: 'bg-teal-50 dark:bg-teal-950',
-    iconColor: 'text-teal-600 dark:text-teal-400',
-    accentColor: 'text-teal-600 dark:text-teal-400',
     titleKey: 'pillarNfeTitle',
     subtitleKey: 'pillarNfeSubtitle',
-    photo: '/images/bg/bg-speaking.jpg',
     descKey: 'pillarNfeDesc',
     quoteKey: 'pillarNfeQuote',
   },
 ]
 
+// Charte-graphique pass (Oct 2026): a different hue per framework card
+// (green/purple/amber/blue) retired for the same reason as above -- one
+// shared green accent, varied only by border opacity so the four cards
+// still read as distinct tiles.
 const frameworks = [
   {
     nameKey: 'frameworkKolbName',
     year: '1984',
     descKey: 'frameworkKolbDesc',
-    color: 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/30',
-    textColor: 'text-green-700 dark:text-green-400',
+    color: 'border-accent/20 bg-accent-subtle',
+    textColor: 'text-accent',
     Icon: RefreshCw,
   },
   {
     nameKey: 'framework4matName',
     year: '1979',
     descKey: 'framework4matDesc',
-    color: 'border-purple-200 dark:border-purple-800 bg-purple-50/50 dark:bg-purple-950/30',
-    textColor: 'text-purple-700 dark:text-purple-400',
+    color: 'border-accent/30 bg-accent-subtle',
+    textColor: 'text-accent',
     Icon: LayoutGrid,
   },
   {
     nameKey: 'frameworkDeweyName',
     year: '1933',
     descKey: 'frameworkDeweyDesc',
-    color: 'border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/30',
-    textColor: 'text-amber-700 dark:text-amber-400',
+    color: 'border-accent/15 bg-accent-subtle',
+    textColor: 'text-accent',
     Icon: Lightbulb,
   },
   {
     nameKey: 'frameworkNfeName',
     year: 'Council of Europe',
     descKey: 'frameworkNfeDesc',
-    color: 'border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/30',
-    textColor: 'text-blue-700 dark:text-blue-400',
+    color: 'border-accent/40 bg-accent-subtle',
+    textColor: 'text-accent',
     Icon: Globe,
   },
 ]
@@ -136,14 +121,14 @@ export default function TrainingMethodologySection() {
 
         {/* ── Section Header ── */}
         <div className="mb-16">
-          <p className="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-widest mb-3">
+          <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">
             {t("methodologyKicker")}
           </p>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
                 {t("methodologyHeading1")}<br />
-                <span className="text-amber-600 dark:text-amber-400">{t("methodologyHeading2")}</span>
+                <span className="text-accent">{t("methodologyHeading2")}</span>
               </h2>
             </div>
             <p className="text-slate-500 dark:text-slate-400 max-w-sm text-sm leading-relaxed lg:text-right">
@@ -162,26 +147,22 @@ export default function TrainingMethodologySection() {
                 key={pillar.number}
                 className="group relative overflow-hidden rounded-2xl border border-slate-100 dark:border-border bg-slate-50/50 dark:bg-card/50 p-7 hover:shadow-lg transition-all duration-300"
               >
-                {/* Relevant real event photo, kept very faint so it reads as
-                    texture rather than competing with the text (Master
-                    to-do: visual interest without adding more reading). */}
-                <Image
-                  src={pillar.photo}
-                  alt=""
-                  fill
+                {/* Dot-grid texture, the same hero-section pattern used
+                    site-wide, in place of the old faint per-card event
+                    photo (which read as clutter, not texture). */}
+                <div
+                  className="absolute inset-0 bg-dot-grid opacity-[0.5] dark:opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"
                   aria-hidden
-                  className="object-cover opacity-[0.12] dark:opacity-[0.16] pointer-events-none select-none"
-                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
 
                 {/* Header row */}
                 <div className="relative flex items-start gap-4 mb-4">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${pillar.iconBg}`}>
-                    <Icon className={`w-5 h-5 ${pillar.iconColor}`} />
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-accent-gradient">
+                    <Icon className="w-5 h-5 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
-                      <span className={`text-xs font-bold tabular-nums ${pillar.accentColor}`}>
+                      <span className="text-xs font-bold tabular-nums text-accent">
                         {pillar.number}
                       </span>
                       <span className="text-xs text-slate-400 dark:text-slate-500">·</span>
@@ -218,7 +199,7 @@ export default function TrainingMethodologySection() {
                     isOpen ? "max-h-24 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className={`text-xs font-medium italic border-l-2 pl-3 ${pillar.accentColor} border-current opacity-75`}>
+                  <p className="text-xs font-medium italic border-l-2 pl-3 text-accent border-current opacity-75">
                     {t(pillar.quoteKey)}
                   </p>
                 </div>
@@ -229,21 +210,25 @@ export default function TrainingMethodologySection() {
 
         {/* ── KOLB CYCLE VISUAL ── */}
         <div className="my-16 bg-slate-900 rounded-3xl p-8 sm:p-12">
-          <p className="text-sm font-semibold text-amber-400 uppercase tracking-widest mb-2 text-center">
+          <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2 text-center">
             {t("kolbDiagramKicker")}
           </p>
           <h3 className="text-xl font-bold text-white text-center mb-10">
             {t("kolbDiagramHeading")}
           </h3>
 
+          {/* Charte-graphique pass (Oct 2026): the 4 phases used to cycle
+              green/blue/purple/amber -- now a genuine gradient of green
+              across the 4 steps (sourced from the same hero-photo range as
+              .bg-accent-gradient/.gradient-accent), so the sequence still
+              reads left-to-right at a glance without reviving the rainbow. */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
                 step: '01',
                 phaseKey: 'kolbPhase1Title',
-                color: 'bg-green-600',
-                borderColor: 'border-green-500',
-                textColor: 'text-green-400',
+                chipBg: 'bg-[#0b4a12]',
+                borderColor: 'border-accent/20',
                 Icon: Target,
                 descKey: 'kolbPhase1Desc',
                 exampleKey: 'kolbPhase1Example',
@@ -251,9 +236,8 @@ export default function TrainingMethodologySection() {
               {
                 step: '02',
                 phaseKey: 'kolbPhase2Title',
-                color: 'bg-blue-600',
-                borderColor: 'border-blue-500',
-                textColor: 'text-blue-400',
+                chipBg: 'bg-[#155611]',
+                borderColor: 'border-accent/30',
                 Icon: Search,
                 descKey: 'kolbPhase2Desc',
                 exampleKey: 'kolbPhase2Example',
@@ -261,9 +245,8 @@ export default function TrainingMethodologySection() {
               {
                 step: '03',
                 phaseKey: 'kolbPhase3Title',
-                color: 'bg-purple-600',
-                borderColor: 'border-purple-500',
-                textColor: 'text-purple-400',
+                chipBg: 'bg-[#1f6411]',
+                borderColor: 'border-accent/40',
                 Icon: Lightbulb,
                 descKey: 'kolbPhase3Desc',
                 exampleKey: 'kolbPhase3Example',
@@ -271,9 +254,8 @@ export default function TrainingMethodologySection() {
               {
                 step: '04',
                 phaseKey: 'kolbPhase4Title',
-                color: 'bg-amber-600',
-                borderColor: 'border-amber-500',
-                textColor: 'text-amber-400',
+                chipBg: 'bg-[#297210]',
+                borderColor: 'border-accent/50',
                 Icon: Rocket,
                 descKey: 'kolbPhase4Desc',
                 exampleKey: 'kolbPhase4Example',
@@ -284,11 +266,11 @@ export default function TrainingMethodologySection() {
                 className={`relative rounded-2xl border ${phase.borderColor} bg-slate-800/60 p-5`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className={`text-3xl font-black ${phase.textColor} opacity-30`}>{phase.step}</span>
-                  <phase.Icon className={`w-6 h-6 ${phase.textColor}`} />
+                  <span className="text-3xl font-black text-[#8ed80c] opacity-30">{phase.step}</span>
+                  <phase.Icon className="w-6 h-6 text-[#8ed80c]" />
                 </div>
 
-                <div className={`inline-block px-2.5 py-1 rounded-lg ${phase.color} mb-3`}>
+                <div className={`inline-block px-2.5 py-1 rounded-lg ${phase.chipBg} mb-3`}>
                   <p className="text-xs font-bold text-white">{t(phase.phaseKey)}</p>
                 </div>
 

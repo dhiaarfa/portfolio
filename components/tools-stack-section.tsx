@@ -5,24 +5,25 @@ import { toolsStackGroups, TOOL_GROUP_LABEL_KEYS } from "@/lib/tools-stack"
 import { Tile } from "@/components/ui/tile"
 import { useLanguage } from "@/components/language-provider"
 
-// One accent per group instead of a flat grey list, matches the color
-// coding used everywhere else on the site (pink for design work, amber for
-// training, blue for dev). Card border/badge only; icons keep their own
-// brand colors so this doesn't fight with them.
+// Charte-graphique pass (Oct 2026): this used to cycle a different hue per
+// group (pink/purple/sky/emerald/amber) to echo the old per-discipline
+// color coding -- retired site-wide in favor of one green accent language.
+// Card border/badge only; icons keep their own brand colors so this
+// doesn't fight with them.
 const GROUP_ACCENT: Record<string, string> = {
-  design: "border-t-pink-400 dark:border-t-pink-500",
-  ai: "border-t-purple-400 dark:border-t-purple-500",
-  frontend: "border-t-sky-400 dark:border-t-sky-500",
-  backend: "border-t-emerald-400 dark:border-t-emerald-500",
-  productivity: "border-t-amber-400 dark:border-t-amber-500",
+  design: "border-t-accent",
+  ai: "border-t-accent",
+  frontend: "border-t-accent",
+  backend: "border-t-accent",
+  productivity: "border-t-accent",
 }
 
 const GROUP_BADGE: Record<string, string> = {
-  design: "bg-pink-50 text-pink-600 dark:bg-pink-950/40 dark:text-pink-400",
-  ai: "bg-purple-50 text-purple-600 dark:bg-purple-950/40 dark:text-purple-400",
-  frontend: "bg-sky-50 text-sky-600 dark:bg-sky-950/40 dark:text-sky-400",
-  backend: "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400",
-  productivity: "bg-amber-50 text-amber-600 dark:bg-amber-950/40 dark:text-amber-400",
+  design: "bg-accent-subtle text-accent",
+  ai: "bg-accent-subtle text-accent",
+  frontend: "bg-accent-subtle text-accent",
+  backend: "bg-accent-subtle text-accent",
+  productivity: "bg-accent-subtle text-accent",
 }
 
 export default function ToolsStackSection({

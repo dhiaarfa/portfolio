@@ -131,24 +131,28 @@ function FreebiesClientInner() {
     }
   }
 
+  // Charte-graphique pass (Oct 2026): freebies used to get a pink/amber/blue
+  // treatment by category -- retired in favor of the site's single green
+  // accent. Keys kept (pink/amber/blue) since freebie data still tags each
+  // item with one of these three, but they now all resolve to the same look.
   const colorMap = {
     pink: {
-      bg: "bg-pink-50 dark:bg-pink-950/40",
-      border: "border-pink-200/80 dark:border-pink-800/60",
-      icon: "text-pink-700 dark:text-pink-300",
-      badge: "bg-pink-100 dark:bg-pink-900/70 text-pink-800 dark:text-pink-200",
+      bg: "bg-accent-subtle",
+      border: "border-accent/20",
+      icon: "text-accent",
+      badge: "bg-accent-subtle text-accent",
     },
     amber: {
-      bg: "bg-amber-50 dark:bg-amber-950/40",
-      border: "border-amber-200/80 dark:border-amber-800/60",
-      icon: "text-amber-700 dark:text-amber-300",
-      badge: "bg-amber-100 dark:bg-amber-900/70 text-amber-800 dark:text-amber-200",
+      bg: "bg-accent-subtle",
+      border: "border-accent/20",
+      icon: "text-accent",
+      badge: "bg-accent-subtle text-accent",
     },
     blue: {
-      bg: "bg-blue-50 dark:bg-blue-950/40",
-      border: "border-blue-200/80 dark:border-blue-800/60",
-      icon: "text-blue-700 dark:text-blue-300",
-      badge: "bg-blue-100 dark:bg-blue-900/70 text-blue-800 dark:text-blue-200",
+      bg: "bg-accent-subtle",
+      border: "border-accent/20",
+      icon: "text-accent",
+      badge: "bg-accent-subtle text-accent",
     },
   } as const
 

@@ -408,7 +408,10 @@ export default function DeveloperPageClient() {
                       <div className="relative flex items-center gap-2 mb-1.5">
                         <h4 className="font-semibold leading-snug">{p.title}</h4>
                         {p.status && (
-                          <span className="shrink-0 text-[10px] font-medium px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                          // Neutral status tag (e.g. "In progress"), not a
+                          // discipline color -- kept off the green accent so
+                          // it still reads as a status flag, not a CTA.
+                          <span className="shrink-0 text-[10px] font-medium px-2 py-0.5 rounded-full bg-slate-500/15 text-slate-600 dark:text-slate-300">
                             {p.status}
                           </span>
                         )}

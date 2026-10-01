@@ -206,8 +206,26 @@ export default function DesignerPageClient() {
         {/* 4. How we work */}
         <section className="section-compact w-full bg-muted/30 px-4 md:px-8 dark:bg-background/50">
           <div className="mx-auto max-w-5xl">
-            <p className="label mb-2 text-center">{t("designerProcessLabel")}</p>
-            <h2 className="mb-10 text-center text-3xl font-bold md:text-4xl">{t("designerProcessHeading")}</h2>
+            {/* Dhia's "no photos in designer page" fix (Oct 2026): this was
+                the only page with zero real photos of him -- a portrait
+                now backs this heading, the same photo-banner pattern used
+                on /trainer, instead of a plain text header. */}
+            <div className="relative overflow-hidden rounded-[2rem] border border-border mb-10">
+              <div className="relative aspect-[16/7] sm:aspect-[21/9]">
+                <Image
+                  src="/images/photos/dhia-designer.png"
+                  alt="Mohamed Dhia Arfa, designer"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+              </div>
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                <p className="label !text-white/80 mb-2">{t("designerProcessLabel")}</p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">{t("designerProcessHeading")}</h2>
+              </div>
+            </div>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {howWeWork.map((step) => (
                 <div key={step.step} className="rounded-2xl border border-border bg-card p-5">
@@ -311,7 +329,9 @@ export default function DesignerPageClient() {
                     <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="25vw" />
                     <div className="absolute inset-0 flex items-end bg-slate-900/0 p-3 transition-all group-hover:bg-slate-900/70">
                       {project.concept && (
-                        <span className="absolute left-3 top-3 rounded-full bg-amber-500/90 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
+                        // Neutral status tag ("concept" vs. a delivered
+                        // client piece), not a discipline color.
+                        <span className="absolute left-3 top-3 rounded-full bg-slate-700/90 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
                           {t("galleryConceptBadge")}
                         </span>
                       )}
@@ -394,13 +414,13 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        <section className="w-full bg-pink-50 px-4 py-10 dark:bg-pink-950/20 md:px-8">
+        <section className="w-full bg-accent-subtle px-4 py-10 md:px-8">
           <div className="mx-auto flex max-w-3xl flex-col items-center justify-between gap-4 sm:flex-row">
             <div>
               <p className="font-bold text-slate-900 dark:text-white">{t("designerFreeTemplatesTitle")}</p>
               <p className="text-sm text-muted-foreground">{t("designerFreeTemplatesDesc")}</p>
             </div>
-            <Link href="/freebies?category=design" className="whitespace-nowrap rounded-xl bg-pink-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-pink-500">
+            <Link href="/freebies?category=design" className="btn-green whitespace-nowrap">
               {t("designerBtnGetFreeTemplates")}
             </Link>
           </div>

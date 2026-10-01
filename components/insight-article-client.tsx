@@ -7,10 +7,12 @@ import { InsightArticleCta } from "@/components/insight-article-cta"
 import type { InsightArticleMeta } from "@/lib/insights"
 import type { InsightContentLocale } from "@/lib/insights-content"
 
+// Charte-graphique pass (Oct 2026): retired the per-discipline
+// pink/amber/blue chip in favor of the site's single green accent.
 const categoryColors: Record<string, string> = {
-  Design: "text-pink-700 bg-pink-100 dark:bg-pink-950/50 dark:text-pink-300",
-  Training: "text-amber-700 bg-amber-100 dark:bg-amber-950/50 dark:text-amber-300",
-  Development: "text-blue-700 bg-blue-100 dark:bg-blue-950/50 dark:text-blue-300",
+  Design: "text-accent bg-accent-subtle",
+  Training: "text-accent bg-accent-subtle",
+  Development: "text-accent bg-accent-subtle",
 }
 
 type Props = {

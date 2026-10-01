@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { ArrowRight, Calendar } from "lucide-react"
 import { motion } from "framer-motion"
 import { useLanguage } from "@/components/language-provider"
@@ -14,16 +15,34 @@ export default function TrainerOffersSection() {
   return (
     <section id="training-offers" className="w-full section-compact px-4 md:px-8">
       <div className="mx-auto max-w-6xl">
-        <p className="label mb-2">
-          {lang === "fr" ? "Offres réservables" : lang === "ar" ? "عروض قابلة للحجز" : "Bookable offers"}
-        </p>
-        <h2 className="mb-3 text-3xl font-bold md:text-4xl">
-          {lang === "fr"
-            ? "Ce que vous pouvez réserver"
-            : lang === "ar"
-            ? "ما يمكنك حجزه"
-            : "What you can book"}
-        </h2>
+        {/* Charte-graphique pass (Oct 2026): a real cohort photo now backs
+            this heading instead of sitting in the old forced "In the
+            field" gallery after the hero -- a genuine fit here, since it
+            shows exactly the kind of group experience being booked below. */}
+        <div className="relative overflow-hidden rounded-[2rem] border border-border mb-10">
+          <div className="relative aspect-[16/7] sm:aspect-[21/9]">
+            <Image
+              src="/images/trainer/moment-group.jpg"
+              alt="Dhia with a youth-training program cohort"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+          </div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+            <p className="label !text-white/80 mb-2">
+              {lang === "fr" ? "Offres réservables" : lang === "ar" ? "عروض قابلة للحجز" : "Bookable offers"}
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+              {lang === "fr"
+                ? "Ce que vous pouvez réserver"
+                : lang === "ar"
+                ? "ما يمكنك حجزه"
+                : "What you can book"}
+            </h2>
+          </div>
+        </div>
         <p className="mb-10 max-w-2xl text-muted-foreground">
           {lang === "fr"
             ? "Format, public, livrables et résultat attendu. Chaque offre inclut une analyse des besoins."

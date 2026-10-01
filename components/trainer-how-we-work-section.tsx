@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { ClipboardList, PenTool, Users, FileCheck } from "lucide-react"
 import { trainingHowWeWork } from "@/lib/trainer"
 import { useLanguage } from "@/components/language-provider"
@@ -13,12 +14,31 @@ export default function TrainerHowWeWorkSection() {
   return (
     <section className="w-full section-compact px-4 md:px-8 bg-muted/30 dark:bg-background/50">
       <div className="mx-auto max-w-5xl">
-        <p className="label mb-2 text-center">
-          {lang === "fr" ? "Processus" : lang === "ar" ? "العملية" : "Process"}
-        </p>
-        <h2 className="mb-10 text-center text-3xl font-bold md:text-4xl">
-          {lang === "fr" ? "Comment nous travaillons ensemble" : lang === "ar" ? "كيف نعمل معاً" : "How we work together"}
-        </h2>
+        {/* Charte-graphique pass (Oct 2026): a real facilitation photo now
+            backs this heading instead of sitting in the old forced "In the
+            field" gallery after the hero -- a genuine fit here since the
+            photo shows exactly the facilitation process this section
+            describes. */}
+        <div className="relative overflow-hidden rounded-[2rem] border border-border mb-10">
+          <div className="relative aspect-[16/7] sm:aspect-[21/9]">
+            <Image
+              src="/images/trainer/moment-keynote.png"
+              alt="Dhia facilitating a training session"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+          </div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+            <p className="label !text-white/80 mb-2">
+              {lang === "fr" ? "Processus" : lang === "ar" ? "العملية" : "Process"}
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+              {lang === "fr" ? "Comment nous travaillons ensemble" : lang === "ar" ? "كيف نعمل معاً" : "How we work together"}
+            </h2>
+          </div>
+        </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {trainingHowWeWork.map((step, i) => {
             const Icon = icons[i] ?? ClipboardList

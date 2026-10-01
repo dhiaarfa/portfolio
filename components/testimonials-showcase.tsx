@@ -6,18 +6,23 @@ import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { pickTestimonials, testimonialText, type TestimonialItem } from "@/lib/testimonials"
 
+// Charte-graphique pass (Oct 2026): each testimonial used to get a
+// different per-accent hue (amber/blue/pink) -- retired in favor of the
+// site's single green gradient language. Keys kept (the data still tags
+// each testimonial with one) but all four now resolve to the same family,
+// varied only in strength so the cards don't look identically flat.
 const accentStyles: Record<TestimonialItem["accent"], string> = {
   accent: "border-accent/40 bg-gradient-to-br from-accent/10 via-transparent to-emerald-500/5",
-  amber: "border-amber-400/40 bg-gradient-to-br from-amber-500/10 via-transparent to-orange-500/5",
-  blue: "border-blue-400/40 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/5",
-  pink: "border-pink-400/40 bg-gradient-to-br from-pink-500/10 via-transparent to-rose-500/5",
+  amber: "border-accent/30 bg-gradient-to-br from-accent/8 via-transparent to-emerald-500/5",
+  blue: "border-accent/35 bg-gradient-to-br from-accent/12 via-transparent to-emerald-500/5",
+  pink: "border-accent/25 bg-gradient-to-br from-accent/6 via-transparent to-emerald-500/5",
 }
 
 const dotColors: Record<TestimonialItem["accent"], string> = {
   accent: "bg-accent",
-  amber: "bg-amber-500",
-  blue: "bg-blue-500",
-  pink: "bg-pink-500",
+  amber: "bg-accent",
+  blue: "bg-accent",
+  pink: "bg-accent",
 }
 
 type Props = {

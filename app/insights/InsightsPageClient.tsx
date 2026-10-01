@@ -11,10 +11,13 @@ import { publishedInsightArticles, type InsightCategory } from "@/lib/insights"
 
 type Filter = "all" | InsightCategory
 
+// Charte-graphique pass (Oct 2026): category chips used to cycle
+// pink/amber/blue per discipline -- retired in favor of the single
+// green accent used everywhere else on the site.
 const categoryColors: Record<string, string> = {
-  insightsCatDesign: "text-pink-700 bg-pink-100 dark:bg-pink-950/50 dark:text-pink-300",
-  insightsCatTraining: "text-amber-700 bg-amber-100 dark:bg-amber-950/50 dark:text-amber-300",
-  insightsCatDev: "text-blue-700 bg-blue-100 dark:bg-blue-950/50 dark:text-blue-300",
+  insightsCatDesign: "text-accent bg-accent-subtle",
+  insightsCatTraining: "text-accent bg-accent-subtle",
+  insightsCatDev: "text-accent bg-accent-subtle",
 }
 
 const serviceLabels: Record<InsightCategory, string> = {

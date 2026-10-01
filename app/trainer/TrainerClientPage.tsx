@@ -39,7 +39,7 @@ const milestonePhotos: Record<string, string> = {
 }
 
 export default function TrainerClientPage() {
-  const { t, language } = useLanguage()
+  const { t } = useLanguage()
 
   // `progress` is stylistic (these are counts, not percentages), varied per
   // stat so the row of rings reads as a designed chart rather than six
@@ -121,50 +121,6 @@ export default function TrainerClientPage() {
             </div>
         </RoleHero>
 
-        {/* Real facilitation-moment photos (group photo + two candid session
-            shots), added per Dhia's Oct 2026 request to put authentic
-            training photos somewhere relevant. Deliberately generic
-            captions -- unlike the named case studies further down, these
-            aren't tied to one specific client/event. */}
-        <section className="w-full section-compact px-4 md:px-8">
-          <div className="max-w-6xl mx-auto">
-            <p className="label mb-6 text-center">
-              {language === "fr" ? "Sur le terrain" : language === "ar" ? "في الميدان" : "In the field"}
-            </p>
-            <div className="space-y-4">
-              <div className="relative aspect-[21/9] rounded-2xl overflow-hidden border border-border">
-                <Image
-                  src="/images/trainer/moment-group.jpg"
-                  alt="Dhia with a youth-training program cohort"
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border">
-                  <Image
-                    src="/images/trainer/moment-keynote.png"
-                    alt="Dhia facilitating a training session"
-                    fill
-                    className="object-cover"
-                    sizes="(min-width: 640px) 33vw, 50vw"
-                  />
-                </div>
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border">
-                  <Image
-                    src="/images/trainer/moment-workshop.jpg"
-                    alt="Dhia leading a workshop"
-                    fill
-                    className="object-cover"
-                    sizes="(min-width: 640px) 33vw, 50vw"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* 2. Trusted by */}
         <ClientLogosStrip />
 
@@ -178,9 +134,28 @@ export default function TrainerClientPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="text-center space-y-3 md:space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">{t("impactMetrics")}</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold px-2">{t("measurableResults")}</h2>
+              {/* Charte-graphique pass (Oct 2026): this section's heading
+                  used to be plain centered text. The real workshop photo
+                  that used to sit in a forced standalone "In the field"
+                  gallery right after the hero now backs this heading
+                  instead -- the numbers below are proof of exactly what's
+                  pictured, a proper home for it rather than a gallery
+                  dump. */}
+              <div className="relative overflow-hidden rounded-[2rem] border border-border">
+                <div className="relative aspect-[16/7] sm:aspect-[21/9]">
+                  <Image
+                    src="/images/trainer/moment-workshop.jpg"
+                    alt="Dhia leading a training workshop"
+                    fill
+                    className="object-cover"
+                    sizes="100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+                </div>
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                  <p className="text-xs font-medium tracking-widest text-white/80 uppercase">{t("impactMetrics")}</p>
+                  <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold px-2 text-white">{t("measurableResults")}</h2>
+                </div>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8 place-items-center">

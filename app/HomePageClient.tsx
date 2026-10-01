@@ -36,9 +36,9 @@ function AnimatedRole() {
   const [i, setI] = useState(0)
   const [show, setShow] = useState(true)
   const roles = [
-    { text: t("homeRotatingDesigner"), cls: "text-pink-500 dark:text-pink-400" },
-    { text: t("homeRotatingTrainer"), cls: "text-amber-500 dark:text-amber-400" },
-    { text: t("homeRotatingDeveloper"), cls: "text-blue-500 dark:text-blue-400" },
+    { text: t("homeRotatingDesigner"), cls: "text-accent" },
+    { text: t("homeRotatingTrainer"), cls: "text-accent" },
+    { text: t("homeRotatingDeveloper"), cls: "text-accent" },
   ]
   useEffect(() => {
     const t = setInterval(() => {
@@ -263,64 +263,45 @@ export default function HomePageClient() {
           </FadeUp>
 
           {/* Three role cards, redesigned as one coherent family instead of
-              three differently-styled rectangles: same soft blobby corner
-              radius, same low-opacity portrait-photo watermark, same eyebrow
-              → emoji → title → description → CTA rhythm, so the only thing
-              that changes between them is the accent color and the emoji —
-              per Dhia's feedback that the old tiles were "boring, not
-              coherent" and asking for emojis + faded photos instead of flat
-              icon-in-circle badges. */}
+              three differently-styled rectangles. Charte-graphique pass (Oct
+              2026): dropped the per-card pink/amber/sky "discipline color"
+              and the low-opacity photo watermark -- Dhia's actual brand
+              identity is the single green gradient (sourced from his own
+              hero photo, see .bg-accent-gradient/.gradient-accent in
+              globals.css), not a rainbow per card, and the faint photo
+              behind the text read as visual clutter rather than a feature.
+              Every card now shares one icon treatment, one dot-grid-textured
+              surface, and one accent color -- distinguished only by its own
+              title/description/stats, exactly like the rest of the site. */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               {
                 role: roles[1],
                 icon: Palette,
-                iconCls: "w-9 h-9 p-2 rounded-xl bg-pink-100 text-pink-600 dark:bg-pink-950/60 dark:text-pink-400 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6",
                 eyebrowKey: "design",
                 title: "Zia Studio",
-                photo: "/images/photos/dhia-designer.png",
-                tint: "from-pink-50/95 via-white/97 to-white/98 dark:from-pink-950/30 dark:via-card/97 dark:to-card/98",
-                eyebrowCls: "text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50",
                 tags: ["Brand Identity", "UI/UX", "Motion", "Print"],
                 flagship: "Speranza Café, full brand identity",
-                tagCls: "bg-pink-50 dark:bg-pink-950/40 text-pink-700 dark:text-pink-300 border-pink-200/60 dark:border-pink-900/50",
-                ctaCls: "text-pink-600 dark:text-pink-400",
               },
               {
                 role: roles[0],
                 icon: Users,
-                iconCls: "w-9 h-9 p-2 rounded-xl bg-amber-100 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6",
                 eyebrowKey: "training",
                 title: t("pillarYouthDevelopment"),
-                // Real NGO-training photo (Association Youth Clubs workshop)
-                // in place of the generic branded headshot, per the Oct 2026
-                // photo-placement pass.
-                photo: "/images/photos/dhia-trainer-ngo.png",
-                tint: "from-amber-50/95 via-white/97 to-white/98 dark:from-amber-950/30 dark:via-card/97 dark:to-card/98",
-                eyebrowCls: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50",
                 stats: [
                   [siteConfig.stats.participants, t("statLabelParticipants")],
                   [siteConfig.stats.trainingHours, t("statLabelHours")],
                   [siteConfig.stats.facilitationHours, t("statLabelFacilitationHrs")],
                 ],
                 flagship: "IOM Youth Hackathon, Doha, 1st place",
-                ctaCls: "text-amber-600 dark:text-amber-400",
               },
               {
                 role: roles[2],
                 icon: Code2,
-                iconCls: "w-9 h-9 p-2 rounded-xl bg-sky-100 text-sky-600 dark:bg-sky-950/60 dark:text-sky-400 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6",
                 eyebrowKey: "webDevelopment",
                 title: t("pillarFullStackDevelopment"),
-                // Real "at the laptop" photo, matching the Developer hero
-                // swap, per the Oct 2026 photo-placement pass.
-                photo: "/images/photos/dhia-developer-pc.jpg",
-                tint: "from-sky-50/95 via-white/97 to-white/98 dark:from-sky-950/30 dark:via-card/97 dark:to-card/98",
-                eyebrowCls: "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50",
                 tags: ["React", "Next.js", "Tailwind", "TypeScript"],
                 flagship: "DigiMyTech Talent Hub, graduation project",
-                tagCls: "bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border-sky-200/60 dark:border-sky-900/50",
-                ctaCls: "text-sky-600 dark:text-sky-400",
               },
             ].map(
               (card) =>
@@ -328,24 +309,22 @@ export default function HomePageClient() {
                   <Link
                     key={card.role.slug}
                     href={`/${card.role.slug}`}
-                    className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-slate-100 dark:border-border shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-500 p-7"
+                    className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-slate-100 dark:border-border bg-white dark:bg-card shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-500 p-7"
                   >
-                    {/* Low-opacity portrait photo, faded into the card as a
-                        watermark rather than shown as a hard image. */}
-                    <Image
-                      src={card.photo}
-                      alt=""
-                      fill
-                      sizes="360px"
-                      className="object-cover object-top opacity-[0.07] grayscale group-hover:opacity-[0.13] transition-opacity duration-500"
+                    {/* Dot-grid texture -- the same hero-section pattern,
+                        generalized here -- in place of the old per-card
+                        colored wash and low-opacity photo watermark. */}
+                    <div
+                      className="absolute inset-0 bg-dot-grid opacity-[0.5] dark:opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"
                       aria-hidden
                     />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${card.tint}`} aria-hidden />
 
                     <div className="relative flex flex-col flex-1">
                       <div className="flex items-start justify-between mb-5">
-                        <card.icon className={card.iconCls} aria-hidden />
-                        <span className={`text-[12px] font-semibold uppercase tracking-[0.14em] px-3 py-1 rounded-full ${card.eyebrowCls}`}>
+                        <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-accent-gradient">
+                          <card.icon className="w-5 h-5 text-white" aria-hidden />
+                        </span>
+                        <span className="text-[12px] font-semibold uppercase tracking-[0.14em] px-3 py-1 rounded-full bg-accent-subtle text-accent">
                           {t(card.eyebrowKey)}
                         </span>
                       </div>
@@ -359,7 +338,7 @@ export default function HomePageClient() {
                           {card.tags.map((tag) => (
                             <span
                               key={tag}
-                              className={`text-xs font-medium rounded-full px-3 py-1 border ${card.tagCls}`}
+                              className="text-xs font-medium rounded-full px-3 py-1 border bg-accent-subtle text-accent border-accent/20"
                             >
                               {tag}
                             </span>
@@ -383,7 +362,7 @@ export default function HomePageClient() {
                         </div>
                       )}
 
-                      <span className={`inline-flex items-center gap-1.5 text-sm font-semibold group-hover:gap-2 transition-all ${card.ctaCls}`}>
+                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent group-hover:gap-2 transition-all">
                         {t(card.role.cta)}
                         <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180" />
                       </span>

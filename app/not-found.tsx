@@ -25,17 +25,17 @@ export default function NotFound() {
         />
 
         <div
-          className="pointer-events-none absolute left-[12%] top-[22%] h-3 w-3 rounded-full bg-pink-400/50 animate-float"
+          className="pointer-events-none absolute left-[12%] top-[22%] h-3 w-3 rounded-full bg-accent/50 animate-float"
           style={{ animationDelay: "0.3s" }}
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute right-[16%] top-[30%] h-2.5 w-2.5 rounded-full bg-amber-400/50 animate-float"
+          className="pointer-events-none absolute right-[16%] top-[30%] h-2.5 w-2.5 rounded-full bg-accent/35 animate-float"
           style={{ animationDelay: "1.4s" }}
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute right-[22%] bottom-[26%] h-3 w-3 rounded-full bg-blue-400/50 animate-float"
+          className="pointer-events-none absolute right-[22%] bottom-[26%] h-3 w-3 rounded-full bg-accent/60 animate-float"
           style={{ animationDelay: "2.2s" }}
           aria-hidden
         />
@@ -57,27 +57,27 @@ export default function NotFound() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
             <Link
               href="/designer"
-              className="group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-1 hover:border-pink-300/60 hover:shadow-md"
+              className="group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-md"
             >
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-pink-50 dark:bg-pink-950/40 text-pink-600 dark:text-pink-400">
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-accent-gradient text-white">
                 <Palette className="h-5 w-5" />
               </span>
               <span className="text-sm font-semibold text-foreground">{t("notFoundDesignLabel")}</span>
             </Link>
             <Link
               href="/trainer"
-              className="group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-1 hover:border-amber-300/60 hover:shadow-md"
+              className="group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-md"
             >
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400">
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-accent-gradient text-white">
                 <Compass className="h-5 w-5" />
               </span>
               <span className="text-sm font-semibold text-foreground">{t("notFoundTrainingLabel")}</span>
             </Link>
             <Link
               href="/developer"
-              className="group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-1 hover:border-blue-300/60 hover:shadow-md"
+              className="group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-md"
             >
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400">
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-accent-gradient text-white">
                 <Code2 className="h-5 w-5" />
               </span>
               <span className="text-sm font-semibold text-foreground">{t("notFoundWebDevLabel")}</span>

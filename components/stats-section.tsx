@@ -24,9 +24,14 @@ export default function StatsSection() {
 
   return (
     <section id="stats-section" className="relative overflow-hidden bg-section-tint py-10 px-5">
+      {/* Charte-graphique pass (Oct 2026): swapped the faint background
+          photo for the site's dot-grid texture. */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.07] bg-cover bg-center grayscale"
-        style={{ backgroundImage: "url(/images/bg/bg-graduation.jpg)" }}
+        className="pointer-events-none absolute inset-0 opacity-[0.16] bg-dot-grid"
+        style={{
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+        }}
         aria-hidden
       />
       {/* Seam fade: eases the transition from the section above into this
