@@ -17,7 +17,7 @@ const LANGUAGES = [
   { code: "ar", label: "العربية" },
 ] as const
 
-export function LanguageToggle() {
+export function LanguageToggle({ forceLight = false }: { forceLight?: boolean }) {
   const { language, setLanguage } = useLanguage()
   const router = useRouter()
   const pathname = usePathname()
@@ -37,9 +37,16 @@ export function LanguageToggle() {
         <button
           type="button"
           aria-label={`Language: ${language.toUpperCase()}, open language menu`}
-          className="w-9 h-9 rounded-full bg-slate-100/90 dark:bg-muted/70 ring-1 ring-black/10 dark:ring-white/10 hover:scale-105 flex items-center justify-center transition-all duration-200"
+          // forceLight: same translucent-white glass treatment as the rest
+          // of the nav cluster on Home's always-dark hero (unscrolled) --
+          // see ThemeToggle for the full rationale.
+          className={
+            forceLight
+              ? "w-9 h-9 rounded-full bg-white/10 ring-1 ring-white/15 hover:scale-105 flex items-center justify-center transition-all duration-200"
+              : "w-9 h-9 rounded-full bg-slate-100/90 dark:bg-muted/70 ring-1 ring-black/10 dark:ring-white/10 hover:scale-105 flex items-center justify-center transition-all duration-200"
+          }
         >
-          <Languages className="w-4 h-4 text-slate-600 dark:text-slate-300" />
+          <Languages className={`w-4 h-4 ${forceLight ? "text-white/70" : "text-slate-600 dark:text-slate-300"}`} />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[9rem]">

@@ -629,6 +629,105 @@ html.custom-cursor-active * {
   background-size: 24px 24px;
 }
 
+/* ─── HOMEPAGE HERO: full-bleed blended portrait (Oct 2026) ───
+ * The hero photo (hero-annotated-portrait.tsx) is a background layer
+ * behind all hero content, masked so it reads as part of the page rather
+ * than a pasted rectangle. Two masks, combined with mask-composite:
+ * intersect (-webkit-mask-composite: source-in as the prefixed
+ * equivalent) so there is no hard edge anywhere:
+ *   1. a directional fade that dissolves the photo into the section
+ *      background on the side where the hero text sits;
+ *   2. a feather on the remaining edges (never the subject-facing edge).
+ * The crop and the fade direction both change by breakpoint: horizontal
+ * on desktop/tablet (photo lives beside a text column), vertical on
+ * mobile (photo sits above the stacked text instead of behind it). The
+ * subject (head, beard, shoulders) is always inside the fully-opaque
+ * zone -- the stops below were chosen and screenshot-verified against
+ * the actual portrait (public/images/photos/dhia-hero-green.png) so the
+ * fade never touches skin or hair, only the photo's own dark background.
+ */
+
+/* Mobile (<640px): photo fills the top of the hero, fading down into the
+   stacked text below. No horizontal fade -- the face sits centered in the
+   crop (see the object-position on the <Image> itself). */
+.hero-photo-mask {
+  -webkit-mask-image:
+    linear-gradient(to bottom, black 0%, black 56%, rgba(0, 0, 0, 0.82) 65%, rgba(0, 0, 0, 0.5) 74%, rgba(0, 0, 0, 0.18) 83%, transparent 93%),
+    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, black 0%, black 56%, rgba(0, 0, 0, 0.82) 65%, rgba(0, 0, 0, 0.5) 74%, rgba(0, 0, 0, 0.18) 83%, transparent 93%),
+    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-composite: intersect;
+}
+.hero-photo-dots {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 48%, black 88%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, transparent 48%, black 88%, black 100%);
+}
+
+/* Tablet (640–1023px): photo shifted right, a stronger/later left fade
+   than desktop since the text column takes relatively more width here. */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-photo-mask {
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, transparent 46%, rgba(0, 0, 0, 0.08) 53%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0.6) 66%, rgba(0, 0, 0, 0.85) 71%, black 76%, black 100%),
+      linear-gradient(to bottom, transparent 0%, black 9%, black 91%, transparent 100%),
+      linear-gradient(to right, black 0%, black 89%, transparent 100%);
+    -webkit-mask-composite: source-in, source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, transparent 46%, rgba(0, 0, 0, 0.08) 53%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0.6) 66%, rgba(0, 0, 0, 0.85) 71%, black 76%, black 100%),
+      linear-gradient(to bottom, transparent 0%, black 9%, black 91%, transparent 100%),
+      linear-gradient(to right, black 0%, black 89%, transparent 100%);
+    mask-composite: intersect;
+  }
+  .hero-photo-dots {
+    -webkit-mask-image: linear-gradient(to right, black 0%, black 34%, transparent 58%);
+    mask-image: linear-gradient(to right, black 0%, black 34%, transparent 58%);
+  }
+}
+
+/* Desktop (≥1024px): photo full-height on the right, fading left behind
+   the text column. */
+@media (min-width: 1024px) {
+  .hero-photo-mask {
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, transparent 35%, rgba(0, 0, 0, 0.08) 41%, rgba(0, 0, 0, 0.28) 47%, rgba(0, 0, 0, 0.55) 52%, rgba(0, 0, 0, 0.82) 57%, black 62%, black 100%),
+      linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%),
+      linear-gradient(to right, black 0%, black 90%, transparent 100%);
+    -webkit-mask-composite: source-in, source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, transparent 35%, rgba(0, 0, 0, 0.08) 41%, rgba(0, 0, 0, 0.28) 47%, rgba(0, 0, 0, 0.55) 52%, rgba(0, 0, 0, 0.82) 57%, black 62%, black 100%),
+      linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%),
+      linear-gradient(to right, black 0%, black 90%, transparent 100%);
+    mask-composite: intersect;
+  }
+  .hero-photo-dots {
+    -webkit-mask-image: linear-gradient(to right, black 0%, black 28%, transparent 52%);
+    mask-image: linear-gradient(to right, black 0%, black 28%, transparent 52%);
+  }
+}
+
+/* The cursor-reactive-looking blur circle from the old HUD stage is
+   retargeted here to sit over the photo's own lime glow disc instead of
+   floating separately -- it extends that glow a little past the photo's
+   masked edge so the dissolve into the dot-grid/background reads as one
+   continuous light source, not two overlapping circles. Static (no
+   mouse-tracking ever existed), with a slow opacity breathe gated behind
+   prefers-reduced-motion. */
+@keyframes hero-glow-breathe {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.7; }
+}
+.hero-glow-pulse {
+  animation: hero-glow-breathe 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-glow-pulse {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
 /* Card shadows from design token system */
 .shadow-card {
   box-shadow: var(--shadow-card);

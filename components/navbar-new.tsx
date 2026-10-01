@@ -30,6 +30,19 @@ export default function Navbar() {
   const pathname = usePathname()
   const prefersReducedMotion = useReducedMotion()
 
+  // Home's hero (Oct 2026 full-bleed photo rework) is always-dark
+  // regardless of site theme. This navbar's unscrolled/transparent state
+  // otherwise assumes `dark:text-white` / plain `text-slate-900` tracks the
+  // SITE theme, which is right everywhere else (the page background behind
+  // a transparent nav does flip with the theme), but wrong here specifically:
+  // in light mode, dark nav text would sit on top of Home's always-dark
+  // hero and disappear. Scoped to Home + unscrolled only -- every other
+  // page keeps the original theme-aware behavior.
+  const forceLight = pathname === "/" && !scrolled
+  const iconBtnClass = forceLight
+    ? "bg-white/10 text-white/70 ring-1 ring-white/15 hover:text-white"
+    : "bg-slate-100/90 dark:bg-muted/70 text-slate-600 dark:text-slate-300 ring-1 ring-black/10 dark:ring-white/10 hover:text-slate-900 dark:hover:text-white"
+
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30)
     // Sync immediately on attach, not just on the next scroll event. Without
@@ -149,8 +162,8 @@ export default function Navbar() {
                 <Image src="/images/photos/dhia-main.png" alt="Mohamed Dhia" width={36} height={36} className="object-cover w-full h-full" priority />
               </div>
               <div className="hidden sm:block leading-tight shrink-0">
-                <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none whitespace-nowrap">Dhia</p>
-                <p className="text-[10px] text-slate-400 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5 whitespace-nowrap">{t("navTagline")}</p>
+                <p className={`font-display font-bold text-sm leading-none whitespace-nowrap ${forceLight ? "text-white" : "text-slate-900 dark:text-white"}`}>Dhia</p>
+                <p className={`text-[10px] tracking-widest uppercase font-medium mt-0.5 whitespace-nowrap ${forceLight ? "text-white/50" : "text-slate-400 dark:text-slate-300"}`}>{t("navTagline")}</p>
               </div>
             </Link>
           </motion.div>
@@ -161,17 +174,19 @@ export default function Navbar() {
               the "navbar overflows / isn't centered" bug. `xl` gives both
               enough room, and the hamburger menu below covers every one of
               these links and controls in the 1024-1279 gap. */}
-          <nav className="hidden xl:flex justify-self-center items-center gap-0.5 bg-slate-100/90 dark:bg-muted/70 backdrop-blur-sm rounded-2xl px-1.5 py-1 border border-slate-200/60 dark:border-border/60">
+          <nav className={`hidden xl:flex justify-self-center items-center gap-0.5 backdrop-blur-sm rounded-2xl px-1.5 py-1 border ${forceLight ? "bg-white/10 border-white/10" : "bg-slate-100/90 dark:bg-muted/70 border-slate-200/60 dark:border-border/60"}`}>
             {navLinks.map(link => {
               const active = pathname === link.href
               return (
                 <Link key={link.href} href={link.href}
                   className="relative px-2 py-1.5 rounded-xl text-[12px] xl:text-[13px] font-medium whitespace-nowrap transition-colors duration-150 select-none">
                   {active && (
-                    <span className="absolute inset-0 bg-white dark:bg-secondary rounded-xl shadow-sm" />
+                    <span className={`absolute inset-0 rounded-xl shadow-sm ${forceLight ? "bg-white/15" : "bg-white dark:bg-secondary"}`} />
                   )}
                   <span className={`relative z-10 ${
-                    active ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                    forceLight
+                      ? active ? "text-white" : "text-white/70 hover:text-white"
+                      : active ? "text-slate-900 dark:text-white" : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
                   }`}>
                     {t(link.labelKey)}
                   </span>
@@ -204,7 +219,7 @@ export default function Navbar() {
               href={siteConfig.behance}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden min-[1900px]:flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 bg-slate-100/90 dark:bg-muted/70 text-slate-600 dark:text-slate-300 ring-1 ring-black/10 dark:ring-white/10 hover:text-slate-900 dark:hover:text-white"
+              className={`hidden min-[1900px]:flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 ${iconBtnClass}`}
               aria-label="Behance portfolio"
               title="Behance"
             >
@@ -214,7 +229,7 @@ export default function Navbar() {
               href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden min-[1900px]:flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 bg-slate-100/90 dark:bg-muted/70 text-slate-600 dark:text-slate-300 ring-1 ring-black/10 dark:ring-white/10 hover:text-slate-900 dark:hover:text-white"
+              className={`hidden min-[1900px]:flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 ${iconBtnClass}`}
               aria-label="LinkedIn profile"
               title="LinkedIn"
             >
@@ -224,7 +239,7 @@ export default function Navbar() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden min-[1900px]:flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 bg-slate-100/90 dark:bg-muted/70 text-slate-600 dark:text-slate-300 ring-1 ring-black/10 dark:ring-white/10 hover:text-slate-900 dark:hover:text-white"
+              className={`hidden min-[1900px]:flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 ${iconBtnClass}`}
               aria-label="Chat on WhatsApp"
               title="Chat on WhatsApp"
             >
@@ -237,14 +252,14 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => window.dispatchEvent(new CustomEvent("dhia:open-search"))}
-              className="hidden sm:flex w-9 h-9 rounded-full items-center justify-center transition-all duration-200 hover:scale-105 active:scale-90 shrink-0 bg-slate-100/90 dark:bg-muted/70 text-slate-600 dark:text-slate-300 ring-1 ring-black/10 dark:ring-white/10 hover:text-slate-900 dark:hover:text-white"
+              className={`hidden sm:flex w-9 h-9 rounded-full items-center justify-center transition-all duration-200 hover:scale-105 active:scale-90 shrink-0 ${iconBtnClass}`}
               aria-label="Search (Ctrl/Cmd+K)"
               title="Search (Ctrl/Cmd+K)"
             >
               <Search className="w-4 h-4" />
             </button>
-            <ThemeToggle />
-            <LanguageToggle />
+            <ThemeToggle forceLight={forceLight} />
+            <LanguageToggle forceLight={forceLight} />
             {/* Compact icon-only CTA, visible below md so the primary
                 "book a call" action isn't only reachable through the
                 hamburger menu on phones (Dhia's ask: more should be usable
@@ -277,7 +292,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setOpen(o => !o)}
-              className="xl:hidden w-9 h-9 flex items-center justify-center rounded-full bg-slate-100/90 dark:bg-muted/70 text-slate-600 dark:text-slate-300 ring-1 ring-black/10 dark:ring-white/10 hover:text-slate-900 dark:hover:text-white transition-colors shrink-0"
+              className={`xl:hidden w-9 h-9 flex items-center justify-center rounded-full transition-colors shrink-0 ${iconBtnClass}`}
               aria-label="Menu"
             >
               {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}

@@ -1,372 +1,133 @@
 "use client"
 
-import { useMemo } from "react"
-import { Calendar } from "lucide-react"
 import Image from "next/image"
-import { motion, useReducedMotion } from "framer-motion"
+import { Calendar } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
-import { formatStat } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
 
-export const HERO_PORTRAIT_SRC = "/images/photos/dhia-main.png"
-
-export type HeroPortraitTheme = "light" | "dark"
-
-type Point = { x: number; y: number }
-
-export type HeroCalloutConfig = {
-  id: string
-  label: string
-  value: React.ReactNode
-  subvalue?: React.ReactNode
-  anchor: Point
-  card: Point
-  cardMaxWidth?: number
-  bracket?: boolean
-  delay: number
-}
+// Oct 2026 full-bleed rework: the photo used to sit in a small framed
+// panel inside a HUD stage (anchor dots / connector lines / callout
+// cards -- all unused by the time of this rework, the identity HUD card
+// they pointed at was already removed and `callouts` was an empty array).
+// It's now the hero's own full-bleed background layer instead, masked so
+// it dissolves into the page on every edge except where the subject is.
+// See the .hero-photo-mask / .hero-photo-dots rules in globals.css for the
+// actual gradient stops (kept there, not inline, so the -webkit- prefixed
+// fallback and the per-breakpoint media queries stay in one place).
+export const HERO_PORTRAIT_SRC = "/images/photos/dhia-hero-green.png"
 
 type Props = {
-  theme?: HeroPortraitTheme
-  compact?: boolean
   className?: string
   imageSrc?: string
   showCta?: boolean
-  /** Soft pastel green diagonal wash behind the hero content, light mode
-   *  only, per Dhia's reference screenshot of another portfolio's hero,
-   *  recolored to the site's own green accent instead of that reference's
-   *  purple/pink so it reads as on-brand rather than borrowed. Built from
-   *  --site-accent / --neon-green (see globals.css). Opt-in so it only
-   *  affects the homepage hero, not every page that reuses this component. */
-  gradientBg?: boolean
   children?: React.ReactNode
 }
 
-const PHOTO_BOUNDS = { x: 16, y: 0, w: 68, h: 86 }
-
-function HudBracket({ show }: { show: boolean }) {
-  if (!show) return null
-  return (
-    <>
-      <span className="pointer-events-none absolute -top-px -left-px h-3 w-3 border-l border-t border-accent/50" />
-      <span className="pointer-events-none absolute -bottom-px -right-px h-3 w-3 border-r border-b border-accent/50" />
-    </>
-  )
-}
-
-function AnchorDot({ x, y, reducedMotion, delay }: { x: number; y: number; reducedMotion: boolean; delay: number }) {
-  return (
-    <motion.div
-      className="absolute z-20 pointer-events-none"
-      style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
-      initial={reducedMotion ? false : { scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.35, delay: 0.2 + delay }}
-    >
-      <span
-        className="block h-2 w-2 rounded-full bg-accent"
-        style={{ boxShadow: "0 0 10px color-mix(in oklab, var(--site-accent) 70%, transparent)" }}
-      />
-      {!reducedMotion && (
-        <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-40" style={{ animationDuration: "2.5s" }} />
-      )}
-    </motion.div>
-  )
-}
-
-function CalloutCard({
-  callout,
-  theme,
-  reducedMotion,
-  isMobile,
-}: {
-  callout: HeroCalloutConfig
-  theme: HeroPortraitTheme
-  reducedMotion: boolean
-  isMobile?: boolean
-}) {
-  const isDark = theme === "dark"
-  const cardClass = isDark
-    ? "bg-black/40 backdrop-blur-md border-accent/20 text-white"
-    : "bg-white/85 dark:bg-card/90 backdrop-blur-md border-accent/25 dark:border-accent/30 text-slate-900 dark:text-white shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-none"
-
-  const motionProps = reducedMotion
-    ? {}
-    : {
-        initial: {
-          opacity: 0,
-          scale: 0.96,
-          x: isMobile ? 0 : callout.card.x < callout.anchor.x ? -10 : 10,
-          y: isMobile ? 8 : callout.card.y < callout.anchor.y ? -10 : 10,
-        },
-        animate: { opacity: 1, scale: 1, x: 0, y: 0 },
-        transition: { duration: 0.55, delay: 0.35 + callout.delay, ease: [0.22, 1, 0.36, 1] as const },
-      }
-
-  return (
-    <motion.div
-      {...motionProps}
-      className={`relative rounded-xl border px-3.5 py-3 ${cardClass} ${
-        isMobile ? "min-w-[220px] max-w-[260px] shrink-0 snap-start" : "absolute z-30"
-      }`}
-      style={
-        isMobile
-          ? undefined
-          : {
-              left: `${callout.card.x}%`,
-              top: `${callout.card.y}%`,
-              transform: "translate(-50%, -50%)",
-              maxWidth: callout.cardMaxWidth ?? 210,
-            }
-      }
-    >
-      <HudBracket show={!!callout.bracket} />
-      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">{callout.label}</p>
-      <div className={`mt-1 text-sm font-semibold leading-snug ${isDark ? "text-white" : "text-slate-900 dark:text-white"}`}>{callout.value}</div>
-      {callout.subvalue ? <div className={`mt-0.5 text-xs ${isDark ? "text-white/65" : "text-slate-500 dark:text-slate-400"}`}>{callout.subvalue}</div> : null}
-    </motion.div>
-  )
-}
-
-function ConnectorLines({ callouts, reducedMotion }: { callouts: HeroCalloutConfig[]; reducedMotion: boolean }) {
-  return (
-    <svg className="pointer-events-none absolute inset-0 z-20 h-full w-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
-      {callouts.map((c) => {
-        const len = Math.hypot(c.card.x - c.anchor.x, c.card.y - c.anchor.y)
-        return (
-          <g key={c.id}>
-            <motion.line
-              x1={c.anchor.x}
-              y1={c.anchor.y}
-              x2={c.card.x}
-              y2={c.card.y}
-              stroke="var(--site-accent)"
-              strokeOpacity={0.38}
-              strokeWidth={0.22}
-              vectorEffect="non-scaling-stroke"
-              strokeLinecap="round"
-              strokeDasharray={`${len} ${len}`}
-              initial={reducedMotion ? false : { strokeDashoffset: len, opacity: 0 }}
-              animate={{ strokeDashoffset: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.25 + c.delay, ease: "easeOut" }}
-            />
-          </g>
-        )
-      })}
-    </svg>
-  )
-}
-
-/** This photo is the LCP (Largest Contentful Paint) element on the homepage —
- *  a real-user-monitoring check on the live site (Vercel Speed Insights)
- *  showed the homepage's Real Experience Score sitting at 89 ("needs
- *  improvement") specifically on LCP (3.41s), while every other metric was
- *  already "great". Two real causes, both fixed here:
- *  1) This was a plain `<img>` tag, so every visitor downloaded the full
- *     1024×1024 source file with no format negotiation (no AVIF/WebP) and
- *     no responsive sizing for their actual viewport, switched to next/image
- *     with `priority` (preloads it and marks it fetchpriority="high") and a
- *     `sizes` matching its real rendered width, so Vercel's image CDN now
- *     serves a correctly-sized AVIF/WebP instead of the raw JPEG.
- *  2) It was wrapped in a framer-motion fade-in starting at opacity: 0 —
- *     Chrome's LCP algorithm can only count a paint once content is
- *     actually visible, so animating the single largest element on the page
- *     in from invisible was adding real, measured delay before LCP could
- *     fire. The surrounding HUD chrome (dots, connector lines, callout
- *     cards) still animates in, only the photo itself now renders at full
- *     opacity immediately. */
-function PortraitImage({ src, priority = true }: { src: string; priority?: boolean }) {
-  return (
-    <Image
-      src={src}
-      alt="Mohamed Dhia Arfa, designer, trainer, and web developer"
-      fill
-      className="rounded-3xl object-cover object-[center_12%] select-none"
-      sizes="(min-width: 1024px) 440px, (min-width: 640px) 380px, 92vw"
-      priority={priority}
-      fetchPriority={priority ? "high" : undefined}
-      quality={82}
-    />
-  )
-}
-
-function HudStage({
-  callouts,
-  theme,
-  compact,
-  imageSrc,
-  showCta,
-  reducedMotion,
-  t,
-}: {
-  callouts: HeroCalloutConfig[]
-  theme: HeroPortraitTheme
-  compact: boolean
-  imageSrc: string
-  showCta: boolean
-  reducedMotion: boolean
-  t: (key: string) => string
-}) {
-  // Reduced Sep 30 per Dhia's direct feedback ("so surprising and not good
-  // with that size") -- was 640px/560px(480 compact), a size that made the
-  // photo dominate roughly half the hero at common widths. PHOTO_BOUNDS
-  // (68%/86% of the stage) and every callout anchor/card position below
-  // are percentage-based within this stage, so shrinking it scales the
-  // whole HUD proportionally without needing to retune any coordinates.
-  const stageHeight = compact ? "h-[400px]" : "h-[460px]"
-
-  return (
-    <div className="flex flex-col items-center">
-      <div className={`relative mx-auto w-full max-w-[520px] px-2 sm:px-4 ${stageHeight}`}>
-        <div
-          className="pointer-events-none absolute z-0 rounded-full blur-3xl"
-          style={{
-            left: `${PHOTO_BOUNDS.x + PHOTO_BOUNDS.w / 2}%`,
-            top: `${PHOTO_BOUNDS.y + PHOTO_BOUNDS.h / 2}%`,
-            width: "48%",
-            height: "58%",
-            transform: "translate(-50%, -50%)",
-            background: "color-mix(in oklab, var(--site-accent) 14%, transparent)",
-          }}
-        />
-
-        {!reducedMotion && (
-          <motion.div
-            className="pointer-events-none absolute left-[10%] right-[10%] z-[5] h-px bg-accent/10 blur-[1px]"
-            animate={{ top: ["6%", "84%", "6%"] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          />
-        )}
-
-        <ConnectorLines callouts={callouts} reducedMotion={reducedMotion} />
-
-        {callouts.map((c) => (
-          <AnchorDot key={`dot-${c.id}`} x={c.anchor.x} y={c.anchor.y} reducedMotion={reducedMotion} delay={c.delay} />
-        ))}
-
-        {/* No entrance animation here on purpose, this photo is the page's
-            LCP element (see PortraitImage above), and fading in the single
-            largest element on the page measurably delays LCP. Everything
-            around it (dots, connector lines, callout cards) still animates.
-            The rounded bg-accent-subtle base underneath is a load-state
-            placeholder: next/image with `fill` paints nothing at all until
-            the file has fully arrived, so on a slow connection (or a warm
-            client-side route back to this page) visitors briefly saw a bare
-            gap instead of a photo. This gives them a soft, on-brand colored
-            panel in the right shape/position instead of empty space. */}
-        <div
-          className="absolute z-10 rounded-3xl bg-accent-subtle/60 dark:bg-muted/60 overflow-hidden"
-          style={{
-            left: `${PHOTO_BOUNDS.x}%`,
-            top: `${PHOTO_BOUNDS.y}%`,
-            width: `${PHOTO_BOUNDS.w}%`,
-            height: `${PHOTO_BOUNDS.h}%`,
-          }}
-        >
-          <PortraitImage src={imageSrc} />
-        </div>
-
-        {callouts.map((c) => (
-          <CalloutCard key={c.id} callout={c} theme={theme} reducedMotion={reducedMotion} />
-        ))}
-      </div>
-
-      {showCta && (
-        <motion.div
-          className="mt-5 z-30"
-          initial={reducedMotion ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.7 }}
-        >
-          <a
-            href={siteConfig.calendlyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-green inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold shadow-[0_4px_24px_color-mix(in_oklab,var(--site-accent)_35%,transparent)]"
-          >
-            <Calendar className="w-4 h-4" />
-            {t("bookFreeConsultation")}
-          </a>
-        </motion.div>
-      )}
-    </div>
-  )
-}
-
 export default function HeroAnnotatedPortrait({
-  theme = "light",
-  compact = false,
   className = "",
   imageSrc = HERO_PORTRAIT_SRC,
-  showCta = true,
-  gradientBg = false,
+  showCta = false,
   children,
 }: Props) {
   const { t } = useLanguage()
-  const reducedMotion = useReducedMotion() ?? false
-  const isDark = theme === "dark"
-
-  // The floating "identity" HUD card (name + role list + location) was
-  // removed per Dhia's request: it duplicated the role list already shown
-  // in the hero text column, and its role-list subvalue ran long enough in
-  // French ("Designer graphique · Formateur certifié · Développeur web")
-  // to overflow behind the navbar. No callouts render on this component
-  // now; HudStage/mobile sections already handle an empty list gracefully.
-  const callouts: HeroCalloutConfig[] = useMemo(() => [], [])
-
-  const sectionBg = isDark ? "bg-slate-950 text-white" : "bg-white dark:bg-background text-slate-900 dark:text-white"
 
   return (
-    <section className={`relative isolate ${sectionBg} px-4 sm:px-6 pt-24 pb-16 lg:pb-20 ${className}`}>
-      {gradientBg && (
+    <section
+      className={`relative isolate overflow-hidden bg-[#0A0A0A] text-white px-4 sm:px-6 pt-24 pb-16 lg:pb-20 ${className}`}
+    >
+      {/* z-10: full-bleed photo, anchored toward the subject on the right.
+          object-position shifts per breakpoint: mobile keeps the face
+          centered in a tall crop, desktop pins the subject to the right
+          where the fading mask (globals.css) leaves it fully opaque. The
+          backgroundColor match avoids a flash of blank/white while the
+          file loads -- sampled from the photo's own corner, not a generic
+          placeholder. */}
+      {/* Mobile gets its own fixed height (52vh) instead of spanning the
+          full (pt-[44vh]-inflated) section: object-cover on a 1.9:1-wide
+          source inside a container as tall as the WHOLE stacked section
+          was cropping to a sliver of the image (cover scales to match
+          whichever dimension needs it most -- against a very tall, narrow
+          box that's almost entirely the image's own height, leaving only
+          a ~20% sliver of its width visible), which is what was blowing
+          the face up into an unrecognizable, off-center zoom. Capping the
+          box to a realistic viewport fraction restores a sane crop ratio.
+          sm+ reverts to the original full-bleed inset-0 (photo sits beside
+          the text column there, not above a stack, so it should span the
+          section's whole height). */}
+      <div className="absolute inset-x-0 top-0 h-[52vh] sm:inset-0 sm:h-auto z-10 hero-photo-mask">
+        <Image
+          src={imageSrc}
+          alt="Mohamed Dhia Arfa"
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          quality={85}
+          className="object-cover object-[86%_20%] sm:object-[88%_26%] lg:object-[right_center]"
+          style={{ backgroundColor: "#0A1F0A" }}
+        />
+
+        {/* z-11 (nested so its percentages track the photo's OWN box, not
+            the full stacked section): the old HUD stage's static
+            accent-glow circle, retargeted to sit over the photo's own lime
+            glow disc instead of floating on its own -- extends that light
+            a little past the photo's masked edge so the dissolve into the
+            dot-grid reads as one continuous source, not a second visible
+            circle. No mouse-tracking ever existed on this (it was a fixed
+            blur circle before too); the breathing opacity animation is the
+            only motion, and it's gated behind prefers-reduced-motion in
+            globals.css. */}
         <div
-          className="pointer-events-none absolute inset-0 dark:hidden"
+          className="hero-glow-pulse pointer-events-none absolute z-[1] rounded-full blur-3xl"
           style={{
+            right: "4%",
+            top: "6%",
+            width: "46%",
+            height: "48%",
             background:
-              "linear-gradient(135deg, hsl(var(--neon-green) / 0.16) 0%, color-mix(in oklab, var(--site-accent) 16%, transparent) 45%, hsl(var(--neon-green) / 0.10) 100%)",
+              "radial-gradient(circle, color-mix(in oklab, var(--site-accent) 55%, transparent) 0%, transparent 70%)",
           }}
           aria-hidden
         />
-      )}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.07] dark:opacity-[0.08] bg-dot-grid" />
+      </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl">
-        <div className={children ? "grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,44%)_minmax(0,56%)] lg:gap-8" : ""}>
-          {children ? <div className="min-w-0">{children}</div> : null}
+      {/* z-20: dot-grid, masked to the inverse of the photo fade so dots
+          only show where the photo has dissolved away (never on the
+          face/body) and fade out as the photo becomes opaque. */}
+      <div
+        className="pointer-events-none absolute inset-0 z-20 bg-dot-grid opacity-[0.45] hero-photo-dots"
+        aria-hidden
+      />
 
-          <div className={`hidden lg:block w-full ${children ? "mb-0" : "max-w-[640px] mx-auto"}`}>
-            <HudStage
-              callouts={callouts}
-              theme={theme}
-              compact={compact}
-              imageSrc={imageSrc}
-              showCta={showCta}
-              reducedMotion={reducedMotion}
-              t={t}
-            />
-          </div>
-        </div>
+      {/* z-20: soft scrim behind the text zone for contrast -- a gradient,
+          never a hard box, per Dhia's spec. Direction flips with the mask:
+          left-to-right fade on tablet/desktop (text sits left), top-to-
+          bottom on mobile (text sits below the photo). */}
+      <div
+        className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent sm:bg-gradient-to-r sm:from-[#0A0A0A] sm:via-[#0A0A0A]/60 sm:to-transparent"
+        aria-hidden
+      />
 
-        {/* Reduced Sep 30 alongside the desktop stage per Dhia's feedback
-          * ("so surprising and not good with that size") -- was
-          * min(92vw,380px)/440px, matching the ~19% desktop reduction. */}
-        <div className="lg:hidden mt-6 flex flex-col items-center gap-5 w-full">
-          <div className="relative w-[min(78vw,310px)] aspect-[3/4] max-h-[360px] rounded-3xl bg-accent-subtle/60 dark:bg-muted/60 overflow-hidden">
-            <PortraitImage src={imageSrc} />
-          </div>
-          <p className="text-xs font-medium text-muted-foreground">{t("hudSwipeHint")}</p>
-          <div className="flex w-full max-w-lg gap-3 overflow-x-auto pb-2 snap-x snap-mandatory px-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {callouts.map((c) => (
-              <CalloutCard key={`m-${c.id}`} callout={c} theme={theme} reducedMotion={reducedMotion} isMobile />
-            ))}
-          </div>
-          {showCta && (
-            <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold">
+      {/* z-30: hero content. Reserves top space on mobile/tablet so the
+          photo genuinely reads as "on top" before the text begins (the
+          stacked mobile layout from Dhia's spec), collapses to the normal
+          pt-24 on desktop where the photo sits beside the text instead. */}
+      <div className="relative z-30 mx-auto w-full max-w-6xl">
+        <div className="min-w-0 pt-[44vh] sm:pt-[30vh] lg:pt-0">{children}</div>
+
+        {showCta && (
+          <div className="mt-6 lg:mt-8">
+            <a
+              href={siteConfig.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-green inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold shadow-[0_4px_24px_color-mix(in_oklab,var(--site-accent)_35%,transparent)]"
+            >
               <Calendar className="w-4 h-4" />
               {t("bookFreeConsultation")}
             </a>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   )

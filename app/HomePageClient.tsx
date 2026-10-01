@@ -51,7 +51,7 @@ function AnimatedRole() {
     return () => clearInterval(t)
   }, [])
   return (
-    <p className="text-xl font-medium text-slate-500 dark:text-slate-400">
+    <p className="text-xl font-medium text-white/60">
       {t("homeRotatingPrefix")}{" "}
       {/* Italic Fraunces serif accent on the rotating word, the "end to
           end."-style flourish from Dhia's reference screenshot, applied here
@@ -91,7 +91,7 @@ function HeroAskBar() {
   // muted) since it's now a secondary path, not the first thing offered.
   return (
     <form
-      className="mt-5 flex max-w-[420px] items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 px-2 py-1 pl-4 backdrop-blur-sm dark:border-border/70 dark:bg-card/50"
+      className="mt-5 flex max-w-[420px] items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2 py-1 pl-4 backdrop-blur-sm"
       onSubmit={(e) => {
         e.preventDefault()
         if (!value.trim()) return
@@ -99,13 +99,13 @@ function HeroAskBar() {
         setValue("")
       }}
     >
-      <Sparkles className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
+      <Sparkles className="h-3.5 w-3.5 shrink-0 text-white/50" aria-hidden />
       <input
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={t("heroAskPlaceholder")}
-        className="flex-1 bg-transparent text-xs text-slate-600 placeholder:text-slate-400 focus:outline-none dark:text-slate-300 dark:placeholder:text-slate-500"
+        className="flex-1 bg-transparent text-xs text-white/80 placeholder:text-white/35 focus:outline-none"
       />
       <button
         type="submit"
@@ -154,8 +154,8 @@ export default function HomePageClient() {
       <Navbar />
 
       <main id="main-content">
-      {/* Hero, annotated portrait HUD */}
-      <HeroAnnotatedPortrait theme="light" gradientBg className="!pb-10" showCta={false}>
+      {/* Hero, full-bleed blended portrait background (Oct 2026) */}
+      <HeroAnnotatedPortrait className="!pb-10" showCta={false}>
         <div className="max-w-2xl">
           {/* 3-way audit synthesis (Sep 2026): promotes the existing,
               already-translated positioning tagline into the literal <h1>
@@ -163,12 +163,17 @@ export default function HomePageClient() {
               positioning statement is the actual top heading rather than a
               paragraph below it. The greeting moves to a small kicker line
               above; the hover-glow treatment Dhia asked for on the tagline
-              carries over onto the h1 itself instead of being dropped. */}
-          <p className="text-base sm:text-lg font-medium text-slate-500 dark:text-slate-400 mb-2">
+              carries over onto the h1 itself instead of being dropped.
+              Colors hardcoded to the light/white side (not `dark:` pairs)
+              everywhere in this hero block: the hero section itself is now
+              always-dark regardless of site theme (full-bleed photo
+              background), so text here needs to stay light in both themes
+              instead of flipping with `.dark`. */}
+          <p className="text-base sm:text-lg font-medium text-white/60 mb-2">
             {t("helloGreeting")}{" "}
             <span className="text-accent font-semibold">Dhia</span>
           </p>
-          <h1 className="h1-hero-tagline text-slate-900 dark:text-white mb-2 transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]">
+          <h1 className="h1-hero-tagline text-white mb-2 transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]">
             {/* Dhia's ask: a real line break after "build." rather than
                 whatever the browser's own wrap happens to land on. */}
             {t("homeHeroTaglinePart1")}
@@ -199,7 +204,10 @@ export default function HomePageClient() {
               <Calendar className="w-4 h-4" />
               {t("bookFreeConsultation")}
             </a>
-            <a href="#expertise" className="btn-outline group inline-flex">
+            <a
+              href="#expertise"
+              className="btn-outline group inline-flex !text-white !border-white/20 hover:!border-accent hover:!text-accent hover:!bg-accent-subtle"
+            >
               {t("exploreMyWork")}
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
             </a>
@@ -223,7 +231,7 @@ export default function HomePageClient() {
                 {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 aria-label={label}
                 title={label}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-600 backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-accent dark:border-border dark:bg-card/70 dark:text-slate-300"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-accent"
               >
                 {Icon ? <Icon className="h-4 w-4" /> : <span className="text-[10px] font-bold">@</span>}
               </a>
