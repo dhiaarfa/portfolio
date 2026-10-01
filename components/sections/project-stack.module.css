@@ -32,7 +32,7 @@
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.28em;
-  color: var(--site-accent, #e0452b);
+  color: var(--site-accent, #16a34a);
   text-transform: uppercase;
 }
 .title {
@@ -195,7 +195,7 @@ a.card:hover .chip {
   height: 36px;
   border-radius: 50%;
   border: 0;
-  background: #1a1a1a;
+  background: var(--ink);
   color: #fff;
   display: grid;
   place-items: center;
@@ -208,7 +208,7 @@ a.card:hover .chip {
 }
 .card:hover .plus {
   transform: rotate(90deg);
-  background: var(--site-accent, #1a1a1a);
+  background: var(--site-accent, #16a34a);
 }
 
 @media (max-width: 767px) {

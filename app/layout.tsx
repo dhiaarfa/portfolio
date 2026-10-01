@@ -322,19 +322,18 @@ export default function RootLayout({
       <body className={cn("antialiased overflow-x-hidden min-w-0 font-body")} style={{ backgroundColor: "hsl(var(--background))", color: "hsl(var(--foreground))" }}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           enableSystem={false}
-          // Bumped Sep 30 per Dhia's "restore light mode as default" ask:
-          // the provider was already correctly configured for light-by-
-          // default (enableSystem is false, so OS dark-mode preference was
-          // never the cause), but any visitor -- including Dhia himself,
-          // from earlier testing -- who'd previously toggled dark had that
-          // choice persisted under the old key and kept seeing dark on
-          // return visits. Changing the key invalidates every old stored
-          // value so everyone falls back to the real default (light) once,
-          // while the toggle itself still works and persists normally
-          // from here on under the new key.
-          storageKey="theme-preference-v2"
+          // Bumped Oct 1 per Dhia's "make dark mode default, it's better"
+          // ask: defaultTheme flipped back to dark (it was briefly light,
+          // see the v2 note below, from an earlier "restore light as
+          // default" request). Bumping the storage key again invalidates
+          // every visitor's previously-stored "light" value -- including
+          // anyone who got the light default under v2 and never
+          // explicitly chose a theme -- so everyone falls back to the new
+          // real default (dark) once; the toggle itself still works and
+          // persists normally from here on under the new key.
+          storageKey="theme-preference-v3"
           enableColorScheme={true}
           themes={["light", "dark"]}
           disableTransitionOnChange={false}

@@ -102,10 +102,14 @@ export function InsightCover({
   // essentially unreadable and the whole cover looked like an empty
   // placeholder block. Full-strength gradients plus a dedicated dark scrim
   // for the text zone fix the contrast regardless of category color.
+  // Charte-graphique pass (Oct 2026): was a different hue per category
+  // (pink/fuchsia/purple, emerald/teal/slate, sky/blue/indigo) -- replaced
+  // with the one site accent gradient, varied only by shade/stops across
+  // categories (never a second hue), matching the rest of the site.
   const gradients: Record<InsightArticleMeta["category"], string> = {
-    Design: "from-pink-500 via-fuchsia-600 to-purple-900",
-    Training: "from-emerald-500 via-teal-600 to-slate-900",
-    Development: "from-sky-500 via-blue-600 to-indigo-900",
+    Design: "from-[#0b4a12] via-[#3d8f12] to-[#8ed80c]",
+    Training: "from-[#123f10] via-[#4ea312] to-[#a3e60d]",
+    Development: "from-[#08350e] via-[#1f6411] to-[#6bbf0a]",
   }
   const icons: Record<InsightArticleMeta["category"], React.ReactNode> = {
     Design: <Palette className="h-7 w-7 text-white/35" />,
