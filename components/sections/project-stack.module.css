@@ -20,7 +20,43 @@
   --muted: #9b9b9b;
   --card-bg: #ffffff;
   --chip-bg: #efefef;
+  --chip-fg: #6b6b6b;
+  --chip-bg-hover: #e6e6e4;
+  --chip-fg-hover: #3d3d3d;
+  --desc-color: #262626;
+  --veil-tint: #f3f3f2;
+  --plus-bg: #1a1a1a;
+  --card-shadow: 0 1px 0 rgba(0, 0, 0, 0.03), 0 24px 60px -24px rgba(0, 0, 0, 0.22),
+    0 6px 18px -8px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 1px 0 rgba(0, 0, 0, 0.03), 0 32px 70px -20px rgba(0, 0, 0, 0.3),
+    0 10px 26px -8px rgba(0, 0, 0, 0.14);
   position: relative;
+}
+
+/* Charte-graphique pass, round 2 (Oct 2026): these cards used to stay
+ * pure white/dark-ink "by design, in both themes" -- defensible when the
+ * site defaulted to light, but a stark white card now reads as a jarring
+ * mismatch against an all-dark, green-accented site that defaults to dark
+ * mode. The card now follows the theme like every other surface (same
+ * neutral values as --card/--card-foreground/--muted/--border in
+ * globals.css), and its hover shadow carries a faint green glow instead of
+ * plain black, so the site's one accent color shows up on its own
+ * showcase component, not just in the header label. */
+:global(.dark) .wrapper {
+  --ink: #eeeeee;
+  --muted: #8a8a8a;
+  --card-bg: #191919;
+  --chip-bg: #2a2a2a;
+  --chip-fg: #b4b4b4;
+  --chip-bg-hover: #3a3a3a;
+  --chip-fg-hover: #eeeeee;
+  --desc-color: #d4d4d4;
+  --veil-tint: #000000;
+  --plus-bg: #3a3a3a;
+  --card-shadow: 0 1px 0 rgba(0, 0, 0, 0.4), 0 24px 60px -24px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  --card-shadow-hover: 0 1px 0 rgba(0, 0, 0, 0.4), 0 32px 80px -20px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.06), 0 16px 48px -14px rgba(34, 197, 94, 0.35);
 }
 
 /* ---------- Header ---------- */
@@ -51,11 +87,12 @@
   color: #8e8e8e;
 }
 
-/* Header text sits directly on the page background (which flips dark),
- * unlike the cards themselves -- those keep --card-bg: #ffffff and their
- * dark text (--ink/--muted) always, by design, in both themes, so only the
- * .head text needs a dark-mode override here. Without this, "Things I've
- * built" rendered near-black-on-near-black in dark mode (Dhia's report). */
+/* Header text sits directly on the page background. The cards themselves
+ * now also flip with the theme (see the :global(.dark) .wrapper override
+ * above) via their own CSS custom properties, so this block only needs to
+ * handle the .head text, which lives outside any card. Without this,
+ * "Things I've built" rendered near-black-on-near-black in dark mode
+ * (Dhia's report). */
 :global(.dark) .title {
   color: #f5f5f5;
 }
@@ -88,28 +125,25 @@
   padding: 18px;
   display: flex;
   gap: 28px;
-  box-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.03),
-    0 24px 60px -24px rgba(0, 0, 0, 0.22),
-    0 6px 18px -8px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--card-shadow);
   transform-origin: 50% 0%;
   will-change: transform;
   position: relative;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: box-shadow 0.35s ease;
+  transition: box-shadow 0.35s ease, background-color 0.35s ease;
 }
 a.card {
   cursor: pointer;
 }
 /* Hover only affects box-shadow -- never transform/opacity, which stay
- * fully owned by the scroll engine's inline styles every frame. */
+ * fully owned by the scroll engine's inline styles every frame. In dark
+ * mode the hover shadow carries a faint green glow (--card-shadow-hover
+ * above) instead of plain black, so the site's accent shows up on its own
+ * showcase cards. */
 a.card:hover {
-  box-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.03),
-    0 32px 70px -20px rgba(0, 0, 0, 0.3),
-    0 10px 26px -8px rgba(0, 0, 0, 0.14);
+  box-shadow: var(--card-shadow-hover);
 }
 .card::after {
   /* greying veil for covered cards */
@@ -117,7 +151,7 @@ a.card:hover {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: #f3f3f2;
+  background: var(--veil-tint);
   opacity: var(--veil, 0);
   pointer-events: none;
 }
@@ -163,7 +197,7 @@ a.card:hover {
   margin-top: 10px;
   font-size: 17px;
   line-height: 1.45;
-  color: #262626;
+  color: var(--desc-color);
   max-width: 470px;
 }
 .foot {
@@ -180,22 +214,33 @@ a.card:hover {
 }
 .chip {
   font-size: 12px;
-  color: #6b6b6b;
+  color: var(--chip-fg);
   background: var(--chip-bg);
   padding: 6px 12px;
   border-radius: 999px;
   transition: background 0.25s ease, color 0.25s ease;
 }
 a.card:hover .chip {
-  background: #e6e6e4;
-  color: #3d3d3d;
+  background: var(--chip-bg-hover);
+  color: var(--chip-fg-hover);
+}
+/* First tag reads as the "primary" one and carries the site accent color
+ * always -- on-brand green on the card itself, not just in the header
+ * label and the hover-only "+" button. */
+.chip:first-child {
+  color: var(--site-accent, #16a34a);
+  background: color-mix(in oklab, var(--site-accent, #16a34a) 14%, var(--chip-bg));
+}
+a.card:hover .chip:first-child {
+  color: var(--site-accent, #16a34a);
+  background: color-mix(in oklab, var(--site-accent, #16a34a) 22%, var(--chip-bg-hover));
 }
 .plus {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   border: 0;
-  background: var(--ink);
+  background: var(--plus-bg);
   color: #fff;
   display: grid;
   place-items: center;

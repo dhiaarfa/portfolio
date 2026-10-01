@@ -75,51 +75,56 @@ export default function ValueRadarChart() {
           </p>
         </motion.div>
 
-        <div className="rounded-2xl border border-border bg-card p-4 md:p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
-            {/* Plain labeled chips, no percentage/progress-bar framing --
-                reads as a straightforward list of strengths rather than a
-                fake-precise scorecard. */}
-            <div ref={barsRef} className="grid grid-cols-2 gap-2.5">
-              {traits.map((tr, i) => (
-                <motion.div
-                  key={tr.subjectKey}
-                  className="flex items-center gap-2 rounded-xl border border-border bg-background/60 px-3 py-2.5"
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={barsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-                  transition={{ duration: 0.35, delay: i * 0.06 }}
-                >
-                  <span className="w-7 h-7 rounded-full bg-accent-subtle flex items-center justify-center shrink-0">
-                    <tr.Icon className="w-3.5 h-3.5 text-accent" aria-hidden />
-                  </span>
-                  <span className="text-xs font-semibold text-slate-900 dark:text-white">{t(tr.subjectKey)}</span>
-                </motion.div>
-              ))}
-            </div>
+        <div className="rounded-2xl border border-border bg-card p-5 md:p-8">
+          {/* Redesign (Oct 2026): the old layout was a 2-col grid with
+              items-center -- a short 3-row chip grid next to a taller
+              4-row list left a visible block of dead space on wide
+              screens. Stacking instead (pill row, then card grid) means
+              each group is exactly as tall as its own content, no
+              leftover space to explain away. */}
+          <div ref={barsRef} className="flex flex-wrap justify-center gap-2">
+            {traits.map((tr, i) => (
+              <motion.div
+                key={tr.subjectKey}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 pl-2 pr-3.5 py-1.5"
+                initial={{ opacity: 0, y: 8 }}
+                animate={barsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                transition={{ duration: 0.35, delay: i * 0.06 }}
+              >
+                <span className="w-6 h-6 rounded-full bg-accent-subtle flex items-center justify-center shrink-0">
+                  <tr.Icon className="w-3 h-3 text-accent" aria-hidden />
+                </span>
+                <span className="text-xs font-semibold text-slate-900 dark:text-white whitespace-nowrap">
+                  {t(tr.subjectKey)}
+                </span>
+              </motion.div>
+            ))}
+          </div>
 
-            {/* Value props, one compact row per item, same rhythm as the
-                Journey card's rows, instead of large individually-animated
-                bento tiles. */}
-            <div className="divide-y divide-border rounded-xl border border-border overflow-hidden">
-              {valueProps.map((item, i) => (
-                <motion.div
-                  key={item.titleKey}
-                  className="flex items-start gap-2.5 px-3 py-2.5"
-                  initial={{ opacity: 0, x: 10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
-                >
-                  <span className="w-7 h-7 rounded-full bg-accent-subtle flex items-center justify-center shrink-0">
-                    <item.Icon className="w-3.5 h-3.5 text-accent" aria-hidden />
-                  </span>
-                  <div className="min-w-0">
-                    <p className="text-xs font-semibold text-slate-900 dark:text-white">{t(item.titleKey)}</p>
-                    <p className="text-xs text-muted-foreground leading-snug mt-0.5">{t(item.descKey)}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          <div className="h-px bg-border my-5 md:my-6" aria-hidden />
+
+          {/* Value props as a proper 2x2 card grid instead of a thin
+              divided list -- same icon treatment (accent-gradient circle,
+              white icon) as the Home pillar cards and tools-stack section,
+              so this section finally reads as part of the same visual
+              family instead of a stripped-down afterthought. */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {valueProps.map((item, i) => (
+              <motion.div
+                key={item.titleKey}
+                className="rounded-xl border border-border bg-background/40 p-4"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+              >
+                <span className="inline-flex w-9 h-9 rounded-xl bg-accent-gradient items-center justify-center shrink-0 mb-3">
+                  <item.Icon className="w-4 h-4 text-white" aria-hidden />
+                </span>
+                <p className="text-sm font-semibold text-slate-900 dark:text-white">{t(item.titleKey)}</p>
+                <p className="text-xs text-muted-foreground leading-snug mt-1">{t(item.descKey)}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
