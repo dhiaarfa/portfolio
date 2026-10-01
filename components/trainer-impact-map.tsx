@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import { Radio } from "lucide-react"
+import Image from "next/image"
 import { useLanguage } from "@/components/language-provider"
 import {
   DJERBA_OUTLINE,
@@ -197,8 +198,16 @@ export default function TrainerImpactMap() {
                 <div className="space-y-4">
                   {internationalLocations.map((loc) => (
                     <div key={loc.id} className="flex gap-3 items-start">
-                      <span className="text-2xl leading-none" aria-hidden="true">
-                        {loc.flagEmoji}
+                      <span className="inline-block shrink-0 rounded-[2px] overflow-hidden shadow-sm ring-1 ring-black/5 mt-0.5">
+                        <Image
+                          src={loc.flagSrc}
+                          alt=""
+                          width={loc.flagWidth}
+                          height={loc.flagHeight}
+                          unoptimized
+                          className="block object-cover"
+                          aria-hidden
+                        />
                       </span>
                       <div>
                         <p className="font-semibold text-sm">{t(loc.nameKey)}</p>

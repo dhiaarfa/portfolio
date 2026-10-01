@@ -161,15 +161,8 @@ export default function HomePageClient() {
 
       <main id="main-content">
       {/* Hero, annotated portrait HUD */}
-      <HeroAnnotatedPortrait theme="light" gradientBg className="!pb-10">
+      <HeroAnnotatedPortrait theme="light" gradientBg className="!pb-10" showCta={false}>
         <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-sm font-medium bg-accent-subtle dark:bg-accent-subtle border border-accent/30 text-foreground dark:text-accent w-fit">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-75" />
-              <span className="relative h-2 w-2 rounded-full bg-accent" />
-            </span>
-            {t("availableForProjects")}
-          </div>
           {/* 3-way audit synthesis (Sep 2026): promotes the existing,
               already-translated positioning tagline into the literal <h1>
               (previously just the name greeting), so the page's core
@@ -223,8 +216,6 @@ export default function HomePageClient() {
               string ("30-min call - no commitment") right under the primary
               CTA so the reassurance sits next to both booking entry points,
               not just the footer's. */}
-          <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{t("footerCallShort")}</p>
-
           <div className="flex items-center gap-2 mt-4">
             {[
               { href: siteConfig.resumePdfUrl, icon: Download, label: t("downloadResumePdf"), external: true },
@@ -448,15 +439,15 @@ export default function HomePageClient() {
           after the toolkit strip so "here's what I work with" is
           immediately followed by "here's what I built with it". */}
       <ProjectStack
-        eyebrow="Selected work · Web"
-        title="Things I've built"
-        subtitle="Full-stack products shipped end to end — from database to deployment. Scroll through the stack."
+        eyebrow={t("homeWebStackEyebrow")}
+        title={t("homeWebStackTitle")}
+        subtitle={t("homeWebStackSubtitle")}
         projects={webProjects}
       />
       <ProjectStack
-        eyebrow="Selected work · Design"
-        title="Brands & visuals"
-        subtitle="Identity, campaigns and art direction — each one pinned, then the next slides over it."
+        eyebrow={t("homeDesignStackEyebrow")}
+        title={t("homeDesignStackTitle")}
+        subtitle={t("homeDesignStackSubtitle")}
         projects={designProjects}
       />
 

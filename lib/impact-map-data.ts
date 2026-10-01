@@ -53,14 +53,21 @@ export const tunisiaLocations: ImpactLocation[] = [
 
 export type InternationalLocation = {
   id: string
-  flagEmoji: string
+  /** Real flag artwork, not an emoji -- regional-indicator flag emoji
+   *  (🇲🇦/🇶🇦) render as plain two-letter codes ("MA"/"QA") on Windows,
+   *  which has no flag glyphs in its default emoji font (Dhia flagged this
+   *  live, Oct 2026). Same fix already applied to Tunisia's flag
+   *  (see components/based-in-tunisia.tsx): a real image asset instead. */
+  flagSrc: string
+  flagWidth: number
+  flagHeight: number
   nameKey: string
   exampleKey: string
 }
 
 export const internationalLocations: InternationalLocation[] = [
-  { id: "morocco", flagEmoji: "\u{1F1F2}\u{1F1E6}", nameKey: "mapLocMorocco", exampleKey: "mapExMorocco" },
-  { id: "qatar", flagEmoji: "\u{1F1F6}\u{1F1E6}", nameKey: "mapLocQatar", exampleKey: "mapExQatar" },
+  { id: "morocco", flagSrc: "/images/flags/morocco.png", flagWidth: 27, flagHeight: 18, nameKey: "mapLocMorocco", exampleKey: "mapExMorocco" },
+  { id: "qatar", flagSrc: "/images/flags/qatar.png", flagWidth: 27, flagHeight: 11, nameKey: "mapLocQatar", exampleKey: "mapExQatar" },
 ]
 
 // Tunisia mainland coastline/border, as [lon, lat] pairs. Rebuilt Sep 30

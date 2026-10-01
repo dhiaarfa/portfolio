@@ -156,6 +156,17 @@ export const translations = {
     homeZiaDesc:
       "Brand identity, digital campaigns, and visual storytelling for startups, NGOs, and ambitious projects across Tunisia and beyond.",
     workWithZiaStudio: "Work with Zia Studio",
+  // Home "project stack" cards (charte graphique audit, Oct 2026): these
+  // were hardcoded English literals at the HomePageClient.tsx call site
+  // instead of translation keys, so they never localized into French or
+  // Arabic at all (Dhia: "Things I've built section in Arabic is not yet
+  // translated").
+  homeWebStackEyebrow: "Selected work · Web",
+  homeWebStackTitle: "Things I've built",
+  homeWebStackSubtitle: "Full-stack products shipped end to end — from database to deployment. Scroll through the stack.",
+  homeDesignStackEyebrow: "Selected work · Design",
+  homeDesignStackTitle: "Brands & visuals",
+  homeDesignStackSubtitle: "Identity, campaigns and art direction — each one pinned, then the next slides over it.",
     skillsAbilities: "Skills & Abilities",
     skillsDescription:
       "A comprehensive skill set combining creativity, technology, and communication for impactful results.",
@@ -1223,6 +1234,12 @@ export const translations = {
     homeZiaDesc:
       "Identité de marque, campagnes digitales et storytelling visuel pour startups, ONG et projets ambitieux en Tunisie et au-delà.",
     workWithZiaStudio: "Travailler avec Zia Studio",
+  homeWebStackEyebrow: "Travaux sélectionnés · Web",
+  homeWebStackTitle: "Ce que j'ai construit",
+  homeWebStackSubtitle: "Des produits full-stack livrés de bout en bout — de la base de données au déploiement. Faites défiler la pile.",
+  homeDesignStackEyebrow: "Travaux sélectionnés · Design",
+  homeDesignStackTitle: "Marques & visuels",
+  homeDesignStackSubtitle: "Identité, campagnes et direction artistique — chacune épinglée, puis la suivante glisse par-dessus.",
     skillsAbilities: "Compétences & Capacités",
     skillsDescription:
       "Un ensemble de compétences complet combinant créativité, technologie et communication pour des résultats impactants.",
@@ -1299,8 +1316,8 @@ export const translations = {
     hudSwipeHint: "Glissez pour les détails du profil →",
     whatPeopleSay: "Ce que les gens disent",
     trustedByTrainees: "Apprécié par les stagiaires et organisations pour des ateliers et formations impactants.",
-    trustedByOrgs: "Ils nous font confiance dans le monde entier",
-    trustedAndCollaboratedWith: "Ils nous font confiance et collaborent avec nous",
+    trustedByOrgs: "Ils me font confiance dans le monde entier",
+    trustedAndCollaboratedWith: "Ils me font confiance et collaborent avec moi",
     collaboratedWithListPrefix: "Formation, facilitation ou design réalisés avec :",
     toolkitStripLabel: "Outils que j'utilise au quotidien",
     toolkitStripFullStackLink: "Voir la stack complète",
@@ -1533,7 +1550,7 @@ export const translations = {
     "freebies.openTemplate": "Ouvrir le modèle",
     "freebies.successTitle": "Votre téléchargement est prêt",
     "freebies.successMsg": "Cliquez ci-dessous si le téléchargement ne démarre pas automatiquement.",
-    "freebies.emailCopy": "Nous l'avons aussi envoyé à",
+    "freebies.emailCopy": "Je l'ai aussi envoyé à",
     "freebies.conversionNudge": "Vous avez les modèles ? Réservez un appel gratuit pour les adapter à votre marque.",
     "freebies.privacy": "Pas de spam. Juste la ressource demandée.",
     "freebies.errorMsg": "Une erreur s'est produite. Réessayez ou contactez-moi directement.",
@@ -2274,6 +2291,12 @@ export const translations = {
     homeZiaDesc:
       "هوية العلامة التجارية والحملات الرقمية والسرد البصري للشركات الناشئة والمنظمات غير الحكومية والمشاريع الطموحة في تونس وخارجها.",
     workWithZiaStudio: "اعمل مع Zia Studio",
+  homeWebStackEyebrow: "أعمال مختارة · الويب",
+  homeWebStackTitle: "ما قمت ببنائه",
+  homeWebStackSubtitle: "منتجات متكاملة تم تسليمها من البداية إلى النهاية — من قاعدة البيانات إلى النشر. مرر عبر القائمة لاستكشافها.",
+  homeDesignStackEyebrow: "أعمال مختارة · التصميم",
+  homeDesignStackTitle: "علامات تجارية وتصاميم بصرية",
+  homeDesignStackSubtitle: "الهوية البصرية، الحملات، والتوجيه الفني — كل عمل مثبّت، ثم ينزلق التالي فوقه.",
     skillsAbilities: "المهارات والقدرات",
     skillsDescription:
       "مجموعة مهارات شاملة تجمع بين الإبداع والتكنولوجيا والاتصال للحصول على نتائج مؤثرة.",

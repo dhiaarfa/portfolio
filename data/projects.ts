@@ -22,7 +22,10 @@ export const webProjects: Project[] = [
     description:
       "The site you're on right now -- Next.js 15, Tailwind v4, and Framer Motion, shipped on Vercel. Click through for a closer look at the code and the motion details.",
     tags: ["Next.js", "Tailwind v4", "Framer Motion"],
-    image: "/projects/dhia-portfolio.webp",
+    // Dhia's ask: use his own hero photo for this card instead of a site
+    // screenshot -- it's his personal site, so his face is the more
+    // recognizable, personal thumbnail here.
+    image: "/images/photos/dhia-main.png",
     href: "https://www.dhia-portfolio.com",
   },
   {

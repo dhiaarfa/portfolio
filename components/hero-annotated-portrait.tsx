@@ -4,7 +4,6 @@ import { useMemo } from "react"
 import { Calendar } from "lucide-react"
 import Image from "next/image"
 import { motion, useReducedMotion } from "framer-motion"
-import { BasedInTunisia } from "@/components/based-in-tunisia"
 import { useLanguage } from "@/components/language-provider"
 import { formatStat } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
@@ -303,65 +302,17 @@ export default function HeroAnnotatedPortrait({
   gradientBg = false,
   children,
 }: Props) {
-  const { t, language } = useLanguage()
+  const { t } = useLanguage()
   const reducedMotion = useReducedMotion() ?? false
   const isDark = theme === "dark"
-  // Every anchor/card coordinate below was hand-tuned assuming this HUD
-  // sits on the *visually right* side of the hero (true in LTR). Under
-  // Arabic, the grid column this component lives in automatically swaps to
-  // the left (CSS Grid respects dir=rtl for auto-placement), but these are
-  // raw `left: x%` absolute positions, not logical properties, so they
-  // don't mirror on their own -- cards tuned to hug the container's right
-  // edge (x up to 94) instead overflowed off its now-left-sited container
-  // straight into the heading text next to it. Mirroring x around the
-  // container's own center (100 - x) keeps every card inside its own
-  // container in both directions, symmetric the same way the portrait's
-  // PHOTO_BOUNDS already is.
-  const isRtl = language === "ar"
-  const mx = (x: number) => (isRtl ? 100 - x : x)
 
-  const callouts: HeroCalloutConfig[] = useMemo(
-    () => [
-      {
-        id: "identity",
-        label: t("hudLabelSubject"),
-        value: "Mohamed Dhia Arfa",
-        // Location folded in here (was its own floating HUD card lower on
-        // the photo, which read as an oddly placed orphan card) since it's
-        // the same kind of personal-info line as the role subtitle above it.
-        subvalue: (
-          <>
-            {t("graphicDesigner")} · {t("aboutCertifiedTrainer")} · {t("aboutWebDeveloper")}
-            <br />
-            <BasedInTunisia className="mt-1 opacity-80" />
-          </>
-        ),
-        anchor: { x: mx(58), y: 10 },
-        // x was 92 with a 230px card (half-width ~18% of the ~640px
-        // stage) -- its right edge landed past the container's own right
-        // edge, which is fine when there's page margin outside it but
-        // gets clipped by the viewport at widths where there isn't (the
-        // exact bug Dhia screenshotted: the card cut off by the browser
-        // edge). Pulled in to 74 with a slightly narrower max-width so the
-        // right edge lands safely inside the stage at every width this
-        // component renders at (lg breakpoint and up).
-        card: { x: mx(74), y: 12 },
-        cardMaxWidth: 210,
-        bracket: true,
-        delay: 0,
-      },
-      // Implementation-prompts pass (Sep 2026), P12 "Soften floating-card
-      // clutter": this used to also carry "status" (Available for
-      // projects) and "stat" (participants trained) callout cards, both
-      // pure restatements of facts already shown elsewhere in the hero --
-      // the availability badge above the H1, and the participants-trained
-      // number in the micro-stats row right under it. Removed rather than
-      // kept as a second copy; "identity" stays since it's the only card
-      // that adds something the rest of the hero doesn't already say
-      // (the full role list + location).
-    ],
-    [t, reducedMotion, isRtl]
-  )
+  // The floating "identity" HUD card (name + role list + location) was
+  // removed per Dhia's request: it duplicated the role list already shown
+  // in the hero text column, and its role-list subvalue ran long enough in
+  // French ("Designer graphique · Formateur certifié · Développeur web")
+  // to overflow behind the navbar. No callouts render on this component
+  // now; HudStage/mobile sections already handle an empty list gracefully.
+  const callouts: HeroCalloutConfig[] = useMemo(() => [], [])
 
   const sectionBg = isDark ? "bg-slate-950 text-white" : "bg-white dark:bg-background text-slate-900 dark:text-white"
 

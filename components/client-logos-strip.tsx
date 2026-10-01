@@ -72,7 +72,20 @@ export default function ClientLogosStrip() {
           * "Mohamed Dhia Arfa". Nothing here is invented -- same list, same
           * names, already used for the logos rendered above. */}
         <p className="mt-6 text-center text-xs text-muted-foreground/70 max-w-4xl mx-auto leading-relaxed px-4">
-          {t("collaboratedWithListPrefix")} {organizationLogos.map((logo) => logo.name).join(" · ")}
+          {/* Isolated LTR run (RTL bidi fix, Oct 2026): this paragraph's
+              base direction flips to RTL on the Arabic locale, and the
+              organization names are a long list of Latin-script proper
+              nouns. Without isolating that list, the bidi algorithm let
+              its direction bleed into the rest of the line across wraps --
+              the Arabic prefix was landing mid-list instead of leading it,
+              and the line never "returned" to RTL after the first English
+              run (Dhia: "they go to the left and never come back").
+              dir="ltr" + unicode-bidi:isolate keeps this run self-contained
+              regardless of the paragraph's own direction. */}
+          <span>{t("collaboratedWithListPrefix")}</span>{" "}
+          <span dir="ltr" className="[unicode-bidi:isolate] inline">
+            {organizationLogos.map((logo) => logo.name).join(" · ")}
+          </span>
         </p>
       </div>
     </section>

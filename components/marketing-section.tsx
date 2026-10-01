@@ -17,7 +17,11 @@ import {
   type LucideIcon,
 } from "lucide-react"
 
-type Tint = "pink" | "amber" | "sky" | "violet"
+// "violet" was a 4th, undocumented accent color (charte graphique audit,
+// Oct 2026) -- the site's color-role system only defines green (CTA),
+// pink (Design tag), amber (Training tag), blue/sky (Web tag), and slate
+// (structure). Dropped in favor of cycling the three that already exist.
+type Tint = "pink" | "amber" | "sky"
 
 const tintStyles: Record<Tint, { wash: string; ring: string; badge: string; chip: string; icon: string }> = {
   pink: {
@@ -40,13 +44,6 @@ const tintStyles: Record<Tint, { wash: string; ring: string; badge: string; chip
     badge: "bg-sky-100 dark:bg-sky-500/15",
     chip: "bg-sky-50 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300",
     icon: "text-sky-600 dark:text-sky-300",
-  },
-  violet: {
-    wash: "from-violet-50 via-white to-white dark:from-violet-500/10 dark:via-slate-900 dark:to-slate-900",
-    ring: "ring-violet-100 dark:ring-violet-500/20",
-    badge: "bg-violet-100 dark:bg-violet-500/15",
-    chip: "bg-violet-50 text-violet-700 dark:bg-violet-500/15 dark:text-violet-300",
-    icon: "text-violet-600 dark:text-violet-300",
   },
 }
 
@@ -102,7 +99,7 @@ const experiences: {
     metricLabelKey: "expAiesecMetricLabel",
     descKey: "expAiesecDesc",
     Icon: Globe,
-    tint: "violet",
+    tint: "pink",
   },
 ]
 
@@ -110,7 +107,7 @@ const skills: { nameKey: string; Icon: LucideIcon; tint: Tint }[] = [
   { nameKey: "skillBranding", Icon: Target, tint: "pink" },
   { nameKey: "skillSocialMedia", Icon: Smartphone, tint: "sky" },
   { nameKey: "skillContentStrategy", Icon: PenLine, tint: "amber" },
-  { nameKey: "skillAdobeSuite", Icon: Palette, tint: "violet" },
+  { nameKey: "skillAdobeSuite", Icon: Palette, tint: "pink" },
   { nameKey: "skillMetaBusiness", Icon: BarChart3, tint: "sky" },
   { nameKey: "skillCopywriting", Icon: FileText, tint: "amber" },
   { nameKey: "skillUiUxCollab", Icon: Handshake, tint: "pink" },
