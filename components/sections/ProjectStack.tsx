@@ -29,8 +29,9 @@ export type Project = {
   /** Rendered as up to 3 pills, bottom-left of the card footer. */
   tags: string[]
   image: string
-  /** When set, the whole card (and the footer "+" button) opens this,
-   *  always in a new tab -- every href in this dataset is an external URL. */
+  /** When set, the whole card (and the footer "+" button) opens this.
+   *  External URLs (http...) open in a new tab; internal paths like
+   *  /work/<slug> (case studies) open in the same tab. */
   href?: string
   /** Master roadmap 8 (Oct 2026): real paid client work gets a small
    *  "Client" badge. Only set where the data already says so; personal,
@@ -129,8 +130,11 @@ export default function ProjectStack({ eyebrow, title, subtitle, projects }: Pro
       <div className={styles.stack} ref={stackRef}>
         {projects.map((project, i) => {
           const Card = project.href ? "a" : "div"
+          const external = project.href?.startsWith("http")
           const linkProps = project.href
-            ? { href: project.href, target: "_blank", rel: "noopener noreferrer" }
+            ? external
+              ? { href: project.href, target: "_blank", rel: "noopener noreferrer" }
+              : { href: project.href }
             : {}
           return (
             <div

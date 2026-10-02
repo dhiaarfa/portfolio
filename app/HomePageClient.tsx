@@ -127,7 +127,7 @@ export default function HomePageClient() {
       cta: "viewDesignWork",
     },
     {
-      title: "Web Dev Enthusiast",
+      title: "Web Developer",
       slug: "developer",
       icon: Code,
       stats: [t("roleStatDeveloper1"), t("roleStatDeveloper2"), t("roleStatDeveloper3")],

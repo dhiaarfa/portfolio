@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react"
+import React, { createContext, useContext, useEffect, useLayoutEffect, useMemo, useState } from "react"
 import { getTranslation, type Language, type TranslationKey, translations } from "@/lib/translations"
 import { detectLanguage } from "@/lib/detect-language"
 
@@ -11,6 +11,10 @@ interface LanguageContextType {
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+
+// useLayoutEffect on the client, useEffect on the server (where layout
+// effects never run and older React versions warn about them).
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect
 
 export function LanguageProvider({
   children,
@@ -26,17 +30,23 @@ export function LanguageProvider({
 }) {
   const [language, setLanguageState] = useState<Language>(initialLanguage ?? "en")
 
+  // URL-declared locale (a /fr/* or /ar/* route): sync the <html> lang/dir
+  // the root layout can't set server-side, and persist the choice so an
+  // unprefixed page later remembers French/Arabic. A LAYOUT effect, not a
+  // plain one: React resets <html>'s attributes to the root layout's
+  // lang="en" dir="ltr" when it hydrates, and a plain effect only restored
+  // them after the browser had already painted (a left-to-right flash on
+  // /ar). Layout effects run before that paint. The inline script in
+  // app/[locale]/layout.tsx covers the very first, pre-hydration paint.
+  useIsomorphicLayoutEffect(() => {
+    if (!initialLanguage) return
+    document.documentElement.lang = initialLanguage
+    document.documentElement.dir = initialLanguage === "ar" ? "rtl" : "ltr"
+    localStorage.setItem("language", initialLanguage)
+  }, [initialLanguage])
+
   useEffect(() => {
-    if (initialLanguage) {
-      // URL-declared locale (a /fr/* or /ar/* route): just sync the <html>
-      // attributes the root layout can't set server-side for this segment,
-      // and persist it so navigating back to an unprefixed page later still
-      // remembers the visitor picked French/Arabic.
-      document.documentElement.lang = initialLanguage
-      document.documentElement.dir = initialLanguage === "ar" ? "rtl" : "ltr"
-      localStorage.setItem("language", initialLanguage)
-      return
-    }
+    if (initialLanguage) return
 
     const stored = localStorage.getItem("language") as Language | null
     let nextLang: Language

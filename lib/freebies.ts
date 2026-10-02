@@ -86,7 +86,7 @@ export const freebieCatalog: Freebie[] = [
     description:
       "Tested icebreakers and energizers for groups of 10–100 participants. Arabic, French, and English versions.",
     format: "PDF · 12 pages",
-    benefit: "Tested with 1000+ youth",
+    benefit: `Tested with ${formatStat("participantsTrained")} youth`,
     color: "amber",
     bgImage: "/images/freebies/icebreakers.jpg",
     delivery: { kind: "pdf", path: "/freebies/icebreakers-guide.pdf" },

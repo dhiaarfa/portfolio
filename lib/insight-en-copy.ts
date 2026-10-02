@@ -1,3 +1,5 @@
+import { formatStat } from "@/lib/profile"
+
 export const insightEnTitles: Record<string, string> = {
   insightsArticle1Title: "How brand colors affect trust (and how to choose yours)",
   insightsArticle2Title: "5 facilitation mistakes that kill youth workshop energy",
@@ -20,7 +22,9 @@ export const insightEnExcerpts: Record<string, string> = {
   insightsArticle1Excerpt:
     "Color psychology isn't magic, but it shapes first impressions. Here's the practical framework I use with clients.",
   insightsArticle2Excerpt:
-    "After 1000+ youth sessions, these are the patterns that consistently drain engagement, and how to fix them.",
+    // Was "After 1000+ youth sessions" -- not a verified figure (the record
+    // is 51+ training events). Matches the translated excerpt now.
+    `After ${formatStat("trainingCycles")} youth training events, these are the patterns that consistently drain engagement, and how to fix them.`,
   insightsArticle3Excerpt:
     "A freelancer's honest take on static vs dynamic, i18n, and shipping fast without cutting corners.",
   insightsArticle4Excerpt:

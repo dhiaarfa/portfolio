@@ -15,6 +15,8 @@ export const webProjects: Project[] = [
       "Built solo, end to end, across 5 Scrum sprints -- multi-LLM routing through OpenRouter, 109 automated tests spanning 24 files, deployed on Vercel. My graduation project, built the way I'd build for a real client.",
     tags: ["Next.js 15", "Supabase", "AI SDK"],
     image: "/images/projects/digimytch/landing.png",
+    // Internal case study (opens in the same tab -- see ProjectStack).
+    href: "/work/digimytch",
   },
   {
     name: "dhia-portfolio.com",
@@ -58,6 +60,7 @@ export const designProjects: Project[] = [
       "Owned the branding and campaign end to end for this event -- and it worked: 200+ people through the door and 800+ leads captured.",
     tags: ["Branding", "Campaign"],
     image: "/images/meetuppro-thumbnail.png",
+    href: "/work/meetup-pro",
   },
   {
     name: "Tafani Travel",
@@ -67,6 +70,7 @@ export const designProjects: Project[] = [
       "A logo and full brand system for a travel agency, designed to stay sharp and consistent everywhere it shows up -- web, social, and printed travel collateral.",
     tags: ["Illustrator", "Figma", "Photoshop"],
     image: "/images/tafani-white-png.png",
+    href: "/work/tafani-travel",
   },
   {
     name: "Nakkla",

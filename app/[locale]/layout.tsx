@@ -37,5 +37,23 @@ export default async function LocaleLayout({
   // overrides the root layout's default "en" provider only here -- the
   // unprefixed route tree keeps its existing browser-detect/localStorage
   // behavior untouched.
-  return <LanguageProvider initialLanguage={locale as Language}>{children}</LanguageProvider>
+  // The root layout renders <html lang="en" dir="ltr"> for every route (it
+  // sits outside [locale], so it can't know the locale without making every
+  // page dynamic). LanguageProvider corrected lang/dir in a useEffect, i.e.
+  // only after hydration -- so /ar painted left-to-right first and every
+  // /fr, /ar page reported itself as English until JS ran. This inline
+  // script runs while the HTML is parsed, before the page content below it
+  // is painted. <html> already has suppressHydrationWarning, so React
+  // accepts the attribute change. `locale` is validated above (fr|ar only).
+  const dir = locale === "ar" ? "rtl" : "ltr"
+  return (
+    <>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.lang="${locale}";document.documentElement.dir="${dir}";`,
+        }}
+      />
+      <LanguageProvider initialLanguage={locale as Language}>{children}</LanguageProvider>
+    </>
+  )
 }
