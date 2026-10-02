@@ -9,7 +9,6 @@ import Image from "next/image"
 import { useState } from "react"
 import { siteConfig } from "@/lib/site-config"
 import { AnimatedNumber } from "@/components/ui/animated-number"
-import dynamic from "next/dynamic"
 import ClientLogosStrip from "@/components/client-logos-strip"
 import ToolkitStrip from "@/components/toolkit-strip"
 import HeroAnnotatedPortrait from "@/components/hero-annotated-portrait"
@@ -19,10 +18,6 @@ import ServicePackages from "@/components/service-packages"
 import HowWeWorkSection from "@/components/how-we-work-section"
 import ProjectStack from "@/components/sections/ProjectStack"
 import { selectedWork } from "@/data/projects"
-const ValueRadarChart = dynamic(() => import("@/components/value-radar-chart"), {
-  ssr: false,
-  loading: () => <div className="h-64 animate-pulse rounded-2xl bg-muted/40" />,
-})
 import NewsletterSection from "@/components/newsletter-section"
 import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
@@ -505,8 +500,11 @@ export default function HomePageClient() {
       {/* Service Packages */}
       <ServicePackages pillar={pillar} />
 
-      {/* Working with me – radar chart */}
-      <ValueRadarChart />
+      {/* Master roadmap 2.1 follow-up (Oct 2026, Dhia's call): the "Ways we
+          work together" radar chart (components/value-radar-chart.tsx) was
+          removed from Home -- ~1k px of self-rated chart rather than proof.
+          The component is kept; to restore, re-add its dynamic(() =>
+          import(...), { ssr: false }) import and render it here. */}
 
       {/* Featured Testimonials -- when the developer pillar is selected,
           no client testimonial in lib/testimonials.ts is actually about a
