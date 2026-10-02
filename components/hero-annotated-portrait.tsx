@@ -33,7 +33,7 @@ export default function HeroAnnotatedPortrait({
 
   return (
     <section
-      className={`relative isolate overflow-hidden bg-[#0A0A0A] text-white px-4 sm:px-6 pt-24 pb-16 lg:pb-20 ${className}`}
+      className={`relative isolate overflow-hidden bg-white text-slate-900 dark:bg-[#0A0A0A] dark:text-white px-4 sm:px-6 pt-24 pb-16 lg:pb-20 ${className}`}
     >
       {/* z-10: full-bleed photo, anchored toward the subject on the right.
           object-position shifts per breakpoint: mobile keeps the face
@@ -104,7 +104,7 @@ export default function HeroAnnotatedPortrait({
           left-to-right fade on tablet/desktop (text sits left), top-to-
           bottom on mobile (text sits below the photo). */}
       <div
-        className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent sm:bg-gradient-to-r sm:from-[#0A0A0A] sm:via-[#0A0A0A]/60 sm:to-transparent"
+        className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-white via-white/70 to-transparent dark:from-[#0A0A0A] dark:via-[#0A0A0A]/70 dark:to-transparent sm:bg-gradient-to-r sm:from-white sm:via-white/60 sm:to-transparent sm:dark:from-[#0A0A0A] sm:dark:via-[#0A0A0A]/60 sm:dark:to-transparent"
         aria-hidden
       />
 
