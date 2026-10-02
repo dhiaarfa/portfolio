@@ -258,13 +258,16 @@ export default function HomePageClient() {
           </h2>
           <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
             {[
-              { Icon: Palette, key: "homeWhoIHelp1" },
-              { Icon: Users, key: "homeWhoIHelp2" },
-              { Icon: Code2, key: "homeWhoIHelp3" },
-            ].map(({ Icon, key }) => (
+              { Icon: Palette, tagKey: "homeWhoIHelpTag1", key: "homeWhoIHelp1" },
+              { Icon: Users, tagKey: "homeWhoIHelpTag2", key: "homeWhoIHelp2" },
+              { Icon: Code2, tagKey: "homeWhoIHelpTag3", key: "homeWhoIHelp3" },
+            ].map(({ Icon, tagKey, key }) => (
               <li key={key} className="flex items-start gap-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                 <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
-                <span>{t(key)}</span>
+                <span>
+                  <span className="block text-xs font-semibold text-slate-900 dark:text-white mb-0.5">{t(tagKey)}</span>
+                  {t(key)}
+                </span>
               </li>
             ))}
           </ul>
