@@ -156,7 +156,18 @@ export default function HomePageClient() {
       <main id="main-content">
       {/* Hero, full-bleed blended portrait background (Oct 2026) */}
       <HeroAnnotatedPortrait className="!pb-10" showCta={false}>
-        <div className="max-w-2xl">
+        {/* RTL fix (Oct 2026 code review): the full-bleed photo is pinned
+            to the physical right via `object-position`/masks in
+            hero-annotated-portrait.tsx, which (unlike the old CSS Grid
+            layout) doesn't auto-mirror under dir="rtl". Without an
+            explicit `mr-auto`, this column's default block-start edge
+            flips to the physical right in Arabic, landing the text and
+            CTA buttons directly on top of the subject's face. `mr-auto`
+            is a physical margin (ignores `dir`), so it keeps this column
+            pinned to the physical left -- opposite the photo -- in every
+            language, with no visual change in LTR (where it was already
+            flush left by default). */}
+        <div className="max-w-2xl mr-auto">
           {/* 3-way audit synthesis (Sep 2026): promotes the existing,
               already-translated positioning tagline into the literal <h1>
               (previously just the name greeting), so the page's core
