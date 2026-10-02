@@ -322,7 +322,10 @@ export default function HomePageClient() {
                   [siteConfig.stats.trainingHours, t("statLabelHours")],
                   [siteConfig.stats.facilitationHours, t("statLabelFacilitationHrs")],
                 ],
-                flagship: "IOM Youth Hackathon, Doha, 1st place",
+                // Was "1st place", contradicting the detailed record
+                // (dohaEventDesc in all 3 languages: 2nd place team, 11
+                // selected from 200+). Not rendered today, kept accurate.
+                flagship: "IOM Youth Hackathon, Doha, 2nd place team",
               },
               {
                 role: roles[2],

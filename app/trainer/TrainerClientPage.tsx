@@ -20,7 +20,7 @@ import TrainerImpactMap from "@/components/trainer-impact-map"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
 import { formatStat, trainingMilestones } from "@/lib/profile"
-import { StatRing } from "@/components/ui/stat-ring"
+import TrainerImpactWall from "@/components/trainer-impact-wall"
 
 // One real photo per timeline era (Dhia's own event/training photos,
 // already used elsewhere on the site), for the compact photo-led timeline
@@ -39,18 +39,6 @@ const milestonePhotos: Record<string, string> = {
 
 export default function TrainerClientPage() {
   const { t } = useLanguage()
-
-  // `progress` is stylistic (these are counts, not percentages), varied per
-  // stat so the row of rings reads as a designed chart rather than six
-  // identical circles with numbers dropped in.
-  const impactStats = [
-    { number: formatStat("participantsTrained"), label: t("impactStatParticipantsLabel"), detail: t("impactStatParticipantsDetail"), progress: 0.86 },
-    { number: formatStat("trainingHours"), label: t("impactStatHoursLabel"), detail: t("impactStatHoursDetail"), progress: 0.74 },
-    { number: formatStat("facilitationHours"), label: t("impactStatFacilitationLabel"), detail: t("impactStatFacilitationDetail"), progress: 0.5 },
-    { number: formatStat("trainingCycles"), label: t("impactStatEventsLabel"), detail: t("impactStatEventsDetail"), progress: 0.62 },
-    { number: formatStat("yearsExperience"), label: t("impactStatYearsLabel"), detail: t("impactStatYearsDetail"), progress: 0.4 },
-    { number: formatStat("trainingPartners"), label: t("impactStatPartnersLabel"), detail: t("impactStatPartnersDetail"), progress: 0.58 },
-  ]
 
   return (
     <div className="w-full min-h-screen bg-background">
@@ -110,55 +98,9 @@ export default function TrainerClientPage() {
         {/* 2. Trusted by */}
         <ClientLogosStrip />
 
-        {/* 4. Measurable results */}
-        <section id="trainer-impact" className="w-full section-compact px-4 md:px-8 bg-card">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              className="space-y-16"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              {/* Charte-graphique pass (Oct 2026): this section's heading
-                  used to be plain centered text. The real workshop photo
-                  that used to sit in a forced standalone "In the field"
-                  gallery right after the hero now backs this heading
-                  instead -- the numbers below are proof of exactly what's
-                  pictured, a proper home for it rather than a gallery
-                  dump. */}
-              <div className="relative overflow-hidden rounded-[2rem] border border-border">
-                <div className="relative aspect-[16/7] sm:aspect-[21/9]">
-                  <Image
-                    src="/images/trainer/moment-workshop.jpg"
-                    alt="Dhia leading a training workshop"
-                    fill
-                    className="object-cover"
-                    sizes="100vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-                </div>
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                  <p className="text-xs font-medium tracking-widest text-white/80 uppercase">{t("impactMetrics")}</p>
-                  <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold px-2 text-white">{t("measurableResults")}</h2>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8 place-items-center">
-                {impactStats.map((stat, i) => (
-                  <StatRing
-                    key={stat.label}
-                    value={stat.number}
-                    label={stat.label}
-                    sublabel={stat.detail}
-                    progress={stat.progress}
-                    delay={i * 0.06}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
+        {/* 4. Measurable results -- photo-backed impact wall (Oct 2026),
+            replaces the six progress rings; see trainer-impact-wall.tsx. */}
+        <TrainerImpactWall />
 
         {/* 4.5. Where it happened -- real geographic footprint (Tunisia
             governorates + Morocco/Qatar + online), sourced from the

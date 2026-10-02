@@ -9,6 +9,10 @@ const nextConfig = {
   // Image optimization
   images: {
     formats: ["image/avif", "image/webp"],
+    // Next 16 only honours quality values listed here; anything else is
+    // silently clamped. The hero (85) and project-stack covers (92) were
+    // being served at the default 75.
+    qualities: [75, 85, 92],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
