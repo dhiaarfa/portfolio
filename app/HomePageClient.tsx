@@ -6,7 +6,7 @@ import Navbar from "@/components/navbar-new"
 import { WhatsAppIcon } from "@/lib/brand-icon"
 import Footer from "@/components/footer"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { siteConfig } from "@/lib/site-config"
 import { AnimatedNumber } from "@/components/ui/animated-number"
 import dynamic from "next/dynamic"
@@ -18,7 +18,7 @@ import JourneySection from "@/components/journey-section"
 import ServicePackages from "@/components/service-packages"
 import HowWeWorkSection from "@/components/how-we-work-section"
 import ProjectStack from "@/components/sections/ProjectStack"
-import { webProjects, designProjects } from "@/data/projects"
+import { selectedWork } from "@/data/projects"
 const ValueRadarChart = dynamic(() => import("@/components/value-radar-chart"), {
   ssr: false,
   loading: () => <div className="h-64 animate-pulse rounded-2xl bg-muted/40" />,
@@ -31,37 +31,27 @@ import { TestimonialsShowcase } from "@/components/testimonials-showcase"
 import WhichDoorSelector from "@/components/which-door-selector"
 import { type Pillar, pillarToInsightsFocus, pillarToTestimonialTag } from "@/lib/which-door"
 
-function AnimatedRole() {
+/** Master roadmap (Oct 2026), 1.2 "Freeze rotating role line": this used
+ *  to cycle one role at a time every 2.8s ("A Creative Graphic Designer"
+ *  -> "Certified Trainer" -> ...), so a visitor only ever saw a third of
+ *  the offer and had to wait to read the rest. Now one static line built
+ *  from the same three already-translated role strings. */
+function StaticRole() {
   const { t } = useLanguage()
-  const [i, setI] = useState(0)
-  const [show, setShow] = useState(true)
-  const roles = [
-    { text: t("homeRotatingDesigner"), cls: "text-accent" },
-    { text: t("homeRotatingTrainer"), cls: "text-accent" },
-    { text: t("homeRotatingDeveloper"), cls: "text-accent" },
-  ]
-  useEffect(() => {
-    const t = setInterval(() => {
-      setShow(false)
-      setTimeout(() => {
-        setI((p) => (p + 1) % 3)
-        setShow(true)
-      }, 280)
-    }, 2800)
-    return () => clearInterval(t)
-  }, [])
+  const roles = [t("homeRotatingDesigner"), t("homeRotatingTrainer"), t("homeRotatingDeveloper")]
+  // Each role is a no-wrap unit with its "·" attached to the front, so on
+  // narrow screens lines break between whole roles and a separator never
+  // dangles at the end of a line.
   return (
-    <p className="text-xl font-medium text-slate-500 dark:text-slate-400">
-      {t("homeRotatingPrefix")}{" "}
-      {/* Italic Fraunces serif accent on the rotating word, the "end to
-          end."-style flourish from Dhia's reference screenshot, applied here
-          instead of to a new line of copy since this word already changes
-          per role and doesn't compete with the H1. */}
-      <span
-        className={`font-accent-italic font-semibold transition-all duration-300 inline-block ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"} ${roles[i].cls}`}
-      >
-        {roles[i].text}
-      </span>
+    // font-accent-italic goes on each span, not the <p>: a global span rule
+    // in globals.css resets span font-family, so it won't inherit.
+    <p className="flex flex-wrap gap-x-2 text-lg sm:text-xl font-medium text-accent">
+      {roles.map((role, i) => (
+        <span key={role} className="whitespace-nowrap font-accent-italic">
+          {i > 0 && <span aria-hidden className="me-2">·</span>}
+          {role}
+        </span>
+      ))}
     </p>
   )
 }
@@ -191,7 +181,7 @@ export default function HomePageClient() {
             <br />
             {t("homeHeroTaglinePart2")}
           </h1>
-          <AnimatedRole />
+          <StaticRole />
           {/* Implementation-prompts pass (Sep 2026), P2 "Kill duplicate
               stats": this hero used to also carry its own 3-number micro
               stats row (participants/projects/years), a partial repeat of
@@ -225,7 +215,10 @@ export default function HomePageClient() {
               microcopy": reuses the footer's existing "footerCallShort"
               string ("30-min call - no commitment") right under the primary
               CTA so the reassurance sits next to both booking entry points,
-              not just the footer's. */}
+              not just the footer's. (The comment had survived a later
+              refactor that dropped the line itself; restored Oct 2026.) */}
+          <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{t("footerCallShort")}</p>
+
           <div className="flex items-center gap-2 mt-4">
             {[
               { href: siteConfig.resumePdfUrl, icon: Download, label: t("downloadResumePdf"), external: true },
@@ -310,7 +303,9 @@ export default function HomePageClient() {
                 icon: Code2,
                 eyebrowKey: "webDevelopment",
                 title: t("pillarFullStackDevelopment"),
-                tags: ["React", "Next.js", "Tailwind", "TypeScript"],
+                // Master roadmap 2.4: outcome chips here; the framework
+                // list (React/Next.js/Tailwind/TypeScript) lives on /developer.
+                tags: ["Websites", "Web apps", "Responsive", "Fast"],
                 flagship: "DigiMyTech Talent Hub, graduation project",
               },
             ].map(
@@ -432,18 +427,28 @@ export default function HomePageClient() {
           effect, Sep 2026) -- one for web dev, one for design, placed right
           after the toolkit strip so "here's what I work with" is
           immediately followed by "here's what I built with it". */}
+      {/* Master roadmap 2.1 (Oct 2026): the two stacks (web, then design)
+          are merged into one mixed "Selected work" stack -- see
+          selectedWork in data/projects.ts. The link row underneath gives
+          each track, training included, a next step from the proof. */}
       <ProjectStack
-        eyebrow={t("homeWebStackEyebrow")}
-        title={t("homeWebStackTitle")}
-        subtitle={t("homeWebStackSubtitle")}
-        projects={webProjects}
+        eyebrow={t("homeSelectedWorkEyebrow")}
+        title={t("homeSelectedWorkTitle")}
+        subtitle={t("homeSelectedWorkSubtitle")}
+        projects={selectedWork}
       />
-      <ProjectStack
-        eyebrow={t("homeDesignStackEyebrow")}
-        title={t("homeDesignStackTitle")}
-        subtitle={t("homeDesignStackSubtitle")}
-        projects={designProjects}
-      />
+      <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 px-4 pb-12 text-sm font-semibold">
+        {[
+          { href: "/designer", key: "viewDesignWork" },
+          { href: "/trainer", key: "exploreTraining" },
+          { href: "/developer", key: "seeMyProjects" },
+        ].map(({ href, key }) => (
+          <Link key={href} href={href} className="group inline-flex items-center gap-1.5 text-accent hover:underline">
+            {t(key)}
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
+          </Link>
+        ))}
+      </nav>
 
       {/* Implementation-prompts pass (Sep 2026), P5 "Collapse tools/stack
           noise on Home": the full grouped table used to render here, right

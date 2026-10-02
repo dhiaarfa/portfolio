@@ -18,7 +18,7 @@ import styles from "./project-stack.module.css"
  * CSS values (sizing/spacing/media queries) that must stay in lockstep
  * with this file.
  *
- * Two instances run on Home (Web projects + Design projects). Each scopes
+ * One mixed instance runs on Home now (was two: Web + Design). Each scopes
  * its DOM queries to its own `stackRef` rather than `document`, so the two
  * scroll engines never see or affect each other's cards.
  */

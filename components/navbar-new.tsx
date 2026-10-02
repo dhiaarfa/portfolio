@@ -23,6 +23,13 @@ const navLinks = [
   { labelKey: 'nav.insights', href: '/insights' },
 ] as const
 
+/** Below xl: the three track pages, short labels, always visible. */
+const shortNavLinks = [
+  { labelKey: 'nav.short.branding', href: '/designer' },
+  { labelKey: 'nav.short.training', href: '/trainer' },
+  { labelKey: 'nav.short.webDev', href: '/developer' },
+] as const
+
 export default function Navbar() {
   const { t } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
@@ -76,7 +83,9 @@ export default function Navbar() {
       </a>
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-[background,padding,box-shadow] duration-200 ${
-          scrolled
+          // `open` too: the drawer scrolls under the header, which must not
+          // stay transparent over it.
+          scrolled || open
             ? 'py-2 bg-white/90 dark:bg-background/90 backdrop-blur-md border-b border-slate-200/50 dark:border-border/50 shadow-sm'
             : 'py-3 bg-transparent'
         }`}
@@ -128,7 +137,13 @@ export default function Navbar() {
           before, just biased toward the side that actually needs it, the
           nav pill shifts left with it since its left edge is wherever the
           logo column ends. */}
-      <div className="max-w-[100rem] w-full mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20 grid grid-cols-[minmax(0,0.7fr)_auto_minmax(0,1.3fr)] items-center gap-3">
+      {/* Oct 2026 (Dhia's ask): the centering grid only applies from xl,
+          where the middle nav pill actually renders. Below xl that column
+          was empty, so the grid auto-placed the controls cluster INTO the
+          middle track -- buttons floating mid-bar with a dead gap on the
+          right on phones and tablets. Below xl it's now a plain flex row:
+          avatar left, everything else packed to the right edge. */}
+      <div className="max-w-[100rem] w-full mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20 flex items-center justify-between gap-2 xl:grid xl:grid-cols-[minmax(0,0.7fr)_auto_minmax(0,1.3fr)] xl:gap-3">
 
           <motion.div
             className="shrink-0 min-w-0 justify-self-start"
@@ -148,7 +163,9 @@ export default function Navbar() {
               <div className="relative w-9 h-9 rounded-xl overflow-hidden shrink-0 ring-2 ring-[color-mix(in_oklab,var(--site-accent)_35%,transparent)]">
                 <Image src="/images/photos/dhia-main.png" alt="Mohamed Dhia" width={36} height={36} className="object-cover w-full h-full" priority />
               </div>
-              <div className="hidden sm:block leading-tight shrink-0">
+              {/* Name + tagline from lg: below that the bar needs the room
+                  for the compact page links. */}
+              <div className="hidden lg:block leading-tight shrink-0">
                 <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none whitespace-nowrap">Dhia</p>
                 <p className="text-[10px] text-slate-400 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5 whitespace-nowrap">{t("navTagline")}</p>
               </div>
@@ -200,6 +217,30 @@ export default function Navbar() {
               Nothing is lost below 1900px, every one of these is still one
               tap away in the xl:hidden mobile menu below. */}
           <div className="flex items-center gap-1 min-w-0 justify-self-end">
+            {/* Oct 2026 (Dhia's ask): below xl the three track pages used
+                to be reachable only through the hamburger, and most
+                visitors never open it -- so they never found out the site
+                has more than Home. Compact pill with short labels, shown
+                until the full nav pill takes over at xl. */}
+            <nav className="xl:hidden flex items-center gap-0.5 me-1 bg-slate-100/90 dark:bg-muted/70 backdrop-blur-sm rounded-2xl px-1 py-1 border border-slate-200/60 dark:border-border/60">
+              {shortNavLinks.map((link) => {
+                const active = pathname === link.href
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`px-2.5 max-[359px]:px-1.5 py-1.5 rounded-xl text-[13px] max-[359px]:text-[12px] font-medium whitespace-nowrap transition-colors ${
+                      active
+                        ? 'bg-white dark:bg-secondary shadow-sm text-slate-900 dark:text-white'
+                        : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    {t(link.labelKey)}
+                  </Link>
+                )
+              })}
+            </nav>
             <a
               href={siteConfig.behance}
               target="_blank"
@@ -237,29 +278,22 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => window.dispatchEvent(new CustomEvent("dhia:open-search"))}
-              className="hidden sm:flex w-9 h-9 rounded-full items-center justify-center transition-all duration-200 hover:scale-105 active:scale-90 shrink-0 bg-slate-100/90 dark:bg-muted/70 text-slate-600 dark:text-slate-300 ring-1 ring-black/10 dark:ring-white/10 hover:text-slate-900 dark:hover:text-white"
+              className="hidden md:flex w-9 h-9 rounded-full items-center justify-center transition-all duration-200 hover:scale-105 active:scale-90 shrink-0 bg-slate-100/90 dark:bg-muted/70 text-slate-600 dark:text-slate-300 ring-1 ring-black/10 dark:ring-white/10 hover:text-slate-900 dark:hover:text-white"
               aria-label="Search (Ctrl/Cmd+K)"
               title="Search (Ctrl/Cmd+K)"
             >
               <Search className="w-4 h-4" />
             </button>
-            <ThemeToggle />
-            <LanguageToggle />
-            {/* Compact icon-only CTA, visible below md so the primary
-                "book a call" action isn't only reachable through the
-                hamburger menu on phones (Dhia's ask: more should be usable
-                without opening the drawer). The full labeled pill below
-                still takes over from md up. */}
-            <a
-              href={siteConfig.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="md:hidden flex w-9 h-9 rounded-full items-center justify-center transition-all hover:scale-105 shrink-0 bg-accent-gradient text-white"
-              aria-label={pathname === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
-              title={pathname === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
-            >
-              <Calendar className="w-4 h-4" />
-            </a>
+            {/* Oct 2026 (Dhia's ask): on phones the bar is too tight for
+                theme/language plus the page links, so below md they live
+                in the hamburger drawer (see the toggles row there). The
+                phone-only calendar icon CTA was dropped for the same
+                reason -- the hero, drawer and floating actions all already
+                carry "Book a free call". */}
+            <div className="hidden md:contents">
+              <ThemeToggle />
+              <LanguageToggle />
+            </div>
             <a
               href={siteConfig.calendlyUrl}
               target="_blank"
@@ -376,6 +410,11 @@ export default function Navbar() {
                 Ask the AI assistant
               </button>
             </nav>
+            {/* Theme + language, moved out of the phone header bar. */}
+            <div className="md:hidden flex items-center gap-3 px-8 py-3 border-t border-border">
+              <ThemeToggle />
+              <LanguageToggle />
+            </div>
             <div className="border-t border-border pt-1">
               <CopyEmailMobileRow />
               <ResumeMobileList />

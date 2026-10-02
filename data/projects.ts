@@ -90,3 +90,20 @@ export const designProjects: Project[] = [
     image: "/projects/crit-tunisie-brand.png",
   },
 ]
+
+const pick = (list: Project[], name: string) => list.find((p) => p.name === name)!
+
+/**
+ * Master roadmap 2.1 (Oct 2026): Home used to run both stacks back to back
+ * (9 cards, ~8.3k px of scroll). Now one mixed stack, alternating web and
+ * design so neither track dominates. webProjects/designProjects above stay
+ * intact -- restoring the two-stack layout is a HomePageClient-only change.
+ */
+export const selectedWork: Project[] = [
+  pick(webProjects, "CRIT Tunisie"),
+  pick(designProjects, "MeetUp Pro"),
+  pick(webProjects, "Best Dates & Fruits"),
+  pick(designProjects, "Tafani Travel"),
+  pick(webProjects, "DigiMyTech Talent Hub"),
+  pick(designProjects, "Nakkla"),
+]

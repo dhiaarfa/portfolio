@@ -45,7 +45,7 @@ export const translations = {
     myExpertiseSubtitle: "Three specialized areas where I deliver exceptional value",
     roleTrainerDescription: "Youth development, leadership training, and facilitation with 7+ years of experience.",
     roleDesignerDescription: "Graphic design, UI/UX, and visual branding with a strong strategy-to-visual foundation.",
-    roleDeveloperDescription: "Building modern web experiences with a design-first mindset and clean, scalable code.",
+    roleDeveloperDescription: "Clear, fast, design-led sites and web apps, built and shipped end to end.",
     roleStatTrainer1: "1,120+ Participants",
     roleStatTrainer2: "477+ Training Hours",
     roleStatTrainer3: "30+ Facilitation Hours",
@@ -167,6 +167,9 @@ export const translations = {
   homeDesignStackEyebrow: "Selected work · Design",
   homeDesignStackTitle: "Brands & visuals",
   homeDesignStackSubtitle: "Identity, campaigns and art direction — each one pinned, then the next slides over it.",
+  homeSelectedWorkEyebrow: "Selected work",
+  homeSelectedWorkTitle: "Sites, brands & campaigns",
+  homeSelectedWorkSubtitle: "Web and design projects, mostly client work. Scroll through the stack.",
     skillsAbilities: "Skills & Abilities",
     skillsDescription:
       "A comprehensive skill set combining creativity, technology, and communication for impactful results.",
@@ -417,6 +420,9 @@ export const translations = {
     "nav.freebies": "Freebies",
     "nav.insights": "Insights",
     "nav.webDev": "Web Dev",
+    "nav.short.branding": "Branding",
+    "nav.short.training": "Training",
+    "nav.short.webDev": "Web Dev",
 
     // Resume dropdown (navbar)
     "nav.resumes": "Resume",
@@ -637,7 +643,8 @@ export const translations = {
     // the components and never went through t(), so they stayed in English
     // even in French/Arabic mode.
     pillarYouthDevelopment: "Youth Development",
-    pillarFullStackDevelopment: "Full-Stack Development",
+    // Master roadmap 2.4 (Oct 2026): result framing, not stack-first.
+    pillarFullStackDevelopment: "Websites & Digital Products",
     statLabelParticipants: "Participants",
     statLabelHours: "Hours",
     statLabelFacilitationHrs: "Facilitation Hrs",
@@ -1122,7 +1129,7 @@ export const translations = {
     myExpertiseSubtitle: "Trois domaines spécialisés où j'apporte une vraie valeur",
     roleTrainerDescription: "Développement des jeunes, formation au leadership et facilitation avec 7+ ans d'expérience.",
     roleDesignerDescription: "Design graphique, UI/UX et identité visuelle avec une base stratégie-to-visuel solide.",
-    roleDeveloperDescription: "Création d'expériences web modernes avec une approche design-first et un code propre et évolutif.",
+    roleDeveloperDescription: "Des sites et applications web clairs, rapides et pensés design, conçus et livrés de A à Z.",
     roleStatTrainer1: "1 120+ Participants",
     roleStatTrainer2: "477+ Heures de formation",
     roleStatTrainer3: "30+ Heures de facilitation",
@@ -1240,6 +1247,9 @@ export const translations = {
   homeDesignStackEyebrow: "Travaux sélectionnés · Design",
   homeDesignStackTitle: "Marques & visuels",
   homeDesignStackSubtitle: "Identité, campagnes et direction artistique — chacune épinglée, puis la suivante glisse par-dessus.",
+  homeSelectedWorkEyebrow: "Travaux sélectionnés",
+  homeSelectedWorkTitle: "Sites, marques & campagnes",
+  homeSelectedWorkSubtitle: "Projets web et design, surtout pour des clients. Faites défiler la pile.",
     skillsAbilities: "Compétences & Capacités",
     skillsDescription:
       "Un ensemble de compétences complet combinant créativité, technologie et communication pour des résultats impactants.",
@@ -1479,6 +1489,9 @@ export const translations = {
     "nav.freebies": "Ressources",
     "nav.insights": "Articles",
     "nav.webDev": "Développement Web",
+    "nav.short.branding": "Branding",
+    "nav.short.training": "Formation",
+    "nav.short.webDev": "Web",
 
     // Resume dropdown (navbar)
     "nav.resumes": "CV",
@@ -1696,7 +1709,7 @@ export const translations = {
     impactChartOthersDesc: "Courbe de croissance typique sans partenaire design & marketing dédié.",
 
     pillarYouthDevelopment: "Développement des jeunes",
-    pillarFullStackDevelopment: "Développement Full-Stack",
+    pillarFullStackDevelopment: "Sites web & produits digitaux",
     statLabelParticipants: "Participants",
     statLabelHours: "Heures",
     statLabelFacilitationHrs: "Heures d'animation",
@@ -2179,7 +2192,7 @@ export const translations = {
     myExpertiseSubtitle: "ثلاث مجالات أتقنها وأقدم فيها قيمة حقيقية",
     roleTrainerDescription: "تنمية الشباب وتدريب القيادة والتيسير مع أكثر من 7 سنوات من الخبرة.",
     roleDesignerDescription: "تصميم جرافيك وواجهات وتجربة مستخدم وهوية بصرية قائمة على الاستراتيجية.",
-    roleDeveloperDescription: "بناء تجارب ويب حديثة بعقلية تصميم أولاً وكود نظيف وقابل للتوسع.",
+    roleDeveloperDescription: "مواقع وتطبيقات ويب واضحة وسريعة بتصميم مدروس، أبنيها وأسلّمها من البداية إلى النهاية.",
     roleStatTrainer1: "1,120+ مشارك",
     roleStatTrainer2: "477+ ساعة تدريب",
     roleStatTrainer3: "30+ ساعة تيسير",
@@ -2297,6 +2310,9 @@ export const translations = {
   homeDesignStackEyebrow: "أعمال مختارة · التصميم",
   homeDesignStackTitle: "علامات تجارية وتصاميم بصرية",
   homeDesignStackSubtitle: "الهوية البصرية، الحملات، والتوجيه الفني — كل عمل مثبّت، ثم ينزلق التالي فوقه.",
+  homeSelectedWorkEyebrow: "أعمال مختارة",
+  homeSelectedWorkTitle: "مواقع، علامات تجارية وحملات",
+  homeSelectedWorkSubtitle: "مشاريع ويب وتصميم، أغلبها لعملاء. مرر عبر القائمة لاستكشافها.",
     skillsAbilities: "المهارات والقدرات",
     skillsDescription:
       "مجموعة مهارات شاملة تجمع بين الإبداع والتكنولوجيا والاتصال للحصول على نتائج مؤثرة.",
@@ -2536,6 +2552,9 @@ export const translations = {
     "nav.freebies": "موارد مجانية",
     "nav.insights": "مقالات",
     "nav.webDev": "تطوير الويب",
+    "nav.short.branding": "الهوية",
+    "nav.short.training": "التدريب",
+    "nav.short.webDev": "الويب",
 
     // Resume dropdown (navbar)
     "nav.resumes": "السيرة الذاتية",
@@ -2753,7 +2772,7 @@ export const translations = {
     impactChartOthersDesc: "منحنى نمو نمطي بدون شريك تصميم وتسويق مخصص.",
 
     pillarYouthDevelopment: "تنمية الشباب",
-    pillarFullStackDevelopment: "تطوير ويب متكامل",
+    pillarFullStackDevelopment: "مواقع ويب ومنتجات رقمية",
     statLabelParticipants: "مشاركون",
     statLabelHours: "ساعات",
     statLabelFacilitationHrs: "ساعات تيسير",

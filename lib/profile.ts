@@ -31,6 +31,8 @@ export const profileStats = {
   designProjects: { value: 50, suffix: "+", label: "Design projects" },
   brands: { value: 20, suffix: "+", label: "Brands" },
   trainingsReceivedHoursNfe: { value: 2000, suffix: "+", label: "NFE hours received" },
+  // Moved here from a hardcoded "15+" in TrainerClientPage.tsx (Oct 2026).
+  trainingPartners: { value: 15, suffix: "+", label: "Partner organisations" },
 } as const
 
 /** Format a stat for display, e.g. "1000+" */

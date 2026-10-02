@@ -50,7 +50,7 @@ export default function TrainerClientPage() {
     { number: formatStat("facilitationHours"), label: t("impactStatFacilitationLabel"), detail: t("impactStatFacilitationDetail"), progress: 0.5 },
     { number: formatStat("trainingCycles"), label: t("impactStatEventsLabel"), detail: t("impactStatEventsDetail"), progress: 0.62 },
     { number: formatStat("yearsExperience"), label: t("impactStatYearsLabel"), detail: t("impactStatYearsDetail"), progress: 0.4 },
-    { number: "15+", label: t("impactStatPartnersLabel"), detail: t("impactStatPartnersDetail"), progress: 0.58 },
+    { number: formatStat("trainingPartners"), label: t("impactStatPartnersLabel"), detail: t("impactStatPartnersDetail"), progress: 0.58 },
   ]
 
   return (

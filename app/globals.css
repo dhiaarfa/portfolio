@@ -647,43 +647,25 @@ html.custom-cursor-active * {
  * fade never touches skin or hair, only the photo's own dark background.
  */
 
-/* Mobile (<640px): photo fills the top of the hero, fading down into the
-   stacked text below. No horizontal fade -- the face sits centered in the
-   crop (see the object-position on the <Image> itself). */
+/* Mobile + tablet (<1024px), Oct 2026: photo fills the top of the hero
+   and dissolves slowly downward, so the hero text (which now starts at
+   ~36vh, over the shoulders) overlays the photo's faded lower half -- the
+   vertical counterpart of the desktop left-side fade. The face stays in
+   the fully opaque top half. Tablet used to have its own side-by-side
+   crop; it put the H1 across the face, so it now shares this layout. */
 .hero-photo-mask {
   -webkit-mask-image:
-    linear-gradient(to bottom, black 0%, black 56%, rgba(0, 0, 0, 0.82) 65%, rgba(0, 0, 0, 0.5) 74%, rgba(0, 0, 0, 0.18) 83%, transparent 93%),
-    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    linear-gradient(to bottom, black 0%, black 50%, rgba(0, 0, 0, 0.8) 62%, rgba(0, 0, 0, 0.5) 74%, rgba(0, 0, 0, 0.2) 87%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to bottom, black 0%, black 56%, rgba(0, 0, 0, 0.82) 65%, rgba(0, 0, 0, 0.5) 74%, rgba(0, 0, 0, 0.18) 83%, transparent 93%),
-    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    linear-gradient(to bottom, black 0%, black 50%, rgba(0, 0, 0, 0.8) 62%, rgba(0, 0, 0, 0.5) 74%, rgba(0, 0, 0, 0.2) 87%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
   mask-composite: intersect;
 }
 .hero-photo-dots {
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 48%, black 88%, black 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, transparent 48%, black 88%, black 100%);
-}
-
-/* Tablet (640–1023px): photo shifted right, a stronger/later left fade
-   than desktop since the text column takes relatively more width here. */
-@media (min-width: 640px) and (max-width: 1023px) {
-  .hero-photo-mask {
-    -webkit-mask-image:
-      linear-gradient(to right, transparent 0%, transparent 46%, rgba(0, 0, 0, 0.08) 53%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0.6) 66%, rgba(0, 0, 0, 0.85) 71%, black 76%, black 100%),
-      linear-gradient(to bottom, transparent 0%, black 9%, black 91%, transparent 100%),
-      linear-gradient(to right, black 0%, black 89%, transparent 100%);
-    -webkit-mask-composite: source-in, source-in;
-    mask-image:
-      linear-gradient(to right, transparent 0%, transparent 46%, rgba(0, 0, 0, 0.08) 53%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0.6) 66%, rgba(0, 0, 0, 0.85) 71%, black 76%, black 100%),
-      linear-gradient(to bottom, transparent 0%, black 9%, black 91%, transparent 100%),
-      linear-gradient(to right, black 0%, black 89%, transparent 100%);
-    mask-composite: intersect;
-  }
-  .hero-photo-dots {
-    -webkit-mask-image: linear-gradient(to right, black 0%, black 34%, transparent 58%);
-    mask-image: linear-gradient(to right, black 0%, black 34%, transparent 58%);
-  }
 }
 
 /* Desktop (≥1024px): photo full-height on the right, fading left behind

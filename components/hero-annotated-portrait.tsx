@@ -54,7 +54,12 @@ export default function HeroAnnotatedPortrait({
           sm+ reverts to the original full-bleed inset-0 (photo sits beside
           the text column there, not above a stack, so it should span the
           section's whole height). */}
-      <div className="absolute inset-x-0 top-0 h-[52vh] sm:inset-0 sm:h-auto z-10 hero-photo-mask">
+      {/* Oct 2026 (Dhia's ask): below lg the text now overlays the photo's
+          lower, faded part -- the vertical version of the desktop layout,
+          where text overlays the photo's faded left side -- instead of
+          stacking under a photo that ended first. Tablet uses the same
+          layout: its old side-by-side crop put the H1 across the face. */}
+      <div className="absolute inset-x-0 top-0 h-[60vh] max-h-[620px] lg:max-h-none lg:inset-0 lg:h-auto z-10 hero-photo-mask">
         <Image
           src={imageSrc}
           alt="Mohamed Dhia Arfa"
@@ -63,7 +68,7 @@ export default function HeroAnnotatedPortrait({
           fetchPriority="high"
           sizes="100vw"
           quality={85}
-          className="object-cover object-[86%_20%] sm:object-[88%_26%] lg:object-[right_center]"
+          className="object-cover object-[86%_20%] sm:object-[84%_22%] lg:object-[right_center]"
           style={{ backgroundColor: "#0A1F0A" }}
         />
 
@@ -104,7 +109,7 @@ export default function HeroAnnotatedPortrait({
           left-to-right fade on tablet/desktop (text sits left), top-to-
           bottom on mobile (text sits below the photo). */}
       <div
-        className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-white via-white/70 to-transparent dark:from-[#0A0A0A] dark:via-[#0A0A0A]/70 dark:to-transparent sm:bg-gradient-to-r sm:from-white sm:via-white/60 sm:to-transparent sm:dark:from-[#0A0A0A] sm:dark:via-[#0A0A0A]/60 sm:dark:to-transparent"
+        className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-white from-45% via-white/75 to-transparent to-75% dark:from-[#0A0A0A] dark:via-[#0A0A0A]/75 dark:to-transparent lg:bg-gradient-to-r lg:from-white lg:from-0% lg:via-white/60 lg:to-transparent lg:to-100% lg:dark:from-[#0A0A0A] lg:dark:via-[#0A0A0A]/60 lg:dark:to-transparent"
         aria-hidden
       />
 
@@ -113,7 +118,7 @@ export default function HeroAnnotatedPortrait({
           stacked mobile layout from Dhia's spec), collapses to the normal
           pt-24 on desktop where the photo sits beside the text instead. */}
       <div className="relative z-30 mx-auto w-full max-w-6xl">
-        <div className="min-w-0 pt-[44vh] sm:pt-[30vh] lg:pt-0">{children}</div>
+        <div className="min-w-0 pt-[min(36vh,380px)] lg:pt-0">{children}</div>
 
         {showCta && (
           <div className="mt-6 lg:mt-8">
