@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
-import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react"
+import Image from "next/image"
+import { ChevronLeft, ChevronRight, Linkedin, Quote } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { pickTestimonials, testimonialText, type TestimonialItem } from "@/lib/testimonials"
 
@@ -41,6 +42,32 @@ function initials(name: string) {
     .join("")
     .slice(0, 2)
     .toUpperCase()
+}
+
+/** Self-hosted photo when one has been added (lib/testimonials.ts `photo`),
+ *  initials otherwise. */
+function Avatar({ item, size }: { item: TestimonialItem; size: number }) {
+  if (item.photo) {
+    return (
+      <Image
+        src={item.photo}
+        alt={item.name}
+        width={size}
+        height={size}
+        className="shrink-0 rounded-full object-cover ring-2 ring-accent/30"
+        style={{ width: size, height: size }}
+      />
+    )
+  }
+  return (
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-full font-bold text-white ${dotColors[item.accent]}`}
+      style={{ width: size, height: size, fontSize: size * 0.32 }}
+      aria-hidden
+    >
+      {initials(item.name)}
+    </div>
+  )
 }
 
 export function TestimonialsShowcase({
@@ -101,25 +128,37 @@ export function TestimonialsShowcase({
               className={`relative rounded-3xl border p-6 sm:p-8 md:p-10 ${accentStyles[featured.accent]}`}
             >
               <Quote className="absolute right-5 top-5 h-10 w-10 text-accent/15 sm:h-14 sm:w-14" aria-hidden />
-              <div className="mb-4 flex gap-0.5" aria-hidden>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400 sm:h-4 sm:w-4" />
-                ))}
-              </div>
-              <blockquote className="relative z-10 max-w-3xl">
+              {/* Oct 2026: removed the five gold stars -- LinkedIn
+                  recommendations carry no rating, so the stars implied
+                  scores nobody gave. */}
+              <blockquote className="relative z-10 max-w-3xl" lang={featuredText.translated ? lang : featured.originalLang}>
                 <p className="text-base font-medium leading-relaxed text-foreground sm:text-lg md:text-xl">
                   &ldquo;{featuredText.quote}&rdquo;
                 </p>
               </blockquote>
-              <footer className="relative z-10 mt-6 flex items-center gap-4">
-                <div
-                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-sm font-bold text-white ${dotColors[featured.accent]}`}
-                >
-                  {initials(featured.name)}
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">{featured.name}</p>
-                  <p className="text-sm text-muted-foreground">{featuredText.role}</p>
+              <footer className="relative z-10 mt-6 flex items-start gap-4">
+                <Avatar item={featured} size={52} />
+                <div className="min-w-0">
+                  <p className="flex items-center gap-2 font-semibold text-foreground">
+                    {featured.name}
+                    <a
+                      href={featured.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${featured.name} on LinkedIn`}
+                      className="text-muted-foreground transition-colors hover:text-accent"
+                    >
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                  </p>
+                  {/* Their own LinkedIn headline, then LinkedIn's description
+                      of how they worked with Dhia. */}
+                  <p className="text-sm text-muted-foreground line-clamp-1">{featuredText.role}</p>
+                  <p className="mt-1 text-sm font-medium text-accent">{featuredText.relation}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {t("testimonialSource")} · {featured.date.slice(0, 4)}
+                    {featuredText.translated ? ` · ${t("testimonialTranslated")}` : ""}
+                  </p>
                 </div>
               </footer>
             </motion.article>
@@ -191,21 +230,12 @@ export function TestimonialsShowcase({
                   className={`group relative min-w-[260px] shrink-0 snap-start overflow-hidden rounded-[1.75rem] border p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:min-w-0 ${accentStyles[item.accent]}`}
                 >
                   <Quote className="pointer-events-none absolute -right-3 -top-3 h-16 w-16 text-foreground opacity-[0.05] transition-transform duration-300 group-hover:scale-110" aria-hidden />
-                  <div className="relative mb-3 flex gap-0.5" aria-hidden>
-                    {Array.from({ length: 5 }).map((_, s) => (
-                      <Star key={s} className="h-3 w-3 fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
                   <p className="relative line-clamp-3 text-sm leading-relaxed text-foreground/90">&ldquo;{text.quote}&rdquo;</p>
                   <div className="relative mt-5 flex items-center gap-3">
-                    <div
-                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white shadow-sm ring-2 ring-white/70 dark:ring-slate-900/60 ${dotColors[item.accent]}`}
-                    >
-                      {initials(item.name)}
-                    </div>
+                    <Avatar item={item} size={40} />
                     <div className="min-w-0">
                       <p className="truncate text-sm font-semibold text-foreground">{item.name}</p>
-                      <p className="truncate text-xs text-muted-foreground">{text.role}</p>
+                      <p className="truncate text-xs text-accent">{text.relation}</p>
                     </div>
                   </div>
                 </motion.button>

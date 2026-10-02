@@ -47,17 +47,6 @@ export type TrainingCaseStudy = {
   published: boolean
 }
 
-export type TrainingTestimonial = {
-  name: string
-  roleEn: string
-  roleFr: string
-  roleAr: string
-  quoteEn: string
-  quoteFr: string
-  quoteAr: string
-  category: "training" | "design" | "general"
-}
-
 export const trainingOffers: TrainingOffer[] = [
   {
     id: "half-day",
@@ -132,7 +121,7 @@ export const trainingOffers: TrainingOffer[] = [
     nameAr: "كلمة رئيسية وتيسير",
     forEn: "Conferences, hackathons, and panels needing an energizing host or moderator",
     forFr: "Conférences, hackathons et panels nécessitant un animateur ou modérateur",
-    forAr: "مؤتمرات وهاكathons وpanels تحتاج ميسراً أو متحدثاً",
+    forAr: "مؤتمرات وهاكاثونات وحلقات نقاش تحتاج ميسّراً أو متحدثاً",
     formatEn: "45–90 min keynote · half-day facilitation · panel moderation",
     formatFr: "Keynote 45–90 min · facilitation demi-journée · modération panel",
     formatAr: "كلمة 45–90 د · تيسير نصف يوم · إدارة نقاش",
@@ -199,64 +188,26 @@ export const trainingCaseStudies: TrainingCaseStudy[] = [
     titleKey: "dohaEventTitle",
     clientEn: "IOM · Youth Hackathon · Doha, 2024",
     clientFr: "OIM · Hackathon jeunesse · Doha, 2024",
-    clientAr: "المنظمة الدولية للهجرة · هاكathon شباب · الدوحة، 2024",
+    clientAr: "المنظمة الدولية للهجرة · هاكاثون الشباب · الدوحة، 2024",
     briefEn: "Support facilitation and creative engagement for an international youth hackathon on migration themes.",
     briefFr: "Appui à la facilitation et l'engagement créatif pour un hackathon jeunesse international sur la migration.",
-    briefAr: "دعم التيسير والتفاعل الإبداعي لهاكathon شبابي دولي حول الهجرة.",
+    briefAr: "دعم التيسير والتفاعل الإبداعي لهاكاثون شبابي دولي حول الهجرة.",
     deliveredEn: "Facilitated collaborative sessions, visual storytelling workshops, and team energizers across multilingual groups.",
     deliveredFr: "Animation de sessions collaboratives, ateliers storytelling visuel et energizers pour groupes multilingues.",
     deliveredAr: "تيسير جلسات تعاونية، ورش سرد بصري، ومنشطات جماعية لمجموعات متعددة اللغات.",
     outcomeEn: "Teams produced actionable prototypes with stronger cross-cultural collaboration and presentation skills.",
     outcomeFr: "Les équipes ont produit des prototypes actionnables avec une meilleure collaboration interculturelle.",
-    outcomeAr: "أنتجت الفرق نماذج أولية قابلة للتطبيق مع تعاون interculturel أقوى.",
+    outcomeAr: "أنتجت الفرق نماذج أولية قابلة للتطبيق مع تعاون أقوى بين الثقافات.",
     image: "/images/trainer/iom-hackathon-doha-2024.png",
     orgLogo: "/img/organizations/iom-logo.png",
     published: true,
   },
 ]
 
-export const trainingTestimonials: TrainingTestimonial[] = [
-  {
-    name: "Rayen Bejaoui",
-    roleEn: "Junior Project Manager · 1000 Challenges & AIESEC",
-    roleFr: "Chef de projet junior · 1000 Challenges et AIESEC",
-    roleAr: "مدير مشاريع · 1000 تحدي وأييسيك",
-    quoteEn: "True leader with remarkable facilitation skills. A joy to collaborate with on youth programs.",
-    quoteFr: "Vrai leader avec des compétences de facilitation remarquables. Un plaisir de collaborer sur les programmes jeunesse.",
-    quoteAr: "قائد حقيقي بمهارات تيسير رائعة. متعة التعاون في برامج الشباب.",
-    category: "training",
-  },
-  {
-    name: "Ikram Allah Nemri",
-    roleEn: "Social Entrepreneur · AIESEC Sousse",
-    roleFr: "Entrepreneur social · AIESEC Sousse",
-    roleAr: "مقاول اجتماعي · أييسيك سوسة",
-    quoteEn: "Highly qualified trainer and inspiring youth worker. Sessions are always interactive and outcome-driven.",
-    quoteFr: "Formatrice hautement qualifiée et travailleuse jeunesse inspirante. Sessions toujours interactives et orientées résultats.",
-    quoteAr: "مدربة مؤهلة وعاملة شباب ملهمة. الجلسات دائماً تفاعلية وموجهة نحو النتائج.",
-    category: "training",
-  },
-  {
-    name: "Omayma Arfaoui",
-    roleEn: "Geosciences Engineer · IOM Hackathon Doha",
-    roleFr: "Ingénieur géosciences · Hackathon OIM Doha",
-    roleAr: "مهندسة جيولوجيا · هاكathon المنظمة الدولية للهجرة",
-    quoteEn: "Inspiring facilitator with outstanding collaborative skills in international settings.",
-    quoteFr: "Facilitatrice inspirante avec d'excellentes compétences collaboratives en contexte international.",
-    quoteAr: "ميسرة ملهمة بمهارات تعاون استثنائية في السياقات الدولية.",
-    category: "training",
-  },
-  {
-    name: "Youssef Touati",
-    roleEn: "CEO, Jasmin Marketing · Program partner",
-    roleFr: "CEO, Jasmin Marketing · Partenaire programme",
-    roleAr: "الرئيس التنفيذي، جاسمين ماركتينغ · شريك برنامج",
-    quoteEn: "Brings creativity and dedication to every workshop. Participants stay engaged from start to finish.",
-    quoteFr: "Apporte créativité et dévouement à chaque atelier. Les participants restent engagés du début à la fin.",
-    quoteAr: "يجلب الإبداع والتفاني لكل ورشة. المشاركون يبقون متفاعلين من البداية للنهاية.",
-    category: "training",
-  },
-]
+// Oct 2026: a `trainingTestimonials` list lived here with quotes the
+// named people never wrote (e.g. Dhia's internship manager quoted about
+// "every workshop"). It was unused; removed. The only testimonials are
+// the verbatim LinkedIn recommendations in lib/testimonials.ts.
 
 export const trainingHowWeWork = [
   {
@@ -305,6 +256,3 @@ export function publishedTrainingCaseStudies() {
   return trainingCaseStudies.filter((c) => c.published)
 }
 
-export function trainingTestimonialsList() {
-  return trainingTestimonials.filter((t) => t.category === "training")
-}
