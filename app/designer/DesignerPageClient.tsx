@@ -2,7 +2,7 @@
 
 import { Link } from "next-view-transitions"
 import Image from "next/image"
-import { ArrowRight, Target, Layers, LayoutGrid, Compass, Search, PenTool, Package, RefreshCw, Gift } from "lucide-react"
+import { ArrowRight, Search, PenTool, Package, RefreshCw, Gift } from "lucide-react"
 import { formatStat, designExperience, certifications as profileCertifications, localizedExperience, localizedCertification } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
 import { featuredWorkProjects, curatedGallery, categoryKey, localizedWork } from "@/lib/work"
@@ -13,16 +13,20 @@ import Footer from "@/components/footer"
 import ContactForm from "@/components/contact-form"
 import ToolsStackSection from "@/components/tools-stack-section"
 import MarketingSection from "@/components/marketing-section"
-import ClientLogosStrip from "@/components/client-logos-strip"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { useState } from "react"
 import { useLanguage } from "@/components/language-provider"
 
-const designPhilosophy = [
-  { titleKey: "philosophyBrandTitle", descKey: "philosophyBrandDesc", Icon: Layers },
-  { titleKey: "philosophyDirectionTitle", descKey: "philosophyDirectionDesc", Icon: Target },
-  { titleKey: "philosophyVisualTitle", descKey: "philosophyVisualDesc", Icon: LayoutGrid },
-  { titleKey: "philosophyConsultingTitle", descKey: "philosophyConsultingDesc", Icon: Compass },
+/** Real design clients, all with case studies or gallery work on this page
+ *  (lib/work.ts, data/projects.ts). Brand names are not translated. */
+const DESIGN_BRANDS = [
+  "Speranza Café",
+  "Tafani Travel",
+  "Lone Space",
+  "CRIT Tunisie",
+  "Nakkla",
+  "MeetUp Pro",
+  "TravelTodo",
 ]
 
 const howWeWork = [
@@ -65,7 +69,10 @@ const categoryLabelKeys: Record<(typeof categories)[number], string> = {
 export default function DesignerPageClient() {
   const { t, language } = useLanguage()
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("All")
-  const featured = featuredWorkProjects()
+  // Design case studies only: featuredWorkProjects() also returns the three
+  // web projects (DigiMyTech, CRIT site, BDF site), which showed up here as
+  // "design" case studies.
+  const featured = featuredWorkProjects().filter((p) => p.kind === "design")
   const workExperience = designExperience.slice(0, 3)
   const certifications = profileCertifications.filter((c) =>
     ["graphic-design", "hubspot", "inco"].includes(c.id)
@@ -113,8 +120,11 @@ export default function DesignerPageClient() {
                   )
                 })}
               </div>
-              <div className="pointer-events-none absolute inset-0 backdrop-blur-md bg-black/10" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/40 to-transparent lg:bg-gradient-to-r lg:from-[#0A0A0A]/30" />
+              {/* Oct 2026: the mosaic used to sit under backdrop-blur-md --
+                  the page's most persuasive asset (the work itself) was
+                  deliberately out of focus. Now sharp, with only a seam
+                  gradient toward the text column. */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/50 via-transparent to-transparent lg:bg-gradient-to-r lg:from-[#0A0A0A]/60 lg:via-transparent" />
             </>
           }
           footer={
@@ -139,30 +149,46 @@ export default function DesignerPageClient() {
           <p className="mb-8 max-w-md text-[17px] leading-relaxed text-muted-foreground">
             {t("designerHeroSubtext")}
           </p>
+          {/* Two actions (roadmap 1.1 hierarchy), the free templates demoted
+              to a quiet text link instead of a third equal button. */}
           <div className="flex flex-wrap gap-3">
             <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green">
               {t("designerBtnStartProject")}
             </a>
-            <a href="#case-studies" className="rounded-[14px] border border-border px-6 py-3 font-medium text-muted-foreground transition-all hover:border-accent/60 hover:text-foreground">
+            <a href="#case-studies" className="btn-outline group inline-flex">
               {t("designerBtnSeeSelectedWork")}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
             </a>
-            <Link
-              href="/freebies?category=design"
-              className="inline-flex items-center gap-2 rounded-[14px] border border-border px-6 py-3 font-medium text-muted-foreground transition-all hover:border-accent/60 hover:text-foreground"
-            >
-              <Gift className="h-4 w-4" />
-              {t("designerBtnGetFreeTemplates")}
-            </Link>
           </div>
+          <Link
+            href="/freebies?category=design"
+            className="mt-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-accent"
+          >
+            <Gift className="h-4 w-4" />
+            {t("designerBtnGetFreeTemplates")}
+          </Link>
         </RoleHero>
 
-        {/* 2. Client logos */}
-        <ClientLogosStrip />
+        {/* 2. Brands I've designed for (Oct 2026 restructure): the shared
+            ClientLogosStrip that sat here is mostly training partners
+            (USAID, IFMSA, JCI, AIESEC...), not design clients. This page
+            now names the brands its own case studies and gallery come from. */}
+        <section aria-labelledby="designer-brands" className="w-full border-y border-border bg-muted/30 dark:bg-card/40 px-4 py-8 md:px-8">
+          <div className="mx-auto max-w-6xl text-center">
+            <p id="designer-brands" className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              {t("designerBrandsLabel")}
+            </p>
+            <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+              {DESIGN_BRANDS.map((name) => (
+                <li key={name} className="font-accent-italic text-xl sm:text-2xl text-foreground/75">
+                  {name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
 
-        {/* 2b. Marketing & strategy */}
-        <MarketingSection />
-
-        {/* 3. Featured case studies */}
+        {/* 3. Case studies -- proof first, right after the hook */}
         <section id="case-studies" className="section-compact w-full px-4 md:px-8">
           <div className="mx-auto max-w-7xl">
             <p className="label mb-2">{t("designerCaseStudiesLabel")}</p>
@@ -180,10 +206,13 @@ export default function DesignerPageClient() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.06 }}
                   viewport={{ once: true }}
-                  className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-accent/40 hover:shadow-lg"
+                  // Bento: the first case study leads at double width on lg.
+                  className={`group overflow-hidden rounded-[2rem] border border-border bg-card transition-all hover:border-accent/40 hover:shadow-lg ${
+                    i === 0 ? "lg:col-span-2" : ""
+                  }`}
                 >
                   <Link href={`/work/${project.slug}`} className="block">
-                    <div className="relative aspect-[4/3] bg-muted">
+                    <div className={`relative bg-muted ${i === 0 ? "aspect-[4/3] lg:aspect-[16/9]" : "aspect-[4/3]"}`}>
                       <Image src={project.cardImage} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
                     </div>
                     <div className="space-y-2 p-5">
@@ -203,95 +232,7 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        {/* 4. How we work */}
-        <section className="section-compact w-full bg-muted/30 px-4 md:px-8 dark:bg-background/50">
-          <div className="mx-auto max-w-5xl">
-            {/* Dhia's "no photos in designer page" fix (Oct 2026): this was
-                the only page with zero real photos of him -- a portrait
-                now backs this heading, the same photo-banner pattern used
-                on /trainer, instead of a plain text header. */}
-            <div className="relative overflow-hidden rounded-[2rem] border border-border mb-10">
-              <div className="relative aspect-[16/7] sm:aspect-[21/9]">
-                <Image
-                  src="/images/photos/dhia-designer.png"
-                  alt="Mohamed Dhia Arfa, designer"
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-              </div>
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                <p className="label !text-white/80 mb-2">{t("designerProcessLabel")}</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">{t("designerProcessHeading")}</h2>
-              </div>
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {howWeWork.map((step) => (
-                <div key={step.step} className="rounded-2xl border border-border bg-card p-5">
-                  <div className="mb-3 flex items-center justify-between">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-subtle text-accent">
-                      <step.Icon className="h-4 w-4" />
-                    </span>
-                    <span className="font-display text-2xl font-black text-muted-foreground/40">{step.step}</span>
-                  </div>
-                  <h3 className="mb-2 font-semibold">{t(step.titleKey)}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{t(step.descKey)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 5. Services / packages */}
-        <section className="section-compact w-full px-4 md:px-8">
-          <div className="mx-auto max-w-5xl">
-            <p className="label mb-2">{t("designerServicesLabel")}</p>
-            <h2 className="mb-10 text-3xl font-bold md:text-4xl">{t("designerServicesHeading")}</h2>
-            <div className="grid gap-5 md:grid-cols-3">
-              {packages.map((pkg) => (
-                <div key={pkg.nameKey} className="flex flex-col rounded-2xl border border-border bg-card p-6">
-                  <h3 className="mb-2 text-lg font-bold">{t(pkg.nameKey)}</h3>
-                  <p className="mb-4 text-sm text-muted-foreground">{t(pkg.descKey)}</p>
-                  <ul className="mb-6 flex-1 space-y-2">
-                    {pkg.includeKeys.map((itemKey) => (
-                      <li key={itemKey} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                        {t(itemKey)}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-accent">{t(pkg.noteKey)}</p>
-                  <a href="#contact-form" className="text-sm font-semibold text-foreground hover:text-accent">
-                    {t("designerStartProjectArrow")}
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 6. Design philosophy */}
-        <section className="section-compact w-full bg-gradient-to-b from-background via-accent/5 to-background px-4 md:px-8">
-          <div className="mx-auto max-w-7xl">
-            <p className="label mb-2">{t("designerApproachLabel")}</p>
-            <h2 className="mb-8 text-3xl font-bold md:text-4xl">{t("designerApproachHeading")}</h2>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-              {designPhilosophy.map((item, i) => (
-                <div key={item.titleKey} className="rounded-2xl border border-accent/20 bg-card p-5 shadow-sm">
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-subtle text-accent">
-                    <item.Icon className="h-5 w-5" />
-                  </div>
-                  <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{t("designerStepPrefix", { n: i + 1 })}</p>
-                  <h3 className="mb-2 text-sm font-semibold">{t(item.titleKey)}</h3>
-                  <p className="text-xs leading-relaxed text-muted-foreground">{t(item.descKey)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 7. Curated gallery */}
+        {/* 4. Full gallery -- breadth right after depth */}
         <section id="gallery" className="section-compact w-full px-4 md:px-8">
           <div className="mx-auto max-w-7xl">
             <p className="label mb-2">{t("designerPortfolioLabel")}</p>
@@ -352,7 +293,78 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        {/* 8. Short experience + design certs */}
+        {/* 5. Marketing & strategy -- design that moved numbers */}
+        <MarketingSection />
+
+        {/* 6. Services / packages */}
+        <section className="section-compact w-full px-4 md:px-8">
+          <div className="mx-auto max-w-5xl">
+            <p className="label mb-2">{t("designerServicesLabel")}</p>
+            <h2 className="mb-10 text-3xl font-bold md:text-4xl">{t("designerServicesHeading")}</h2>
+            <div className="grid gap-5 md:grid-cols-3">
+              {packages.map((pkg) => (
+                <div key={pkg.nameKey} className="flex flex-col rounded-2xl border border-border bg-card p-6">
+                  <h3 className="mb-2 text-lg font-bold">{t(pkg.nameKey)}</h3>
+                  <p className="mb-4 text-sm text-muted-foreground">{t(pkg.descKey)}</p>
+                  <ul className="mb-6 flex-1 space-y-2">
+                    {pkg.includeKeys.map((itemKey) => (
+                      <li key={itemKey} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                        {t(itemKey)}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-accent">{t(pkg.noteKey)}</p>
+                  <a href="#contact-form" className="text-sm font-semibold text-foreground hover:text-accent">
+                    {t("designerStartProjectArrow")}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 7. How we work -- the one process section (the separate "design philosophy" block, also numbered as 4 steps, was dropped as a duplicate) */}
+        <section className="section-compact w-full bg-muted/30 px-4 md:px-8 dark:bg-background/50">
+          <div className="mx-auto max-w-5xl">
+            {/* Dhia's "no photos in designer page" fix (Oct 2026): this was
+                the only page with zero real photos of him -- a portrait
+                now backs this heading, the same photo-banner pattern used
+                on /trainer, instead of a plain text header. */}
+            <div className="relative overflow-hidden rounded-[2rem] border border-border mb-10">
+              <div className="relative aspect-[16/7] sm:aspect-[21/9]">
+                <Image
+                  src="/images/photos/dhia-designer.png"
+                  alt="Mohamed Dhia Arfa, designer"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+              </div>
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                <p className="label !text-white/80 mb-2">{t("designerProcessLabel")}</p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">{t("designerProcessHeading")}</h2>
+              </div>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {howWeWork.map((step) => (
+                <div key={step.step} className="rounded-2xl border border-border bg-card p-5">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-subtle text-accent">
+                      <step.Icon className="h-4 w-4" />
+                    </span>
+                    <span className="font-display text-2xl font-black text-muted-foreground/40">{step.step}</span>
+                  </div>
+                  <h3 className="mb-2 font-semibold">{t(step.titleKey)}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{t(step.descKey)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 8. Trust: experience + design certs, tools, resources, then the contact form as the single closing ask (the "free templates" band after it was removed; templates are linked in the hero and the resources strip) */}
         <section className="section-compact w-full px-4 md:px-8">
           <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2">
             <div>
@@ -414,17 +426,6 @@ export default function DesignerPageClient() {
           </div>
         </section>
 
-        <section className="w-full bg-accent-subtle px-4 py-10 md:px-8">
-          <div className="mx-auto flex max-w-3xl flex-col items-center justify-between gap-4 sm:flex-row">
-            <div>
-              <p className="font-bold text-slate-900 dark:text-white">{t("designerFreeTemplatesTitle")}</p>
-              <p className="text-sm text-muted-foreground">{t("designerFreeTemplatesDesc")}</p>
-            </div>
-            <Link href="/freebies?category=design" className="btn-green whitespace-nowrap">
-              {t("designerBtnGetFreeTemplates")}
-            </Link>
-          </div>
-        </section>
       </main>
 
       <Footer variant="design" />
