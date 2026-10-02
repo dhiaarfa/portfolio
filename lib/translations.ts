@@ -172,6 +172,11 @@ export const translations = {
   homeSelectedWorkEyebrow: "Selected work",
   homeSelectedWorkTitle: "Sites, brands & campaigns",
   homeSelectedWorkSubtitle: "Web and design projects, mostly client work. Scroll through the stack.",
+  // Master roadmap 5.1: draft lines from Dhia's roadmap -- replace freely.
+  homeWhoIHelpLabel: "Who I help",
+  homeWhoIHelp1: "Organisations that need visual clarity and a coherent brand",
+  homeWhoIHelp2: "NGOs, schools and projects that need trainings that change behaviour",
+  homeWhoIHelp3: "Teams that need a professional website without managing three freelancers",
     skillsAbilities: "Skills & Abilities",
     skillsDescription:
       "A comprehensive skill set combining creativity, technology, and communication for impactful results.",
@@ -1252,6 +1257,10 @@ export const translations = {
   homeSelectedWorkEyebrow: "Travaux sélectionnés",
   homeSelectedWorkTitle: "Sites, marques & campagnes",
   homeSelectedWorkSubtitle: "Projets web et design, surtout pour des clients. Faites défiler la pile.",
+  homeWhoIHelpLabel: "Pour qui je travaille",
+  homeWhoIHelp1: "Les organisations qui veulent une image claire et une marque cohérente",
+  homeWhoIHelp2: "Les ONG, écoles et projets qui ont besoin de formations qui changent les comportements",
+  homeWhoIHelp3: "Les équipes qui veulent un site professionnel sans gérer trois freelances",
     skillsAbilities: "Compétences & Capacités",
     skillsDescription:
       "Un ensemble de compétences complet combinant créativité, technologie et communication pour des résultats impactants.",
@@ -2315,6 +2324,10 @@ export const translations = {
   homeSelectedWorkEyebrow: "أعمال مختارة",
   homeSelectedWorkTitle: "مواقع، علامات تجارية وحملات",
   homeSelectedWorkSubtitle: "مشاريع ويب وتصميم، أغلبها لعملاء. مرر عبر القائمة لاستكشافها.",
+  homeWhoIHelpLabel: "من أساعد",
+  homeWhoIHelp1: "المؤسسات التي تحتاج إلى صورة واضحة وعلامة تجارية متناسقة",
+  homeWhoIHelp2: "الجمعيات والمدارس والمشاريع التي تحتاج إلى تدريبات تُحدث تغييرًا في السلوك",
+  homeWhoIHelp3: "الفرق التي تريد موقعًا احترافيًا دون التعامل مع ثلاثة مستقلين",
     skillsAbilities: "المهارات والقدرات",
     skillsDescription:
       "مجموعة مهارات شاملة تجمع بين الإبداع والتكنولوجيا والاتصال للحصول على نتائج مؤثرة.",

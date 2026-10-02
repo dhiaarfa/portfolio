@@ -250,6 +250,32 @@ export default function HomePageClient() {
         </div>
       </HeroAnnotatedPortrait>
 
+      {/* Master roadmap 5.1 (Oct 2026): "Who I help" -- names the three
+          buyer types in plain words right under the hero, so a cold visitor
+          can recognise themselves before reading any service detail.
+          Deliberately quiet: plain text with small icons, no links or
+          buttons (the roadmap is explicit that this must not become a
+          third CTA row). Copy is the roadmap's draft; edit in translations.ts. */}
+      <section aria-labelledby="who-i-help" className="bg-white dark:bg-background px-4 py-8 sm:py-10">
+        <div className="max-w-5xl mx-auto">
+          <h2 id="who-i-help" className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground text-center mb-5">
+            {t("homeWhoIHelpLabel")}
+          </h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
+            {[
+              { Icon: Palette, key: "homeWhoIHelp1" },
+              { Icon: Users, key: "homeWhoIHelp2" },
+              { Icon: Code2, key: "homeWhoIHelp3" },
+            ].map(({ Icon, key }) => (
+              <li key={key} className="flex items-start gap-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
+                <span>{t(key)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* My Expertise Bento */}
       <section id="expertise" className="bg-section-tint section-compact px-4">
         <div className="max-w-5xl mx-auto">
