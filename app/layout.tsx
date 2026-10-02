@@ -5,7 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
 import { Cairo, Fraunces, Inter } from "next/font/google"
 import { cn } from "@/lib/utils"
-import { formatStat, profileStats } from "@/lib/profile"
+import { formatStat } from "@/lib/profile"
+import { DEFAULT_OG_IMAGE } from "@/lib/page-metadata"
 import MotionProvider from "@/components/motion-provider"
 import GlobalComponents from "@/components/global-components"
 import { Toaster } from "@/components/ui/sonner"
@@ -45,6 +46,10 @@ const fraunces = Fraunces({
   preload: false,
 })
 
+// Result-first fallback description (was a stats-only line). Pages with
+// their own metadata override it.
+const SITE_DESCRIPTION = `Graphic designer, CNFCPP-certified trainer and web developer in Tunisia: brand identity, trainings for ${formatStat("participantsTrained")} participants, and fast trilingual websites.`
+
 export const metadata = {
   // Sep 30 CRITICAL fix: see lib/profile.ts's SITE_URL comment -- Vercel
   // actually serves www as the primary domain and redirects apex into it,
@@ -55,8 +60,7 @@ export const metadata = {
     default: "Mohamed Dhia Arfa, Designer, Trainer & Developer | Tunisia",
     template: "%s | Mohamed Dhia Arfa",
   },
-  description:
-    `Designer • Trainer • Developer based in Tunisia. ${formatStat("participantsTrained")} participants trained, ${formatStat("trainingHours")} training hours across ${profileStats.trainingCycles.value} events, ${formatStat("facilitationHours")} hours of facilitation.`,
+  description: SITE_DESCRIPTION,
   // Sep 30 SEO expansion: added real technology, field, and organization
   // terms actually used/mentioned across the site (lib/work.ts tools,
   // lib/profile.ts certifications/experience, lib/organization-logos.ts)
@@ -110,27 +114,23 @@ export const metadata = {
     apple: [{ url: "/favicon-180.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.json",
+  // Site-wide fallback preview (pages without their own metadata, e.g.
+  // 404s). Oct 2026: was the old static navy/lime PNG and generic copy;
+  // now the same live home card and positioning as the homepage.
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://www.dhia-portfolio.com",
     siteName: "Mohamed Dhia Arfa Portfolio",
-    title: "Mohamed Dhia Arfa | Designer • Trainer • Developer",
-    description: "Professional portfolio of Mohamed Dhia Arfa - Expert graphic designer and trainer",
-    images: [
-      {
-        url: "/images/photos/dhia-og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Mohamed Dhia Arfa, Designer, Trainer & Developer",
-      },
-    ],
+    title: "Mohamed Dhia Arfa | Designer · Trainer · Web Developer",
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohamed Dhia Arfa | Designer • Trainer • Developer",
-    description: "Professional portfolio of Mohamed Dhia Arfa - Expert graphic designer and trainer",
-    images: ["/images/photos/dhia-og-image.png"],
+    title: "Mohamed Dhia Arfa | Designer · Trainer · Web Developer",
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url],
   },
 }
 

@@ -38,13 +38,17 @@ function articlePath(slug: string, locale: Language) {
   return locale === "en" ? `/insights/${slug}` : `/${locale}/insights/${slug}`
 }
 
-/** 1200x630 social card via /api/og, using the article's own photo. */
+/** 1200x630 social card via /api/og, using the article's own photo. The
+ *  generator's fonts are Latin-only, so Arabic articles get the English
+ *  card text (Arabic glyphs would render as empty boxes); the alt text
+ *  stays in the page's language. */
 function articleOgImage(article: InsightArticleMeta, locale: Language) {
+  const cardTitle = locale === "fr" ? getTranslation("fr", article.titleKey) : article.seoTitle
   return {
     url: `/api/og?${new URLSearchParams({
       kicker: `Insights · ${article.category}`,
-      title: locale === "en" ? article.seoTitle : getTranslation(locale, article.titleKey),
-      subhead: "Mohamed Dhia Arfa",
+      title: cardTitle,
+      // No subhead: the card footer already names the author.
       image: article.thumbnail,
     })}`,
     width: 1200,

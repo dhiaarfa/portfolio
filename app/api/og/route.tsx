@@ -7,9 +7,27 @@ export const runtime = "nodejs"
 const W = 1200
 const H = 630
 const LEFT_W = 660
-const BG = "#020617"
-const ACCENT = "#99FF00"
-const GRAY = "#94a3b8"
+// Oct 2026: was navy (#020617) + lime (#99FF00) -- off the site's own
+// palette, so every shared link previewed in colours the site no longer
+// uses. Now the site's tokens: near-black --background and --site-accent
+// green (globals.css), neutral grey for secondary text.
+const BG = "#0A0A0A"
+const ACCENT = "#22c55e"
+const GRAY = "#a3a3a3"
+const RULE = "#262626"
+const DEFAULT_IMAGE = "/images/photos/dhia-hero-green.png"
+
+/** Only image files inside /public. The `image` param used to be joined
+ *  straight onto public/ (so "../.env.local" read files outside it) and
+ *  any http(s) URL was fetched server-side; every real caller passes a
+ *  /public path, so both are now refused and fall back to the default. */
+function safePublicImage(raw: string | null): string {
+  if (!raw || !raw.startsWith("/") || raw.includes("..") || raw.includes("\\")) return DEFAULT_IMAGE
+  if (!/\.(png|jpe?g|webp|gif)$/i.test(raw)) return DEFAULT_IMAGE
+  const publicDir = join(process.cwd(), "public")
+  const resolved = join(publicDir, raw)
+  return resolved.startsWith(publicDir) ? raw : DEFAULT_IMAGE
+}
 
 let fontsCache: { bold: Buffer; instrumentBold: Buffer; instrumentReg: Buffer } | null = null
 
@@ -83,11 +101,18 @@ async function loadLocalImageAsDataUri(publicPath: string) {
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
   const kicker = searchParams.get("kicker") ?? ""
-  const title = searchParams.get("title") ?? "Mohamed Dhia Arfa"
-  const subhead = searchParams.get("subhead") ?? ""
-  const image = searchParams.get("image") ?? "/images/photos/dhia-og-image.png"
+  // Capped so a hand-crafted URL can't push unbounded text through Satori.
+  const title = (searchParams.get("title") ?? "Mohamed Dhia Arfa").slice(0, 110)
+  const subhead = (searchParams.get("subhead") ?? "").slice(0, 160)
+  const image = safePublicImage(searchParams.get("image"))
   const small = searchParams.get("small") === "1"
   const top = searchParams.get("top") === "1"
+  // Horizontal anchor for wide photos (e.g. the hero portrait, whose
+  // subject sits on the right of a 1.9:1 frame).
+  const pos = searchParams.get("pos")
+  // Long titles (article cards) step down so they stay within ~3 lines.
+  const titleSize = small || title.length > 60 ? 40 : title.length > 38 ? 46 : 54
+  const objectPosition = top ? "top" : pos === "right" ? "right" : pos === "left" ? "left" : "center"
 
   const { bold, instrumentBold, instrumentReg } = await loadFonts()
   // Local /public-relative images are read straight off disk and inlined
@@ -101,25 +126,29 @@ export async function GET(req: Request) {
   // below, and works regardless of DNS/domain/protection state. A
   // genuinely external image (an http(s) URL) still goes through Satori's
   // normal remote-image fetch.
-  const imageUrl = image.startsWith("http") ? image : await loadLocalImageAsDataUri(image)
+  const imageUrl = await loadLocalImageAsDataUri(image)
 
   return new ImageResponse(
     (
       <div style={{ width: W, height: H, display: "flex", background: BG }}>
+        {/* Oct 2026 layout fix: the footer was absolutely positioned at a
+            fixed height, so 3-4 line titles (articles) ran straight into
+            it. Now a normal column -- content block, then the footer pushed
+            to the bottom by marginTop:auto -- with the title size stepping
+            down for long titles and the subhead capped at 3 lines. */}
         <div
           style={{
             width: LEFT_W,
             height: H,
             display: "flex",
             flexDirection: "column",
-            padding: "64px",
-            position: "relative",
+            padding: "56px 64px 56px",
           }}
         >
-          <div style={{ position: "absolute", top: 118, left: 64, width: 56, height: 6, background: ACCENT, display: "flex" }} />
+          <div style={{ width: 56, height: 6, background: ACCENT, display: "flex" }} />
           <div
             style={{
-              marginTop: 100,
+              marginTop: 40,
               fontSize: 24,
               fontFamily: "InstrumentSans-Bold",
               color: ACCENT,
@@ -133,7 +162,7 @@ export async function GET(req: Request) {
           <div
             style={{
               marginTop: 20,
-              fontSize: small ? 46 : 54,
+              fontSize: titleSize,
               fontFamily: "BricolageGrotesque-Bold",
               color: "#ffffff",
               lineHeight: 1.15,
@@ -153,6 +182,8 @@ export async function GET(req: Request) {
                 lineHeight: 1.45,
                 display: "flex",
                 maxWidth: LEFT_W - 128,
+                maxHeight: 25 * 1.45 * 3,
+                overflow: "hidden",
               }}
             >
               {subhead}
@@ -160,13 +191,11 @@ export async function GET(req: Request) {
           ) : null}
           <div
             style={{
-              position: "absolute",
-              bottom: 96,
-              left: 64,
+              marginTop: "auto",
               width: LEFT_W - 128,
               display: "flex",
               flexDirection: "column",
-              borderTop: "1px solid #1e293b",
+              borderTop: `1px solid ${RULE}`,
               paddingTop: 20,
             }}
           >
@@ -185,17 +214,17 @@ export async function GET(req: Request) {
             alt=""
             width={W - LEFT_W}
             height={H}
-            style={{ display: "flex", objectFit: "cover", objectPosition: top ? "top" : "center" }}
+            style={{ display: "flex", objectFit: "cover", objectPosition }}
           />
           <div
             style={{
               position: "absolute",
               inset: 0,
               display: "flex",
-              background: `linear-gradient(to right, ${BG} 0px, rgba(2,6,23,0) 220px)`,
+              background: `linear-gradient(to right, ${BG} 0px, rgba(10,10,10,0) 220px)`,
             }}
           />
-          <div style={{ position: "absolute", inset: 0, display: "flex", background: "rgba(2,6,23,0.16)" }} />
+          <div style={{ position: "absolute", inset: 0, display: "flex", background: "rgba(10,10,10,0.12)" }} />
         </div>
       </div>
     ),

@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { SITE_URL } from "@/lib/profile"
+import { SITE_URL, formatStat, profileStats } from "@/lib/profile"
 
 /** Shape of an OG/Twitter preview image, kept as a general type (not `typeof DEFAULT_OG_IMAGE`)
  *  so every route can have its own url/alt text without TypeScript narrowing them all to
@@ -12,68 +12,131 @@ type OgImage = {
   alt: string
 }
 
-export const DEFAULT_OG_IMAGE: OgImage = {
-  url: "/images/photos/dhia-og-image.png",
-  width: 1200,
-  height: 630,
-  alt: "Mohamed Dhia Arfa, Designer, Trainer & Web Developer",
-}
+type CardCopy = { kicker: string; title: string; subhead: string; alt: string }
+type CardDef = { image: string; pos?: "left" | "right"; top?: boolean; en: CardCopy; fr: CardCopy }
 
-/** Per-route OG images for rich link previews on social & messaging apps. */
-export const PAGE_OG_IMAGES: Record<string, OgImage> = {
-  "/": DEFAULT_OG_IMAGE,
-  "/designer": {
-    // Generated live by app/api/og/route.tsx (@vercel/og) instead of a
-    // static PNG from scripts/gen-og-images.py, see checklist §2.4/§2.6
-    // for why this needed to be a real 1200x630 card in the first place,
-    // and the Master to-do list (Tier 6) for the @vercel/og migration.
-    url: `/api/og?${new URLSearchParams({
-      kicker: "Designer · Brand & Marketing",
+/**
+ * Link-preview cards (WhatsApp, LinkedIn, Facebook, X...), one per main
+ * route, rendered live by app/api/og (1200x630, site palette). Oct 2026:
+ * Home and /freebies, /insights used to share one static PNG in the old
+ * navy/lime palette, and /fr, /ar pages always fell back to it because the
+ * lookup keyed on the exact path. Copy mirrors each page's positioning.
+ * Arabic pages use the English card: the generator's fonts are Latin-only,
+ * so Arabic text would render as empty boxes.
+ */
+const PAGE_CARDS: Record<string, CardDef> = {
+  "/": {
+    image: "/images/photos/dhia-hero-green.png",
+    pos: "right",
+    en: {
+      kicker: "Designer · Trainer · Web developer",
       title: "Mohamed Dhia Arfa",
-      subhead: "Brand identity that stays consistent everywhere, from Instagram to packaging.",
-      image: "/images/lone-space-gold.png",
-    })}`,
-    width: 1200,
-    height: 630,
-    alt: "Mohamed Dhia Arfa, Brand designer, Zia Studio",
+      subhead: "Brand identity, trainings that change behaviour, and fast trilingual websites. Tunisia & abroad.",
+      alt: "Mohamed Dhia Arfa, graphic designer, certified trainer and web developer in Tunisia",
+    },
+    fr: {
+      kicker: "Designer · Formateur · Développeur web",
+      title: "Mohamed Dhia Arfa",
+      subhead: "Identité de marque, formations qui changent les comportements et sites rapides en 3 langues.",
+      alt: "Mohamed Dhia Arfa, designer graphique, formateur certifié et développeur web en Tunisie",
+    },
+  },
+  "/designer": {
+    image: "/images/lone-space-gold.png",
+    en: {
+      kicker: "Brand & design · Zia Studio",
+      title: "Brand identity that stays consistent everywhere",
+      subhead: "Logo, social templates, packaging and campaigns for cafés, travel and product brands.",
+      alt: "Brand identity work by Mohamed Dhia Arfa and Zia Studio",
+    },
+    fr: {
+      kicker: "Marque & design · Zia Studio",
+      title: "Une identité de marque cohérente partout",
+      subhead: "Logo, templates réseaux sociaux, emballages et campagnes pour cafés, voyages et produits.",
+      alt: "Identités de marque par Mohamed Dhia Arfa et Zia Studio",
+    },
   },
   "/trainer": {
-    url: `/api/og?${new URLSearchParams({
-      kicker: "Trainer & Educator",
-      title: "Mohamed Dhia Arfa",
-      subhead: "Trainings that change behaviour, with results you can report. NGOs, schools and youth programmes.",
-      image: "/images/photos/dhia-trainer-hero.png",
-      top: "1",
-    })}`,
-    width: 1200,
-    height: 630,
-    alt: "Mohamed Dhia Arfa, Certified youth trainer in Tunisia",
+    // Speaking with a mic in front of zellige tilework: reads instantly as
+    // "trainer" and as Tunisia. (dhia-trainer-hero.png cropped to his back
+    // facing a projector at this aspect ratio.)
+    image: "/images/dhia/speaking-mic-crop.png",
+    en: {
+      kicker: "CNFCPP-certified trainer",
+      title: "Trainings that change behaviour",
+      subhead: `NGOs, schools and youth programmes. ${formatStat("participantsTrained")} participants in Tunisia, Morocco and Qatar.`,
+      alt: "Mohamed Dhia Arfa facilitating a youth training workshop",
+    },
+    fr: {
+      kicker: "Formateur certifié CNFCPP",
+      title: "Des formations qui changent les comportements",
+      subhead: `ONG, écoles et programmes jeunesse. ${profileStats.participantsTrained.value}+ participants en Tunisie, au Maroc et au Qatar.`,
+      alt: "Mohamed Dhia Arfa animant un atelier de formation jeunesse",
+    },
   },
   "/developer": {
-    url: `/api/og?${new URLSearchParams({
-      kicker: "Web Developer · Design-Led",
-      title: "Mohamed Dhia Arfa",
+    image: "/images/projects/digimytch/landing.png",
+    top: true,
+    en: {
+      kicker: "Web developer · Design-led",
+      title: "Your business has outgrown its Facebook page",
       subhead: "Fast, mobile-first websites in Arabic, French and English.",
-      image: "/images/projects/digimytch/landing.png",
-      top: "1",
-    })}`,
-    width: 1200,
-    height: 630,
-    alt: "Mohamed Dhia Arfa, Full-stack developer",
+      alt: "Web development work by Mohamed Dhia Arfa",
+    },
+    fr: {
+      kicker: "Développeur web · Pensé design",
+      title: "Votre activité a dépassé sa page Facebook",
+      subhead: "Des sites rapides, pensés mobile, en arabe, français et anglais.",
+      alt: "Projets web de Mohamed Dhia Arfa",
+    },
   },
   "/freebies": {
-    url: "/images/photos/dhia-og-image.png",
-    width: 1200,
-    height: 630,
-    alt: "Free design & training resources by Mohamed Dhia Arfa",
+    image: "/images/freebies/brand-brief.jpg",
+    en: {
+      kicker: "Free resources",
+      title: "Free templates, guides & checklists",
+      subhead: "For brand design, training and web projects. Free to download.",
+      alt: "Free design and training resources by Mohamed Dhia Arfa",
+    },
+    fr: {
+      kicker: "Ressources gratuites",
+      title: "Templates, guides et checklists gratuits",
+      subhead: "Pour le design de marque, la formation et le web. Téléchargement gratuit.",
+      alt: "Ressources gratuites de design et de formation par Mohamed Dhia Arfa",
+    },
   },
   "/insights": {
-    url: "/images/photos/dhia-og-image.png",
-    width: 1200,
-    height: 630,
-    alt: "Insights on design, training & development",
+    image: "/images/insights/social-media-visual-consistency.jpg",
+    en: {
+      kicker: "Insights",
+      title: "Practical notes on design, training & web",
+      subhead: "Written from real projects in Tunisia. In English, French and Arabic.",
+      alt: "Insights articles by Mohamed Dhia Arfa",
+    },
+    fr: {
+      kicker: "Articles",
+      title: "Design, formation et web, en pratique",
+      subhead: "Écrits à partir de vrais projets en Tunisie. En français, anglais et arabe.",
+      alt: "Articles de Mohamed Dhia Arfa",
+    },
   },
 }
+
+function cardImage(def: CardDef, locale: SiteLocale): OgImage {
+  const copy = locale === "fr" ? def.fr : def.en
+  const params = new URLSearchParams({ kicker: copy.kicker, title: copy.title, subhead: copy.subhead, image: def.image })
+  if (def.top) params.set("top", "1")
+  if (def.pos) params.set("pos", def.pos)
+  return { url: `/api/og?${params}`, width: 1200, height: 630, alt: copy.alt }
+}
+
+/** The card for an unprefixed base path ("/designer") in a given locale. */
+export function pageOgImage(basePath: string, locale: SiteLocale = "en"): OgImage | undefined {
+  const def = PAGE_CARDS[basePath]
+  return def ? cardImage(def, locale) : undefined
+}
+
+export const DEFAULT_OG_IMAGE: OgImage = cardImage(PAGE_CARDS["/"], "en")
 
 /** Simple two-level BreadcrumbList JSON-LD: Home > current page. */
 export function breadcrumbJsonLd(name: string, path: string) {
@@ -135,7 +198,9 @@ export function pageMetadata({
   hreflangPath,
 }: PageMetaInput): Metadata {
   const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`
-  const image = ogImage ?? PAGE_OG_IMAGES[path] ?? DEFAULT_OG_IMAGE
+  // hreflangPath is the unprefixed base ("/designer") for /fr and /ar pages,
+  // so localized routes now get their page's card instead of the default.
+  const image = ogImage ?? pageOgImage(hreflangPath ?? path, locale) ?? DEFAULT_OG_IMAGE
   const ogTitle = (openGraph && "title" in openGraph && openGraph.title) || title
   const ogDescription =
     (openGraph && "description" in openGraph && openGraph.description) || description
