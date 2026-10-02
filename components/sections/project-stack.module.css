@@ -15,7 +15,7 @@
   --card-h: 400px;
   --stick: 20vh; /* where the first card pins */
   --step: 30px; /* each next card pins this much lower -> visible strip */
-  --gap: 70vh; /* scroll distance between cards */
+  --gap: 38vh; /* scroll distance between cards (Oct 2026: cut from 70vh -- Dhia: too slow/dragged-out) */
   --ink: #1f1f1f;
   --muted: #9b9b9b;
   --card-bg: #ffffff;
@@ -260,7 +260,7 @@ a.card:hover .chip:first-child {
   .wrapper {
     --card-h: auto;
     --step: 22px;
-    --gap: 55vh;
+    --gap: 34vh;
     --stick: 12vh;
   }
   .slot {

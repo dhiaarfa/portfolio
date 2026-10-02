@@ -177,7 +177,7 @@ function FreebiesClientInner() {
             hero "spirit" was completely absent (flat bare header), per the
             site-wide consistency audit. */}
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.12] dark:opacity-[0.16] bg-dot-grid"
+          className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.16] bg-dot-grid"
           style={{
             maskImage: "radial-gradient(ellipse 60% 60% at 50% 40%, black, transparent)",
             WebkitMaskImage: "radial-gradient(ellipse 60% 60% at 50% 40%, black, transparent)",

@@ -52,7 +52,7 @@ export default function ServicePackages({ pillar }: Props = {}) {
       {/* Charte-graphique pass (Oct 2026): swapped the faint background
           photo for the site's dot-grid texture. */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.14] bg-dot-grid"
+        className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.14] bg-dot-grid"
         style={{
           maskImage: "radial-gradient(ellipse 80% 80% at 50% 0%, black, transparent)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 0%, black, transparent)",

@@ -496,7 +496,7 @@ export const devCardTheme: Record<
     ],
   },
   "crit-tunisie": {
-    gradient: "from-indigo-950 via-indigo-900 to-slate-950",
+    gradient: "from-green-950 via-emerald-900 to-slate-950",
     tag: "Web Dev · Corporate",
     meta: "Web developer · UI implementation | Production site | Sep–Dec 2025",
     secondaryImage: "/images/crit-screenshots/candidates.png",
@@ -510,7 +510,7 @@ export const devCardTheme: Record<
     ],
   },
   "best-dates-fruits": {
-    gradient: "from-amber-950 via-orange-950 to-stone-950",
+    gradient: "from-emerald-900 via-green-950 to-stone-950",
     tag: "Web Dev · Marketing",
     meta: "Web development · Marketing site | Live brand site | Client project",
     secondaryImage: "/images/bdaf-screenshots/products.png",

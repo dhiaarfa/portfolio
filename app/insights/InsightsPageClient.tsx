@@ -59,7 +59,7 @@ export default function InsightsPageClient() {
             hover/motion effects below. */}
         <div className="relative overflow-hidden">
           <div
-            className="pointer-events-none absolute inset-0 opacity-[0.12] dark:opacity-[0.16] bg-dot-grid"
+            className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.16] bg-dot-grid"
             style={{
               maskImage: "radial-gradient(ellipse 70% 60% at 30% 20%, black, transparent)",
               WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 30% 20%, black, transparent)",

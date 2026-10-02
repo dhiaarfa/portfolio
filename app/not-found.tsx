@@ -16,7 +16,7 @@ export default function NotFound() {
             moment where a visitor is evaluating the site, so it gets the
             same visual language instead of a generic bare card. */}
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.12] dark:opacity-[0.16] bg-dot-grid"
+          className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.16] bg-dot-grid"
           style={{
             maskImage: "radial-gradient(ellipse 60% 60% at 50% 40%, black, transparent)",
             WebkitMaskImage: "radial-gradient(ellipse 60% 60% at 50% 40%, black, transparent)",

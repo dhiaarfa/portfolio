@@ -57,7 +57,7 @@ export default function JourneySection() {
           photo for the site's dot-grid texture, same pattern as the hero
           section, generalized here instead of a one-off event photo. */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.14] bg-dot-grid"
+        className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.14] bg-dot-grid"
         style={{
           maskImage: "radial-gradient(ellipse 70% 70% at 50% 30%, black, transparent)",
           WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 30%, black, transparent)",

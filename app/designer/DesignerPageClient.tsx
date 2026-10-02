@@ -85,7 +85,7 @@ export default function DesignerPageClient() {
         <RoleHero
           variant="split-edge"
           decoration={
-            <div className="pointer-events-none absolute inset-0 opacity-[0.03] bg-dot-grid" />
+            <div className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.12] bg-dot-grid" />
           }
           mediaClassName="relative bg-[#1C1C1C]"
           media={
