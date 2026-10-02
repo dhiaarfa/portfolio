@@ -82,13 +82,13 @@ export const designProjects: Project[] = [
     image: "/projects/nakkla.jpg",
   },
   {
-    name: "Lone Space",
+    name: "ONE SPACE",
     client: true,
     meta: "Branding",
     description:
       "A full visual identity for this creative studio -- logotype, gold-foil system, business cards, and brand collateral, built to feel as premium as the work it represents.",
     tags: ["Illustrator", "Photoshop", "InDesign"],
-    image: "/images/lone-space-gold.png",
+    image: "/images/one-space-gold.png",
   },
   {
     name: "CRIT Tunisie",

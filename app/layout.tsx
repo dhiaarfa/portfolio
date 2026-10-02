@@ -206,7 +206,7 @@ export default function RootLayout({
               alternateName: "Dhia Arfa",
               jobTitle: ["Graphic Designer", "Certified Trainer", "Web Developer"],
               url: "https://www.dhia-portfolio.com",
-              image: "https://www.dhia-portfolio.com/images/photos/dhia-og-image.png",
+              image: "https://www.dhia-portfolio.com/images/photos/dhia-hero-green.jpg",
               email: "mohameddhiaarfa@gmail.com",
               telephone: "+216-53-580-272",
               // Master roadmap 4.3 (Oct 2026): all four confirmed by Dhia as

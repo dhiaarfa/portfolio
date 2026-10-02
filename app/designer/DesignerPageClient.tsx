@@ -22,7 +22,7 @@ import { useLanguage } from "@/components/language-provider"
 const DESIGN_BRANDS = [
   "Speranza Café",
   "Tafani Travel",
-  "Lone Space",
+  "ONE SPACE",
   "CRIT Tunisie",
   "Nakkla",
   "MeetUp Pro",
@@ -332,19 +332,21 @@ export default function DesignerPageClient() {
                 now backs this heading, the same photo-banner pattern used
                 on /trainer, instead of a plain text header. */}
             <div className="relative overflow-hidden rounded-[2rem] border border-border mb-10">
-              <div className="relative aspect-[16/7] sm:aspect-[21/9]">
+              <div className="relative aspect-[4/3] sm:aspect-[21/9]">
                 <Image
-                  src="/images/photos/dhia-designer.png"
+                  src="/images/photos/dhia-hero-green.jpg"
                   alt="Mohamed Dhia Arfa, designer"
                   fill
-                  className="object-cover"
+                  className="object-cover object-[85%_30%] rtl:-scale-x-100"
                   sizes="100vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+                {/* Text sits on the photo's dark side, away from the face
+                    (image is mirrored in RTL so that side is always "start"). */}
+                <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-black/80 via-black/30 to-transparent" />
               </div>
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+              <div className="absolute inset-0 flex flex-col items-start justify-center text-start px-6 sm:px-10 md:px-14 max-w-[60%]">
                 <p className="label !text-white/80 mb-2">{t("designerProcessLabel")}</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">{t("designerProcessHeading")}</h2>
+                <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-white">{t("designerProcessHeading")}</h2>
               </div>
             </div>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

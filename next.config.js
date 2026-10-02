@@ -39,6 +39,9 @@ const nextConfig = {
       // and its dedicated body component are deleted; this redirect covers
       // any bookmark, backlink, or search-indexed URL still pointing at it.
       { source: "/case-study/meetup-pro", destination: "/work/meetup-pro", permanent: true },
+      // Oct 2026: the client's name is ONE SPACE (was misspelled "Lone Space").
+      { source: "/work/lone-space", destination: "/work/one-space", permanent: true },
+      { source: "/:locale(fr|ar)/work/lone-space", destination: "/:locale/work/one-space", permanent: true },
       // Sep 30 CRITICAL fix/revert: this host-based redirect (added earlier
       // the same day to force www -> apex) turned out to directly conflict
       // with Vercel's actual project domain configuration, which redirects

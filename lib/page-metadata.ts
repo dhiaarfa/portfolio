@@ -42,7 +42,7 @@ const PAGE_CARDS: Record<string, CardDef> = {
     },
   },
   "/designer": {
-    image: "/images/lone-space-gold.png",
+    image: "/images/one-space-gold.png",
     en: {
       kicker: "Brand & design · Zia Studio",
       title: "Brand identity that stays consistent everywhere",

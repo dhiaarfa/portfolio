@@ -104,8 +104,8 @@ La vidéo ne faisait pas partie du brief initial, et Instagram a depuis évolué
 **الأدوات:** Adobe Illustrator، Photoshop، InDesign · **المجموعة الكاملة:** [Behance](https://www.behance.net/dhiaa)`,
   },
 
-  "lone-space": {
-    en: `Lone Space is a creative studio that wanted a **luxurious gold identity** without looking generic. The mark needed to work on dark backgrounds, foil stationery, and digital proposals.
+  "one-space": {
+    en: `ONE SPACE is a creative studio that wanted a **luxurious gold identity** without looking generic. The mark needed to work on dark backgrounds, foil stationery, and digital proposals.
 
 ## The brief
 
@@ -115,15 +115,15 @@ Create a full identity: logotype, monogram, business cards, letterhead, and soci
 
 I designed a **combination mark**: a geometric monogram paired with a refined wordmark. Gold is used as a spot color for print and as a flat metallic tone for digital. Light and dark versions were built from day one so the logo never gets forced onto the wrong background.
 
-![Lone Space logo in gold, light and dark variants](/images/lone-space-gold.png)
+![ONE SPACE logo in gold, light and dark variants](/images/one-space-gold.png)
 
 ## Stationery & print
 
 Business cards and letterhead use the same spacing system: generous margins, one accent line, monogram as a subtle watermark on letterhead. Print specs were documented so reprints stay consistent.
 
-![Lone Space business cards and letterhead mockup](/images/lone-space-cards.jpg)
+![ONE SPACE business cards and letterhead mockup](/images/one-space-cards.jpg)
 
-![Lone Space brand stationery mockup](/images/lone-space-mockup.jpg)
+![ONE SPACE brand stationery mockup](/images/one-space-mockup.jpg)
 
 ## Outcome
 
@@ -138,7 +138,7 @@ A metallic gold system reads beautifully in print, but flat digital gold doesn't
 I'd test the digital gold tone against a wider range of phone screens and lighting conditions earlier, before finalizing it as the single digital spec, rather than relying mostly on my own monitor during design.
 
 **Tools:** Illustrator, Photoshop, InDesign · **Full set:** [Behance](https://www.behance.net/dhiaa)`,
-    fr: `Lone Space est un studio créatif qui voulait une **identité dorée et luxueuse** sans paraître générique. La marque devait fonctionner sur fonds sombres, papeterie dorée à chaud, et propositions numériques.
+    fr: `ONE SPACE est un studio créatif qui voulait une **identité dorée et luxueuse** sans paraître générique. La marque devait fonctionner sur fonds sombres, papeterie dorée à chaud, et propositions numériques.
 
 ## Le brief
 
@@ -148,15 +148,15 @@ Créer une identité complète : logotype, monogramme, cartes de visite, en-têt
 
 J'ai conçu une **marque combinée** : un monogramme géométrique associé à un logotype raffiné. L'or est utilisé comme couleur d'accompagnement pour l'impression et comme ton métallique plat pour le numérique. Des versions claires et sombres ont été créées dès le départ pour que le logo ne soit jamais forcé sur le mauvais fond.
 
-![Logo Lone Space en doré, versions claire et sombre](/images/lone-space-gold.png)
+![Logo ONE SPACE en doré, versions claire et sombre](/images/one-space-gold.png)
 
 ## Papeterie et impression
 
 Les cartes de visite et l'en-tête de lettre utilisent le même système d'espacement : marges généreuses, une ligne d'accent, monogramme en filigrane discret sur l'en-tête. Les spécifications d'impression ont été documentées pour que les réimpressions restent cohérentes.
 
-![Maquette de cartes de visite et papier à en-tête Lone Space](/images/lone-space-cards.jpg)
+![Maquette de cartes de visite et papier à en-tête ONE SPACE](/images/one-space-cards.jpg)
 
-![Maquette d'identité de marque Lone Space](/images/lone-space-mockup.jpg)
+![Maquette d'identité de marque ONE SPACE](/images/one-space-mockup.jpg)
 
 ## Résultat
 
@@ -171,7 +171,7 @@ Un système doré métallique est magnifique à l'impression, mais l'or numériq
 Je testerais le ton d'or numérique sur un plus large éventail d'écrans de téléphone et de conditions d'éclairage plus tôt, avant de le finaliser comme spécification numérique unique, plutôt que de me fier surtout à mon propre écran pendant la conception.
 
 **Outils :** Illustrator, Photoshop, InDesign · **Ensemble complet :** [Behance](https://www.behance.net/dhiaa)`,
-    ar: `لون سبيس هو استوديو إبداعي أراد **هوية ذهبية فاخرة** دون أن تبدو عامة. كان يجب أن يعمل الشعار على الخلفيات الداكنة، والقرطاسية المطبوعة بالرقائق الذهبية، والعروض الرقمية.
+    ar: `ONE SPACE هو استوديو إبداعي أراد **هوية ذهبية فاخرة** دون أن تبدو عامة. كان يجب أن يعمل الشعار على الخلفيات الداكنة، والقرطاسية المطبوعة بالرقائق الذهبية، والعروض الرقمية.
 
 ## البداية
 
@@ -181,15 +181,15 @@ Je testerais le ton d'or numérique sur un plus large éventail d'écrans de té
 
 صممت **علامة مركّبة**: رمزاً هندسياً مقروناً بشعار نصي أنيق. يُستخدم الذهبي كلون مباشر للطباعة وكدرجة معدنية مسطحة للاستخدام الرقمي. تم تصميم نسختين فاتحة وداكنة منذ البداية حتى لا يُفرض الشعار أبداً على خلفية غير مناسبة.
 
-![شعار Lone Space بالذهبي مع نسختيه الفاتحة والداكنة](/images/lone-space-gold.png)
+![شعار ONE SPACE بالذهبي مع نسختيه الفاتحة والداكنة](/images/one-space-gold.png)
 
 ## القرطاسية والطباعة
 
 تستخدم بطاقات العمل وترويسة الرسائل نفس نظام التباعد: هوامش سخية، خط تمييز واحد، ورمز مختصر كعلامة مائية خفيفة على الترويسة. تم توثيق مواصفات الطباعة حتى تبقى إعادة الطباعة متسقة.
 
-![نموذج بطاقات العمل وترويسة الرسائل لعلامة Lone Space](/images/lone-space-cards.jpg)
+![نموذج بطاقات العمل وترويسة الرسائل لعلامة ONE SPACE](/images/one-space-cards.jpg)
 
-![نموذج هوية العلامة التجارية Lone Space](/images/lone-space-mockup.jpg)
+![نموذج هوية العلامة التجارية ONE SPACE](/images/one-space-mockup.jpg)
 
 ## النتيجة
 
