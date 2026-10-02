@@ -32,6 +32,10 @@ export type Project = {
   /** When set, the whole card (and the footer "+" button) opens this,
    *  always in a new tab -- every href in this dataset is an external URL. */
   href?: string
+  /** Master roadmap 8 (Oct 2026): real paid client work gets a small
+   *  "Client" badge. Only set where the data already says so; personal,
+   *  academic and unconfirmed projects stay unbadged. */
+  client?: boolean
 }
 
 type ProjectStackProps = {
@@ -148,7 +152,10 @@ export default function ProjectStack({ eyebrow, title, subtitle, projects }: Pro
                   </div>
                 </div>
                 <div className={styles.body}>
-                  <div className={styles.meta}>{project.meta}</div>
+                  <div className={styles.metaRow}>
+                    {project.client && <span className={styles.badge}>Client</span>}
+                    <span className={styles.meta}>{project.meta}</span>
+                  </div>
                   <h3 className={styles.name}>{project.name}</h3>
                   <p className={styles.desc}>{project.description}</p>
                   <div className={styles.foot}>

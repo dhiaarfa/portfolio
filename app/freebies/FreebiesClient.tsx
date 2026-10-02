@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, Suspense } from "react"
+import { useState, Suspense } from "react"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 import { useSearchParams } from "next/navigation"
 import { motion } from "framer-motion"
@@ -61,9 +61,16 @@ function FreebiesClientInner() {
   const [freebiesGridRef] = useAutoAnimate<HTMLDivElement>()
   const [resourcesGridRef] = useAutoAnimate<HTMLDivElement>()
 
-  useEffect(() => {
-    setActiveCategory(parseCategory(searchParams.get("category")))
-  }, [searchParams])
+  // Follow ?category= when the URL changes (e.g. the /trainer "free
+  // resources" link). Adjusted during render rather than in a useEffect,
+  // React's recommended pattern for resetting state when an input changes;
+  // the filter buttons still set activeCategory freely in between.
+  const categoryParam = searchParams.get("category")
+  const [prevCategoryParam, setPrevCategoryParam] = useState<string | null>(null)
+  if (categoryParam !== prevCategoryParam) {
+    setPrevCategoryParam(categoryParam)
+    setActiveCategory(parseCategory(categoryParam))
+  }
 
   const filtered = freebies.filter((f) => (activeCategory === "all" ? true : f.category === activeCategory))
   const filteredResources = learningResources.filter((r) =>

@@ -3,8 +3,9 @@ import type { Viewport } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
-import { Cairo, Inter } from "next/font/google"
+import { Cairo, Fraunces, Inter } from "next/font/google"
 import { cn } from "@/lib/utils"
+import { formatStat, profileStats } from "@/lib/profile"
 import MotionProvider from "@/components/motion-provider"
 import GlobalComponents from "@/components/global-components"
 import { Toaster } from "@/components/ui/sonner"
@@ -32,6 +33,18 @@ const cairo = Cairo({
   preload: false,
 })
 
+// Oct 2026: moved from a render-blocking Google Fonts <link> in <head> to
+// next/font (self-hosted, no runtime request, no layout shift), matching
+// Inter and Cairo above. Used only by .font-accent-italic in globals.css.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  style: ["italic"],
+  weight: ["500", "600"],
+  variable: "--font-fraunces",
+  display: "swap",
+  preload: false,
+})
+
 export const metadata = {
   // Sep 30 CRITICAL fix: see lib/profile.ts's SITE_URL comment -- Vercel
   // actually serves www as the primary domain and redirects apex into it,
@@ -43,7 +56,7 @@ export const metadata = {
     template: "%s | Mohamed Dhia Arfa",
   },
   description:
-    "Designer • Trainer • Developer based in Tunisia. 1,120+ participants trained, 477+ training hours across 51 events, 30+ hours of facilitation.",
+    `Designer • Trainer • Developer based in Tunisia. ${formatStat("participantsTrained")} participants trained, ${formatStat("trainingHours")} training hours across ${profileStats.trainingCycles.value} events, ${formatStat("facilitationHours")} hours of facilitation.`,
   // Sep 30 SEO expansion: added real technology, field, and organization
   // terms actually used/mentioned across the site (lib/work.ts tools,
   // lib/profile.ts certifications/experience, lib/organization-logos.ts)
@@ -137,7 +150,7 @@ export default function RootLayout({
       lang="en"
       dir="ltr"
       suppressHydrationWarning
-      className={`scroll-smooth theme-transition ${inter.variable} ${cairo.variable}`}
+      className={`scroll-smooth theme-transition ${inter.variable} ${cairo.variable} ${fraunces.variable}`}
     >
       <head>
         <link rel="icon" href="/favicon-192.png" sizes="any" />
@@ -145,22 +158,15 @@ export default function RootLayout({
             next/font/google above, self-hosted, no runtime request to
             Fontshare) is now the site's default typeface. See globals.css
             for the --font-sans token.
-            Fraunces: italic serif accent used only for the rotating-role
-            word in the homepage hero (per Dhia's reference screenshot, the
-            "end to end." style italic flourish under a headline) -- kept as
-            a deliberate exception. Quicksand was imported here but never
-            actually applied anywhere in the codebase (no .font-* class or
-            inline style referenced it), so it's dropped as dead weight
-            rather than carried forward unused. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,500;1,600&display=swap"
-        />
+            Fraunces (the italic serif on the hero role line) now loads via
+            next/font above instead of a Google Fonts <link> here.
+            Quicksand was imported here but never actually applied anywhere
+            in the codebase, so it was dropped as dead weight. */}
+        {/* The :root block used to start with `${cairo.variable};` -- that
+            interpolates a CLASS NAME, not a declaration, so browsers just
+            discarded it. Removed; the variable is applied via className. */}
         <style>{`
           :root {
-            ${cairo.variable};
             --background: 0 0% 100%;
             --foreground: 0 0% 5%;
             --zia-lime: 84 100% 50%;

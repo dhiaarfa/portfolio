@@ -1,11 +1,16 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useSyncExternalStore } from "react"
 import { Link } from "next-view-transitions"
 import { usePathname } from "next/navigation"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { navNeighbors } from "@/lib/site-nav-flow"
 import { useLanguage } from "@/components/language-provider"
+
+function subscribeScroll(onChange: () => void) {
+  window.addEventListener("scroll", onChange, { passive: true })
+  return () => window.removeEventListener("scroll", onChange)
+}
 
 export default function PageFlowNav() {
   const pathname = usePathname()
@@ -20,14 +25,14 @@ export default function PageFlowNav() {
   // Rather than tune a magic offset per page, it now only appears once
   // you've scrolled past a typical hero, where there's reliably empty
   // margin beside the content on both sides.
-  const [pastHero, setPastHero] = useState(false)
-  useEffect(() => {
-    setPastHero(false)
-    const onScroll = () => setPastHero(window.scrollY > 420)
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [pathname])
+  // useSyncExternalStore reads scroll position as an external store: no
+  // setState-in-effect, false on the server, and it re-reads on navigation
+  // automatically since the snapshot is just the current scrollY.
+  const pastHero = useSyncExternalStore(
+    subscribeScroll,
+    () => window.scrollY > 420,
+    () => false
+  )
 
   if (!prev && !next) return null
   if (!pastHero) return null

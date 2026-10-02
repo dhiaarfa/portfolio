@@ -57,6 +57,11 @@ export function LanguageProvider({
       localStorage.setItem("language", nextLang)
     }
 
+    // Deliberate mount-time read: the saved/browser language only exists in
+    // the browser, so the server and first client render use "en" and this
+    // switches afterwards. Reading it during render would cause a hydration
+    // mismatch for every non-English visitor.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLanguageState(nextLang)
     document.documentElement.lang = nextLang
     document.documentElement.dir = nextLang === "ar" ? "rtl" : "ltr"

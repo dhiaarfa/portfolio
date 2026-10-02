@@ -38,7 +38,10 @@ export const profileStats = {
 /** Format a stat for display, e.g. "1000+" */
 export function formatStat(key: keyof typeof profileStats): string {
   const s = profileStats[key]
-  return `${s.value.toLocaleString()}${s.suffix}`
+  // Explicit "en-US": a bare toLocaleString() follows the runtime locale, so
+  // the server ("1,120+") and a French-locale browser ("1 120+") could
+  // render different text -- a hydration mismatch in client components.
+  return `${s.value.toLocaleString("en-US")}${s.suffix}`
 }
 
 export type ProfileLocale = "en" | "fr" | "ar"

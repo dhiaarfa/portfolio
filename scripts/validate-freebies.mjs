@@ -38,13 +38,14 @@ const freebiesClient = fs.readFileSync(path.join(root, "app", "freebies", "Freeb
 const keys = [...freebiesClient.matchAll(/\bt\("([^"]+)"\)/g)].map((m) => m[1])
 const translations = fs.readFileSync(path.join(root, "lib", "translations.ts"), "utf8")
 
+// (Used to wrap this in a per-language loop whose variable was never read --
+// the check itself is "key exists anywhere", so one pass per key.)
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
 for (const key of [...new Set(keys)]) {
-  for (const lang of ["en", "fr", "ar"]) {
-    const pattern = new RegExp(`${lang}:\\s*\\{[\\s\\S]*?"${key.replace(".", "\\.")}":`)
-    if (!translations.includes(`"${key}":`)) {
-      console.log(`✗ Missing translation key entirely: ${key}`)
-      break
-    }
+  // Keys appear both quoted ("freebie.x.title":) and bare (bookFreeConsultation:);
+  // the old check only matched the quoted form and falsely flagged bare keys.
+  if (!new RegExp(`(^|\\s)"?${escapeRe(key)}"?\\s*:`, "m").test(translations)) {
+    console.log(`✗ Missing translation key entirely: ${key}`)
   }
 }
 console.log(`✓ Checked ${keys.length} freebies translation keys`)

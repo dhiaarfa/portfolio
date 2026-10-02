@@ -19,9 +19,8 @@ import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import TrainerImpactMap from "@/components/trainer-impact-map"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
-import { formatStat, profileStats, trainingMilestones } from "@/lib/profile"
+import { formatStat, trainingMilestones } from "@/lib/profile"
 import { StatRing } from "@/components/ui/stat-ring"
-import { AnimatedNumber } from "@/components/ui/animated-number"
 
 // One real photo per timeline era (Dhia's own event/training photos,
 // already used elsewhere on the site), for the compact photo-led timeline
@@ -82,24 +81,11 @@ export default function TrainerClientPage() {
             <p className="text-slate-300 text-[17px] max-w-2xl leading-relaxed mb-8">
               {formatStat("participantsTrained")} {t("trainerHeroSubtitleRest")}
             </p>
-            <div className="flex flex-wrap gap-8 mb-8 pb-8 border-b border-white/15">
-              {[
-                { stat: profileStats.participantsTrained, label: t("trainerStatParticipants") },
-                { stat: profileStats.trainingHours, label: t("trainerStatTrainingHrs") },
-                { stat: profileStats.trainingCycles, label: t("trainerStatCycles") },
-                { stat: profileStats.yearsExperience, label: t("trainerStatYrsExp") },
-              ].map(({ stat, label }) => (
-                <div key={label}>
-                  <AnimatedNumber
-                    value={stat.value}
-                    suffix={stat.suffix}
-                    instant
-                    className="block font-display font-black text-[clamp(26px,4vw,40px)] text-white leading-none tabular-nums"
-                  />
-                  <p className="text-slate-400 text-[12px] uppercase tracking-wider mt-1">{label}</p>
-                </div>
-              ))}
-            </div>
+            {/* Oct 2026: a 4-number stats row used to sit here, repeating
+                the exact figures the "Measurable results" rings show (with
+                more detail) one section below. The subtitle above already
+                leads with the participant count, so the hero now goes
+                straight from claim to booking. */}
             <div className="flex flex-wrap gap-3">
               <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green inline-flex items-center gap-2">
                 <Calendar className="h-4 w-4" />

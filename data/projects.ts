@@ -30,7 +30,8 @@ export const webProjects: Project[] = [
   },
   {
     name: "CRIT Tunisie",
-    meta: "Client project · Web developer",
+    client: true,
+    meta: "Web developer",
     description:
       "A production Next.js site I shipped as CRIT's developer (Sep-Dec 2025), built to make it simple for talents and companies to find the right service and reach out. Have a look.",
     tags: ["Next.js", "React", "Tailwind"],
@@ -39,7 +40,8 @@ export const webProjects: Project[] = [
   },
   {
     name: "Best Dates & Fruits",
-    meta: "Client project · Web",
+    client: true,
+    meta: "Web",
     description:
       "A marketing site for a premium Tunisian dates brand -- product storytelling, seasonal sections, and a clean path from browsing to contact. See it live.",
     tags: ["Next.js", "Tailwind"],
@@ -59,7 +61,8 @@ export const designProjects: Project[] = [
   },
   {
     name: "Tafani Travel",
-    meta: "Client project · Branding",
+    client: true,
+    meta: "Branding",
     description:
       "A logo and full brand system for a travel agency, designed to stay sharp and consistent everywhere it shows up -- web, social, and printed travel collateral.",
     tags: ["Illustrator", "Figma", "Photoshop"],
@@ -67,7 +70,8 @@ export const designProjects: Project[] = [
   },
   {
     name: "Nakkla",
-    meta: "Client project · Packaging",
+    client: true,
+    meta: "Packaging",
     description:
       "Packaging design for Delice Nakkla, a Best Dates & Fruits product line -- box system and illustration work that makes dried-fruit treats feel like a gift, not just a snack.",
     tags: ["Packaging", "Illustrator"],
@@ -75,7 +79,8 @@ export const designProjects: Project[] = [
   },
   {
     name: "Lone Space",
-    meta: "Client project · Branding",
+    client: true,
+    meta: "Branding",
     description:
       "A full visual identity for this creative studio -- logotype, gold-foil system, business cards, and brand collateral, built to feel as premium as the work it represents.",
     tags: ["Illustrator", "Photoshop", "InDesign"],
@@ -83,7 +88,8 @@ export const designProjects: Project[] = [
   },
   {
     name: "CRIT Tunisie",
-    meta: "Client project · Brand identity",
+    client: true,
+    meta: "Brand identity",
     description:
       "Designed the logo mark and brand identity for CRIT Tunisie, a corporate recruitment firm -- now the face of their site, stand designs, and everything client-facing.",
     tags: ["Illustrator", "Brand Identity"],

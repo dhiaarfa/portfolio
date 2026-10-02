@@ -12,6 +12,11 @@ One-page reference so a new page/component can't introduce an off-key accent col
 | **Blue** | Development discipline tag | "Web Developer" role badge, Dev-category insight covers/badges, Home's dark "React & Next.js" tile |
 | **Slate / neutral** | Structure, text, borders — never a discipline signal | Body copy, card borders, muted labels |
 
+## Update, Oct 2026
+
+- Home's three role tiles no longer use pink/amber/blue. The brand-guidelines pass moved them to the single green, so the discipline hues now live only on Insights and Freebies category badges.
+- Green itself has three roles, told apart by treatment: **action** (solid fill, primary button only), **accent** (green text or faint tint, for emphasis), and **status** (small dot or pill for live state). Neutral slate covers everything else, including the project cards' "Client" badge. The authoritative note sits next to `--site-accent` in `app/globals.css`.
+
 ## The one rule that keeps this from drifting
 
 **Green is the only color allowed to mean "click me."** Pink/amber/blue are reserved for discipline identification (which of the three pillars a piece of content belongs to) and must never double as a CTA color — if a future page needs a colored button, it's green, not a pink/amber/blue one borrowed from a discipline tag.

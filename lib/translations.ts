@@ -1,3 +1,5 @@
+import { profileStats } from "@/lib/profile"
+
 export const translations = {
   en: {
     // Navigation
@@ -37,18 +39,18 @@ export const translations = {
     graphicDesigner: "Graphic Designer",
     trainer: "& Trainer",
     heroDescription:
-      "Designer, trainer, and web developer based in Tunisia. With 7+ years of experience across visual design and training, I help people and organizations communicate clearly, learn faster, and build stronger projects.",
+      "Designer, trainer, and web developer based in Tunisia. With {{years}} years of experience across visual design and training, I help people and organizations communicate clearly, learn faster, and build stronger projects.",
     homeHeadlinePrefix: "A",
     homeHeadlineHighlight: "Creative Problem Solver",
     exploreMyWork: "Explore My Work",
     learnMore: "Learn More",
     myExpertiseSubtitle: "Three specialized areas where I deliver exceptional value",
-    roleTrainerDescription: "Youth development, leadership training, and facilitation with 7+ years of experience.",
+    roleTrainerDescription: "Youth development, leadership training, and facilitation with {{years}} years of experience.",
     roleDesignerDescription: "Graphic design, UI/UX, and visual branding with a strong strategy-to-visual foundation.",
     roleDeveloperDescription: "Clear, fast, design-led sites and web apps, built and shipped end to end.",
-    roleStatTrainer1: "1,120+ Participants",
-    roleStatTrainer2: "477+ Training Hours",
-    roleStatTrainer3: "30+ Facilitation Hours",
+    roleStatTrainer1: "{{participants}} Participants",
+    roleStatTrainer2: "{{trainingHours}} Training Hours",
+    roleStatTrainer3: "{{facilitationHours}} Facilitation Hours",
     roleStatDesigner1: "Brand Identity",
     roleStatDesigner2: "UI/UX",
     roleStatDesigner3: "Behance Portfolio",
@@ -69,7 +71,7 @@ export const translations = {
     whoIAm: "Who I Am",
     backToHome: "Back to Home",
     trainerDesignerDeveloper: "Trainer, Designer & Developer",
-    aboutHeroDesc: "Design, training, and web. 7+ years in Tunisia. I help teams and organisations get clearer visuals, better training, and solid digital projects. No fluff, just work that gets things done.",
+    aboutHeroDesc: "Design, training, and web. {{years}} years in Tunisia. I help teams and organisations get clearer visuals, better training, and solid digital projects. No fluff, just work that gets things done.",
     coreValues: "Core Values",
     impactDriven: "Impact Driven",
     impactDrivenDesc: "Every project should leave something useful behind",
@@ -95,7 +97,7 @@ export const translations = {
     aboutEducation: "Education",
     passionateDesigner: "Passionate Designer & Trainer",
     aboutText1:
-      "Graphic designer and trainer since 2017. I've done campaigns, brand work, and media projects. On the training side: 477+ hours delivered, 1,120+ participants, mostly youth development and leadership in Tunisia.",
+      "Graphic designer and trainer since 2017. I've done campaigns, brand work, and media projects. On the training side: {{trainingHours}} hours delivered, {{participants}} participants, mostly youth development and leadership in Tunisia.",
     aboutText2:
       "I pick up new skills fast and enjoy mixing design, marketing, and training. Open to projects that let me do that. Big believer in learning by doing and in giving young people real tools, not just theory.",
     email: "Email",
@@ -226,7 +228,7 @@ export const translations = {
     myJourney: "My Journey",
     professionalExperience: "Professional Experience",
     experienceDesc:
-      "Over 7 years of experience in graphic design and training, with a diverse background in marketing and business development.",
+      "Over {{yearsN}} years of experience in graphic design and training, with a diverse background in marketing and business development.",
 
     // Education
     myLearning: "My Learning Journey",
@@ -274,8 +276,8 @@ export const translations = {
     availability: "Availability",
     monFri: "Mon-Fri: 9am-6pm",
     whyWorkWith: "Why work with me?",
-    whyWork1: "7+ years of experience in graphic design",
-    whyWork2: "1,120+ participants trained successfully",
+    whyWork1: "{{years}} years of experience in graphic design",
+    whyWork2: "{{participants}} participants trained successfully",
     whyWork3: "Personalized approach for each project",
     whyWork4: "Complete follow-up and support",
     collaborationRequest: "Collaboration Request",
@@ -317,7 +319,7 @@ export const translations = {
     footerService5: "Web Development",
     availableForProjects: "Available for projects",
     footerDesc:
-      "Graphic designer and trainer passionate with over 7 years of experience. Specialized in visual creation, training and professional support.",
+      "Graphic designer and trainer passionate with over {{yearsN}} years of experience. Specialized in visual creation, training and professional support.",
     newsletter: "Newsletter",
     newsletterDesc: "Stay informed about my latest projects and news.",
     subscribe: "Subscribe",
@@ -357,7 +359,7 @@ export const translations = {
     newsletterSuccess: "You're in! Thanks for subscribing.",
     newsletterNetworkError: "Network error. Please try again.",
     homeHeroTaglinePart1: "I design, train, and build.",
-    homeHeroTaglinePart2: "7 years in Tunisia. Here to make brands clear and people sharper.",
+    homeHeroTaglinePart2: "{{yearsN}} years in Tunisia. Here to make brands clear and people sharper.",
     heroAskPlaceholder: "Ask me anything…",
     heroPillWork: "See my work ↓",
     heroPillWhatIDo: "What do you do?",
@@ -406,7 +408,7 @@ export const translations = {
     myTrainingJourney: "My Training Journey",
     evolutionAsEducator: "Evolution As An Educator",
     trainerJourneyIntro:
-      "From my first session with Association Youth Clubs in 2019 to CNFCPP certification in 2024 and 1,120+ participants reached across Tunisia, Morocco, and Qatar, this journey has been built on real workshops, not theory.",
+      "From my first session with Association Youth Clubs in 2019 to CNFCPP certification in 2024 and {{participants}} participants reached across Tunisia, Morocco, and Qatar, this journey has been built on real workshops, not theory.",
     requestTraining: "Request Training",
     readyToTransformLearning: "Ready to Transform Through Learning?",
     requestTrainingDesc:
@@ -446,7 +448,7 @@ export const translations = {
     "chatError": "Couldn't reply. Try email or WhatsApp instead.",
     "chatNudgeWelcome": "Welcome! I'm Dhia's AI guide, happy to help you explore the site.",
     "chatNudgeLookingFor": "What are you looking for today? Branding, training, web dev, or something else?",
-    "chatNudgeFactYouth": "Fun fact: I've trained 1,120+ young people across Tunisia in leadership and creative skills.",
+    "chatNudgeFactYouth": "Fun fact: I've trained {{participants}} young people across Tunisia in leadership and creative skills.",
     "chatNudgeFactDesign": "Did you know? My branding work spans cafés, travel brands, and full visual identity systems.",
     "chatNudgeFreebies": "Grab free templates and tools I actually use, no fluff, just useful downloads.",
     "chatNudgeContact": "Have a project in mind? Drop me a line, I usually reply within 24 hours.",
@@ -463,7 +465,7 @@ export const translations = {
     "chatNudgeActionInsights": "Read insights",
     "chatNudgeActionDev": "See web projects",
     "chatNudgeActionBook": "Book a call",
-    "chatNudgeAbout": "Want the full story? My About page covers 7 years of design, training, and dev in Tunisia.",
+    "chatNudgeAbout": "Want the full story? My About page covers {{yearsN}} years of design, training, and dev in Tunisia.",
     "chatNudgeActionAbout": "Read my story",
     "chatNudgeTestimonials": "Don't take my word for it, see what clients and collaborators say about working with me.",
     "chatNudgeActionTestimonials": "See testimonials",
@@ -473,7 +475,7 @@ export const translations = {
     "chatNudgeActionProject": "View case study",
     "chatNudgeWorkshop": "Need a workshop facilitator? I've run 500+ hours of youth leadership sessions across Tunisia.",
     "chatNudgeActionWorkshop": "See training services",
-    "chatNudgeBehance": "Browse 50+ design projects on Behance, branding, social, packaging, and more.",
+    "chatNudgeBehance": "Browse {{designProjects}} design projects on Behance, branding, social, packaging, and more.",
     "chatNudgeActionBehance": "Open Behance",
     "chatNudgeNewsletter": "Get occasional tips on design, training, and building for the web, no spam.",
     "chatNudgeActionNewsletter": "Scroll to newsletter",
@@ -566,15 +568,15 @@ export const translations = {
     "freebie.color-palette-guide.title": "Color Psychology Guide",
     "freebie.color-palette-guide.description": "How to choose brand colors that communicate the right emotion, with 12 ready-made palettes.",
     "freebie.color-palette-guide.format": "PDF · 8 pages",
-    "freebie.color-palette-guide.benefit": "Used in 50+ projects",
+    "freebie.color-palette-guide.benefit": "Used in {{designProjects}} projects",
     "freebie.workshop-plan-template.title": "Workshop Planning Template",
     "freebie.workshop-plan-template.description": "The session plan structure I use for youth development workshops, timing, activities, and notes.",
     "freebie.workshop-plan-template.format": "PDF · 4 pages",
-    "freebie.workshop-plan-template.benefit": "Based on 477+ hours",
+    "freebie.workshop-plan-template.benefit": "Based on {{trainingHours}} hours",
     "freebie.icebreakers-guide.title": "20 Youth Icebreaker Activities",
     "freebie.icebreakers-guide.description": "Tested icebreakers and energizers for groups of 10–100. Arabic, French, and English versions.",
     "freebie.icebreakers-guide.format": "PDF · 12 pages",
-    "freebie.icebreakers-guide.benefit": "Tested with 1,120+ youth",
+    "freebie.icebreakers-guide.benefit": "Tested with {{participants}} youth",
     "freebie.trainer-checklist.title": "Pre-Training Checklist",
     "freebie.trainer-checklist.description": "The 30-point checklist I go through before every training session for smooth delivery.",
     "freebie.trainer-checklist.format": "PDF · 1 page",
@@ -589,7 +591,7 @@ export const translations = {
     "insightsArticle1Title": "How brand colors affect trust (and how to choose yours)",
     "insightsArticle1Excerpt": "Color psychology isn't magic, but it shapes first impressions. Here's a practical framework I use with clients.",
     "insightsArticle2Title": "5 facilitation mistakes that kill youth workshop energy",
-    "insightsArticle2Excerpt": "After 51+ youth training events, these are the patterns that consistently drain engagement, and how to fix them.",
+    "insightsArticle2Excerpt": "After {{trainingEvents}} youth training events, these are the patterns that consistently drain engagement, and how to fix them.",
     "insightsArticle3Title": "Why I rebuilt my portfolio in Next.js (and what I'd do differently)",
     "insightsArticle3Excerpt": "A freelancer's honest take on static vs dynamic, i18n, and shipping fast without cutting corners.",
     "insightsArticle4Title": "Social media visual consistency: why your feed doesn't look like a brand",
@@ -630,7 +632,7 @@ export const translations = {
     radarValue3Title: "Three Skills, One Person",
     radarValue3Desc: "Design + Training + Development means no coordination overhead. One person who speaks all three languages.",
     radarValue4Title: "Proven Track Record",
-    radarValue4Desc: "1,120+ participants trained, 50+ brands designed, real projects with measurable outcomes.",
+    radarValue4Desc: "{{participants}} participants trained, {{designProjects}} design projects, real projects with measurable outcomes.",
     impactChartLabel: "Brand Impact",
     impactChartTitle: "How your brand can grow after collaborating",
     impactChartDesc: "Illustrative comparison of brand visibility over time between clients I work with and similar brands in the market.",
@@ -1121,18 +1123,18 @@ export const translations = {
     graphicDesigner: "Designer Graphique",
     trainer: "& Formateur",
     heroDescription:
-      "Designer, formateur et développeur web basé en Tunisie. Avec 7+ ans d'expérience en design visuel et en formation, j'aide les personnes et les organisations à communiquer clairement, apprendre plus vite et construire de meilleurs projets.",
+      "Designer, formateur et développeur web basé en Tunisie. Avec {{years}} ans d'expérience en design visuel et en formation, j'aide les personnes et les organisations à communiquer clairement, apprendre plus vite et construire de meilleurs projets.",
     homeHeadlinePrefix: "Un",
     homeHeadlineHighlight: "Résolveur de Problèmes Créatif",
     exploreMyWork: "Découvrir mon travail",
     learnMore: "En savoir plus",
     myExpertiseSubtitle: "Trois domaines spécialisés où j'apporte une vraie valeur",
-    roleTrainerDescription: "Développement des jeunes, formation au leadership et facilitation avec 7+ ans d'expérience.",
+    roleTrainerDescription: "Développement des jeunes, formation au leadership et facilitation avec {{years}} ans d'expérience.",
     roleDesignerDescription: "Design graphique, UI/UX et identité visuelle avec une base stratégie-to-visuel solide.",
     roleDeveloperDescription: "Des sites et applications web clairs, rapides et pensés design, conçus et livrés de A à Z.",
-    roleStatTrainer1: "1 120+ Participants",
-    roleStatTrainer2: "477+ Heures de formation",
-    roleStatTrainer3: "30+ Heures de facilitation",
+    roleStatTrainer1: "{{participants}} Participants",
+    roleStatTrainer2: "{{trainingHours}} Heures de formation",
+    roleStatTrainer3: "{{facilitationHours}} Heures de facilitation",
     roleStatDesigner1: "Identité de marque",
     roleStatDesigner2: "UI/UX",
     roleStatDesigner3: "Portfolio Behance",
@@ -1153,7 +1155,7 @@ export const translations = {
     whoIAm: "Qui Je Suis",
     backToHome: "Retour à l'accueil",
     trainerDesignerDeveloper: "Formateur, Designer & Développeur",
-    aboutHeroDesc: "Design, formation et web. 7+ ans en Tunisie. J'accompagne équipes et organisations pour des visuels plus clairs, une meilleure formation et des projets digitaux solides. Pas de blabla, du concret.",
+    aboutHeroDesc: "Design, formation et web. {{years}} ans en Tunisie. J'accompagne équipes et organisations pour des visuels plus clairs, une meilleure formation et des projets digitaux solides. Pas de blabla, du concret.",
     coreValues: "Valeurs fondamentales",
     impactDriven: "Impact",
     impactDrivenDesc: "Chaque projet doit laisser quelque chose d'utile derrière",
@@ -1179,7 +1181,7 @@ export const translations = {
     aboutEducation: "Formation",
     passionateDesigner: "Designer & Formateur Passionné",
     aboutText1:
-      "Designer graphique et formateur depuis 2017. Campagnes, branding, projets médias. Côté formation : 477+ heures animées, 1 120+ participants, surtout développement des jeunes et leadership en Tunisie.",
+      "Designer graphique et formateur depuis 2017. Campagnes, branding, projets médias. Côté formation : {{trainingHours}} heures animées, {{participants}} participants, surtout développement des jeunes et leadership en Tunisie.",
     aboutText2:
       "J'apprends vite et j'aime mixer design, marketing et formation. Ouvert aux projets qui me permettent de faire les trois. Convaincu que l'apprentissage passe par la pratique, et que les jeunes ont besoin d'outils concrets, pas que de théorie.",
     email: "Email",
@@ -1307,7 +1309,7 @@ export const translations = {
     myJourney: "Mon Parcours",
     professionalExperience: "Expérience Professionnelle",
     experienceDesc:
-      "Plus de 7 ans d'expérience en design graphique et formation, avec un background diversifié en marketing et développement commercial.",
+      "Plus de {{yearsN}} ans d'expérience en design graphique et formation, avec un background diversifié en marketing et développement commercial.",
 
     // Education
     myLearning: "Mon Parcours d'Apprentissage",
@@ -1349,8 +1351,8 @@ export const translations = {
     availability: "Disponibilité",
     monFri: "Lun-Ven: 9h-18h",
     whyWorkWith: "Pourquoi travailler avec moi ?",
-    whyWork1: "7+ années d'expérience en design graphique",
-    whyWork2: "1 120+ participants formés avec succès",
+    whyWork1: "{{years}} années d'expérience en design graphique",
+    whyWork2: "{{participants}} participants formés avec succès",
     whyWork3: "Approche personnalisée pour chaque projet",
     whyWork4: "Suivi et accompagnement complet",
     collaborationRequest: "Demande de Collaboration",
@@ -1387,7 +1389,7 @@ export const translations = {
     footerService5: "Développement web",
     availableForProjects: "Disponible pour projets",
     footerDesc:
-      "Designer graphique et formateur passionné avec plus de 7 ans d'expérience. Spécialisé en création visuelle, formation et accompagnement professionnel.",
+      "Designer graphique et formateur passionné avec plus de {{yearsN}} ans d'expérience. Spécialisé en création visuelle, formation et accompagnement professionnel.",
     newsletter: "Newsletter",
     newsletterDesc: "Restez informé de mes derniers projets et actualités.",
     subscribe: "S'inscrire",
@@ -1427,7 +1429,7 @@ export const translations = {
     newsletterSuccess: "C'est bon ! Merci pour votre inscription.",
     newsletterNetworkError: "Erreur réseau. Veuillez réessayer.",
     homeHeroTaglinePart1: "Je conçois, forme et développe.",
-    homeHeroTaglinePart2: "7 ans en Tunisie. Des marques plus claires, des équipes plus fortes.",
+    homeHeroTaglinePart2: "{{yearsN}} ans en Tunisie. Des marques plus claires, des équipes plus fortes.",
     heroAskPlaceholder: "Demandez-moi n'importe quoi…",
     heroPillWork: "Voir mon travail ↓",
     heroPillWhatIDo: "Que fais-tu ?",
@@ -1532,7 +1534,7 @@ export const translations = {
     "chatNudgeActionInsights": "Lire les articles",
     "chatNudgeActionDev": "Projets web",
     "chatNudgeActionBook": "Réserver un appel",
-    "chatNudgeAbout": "Envie de connaître mon parcours ? La page À propos retrace 7 ans de design, formation et dev en Tunisie.",
+    "chatNudgeAbout": "Envie de connaître mon parcours ? La page À propos retrace {{yearsN}} ans de design, formation et dev en Tunisie.",
     "chatNudgeActionAbout": "Lire mon histoire",
     "chatNudgeTestimonials": "Ne me croyez pas sur parole, découvrez ce que disent clients et collaborateurs.",
     "chatNudgeActionTestimonials": "Voir les témoignages",
@@ -1635,15 +1637,15 @@ export const translations = {
     "freebie.color-palette-guide.title": "Guide psychologie des couleurs",
     "freebie.color-palette-guide.description": "Comment choisir des couleurs de marque qui transmettent la bonne émotion, 12 palettes prêtes.",
     "freebie.color-palette-guide.format": "PDF · 8 pages",
-    "freebie.color-palette-guide.benefit": "Utilisé dans 50+ projets",
+    "freebie.color-palette-guide.benefit": "Utilisé dans {{designProjects}} projets",
     "freebie.workshop-plan-template.title": "Modèle de plan d'atelier",
     "freebie.workshop-plan-template.description": "Structure de session pour ateliers jeunesse, timing, activités et notes de facilitation.",
     "freebie.workshop-plan-template.format": "PDF · 4 pages",
-    "freebie.workshop-plan-template.benefit": "Basé sur 477+ heures",
+    "freebie.workshop-plan-template.benefit": "Basé sur {{trainingHours}} heures",
     "freebie.icebreakers-guide.title": "20 activités brise-glace jeunesse",
     "freebie.icebreakers-guide.description": "Brise-glaces testés pour groupes de 10 à 100. Versions arabe, français et anglais.",
     "freebie.icebreakers-guide.format": "PDF · 12 pages",
-    "freebie.icebreakers-guide.benefit": "Testé avec 1 120+ jeunes",
+    "freebie.icebreakers-guide.benefit": "Testé avec {{participants}} jeunes",
     "freebie.trainer-checklist.title": "Checklist pré-formation",
     "freebie.trainer-checklist.description": "Les 30 points que je vérifie avant chaque session pour une livraison fluide.",
     "freebie.trainer-checklist.format": "PDF · 1 page",
@@ -1658,7 +1660,7 @@ export const translations = {
     "insightsArticle1Title": "Comment les couleurs de marque influencent la confiance",
     "insightsArticle1Excerpt": "La psychologie des couleurs n'est pas magique, mais elle façonne les premières impressions. Voici mon cadre pratique.",
     "insightsArticle2Title": "5 erreurs de facilitation qui tuent l'énergie en atelier jeunesse",
-    "insightsArticle2Excerpt": "Après 51+ événements de formation jeunesse, voici les schémas qui drainent l'engagement, et comment les corriger.",
+    "insightsArticle2Excerpt": "Après {{trainingEvents}} événements de formation jeunesse, voici les schémas qui drainent l'engagement, et comment les corriger.",
     "insightsArticle3Title": "Pourquoi j'ai reconstruit mon portfolio en Next.js",
     "insightsArticle3Excerpt": "Le retour honnête d'un freelance sur le statique vs dynamique, l'i18n et livrer vite sans sacrifier la qualité.",
     "insightsArticle4Title": "Cohérence visuelle sur les réseaux sociaux : pourquoi votre feed ne ressemble pas à une marque",
@@ -1699,7 +1701,7 @@ export const translations = {
     radarValue3Title: "Trois compétences, une personne",
     radarValue3Desc: "Design + Formation + Développement = pas de surcoût de coordination. Une personne qui parle les trois langages.",
     radarValue4Title: "Résultats prouvés",
-    radarValue4Desc: "1 120+ participants formés, 50+ marques conçues, projets réels avec résultats mesurables.",
+    radarValue4Desc: "{{participants}} participants formés, {{designProjects}} projets de design, projets réels avec résultats mesurables.",
     impactChartLabel: "Impact de marque",
     impactChartTitle: "Comment votre marque peut grandir après collaboration",
     impactChartDesc: "Comparaison illustrative de la visibilité de marque dans le temps entre mes clients et des marques similaires.",
@@ -2184,18 +2186,18 @@ export const translations = {
     graphicDesigner: "مصمم جرافيكي",
     trainer: "ومدرب",
     heroDescription:
-      "مصمم ومدرب ومطور ويب مقيم في تونس. مع أكثر من 7 سنوات من الخبرة في التصميم المرئي والتدريب، أساعد الأفراد والمؤسسات على التواصل بوضوح، والتعلم أسرع، وبناء مشاريع أقوى.",
+      "مصمم ومدرب ومطور ويب مقيم في تونس. مع أكثر من {{yearsN}} سنوات من الخبرة في التصميم المرئي والتدريب، أساعد الأفراد والمؤسسات على التواصل بوضوح، والتعلم أسرع، وبناء مشاريع أقوى.",
     homeHeadlinePrefix: "حلّال",
     homeHeadlineHighlight: "مشكلات إبداعي",
     exploreMyWork: "استكشف أعمالي",
     learnMore: "اعرف المزيد",
     myExpertiseSubtitle: "ثلاث مجالات أتقنها وأقدم فيها قيمة حقيقية",
-    roleTrainerDescription: "تنمية الشباب وتدريب القيادة والتيسير مع أكثر من 7 سنوات من الخبرة.",
+    roleTrainerDescription: "تنمية الشباب وتدريب القيادة والتيسير مع أكثر من {{yearsN}} سنوات من الخبرة.",
     roleDesignerDescription: "تصميم جرافيك وواجهات وتجربة مستخدم وهوية بصرية قائمة على الاستراتيجية.",
     roleDeveloperDescription: "مواقع وتطبيقات ويب واضحة وسريعة بتصميم مدروس، أبنيها وأسلّمها من البداية إلى النهاية.",
-    roleStatTrainer1: "1,120+ مشارك",
-    roleStatTrainer2: "477+ ساعة تدريب",
-    roleStatTrainer3: "30+ ساعة تيسير",
+    roleStatTrainer1: "{{participants}} مشارك",
+    roleStatTrainer2: "{{trainingHours}} ساعة تدريب",
+    roleStatTrainer3: "{{facilitationHours}} ساعة تيسير",
     roleStatDesigner1: "هوية العلامة",
     roleStatDesigner2: "UI/UX",
     roleStatDesigner3: "Portfolio Behance",
@@ -2216,7 +2218,7 @@ export const translations = {
     whoIAm: "من أكون",
     backToHome: "العودة للرئيسية",
     trainerDesignerDeveloper: "مدرب، مصمم ومطور",
-    aboutHeroDesc: "تصميم، تدريب وويب. 7+ سنوات في تونس. أساعد الفرق والمنظمات على الحصول على رؤية أوضح وتدريب أفضل ومشاريع رقمية صلبة. بدون كلام، عمل يُنجز.",
+    aboutHeroDesc: "تصميم، تدريب وويب. {{years}} سنوات في تونس. أساعد الفرق والمنظمات على الحصول على رؤية أوضح وتدريب أفضل ومشاريع رقمية صلبة. بدون كلام، عمل يُنجز.",
     coreValues: "القيم الأساسية",
     impactDriven: "التركيز على التأثير",
     impactDrivenDesc: "كل مشروع يجب أن يترك شيئاً مفيداً خلفه",
@@ -2242,7 +2244,7 @@ export const translations = {
     aboutEducation: "التعليم",
     passionateDesigner: "مصمم ومدرب شغوف",
     aboutText1:
-      "مصمم جرافيكي ومدرب منذ 2017. حملات، هوية بصرية، مشاريع إعلامية. في التدريب: 477+ ساعة، 1,120+ مشارك، أغلبها تنمية الشباب والقيادة في تونس.",
+      "مصمم جرافيكي ومدرب منذ 2017. حملات، هوية بصرية، مشاريع إعلامية. في التدريب: {{trainingHours}} ساعة، {{participants}} مشارك، أغلبها تنمية الشباب والقيادة في تونس.",
     aboutText2:
       "أتعلم بسرعة وأستمتع بدمج التصميم والتسويق والتدريب. منفتح على المشاريع التي تسمح لي بذلك. أؤمن بالتعلّم بالممارسة، وبأن الشباب بحاجة لأدوات عملية، وليس نظرية فقط.",
     email: "البريد الإلكتروني",
@@ -2370,7 +2372,7 @@ export const translations = {
     myJourney: "رحلتي",
     professionalExperience: "الخبرة المهنية",
     experienceDesc:
-      "أكثر من 7 سنوات من الخبرة في التصميم الجرافيكي والتدريب، مع خلفية متنوعة في التسويق والتطوير التجاري.",
+      "أكثر من {{yearsN}} سنوات من الخبرة في التصميم الجرافيكي والتدريب، مع خلفية متنوعة في التسويق والتطوير التجاري.",
 
     // Education
     myLearning: "رحلة التعلم الخاصة بي",
@@ -2412,8 +2414,8 @@ export const translations = {
     availability: "التوافر",
     monFri: "الإثنين - الجمعة: 9صباحاً - 6مساءً",
     whyWorkWith: "لماذا تعمل معي؟",
-    whyWork1: "7+ سنوات من الخبرة في التصميم الجرافيكي",
-    whyWork2: "1,120+ مشاركاً تم تدريبهم بنجاح",
+    whyWork1: "{{years}} سنوات من الخبرة في التصميم الجرافيكي",
+    whyWork2: "{{participants}} مشاركاً تم تدريبهم بنجاح",
     whyWork3: "نهج مخصص لكل مشروع",
     whyWork4: "المتابعة والدعم الكامل",
     collaborationRequest: "طلب التعاون",
@@ -2450,7 +2452,7 @@ export const translations = {
     footerService5: "تطوير الويب",
     availableForProjects: "متاح للمشاريع",
     footerDesc:
-      "مصمم جرافيكي ومدرب شغوف بأكثر من 7 سنوات من الخبرة. متخصص في الإنشاء البصري والتدريب والدعم المهني.",
+      "مصمم جرافيكي ومدرب شغوف بأكثر من {{yearsN}} سنوات من الخبرة. متخصص في الإنشاء البصري والتدريب والدعم المهني.",
     newsletter: "النشرة الإخبارية",
     newsletterDesc: "ابقَ على اطلاع بآخر مشاريعي والأخبار.",
     subscribe: "اشتراك",
@@ -2490,7 +2492,7 @@ export const translations = {
     newsletterSuccess: "تم الاشتراك! شكراً لانضمامك.",
     newsletterNetworkError: "خطأ في الشبكة. حاول مرة أخرى.",
     homeHeroTaglinePart1: "أصمم، أدرب وأبني.",
-    homeHeroTaglinePart2: "7 سنوات في تونس. علامات أوضح وفرق أقوى.",
+    homeHeroTaglinePart2: "{{yearsN}} سنوات في تونس. علامات أوضح وفرق أقوى.",
     heroAskPlaceholder: "اسألني أي شيء…",
     heroPillWork: "شاهد أعمالي ↓",
     heroPillWhatIDo: "ما الذي تفعله؟",
@@ -2538,7 +2540,7 @@ export const translations = {
     myTrainingJourney: "مسيرتي التدريبية",
     evolutionAsEducator: "تطوري كمربّي",
     trainerJourneyIntro:
-      "من أول جلسة تدريبية مع جمعية Youth Clubs سنة 2019 إلى شهادة CNFCPP سنة 2024 وأكثر من 1120 مشاركاً في تونس والمغرب وقطر، بُنيت هذه المسيرة على ورشات حقيقية لا على النظريات.",
+      "من أول جلسة تدريبية مع جمعية Youth Clubs سنة 2019 إلى شهادة CNFCPP سنة 2024 وأكثر من {{participantsN}} مشاركاً في تونس والمغرب وقطر، بُنيت هذه المسيرة على ورشات حقيقية لا على النظريات.",
     requestTraining: "طلب تدريب",
     readyToTransformLearning: "مستعد للتحول من خلال التعلّم؟",
     requestTrainingDesc:
@@ -2595,7 +2597,7 @@ export const translations = {
     "chatNudgeActionInsights": "المقالات",
     "chatNudgeActionDev": "مشاريع الويب",
     "chatNudgeActionBook": "احجز مكالمة",
-    "chatNudgeAbout": "تريد القصة كاملة؟ صفحة «عني» تغطي 7 سنوات من التصميم والتدريب والتطوير في تونس.",
+    "chatNudgeAbout": "تريد القصة كاملة؟ صفحة «عني» تغطي {{yearsN}} سنوات من التصميم والتدريب والتطوير في تونس.",
     "chatNudgeActionAbout": "اقرأ قصتي",
     "chatNudgeTestimonials": "لا تأخذ كلامي فقط، اطلع على ما يقوله العملاء والمتعاونون.",
     "chatNudgeActionTestimonials": "شاهد الشهادات",
@@ -2698,15 +2700,15 @@ export const translations = {
     "freebie.color-palette-guide.title": "دليل سيكولوجية الألوان",
     "freebie.color-palette-guide.description": "كيف تختار ألوان ماركة تنقل الشعور الصحيح، 12 لوحة جاهزة.",
     "freebie.color-palette-guide.format": "PDF · 8 صفحات",
-    "freebie.color-palette-guide.benefit": "استُخدم في 50+ مشروع",
+    "freebie.color-palette-guide.benefit": "استُخدم في {{designProjects}} مشروع",
     "freebie.workshop-plan-template.title": "قالب تخطيط الورشة",
     "freebie.workshop-plan-template.description": "هيكل الجلسة لورش تنمية الشباب، التوقيت والأنشطة وملاحظات التيسير.",
     "freebie.workshop-plan-template.format": "PDF · 4 صفحات",
-    "freebie.workshop-plan-template.benefit": "مبني على 477+ ساعة",
+    "freebie.workshop-plan-template.benefit": "مبني على {{trainingHours}} ساعة",
     "freebie.icebreakers-guide.title": "20 نشاط كسر جليد للشباب",
     "freebie.icebreakers-guide.description": "أنشطة مجربة لمجموعات 10–100. نسخ عربية وفرنسية وإنجليزية.",
     "freebie.icebreakers-guide.format": "PDF · 12 صفحة",
-    "freebie.icebreakers-guide.benefit": "مجرّب مع 1,120+ شاب",
+    "freebie.icebreakers-guide.benefit": "مجرّب مع {{participants}} شاب",
     "freebie.trainer-checklist.title": "قائمة ما قبل التدريب",
     "freebie.trainer-checklist.description": "30 نقطة أتحقق منها قبل كل جلسة لضمان سلاسة التنفيذ.",
     "freebie.trainer-checklist.format": "PDF · صفحة واحدة",
@@ -2762,7 +2764,7 @@ export const translations = {
     radarValue3Title: "ثلاث مهارات، شخص واحد",
     radarValue3Desc: "تصميم + تدريب + تطوير = لا تكاليف تنسيق إضافية. شخص واحد يتحدث اللغات الثلاث.",
     radarValue4Title: "سجل مثبت",
-    radarValue4Desc: "1,120+ مشارك مدرب، 50+ علامة مصممة، مشاريع حقيقية بنتائج قابلة للقياس.",
+    radarValue4Desc: "{{participants}} مشارك مدرب، {{designProjects}} مشروع تصميم، مشاريع حقيقية بنتائج قابلة للقياس.",
     impactChartLabel: "تأثير العلامة",
     impactChartTitle: "كيف يمكن لعلامتك النمو بعد التعاون",
     impactChartDesc: "مقارنة توضيحية لرؤية العلامة عبر الوقت بين عملائي والعلامات المماثلة.",
@@ -3219,14 +3221,36 @@ export const translations = {
 export type Language = keyof typeof translations
 export type TranslationKey = keyof typeof translations.en
 
+/** Stat placeholders available in EVERY string (Oct 2026). Copy used to
+ *  hardcode "1,120+", "477+", "7+ years" etc. in ~57 places across the three
+ *  languages; they now read from lib/profile.ts, so updating a figure there
+ *  updates every sentence. `{{x}}` = formatted with suffix ("1,120+"),
+ *  `{{xN}}` = bare number for phrasings like "over 7 years". */
+function statParams(language: Language): Record<string, string> {
+  // fr-FR groups thousands with a narrow no-break space ("1 120"), matching
+  // the old French copy; en and ar both used Latin "1,120".
+  const locale = language === "fr" ? "fr-FR" : "en-US"
+  const fmt = (s: { value: number; suffix: string }) => `${s.value.toLocaleString(locale)}${s.suffix}`
+  return {
+    participants: fmt(profileStats.participantsTrained),
+    participantsN: profileStats.participantsTrained.value.toLocaleString(locale),
+    trainingHours: fmt(profileStats.trainingHours),
+    facilitationHours: fmt(profileStats.facilitationHours),
+    trainingEvents: fmt(profileStats.trainingCycles),
+    designProjects: fmt(profileStats.designProjects),
+    years: fmt(profileStats.yearsExperience),
+    yearsN: String(profileStats.yearsExperience.value),
+  }
+}
+
 export function getTranslation(
   language: Language,
   key: TranslationKey,
   params?: Record<string, string | number>
 ): string {
   const raw = translations[language][key] || translations.en[key]
-  if (!params) return raw
-  return Object.entries(params).reduce(
+  if (!raw.includes("{{")) return raw
+  return Object.entries({ ...statParams(language), ...params }).reduce(
     (acc, [k, v]) => acc.split(`{{${k}}}`).join(String(v)),
     raw
   )

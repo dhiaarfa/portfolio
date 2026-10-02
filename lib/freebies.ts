@@ -1,3 +1,5 @@
+import { formatStat } from "@/lib/profile"
+
 export type FreebieDelivery =
   | { kind: "pdf"; path: string }
   | { kind: "canva"; url: string }
@@ -39,7 +41,7 @@ export const freebieCatalog: Freebie[] = [
     description:
       "How to choose brand colors that actually communicate the right emotion. Includes 12 ready-made palettes used in real projects.",
     format: "PDF · 8 pages",
-    benefit: "Used in 50+ projects",
+    benefit: `Used in ${formatStat("designProjects")} projects`,
     color: "pink",
     bgImage: "/images/freebies/color-psychology.jpg",
     delivery: { kind: "pdf", path: "/freebies/color-psychology-guide.pdf" },
@@ -69,7 +71,8 @@ export const freebieCatalog: Freebie[] = [
     description:
       "The session plan structure I use for all my youth development workshops. Includes timing, activities, and facilitation notes.",
     format: "PDF · 4 pages",
-    benefit: "Based on 450+ hours",
+    // Was a stale "450+"; the verified figure lives in lib/profile.ts.
+    benefit: `Based on ${formatStat("trainingHours")} hours`,
     color: "amber",
     bgImage: "/images/freebies/workshop-planning.jpg",
     delivery: { kind: "pdf", path: "/freebies/workshop-plan-template.pdf" },

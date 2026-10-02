@@ -606,10 +606,10 @@ function SidebarMenuSkeleton({
 }: React.ComponentProps<'div'> & {
   showIcon?: boolean
 }) {
-  // Random width between 50 to 90%.
-  const width = React.useMemo(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`
-  }, [])
+  // Was a random 50-90% width via Math.random() during render: impure, and
+  // different on server vs client (a hydration mismatch). A fixed width
+  // keeps the skeleton look without either problem.
+  const width = "70%"
 
   return (
     <div

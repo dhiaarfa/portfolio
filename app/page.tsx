@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import HomePageClient from "./HomePageClient"
 import { pageMetadata } from "@/lib/page-metadata"
+import { formatStat } from "@/lib/profile"
 
 export const dynamic = "force-static"
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Mohamed Dhia Arfa, Graphic Designer, Trainer & Web Developer · Tunisia",
   description:
     // Master roadmap 4.1: result language, no framework names.
-    "Designer, certified trainer and web developer in Tunisia: brand identity with Zia Studio, youth trainings (1,120+ trained), design-led sites. Book a free call.",
+    `Designer, certified trainer and web developer in Tunisia: brand identity with Zia Studio, youth trainings (${formatStat("participantsTrained")} trained), design-led sites. Book a free call.`,
   keywords: [
     "Mohamed Dhia Arfa",
     "graphic designer",

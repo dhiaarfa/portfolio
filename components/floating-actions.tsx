@@ -31,7 +31,7 @@ function markShown(id: string) {
 }
 
 export default function FloatingActions() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const pathname = usePathname()
   const router = useRouter()
   const [chatOpen, setChatOpen] = useState(false)
@@ -54,14 +54,15 @@ export default function FloatingActions() {
   const [faqIndex, setFaqIndex] = useState(0)
   const [faqShow, setFaqShow] = useState(true)
 
-  useEffect(() => {
-    setMessages((prev) => {
-      if (prev.length === 1 && prev[0].role === "assistant") {
-        return [{ role: "assistant", content: t("chatWelcome") }]
-      }
-      return prev
-    })
-  }, [t])
+  // Re-translate the untouched welcome message when the language changes.
+  // Adjusted during render (keyed on `language`) instead of a useEffect.
+  const [prevLanguage, setPrevLanguage] = useState(language)
+  if (prevLanguage !== language) {
+    setPrevLanguage(language)
+    setMessages((prev) =>
+      prev.length === 1 && prev[0].role === "assistant" ? [{ role: "assistant", content: t("chatWelcome") }] : prev
+    )
+  }
 
   useEffect(() => {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" })
@@ -99,7 +100,7 @@ export default function FloatingActions() {
 
   const showNextNudgeRef = useRef<() => void>(() => {})
 
-  showNextNudgeRef.current = () => {
+  const showNextNudge = () => {
     if (chatOpen) return
 
     const queue = nudgesForPath(pathname)
@@ -122,11 +123,29 @@ export default function FloatingActions() {
     }
   }
 
+  // Refreshed after every render (in an effect, not during render) so the
+  // timers always call the latest closure. Only ever invoked from timeouts,
+  // which fire long after this effect has run.
+  useEffect(() => {
+    // False positive: the rule treats the ref as frozen because
+    // dismissNudge's useCallback captures it, but writing ref.current inside
+    // an effect is React's documented "latest callback" pattern.
+    // eslint-disable-next-line react-hooks/immutability
+    showNextNudgeRef.current = showNextNudge
+  })
+
+  // Hide any nudge from the previous page as soon as the route changes
+  // (adjusted during render); the effect below only manages timers.
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
+    setNudgeVisible(false)
+    setActiveNudge(null)
+  }
+
   useEffect(() => {
     clearNudgeTimers()
     nudgeIndexRef.current = 0
-    setNudgeVisible(false)
-    setActiveNudge(null)
 
     const first = setTimeout(() => showNextNudgeRef.current(), FIRST_NUDGE_MS)
     nudgeTimersRef.current.push(first)
@@ -136,6 +155,9 @@ export default function FloatingActions() {
 
   useEffect(() => {
     if (chatOpen && nudgeVisible) {
+      // Deliberate: opening the chat (from any of several entry points)
+      // must also mark the nudge as seen, or it would reappear on close.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       dismissNudge(activeNudge?.id)
     }
   }, [chatOpen, nudgeVisible, activeNudge?.id, dismissNudge])
@@ -205,7 +227,9 @@ export default function FloatingActions() {
   // mount-once "dhia:ask-ai" listener always calls the latest closure
   // instead of the one captured when the effect first ran.
   const sendMessageRef = useRef<(text: string) => void>(() => {})
-  sendMessageRef.current = sendMessage
+  useEffect(() => {
+    sendMessageRef.current = sendMessage
+  })
 
   // Lets the homepage hero's suggestion pills / "ask me anything" bar open
   // this same floating chat and optionally send a prompt straight away,

@@ -1,3 +1,5 @@
+import { formatStat } from "@/lib/profile"
+
 // Shared FAQ data. Previously lived only inside components/faq-section.tsx
 // as a full accordion section rendered at the bottom of the homepage. Per
 // Dhia's feedback, that dedicated section was removed, the same questions
@@ -33,7 +35,9 @@ export const faqs: Faq[] = [
   {
     question: "Can you run in-person workshops or events?",
     answer:
-      "Yes. I run in-person workshops in Tunisia and can travel for events. I've delivered 450+ training hours and 30+ facilitation hours to 1000+ participants. Get in touch to discuss dates and logistics.",
+      // Was a stale "450+ hours ... 1000+ participants" (lib/profile.ts
+      // notes those as outdated); now reads the verified figures.
+      `Yes. I run in-person workshops in Tunisia and can travel for events. I've delivered ${formatStat("trainingHours")} training hours and ${formatStat("facilitationHours")} facilitation hours to ${formatStat("participantsTrained")} participants. Get in touch to discuss dates and logistics.`,
   },
   {
     question: "What is Zia Studio?",

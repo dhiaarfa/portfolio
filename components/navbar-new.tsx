@@ -52,7 +52,14 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  useEffect(() => { setOpen(false) }, [pathname])
+  // Close the drawer on navigation. Adjusted during render (React's
+  // recommended "reset state when a value changes" pattern) instead of a
+  // useEffect, which rendered once with the stale open drawer first.
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
+    setOpen(false)
+  }
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : '' }, [open])
 
   const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(siteConfig.whatsappMessage)}`

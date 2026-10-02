@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import TrainerClientPage from "../../trainer/TrainerClientPage"
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
-import { SITE_URL, formatStat } from "@/lib/profile"
+import { SITE_URL, formatStat, profileStats } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
 import type { Language } from "@/lib/translations"
 
@@ -10,11 +10,14 @@ export const dynamic = "force-static"
 
 type Props = { params: Promise<{ locale: string }> }
 
+/** Bare figure ("plus de 1120" / "أكثر من 1120"), from lib/profile.ts. */
+const PARTICIPANTS = profileStats.participantsTrained.value
+
 const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: string; ogDescription: string; breadcrumb: string }> = {
   fr: {
     title: "Formateur Certifié & Coach en Développement des Jeunes Tunisie | Mohamed Dhia Arfa",
     description:
-      "Formateur certifié CNFCPP aidant ONG, écoles et organisations de jeunesse à mener des ateliers qui changent les comportements. Plus de 1120 participants formés en arabe, français et anglais.",
+      `Formateur certifié CNFCPP aidant ONG, écoles et organisations de jeunesse à mener des ateliers qui changent les comportements. Plus de ${PARTICIPANTS} participants formés en arabe, français et anglais.`,
     ogTitle: "Formateur & Facilitateur Jeunesse · Mohamed Dhia Arfa",
     ogDescription:
       "Réservez des ateliers, programmes multi-séances et formations de formateurs pour ONG et organisations de jeunesse en Tunisie.",
@@ -23,7 +26,7 @@ const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: s
   ar: {
     title: "مدرّب معتمد ومدرّب في تنمية الشباب بتونس | محمد ضياء عرفة",
     description:
-      "مدرّب معتمد من CNFCPP يساعد الجمعيات والمدارس ومنظمات الشباب على تنظيم ورشات تُحدث تغييرًا حقيقيًا في السلوك. أكثر من 1120 مشاركًا تم تدريبهم بالعربية والفرنسية والإنجليزية.",
+      `مدرّب معتمد من CNFCPP يساعد الجمعيات والمدارس ومنظمات الشباب على تنظيم ورشات تُحدث تغييرًا حقيقيًا في السلوك. أكثر من ${PARTICIPANTS} مشاركًا تم تدريبهم بالعربية والفرنسية والإنجليزية.`,
     ogTitle: "مدرّب وميسّر شبابي · محمد ضياء عرفة",
     ogDescription: "احجز ورشات عمل وبرامج متعددة الجلسات وتكوين مدرّبين للجمعيات ومنظمات الشباب في تونس.",
     breadcrumb: "المدرّب",

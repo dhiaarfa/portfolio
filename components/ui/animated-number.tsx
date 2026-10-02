@@ -33,15 +33,15 @@ export function AnimatedNumber({
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: "-40px" })
   const reducedMotion = useReducedMotion()
-  const [display, setDisplay] = useState(reducedMotion || instant ? value : 0)
+  const [display, setDisplay] = useState(0)
+
+  // Reduced motion / instant: show the final value directly (derived, not
+  // set from an effect).
+  const skipCount = Boolean(instant || reducedMotion)
 
   useEffect(() => {
-    if (instant) return
+    if (skipCount) return
     if (!inView) return
-    if (reducedMotion) {
-      setDisplay(value)
-      return
-    }
     let raf: number
     const start = performance.now()
     const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
@@ -53,11 +53,14 @@ export function AnimatedNumber({
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [inView, value, duration, reducedMotion, instant])
+  }, [inView, value, duration, skipCount])
 
   return (
     <span ref={ref} className={className}>
-      {display.toLocaleString()}
+      {/* "en-US": a bare toLocaleString() follows the runtime locale, so
+          server and a French-locale browser rendered different digits
+          ("1,120" vs "1 120") -- a hydration mismatch. */}
+      {(skipCount ? value : display).toLocaleString("en-US")}
       {suffix}
     </span>
   )

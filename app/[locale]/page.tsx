@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import HomePageClient from "../HomePageClient"
 import { pageMetadata } from "@/lib/page-metadata"
+import { profileStats } from "@/lib/profile"
 import type { Language } from "@/lib/translations"
 
 export const dynamic = "force-static"
@@ -12,14 +13,14 @@ const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: s
   fr: {
     title: "Mohamed Dhia Arfa, Designer Graphique, Formateur & Développeur Web · Tunisie",
     description:
-      "Designer, formateur certifié et développeur web en Tunisie : identité de marque avec Zia Studio, formations jeunesse (1120+ formés), sites web soignés. Appel gratuit.",
+      `Designer, formateur certifié et développeur web en Tunisie : identité de marque avec Zia Studio, formations jeunesse (${profileStats.participantsTrained.value}+ formés), sites web soignés. Appel gratuit.`,
     ogTitle: "Mohamed Dhia Arfa, Designer, Formateur & Développeur",
     ogDescription: "Designer graphique, formateur certifié et développeur web basé en Tunisie.",
   },
   ar: {
     title: "محمد ضياء عرفة، مصمم جرافيك ومدرّب ومطوّر ويب · تونس",
     description:
-      "مصمم ومدرّب معتمد ومطوّر ويب في تونس: هوية العلامات التجارية مع Zia Studio، تدريبات للشباب (أكثر من 1120 مشاركًا)، ومواقع ويب بتصميم مدروس. احجز مكالمة مجانية.",
+      `مصمم ومدرّب معتمد ومطوّر ويب في تونس: هوية العلامات التجارية مع Zia Studio، تدريبات للشباب (أكثر من ${profileStats.participantsTrained.value} مشاركًا)، ومواقع ويب بتصميم مدروس. احجز مكالمة مجانية.`,
     ogTitle: "محمد ضياء عرفة، مصمم ومدرّب ومطوّر",
     ogDescription: "مصمم جرافيك ومدرّب معتمد ومطوّر ويب مقيم في تونس.",
   },

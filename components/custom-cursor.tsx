@@ -28,6 +28,9 @@ export default function CustomCursor() {
     if (prefersReducedMotion) return
     const fine = window.matchMedia("(pointer: fine)").matches
     if (!fine) return
+    // Deliberate mount-time check: pointer type is browser-only, and the
+    // cursor must not render on the server or on touch devices.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setEnabled(true)
 
     const move = (e: MouseEvent) => {

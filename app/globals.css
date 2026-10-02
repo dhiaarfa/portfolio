@@ -113,7 +113,23 @@ html.theme-transition a {
   }
 }
 
-/* ─── UNIFIED ACCENT (single green across site) ─── */
+/* ─── UNIFIED ACCENT (single green across site) ───
+ * Color roles (master roadmap 8, Oct 2026) -- one green, three jobs, kept
+ * apart by TREATMENT so green doesn't read as "everything":
+ *   1. ACTION  -- solid green fill (.btn-green, .bg-accent, .bg-accent-gradient
+ *      on buttons). Only for the primary thing to click: Book a call, Start a
+ *      project, Book a workshop. One per view where possible; secondary
+ *      actions use .btn-outline (neutral border), never a second fill.
+ *   2. ACCENT  -- green text or a faint tint (.text-accent, .bg-accent-subtle,
+ *      eyebrow labels, icon tiles, the first tag chip, text links). Marks
+ *      emphasis and "this is ours"; not a button.
+ *   3. STATUS  -- small green dot / pill for live state ("Available for
+ *      projects"). Tiny, never a surface.
+ * Everything else is NEUTRAL (slate / --muted): body text, borders, meta
+ * lines, and labels like the project cards' "Client" badge. Category hues
+ * (pink = design, amber = training, blue = dev) are only for insight and
+ * freebie category badges -- see color-role-system-sep2026.md -- and never
+ * for buttons. */
 :root { --site-accent: #16a34a; }
 .dark { --site-accent: #22c55e; }
 
@@ -606,7 +622,7 @@ html.custom-cursor-active * {
    broken, not stylish -- so Arabic gets Cairo upright instead of inheriting
    whatever generic serif the browser happens to pick. */
 .font-accent-italic {
-  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+  font-family: var(--font-fraunces), 'Fraunces', Georgia, 'Times New Roman', serif;
   font-style: italic;
 }
 
