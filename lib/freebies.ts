@@ -120,6 +120,64 @@ export const freebieCatalog: Freebie[] = [
     delivery: { kind: "pdf", path: "/freebies/trainer-checklist.pdf" },
     published: true,
   },
+  // Oct 2026: four new freebies built from the positioning research
+  // (scripts/freebies/*.html -> scripts/build-freebie-pdfs.mjs).
+  {
+    id: "brand-consistency-scorecard",
+    category: "design",
+    emoji: "🎯",
+    title: "Brand Consistency Scorecard",
+    description:
+      "Score your brand on 20 checks in 10 minutes and see exactly where it stops looking like one brand, from Instagram to packaging.",
+    format: "PDF · 2 pages",
+    benefit: "Self-audit in 10 minutes",
+    color: "pink",
+    bgImage: "/images/insights/brand-guidelines-that-get-used.jpg",
+    delivery: { kind: "pdf", path: "/freebies/brand-consistency-scorecard.pdf" },
+    published: true,
+  },
+  {
+    id: "tunisian-marketing-calendar-2027",
+    category: "design",
+    emoji: "📅",
+    title: "Tunisian Marketing Calendar 2027",
+    description:
+      "Every date and season that moves attention in Tunisia, month by month, with a content idea for each: Ramadan, Eid, summer, harvests, rentrée.",
+    format: "PDF · 3 pages",
+    benefit: "Plan the year in one sitting",
+    color: "pink",
+    bgImage: "/images/insights/social-media-visual-consistency.jpg",
+    delivery: { kind: "pdf", path: "/freebies/tunisian-marketing-calendar-2027.pdf" },
+    published: true,
+  },
+  {
+    id: "training-evaluation-report-pack",
+    category: "training",
+    emoji: "📊",
+    title: "Training Evaluation & Report Pack",
+    description:
+      "Pre/post self-assessment, participant feedback form and a donor-ready training report template: turn a workshop into results you can report.",
+    format: "PDF · 4 pages",
+    benefit: "Results funders can read",
+    color: "amber",
+    bgImage: "/images/trainer/moment-workshop.jpg",
+    delivery: { kind: "pdf", path: "/freebies/training-evaluation-report-pack.pdf" },
+    published: true,
+  },
+  {
+    id: "website-content-checklist",
+    category: "development",
+    emoji: "🧭",
+    title: "Website Content Checklist",
+    description:
+      "Outgrown your Facebook page? Everything to prepare before hiring anyone to build your site, including Arabic, French and English pages.",
+    format: "PDF · 2 pages",
+    benefit: "Weeks, not months",
+    color: "blue",
+    bgImage: "/images/insights/web-performance-tunisia-hosting.jpg",
+    delivery: { kind: "pdf", path: "/freebies/website-content-checklist.pdf" },
+    published: true,
+  },
 ]
 
 export function freebieById(id: string): Freebie | null {
