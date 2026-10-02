@@ -172,20 +172,25 @@ export const translations = {
   homeSelectedWorkEyebrow: "Selected work",
   homeSelectedWorkTitle: "Sites, brands & campaigns",
   homeSelectedWorkSubtitle: "Web and design projects, mostly client work. Scroll through the stack.",
-  // Master roadmap 5.1 (Oct 2026). One buyer per pillar, each grounded in
-  // real work on this site: design = cafés (Speranza), travel agencies
-  // (Tafani, TravelTodo), a food brand (Nakkla/BDF); training = NGOs, youth
-  // networks (AIESEC, JCI, Rotaract, IFMSA...) and donor-funded programmes
-  // (USAID/Ma3an, IOM) across Tunisia, Morocco and Qatar; web = startups and
-  // organisations (DigiMyTech, CRIT). "Abroad"/"internationally" reflect
-  // where that work already reaches and where Dhia is growing.
+  // Master roadmap 5.1 (Oct 2026). One buyer + one problem per pillar, from
+  // real work on this site and market research:
+  // - Design: cafés (Speranza), travel (Tafani, TravelTodo), product brands
+  //   (Nakkla/BDF). Tunisian SMEs market mainly on Facebook/Instagram with a
+  //   fragmented look; Dhia's projects all fix consistency across social,
+  //   packaging and print.
+  // - Training: NGOs, youth networks (AIESEC, JCI, IFMSA...) and donor-funded
+  //   programmes (USAID/Ma3an, IOM) in 13 Tunisian regions, Morocco, Qatar.
+  //   NGO terms of reference ask for pre/post assessment and reporting --
+  //   matching his "Report & follow-up" step.
+  // - Web: SMEs typically run on a Facebook page + Messenger; ~80% of
+  //   traffic is mobile; foreign clients value multilingual sites.
   homeWhoIHelpLabel: "Who I help",
   homeWhoIHelpTag1: "Brand & design",
-  homeWhoIHelp1: "Tunisian businesses, from cafés and travel agencies to food brands, that want a brand that looks credible at home and abroad.",
+  homeWhoIHelp1: "Cafés, travel agencies and product brands, in Tunisia and abroad, whose brand needs to look consistent everywhere, from Instagram to packaging.",
   homeWhoIHelpTag2: "Training",
-  homeWhoIHelp2: "NGOs, youth networks and donor-funded programmes, in Tunisia and internationally, that need workshops that actually change behaviour.",
+  homeWhoIHelp2: "NGOs, youth networks and donor-funded programmes, from Tunisia to Morocco and Qatar, that need workshops that change behaviour and results they can report.",
   homeWhoIHelpTag3: "Web",
-  homeWhoIHelp3: "Startups and organisations, in Tunisia or abroad, that need a fast site in Arabic, French and English, designed and built by one person.",
+  homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have outgrown a Facebook page and need a fast, mobile-first site in Arabic, French and English.",
     skillsAbilities: "Skills & Abilities",
     skillsDescription:
       "A comprehensive skill set combining creativity, technology, and communication for impactful results.",
@@ -1268,11 +1273,11 @@ export const translations = {
   homeSelectedWorkSubtitle: "Projets web et design, surtout pour des clients. Faites défiler la pile.",
   homeWhoIHelpLabel: "Pour qui je travaille",
   homeWhoIHelpTag1: "Marque & design",
-  homeWhoIHelp1: "Les entreprises tunisiennes, des cafés et agences de voyage aux marques alimentaires, qui veulent une image crédible ici comme à l'international.",
+  homeWhoIHelp1: "Cafés, agences de voyage et marques de produits, en Tunisie et à l'étranger, dont l'image doit rester cohérente partout, d'Instagram à l'emballage.",
   homeWhoIHelpTag2: "Formation",
-  homeWhoIHelp2: "Les ONG, réseaux jeunesse et programmes financés par des bailleurs, en Tunisie et à l'international, qui veulent des formations qui changent vraiment les comportements.",
+  homeWhoIHelp2: "ONG, réseaux jeunesse et programmes financés par des bailleurs, de la Tunisie au Maroc et au Qatar, qui veulent des formations qui changent les comportements et des résultats mesurables.",
   homeWhoIHelpTag3: "Web",
-  homeWhoIHelp3: "Les startups et organisations, en Tunisie ou à l'étranger, qui veulent un site rapide en arabe, français et anglais, conçu et développé par une seule personne.",
+  homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui ont dépassé la simple page Facebook et veulent un site rapide, pensé mobile, en arabe, français et anglais.",
     skillsAbilities: "Compétences & Capacités",
     skillsDescription:
       "Un ensemble de compétences complet combinant créativité, technologie et communication pour des résultats impactants.",
@@ -2338,11 +2343,11 @@ export const translations = {
   homeSelectedWorkSubtitle: "مشاريع ويب وتصميم، أغلبها لعملاء. مرر عبر القائمة لاستكشافها.",
   homeWhoIHelpLabel: "من أساعد",
   homeWhoIHelpTag1: "الهوية والتصميم",
-  homeWhoIHelp1: "الشركات التونسية، من المقاهي ووكالات الأسفار إلى العلامات الغذائية، التي تريد صورة موثوقة محليًا ودوليًا.",
+  homeWhoIHelp1: "المقاهي ووكالات الأسفار وعلامات المنتجات، في تونس وخارجها، التي تحتاج إلى صورة متناسقة في كل مكان، من إنستغرام إلى التغليف.",
   homeWhoIHelpTag2: "التدريب",
-  homeWhoIHelp2: "الجمعيات وشبكات الشباب والبرامج الممولة من المانحين، في تونس وخارجها، التي تحتاج إلى تدريبات تُحدث تغييرًا فعليًا في السلوك.",
+  homeWhoIHelp2: "الجمعيات وشبكات الشباب والبرامج الممولة من المانحين، من تونس إلى المغرب وقطر، التي تحتاج إلى تدريبات تغيّر السلوك ونتائج قابلة للقياس.",
   homeWhoIHelpTag3: "الويب",
-  homeWhoIHelp3: "الشركات الناشئة والمؤسسات، في تونس أو خارجها، التي تحتاج إلى موقع سريع بالعربية والفرنسية والإنجليزية، يصممه ويبنيه شخص واحد.",
+  homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارجها، التي تجاوزت صفحة فيسبوك وتحتاج إلى موقع سريع مصمم للهاتف أولًا، بالعربية والفرنسية والإنجليزية.",
     skillsAbilities: "المهارات والقدرات",
     skillsDescription:
       "مجموعة مهارات شاملة تجمع بين الإبداع والتكنولوجيا والاتصال للحصول على نتائج مؤثرة.",
