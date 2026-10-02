@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Next.js + Supabase Starter Checklist · Mohamed Dhia Arfa</title><link rel="stylesheet" href="_base.css">
+<style>.check li { padding-top: 2px; padding-bottom: 2px; } h2 { margin-top: 12px; } code { font-family: ui-monospace, Consolas, monospace; font-size: 8.8pt; background: #f5f5f5; border-radius: 4px; padding: 0 4px; }</style>
+</head>
+<body>
+<div class="cover">
+  <div class="bar"></div>
+  <div class="kicker">Free checklist · Web development</div>
+  <h1>Next.js + Supabase Starter Checklist</h1>
+  <p>The order I set up a new client project in: auth, keys, database policies, then deployment. Tick it top to bottom and you skip the usual setup mistakes.</p>
+  <div class="by">By <b>Mohamed Dhia Arfa</b> · dhia-portfolio.com</div>
+</div>
+
+<div class="grid-2">
+<div>
+<h2>1. Project &amp; keys</h2>
+<ul class="check">
+  <li>Create the Supabase project in the region closest to your users</li>
+  <li>Copy the project URL and <code>anon</code> key into <code>.env.local</code></li>
+  <li>Only values meant for the browser get the <code>NEXT_PUBLIC_</code> prefix</li>
+  <li>The <code>service_role</code> key stays server-side only: never in client code, never <code>NEXT_PUBLIC_</code></li>
+  <li><code>.env*</code> is in <code>.gitignore</code>; a <code>.env.example</code> lists the names without values</li>
+</ul>
+
+<h2>2. Auth</h2>
+<ul class="check">
+  <li>Use <code>@supabase/ssr</code> for App Router (cookie-based sessions)</li>
+  <li>Separate browser and server clients</li>
+  <li>Middleware refreshes the session on each request</li>
+  <li>Site URL and redirect URLs set for localhost, preview and production</li>
+  <li>Email templates (confirm, reset) customised and in the user's language</li>
+  <li>Protected routes check the user on the server, not only in the UI</li>
+</ul>
+
+<h2>3. Database</h2>
+<ul class="check">
+  <li>Schema changes as migrations (Supabase CLI), committed to git</li>
+  <li>Row Level Security <b>enabled on every table</b></li>
+  <li>Policies written per action: select, insert, update, delete</li>
+  <li>Policies tested as an anonymous user and as a second user</li>
+  <li>Indexes on columns used in filters and joins</li>
+  <li>TypeScript types generated from the schema and regenerated after each migration</li>
+</ul>
+</div>
+<div>
+<h2>4. Storage</h2>
+<ul class="check">
+  <li>Buckets private by default; public only for truly public assets</li>
+  <li>Storage policies mirror the table policies</li>
+  <li>Upload size and file type limits set</li>
+  <li>Images served resized (Next.js Image or Supabase transforms)</li>
+</ul>
+
+<h2>5. Server logic</h2>
+<ul class="check">
+  <li>Mutations in Server Actions or Route Handlers, with input validation</li>
+  <li>Rate limiting on public forms and any AI or email endpoint</li>
+  <li>Errors logged server-side; users see a friendly message</li>
+  <li>No secrets in error messages or client bundles</li>
+</ul>
+
+<h2>6. Before launch</h2>
+<ul class="check">
+  <li>Environment variables set in Vercel for preview and production</li>
+  <li>Metadata, Open Graph image, sitemap and robots.txt in place</li>
+  <li>Lighthouse run on a mid-range phone profile</li>
+  <li>Arabic / RTL layouts checked if the site is multilingual</li>
+  <li>Backups and data export plan agreed with the client</li>
+  <li>Free-tier limits understood (inactive free projects can be paused)</li>
+  <li>Client has owner access to the domain, Vercel and Supabase</li>
+</ul>
+</div>
+</div>
+
+<div class="tip small"><b>The one mistake that matters most:</b> a table without Row Level Security is readable by anyone holding your public anon key, which ships in every browser. Enable RLS before inserting real data.</div>
+<footer class="cta"><span>Need a fast, secure site or app built? <b>Book a free 30-min call</b></span><span>dhia-portfolio.com</span></footer>
+</body>
+</html>

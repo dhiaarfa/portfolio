@@ -26,7 +26,7 @@ export const freebieCatalog: Freebie[] = [
     title: "Brand Brief Template",
     description:
       "The exact template I use with every new client to capture their brand vision, audience, and goals before starting any design work.",
-    format: "PDF · 2 pages",
+    format: "PDF · 3 pages",
     benefit: "Saves 2 hours per project",
     color: "pink",
     bgImage: "/images/freebies/brand-brief.jpg",
@@ -39,9 +39,9 @@ export const freebieCatalog: Freebie[] = [
     emoji: "🎨",
     title: "Color Psychology Guide",
     description:
-      "How to choose brand colors that actually communicate the right emotion. Includes 12 ready-made palettes used in real projects.",
-    format: "PDF · 8 pages",
-    benefit: `Used in ${formatStat("designProjects")} projects`,
+      "How to choose brand colors that set the right expectation, plus 12 ready-to-use palettes with HEX codes.",
+    format: "PDF · 5 pages",
+    benefit: "12 palettes with HEX codes",
     color: "pink",
     bgImage: "/images/freebies/color-psychology.jpg",
     delivery: { kind: "pdf", path: "/freebies/color-psychology-guide.pdf" },
@@ -84,8 +84,8 @@ export const freebieCatalog: Freebie[] = [
     emoji: "🤝",
     title: "20 Youth Icebreaker Activities",
     description:
-      "Tested icebreakers and energizers for groups of 10–100 participants. Arabic, French, and English versions.",
-    format: "PDF · 12 pages",
+      "20 icebreakers, energizers and team challenges for groups of 10–100, with steps and debrief tips. Names in Arabic, French and English.",
+    format: "PDF · 4 pages",
     benefit: `Tested with ${formatStat("participantsTrained")} youth`,
     color: "amber",
     bgImage: "/images/freebies/icebreakers.jpg",
@@ -113,7 +113,7 @@ export const freebieCatalog: Freebie[] = [
     title: "Pre-Training Checklist",
     description:
       "The 30-point checklist I go through before every training session to guarantee smooth delivery.",
-    format: "PDF · 1 page",
+    format: "PDF · 2 pages",
     benefit: "Never forget anything",
     color: "amber",
     bgImage: "/images/freebies/checklist.jpg",
