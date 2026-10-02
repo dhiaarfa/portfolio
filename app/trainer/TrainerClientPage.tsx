@@ -21,6 +21,15 @@ import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
 import { formatStat, trainingMilestones } from "@/lib/profile"
 import TrainerImpactWall from "@/components/trainer-impact-wall"
+import SectionIndex from "@/components/section-index"
+
+const SECTION_INDEX = [
+  { id: "trainer-impact", labelKey: "secImpact" },
+  { id: "training-offers", labelKey: "secOffers" },
+  { id: "trainer-process", labelKey: "secProcess" },
+  { id: "journey", labelKey: "secJourney" },
+  { id: "contact-form", labelKey: "secContact" },
+]
 
 // One real photo per timeline era (Dhia's own event/training photos,
 // already used elsewhere on the site), for the compact photo-led timeline
@@ -43,6 +52,7 @@ export default function TrainerClientPage() {
   return (
     <div className="w-full min-h-screen bg-background">
       <Navbar />
+      <SectionIndex items={SECTION_INDEX} />
 
       <main id="main-content" className="w-full pt-0">
         {/* 1. Hero, who + outcome + dual CTAs */}

@@ -40,7 +40,9 @@ function StaticRole() {
   return (
     // font-accent-italic goes on each span, not the <p>: a global span rule
     // in globals.css resets span font-family, so it won't inherit.
-    <p className="flex flex-wrap gap-x-2 text-lg sm:text-xl font-medium text-accent">
+    // Off-white, not green (inspiration brief, step 1): the primary button
+    // is the hero's only green element.
+    <p className="flex flex-wrap gap-x-2 text-lg sm:text-xl font-medium text-slate-700 dark:text-slate-200">
       {roles.map((role, i) => (
         <span key={role} className="whitespace-nowrap font-accent-italic">
           {i > 0 && <span aria-hidden className="me-2">·</span>}
@@ -97,7 +99,7 @@ function HeroAskBar() {
       <button
         type="submit"
         aria-label="Send"
-        className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-white transition-transform hover:scale-105 disabled:opacity-40"
+        className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 transition-transform hover:scale-105 disabled:opacity-40"
         disabled={!value.trim()}
       >
         <Send className="h-3 w-3" />
@@ -169,14 +171,16 @@ export default function HomePageClient() {
               forcing dark regardless of theme. */}
           <p className="text-base sm:text-lg font-medium text-slate-500 dark:text-slate-400 mb-2">
             {t("helloGreeting")}{" "}
-            <span className="text-accent font-semibold">Dhia</span>
+            <span className="text-slate-900 dark:text-white font-semibold">Dhia</span>
           </p>
           <h1 className="h1-hero-tagline text-slate-900 dark:text-white mb-2 transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]">
             {/* Dhia's ask: a real line break after "build." rather than
                 whatever the browser's own wrap happens to land on. */}
             {t("homeHeroTaglinePart1")}
             <br />
-            {t("homeHeroTaglinePart2")}
+            {/* Two-tone headline (inspiration brief, step 2): the claim in
+                full strength, the context muted, so the eye reads it first. */}
+            <span className="text-slate-500 dark:text-slate-400">{t("homeHeroTaglinePart2")}</span>
           </h1>
           <StaticRole />
           {/* Implementation-prompts pass (Sep 2026), P2 "Kill duplicate
@@ -215,6 +219,19 @@ export default function HomePageClient() {
               not just the footer's. (The comment had survived a later
               refactor that dropped the line itself; restored Oct 2026.) */}
           <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{t("footerCallShort")}</p>
+
+          {/* Proof chips (inspiration brief, step 4): three facts inside the
+              first screen; the full stats strip further down stays. */}
+          <ul className="mt-4 flex flex-wrap gap-2" aria-label="Highlights">
+            {["heroProof1", "heroProof2", "heroProof3"].map((key) => (
+              <li
+                key={key}
+                className="rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-xs font-medium text-slate-600 backdrop-blur-sm dark:border-border dark:bg-card/60 dark:text-slate-300"
+              >
+                {t(key)}
+              </li>
+            ))}
+          </ul>
 
           <div className="flex items-center gap-2 mt-4">
             {[

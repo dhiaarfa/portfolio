@@ -31,10 +31,13 @@ const shortNavLinks = [
 ] as const
 
 export default function Navbar() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  // /fr/... and /ar/... are the same pages: compare without the locale
+  // prefix so the active link and the trainer CTA label work there too.
+  const basePath = pathname.replace(/^\/(fr|ar)(?=\/|$)/, "") || "/"
   const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
@@ -150,7 +153,12 @@ export default function Navbar() {
           middle track -- buttons floating mid-bar with a dead gap on the
           right on phones and tablets. Below xl it's now a plain flex row:
           avatar left, everything else packed to the right edge. */}
-      <div className="max-w-[100rem] w-full mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20 flex items-center justify-between gap-2 xl:grid xl:grid-cols-[minmax(0,0.7fr)_auto_minmax(0,1.3fr)] xl:gap-3">
+      {/* Oct 2026: side tracks are content-sized (auto) and the nav pill is
+          centred in the space between them. With minmax(0, fr) tracks the
+          controls column could shrink below its content, so in French (longer
+          labels) the search/CV/email buttons slid over "Articles" at
+          1280-1600px. */}
+      <div className="max-w-[100rem] w-full mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20 flex items-center justify-between gap-2 xl:grid xl:grid-cols-[auto_minmax(0,1fr)_auto] xl:gap-3">
 
           <motion.div
             className="shrink-0 min-w-0 justify-self-start"
@@ -171,8 +179,10 @@ export default function Navbar() {
                 <Image src="/images/photos/dhia-main.png" alt="Mohamed Dhia" width={36} height={36} className="object-cover w-full h-full" priority />
               </div>
               {/* Name + tagline from lg: below that the bar needs the room
-                  for the compact page links. */}
-              <div className="hidden lg:block leading-tight shrink-0">
+                  for the compact page links. French nav labels are longer,
+                  so from xl to 2xl (1280-1535px) the avatar stands alone
+                  there; otherwise the nav pill ran over the name. */}
+              <div className={`hidden lg:block leading-tight shrink-0 ${language === "fr" ? "xl:max-2xl:hidden" : ""}`}>
                 <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none whitespace-nowrap">Dhia</p>
                 <p className="text-[10px] text-slate-400 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5 whitespace-nowrap">{t("navTagline")}</p>
               </div>
@@ -187,7 +197,7 @@ export default function Navbar() {
               these links and controls in the 1024-1279 gap. */}
           <nav className="hidden xl:flex justify-self-center items-center gap-0.5 bg-slate-100/90 dark:bg-muted/70 backdrop-blur-sm rounded-2xl px-1.5 py-1 border border-slate-200/60 dark:border-border/60">
             {navLinks.map(link => {
-              const active = pathname === link.href
+              const active = basePath === link.href
               return (
                 <Link key={link.href} href={link.href}
                   className="relative px-2 py-1.5 rounded-xl text-[12px] xl:text-[13px] font-medium whitespace-nowrap transition-colors duration-150 select-none">
@@ -231,7 +241,7 @@ export default function Navbar() {
                 until the full nav pill takes over at xl. */}
             <nav className="xl:hidden flex items-center gap-0.5 me-1 bg-slate-100/90 dark:bg-muted/70 backdrop-blur-sm rounded-2xl px-1 py-1 border border-slate-200/60 dark:border-border/60">
               {shortNavLinks.map((link) => {
-                const active = pathname === link.href
+                const active = basePath === link.href
                 return (
                   <Link
                     key={link.href}
@@ -278,7 +288,7 @@ export default function Navbar() {
             >
               <WhatsAppIcon size={17} />
             </a>
-            <div className="hidden min-[1600px]:contents">
+            <div className="hidden min-[1900px]:contents">
               <CopyEmailButton />
               <ResumeDropdown />
             </div>
@@ -308,7 +318,7 @@ export default function Navbar() {
               className="hidden md:inline-flex btn-green text-xs px-3.5 py-2 !rounded-xl !gap-1.5 whitespace-nowrap"
             >
               <Calendar className="w-3.5 h-3.5" />
-              {pathname === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
+              {basePath === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
             </a>
 
             {/* w-9 h-9 to match every other control in this cluster (icon
@@ -345,7 +355,7 @@ export default function Navbar() {
           >
             <nav className="flex flex-col gap-1 px-4 py-4 flex-1">
               {navLinks.map((link) => {
-                const active = pathname === link.href
+                const active = basePath === link.href
                 return (
                   <Link
                     key={link.href}

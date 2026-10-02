@@ -18,9 +18,19 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
 import { useLanguage } from "@/components/language-provider"
 
+// Real phone-width captures (390px viewport, Oct 2026) of each live client
+// site, for the Desktop / Mobile toggle on its card (inspiration brief,
+// step 8): proves the mobile-first promise instead of only stating it.
+const MOBILE_PREVIEWS: Record<string, string> = {
+  digimytch: "/images/mobile-previews/digimytch.png",
+  "crit-tunisie": "/images/mobile-previews/crit-tunisie.png",
+  "best-dates-fruits": "/images/mobile-previews/best-dates-fruits.png",
+}
+
 export default function DeveloperPageClient() {
   const { t, language } = useLanguage()
   const projects = devWorkProjects()
+  const [mobileView, setMobileView] = useState<Record<string, boolean>>({})
   // Which project's full screenshot pack is open in the lightbox (by slug),
   // or null when closed, one Dialog reused for every card instead of one
   // per project.
@@ -169,6 +179,8 @@ export default function DeveloperPageClient() {
                 {projects.map((project, i) => {
                   const lw = localizedWork(project, language)
                   const theme = devCardTheme[project.slug]
+                  const mobileSrc = MOBILE_PREVIEWS[project.slug]
+                  const showMobile = !!mobileSrc && !!mobileView[project.slug]
                   return (
                   <motion.article
                     key={project.slug}
@@ -186,6 +198,27 @@ export default function DeveloperPageClient() {
                       <span className="absolute top-4 right-5 z-10 font-mono text-[12px] font-semibold text-white/40 tracking-wider">
                         {String(i + 1).padStart(2, "0")}
                       </span>
+                      {mobileSrc && (
+                        <div
+                          role="group"
+                          aria-label={t("devPreviewLabel")}
+                          className="absolute top-3 left-4 z-20 inline-flex rounded-full bg-black/30 p-0.5 text-[11px] font-semibold backdrop-blur-sm"
+                        >
+                          {[false, true].map((mobile) => (
+                            <button
+                              key={String(mobile)}
+                              type="button"
+                              aria-pressed={showMobile === mobile}
+                              onClick={() => setMobileView((v) => ({ ...v, [project.slug]: mobile }))}
+                              className={`rounded-full px-2.5 py-1 transition-colors ${
+                                showMobile === mobile ? "bg-white text-slate-900" : "text-white/70 hover:text-white"
+                              }`}
+                            >
+                              {mobile ? t("devPreviewMobile") : t("devPreviewDesktop")}
+                            </button>
+                          ))}
+                        </div>
+                      )}
 
                       {/* Peeking screenshot "sheet(s)", sized by a fixed HEIGHT with
                           width left to the image's own aspect ratio (not the other
@@ -200,8 +233,13 @@ export default function DeveloperPageClient() {
                         type="button"
                         onClick={() => setGalleryOpen(project.slug)}
                         aria-label={t("devViewScreensAriaLabel", { count: theme?.screenshots?.length ?? 1, title: project.title })}
-                        className="group/gallery relative flex w-full justify-center items-end gap-3 -mt-20 sm:-mt-24 mb-5 cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        className={`group/gallery relative flex w-full justify-center items-end gap-3 ${showMobile ? "-mt-4" : "-mt-20 sm:-mt-24"} mb-5 cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
                       >
+                        {showMobile ? (
+                          <div className="relative z-10 h-48 sm:h-56 shrink-0 overflow-hidden rounded-[1.25rem] border-[5px] border-slate-900 bg-slate-900 shadow-2xl ring-1 ring-white/10" style={{ aspectRatio: 390 / 844 }}>
+                            <Image src={mobileSrc} alt={`${project.title}, mobile view`} fill className="object-cover object-top" sizes="130px" />
+                          </div>
+                        ) : (<>
                         {theme?.secondaryImage && (
                           <div
                             className="relative h-24 sm:h-32 shrink-0 -rotate-[10deg] translate-y-2 rounded-lg overflow-hidden shadow-2xl ring-1 ring-black/20 transition-transform duration-500 group-hover/gallery:-rotate-[16deg] group-hover/gallery:-translate-x-1 group-hover/gallery:-translate-y-1 hidden sm:block"
@@ -231,6 +269,7 @@ export default function DeveloperPageClient() {
                             <Image src={theme.tertiaryImage} alt="" fill className="object-cover object-top" sizes="280px" />
                           </div>
                         )}
+                        </>)}
                         <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover/gallery:opacity-100 group-focus-visible/gallery:opacity-100">
                           <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-bold text-slate-900 shadow-xl">
                             <Images className="h-3.5 w-3.5" />

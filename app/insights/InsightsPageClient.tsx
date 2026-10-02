@@ -88,6 +88,9 @@ export default function InsightsPageClient() {
                   }`}
                 >
                   {f.label}
+                  <span className="ms-1.5 tabular-nums opacity-60">
+                    {f.id === "all" ? articles.length : articles.filter((a) => a.category === f.id).length}
+                  </span>
                 </button>
               ))}
             </div>

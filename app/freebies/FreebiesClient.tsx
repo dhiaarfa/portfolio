@@ -216,6 +216,9 @@ function FreebiesClientInner() {
                 }`}
               >
                 {categoryLabel(cat)}
+                <span className="ms-1.5 tabular-nums opacity-60">
+                  {cat === "all" ? freebies.length : freebies.filter((f) => f.category === cat).length}
+                </span>
               </button>
             ))}
           </div>

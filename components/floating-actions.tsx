@@ -13,7 +13,9 @@ type Msg = { role: "user" | "assistant"; content: string }
 const NUDGE_SHOWN_KEY = "dhia-nudges-shown"
 const NUDGE_VISIBLE_MS = 14000
 const NUDGE_GAP_MS = 28000
-const FIRST_NUDGE_MS = 5000
+// 18 s, not 5: at 5 s the welcome toast landed on top of the hero copy
+// during the first read (inspiration brief, step 3).
+const FIRST_NUDGE_MS = 18000
 
 function readShownIds(): Set<string> {
   if (typeof window === "undefined") return new Set()

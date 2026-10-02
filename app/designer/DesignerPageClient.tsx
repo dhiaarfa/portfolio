@@ -14,8 +14,17 @@ import ContactForm from "@/components/contact-form"
 import ToolsStackSection from "@/components/tools-stack-section"
 import MarketingSection from "@/components/marketing-section"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
+import SectionIndex from "@/components/section-index"
 import { useState } from "react"
 import { useLanguage } from "@/components/language-provider"
+
+const SECTION_INDEX = [
+  { id: "case-studies", labelKey: "secCaseStudies" },
+  { id: "gallery", labelKey: "secGallery" },
+  { id: "services", labelKey: "secServices" },
+  { id: "process", labelKey: "secProcess" },
+  { id: "contact-form", labelKey: "secContact" },
+]
 
 /** Real design clients, all with case studies or gallery work on this page
  *  (lib/work.ts, data/projects.ts). Brand names are not translated. */
@@ -86,6 +95,7 @@ export default function DesignerPageClient() {
   return (
     <div className="w-full min-h-screen bg-background">
       <Navbar />
+      <SectionIndex items={SECTION_INDEX} />
 
       <main id="main-content" className="w-full pt-0">
         {/* 1. Hero, positioning + work visual */}
@@ -216,8 +226,18 @@ export default function DesignerPageClient() {
                       <Image src={project.cardImage} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
                     </div>
                     <div className="space-y-2 p-5">
-                      <span className="text-xs font-semibold uppercase tracking-wide text-accent">{t(categoryKey(project.category))}</span>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-xs font-semibold uppercase tracking-wide text-accent">{t(categoryKey(project.category))}</span>
+                        {/* Status tag (inspiration brief, step 11, after
+                            sushantvohra.com): real client work vs concept. */}
+                        <span className="rounded-full border border-border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                          {project.concept ? t("galleryConceptBadge") : t("caseClientBadge")}
+                        </span>
+                      </div>
                       <h3 className="text-lg font-bold">{project.title}</h3>
+                      {/* Outcome first, deliverable second (step 10, after
+                          NOSIGNER's "HOW" captions). */}
+                      <p className="text-sm font-medium text-foreground">{lw.outcome}</p>
                       <p className="text-sm text-muted-foreground line-clamp-2">{lw.excerpt}</p>
                       <p className="text-xs text-muted-foreground">{lw.role} · {lw.timeline}</p>
                       <span className="inline-flex items-center gap-1 pt-1 text-sm font-semibold text-accent">
@@ -249,10 +269,17 @@ export default function DesignerPageClient() {
                   }`}
                 >
                   {t(categoryLabelKeys[cat])}
+                  {/* Counts on filters (inspiration brief, step 5). */}
+                  <span className="ms-1.5 tabular-nums opacity-60">
+                    {cat === "All" ? curatedGallery.length : curatedGallery.filter((p) => p.category === cat).length}
+                  </span>
                 </button>
               ))}
             </div>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {/* Masonry (inspiration brief, step 6): each piece keeps its own
+                proportions (tall packaging, wide banners) instead of being
+                cropped to identical squares. */}
+            <div className="columns-2 gap-3 sm:columns-3 lg:columns-4">
               {filteredGallery.map((project) => {
                 const href = project.workSlug ? `/work/${project.workSlug}` : project.externalUrl ?? siteConfig.behance
                 const internal = !!project.workSlug
@@ -265,9 +292,9 @@ export default function DesignerPageClient() {
                   <Wrapper
                     key={project.title}
                     {...linkProps}
-                    className="group relative aspect-square overflow-hidden rounded-2xl bg-muted"
+                    className="group relative mb-3 block break-inside-avoid overflow-hidden rounded-2xl bg-muted"
                   >
-                    <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="25vw" />
+                    <Image src={project.image} alt={project.title} width={0} height={0} className="h-auto w-full transition-transform duration-500 group-hover:scale-105" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw" />
                     <div className="absolute inset-0 flex items-end bg-slate-900/0 p-3 transition-all group-hover:bg-slate-900/70">
                       {project.concept && (
                         // Neutral status tag ("concept" vs. a delivered
@@ -297,7 +324,7 @@ export default function DesignerPageClient() {
         <MarketingSection />
 
         {/* 6. Services / packages */}
-        <section className="section-compact w-full px-4 md:px-8">
+        <section id="services" className="section-compact w-full px-4 md:px-8">
           <div className="mx-auto max-w-5xl">
             <p className="label mb-2">{t("designerServicesLabel")}</p>
             <h2 className="mb-10 text-3xl font-bold md:text-4xl">{t("designerServicesHeading")}</h2>
@@ -325,7 +352,7 @@ export default function DesignerPageClient() {
         </section>
 
         {/* 7. How we work -- the one process section (the separate "design philosophy" block, also numbered as 4 steps, was dropped as a duplicate) */}
-        <section className="section-compact w-full bg-muted/30 px-4 md:px-8 dark:bg-background/50">
+        <section id="process" className="section-compact w-full bg-muted/30 px-4 md:px-8 dark:bg-background/50">
           <div className="mx-auto max-w-5xl">
             {/* Dhia's "no photos in designer page" fix (Oct 2026): this was
                 the only page with zero real photos of him -- a portrait

@@ -12,7 +12,7 @@ export default function TrainerHowWeWorkSection() {
   const lang = language === "fr" ? "fr" : language === "ar" ? "ar" : "en"
 
   return (
-    <section className="w-full section-compact px-4 md:px-8 bg-muted/30 dark:bg-background/50">
+    <section id="trainer-process" className="w-full section-compact px-4 md:px-8 bg-muted/30 dark:bg-background/50">
       <div className="mx-auto max-w-5xl">
         {/* Charte-graphique pass (Oct 2026): a real facilitation photo now
             backs this heading instead of sitting in the old forced "In the
