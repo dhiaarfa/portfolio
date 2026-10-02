@@ -12,14 +12,14 @@ const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: s
   fr: {
     title: "Mohamed Dhia Arfa, Designer Graphique, Formateur & Développeur Web · Tunisie",
     description:
-      "Créatif multidisciplinaire basé en Tunisie. Design de marque avec Zia Studio, formation en développement des jeunes (1120+ participants) et développement web Next.js. Réservez une consultation gratuite.",
+      "Designer, formateur certifié et développeur web en Tunisie : identité de marque avec Zia Studio, formations jeunesse (1120+ formés), sites web soignés. Appel gratuit.",
     ogTitle: "Mohamed Dhia Arfa, Designer, Formateur & Développeur",
     ogDescription: "Designer graphique, formateur certifié et développeur web basé en Tunisie.",
   },
   ar: {
     title: "محمد ضياء عرفة، مصمم جرافيك ومدرّب ومطوّر ويب · تونس",
     description:
-      "مبدع متعدد التخصصات مقيم في تونس. تصميم العلامات التجارية عبر Zia Studio، وتدريب في تنمية الشباب (أكثر من 1120 مشاركًا)، وتطوير الويب باستخدام Next.js. احجز استشارة مجانية.",
+      "مصمم ومدرّب معتمد ومطوّر ويب في تونس: هوية العلامات التجارية مع Zia Studio، تدريبات للشباب (أكثر من 1120 مشاركًا)، ومواقع ويب بتصميم مدروس. احجز مكالمة مجانية.",
     ogTitle: "محمد ضياء عرفة، مصمم ومدرّب ومطوّر",
     ogDescription: "مصمم جرافيك ومدرّب معتمد ومطوّر ويب مقيم في تونس.",
   },

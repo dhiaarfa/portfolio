@@ -95,7 +95,7 @@ export default function NewsletterSection() {
               placeholder="you@email.com"
               required
               disabled={status === "loading"}
-              className="flex-1 px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent text-sm"
+              className="flex-1 px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent focus-visible:ring-2 focus-visible:ring-accent/40 text-sm"
             />
             <button
               type="submit"

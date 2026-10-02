@@ -198,21 +198,29 @@ export default function RootLayout({
               "@type": "Person",
               name: "Mohamed Dhia Arfa",
               alternateName: "Dhia Arfa",
-              jobTitle: "Designer, Trainer & Developer",
+              jobTitle: ["Graphic Designer", "Certified Trainer", "Web Developer"],
               url: "https://www.dhia-portfolio.com",
               image: "https://www.dhia-portfolio.com/images/photos/dhia-og-image.png",
               email: "mohameddhiaarfa@gmail.com",
               telephone: "+216-53-580-272",
+              // Master roadmap 4.3 (Oct 2026): all four confirmed by Dhia as
+              // his real public profiles (Instagram is the Zia Studio account,
+              // linked here at his request).
               sameAs: [
                 "https://www.linkedin.com/in/dhia-/",
-                "https://behance.net/dhiaa",
+                "https://www.behance.net/dhiaa",
                 "https://github.com/dhiaarfa",
+                "https://www.instagram.com/zia.studioo/",
               ],
+              // addressLocality used to be "Tunisia" -- a country, not a
+              // locality. Country alone is accurate.
               address: {
                 "@type": "PostalAddress",
                 addressCountry: "TN",
-                addressLocality: "Tunisia",
               },
+              // Zia Studio is his own design brand, not a separate employer,
+              // so `brand` (a valid Person property) rather than `worksFor`.
+              brand: { "@type": "Brand", name: "Zia Studio", url: "https://www.dhia-portfolio.com/designer" },
               // Expanded Sep 30 with real technologies/fields already used
               // elsewhere on the site (lib/work.ts tools, /developer,
               // /designer) -- entity/topic breadth for search, not just
@@ -287,12 +295,16 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Brand",
-              name: "Zia",
+              // The site calls it "Zia Studio" everywhere visible; "Zia" kept
+              // as the alternate name.
+              name: "Zia Studio",
+              alternateName: "Zia",
               slogan: "Design practice of Mohamed Dhia Arfa",
               url: "https://www.dhia-portfolio.com/designer",
               sameAs: [
-                "https://www.linkedin.com/in/dhia-/",
-                "https://behance.net/dhiaa",
+                "https://www.instagram.com/zia.studioo/",
+                "https://www.linkedin.com/company/104318935",
+                "https://www.behance.net/dhiaa",
               ],
             }),
           }}

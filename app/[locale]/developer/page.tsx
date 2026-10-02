@@ -12,18 +12,18 @@ type Props = { params: Promise<{ locale: string }> }
 
 const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: string; ogDescription: string; breadcrumb: string }> = {
   fr: {
-    title: "Développeur Web Tunisie | React & Next.js · Mohamed Dhia Arfa",
+    title: "Développeur web freelance en Tunisie | Sites pensés design · Mohamed Dhia Arfa",
     description:
-      "Développeur formé au design livrant des applications Next.js avec démos live et GitHub. À la une : DigiMyTech (PFE), CRIT Tunisie, Best Dates & Fruits.",
-    ogTitle: "Développeur Web React & Next.js · Mohamed Dhia Arfa",
+      "Sites et applications web clairs, rapides et pensés design, livrés de A à Z. En ligne : CRIT Tunisie, Best Dates & Fruits, et le hub IA DigiMyTech.",
+    ogTitle: "Développeur web pensé design · Mohamed Dhia Arfa",
     ogDescription: "Démos live, GitHub et études de cas. Produits intégrant l'IA et sites clients en production.",
     breadcrumb: "Développeur",
   },
   ar: {
-    title: "مطوّر ويب في تونس | React و Next.js · محمد ضياء عرفة",
+    title: "مطوّر ويب مستقل في تونس | مواقع بتصميم مدروس · محمد ضياء عرفة",
     description:
-      "مطوّر ذو خلفية تصميمية ينجز تطبيقات Next.js مع عروض حية وكود مفتوح على GitHub. من أبرز الأعمال: DigiMyTech (مشروع تخرج)، CRIT Tunisie، Best Dates & Fruits.",
-    ogTitle: "مطوّر ويب React و Next.js · محمد ضياء عرفة",
+      "مواقع وتطبيقات ويب واضحة وسريعة بتصميم مدروس، من الفكرة إلى الإطلاق. مواقع حية لـ CRIT Tunisie وBest Dates & Fruits، ومنصة DigiMyTech.",
+    ogTitle: "مطوّر ويب بتصميم مدروس · محمد ضياء عرفة",
     ogDescription: "عروض حية وكود مفتوح على GitHub ودراسات حالة. منتجات مدمجة بالذكاء الاصطناعي ومواقع عملاء فعلية.",
     breadcrumb: "المطوّر",
   },

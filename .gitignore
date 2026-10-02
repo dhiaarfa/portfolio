@@ -52,3 +52,11 @@ build_log*.txt
 deploy_log*.txt
 build-out*.log
 build-log*.txt
+
+# Local-only media and working files (not site source): showreel/video
+# project renders, Claude-generated video/screenshot outputs, planning
+# PDFs, and one-off helper scripts.
+videos/
+Claude outputs/
+Dhia_Claude_Master_Roadmap.pdf
+find-pages.ps1

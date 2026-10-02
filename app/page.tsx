@@ -8,16 +8,17 @@ export const metadata: Metadata = pageMetadata({
   path: "/",
   title: "Mohamed Dhia Arfa, Graphic Designer, Trainer & Web Developer · Tunisia",
   description:
-    "Multi-disciplinary creative based in Tunisia. Brand design via Zia Studio, youth development training (1,120+ participants), and Next.js web development. Book a free consultation.",
+    // Master roadmap 4.1: result language, no framework names.
+    "Designer, certified trainer and web developer in Tunisia: brand identity with Zia Studio, youth trainings (1,120+ trained), design-led sites. Book a free call.",
   keywords: [
     "Mohamed Dhia Arfa",
     "graphic designer",
-    "trainer",
+    "certified trainer",
     "web developer",
+    "brand identity",
+    "youth training",
     "Zia Studio",
     "Tunisia",
-    "Next.js",
-    "React",
   ],
   openGraph: {
     title: "Mohamed Dhia Arfa, Designer, Trainer & Developer",

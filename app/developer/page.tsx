@@ -8,13 +8,14 @@ export const dynamic = "force-static"
 
 export const metadata: Metadata = pageMetadata({
   path: "/developer",
-  title: "Web Developer Tunisia | React & Next.js · Mohamed Dhia Arfa",
+  // Master roadmap 4.1: result language, framework names out of the title.
+  title: "Freelance Web Developer in Tunisia | Design-Led Websites · Mohamed Dhia Arfa",
   description:
-    "Design-trained developer shipping Next.js apps with live demos and GitHub. Featured: DigiMyTech AI talent hub (PFE), CRIT Tunisie, Best Dates & Fruits.",
+    "Design-led websites and web apps, clear, fast and shipped end to end. Live sites for CRIT Tunisie and Best Dates & Fruits, plus the DigiMyTech AI talent hub.",
   keywords: ["web developer", "React", "Next.js", "frontend developer", "Tunisia", "UI/UX", "AI", "Supabase", "portfolio"],
   openGraph: {
-    title: "React & Next.js Web Developer · Mohamed Dhia Arfa",
-    description: "Live demos, GitHub, and case studies. AI-integrated products and production client sites.",
+    title: "Design-Led Web Developer · Mohamed Dhia Arfa",
+    description: "Websites and web apps that are clear, fast and design-led. Live client sites, demos and case studies.",
   },
 })
 

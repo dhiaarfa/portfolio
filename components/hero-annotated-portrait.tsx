@@ -62,7 +62,7 @@ export default function HeroAnnotatedPortrait({
       <div className="absolute inset-x-0 top-0 h-[60vh] max-h-[620px] lg:max-h-none lg:inset-0 lg:h-auto z-10 hero-photo-mask">
         <Image
           src={imageSrc}
-          alt="Mohamed Dhia Arfa"
+          alt="Mohamed Dhia Arfa portrait"
           fill
           priority
           fetchPriority="high"

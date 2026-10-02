@@ -81,7 +81,9 @@ function HeroAskBar() {
   // muted) since it's now a secondary path, not the first thing offered.
   return (
     <form
-      className="mt-5 flex max-w-[420px] items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 px-2 py-1 pl-4 backdrop-blur-sm dark:border-border/70 dark:bg-card/50"
+      // focus-within ring (roadmap 3.1): the input itself drops its outline
+      // to stay borderless inside the pill, so the pill shows focus instead.
+      className="mt-5 flex max-w-[420px] items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 px-2 py-1 pl-4 backdrop-blur-sm dark:border-border/70 dark:bg-card/50 has-[input:focus-visible]:ring-2 has-[input:focus-visible]:ring-accent"
       onSubmit={(e) => {
         e.preventDefault()
         if (!value.trim()) return

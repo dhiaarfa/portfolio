@@ -51,9 +51,9 @@ export const PAGE_OG_IMAGES: Record<string, OgImage> = {
   },
   "/developer": {
     url: `/api/og?${new URLSearchParams({
-      kicker: "Developer · Full-Stack",
+      kicker: "Web Developer · Design-Led",
       title: "Mohamed Dhia Arfa",
-      subhead: "Design-trained developer who ships. React, Next.js, Supabase.",
+      subhead: "Websites and web apps that are clear, fast, and shipped end to end.",
       image: "/images/projects/digimytch/landing.png",
       top: "1",
     })}`,

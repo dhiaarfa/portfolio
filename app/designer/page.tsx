@@ -6,10 +6,12 @@ export const dynamic = "force-static"
 
 export const metadata: Metadata = pageMetadata({
   path: "/designer",
-  title: "Creative & Marketing | Brand Identity, Social Media & Training, Zia Studio · Mohamed Dhia Arfa",
+  // Master roadmap 4.1: brand identity / graphic design Tunisia / visual
+  // systems. The old title also said "Training", which is /trainer's job.
+  title: "Brand Identity & Graphic Design in Tunisia | Zia Studio · Mohamed Dhia Arfa",
   description:
-    "Creative & Marketing work by Mohamed Dhia Arfa, brand identity, social media content, training & education. Zia Studio, Tunisia.",
-  keywords: ["creative marketing", "brand identity", "social media", "visual design", "training", "Tunisia", "Zia Studio"],
+    "Brand identities, visual systems, campaigns and packaging by Mohamed Dhia Arfa and Zia Studio, Tunisia. Clear, consistent branding. Start a project.",
+  keywords: ["brand identity", "graphic designer Tunisia", "visual identity", "logo design", "packaging design", "Zia Studio"],
   openGraph: {
     title: "Zia Studio · Creative & Marketing",
     description:

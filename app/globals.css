@@ -868,6 +868,24 @@ select {
   }
 }
 
+/* Master roadmap 3.2 (Oct 2026): catch-all for every other plain-CSS
+   animation/transition (Tailwind animate-*, hover lifts, keyframes added
+   later) that the list above doesn't name. Near-zero durations rather than
+   `none` so anything that animates FROM a hidden state still lands on its
+   final, visible frame. Only applies when the visitor asks for reduced
+   motion; everyone else keeps the full motion. Framer Motion is handled
+   separately by MotionConfig reducedMotion="user" (motion-provider.tsx). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Modern button effects */
 .btn-modern {
   position: relative;
