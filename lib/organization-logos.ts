@@ -3,6 +3,8 @@ export type OrganizationLogo = {
   src: string
   width: number
   height: number
+  /** The file has its own full-bleed background: show it edge to edge. */
+  bleed?: boolean
 }
 
 export const organizationLogos: OrganizationLogo[] = [
@@ -17,7 +19,7 @@ export const organizationLogos: OrganizationLogo[] = [
   { name: "CRIT Tunisie", src: "/img/organizations/crit.png", width: 141, height: 60 },
   { name: "Association Youth Clubs", src: "/img/organizations/youth-clubs.png", width: 57, height: 60 },
   { name: "CNFCPP", src: "/img/organizations/cnfcpp.png", width: 60, height: 60 },
-  { name: "IFMSA", src: "/img/organizations/ifmsa.png", width: 60, height: 60 },
+  { name: "IFMSA", src: "/img/organizations/ifmsa.png", width: 60, height: 60, bleed: true },
   { name: "IOM - UN Migration", src: "/img/organizations/iom-logo.png", width: 58, height: 60 },
   { name: "AIESEC", src: "/img/organizations/aiesec.png", width: 34, height: 60 },
   { name: "JCI", src: "/img/organizations/jci.png", width: 90, height: 60 },

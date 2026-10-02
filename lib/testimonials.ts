@@ -69,9 +69,8 @@ export const allTestimonials: TestimonialItem[] = [
     quoteAr:
       "كانت قيادته خلال الدفعة الثانية من مدرسة 1000 Challenges لافتة، إذ قاد النجاح بشغف وروح فريق. وفي AIESEC تميّز ضياء بمرونته وتفانيه وقدرته على جمع الناس.",
     headline: "Account Manager | Project Management, Client Relations",
-    // Set to not shown on Dhia's LinkedIn profile (Oct 2026 check); held
-    // back here too until he confirms.
-    hidden: true,
+    // Hidden on Dhia's LinkedIn profile, but he confirmed (Oct 2026) that
+    // it should be shown on the site.
     relationEn: "Worked with Dhia on the same team · 1000 Challenges School & AIESEC",
     relationFr: "A travaillé avec Dhia dans la même équipe · 1000 Challenges School & AIESEC",
     relationAr: "عمل مع ضياء في الفريق نفسه · 1000 Challenges وAIESEC",

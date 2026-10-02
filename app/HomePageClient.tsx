@@ -550,9 +550,8 @@ export default function HomePageClient() {
               ? { tag: pillarToTestimonialTag(pillar) }
               // Oct 2026: newest + most relevant first -- Yassine (design
               // workshop he co-ran, 2026), Oumaima (IOM Doha), Youssef (his
-              // direct manager). Rayen held back: his recommendation is set
-              // to hidden on Dhia's own LinkedIn profile (pending Dhia).
-              : { ids: ["yassine", "oumaima", "youssef", "amir", "ikram", "skander"] })}
+              // direct manager). Rayen shown since Oct 2026 (Dhia confirmed).
+              : { ids: ["yassine", "oumaima", "youssef", "rayen", "amir", "ikram", "skander"] })}
             showTicker={false}
           />
         )}

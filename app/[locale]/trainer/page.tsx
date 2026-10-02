@@ -64,7 +64,7 @@ export default async function LocaleTrainerPage({ params }: Props) {
         name: "Mohamed Dhia Arfa",
         jobTitle: "Certified Trainer & Facilitator",
         url,
-        image: `${SITE_URL}/images/photos/dhia-trainer-hero.png`,
+        image: `${SITE_URL}/images/photos/dhia-red-polo.jpg`,
         knowsLanguage: ["Arabic", "French", "English"],
         sameAs: [siteConfig.linkedin, siteConfig.behance],
       },

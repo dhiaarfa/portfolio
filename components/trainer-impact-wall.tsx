@@ -72,7 +72,7 @@ const TILES: Tile[] = [
     stat: "facilitationHours",
     labelKey: "impactStatFacilitationLabel",
     detailKey: "impactStatFacilitationDetail",
-    photo: { src: "/images/dhia/speaking-mic-crop.png", alt: "Dhia speaking with a microphone during a facilitated session", position: "center 30%" },
+    photo: { src: "/images/photos/dhia-stage-arches.jpg", alt: "Dhia on stage under lit arches before a moderated evening session", position: "center 35%" },
     span: "lg:col-span-2",
   },
 ]

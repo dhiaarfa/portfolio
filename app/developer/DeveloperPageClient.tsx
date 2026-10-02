@@ -115,7 +115,7 @@ export default function DeveloperPageClient() {
                   branded headshot that was previously reused here -- per
                   Dhia's request to put an actual photo of him with a laptop
                   in this hero instead. */}
-              <Image src="/images/photos/dhia-developer-pc.jpg" alt="Dhia working at his laptop" width={380} height={460} className="w-full object-cover" />
+              <Image src="/images/photos/dhia-laptop-classroom.jpg" alt="Dhia working on his laptop in a classroom" width={380} height={460} className="w-full aspect-[380/460] object-cover object-[55%_50%]" />
             </div>
           }
         >

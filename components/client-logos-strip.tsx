@@ -15,14 +15,16 @@ function LogoImage({ logo }: { logo: (typeof organizationLogos)[0] }) {
     // shields) that simply disappear against the site's dark background
     // otherwise. Transparent in light mode where that's never an issue.
     <div className="flex items-center justify-center h-16 md:h-20 px-2 flex-shrink-0">
-      <div className="flex items-center justify-center rounded-xl dark:bg-white/95 px-3 py-2 transition-colors">
+      {/* Logos with their own full-bleed background (IFMSA's blue square)
+          fill the chip edge to edge instead of floating in white padding. */}
+      <div className={`flex items-center justify-center rounded-xl transition-colors ${logo.bleed ? "overflow-hidden" : "dark:bg-white/95 px-3 py-2"}`}>
         <Image
           src={logo.src}
           alt={logo.name}
           width={logo.width}
           height={logo.height}
           sizes="(max-width: 768px) 120px, 160px"
-          className="object-contain max-h-14 md:max-h-16 w-auto h-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+          className={`object-contain w-auto opacity-90 hover:opacity-100 transition-opacity duration-300 ${logo.bleed ? "h-16 md:h-20" : "max-h-14 md:max-h-16 h-auto"}`}
           onError={() => setFailed(true)}
           loading="eager"
         />

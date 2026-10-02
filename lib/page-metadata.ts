@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { SITE_URL, formatStat, profileStats } from "@/lib/profile"
+import arCards from "@/data/og-ar.json"
 
 /** Shape of an OG/Twitter preview image, kept as a general type (not `typeof DEFAULT_OG_IMAGE`)
  *  so every route can have its own url/alt text without TypeScript narrowing them all to
@@ -21,8 +22,7 @@ type CardDef = { image: string; pos?: "left" | "right"; top?: boolean; en: CardC
  * Home and /freebies, /insights used to share one static PNG in the old
  * navy/lime palette, and /fr, /ar pages always fell back to it because the
  * lookup keyed on the exact path. Copy mirrors each page's positioning.
- * Arabic pages use the English card: the generator's fonts are Latin-only,
- * so Arabic text would render as empty boxes.
+ * Arabic pages use static Arabic cards (see AR_CARDS below).
  */
 const PAGE_CARDS: Record<string, CardDef> = {
   "/": {
@@ -57,10 +57,9 @@ const PAGE_CARDS: Record<string, CardDef> = {
     },
   },
   "/trainer": {
-    // Speaking with a mic in front of zellige tilework: reads instantly as
-    // "trainer" and as Tunisia. (dhia-trainer-hero.png cropped to his back
-    // facing a projector at this aspect ratio.)
-    image: "/images/dhia/speaking-mic-crop.png",
+    // Dhia in the Association Youth Clubs trainer polo ("Formateur"): reads
+    // instantly as "trainer", face clearly visible at card size.
+    image: "/images/photos/dhia-red-polo.jpg",
     en: {
       kicker: "CNFCPP-certified trainer",
       title: "Trainings that change behaviour",
@@ -122,7 +121,14 @@ const PAGE_CARDS: Record<string, CardDef> = {
   },
 }
 
-function cardImage(def: CardDef, locale: SiteLocale): OgImage {
+/** Arabic cards are static images (public/og/ar/*.jpg) built by
+ *  scripts/build-og-ar.mjs from data/og-ar.json: Satori, behind /api/og,
+ *  mis-spaces joined Arabic text, so these are rendered by a real browser. */
+const AR_CARDS = arCards as Record<string, { slug: string; alt: string }>
+
+function cardImage(def: CardDef, locale: SiteLocale, basePath?: string): OgImage {
+  const ar = locale === "ar" && basePath ? AR_CARDS[basePath] : undefined
+  if (ar) return { url: `/og/ar/${ar.slug}.jpg`, width: 1200, height: 630, alt: ar.alt }
   const copy = locale === "fr" ? def.fr : def.en
   const params = new URLSearchParams({ kicker: copy.kicker, title: copy.title, subhead: copy.subhead, image: def.image })
   if (def.top) params.set("top", "1")
@@ -133,7 +139,7 @@ function cardImage(def: CardDef, locale: SiteLocale): OgImage {
 /** The card for an unprefixed base path ("/designer") in a given locale. */
 export function pageOgImage(basePath: string, locale: SiteLocale = "en"): OgImage | undefined {
   const def = PAGE_CARDS[basePath]
-  return def ? cardImage(def, locale) : undefined
+  return def ? cardImage(def, locale, basePath) : undefined
 }
 
 export const DEFAULT_OG_IMAGE: OgImage = cardImage(PAGE_CARDS["/"], "en")

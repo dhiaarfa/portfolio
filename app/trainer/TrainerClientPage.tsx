@@ -159,10 +159,10 @@ export default function TrainerClientPage() {
                 <div className="grid md:grid-cols-2 gap-0 md:max-h-[320px]">
                   <div className="relative aspect-[16/10] md:aspect-auto md:h-full">
                     <Image
-                      src="/images/dhia/speaking-mic-crop.png"
-                      alt="Mohamed Dhia facilitating a training session"
+                      src="/images/photos/dhia-facilitating-board.jpg"
+                      alt="Mohamed Dhia facilitating a training session in front of flip-chart notes"
                       fill
-                      className="object-cover object-center"
+                      className="object-cover object-[50%_25%]"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>

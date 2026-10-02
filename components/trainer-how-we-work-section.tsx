@@ -20,21 +20,23 @@ export default function TrainerHowWeWorkSection() {
             photo shows exactly the facilitation process this section
             describes. */}
         <div className="relative overflow-hidden rounded-[2rem] border border-border mb-10">
-          <div className="relative aspect-[16/7] sm:aspect-[21/9]">
+          <div className="relative aspect-[4/3] sm:aspect-[21/9]">
             <Image
               src="/images/trainer/moment-keynote.jpg"
-              alt="Dhia facilitating a training session"
+              alt="Dhia speaking with a microphone in front of zellige tilework"
               fill
-              className="object-cover"
+              // Face sits at ~55% x / ~20% y of the source; text goes on the
+              // opposite side so the face is never covered or cropped out.
+              className="object-cover object-[55%_8%] rtl:-scale-x-100"
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-black/85 via-black/40 to-transparent" />
           </div>
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+          <div className="absolute inset-0 flex flex-col items-start justify-center text-start px-5 sm:px-10 md:px-14 max-w-[44%]">
             <p className="label !text-white/80 mb-2">
               {lang === "fr" ? "Processus" : lang === "ar" ? "العملية" : "Process"}
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+            <h2 className="text-lg sm:text-3xl md:text-4xl font-bold text-white">
               {lang === "fr" ? "Comment nous travaillons ensemble" : lang === "ar" ? "كيف نعمل معاً" : "How we work together"}
             </h2>
           </div>

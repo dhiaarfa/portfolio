@@ -62,7 +62,7 @@ export default function TrainerCaseStudiesSection() {
                 <div className="flex items-start gap-3">
                   {study.orgLogo && (
                     <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full bg-white ring-1 ring-border">
-                      <Image src={study.orgLogo} alt="" fill className="object-contain p-1.5" />
+                      <Image src={study.orgLogo} alt="" fill sizes="44px" className={study.orgLogoBleed ? "object-cover" : "object-contain p-1.5"} />
                     </div>
                   )}
                   <div>

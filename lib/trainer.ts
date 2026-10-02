@@ -38,6 +38,9 @@ export type TrainingCaseStudy = {
   outcomeAr: string
   image: string
   orgLogo?: string
+  /** Logo file has its own full-bleed background (e.g. IFMSA's blue
+   *  square): fill the round badge edge to edge instead of insetting it. */
+  orgLogoBleed?: boolean
   quoteEn?: string
   quoteFr?: string
   quoteAr?: string
@@ -156,6 +159,7 @@ export const trainingCaseStudies: TrainingCaseStudy[] = [
     outcomeAr: "مدربون جدد معتمدون لتقديم جلسات NFE في لجان SCORP المحلية.",
     image: "/images/trainer/scorp-camp-25.png",
     orgLogo: "/img/organizations/ifmsa.png",
+    orgLogoBleed: true,
     quoteEn: "Dhia brings structure and energy to TOT sessions. Participants leave ready to train others.",
     quoteFr: "Dhia apporte structure et énergie aux sessions TOT. Les participants repartent prêts à former.",
     quoteAr: "يمنح Dhia هيكلاً وطاقة لجلسات TOT. المشاركون يغادرون جاهزين للتدريب.",
@@ -181,6 +185,7 @@ export const trainingCaseStudies: TrainingCaseStudy[] = [
     outcomeAr: "عاد المندوبون إلى منظماتهم مجهزين لإدارة تدريبات حقوق الإنسان بخطط موثقة.",
     image: "/images/trainer/tnhrt-carthaginian-camp.png",
     orgLogo: "/img/organizations/ifmsa.png",
+    orgLogoBleed: true,
     published: true,
   },
   {

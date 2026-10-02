@@ -28,7 +28,7 @@ const jsonLd = {
       name: "Mohamed Dhia Arfa",
       jobTitle: "Certified Trainer & Facilitator",
       url: `${SITE_URL}/trainer`,
-      image: `${SITE_URL}/images/photos/dhia-trainer-hero.png`,
+      image: `${SITE_URL}/images/photos/dhia-red-polo.jpg`,
       knowsLanguage: ["Arabic", "French", "English"],
       sameAs: [siteConfig.linkedin, siteConfig.behance],
     },
