@@ -29,7 +29,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Message required." }, { status: 400 })
     }
 
-    const trimmed = messages.slice(-12).filter((m) => m.role === "user" || m.role === "assistant")
+    // Only well-formed text turns, each capped: the assistant is scoped to
+    // questions about Dhia (see CHAT_SYSTEM_PROMPT), so long pasted content
+    // is never needed -- and uncapped input was both a cost risk and an easy
+    // way to bury the scope rules under a wall of injected text.
+    const MAX_CHARS = 800
+    const trimmed = messages
+      .slice(-12)
+      .filter((m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
+      .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_CHARS) }))
     if (trimmed.length === 0 || trimmed[trimmed.length - 1]?.role !== "user") {
       return NextResponse.json({ error: "Invalid message." }, { status: 400 })
     }
@@ -45,8 +53,10 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         model: CHAT_MODEL,
         messages: [{ role: "system", content: CHAT_SYSTEM_PROMPT }, ...trimmed],
-        max_tokens: 500,
-        temperature: 0.6,
+        max_tokens: 400,
+        // Lower than the old 0.6: a scoped site assistant should stay on
+        // script, not improvise.
+        temperature: 0.3,
       }),
     })
 

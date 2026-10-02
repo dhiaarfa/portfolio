@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect, useCallback } from "react"
+import { useState, useRef, useEffect, useCallback, type ReactNode } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { X, Send, Loader2 } from "lucide-react"
 import { siteConfig } from "@/lib/site-config"
@@ -22,6 +22,39 @@ function readShownIds(): Set<string> {
   } catch {
     return new Set()
   }
+}
+
+/** Renders an assistant reply with clickable links. Replies were shown as
+ *  raw text, so the model's markdown links appeared as literal
+ *  "[trainer page](https://...)" and URLs weren't clickable. Supports only
+ *  [label](url) and bare URLs, http(s) or site-relative ("/trainer") --
+ *  no HTML is ever injected -- and drops **bold** markers. */
+const LINK_RE = /\[([^\]]+)\]\(((?:https?:\/\/|\/)[^\s)]+)\)|(https?:\/\/[^\s)]+)/g
+
+function ChatText({ text }: { text: string }) {
+  const clean = text.replace(/\*\*(.+?)\*\*/g, "$1")
+  const parts: ReactNode[] = []
+  let last = 0
+  for (const m of clean.matchAll(LINK_RE)) {
+    const start = m.index ?? 0
+    if (start > last) parts.push(clean.slice(last, start))
+    const href = m[2] ?? m[3]
+    const label = m[1] ?? m[3]
+    const external = href.startsWith("http")
+    parts.push(
+      <a
+        key={start}
+        href={href}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        className="font-medium text-accent underline underline-offset-2 break-words"
+      >
+        {label}
+      </a>
+    )
+    last = start + m[0].length
+  }
+  if (last < clean.length) parts.push(clean.slice(last))
+  return <>{parts}</>
 }
 
 function markShown(id: string) {
@@ -283,7 +316,7 @@ export default function FloatingActions() {
                     : "mr-auto border border-slate-200 bg-white text-slate-900 dark:border-border dark:bg-muted dark:text-slate-100"
                 }`}
               >
-                {m.content}
+                {m.role === "assistant" ? <ChatText text={m.content} /> : m.content}
               </div>
             ))}
             {loading && (
