@@ -5,9 +5,7 @@ import Footer from "@/components/footer"
 import InsightArticleClient from "@/components/insight-article-client"
 import { insightBySlug, publishedInsightArticles, relatedInsights } from "@/lib/insights"
 import { getInsightContent } from "@/lib/insights-content"
-import { insightEnExcerpts, insightEnTitles } from "@/lib/insight-en-copy"
-import { pageMetadata } from "@/lib/page-metadata"
-import { SITE_URL } from "@/lib/profile"
+import { insightJsonLd, insightMetadata } from "@/lib/insight-seo"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -19,19 +17,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const article = insightBySlug(slug)
   if (!article) return {}
-
-  const title = insightEnTitles[article.titleKey] ?? article.slug
-  const description = insightEnExcerpts[article.excerptKey] ?? ""
-
-  return pageMetadata({
-    path: `/insights/${slug}`,
-    title: `${title} | Insights · Mohamed Dhia`,
-    description,
-    // Sep 30 SEO addition: per-article keywords built from the real
-    // category and slug topic words instead of the site-wide default only.
-    keywords: [article.category, ...article.slug.split("-")],
-    openGraph: { type: "article" },
-  })
+  // Search title/description, article OG card, hreflang: lib/insight-seo.ts.
+  return insightMetadata(article, "en")
 }
 
 export default async function InsightArticlePage({ params }: Props) {
@@ -40,25 +27,13 @@ export default async function InsightArticlePage({ params }: Props) {
   const content = getInsightContent(slug)
   if (!article || !content) notFound()
 
-  const title = insightEnTitles[article.titleKey] ?? article.slug
-  const url = `${SITE_URL}/insights/${slug}`
   const related = relatedInsights(article)
 
-  // JSON-LD stays in English, matching the convention elsewhere on this site
-  // (SEO structured data isn't localized) -- only the visible article body
-  // and page chrome react to the language toggle, via InsightArticleClient.
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: title,
-    datePublished: article.date,
-    author: { "@type": "Person", name: "Mohamed Dhia Arfa" },
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
-  }
-
+  // JSON-LD stays in English on this route; the /fr and /ar twins emit
+  // their own localized BlogPosting (same helper).
   return (
     <div className="min-h-screen bg-background">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(insightJsonLd(article, "en")) }} />
       <Navbar />
       <main id="main-content" className="pt-[5.5rem] pb-14 px-6">
         <InsightArticleClient article={article} content={content} related={related} />

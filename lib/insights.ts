@@ -1,15 +1,22 @@
 import type { TranslationKey } from "./translations"
+import { formatStat } from "./profile"
 
 export type InsightCategory = "Design" | "Training" | "Development"
 
 export type InsightArticleMeta = {
   slug: string
+  /** <=60 chars, used for the <title>/OG title (the visible H1 keeps titleKey). */
+  seoTitle: string
+  /** ~140-155 chars, the meta/OG description (EN; FR/AR use their excerpt). */
+  seoDescription: string
   category: InsightCategory
   categoryKey: "insightsCatDesign" | "insightsCatTraining" | "insightsCatDev"
   readMin: number
   titleKey: TranslationKey
   excerptKey: TranslationKey
   date: string
+  /** ISO date of the last substantive edit; dateModified falls back to `date`. */
+  updated?: string
   published: boolean
   featured?: boolean
   servicePath: "/designer" | "/trainer" | "/developer"
@@ -22,6 +29,8 @@ export type InsightArticleMeta = {
 export const insightArticles: InsightArticleMeta[] = [
   {
     slug: "brand-colors-and-trust",
+    seoTitle: "Brand Colors and Trust: How to Choose Your Palette",
+    seoDescription: "Color psychology isn't magic, but it shapes first impressions. The 5 palette mistakes I see most, and a simple framework to choose and document yours.",
     thumbnail: "/images/insights/brand-colors-and-trust.jpg",
     category: "Design",
     categoryKey: "insightsCatDesign",
@@ -34,6 +43,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "facilitation-mistakes-youth-workshops",
+    seoTitle: "5 Facilitation Mistakes That Kill Youth Workshop Energy",
+    seoDescription: `Patterns from ${formatStat("trainingCycles")} youth training events in Tunisia: the facilitation mistakes that drain engagement in workshops, and how trainers can fix them.`,
     thumbnail: "/images/insights/facilitation-mistakes-youth-workshops.jpg",
     category: "Training",
     categoryKey: "insightsCatTraining",
@@ -47,6 +58,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "why-i-rebuilt-my-portfolio-in-nextjs",
+    seoTitle: "Why I Rebuilt My Portfolio in Next.js (and What I'd Change)",
+    seoDescription: "A freelancer's honest take on rebuilding a portfolio in Next.js: static vs dynamic, three languages (i18n), and shipping fast without cutting corners.",
     thumbnail: "/images/insights/why-i-rebuilt-my-portfolio-in-nextjs.jpg",
     category: "Development",
     categoryKey: "insightsCatDev",
@@ -59,6 +72,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "social-media-visual-consistency",
+    seoTitle: "Social Media Visual Consistency: Make Your Feed a Brand",
+    seoDescription: "Recognition beats virality. The 4-part system I use to make an Instagram or Facebook feed look like one brand, not twenty different designers.",
     thumbnail: "/images/insights/social-media-visual-consistency.jpg",
     category: "Design",
     categoryKey: "insightsCatDesign",
@@ -71,6 +86,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "training-needs-assessment-basics",
+    seoTitle: "Training Needs Assessment (TNA): A Simple 4-Question Guide",
+    seoDescription: "Before you build slides, answer four questions. A lightweight training needs assessment (TNA) process I run before every workshop or programme.",
     thumbnail: "/images/insights/training-needs-assessment-basics.jpg",
     category: "Training",
     categoryKey: "insightsCatTraining",
@@ -83,6 +100,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "supabase-nextjs-for-freelancers",
+    seoTitle: "Supabase + Next.js for Freelance Client Projects",
+    seoDescription: "The honest middle ground between form SaaS and a full custom backend: when Supabase with Next.js fits a client project, and what to watch out for.",
     thumbnail: "/images/insights/supabase-nextjs-for-freelancers.jpg",
     category: "Development",
     categoryKey: "insightsCatDev",
@@ -95,6 +114,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "brand-guidelines-that-get-used",
+    seoTitle: "Brand Guidelines Clients Actually Use (Not 40-Page PDFs)",
+    seoDescription: "One-page brand cheat sheets beat 40-page decks. What to include in brand guidelines so a visual identity system survives past launch week.",
     thumbnail: "/images/insights/brand-guidelines-that-get-used.jpg",
     category: "Design",
     categoryKey: "insightsCatDesign",
@@ -107,6 +128,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "icebreakers-vs-energizers",
+    seoTitle: "Icebreakers vs Energizers: When to Use Each in Training",
+    seoDescription: "Icebreakers and energizers solve different problems at different moments. The simple rule I use when designing youth training session flows.",
     thumbnail: "/images/insights/icebreakers-vs-energizers.jpg",
     category: "Training",
     categoryKey: "insightsCatTraining",
@@ -119,6 +142,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "client-chatbot-with-openrouter",
+    seoTitle: "Add an AI Chatbot to a Client Site with OpenRouter",
+    seoDescription: "A Next.js API route, a scoped system prompt, and the mistakes that make AI chat widgets feel sketchy or leak API keys. How I add one safely.",
     thumbnail: "/images/insights/client-chatbot-with-openrouter.jpg",
     category: "Development",
     categoryKey: "insightsCatDev",
@@ -131,6 +156,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "bilingual-branding-tunisia",
+    seoTitle: "Bilingual Arabic-French Brand Identity Design in Tunisia",
+    seoDescription: "Arabic and French aren't two translations of one layout. How I design brand identity systems for Tunisian businesses that work natively in both.",
     thumbnail: "/images/insights/bilingual-branding-tunisia.jpg",
     category: "Design",
     categoryKey: "insightsCatDesign",
@@ -143,6 +170,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "corporate-training-tunisian-smes",
+    seoTitle: "Corporate Training in Tunisian SMEs: What Actually Works",
+    seoDescription: "Textbook L&D assumes a training budget and an HR team. Most Tunisian SMEs have neither. Training design that survives a 15-person company.",
     thumbnail: "/images/insights/corporate-training-tunisian-smes.jpg",
     category: "Training",
     categoryKey: "insightsCatTraining",
@@ -155,6 +184,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "freelance-developer-tunisia-payments",
+    seoTitle: "Getting Paid as a Freelance Developer in Tunisia",
+    seoDescription: "International clients, a Tunisian bank account, and a currency that isn't fully convertible: the setup I use to get paid reliably as a freelancer.",
     thumbnail: "/images/insights/freelance-developer-tunisia-payments.jpg",
     category: "Development",
     categoryKey: "insightsCatDev",
@@ -167,6 +198,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "packaging-design-tunisian-exports",
+    seoTitle: "Packaging Design for Tunisian Export Brands in the EU",
+    seoDescription: "Olive oil, dates and harissa compete on European shelves. The packaging design decisions that get a Tunisian export product picked up, not passed over.",
     thumbnail: "/images/insights/packaging-design-tunisian-exports.jpg",
     category: "Design",
     categoryKey: "insightsCatDesign",
@@ -179,6 +212,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "green-digital-skills-youth-tunisia",
+    seoTitle: "Green & Digital Skills Training for Youth in Tunisia",
+    seoDescription: "Tunisia's youth employability gap is a skills-to-market mismatch. Lessons from facilitating green and digital skills programmes designed to close it.",
     thumbnail: "/images/insights/green-digital-skills-youth-tunisia.jpg",
     category: "Training",
     categoryKey: "insightsCatTraining",
@@ -191,6 +226,8 @@ export const insightArticles: InsightArticleMeta[] = [
   },
   {
     slug: "web-performance-tunisia-hosting",
+    seoTitle: "Web Performance for Tunisian Mobile Users: What Changes",
+    seoDescription: "A 3-second load means something different on fiber than on a Tunisian mobile data plan. The web performance choices I make differently because of it.",
     thumbnail: "/images/insights/web-performance-tunisia-hosting.jpg",
     category: "Development",
     categoryKey: "insightsCatDev",
