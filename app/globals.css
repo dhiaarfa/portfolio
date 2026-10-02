@@ -659,7 +659,7 @@ html.custom-cursor-active * {
  * mobile (photo sits above the stacked text instead of behind it). The
  * subject (head, beard, shoulders) is always inside the fully-opaque
  * zone -- the stops below were chosen and screenshot-verified against
- * the actual portrait (public/images/photos/dhia-hero-green.png) so the
+ * the actual portrait (public/images/photos/dhia-hero-green.jpg) so the
  * fade never touches skin or hair, only the photo's own dark background.
  */
 

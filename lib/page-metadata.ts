@@ -26,7 +26,7 @@ type CardDef = { image: string; pos?: "left" | "right"; top?: boolean; en: CardC
  */
 const PAGE_CARDS: Record<string, CardDef> = {
   "/": {
-    image: "/images/photos/dhia-hero-green.png",
+    image: "/images/photos/dhia-hero-green.jpg",
     pos: "right",
     en: {
       kicker: "Designer · Trainer · Web developer",

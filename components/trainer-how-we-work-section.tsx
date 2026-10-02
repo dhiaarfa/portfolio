@@ -22,7 +22,7 @@ export default function TrainerHowWeWorkSection() {
         <div className="relative overflow-hidden rounded-[2rem] border border-border mb-10">
           <div className="relative aspect-[16/7] sm:aspect-[21/9]">
             <Image
-              src="/images/trainer/moment-keynote.png"
+              src="/images/trainer/moment-keynote.jpg"
               alt="Dhia facilitating a training session"
               fill
               className="object-cover"

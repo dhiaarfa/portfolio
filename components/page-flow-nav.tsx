@@ -44,8 +44,12 @@ export default function PageFlowNav() {
   // pushes outward rather than staying inline), the earlier version kept an
   // always-visible text label next to the icon, which made the collision
   // above worse by widening the hit area considerably.
+  // Oct 2026: only from 1600px. Fixed mid-screen at the viewport edges,
+  // the pills covered content wherever sections run wide (cards at
+  // 1440px; phones) -- caught in full-page screenshots. Navigation stays
+  // available everywhere through the navbar and in-page links.
   const pillClass =
-    "fixed top-1/2 z-40 -translate-y-1/2 group grid h-11 w-11 place-items-center rounded-full border border-border bg-background/95 backdrop-blur-sm shadow-lg ring-1 ring-black/5 dark:ring-white/10 transition-all animate-in fade-in duration-300 hover:border-accent/40 hover:shadow-xl"
+    "fixed top-1/2 z-40 -translate-y-1/2 group hidden min-[1600px]:grid h-11 w-11 place-items-center rounded-full border border-border bg-background/95 backdrop-blur-sm shadow-lg ring-1 ring-black/5 dark:ring-white/10 transition-all animate-in fade-in duration-300 hover:border-accent/40 hover:shadow-xl"
 
   return (
     <>

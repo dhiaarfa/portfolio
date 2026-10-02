@@ -15,7 +15,7 @@ const BG = "#0A0A0A"
 const ACCENT = "#22c55e"
 const GRAY = "#a3a3a3"
 const RULE = "#262626"
-const DEFAULT_IMAGE = "/images/photos/dhia-hero-green.png"
+const DEFAULT_IMAGE = "/images/photos/dhia-hero-green.jpg"
 
 /** Only image files inside /public. The `image` param used to be joined
  *  straight onto public/ (so "../.env.local" read files outside it) and

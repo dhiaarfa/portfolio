@@ -14,7 +14,7 @@ import { siteConfig } from "@/lib/site-config"
 // See the .hero-photo-mask / .hero-photo-dots rules in globals.css for the
 // actual gradient stops (kept there, not inline, so the -webkit- prefixed
 // fallback and the per-breakpoint media queries stay in one place).
-export const HERO_PORTRAIT_SRC = "/images/photos/dhia-hero-green.png"
+export const HERO_PORTRAIT_SRC = "/images/photos/dhia-hero-green.jpg"
 
 type Props = {
   className?: string
