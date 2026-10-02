@@ -11,7 +11,7 @@ type Props = { params: Promise<{ locale: string }> }
 
 const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: string; ogDescription: string }> = {
   fr: {
-    title: "Mohamed Dhia Arfa, Designer Graphique, Formateur & Développeur Web · Tunisie",
+    title: "Mohamed Dhia Arfa | Designer, formateur & développeur web",
     description:
       `Designer, formateur certifié et développeur web en Tunisie : identité de marque avec Zia Studio, formations jeunesse (${profileStats.participantsTrained.value}+ formés), sites web soignés. Appel gratuit.`,
     ogTitle: "Mohamed Dhia Arfa, Designer, Formateur & Développeur",

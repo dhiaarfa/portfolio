@@ -7,7 +7,8 @@ export const dynamic = "force-static"
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
-  title: "Mohamed Dhia Arfa, Graphic Designer, Trainer & Web Developer · Tunisia",
+  // <=60 chars so Google shows it whole (was 70).
+  title: "Mohamed Dhia Arfa | Designer, Trainer & Web Developer",
   description:
     // Master roadmap 4.1: result language, no framework names.
     `Designer, certified trainer and web developer in Tunisia: brand identity with Zia Studio, youth trainings (${formatStat("participantsTrained")} trained), design-led sites. Book a free call.`,

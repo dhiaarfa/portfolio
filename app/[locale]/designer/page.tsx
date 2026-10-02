@@ -10,20 +10,20 @@ type Props = { params: Promise<{ locale: string }> }
 
 const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: string; ogDescription: string; breadcrumb: string }> = {
   fr: {
-    title: "Identité de marque & design graphique en Tunisie | Zia Studio · Mohamed Dhia Arfa",
+    title: "Designer d'identité de marque en Tunisie | Dhia Arfa",
     description:
       "Identités de marque, systèmes visuels, campagnes et packaging par Mohamed Dhia Arfa et Zia Studio, Tunisie. Une marque claire et cohérente.",
-    ogTitle: "Zia Studio · Créatif & Marketing",
+    ogTitle: "Une identité de marque cohérente partout · Zia Studio",
     ogDescription:
-      "Design graphique et branding par Mohamed Dhia Arfa, identités visuelles, campagnes et projets UI/UX de Zia Studio.",
+      "Logo, templates réseaux sociaux, emballages et campagnes pour cafés, agences de voyage et marques de produits, en Tunisie et à l'étranger.",
     breadcrumb: "Designer",
   },
   ar: {
-    title: "هوية العلامة التجارية والتصميم الجرافيكي في تونس | Zia Studio · محمد ضياء عرفة",
+    title: "مصمم هوية العلامات التجارية في تونس | محمد ضياء عرفة",
     description:
       "هويات بصرية وأنظمة تصميم وحملات وتغليف من محمد ضياء عرفة وZia Studio، تونس. علامة تجارية واضحة ومتناسقة.",
-    ogTitle: "Zia Studio · إبداع وتسويق",
-    ogDescription: "تصميم جرافيكي وهوية بصرية من محمد ضياء عرفة، حملات ومشاريع UI/UX من Zia Studio.",
+    ogTitle: "هوية بصرية متناسقة في كل مكان · Zia Studio",
+    ogDescription: "شعار وقوالب تواصل اجتماعي وتغليف وحملات للمقاهي ووكالات الأسفار وعلامات المنتجات، في تونس وخارجها.",
     breadcrumb: "المصمم",
   },
 }

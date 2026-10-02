@@ -9,7 +9,8 @@ export const dynamic = "force-static"
 export const metadata: Metadata = pageMetadata({
   path: "/developer",
   // Master roadmap 4.1: result language, framework names out of the title.
-  title: "Freelance Web Developer in Tunisia | Design-Led Websites · Mohamed Dhia Arfa",
+  // <=60 chars (was 76).
+  title: "Freelance Web Developer in Tunisia | Mohamed Dhia Arfa",
   description:
     "Fast, mobile-first websites in Arabic, French and English for businesses that outgrew a Facebook page. Live: CRIT Tunisie, Best Dates & Fruits, DigiMyTech.",
   keywords: ["web developer", "React", "Next.js", "frontend developer", "Tunisia", "UI/UX", "AI", "Supabase", "portfolio"],

@@ -10,7 +10,7 @@ type Props = { params: Promise<{ locale: string }> }
 
 const META: Record<"fr" | "ar", { title: string; description: string; breadcrumb: string }> = {
   fr: {
-    title: "Ressources Gratuites de Design & Formation | Mohamed Dhia Arfa",
+    title: "Ressources gratuites design & formation | Dhia Arfa",
     description:
       "Modèles, guides et outils gratuits de Mohamed Dhia, designer graphique et formateur de jeunes basé en Tunisie. Téléchargement immédiat.",
     breadcrumb: "Ressources gratuites",

@@ -15,7 +15,7 @@ const PARTICIPANTS = profileStats.participantsTrained.value
 
 const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: string; ogDescription: string; breadcrumb: string }> = {
   fr: {
-    title: "Formateur Certifié & Coach en Développement des Jeunes Tunisie | Mohamed Dhia Arfa",
+    title: "Formateur jeunesse certifié en Tunisie | Dhia Arfa",
     description:
       `Formateur certifié CNFCPP pour ONG, écoles et programmes jeunesse financés par des bailleurs. Plus de ${PARTICIPANTS} participants en Tunisie, au Maroc et au Qatar, en arabe, français et anglais.`,
     ogTitle: "Formateur & Facilitateur Jeunesse · Mohamed Dhia Arfa",

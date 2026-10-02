@@ -12,7 +12,7 @@ const META: Record<"fr" | "ar", { title: string; description: string; breadcrumb
   fr: {
     // Sep 30 fix: matches app/insights/page.tsx's English title -- was
     // missing "Arfa"/"عرفة", inconsistent with every other page's full name.
-    title: "Insights, Design, Formation & Développement | Mohamed Dhia Arfa",
+    title: "Articles design, formation & web | Mohamed Dhia Arfa",
     description:
       "Conseils sur le design graphique, l'animation de formations pour jeunes et le développement web, par Mohamed Dhia Arfa, basé en Tunisie.",
     breadcrumb: "Insights",

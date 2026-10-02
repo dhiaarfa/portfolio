@@ -186,6 +186,15 @@ type PageMetaInput = {
   hreflangPath?: string
 }
 
+/** Unprefixed routes that have real /fr and /ar twins (app/[locale]/*). */
+function hasLocaleTwins(path: string): boolean {
+  return (
+    ["/", "/designer", "/trainer", "/developer", "/freebies", "/insights"].includes(path) ||
+    path.startsWith("/insights/") ||
+    path.startsWith("/work/")
+  )
+}
+
 /** Per-route metadata with canonical, Open Graph, and Twitter cards. */
 export function pageMetadata({
   path,
@@ -195,8 +204,13 @@ export function pageMetadata({
   openGraph,
   ogImage,
   locale = "en",
-  hreflangPath,
+  hreflangPath: explicitHreflangPath,
 }: PageMetaInput): Metadata {
+  // Oct 2026 SEO fix: the /fr and /ar twins declared their English page,
+  // but the English pages (/, /designer, /trainer, /developer, /freebies,
+  // every /work/*) declared nothing back -- and Google ignores hreflang
+  // that isn't reciprocal. English pages with twins now always emit it.
+  const hreflangPath = explicitHreflangPath ?? (locale === "en" && hasLocaleTwins(path) ? path : undefined)
   const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`
   // hreflangPath is the unprefixed base ("/designer") for /fr and /ar pages,
   // so localized routes now get their page's card instead of the default.

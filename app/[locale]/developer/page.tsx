@@ -12,19 +12,19 @@ type Props = { params: Promise<{ locale: string }> }
 
 const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: string; ogDescription: string; breadcrumb: string }> = {
   fr: {
-    title: "Développeur web freelance en Tunisie | Sites pensés design · Mohamed Dhia Arfa",
+    title: "Développeur web freelance en Tunisie | Dhia Arfa",
     description:
       "Sites rapides, pensés mobile, en arabe, français et anglais, pour qui a dépassé sa page Facebook. En ligne : CRIT Tunisie, Best Dates & Fruits, DigiMyTech.",
     ogTitle: "Développeur web pensé design · Mohamed Dhia Arfa",
-    ogDescription: "Démos live, GitHub et études de cas. Produits intégrant l'IA et sites clients en production.",
+    ogDescription: "Sites et applications web rapides, pensés mobile, en arabe, français et anglais. Sites clients en ligne et études de cas.",
     breadcrumb: "Développeur",
   },
   ar: {
-    title: "مطوّر ويب مستقل في تونس | مواقع بتصميم مدروس · محمد ضياء عرفة",
+    title: "مطوّر ويب مستقل في تونس | محمد ضياء عرفة",
     description:
       "مواقع سريعة مصممة للهاتف أولًا، بالعربية والفرنسية والإنجليزية، للأنشطة التي تجاوزت صفحة فيسبوك. مواقع حية: CRIT Tunisie وBest Dates & Fruits وDigiMyTech.",
     ogTitle: "مطوّر ويب بتصميم مدروس · محمد ضياء عرفة",
-    ogDescription: "عروض حية وكود مفتوح على GitHub ودراسات حالة. منتجات مدمجة بالذكاء الاصطناعي ومواقع عملاء فعلية.",
+    ogDescription: "مواقع وتطبيقات ويب سريعة مصممة للهاتف أولًا، بالعربية والفرنسية والإنجليزية. مواقع عملاء حية ودراسات حالة.",
     breadcrumb: "المطوّر",
   },
 }
