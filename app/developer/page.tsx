@@ -11,7 +11,7 @@ export const metadata: Metadata = pageMetadata({
   // Master roadmap 4.1: result language, framework names out of the title.
   title: "Freelance Web Developer in Tunisia | Design-Led Websites · Mohamed Dhia Arfa",
   description:
-    "Design-led websites and web apps, clear, fast and shipped end to end. Live sites for CRIT Tunisie and Best Dates & Fruits, plus the DigiMyTech AI talent hub.",
+    "Fast, mobile-first websites in Arabic, French and English for businesses that outgrew a Facebook page. Live: CRIT Tunisie, Best Dates & Fruits, DigiMyTech.",
   keywords: ["web developer", "React", "Next.js", "frontend developer", "Tunisia", "UI/UX", "AI", "Supabase", "portfolio"],
   openGraph: {
     title: "Design-Led Web Developer · Mohamed Dhia Arfa",

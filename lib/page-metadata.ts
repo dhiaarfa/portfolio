@@ -30,7 +30,7 @@ export const PAGE_OG_IMAGES: Record<string, OgImage> = {
     url: `/api/og?${new URLSearchParams({
       kicker: "Designer · Brand & Marketing",
       title: "Mohamed Dhia Arfa",
-      subhead: "Design that sells, brand identity, campaigns, and marketing strategy for Tunisian brands.",
+      subhead: "Brand identity that stays consistent everywhere, from Instagram to packaging.",
       image: "/images/lone-space-gold.png",
     })}`,
     width: 1200,
@@ -41,7 +41,7 @@ export const PAGE_OG_IMAGES: Record<string, OgImage> = {
     url: `/api/og?${new URLSearchParams({
       kicker: "Trainer & Educator",
       title: "Mohamed Dhia Arfa",
-      subhead: "I help NGOs, schools, and youth organizations run trainings that actually change behavior.",
+      subhead: "Trainings that change behaviour, with results you can report. NGOs, schools and youth programmes.",
       image: "/images/photos/dhia-trainer-hero.png",
       top: "1",
     })}`,
@@ -53,7 +53,7 @@ export const PAGE_OG_IMAGES: Record<string, OgImage> = {
     url: `/api/og?${new URLSearchParams({
       kicker: "Web Developer · Design-Led",
       title: "Mohamed Dhia Arfa",
-      subhead: "Websites and web apps that are clear, fast, and shipped end to end.",
+      subhead: "Fast, mobile-first websites in Arabic, French and English.",
       image: "/images/projects/digimytch/landing.png",
       top: "1",
     })}`,

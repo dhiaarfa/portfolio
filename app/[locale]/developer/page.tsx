@@ -14,7 +14,7 @@ const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: s
   fr: {
     title: "Développeur web freelance en Tunisie | Sites pensés design · Mohamed Dhia Arfa",
     description:
-      "Sites et applications web clairs, rapides et pensés design, livrés de A à Z. En ligne : CRIT Tunisie, Best Dates & Fruits, et le hub IA DigiMyTech.",
+      "Sites rapides, pensés mobile, en arabe, français et anglais, pour qui a dépassé sa page Facebook. En ligne : CRIT Tunisie, Best Dates & Fruits, DigiMyTech.",
     ogTitle: "Développeur web pensé design · Mohamed Dhia Arfa",
     ogDescription: "Démos live, GitHub et études de cas. Produits intégrant l'IA et sites clients en production.",
     breadcrumb: "Développeur",
@@ -22,7 +22,7 @@ const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: s
   ar: {
     title: "مطوّر ويب مستقل في تونس | مواقع بتصميم مدروس · محمد ضياء عرفة",
     description:
-      "مواقع وتطبيقات ويب واضحة وسريعة بتصميم مدروس، من الفكرة إلى الإطلاق. مواقع حية لـ CRIT Tunisie وBest Dates & Fruits، ومنصة DigiMyTech.",
+      "مواقع سريعة مصممة للهاتف أولًا، بالعربية والفرنسية والإنجليزية، للأنشطة التي تجاوزت صفحة فيسبوك. مواقع حية: CRIT Tunisie وBest Dates & Fruits وDigiMyTech.",
     ogTitle: "مطوّر ويب بتصميم مدروس · محمد ضياء عرفة",
     ogDescription: "عروض حية وكود مفتوح على GitHub ودراسات حالة. منتجات مدمجة بالذكاء الاصطناعي ومواقع عملاء فعلية.",
     breadcrumb: "المطوّر",

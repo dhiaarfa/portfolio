@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/trainer",
   title: "Certified Trainer & Youth Development Coach Tunisia | Mohamed Dhia Arfa",
   description:
-    `CNFCPP-certified trainer helping NGOs, schools, and youth organizations run workshops that change behavior. ${formatStat("participantsTrained")} participants trained in Arabic, French, and English.`,
+    `CNFCPP-certified trainer for NGOs, schools and donor-funded youth programmes. ${formatStat("participantsTrained")} participants in Tunisia, Morocco and Qatar, in Arabic, French and English.`,
   keywords: ["trainer", "CNFCPP certified", "youth development", "leadership training", "Tunisia", "facilitation", "non-formal education", "train the trainer"],
   openGraph: {
     title: "Youth Trainer & Facilitator · Mohamed Dhia Arfa",

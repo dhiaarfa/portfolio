@@ -17,7 +17,7 @@ const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: s
   fr: {
     title: "Formateur Certifié & Coach en Développement des Jeunes Tunisie | Mohamed Dhia Arfa",
     description:
-      `Formateur certifié CNFCPP aidant ONG, écoles et organisations de jeunesse à mener des ateliers qui changent les comportements. Plus de ${PARTICIPANTS} participants formés en arabe, français et anglais.`,
+      `Formateur certifié CNFCPP pour ONG, écoles et programmes jeunesse financés par des bailleurs. Plus de ${PARTICIPANTS} participants en Tunisie, au Maroc et au Qatar, en arabe, français et anglais.`,
     ogTitle: "Formateur & Facilitateur Jeunesse · Mohamed Dhia Arfa",
     ogDescription:
       "Réservez des ateliers, programmes multi-séances et formations de formateurs pour ONG et organisations de jeunesse en Tunisie.",
@@ -26,7 +26,7 @@ const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: s
   ar: {
     title: "مدرّب معتمد ومدرّب في تنمية الشباب بتونس | محمد ضياء عرفة",
     description:
-      `مدرّب معتمد من CNFCPP يساعد الجمعيات والمدارس ومنظمات الشباب على تنظيم ورشات تُحدث تغييرًا حقيقيًا في السلوك. أكثر من ${PARTICIPANTS} مشاركًا تم تدريبهم بالعربية والفرنسية والإنجليزية.`,
+      `مدرّب معتمد من CNFCPP للجمعيات والمدارس والبرامج الشبابية الممولة من المانحين. أكثر من ${PARTICIPANTS} مشاركًا في تونس والمغرب وقطر، بالعربية والفرنسية والإنجليزية.`,
     ogTitle: "مدرّب وميسّر شبابي · محمد ضياء عرفة",
     ogDescription: "احجز ورشات عمل وبرامج متعددة الجلسات وتكوين مدرّبين للجمعيات ومنظمات الشباب في تونس.",
     breadcrumb: "المدرّب",
