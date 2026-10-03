@@ -4,7 +4,7 @@
 // before joining their letters: words come out unevenly spaced and lines
 // drift off the right edge. These cards are instead laid out as HTML and
 // captured with a local Chromium browser (real Arabic shaping), set in
-// Cairo (OFL, scripts/fonts). Copy and images live in data/og-ar.json,
+// IBM Plex Sans Arabic (OFL, scripts/fonts), the site's Arabic font. Copy and images live in data/og-ar.json,
 // which lib/page-metadata.ts also reads. Local tool, run on demand after
 // changing that file:
 //   node scripts/build-og-ar.mjs
@@ -38,12 +38,14 @@ const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, 
 // Same layout and palette as app/api/og/route.tsx, mirrored for RTL:
 // text panel on the right, photo on the left fading into the background.
 const html = (c) => `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><style>
-@font-face { font-family: Cairo; font-weight: 400; src: url("${fontUrl("Cairo-Regular.ttf")}"); }
-@font-face { font-family: Cairo; font-weight: 700; src: url("${fontUrl("Cairo-Bold.ttf")}"); }
+@font-face { font-family: Plex Arabic; font-weight: 400; src: url("${fontUrl("ibm-plex-sans-arabic-arabic-400-normal.woff2")}"); unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF; }
+@font-face { font-family: Plex Arabic; font-weight: 700; src: url("${fontUrl("ibm-plex-sans-arabic-arabic-700-normal.woff2")}"); unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF; }
+@font-face { font-family: Plex Arabic; font-weight: 400; src: url("${fontUrl("ibm-plex-sans-arabic-latin-400-normal.woff2")}"); unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: Plex Arabic; font-weight: 700; src: url("${fontUrl("ibm-plex-sans-arabic-latin-700-normal.woff2")}"); unicode-range: U+0000-00FF, U+2000-206F; }
 @font-face { font-family: Instrument; font-weight: 400; src: url("${fontUrl("InstrumentSans-Regular.ttf")}"); }
 * { margin: 0; box-sizing: border-box; }
 html, body { width: 1200px; height: 630px; overflow: hidden; background: #0A0A0A; }
-body { display: flex; font-family: Cairo, sans-serif; }
+body { display: flex; font-family: "Plex Arabic", sans-serif; }
 .text { width: 660px; height: 630px; padding: 56px 64px; display: flex; flex-direction: column; }
 .bar { width: 56px; height: 6px; background: #22c55e; }
 .kicker { margin-top: 36px; font-size: 26px; font-weight: 700; color: #22c55e; }
@@ -73,17 +75,22 @@ for (const c of Object.values(cards)) {
   fs.writeFileSync(htmlPath, html(c))
   execFileSync(browser, [
     "--headless=new",
+    // Chromium refuses to start as root (cloud containers) without this.
+    ...(process.getuid?.() === 0 ? ["--no-sandbox"] : []),
     "--disable-gpu",
     "--hide-scrollbars",
     "--allow-file-access-from-files",
     `--user-data-dir=${path.join(tmp, "profile")}`,
-    "--window-size=1200,630",
+    // Taller than the 630px card: headless Chromium on Linux takes the
+    // window's own chrome out of this height, which cut the card's bottom
+    // off. The card is cropped back to 1200x630 below.
+    "--window-size=1200,800",
     "--virtual-time-budget=3000",
     `--screenshot=${pngPath}`,
     pathToFileURL(htmlPath).href,
   ])
   const out = path.join(outDir, `${c.slug}.jpg`)
-  await sharp(pngPath).resize(1200, 630, { fit: "cover", position: "top" }).jpeg({ quality: 84, mozjpeg: true }).toFile(out)
+  await sharp(pngPath).extract({ left: 0, top: 0, width: 1200, height: 630 }).jpeg({ quality: 84, mozjpeg: true }).toFile(out)
   console.log(`✓ ${path.relative(root, out)} (${Math.round(fs.statSync(out).size / 1024)} KB)`)
 }
 fs.rmSync(tmp, { recursive: true, force: true })

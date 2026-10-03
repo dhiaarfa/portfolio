@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { Mail, AlertCircle, CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
@@ -8,15 +8,33 @@ import { useLanguage } from "@/components/language-provider"
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-export default function ContactForm() {
+type Service = "design" | "development" | "training" | "other"
+type Field = "name" | "email" | "message"
+
+const inputClass = (invalid: boolean) =>
+  `w-full px-4 py-3 border rounded-xl bg-background focus:outline-none focus:ring-2 transition-all touch-manipulation text-base disabled:opacity-60 ${
+    invalid
+      ? "border-red-500 focus:ring-red-500/40 focus:border-red-500"
+      : "border-border focus:ring-accent focus:border-accent"
+  }`
+
+/** `defaultService` preselects the dropdown for the page the form sits on
+ *  (it used to say "Design" even on /trainer and /developer). */
+export default function ContactForm({ defaultService = "design" }: { defaultService?: Service }) {
   const { t } = useLanguage()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-    service: "design",
+    service: defaultService as string,
     website: "",
   })
+  // Inline, per-field errors (roadmap: "validation states look intentional"):
+  // toasts alone vanish and never say which field is wrong.
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<Field, string>>>({})
+  const nameRef = useRef<HTMLInputElement>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
+  const messageRef = useRef<HTMLTextAreaElement>(null)
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
   const [errorHint, setErrorHint] = useState("")
@@ -24,27 +42,36 @@ export default function ContactForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+    if (name in fieldErrors) setFieldErrors((prev) => ({ ...prev, [name]: undefined }))
   }
 
   const validate = () => {
-    if (!formData.name?.trim()) {
-      toast.error(t("toastEnterName"))
-      return false
-    }
-    if (!formData.email?.trim()) {
-      toast.error(t("toastEnterEmail"))
-      return false
-    }
-    if (!EMAIL_REGEX.test(formData.email.trim())) {
-      toast.error(t("toastInvalidEmail"))
-      return false
-    }
-    if (!formData.message?.trim()) {
-      toast.error(t("toastEnterMessage"))
+    const errors: Partial<Record<Field, string>> = {}
+    if (!formData.name?.trim()) errors.name = t("toastEnterName")
+    if (!formData.email?.trim()) errors.email = t("toastEnterEmail")
+    else if (!EMAIL_REGEX.test(formData.email.trim())) errors.email = t("toastInvalidEmail")
+    if (!formData.message?.trim()) errors.message = t("toastEnterMessage")
+    setFieldErrors(errors)
+    const first = (["name", "email", "message"] as const).find((f) => errors[f])
+    if (first) {
+      const firstRef = { name: nameRef, email: emailRef, message: messageRef }[first]
+      firstRef.current?.focus()
       return false
     }
     return true
   }
+
+  const fieldProps = (field: Field) => ({
+    "aria-invalid": !!fieldErrors[field],
+    "aria-describedby": fieldErrors[field] ? `${field}-error` : undefined,
+  })
+  const fieldError = (field: Field) =>
+    fieldErrors[field] ? (
+      <p id={`${field}-error`} className="flex items-center gap-1.5 text-sm text-red-600 dark:text-red-400">
+        <AlertCircle className="h-4 w-4 shrink-0" />
+        {fieldErrors[field]}
+      </p>
+    ) : null
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -78,7 +105,7 @@ export default function ContactForm() {
       }
 
       setStatus("success")
-      setFormData({ name: "", email: "", message: "", service: "design", website: "" })
+      setFormData({ name: "", email: "", message: "", service: defaultService, website: "" })
       toast.success(t("toastMessageSent"))
       setTimeout(() => setStatus("idle"), 5000)
     } catch {
@@ -97,7 +124,7 @@ export default function ContactForm() {
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
     >
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} noValidate className="space-y-6">
         <input type="text" name="website" value={formData.website} readOnly tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
         {/* Name Field */}
         <div className="space-y-2">
@@ -108,13 +135,17 @@ export default function ContactForm() {
             type="text"
             id="name"
             name="name"
+            ref={nameRef}
+            autoComplete="name"
+            {...fieldProps("name")}
             value={formData.name}
             onChange={handleChange}
             required
             placeholder={t("contactFormNamePlaceholder")}
-            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all touch-manipulation text-base"
+            className={`${inputClass(!!fieldErrors.name)} min-h-[44px]`}
             disabled={status === "loading"}
           />
+          {fieldError("name")}
         </div>
 
         {/* Email Field */}
@@ -126,13 +157,17 @@ export default function ContactForm() {
             type="email"
             id="email"
             name="email"
+            ref={emailRef}
+            autoComplete="email"
+            {...fieldProps("email")}
             value={formData.email}
             onChange={handleChange}
             required
             placeholder={t("contactFormEmailPlaceholder")}
-            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all touch-manipulation text-base"
+            className={`${inputClass(!!fieldErrors.email)} min-h-[44px]`}
             disabled={status === "loading"}
           />
+          {fieldError("email")}
         </div>
 
         {/* Service Type Dropdown */}
@@ -146,7 +181,7 @@ export default function ContactForm() {
             value={formData.service}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 min-h-[44px] border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all touch-manipulation text-base"
+            className={`${inputClass(false)} min-h-[44px]`}
             disabled={status === "loading"}
           >
             <option value="design">{t("contactFormServiceDesign")}</option>
@@ -164,20 +199,24 @@ export default function ContactForm() {
           <textarea
             id="message"
             name="message"
+            ref={messageRef}
+            {...fieldProps("message")}
             value={formData.message}
             onChange={handleChange}
             required
             placeholder={t("contactFormMessagePlaceholder")}
             rows={5}
-            className="w-full px-4 py-3 min-h-[120px] border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all resize-none touch-manipulation text-base"
+            className={`${inputClass(!!fieldErrors.message)} min-h-[120px] resize-y`}
             disabled={status === "loading"}
           />
+          {fieldError("message")}
         </div>
 
         {/* Error Message */}
         {status === "error" && (
           <motion.div
-            className="flex gap-3 p-4 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900"
+            role="alert"
+            className="flex gap-3 p-4 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
@@ -192,7 +231,8 @@ export default function ContactForm() {
         {/* Success Message */}
         {status === "success" && (
           <motion.div
-            className="flex gap-3 p-4 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900"
+            role="status"
+            className="flex gap-3 p-4 rounded-xl bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
@@ -207,10 +247,11 @@ export default function ContactForm() {
         {/* Submit Button */}
         <motion.button
           type="submit"
+          aria-busy={status === "loading"}
           disabled={status === "loading" || status === "success"}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="w-full px-6 py-3 min-h-[48px] btn-green disabled:opacity-50 font-semibold rounded-lg transition-all flex items-center justify-center gap-2 touch-manipulation text-base"
+          className="w-full px-6 py-3 min-h-[48px] btn-green disabled:opacity-60 disabled:cursor-not-allowed font-semibold rounded-xl transition-all flex items-center justify-center gap-2 touch-manipulation text-base"
         >
           {status === "loading" ? (
             <>

@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { Link } from "next-view-transitions"
 import Image from 'next/image'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { Calendar, Linkedin, Menu, Search, Sparkles, X } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe'
+import { Calendar, ChevronDown, Gift, Linkedin, Mail, Menu, Search, Sparkles, X } from 'lucide-react'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { ThemeToggle } from './theme-toggle'
 import { LanguageToggle } from './language-toggle'
 import { useLanguage } from './language-provider'
@@ -23,6 +25,16 @@ const navLinks = [
   { labelKey: 'nav.insights', href: '/insights' },
 ] as const
 
+/** Desktop bar: the three track pages stay top-level, Freebies and
+ *  Articles share one "Resources" menu so the bar has room as sections
+ *  are added (roadmap: collapse the links into fewer top-level items).
+ *  The mobile drawer still lists every page from navLinks. */
+const desktopTopLinks = navLinks.slice(0, 4)
+const resourceLinks = [
+  { labelKey: 'nav.menu.freebies', href: '/freebies' },
+  { labelKey: 'nav.insights', href: '/insights' },
+] as const
+
 /** Below xl: the three track pages, short labels, always visible. */
 const shortNavLinks = [
   { labelKey: 'nav.short.branding', href: '/designer' },
@@ -38,7 +50,8 @@ export default function Navbar() {
   // /fr/... and /ar/... are the same pages: compare without the locale
   // prefix so the active link and the trainer CTA label work there too.
   const basePath = pathname.replace(/^\/(fr|ar)(?=\/|$)/, "") || "/"
-  const prefersReducedMotion = useReducedMotion()
+  const resourcesActive = resourceLinks.some(l => basePath === l.href || basePath.startsWith(l.href + '/'))
+  const prefersReducedMotion = useReducedMotionSafe()
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30)
@@ -196,7 +209,7 @@ export default function Navbar() {
               enough room, and the hamburger menu below covers every one of
               these links and controls in the 1024-1279 gap. */}
           <nav className="hidden xl:flex justify-self-center items-center gap-0.5 bg-slate-100/90 dark:bg-muted/70 backdrop-blur-sm rounded-2xl px-1.5 py-1 border border-slate-200/60 dark:border-border/60">
-            {navLinks.map(link => {
+            {desktopTopLinks.map(link => {
               const active = basePath === link.href
               return (
                 <Link key={link.href} href={link.href}
@@ -215,6 +228,30 @@ export default function Navbar() {
                 </Link>
               )
             })}
+            <DropdownMenu modal={false}>
+              <DropdownMenuTrigger className="relative inline-flex items-center gap-1 px-2 py-1.5 rounded-xl text-[12px] xl:text-[13px] font-medium whitespace-nowrap transition-colors duration-150 select-none outline-none focus-visible:ring-2 focus-visible:ring-accent">
+                {resourcesActive && <span className="absolute inset-0 bg-white dark:bg-secondary rounded-xl shadow-sm" />}
+                <span className={`relative z-10 ${resourcesActive ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'}`}>
+                  {t('nav.resources')}
+                </span>
+                <ChevronDown className="relative z-10 h-3.5 w-3.5 text-slate-500 dark:text-slate-400" aria-hidden />
+                {resourcesActive && (
+                  <span className="absolute left-1/2 bottom-0.5 z-10 h-[3px] w-3.5 -translate-x-1/2 rounded-full bg-accent" aria-hidden />
+                )}
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="min-w-[11rem] rounded-xl">
+                {resourceLinks.map(link => (
+                  <DropdownMenuItem key={link.href} asChild>
+                    <Link
+                      href={link.href}
+                      className={`cursor-pointer rounded-lg ${basePath.startsWith(link.href) ? 'font-semibold text-accent' : ''}`}
+                    >
+                      {t(link.labelKey)}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
 
           {/* This cluster's track width is forced equal to the much
@@ -311,15 +348,35 @@ export default function Navbar() {
               <ThemeToggle />
               <LanguageToggle />
             </div>
-            <a
-              href={siteConfig.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:inline-flex btn-green text-xs px-3.5 py-2 !rounded-xl !gap-1.5 whitespace-nowrap"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              {basePath === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
-            </a>
+            {/* CTA copy follows page intent (roadmap): freebies and
+                insights visitors are not ready to book a call yet. */}
+            {basePath === '/freebies' ? (
+              <a
+                href="#freebies-grid"
+                className="hidden md:inline-flex btn-green text-xs px-3.5 py-2 !rounded-xl !gap-1.5 whitespace-nowrap"
+              >
+                <Gift className="w-3.5 h-3.5" />
+                {t('navCtaGetTemplates')}
+              </a>
+            ) : basePath === '/insights' ? (
+              <a
+                href="#newsletter"
+                className="hidden md:inline-flex btn-green text-xs px-3.5 py-2 !rounded-xl !gap-1.5 whitespace-nowrap"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                {t('navCtaGetPosts')}
+              </a>
+            ) : (
+              <a
+                href={siteConfig.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:inline-flex btn-green text-xs px-3.5 py-2 !rounded-xl !gap-1.5 whitespace-nowrap"
+              >
+                <Calendar className="w-3.5 h-3.5" />
+                {basePath === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
+              </a>
+            )}
 
             {/* w-9 h-9 to match every other control in this cluster (icon
                 buttons, theme/language toggles), it was w-10 h-10 before,

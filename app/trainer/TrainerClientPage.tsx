@@ -22,6 +22,7 @@ import { siteConfig } from "@/lib/site-config"
 import { formatStat, trainingMilestones } from "@/lib/profile"
 import TrainerImpactWall from "@/components/trainer-impact-wall"
 import SectionIndex from "@/components/section-index"
+import TrainerProfileCard from "@/components/trainer-profile-card"
 
 const SECTION_INDEX = [
   { id: "trainer-impact", labelKey: "secImpact" },
@@ -107,6 +108,9 @@ export default function TrainerClientPage() {
 
         {/* 2. Trusted by */}
         <ClientLogosStrip />
+
+        {/* 3. Profile at a glance: languages, topics, formats, references */}
+        <TrainerProfileCard />
 
         {/* 4. Measurable results -- photo-backed impact wall (Oct 2026),
             replaces the six progress rings; see trainer-impact-wall.tsx. */}
@@ -263,7 +267,7 @@ export default function TrainerClientPage() {
                   {t("trainerBookCalendly")}
                 </a>
               </div>
-              <ContactForm />
+              <ContactForm defaultService="training" />
             </div>
           </div>
         </section>

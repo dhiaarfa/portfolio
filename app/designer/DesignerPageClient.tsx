@@ -64,6 +64,12 @@ const packages = [
     includeKeys: ["packageLogoInclude1", "packageLogoInclude2", "packageLogoInclude3", "packageLogoInclude4"],
     noteKey: "packageLogoNote",
   },
+  {
+    nameKey: "packageBilingualName",
+    descKey: "packageBilingualDesc",
+    includeKeys: ["packageBilingualInclude1", "packageBilingualInclude2", "packageBilingualInclude3", "packageBilingualInclude4"],
+    noteKey: "packageBilingualNote",
+  },
 ]
 
 const categories = ["All", "Brand Identity", "Social Media", "Logo Design", "Packaging"] as const
@@ -177,6 +183,17 @@ export default function DesignerPageClient() {
             <Gift className="h-4 w-4" />
             {t("designerBtnGetFreeTemplates")}
           </Link>
+          {/* French clients expect to ask for a "devis" before booking a
+              call (inspiration brief); French pages only. */}
+          {language === "fr" && (
+            <a
+              href="#contact-form"
+              className="mt-4 ms-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
+            >
+              {t("requestQuote")}
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+            </a>
+          )}
         </RoleHero>
 
         {/* 2. Brands I've designed for (Oct 2026 restructure): the shared
@@ -328,7 +345,7 @@ export default function DesignerPageClient() {
           <div className="mx-auto max-w-5xl">
             <p className="label mb-2">{t("designerServicesLabel")}</p>
             <h2 className="mb-10 text-3xl font-bold md:text-4xl">{t("designerServicesHeading")}</h2>
-            <div className="grid gap-5 md:grid-cols-3">
+            <div className="grid gap-5 md:grid-cols-2">
               {packages.map((pkg) => (
                 <div key={pkg.nameKey} className="flex flex-col rounded-2xl border border-border bg-card p-6">
                   <h3 className="mb-2 text-lg font-bold">{t(pkg.nameKey)}</h3>
@@ -372,7 +389,8 @@ export default function DesignerPageClient() {
                 <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-black/80 via-black/30 to-transparent" />
               </div>
               <div className="absolute inset-0 flex flex-col items-start justify-center text-start px-6 sm:px-10 md:px-14 max-w-[60%]">
-                <p className="label !text-white/80 mb-2">{t("designerProcessLabel")}</p>
+                {/* The named method (Oct 2026), shared with /trainer. */}
+                <p className="label !text-white/80 mb-2">{t("methodName")}</p>
                 <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-white">{t("designerProcessHeading")}</h2>
               </div>
             </div>

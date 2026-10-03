@@ -3,10 +3,22 @@
 import { useState } from "react"
 import { Link } from "next-view-transitions"
 import Image from "next/image"
-import { Mail, Linkedin, Instagram, Calendar, Github, Check } from "lucide-react"
+import { Mail, Linkedin, Instagram, Calendar, Github, Check, ArrowRight } from "lucide-react"
 import { BasedInTunisia } from "@/components/based-in-tunisia"
 import { siteConfig } from "@/lib/site-config"
 import { useLanguage } from "@/components/language-provider"
+import { publishedInsightArticles } from "@/lib/insights"
+import { publishedFreebies } from "@/lib/freebies"
+import { freebieText } from "@/lib/freebie-i18n"
+
+// "Latest" row (roadmap: give people a reason to scroll to the footer).
+// Picked at build time from the content files, so it updates by itself
+// whenever an article or freebie is added: newest article by its updated
+// or published date, newest freebie = last one added to the catalog.
+const latestArticle = [...publishedInsightArticles()].sort((a, b) =>
+  (b.updated ?? b.date).localeCompare(a.updated ?? a.date),
+)[0]
+const newestFreebie = publishedFreebies().at(-1)
 
 type FooterProps = {
   // Contextual conversion copy per discipline page (audit finding, Sep
@@ -208,6 +220,27 @@ export default function Footer({ variant }: FooterProps = {}) {
           </div>
         </div>
       </div>
+
+      {(latestArticle || newestFreebie) && (
+        <div className="border-t border-border">
+          <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row gap-3 sm:gap-8 text-sm">
+            {latestArticle && (
+              <Link href={`/insights/${latestArticle.slug}`} className="group flex min-w-0 items-baseline gap-2 text-muted-foreground hover:text-accent transition-colors">
+                <span className="shrink-0 text-[11px] font-semibold uppercase tracking-widest text-accent">{t("footerLatestArticle")}</span>
+                <span className="truncate text-foreground group-hover:text-accent">{t(latestArticle.titleKey)}</span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 self-center rtl:rotate-180" />
+              </Link>
+            )}
+            {newestFreebie && (
+              <Link href="/freebies" className="group flex min-w-0 items-baseline gap-2 text-muted-foreground hover:text-accent transition-colors">
+                <span className="shrink-0 text-[11px] font-semibold uppercase tracking-widest text-accent">{t("footerNewestFreebie")}</span>
+                <span className="truncate text-foreground group-hover:text-accent">{freebieText(newestFreebie, "title", t)}</span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 self-center rtl:rotate-180" />
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className="border-t border-border">
         <div className="max-w-5xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-muted-foreground text-xs">

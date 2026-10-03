@@ -7,6 +7,7 @@ import { useMemo, useState } from "react"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 import { useLanguage } from "@/components/language-provider"
 import { InsightCover } from "@/components/insight-article-cta"
+import NewsletterSection from "@/components/newsletter-section"
 import { publishedInsightArticles, type InsightCategory } from "@/lib/insights"
 
 type Filter = "all" | InsightCategory
@@ -200,6 +201,10 @@ export default function InsightsPageClient() {
             )
           })}
         </div>
+      </div>
+      {/* Navbar CTA on /insights is "Get new posts by email" and points here. */}
+      <div className="-mx-6 mt-14 -mb-14">
+        <NewsletterSection />
       </div>
     </main>
   )

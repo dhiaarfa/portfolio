@@ -43,6 +43,10 @@ function parseCategory(value: string | null): Category {
   return "all"
 }
 
+/** First-page preview rendered from a freebie PDF path. */
+const pdfPreview = (path: string) =>
+  `/images/freebies/previews/${path.split("/").pop()!.replace(/\.pdf$/, "")}.jpg`
+
 function FreebiesClientInner() {
   const { t } = useLanguage()
   const searchParams = useSearchParams()
@@ -225,7 +229,7 @@ function FreebiesClientInner() {
         </div>
       </section>
 
-      <section className="pb-20 px-6">
+      <section id="freebies-grid" className="pb-20 px-6 scroll-mt-24">
         <div ref={freebiesGridRef} className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.length === 0 ? (
             <p className="col-span-full text-center text-muted-foreground py-12">{t("freebies.empty")}</p>
@@ -260,6 +264,21 @@ function FreebiesClientInner() {
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover"
                       />
+                      {/* Real first page of the PDF (roadmap: show what you
+                          get, not "trust me"). Built by
+                          scripts/build-freebie-previews.sh. */}
+                      {freebie.delivery.kind === "pdf" && (
+                        <div className={`absolute bottom-0 end-4 translate-y-3 rotate-[-3deg] overflow-hidden rounded-t-md border border-black/10 bg-white shadow-xl ${isFeaturedTile ? "w-32 sm:w-36" : "w-24"}`}>
+                          <Image
+                            src={pdfPreview(freebie.delivery.path)}
+                            alt=""
+                            width={360}
+                            height={509}
+                            sizes="144px"
+                            className="h-auto w-full"
+                          />
+                        </div>
+                      )}
                     </div>
                   ) : (
                     // A stylized generic preview, not a fake screenshot of the
@@ -343,7 +362,7 @@ function FreebiesClientInner() {
 
           {activeCategory === "all" && (
             <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-6 flex flex-col justify-center text-center gap-4 min-h-[280px]">
-              <div className="w-12 h-12 rounded-full bg-accent-subtle flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 rounded-xl bg-accent-subtle flex items-center justify-center mx-auto">
                 <Mail className="w-6 h-6 text-accent" />
               </div>
               <div>
@@ -489,7 +508,7 @@ function FreebiesClientInner() {
 
             {status === "success" && downloadUrl ? (
               <div className="text-center py-2">
-                <div className="w-14 h-14 bg-accent-subtle rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-14 h-14 bg-accent-subtle rounded-xl flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-7 h-7 text-accent" />
                 </div>
                 <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-2">{t("freebies.successTitle")}</h3>
