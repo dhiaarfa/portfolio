@@ -1,6 +1,7 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
+import { motion } from "framer-motion"
+import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe"
 import Image from "next/image"
 import { useLanguage } from "@/components/language-provider"
 import { useState } from "react"
@@ -35,7 +36,7 @@ function LogoImage({ logo }: { logo: (typeof organizationLogos)[0] }) {
 
 export default function ClientLogosStrip() {
   const { t } = useLanguage()
-  const prefersReducedMotion = useReducedMotion()
+  const prefersReducedMotion = useReducedMotionSafe()
 
   return (
     <section className="py-10 md:py-12 border-y border-border bg-muted/30 dark:bg-card/40">

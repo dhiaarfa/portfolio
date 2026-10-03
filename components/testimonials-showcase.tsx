@@ -1,7 +1,8 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, Linkedin, Quote } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
@@ -80,7 +81,7 @@ export function TestimonialsShowcase({
 }: Props) {
   const { language, t } = useLanguage()
   const lang = language === "fr" ? "fr" : language === "ar" ? "ar" : "en"
-  const reducedMotion = useReducedMotion() ?? false
+  const reducedMotion = useReducedMotionSafe()
   const items = useMemo(() => pickTestimonials({ tag, ids, limit }), [tag, ids, limit])
   const [active, setActive] = useState(0)
 

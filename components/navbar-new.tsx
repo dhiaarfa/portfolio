@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { Link } from "next-view-transitions"
 import Image from 'next/image'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe'
 import { Calendar, Gift, Linkedin, Mail, Menu, Search, Sparkles, X } from 'lucide-react'
 import { ThemeToggle } from './theme-toggle'
 import { LanguageToggle } from './language-toggle'
@@ -38,7 +39,7 @@ export default function Navbar() {
   // /fr/... and /ar/... are the same pages: compare without the locale
   // prefix so the active link and the trainer CTA label work there too.
   const basePath = pathname.replace(/^\/(fr|ar)(?=\/|$)/, "") || "/"
-  const prefersReducedMotion = useReducedMotion()
+  const prefersReducedMotion = useReducedMotionSafe()
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30)

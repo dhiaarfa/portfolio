@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion"
+import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion"
+import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe"
 
 /**
  * A custom accent-colored cursor (dot + trailing ring) that replaces the OS
@@ -13,7 +14,7 @@ import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } 
  * mounts or unmounts.
  */
 export default function CustomCursor() {
-  const prefersReducedMotion = useReducedMotion()
+  const prefersReducedMotion = useReducedMotionSafe()
   const [enabled, setEnabled] = useState(false)
   const [visible, setVisible] = useState(false)
   const [hovering, setHovering] = useState(false)

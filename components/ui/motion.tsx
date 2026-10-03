@@ -1,6 +1,7 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
+import { motion } from "framer-motion"
+import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe"
 
 export const FadeUp = ({
   children,
@@ -11,7 +12,7 @@ export const FadeUp = ({
   delay?: number
   className?: string
 }) => {
-  const prefersReducedMotion = useReducedMotion()
+  const prefersReducedMotion = useReducedMotionSafe()
   return (
     <motion.div
       initial={prefersReducedMotion ? false : { opacity: 1, y: 10 }}

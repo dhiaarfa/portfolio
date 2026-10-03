@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { useInView, useReducedMotion } from "framer-motion"
+import { useInView } from "framer-motion"
+import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe"
 
 /**
  * Counts a number up from 0 the first time it scrolls into view, then holds.
@@ -32,7 +33,7 @@ export function AnimatedNumber({
 }) {
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: "-40px" })
-  const reducedMotion = useReducedMotion()
+  const reducedMotion = useReducedMotionSafe()
   const [display, setDisplay] = useState(0)
 
   // Reduced motion / instant: show the final value directly (derived, not

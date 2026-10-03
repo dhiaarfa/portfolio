@@ -1,7 +1,8 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useInView, useReducedMotion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
+import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe"
 
 /**
  * A radial "impact ring" stat display, replaces the flat rectangular
@@ -37,7 +38,7 @@ export function StatRing({
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "-40px" })
-  const reducedMotion = useReducedMotion()
+  const reducedMotion = useReducedMotionSafe()
   const stroke = Math.max(8, size * 0.075)
   const radius = (size - stroke) / 2
   const circumference = 2 * Math.PI * radius
