@@ -149,7 +149,8 @@ export default function DeveloperPageClient() {
               {t("devBtnGetFreeChecklist")}
             </Link>
             <a href="#contact-form" className="text-sm font-medium text-muted-foreground px-2 py-3 hover:text-foreground transition-colors">
-              {t("devBtnLetsTalk")}
+              {/* "Demander un devis" on French pages (inspiration brief). */}
+              {language === "fr" ? `${t("requestQuote")} →` : t("devBtnLetsTalk")}
             </a>
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
