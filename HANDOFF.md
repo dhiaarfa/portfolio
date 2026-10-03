@@ -45,8 +45,14 @@ Second batch (all 11 items from the "what else" list):
 
 ## Waiting on Dhia
 
-1. Testimonial photos (Yassine, Oumaima, Youssef, Rayen, Amir, Ikram, Skander):
-   add to `public/images/testimonials/<id>.jpg`, then set `photo` in `lib/testimonials.ts`.
+1. Testimonial photos (Yassine, Oumaima, Youssef, Rayen, Amir, Ikram, Skander).
+   The cloud session cannot reach Dhia's browser, so the PC session (Claude in
+   Chrome/Edge, logged into LinkedIn) does this: open each profile linked in
+   `lib/testimonials.ts`, save the profile photo into one folder named after the
+   person (e.g. `Yassine Bahri.jpg`), then run
+   `node scripts/add-testimonial-photos.mjs <that folder>`. It crops to 256x256,
+   writes `public/images/testimonials/<id>.jpg` and sets `photo` on each entry.
+   Then run the checks and push.
 2. Graduation and elevator photos: add to the repo and say where they go
    (suggested: graduation near the journey/education section, elevator near contact).
 3. Thmanyah font: not on the site. IBM Plex Sans Arabic is used meanwhile;
