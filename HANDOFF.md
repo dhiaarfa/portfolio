@@ -57,9 +57,9 @@ Second batch (all 11 items from the "what else" list):
 3. Thmanyah font: not on the site. IBM Plex Sans Arabic is used meanwhile;
    swap in Thmanyah only with written permission from ask@thmanyah.com.
 4. Whether to write longer articles (900+ words).
-5. Confirm profile facts in `lib/profile.ts`: "Certified Trainer Entrepreneur Leader"
-   (issuer only says "International Certification"), AIESEC in Lebanon (Dec 2023 to
+5. Confirm profile facts in `lib/profile.ts`: AIESEC in Lebanon (Dec 2023 to
    Jun 2024), YOUGO TRAVEL as the current role, and "with Honors" on the bachelor's.
+   (Entrepreneur Leader issuer confirmed: Pole Etudiant Entrepreneur, University of Sousse.)
 
 ## Notes
 

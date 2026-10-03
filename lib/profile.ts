@@ -107,9 +107,10 @@ export const certifications: Certification[] = [
     title: "Certified Trainer Entrepreneur Leader",
     titleFr: "Formateur Certifié Leader Entrepreneur",
     titleAr: "مدرّب معتمد قائد رياديّ",
-    issuer: "International Certification",
-    issuerFr: "Certification Internationale",
-    issuerAr: "شهادة دولية",
+    // Issuer confirmed by Dhia (Oct 2026).
+    issuer: "Pôle Étudiant Entrepreneur, University of Sousse",
+    issuerFr: "Pôle Étudiant Entrepreneur de l'Université de Sousse",
+    issuerAr: "القطب الطلابي للمبادرة، جامعة سوسة",
     year: "2025",
   },
 ]
