@@ -552,7 +552,7 @@ export default function DeveloperPageClient() {
               <h2 className="text-3xl font-bold">{t("devContactHeading")}</h2>
               <p className="text-muted-foreground">{t("devContactSubtext")}</p>
             </div>
-            <ContactForm />
+            <ContactForm defaultService="development" />
           </div>
         </section>
       </main>

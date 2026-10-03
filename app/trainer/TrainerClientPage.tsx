@@ -267,7 +267,7 @@ export default function TrainerClientPage() {
                   {t("trainerBookCalendly")}
                 </a>
               </div>
-              <ContactForm />
+              <ContactForm defaultService="training" />
             </div>
           </div>
         </section>

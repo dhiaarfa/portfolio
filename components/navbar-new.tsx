@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import { Link } from "next-view-transitions"
 import Image from 'next/image'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { Calendar, Linkedin, Menu, Search, Sparkles, X } from 'lucide-react'
+import { Calendar, Gift, Linkedin, Mail, Menu, Search, Sparkles, X } from 'lucide-react'
 import { ThemeToggle } from './theme-toggle'
 import { LanguageToggle } from './language-toggle'
 import { useLanguage } from './language-provider'
@@ -311,15 +311,35 @@ export default function Navbar() {
               <ThemeToggle />
               <LanguageToggle />
             </div>
-            <a
-              href={siteConfig.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:inline-flex btn-green text-xs px-3.5 py-2 !rounded-xl !gap-1.5 whitespace-nowrap"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              {basePath === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
-            </a>
+            {/* CTA copy follows page intent (roadmap): freebies and
+                insights visitors are not ready to book a call yet. */}
+            {basePath === '/freebies' ? (
+              <a
+                href="#freebies-grid"
+                className="hidden md:inline-flex btn-green text-xs px-3.5 py-2 !rounded-xl !gap-1.5 whitespace-nowrap"
+              >
+                <Gift className="w-3.5 h-3.5" />
+                {t('navCtaGetTemplates')}
+              </a>
+            ) : basePath === '/insights' ? (
+              <a
+                href="#newsletter"
+                className="hidden md:inline-flex btn-green text-xs px-3.5 py-2 !rounded-xl !gap-1.5 whitespace-nowrap"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                {t('navCtaGetPosts')}
+              </a>
+            ) : (
+              <a
+                href={siteConfig.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:inline-flex btn-green text-xs px-3.5 py-2 !rounded-xl !gap-1.5 whitespace-nowrap"
+              >
+                <Calendar className="w-3.5 h-3.5" />
+                {basePath === '/trainer' ? t('bookWorkshop') : t('bookConsultation')}
+              </a>
+            )}
 
             {/* w-9 h-9 to match every other control in this cluster (icon
                 buttons, theme/language toggles), it was w-10 h-10 before,
