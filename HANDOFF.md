@@ -40,8 +40,7 @@ Second batch (all 11 items from the "what else" list):
 - Method name "Listen. Shape. Deliver." (FR/AR translated) labels the process
   sections on /designer and /trainer (`methodName` in translations.ts).
 - Arabic font: Cairo replaced by IBM Plex Sans Arabic (open license; Thmanyah
-  still needs permission). The Arabic share-card images were built with Cairo
-  and were not regenerated.
+  still needs permission). Arabic share cards (public/og/ar) rebuilt with it.
 
 ## Waiting on Dhia
 
