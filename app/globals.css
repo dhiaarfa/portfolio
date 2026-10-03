@@ -327,10 +327,10 @@ html.custom-cursor-active * {
      renders text directly on <html>), but once the selector above was
      expanded to also match body/h1-h6/p/a/etc., it started computing to
      the browser's bare default serif font (e.g. "Times New Roman") on
-     every one of them instead of Cairo -- confirmed live via
+     every one of them instead of the Arabic font -- confirmed live via
      getComputedStyle() immediately after deploying the selector fix.
-     Dropping the dangling reference restores the intended Cairo stack. */
-  font-family: var(--font-cairo), 'Noto Sans Arabic', sans-serif;
+     Dropping the dangling reference restores the intended Arabic stack. */
+  font-family: var(--font-arabic), 'Noto Sans Arabic', sans-serif;
   letter-spacing: 0 !important;
   word-spacing: 0.05em;
   line-height: 1.85;
@@ -471,11 +471,11 @@ html.custom-cursor-active * {
 
 @theme inline {
   /* Site default typeface (Sep 30): Inter, loaded in app/layout.tsx via
-     next/font/google as --font-inter. Cairo is inserted right after it
+     next/font/google as --font-inter. IBM Plex Sans Arabic is inserted right after it
      (not at the very end) so Arabic glyphs -- which Inter doesn't have --
-     still resolve to Cairo's design instead of falling through to a
+     still resolve to IBM Plex Sans Arabic's design instead of falling through to a
      generic system font; Latin text is unaffected since Inter covers it. */
-  --font-sans: var(--font-inter), var(--font-cairo), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-sans: var(--font-inter), var(--font-arabic), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   /* These wrap the raw "H S% L%" triplets below in hsl(...) so the Tailwind
      utilities generated from them (bg-popover, bg-card, bg-background,
      text-foreground, border-border, and every shadcn primitive built on
@@ -611,7 +611,7 @@ html.custom-cursor-active * {
 }
 
 /* Utility font classes */
-/* Cairo is already folded into --font-sans itself (see the @theme inline
+/* IBM Plex Sans Arabic is already folded into --font-sans itself (see the @theme inline
    block above), so these three just point at the shared token now --
    General Sans is gone from the codebase entirely as of Sep 30. */
 .font-display {
@@ -633,7 +633,7 @@ html.custom-cursor-active * {
    headline, per Dhia's reference screenshot. Never used for body copy.
    Same Arabic-fallback gap as above (Fraunces has no Arabic glyphs), plus
    Arabic has no real italic form -- a faux-obliqued Arabic glyph reads as
-   broken, not stylish -- so Arabic gets Cairo upright instead of inheriting
+   broken, not stylish -- so Arabic gets IBM Plex Sans Arabic upright instead of inheriting
    whatever generic serif the browser happens to pick. */
 .font-accent-italic {
   font-family: var(--font-fraunces), 'Fraunces', Georgia, 'Times New Roman', serif;
@@ -641,7 +641,7 @@ html.custom-cursor-active * {
 }
 
 [dir="rtl"] .font-accent-italic {
-  font-family: var(--font-cairo), sans-serif;
+  font-family: var(--font-arabic), sans-serif;
   font-style: normal;
 }
 

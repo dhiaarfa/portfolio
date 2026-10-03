@@ -8,7 +8,7 @@ import { useLanguage } from "@/components/language-provider"
 const icons = [ClipboardList, PenTool, Users, FileCheck]
 
 export default function TrainerHowWeWorkSection() {
-  const { language } = useLanguage()
+  const { language, t } = useLanguage()
   const lang = language === "fr" ? "fr" : language === "ar" ? "ar" : "en"
 
   return (
@@ -34,7 +34,8 @@ export default function TrainerHowWeWorkSection() {
           </div>
           <div className="absolute inset-0 flex flex-col items-start justify-center text-start px-5 sm:px-10 md:px-14 max-w-[44%]">
             <p className="label !text-white/80 mb-2">
-              {lang === "fr" ? "Processus" : lang === "ar" ? "العملية" : "Process"}
+              {/* The named method (Oct 2026), shared with /designer. */}
+              {t("methodName")}
             </p>
             <h2 className="text-lg sm:text-3xl md:text-4xl font-bold text-white">
               {lang === "fr" ? "Comment nous travaillons ensemble" : lang === "ar" ? "كيف نعمل معاً" : "How we work together"}

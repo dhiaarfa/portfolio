@@ -37,6 +37,11 @@ Second batch (all 11 items from the "what else" list):
 - Footer: "Latest article" and "New freebie" row, updates itself from the content files.
 - Desktop navbar: Freebies and Articles grouped under "Resources" (mobile drawer unchanged).
 - Site-wide check: 88 pages, phone and desktop, no errors left.
+- Method name "Listen. Shape. Deliver." (FR/AR translated) labels the process
+  sections on /designer and /trainer (`methodName` in translations.ts).
+- Arabic font: Cairo replaced by IBM Plex Sans Arabic (open license; Thmanyah
+  still needs permission). The Arabic share-card images were built with Cairo
+  and were not regenerated.
 
 ## Waiting on Dhia
 
@@ -44,9 +49,9 @@ Second batch (all 11 items from the "what else" list):
    add to `public/images/testimonials/<id>.jpg`, then set `photo` in `lib/testimonials.ts`.
 2. Graduation and elevator photos: add to the repo and say where they go
    (suggested: graduation near the journey/education section, elevator near contact).
-3. Thmanyah font: not on the site. Needs written permission from ask@thmanyah.com,
-   or pick an open-licensed alternative.
-4. A three-word name for the method, and whether to write longer articles (900+ words).
+3. Thmanyah font: not on the site. IBM Plex Sans Arabic is used meanwhile;
+   swap in Thmanyah only with written permission from ask@thmanyah.com.
+4. Whether to write longer articles (900+ words).
 5. Confirm profile facts in `lib/profile.ts`: "Certified Trainer Entrepreneur Leader"
    (issuer only says "International Certification"), AIESEC in Lebanon (Dec 2023 to
    Jun 2024), YOUGO TRAVEL as the current role, and "with Honors" on the bachelor's.
