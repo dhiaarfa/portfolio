@@ -157,8 +157,8 @@ export default function TrainingMethodologySection() {
 
                 {/* Header row */}
                 <div className="relative flex items-start gap-4 mb-4">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-accent-gradient">
-                    <Icon className="w-5 h-5 text-white" />
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-accent-subtle text-accent">
+                    <Icon className="w-5 h-5" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
@@ -267,7 +267,9 @@ export default function TrainingMethodologySection() {
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-3xl font-black text-[#8ed80c] opacity-30">{phase.step}</span>
-                  <phase.Icon className="w-6 h-6 text-[#8ed80c]" />
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-subtle text-accent">
+                    <phase.Icon className="w-5 h-5" />
+                  </span>
                 </div>
 
                 <div className={`inline-block px-2.5 py-1 rounded-lg ${phase.chipBg} mb-3`}>
@@ -319,7 +321,7 @@ export default function TrainingMethodologySection() {
                 key={fw.nameKey}
                 className={`rounded-2xl border p-5 h-full hover:-translate-y-0.5 transition-transform ${fw.color}`}
               >
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-white/70 dark:bg-card/40 ${fw.textColor}`}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-accent-subtle text-accent">
                   <fw.Icon className="w-5 h-5" />
                 </div>
                 <p className={`text-xs font-bold uppercase tracking-wider mb-1 ${fw.textColor}`}>

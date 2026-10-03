@@ -362,7 +362,7 @@ function FreebiesClientInner() {
 
           {activeCategory === "all" && (
             <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-6 flex flex-col justify-center text-center gap-4 min-h-[280px]">
-              <div className="w-12 h-12 rounded-full bg-accent-subtle flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 rounded-xl bg-accent-subtle flex items-center justify-center mx-auto">
                 <Mail className="w-6 h-6 text-accent" />
               </div>
               <div>
@@ -508,7 +508,7 @@ function FreebiesClientInner() {
 
             {status === "success" && downloadUrl ? (
               <div className="text-center py-2">
-                <div className="w-14 h-14 bg-accent-subtle rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-14 h-14 bg-accent-subtle rounded-xl flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-7 h-7 text-accent" />
                 </div>
                 <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-2">{t("freebies.successTitle")}</h3>

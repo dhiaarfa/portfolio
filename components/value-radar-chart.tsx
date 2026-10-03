@@ -1,9 +1,10 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { MessageCircle, Palette, Handshake, Brain, Globe, Sparkles, Puzzle, Drama, Trophy, type LucideIcon } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
+import { formatStat } from '@/lib/profile'
 
 // Self-assessed strengths, presented as a single self-rating, not a comparison against
 // an undisclosed "baseline" (the earlier "Partner" series had no real source behind it).
@@ -20,14 +21,71 @@ import { useLanguage } from '@/components/language-provider'
 // subjectKey points into translations.ts -- these were hardcoded English
 // labels and never translated, so they stayed in English even in French/
 // Arabic mode while the surrounding section copy was already localized.
-const traits: { Icon: LucideIcon; subjectKey: string }[] = [
-  { Icon: MessageCircle, subjectKey: 'radarCommunication' },
-  { Icon: Palette, subjectKey: 'radarCreativity' },
-  { Icon: Handshake, subjectKey: 'radarReliability' },
-  { Icon: Brain, subjectKey: 'radarMethodology' },
-  { Icon: Globe, subjectKey: 'radarMultilingual' },
-  { Icon: Sparkles, subjectKey: 'radarCulturalFit' },
+// Each chip opens one line of proof (roadmap: "make the chart explorable").
+// Every proof is a fact already stated elsewhere on the site.
+type Proof = { en: string; fr: string; ar: string }
+const traits: { Icon: LucideIcon; subjectKey: string; proof: Proof }[] = [
+  {
+    Icon: MessageCircle,
+    subjectKey: 'radarCommunication',
+    proof: {
+      en: `${formatStat('participantsTrained')} participants trained across ${formatStat('trainingCycles')} training events.`,
+      fr: `${formatStat('participantsTrained')} participants formés lors de ${formatStat('trainingCycles')} événements de formation.`,
+      ar: `${formatStat('participantsTrained')} مشارك تم تدريبهم عبر ${formatStat('trainingCycles')} فعالية تدريبية.`,
+    },
+  },
+  {
+    Icon: Palette,
+    subjectKey: 'radarCreativity',
+    proof: {
+      en: `${formatStat('designProjects')} design projects for ${formatStat('brands')} brands.`,
+      fr: `${formatStat('designProjects')} projets de design pour ${formatStat('brands')} marques.`,
+      ar: `${formatStat('designProjects')} مشروع تصميم لـ ${formatStat('brands')} علامة تجارية.`,
+    },
+  },
+  {
+    Icon: Handshake,
+    subjectKey: 'radarReliability',
+    proof: {
+      en: `${formatStat('trainingPartners')} partner organisations, including IFMSA and IOM.`,
+      fr: `${formatStat('trainingPartners')} organisations partenaires, dont l'IFMSA et l'OIM.`,
+      ar: `${formatStat('trainingPartners')} منظمة شريكة، منها IFMSA والمنظمة الدولية للهجرة.`,
+    },
+  },
+  {
+    Icon: Brain,
+    subjectKey: 'radarMethodology',
+    proof: {
+      en: 'CNFCPP-certified trainer. A needs analysis up front, Kolb and 4MAT in the room, a report at the end.',
+      fr: "Formateur certifié CNFCPP. Une analyse des besoins au départ, Kolb et 4MAT en séance, un rapport à la fin.",
+      ar: 'مدرب معتمد من CNFCPP. تحليل احتياجات في البداية، وKolb و4MAT أثناء الجلسة، وتقرير في النهاية.',
+    },
+  },
+  {
+    Icon: Globe,
+    subjectKey: 'radarMultilingual',
+    proof: {
+      en: 'Works and trains in Arabic, French and English.',
+      fr: 'Travaille et forme en arabe, en français et en anglais.',
+      ar: 'يعمل ويدرّب بالعربية والفرنسية والإنجليزية.',
+    },
+  },
+  {
+    Icon: Sparkles,
+    subjectKey: 'radarCulturalFit',
+    proof: {
+      en: 'Sessions delivered in Tunisia, Morocco and Qatar, with multilingual groups.',
+      fr: 'Sessions animées en Tunisie, au Maroc et au Qatar, avec des groupes multilingues.',
+      ar: 'جلسات في تونس والمغرب وقطر مع مجموعات متعددة اللغات.',
+    },
+  },
 ]
+
+const HINT: Proof = {
+  en: 'Tap a strength to see the proof.',
+  fr: 'Touchez une qualité pour voir la preuve.',
+  ar: 'اضغط على أي نقطة قوة لرؤية الدليل.',
+}
 
 const valueProps: { Icon: LucideIcon; titleKey: string; descKey: string }[] = [
   { Icon: Globe, titleKey: 'radarValue1Title', descKey: 'radarValue1Desc' },
@@ -37,7 +95,9 @@ const valueProps: { Icon: LucideIcon; titleKey: string; descKey: string }[] = [
 ]
 
 export default function ValueRadarChart() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+  const lang = language === 'fr' ? 'fr' : language === 'ar' ? 'ar' : 'en'
+  const [active, setActive] = useState<number | null>(null)
   const barsRef = useRef<HTMLDivElement>(null)
   // Bars fill in on scroll rather than on mount, gated behind useInView so
   // the fill animation actually reads as a reveal instead of something that
@@ -84,9 +144,16 @@ export default function ValueRadarChart() {
               leftover space to explain away. */}
           <div ref={barsRef} className="flex flex-wrap justify-center gap-2">
             {traits.map((tr, i) => (
-              <motion.div
+              <motion.button
+                type="button"
                 key={tr.subjectKey}
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 pl-2 pr-3.5 py-1.5"
+                aria-pressed={active === i}
+                aria-controls="strength-proof"
+                onClick={() => setActive(active === i ? null : i)}
+                onMouseEnter={() => setActive(i)}
+                className={`inline-flex items-center gap-2 rounded-full border ps-2 pe-3.5 py-1.5 transition-colors ${
+                  active === i ? 'border-accent bg-accent-subtle' : 'border-border bg-background/60 hover:border-accent/50'
+                }`}
                 initial={{ opacity: 0, y: 8 }}
                 animate={barsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                 transition={{ duration: 0.35, delay: i * 0.06 }}
@@ -97,9 +164,16 @@ export default function ValueRadarChart() {
                 <span className="text-xs font-semibold text-slate-900 dark:text-white whitespace-nowrap">
                   {t(tr.subjectKey)}
                 </span>
-              </motion.div>
+              </motion.button>
             ))}
           </div>
+          <p
+            id="strength-proof"
+            aria-live="polite"
+            className={`mt-4 min-h-[2.5rem] text-center text-sm leading-relaxed ${active === null ? 'text-muted-foreground' : 'text-foreground'}`}
+          >
+            {active === null ? HINT[lang] : traits[active].proof[lang]}
+          </p>
 
           <div className="h-px bg-border my-5 md:my-6" aria-hidden />
 
@@ -118,8 +192,8 @@ export default function ValueRadarChart() {
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
               >
-                <span className="inline-flex w-9 h-9 rounded-xl bg-accent-gradient items-center justify-center shrink-0 mb-3">
-                  <item.Icon className="w-4 h-4 text-white" aria-hidden />
+                <span className="inline-flex w-9 h-9 rounded-xl bg-accent-subtle text-accent items-center justify-center shrink-0 mb-3">
+                  <item.Icon className="w-4 h-4" aria-hidden />
                 </span>
                 <p className="text-sm font-semibold text-slate-900 dark:text-white">{t(item.titleKey)}</p>
                 <p className="text-xs text-muted-foreground leading-snug mt-1">{t(item.descKey)}</p>

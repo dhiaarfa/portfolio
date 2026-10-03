@@ -20,6 +20,24 @@ repo next. Update it at the end of every session.
 - French pages: "Demander un devis" link to the contact form in the /designer
   hero and in the /developer hero (replaces "Discutons" in French only).
 
+Second batch (all 11 items from the "what else" list):
+
+- Contact form: inline errors per field, focus on the first wrong field,
+  service preselected per page (training on /trainer, development on /developer).
+- /freebies: real first-page previews of each PDF (`scripts/build-freebie-previews.sh`).
+- Navbar button follows the page: "Get the templates" on /freebies,
+  "Get new posts by email" on /insights (newsletter added at the bottom there).
+- Hydration error fixed for visitors with "reduce motion" on (`hooks/use-reduced-motion-safe.ts`).
+- Tool icons (Cursor, Angular, NestJS, PHP, Symfony, Jira, PostgreSQL) bundled, no CDN.
+- One icon chip style on /trainer and /freebies.
+- Tinted sections fade in with a thin green hairline (globals.css, "Section seams").
+- Strength chips in `components/value-radar-chart.tsx` show a proof on click.
+  The component is still NOT on any page (Dhia removed it from Home on purpose).
+- Homepage hero: dot grid lights up around the mouse (mouse only, off with reduce motion).
+- Footer: "Latest article" and "New freebie" row, updates itself from the content files.
+- Desktop navbar: Freebies and Articles grouped under "Resources" (mobile drawer unchanged).
+- Site-wide check: 88 pages, phone and desktop, no errors left.
+
 ## Waiting on Dhia
 
 1. Testimonial photos (Yassine, Oumaima, Youssef, Rayen, Amir, Ikram, Skander):
@@ -29,6 +47,9 @@ repo next. Update it at the end of every session.
 3. Thmanyah font: not on the site. Needs written permission from ask@thmanyah.com,
    or pick an open-licensed alternative.
 4. A three-word name for the method, and whether to write longer articles (900+ words).
+5. Confirm profile facts in `lib/profile.ts`: "Certified Trainer Entrepreneur Leader"
+   (issuer only says "International Certification"), AIESEC in Lebanon (Dec 2023 to
+   Jun 2024), YOUGO TRAVEL as the current role, and "with Honors" on the bachelor's.
 
 ## Notes
 
