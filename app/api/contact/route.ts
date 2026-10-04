@@ -156,13 +156,30 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Request too large." }, { status: 413 })
     }
 
-    const rawBody = await req.json()
+    // Measure the real body too: content-length is optional (chunked
+    // requests omit it), so the header check alone could be skipped.
+    const text = await req.text()
+    if (new TextEncoder().encode(text).length > MAX_BODY_BYTES) {
+      return NextResponse.json({ error: "Request too large." }, { status: 413 })
+    }
+    let rawBody: unknown
+    try {
+      rawBody = JSON.parse(text)
+    } catch {
+      return NextResponse.json({ error: "Invalid request." }, { status: 400 })
+    }
     const parsed = ContactRequestSchema.safeParse(rawBody)
     if (!parsed.success) {
-      return NextResponse.json(
-        { error: parsed.error.issues[0]?.message || "Invalid request." },
-        { status: 400 },
-      )
+      // Visitor-facing wording only: zod's own messages ("Required",
+      // "Invalid enum value...") used to reach the form as-is.
+      const issue = parsed.error.issues[0]
+      const error =
+        issue?.path[0] === "email"
+          ? "Please enter a valid email address."
+          : issue?.code === "too_big"
+            ? "Your message is too long."
+            : "Invalid request."
+      return NextResponse.json({ error }, { status: 400 })
     }
     const { name, email, subject, message, type, freebieId, website } = parsed.data
 

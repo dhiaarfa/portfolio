@@ -1,5 +1,6 @@
 import type React from "react"
 import { notFound } from "next/navigation"
+import { preload } from "react-dom"
 import { LanguageProvider } from "@/components/language-provider"
 import type { Language } from "@/lib/translations"
 
@@ -46,6 +47,13 @@ export default async function LocaleLayout({
   // is painted. <html> already has suppressHydrationWarning, so React
   // accepts the attribute change. `locale` is validated above (fr|ar only).
   const dir = locale === "ar" ? "rtl" : "ltr"
+  // Arabic pages: fetch the two most used Arabic weights with the HTML so
+  // text paints in the right face instead of reflowing (see globals.css).
+  if (locale === "ar") {
+    for (const w of [400, 700]) {
+      preload(`/fonts/ibm-plex-sans-arabic/arabic-${w}.woff2`, { as: "font", type: "font/woff2", crossOrigin: "anonymous" })
+    }
+  }
   return (
     <>
       <script

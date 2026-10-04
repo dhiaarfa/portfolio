@@ -47,6 +47,27 @@ Second batch (all 11 items from the "what else" list):
   trainer profile, named navbar landmarks, /insights cover links out of the tab
   order, freebie card titles as h2, search dialog title inside the dialog.
   Two French meta descriptions shortened under 160 characters.
+- Second audit (performance, security, i18n, SEO, keyboard, no-JS):
+  - Removed app/loading.tsx and the 3 route loading.tsx files: on these static
+    pages React showed a full-screen "Loading..." overlay first and only swapped
+    the content in at the end of the HTML (no content at all without JS).
+  - /freebies no longer uses useSearchParams (it forced client-only rendering);
+    ?category= is read with useSyncExternalStore after hydration.
+  - noscript style in app/layout.tsx shows fade-in sections without JS.
+  - LCP cards (first freebie, featured article) skip the fade-in and use
+    priority images; /developer hero photo is priority. Throttled-phone LCP:
+    /freebies and /insights 5.4s -> 1.8s, /developer 3.4s -> 2.1s.
+  - Arabic font self-hosted in public/fonts (@font-face in globals.css),
+    preloaded on /ar pages only from app/[locale]/layout.tsx; /ar CLS 0.28 -> 0.10.
+  - API: invalid JSON returns 400 (was 500) on /api/contact and /api/chat; contact
+    checks the real body size (chunked requests skipped the header check) and
+    no longer shows raw zod messages; chat ignores null entries.
+  - FR/AR copy for the 6 homepage project cards (data/projects.ts, localizeProject)
+    and the 3 /developer side projects (lib/dev-projects.ts); role stat strings.
+  - Checked and fine: npm audit (0), security headers, sitemap/hreflang/canonical,
+    JSON-LD, keyboard focus and Escape handling, no broken internal links.
+  - Not done (recommendation): lib/translations.ts ships all 3 languages to
+    every visitor (~220 KB raw); splitting per language would cut JS.
 
 ## Waiting on Dhia
 

@@ -89,12 +89,15 @@ export function InsightCover({
   slug,
   image,
   className = "",
+  priority = false,
 }: {
   category: InsightArticleMeta["category"]
   title: string
   slug?: string
   image?: string
   className?: string
+  /** First cover on the page: it is the LCP image, so fetch it early. */
+  priority?: boolean
 }) {
   // These were previously very low-opacity gradients (/30, /20, /40) sitting
   // over a near-white card background, which washed out to a pale tint with
@@ -126,7 +129,7 @@ export function InsightCover({
       className={`relative overflow-hidden rounded-xl ${image ? "bg-slate-900" : `bg-gradient-to-br ${gradients[category]}`} ${className}`}
     >
       {image ? (
-        <Image src={image} alt="" fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
+        <Image src={image} alt="" fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" priority={priority} />
       ) : (
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.16),transparent_50%)]" />
       )}

@@ -1,8 +1,7 @@
 "use client"
 
-import { useState, Suspense } from "react"
+import { useState, useSyncExternalStore } from "react"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
-import { useSearchParams } from "next/navigation"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Download, Lock, CheckCircle, X, Mail, Youtube, BookOpen, ExternalLink, GraduationCap, Wrench } from "lucide-react"
@@ -47,9 +46,25 @@ function parseCategory(value: string | null): Category {
 const pdfPreview = (path: string) =>
   `/images/freebies/previews/${path.split("/").pop()!.replace(/\.pdf$/, "")}.jpg`
 
-function FreebiesClientInner() {
+/** ?category= from the address bar. Read with useSyncExternalStore instead of
+ *  useSearchParams(): that hook made Next skip server rendering for this whole
+ *  page (the HTML held only "Loading…"), so crawlers and slow phones got an
+ *  empty page. The server snapshot is null ("all"); the real value applies
+ *  right after hydration. */
+function subscribeToHistory(onChange: () => void) {
+  window.addEventListener("popstate", onChange)
+  return () => window.removeEventListener("popstate", onChange)
+}
+function useCategoryParam(): string | null {
+  return useSyncExternalStore(
+    subscribeToHistory,
+    () => new URLSearchParams(window.location.search).get("category"),
+    () => null,
+  )
+}
+
+export default function FreebiesClient() {
   const { t } = useLanguage()
-  const searchParams = useSearchParams()
   const freebies = publishedFreebies()
   const [activeCategory, setActiveCategory] = useState<Category>("all")
   const [resourceFilter, setResourceFilter] = useState<ResourceFilter>("all")
@@ -69,7 +84,7 @@ function FreebiesClientInner() {
   // resources" link). Adjusted during render rather than in a useEffect,
   // React's recommended pattern for resetting state when an input changes;
   // the filter buttons still set activeCategory freely in between.
-  const categoryParam = searchParams.get("category")
+  const categoryParam = useCategoryParam()
   const [prevCategoryParam, setPrevCategoryParam] = useState<string | null>(null)
   if (categoryParam !== prevCategoryParam) {
     setPrevCategoryParam(categoryParam)
@@ -248,7 +263,8 @@ function FreebiesClientInner() {
               return (
                 <motion.div
                   key={freebie.id}
-                  initial={{ opacity: 0, y: 16 }}
+                  // First card holds the LCP image: no fade-in, so it paints before JS runs.
+                  initial={i === 0 ? false : { opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.4, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
@@ -263,6 +279,8 @@ function FreebiesClientInner() {
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover"
+                        // First card is the page's largest image (LCP).
+                        priority={i === 0}
                       />
                       {/* Real first page of the PDF (roadmap: show what you
                           get, not "trust me"). Built by
@@ -605,13 +623,5 @@ function FreebiesClientInner() {
         </div>
       )}
     </>
-  )
-}
-
-export default function FreebiesClient() {
-  return (
-    <Suspense fallback={<div className="py-32 text-center text-muted-foreground">Loading…</div>}>
-      <FreebiesClientInner />
-    </Suspense>
   )
 }

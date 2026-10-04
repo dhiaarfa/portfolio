@@ -100,7 +100,8 @@ export default function InsightsPageClient() {
 
         {featured && (filter === "all" || featured.category === filter) && (
           <motion.article
-            initial={{ opacity: 0, y: 16 }}
+            // Featured cover is the LCP image: no fade-in, so it paints before JS runs.
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -109,6 +110,7 @@ export default function InsightsPageClient() {
             <Link href={`/insights/${featured.slug}`} className="block group">
               <div className="grid md:grid-cols-2 gap-0">
                 <InsightCover
+                  priority
                   category={featured.category}
                   title={t(featured.titleKey)}
                   slug={featured.slug}

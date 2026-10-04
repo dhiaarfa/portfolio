@@ -3,7 +3,7 @@ import type { Viewport } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
-import { Fraunces, IBM_Plex_Sans_Arabic, Inter } from "next/font/google"
+import { Fraunces, Inter } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { formatStat } from "@/lib/profile"
 import { DEFAULT_OG_IMAGE } from "@/lib/page-metadata"
@@ -26,15 +26,9 @@ const inter = Inter({
   display: "swap",
 })
 
-// Oct 2026: Arabic moved from Cairo to IBM Plex Sans Arabic, the closest
-// open-licensed match to Thmanyah (whose license forbids web hosting).
-const arabic = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-arabic",
-  display: "swap",
-  preload: false,
-})
+// Arabic (IBM Plex Sans Arabic, chosen Oct 2026 as the closest
+// open-licensed match to Thmanyah) is self-hosted via @font-face in
+// globals.css, not next/font, so it can be preloaded on /ar pages only.
 
 // Oct 2026: moved from a render-blocking Google Fonts <link> in <head> to
 // next/font (self-hosted, no runtime request, no layout shift), matching
@@ -152,7 +146,7 @@ export default function RootLayout({
       lang="en"
       dir="ltr"
       suppressHydrationWarning
-      className={`scroll-smooth theme-transition ${inter.variable} ${arabic.variable} ${fraunces.variable}`}
+      className={`scroll-smooth theme-transition ${inter.variable} ${fraunces.variable}`}
     >
       <head>
         <link rel="icon" href="/favicon-192.png" sizes="any" />
@@ -338,6 +332,12 @@ export default function RootLayout({
             }),
           }}
         />
+        {/* Without JavaScript the scroll-in animations never run, so sections
+            server-rendered at opacity 0 (framer-motion's initial state) would
+            stay invisible. Show them as-is instead. */}
+        <noscript>
+          <style>{`[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </head>
       <body className={cn("antialiased overflow-x-hidden min-w-0 font-body")} style={{ backgroundColor: "hsl(var(--background))", color: "hsl(var(--foreground))" }}>
         <ThemeProvider

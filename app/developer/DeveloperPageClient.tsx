@@ -11,7 +11,7 @@ import ContactForm from "@/components/contact-form"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { siteConfig } from "@/lib/site-config"
 import { devWorkProjects, devCardAspectRatio, devCardTheme, localizedWork } from "@/lib/work"
-import { otherDevProjects } from "@/lib/dev-projects"
+import { otherDevProjects, localizedOtherDevProject } from "@/lib/dev-projects"
 import { ExternalLink, Github, Download, ArrowRight, Gift, Clock, FolderGit2, Images } from "lucide-react"
 import ToolsStackSection from "@/components/tools-stack-section"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
@@ -115,7 +115,7 @@ export default function DeveloperPageClient() {
                   branded headshot that was previously reused here -- per
                   Dhia's request to put an actual photo of him with a laptop
                   in this hero instead. */}
-              <Image src="/images/photos/dhia-laptop-classroom.jpg" alt="Dhia working on his laptop in a classroom" width={380} height={460} className="w-full aspect-[380/460] object-cover object-[55%_50%]" />
+              <Image src="/images/photos/dhia-laptop-classroom.jpg" alt="Dhia working on his laptop in a classroom" width={380} height={460} priority sizes="(max-width: 768px) 90vw, 380px" className="w-full aspect-[380/460] object-cover object-[55%_50%]" />
             </div>
           }
         >
@@ -408,7 +408,7 @@ export default function DeveloperPageClient() {
               <div className="pt-8 border-t border-border">
                 <h3 className="text-lg font-bold mb-4">{t("devOtherNoteworthy")}</h3>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {otherDevProjects.map((p) => (
+                  {otherDevProjects.map((p) => localizedOtherDevProject(p, language)).map((p) => (
                     <div
                       key={p.title}
                       className="group relative overflow-hidden flex flex-col rounded-[28px] border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.55)]"

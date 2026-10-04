@@ -26,6 +26,11 @@ export type Project = {
   name: string
   meta: string
   description: string
+  /** French/Arabic copy; English is used when missing (see localizeProject). */
+  metaFr?: string
+  metaAr?: string
+  descriptionFr?: string
+  descriptionAr?: string
   /** Rendered as up to 3 pills, bottom-left of the card footer. */
   tags: string[]
   image: string

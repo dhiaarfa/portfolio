@@ -17,7 +17,7 @@ import JourneySection from "@/components/journey-section"
 import ServicePackages from "@/components/service-packages"
 import HowWeWorkSection from "@/components/how-we-work-section"
 import ProjectStack from "@/components/sections/ProjectStack"
-import { selectedWork } from "@/data/projects"
+import { selectedWork, localizeProject } from "@/data/projects"
 import NewsletterSection from "@/components/newsletter-section"
 import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
@@ -109,7 +109,7 @@ function HeroAskBar() {
 }
 
 export default function HomePageClient() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [pillar, setPillar] = useState<Pillar>(null)
   const roles = [
     {
@@ -481,7 +481,7 @@ export default function HomePageClient() {
         eyebrow={t("homeSelectedWorkEyebrow")}
         title={t("homeSelectedWorkTitle")}
         subtitle={t("homeSelectedWorkSubtitle")}
-        projects={selectedWork}
+        projects={selectedWork.map((p) => localizeProject(p, language))}
       />
       <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 px-4 pb-12 text-sm font-semibold">
         {[
