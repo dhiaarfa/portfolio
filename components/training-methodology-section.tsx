@@ -107,7 +107,7 @@ const frameworks = [
 // ─── Component ─────────────────────────────────────────────────────────────
 
 export default function TrainingMethodologySection() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   // Each pillar card starts collapsed, showing only the title/subtitle and a
   // 2-line description clamp -- the full description + pull quote reveal
   // when the visitor clicks the arrow. Keeps the section from reading as a
@@ -295,7 +295,7 @@ export default function TrainingMethodologySection() {
           </div>
 
           <div className="text-center mt-6">
-            <span className="text-xs text-slate-500 italic">
+            <span className="text-xs text-slate-400 italic">
               ↺ {t("kolbCycleRepeatsNote")}
             </span>
           </div>
@@ -325,7 +325,7 @@ export default function TrainingMethodologySection() {
                   <fw.Icon className="w-5 h-5" />
                 </div>
                 <p className={`text-xs font-bold uppercase tracking-wider mb-1 ${fw.textColor}`}>
-                  {fw.year}
+                  {fw.year === 'Council of Europe' && language !== 'en' ? (language === 'fr' ? "Conseil de l'Europe" : 'مجلس أوروبا') : fw.year}
                 </p>
                 <h4 className="font-bold text-slate-900 dark:text-white text-sm leading-snug mb-2 whitespace-pre-line">
                   {t(fw.nameKey)}

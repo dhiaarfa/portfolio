@@ -189,15 +189,15 @@ export default function Navbar() {
                 its text and force an awkward mid-word wrap. */}
             <Link href="/" className="flex items-center gap-2 shrink-0 group">
               <div className="relative w-9 h-9 rounded-xl overflow-hidden shrink-0 ring-2 ring-[color-mix(in_oklab,var(--site-accent)_35%,transparent)]">
-                <Image src="/images/photos/dhia-main.png" alt="Mohamed Dhia" width={36} height={36} className="object-cover w-full h-full" priority />
+                <Image src="/images/photos/dhia-main.png" alt={language === "ar" ? "محمد ضياء" : "Mohamed Dhia"} width={36} height={36} className="object-cover w-full h-full" priority />
               </div>
               {/* Name + tagline from lg: below that the bar needs the room
                   for the compact page links. French nav labels are longer,
                   so from xl to 2xl (1280-1535px) the avatar stands alone
                   there; otherwise the nav pill ran over the name. */}
               <div className={`hidden lg:block leading-tight shrink-0 ${language === "fr" ? "xl:max-2xl:hidden" : ""}`}>
-                <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none whitespace-nowrap">Dhia</p>
-                <p className="text-[10px] text-slate-400 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5 whitespace-nowrap">{t("navTagline")}</p>
+                <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none whitespace-nowrap">{language === "ar" ? "ضياء" : "Dhia"}</p>
+                <p className="text-[10px] text-slate-500 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5 whitespace-nowrap">{t("navTagline")}</p>
               </div>
             </Link>
           </motion.div>

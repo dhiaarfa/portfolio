@@ -37,7 +37,7 @@ export default function WorkCaseStudyClient({ slug, project, content, nextProjec
           </Link>
 
           <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-2xl border border-border bg-muted">
-            <Image src={project.heroImage} alt={project.title} fill className="object-cover" priority sizes="(max-width: 896px) 100vw, 896px" />
+            <Image src={project.heroImage} alt={lw.title} fill className="object-cover" priority sizes="(max-width: 896px) 100vw, 896px" />
           </div>
 
           <p className="label mb-2">
@@ -45,7 +45,7 @@ export default function WorkCaseStudyClient({ slug, project, content, nextProjec
             {project.concept ? " · Concept" : ""}
             {lw.metrics ? ` · ${lw.metrics}` : ""}
           </p>
-          <h1 className="h1-article mb-4 text-foreground">{project.title}</h1>
+          <h1 className="h1-article mb-4 text-foreground">{lw.title}</h1>
           <p className="mb-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">{lw.clientLine}</p>
 
           <div className="mb-6 flex flex-wrap gap-3 text-sm">

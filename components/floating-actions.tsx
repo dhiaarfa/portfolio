@@ -332,7 +332,7 @@ export default function FloatingActions() {
               faqIndex effect above. Tapping it sends that question straight
               into the conversation. */}
           <div className="flex shrink-0 items-center gap-2 border-t border-slate-200 bg-slate-50 px-3 py-2 dark:border-border dark:bg-card/60">
-            <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+            <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
               {t("chatSuggestedLabel")}
             </span>
             <button

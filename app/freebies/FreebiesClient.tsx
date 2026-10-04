@@ -64,7 +64,7 @@ function useCategoryParam(): string | null {
 }
 
 export default function FreebiesClient() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const freebies = publishedFreebies()
   const [activeCategory, setActiveCategory] = useState<Category>("all")
   const [resourceFilter, setResourceFilter] = useState<ResourceFilter>("all")
@@ -123,6 +123,7 @@ export default function FreebiesClient() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "freebie",
+          lang: language,
           name: formData.name.trim(),
           email: formData.email.trim(),
           freebieId: selectedFreebie.id,

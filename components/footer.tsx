@@ -35,7 +35,7 @@ const variantCopyKeys = {
 } as const
 
 export default function Footer({ variant }: FooterProps = {}) {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const heading = t(variant ? variantCopyKeys[variant].heading : "footerReadyProject")
   const subtext = t(variant ? variantCopyKeys[variant].sub : "footerCallShort")
   // "mailto:" links silently do nothing when the visitor's browser/OS has no
@@ -98,8 +98,8 @@ export default function Footer({ variant }: FooterProps = {}) {
             >
               {emailCopied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
-                  <span className="text-green-600 dark:text-green-400">{t("copiedLabel")} · {siteConfig.email}</span>
+                  <Check className="w-3.5 h-3.5 text-green-700 dark:text-green-400" />
+                  <span className="text-green-700 dark:text-green-400">{t("copiedLabel")} · {siteConfig.email}</span>
                 </>
               ) : (
                 <>
@@ -117,7 +117,7 @@ export default function Footer({ variant }: FooterProps = {}) {
             <div className="relative w-8 h-8 rounded-xl overflow-hidden shrink-0 ring-1 ring-border">
               <Image src="/images/photos/dhia-main.png" alt="" fill className="object-cover" aria-hidden />
             </div>
-            <span className="font-display font-bold text-foreground text-sm">Dhia</span>
+            <span className="font-display font-bold text-foreground text-sm">{language === "ar" ? "ضياء" : "Dhia"}</span>
           </div>
           <p className="text-muted-foreground text-xs leading-relaxed mb-5">
             {t("footerDesc")}
@@ -161,7 +161,7 @@ export default function Footer({ variant }: FooterProps = {}) {
         </div>
 
         <div>
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground/70 mb-4">{t("navigationTitle")}</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground mb-4">{t("navigationTitle")}</p>
           <ul className="space-y-2.5">
             <li><Link href="/" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("home")}</Link></li>
             <li><Link href="/designer" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("branding")}</Link></li>
@@ -173,7 +173,7 @@ export default function Footer({ variant }: FooterProps = {}) {
         </div>
 
         <div>
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground/70 mb-4">{t("services")}</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground mb-4">{t("services")}</p>
           <ul className="space-y-2.5">
             {[
               { label: t("footerService1"), href: "/designer#case-studies" },
@@ -199,7 +199,7 @@ export default function Footer({ variant }: FooterProps = {}) {
         </div>
 
         <div>
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground/70 mb-4">{t("contact")}</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground mb-4">{t("contact")}</p>
           <div className="space-y-3">
             <a
               href={`mailto:${siteConfig.email}`}
@@ -215,7 +215,7 @@ export default function Footer({ variant }: FooterProps = {}) {
                 <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75" />
                 <span className="relative h-2 w-2 rounded-full bg-green-500" />
               </span>
-              <span className="text-green-600 dark:text-green-400 text-xs font-medium">{t("availableForProjects")}</span>
+              <span className="text-green-700 dark:text-green-400 text-xs font-medium">{t("availableForProjects")}</span>
             </div>
           </div>
         </div>

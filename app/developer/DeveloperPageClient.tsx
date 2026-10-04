@@ -111,7 +111,7 @@ export default function DeveloperPageClient() {
                 <span className="w-3 h-3 rounded-full bg-red-500/80" />
                 <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
                 <span className="w-3 h-3 rounded-full bg-accent/80" />
-                <span className="ml-4 font-mono text-slate-500 text-xs">dhia.dev</span>
+                <span className="ml-4 font-mono text-slate-400 text-xs">dhia.dev</span>
               </div>
               {/* Real "Dhia at the keyboard" photo, replacing the generic
                   branded headshot that was previously reused here -- per
@@ -283,12 +283,12 @@ export default function DeveloperPageClient() {
 
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
                         {project.slug === "digimytch" && <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />}
-                        {theme?.tag ?? "Web Dev"}
+                        {(language === "fr" ? theme?.tagFr : language === "ar" ? theme?.tagAr : theme?.tag) ?? "Web Dev"}
                       </span>
-                      <h3 className="text-white text-xl sm:text-2xl font-bold mt-3 leading-snug">{project.title}</h3>
+                      <h3 className="text-white text-xl sm:text-2xl font-bold mt-3 leading-snug">{lw.title}</h3>
                       {theme?.meta && (
                         <p className="text-white/60 text-xs mt-2 flex flex-wrap gap-x-1.5">
-                          {theme.meta.split(" | ").map((part, idx, arr) => (
+                          {(language === "fr" ? theme.metaFr : language === "ar" ? theme.metaAr : theme.meta).split(" | ").map((part, idx, arr) => (
                             <span key={part}>
                               {part}
                               {idx < arr.length - 1 && <span className="text-white/30 ml-1.5">|</span>}

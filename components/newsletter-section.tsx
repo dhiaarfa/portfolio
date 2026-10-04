@@ -6,7 +6,7 @@ import { Mail, CheckCircle2, AlertCircle } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 
 export default function NewsletterSection() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [email, setEmail] = useState("")
   // Honeypot field: intentionally has no onChange handler and is read-only, a human
   // never changes it, so it should always submit empty. A naive bot script that fills
@@ -28,6 +28,7 @@ export default function NewsletterSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: "",
+          lang: language,
           email: email.trim(),
           message: "Newsletter signup",
           type: "newsletter",

@@ -5,6 +5,8 @@ export type WorkKind = "design" | "dev"
 export type WorkProject = {
   slug: string
   title: string
+  titleFr?: string
+  titleAr?: string
   clientLine: string
   excerpt: string
   heroImage: string
@@ -151,6 +153,8 @@ export const workProjects: WorkProject[] = [
   {
     slug: "traveltodo-campaign",
     title: "TravelTodo Campaign",
+    titleFr: "Campagne TravelTodo",
+    titleAr: "حملة TravelTodo",
     clientLine: "Travel brand social and outdoor campaign visuals for seasonal promotion.",
     excerpt: "Billboard, poster, and feed assets with a consistent campaign look across formats.",
     heroImage: "/images/billboard-48x14-ft-mockup-3.jpeg",
@@ -269,6 +273,9 @@ export const workProjects: WorkProject[] = [
 
 export type GalleryItem = {
   title: string
+  /** Only where the title is descriptive rather than a brand name. */
+  titleFr?: string
+  titleAr?: string
   image: string
   category: WorkCategory | "All"
   workSlug?: string
@@ -278,16 +285,16 @@ export type GalleryItem = {
 
 /** Curated gallery: best 10 pieces (case-study links where available). */
 export const curatedGallery: GalleryItem[] = [
-  { title: "Speranza Café", image: "/images/445771850-916829483581375-1053755579034856379-n.png", category: "Brand Identity", workSlug: "speranza-cafe" },
-  { title: "ONE SPACE Gold Branding", image: "/images/one-space-gold.png", category: "Brand Identity", workSlug: "one-space" },
-  { title: "Tafani Travel", image: "/images/tafani-white-png.png", category: "Brand Identity", workSlug: "tafani-travel" },
-  { title: "MeetUp Pro Event", image: "/images/meetuppro-thumbnail.png", category: "Social Media", workSlug: "meetup-pro" },
-  { title: "ONE SPACE Stationery", image: "/images/one-space-mockup.jpg", category: "Packaging", workSlug: "one-space" },
-  { title: "TravelTodo Billboard", image: "/images/billboard-48x14-ft-mockup-3.jpeg", category: "Social Media", workSlug: "traveltodo-campaign" },
-  { title: "ONE SPACE Business Cards", image: "/images/one-space-cards.jpg", category: "Logo Design", workSlug: "one-space" },
-  { title: "Archaeological Museum Sousse", image: "/images/archaeological-museum-sousse.jpg", category: "Brand Identity", concept: true, externalUrl: "https://www.behance.net/dhiaa" },
-  { title: "Walmart Branding + System", image: "/images/walmart-branding.png", category: "Brand Identity", concept: true, externalUrl: "https://www.behance.net/dhiaa" },
-  { title: "Football Campaign", image: "/images/argentina-messi-copa-america-outdoor.jpeg", category: "Social Media", externalUrl: "https://www.behance.net/dhiaa" },
+  { title: "Speranza Café", titleFr: "Speranza Café", titleAr: "مقهى Speranza", image: "/images/445771850-916829483581375-1053755579034856379-n.png", category: "Brand Identity", workSlug: "speranza-cafe" },
+  { title: "ONE SPACE Gold Branding", titleFr: "Identité dorée ONE SPACE", titleAr: "هوية ONE SPACE الذهبية", image: "/images/one-space-gold.png", category: "Brand Identity", workSlug: "one-space" },
+  { title: "Tafani Travel", titleFr: "Tafani Travel", titleAr: "Tafani Travel", image: "/images/tafani-white-png.png", category: "Brand Identity", workSlug: "tafani-travel" },
+  { title: "MeetUp Pro Event", titleFr: "Événement MeetUp Pro", titleAr: "فعالية MeetUp Pro", image: "/images/meetuppro-thumbnail.png", category: "Social Media", workSlug: "meetup-pro" },
+  { title: "ONE SPACE Stationery", titleFr: "Papeterie ONE SPACE", titleAr: "مطبوعات ONE SPACE", image: "/images/one-space-mockup.jpg", category: "Packaging", workSlug: "one-space" },
+  { title: "TravelTodo Billboard", titleFr: "Panneau publicitaire TravelTodo", titleAr: "لوحة إعلانية لـ TravelTodo", image: "/images/billboard-48x14-ft-mockup-3.jpeg", category: "Social Media", workSlug: "traveltodo-campaign" },
+  { title: "ONE SPACE Business Cards", titleFr: "Cartes de visite ONE SPACE", titleAr: "بطاقات أعمال ONE SPACE", image: "/images/one-space-cards.jpg", category: "Logo Design", workSlug: "one-space" },
+  { title: "Archaeological Museum Sousse", titleFr: "Musée archéologique de Sousse", titleAr: "متحف سوسة الأثري", image: "/images/archaeological-museum-sousse.jpg", category: "Brand Identity", concept: true, externalUrl: "https://www.behance.net/dhiaa" },
+  { title: "Walmart Branding + System", titleFr: "Identité et système Walmart", titleAr: "هوية ونظام بصري لـ Walmart", image: "/images/walmart-branding.png", category: "Brand Identity", concept: true, externalUrl: "https://www.behance.net/dhiaa" },
+  { title: "Football Campaign", titleFr: "Campagne football", titleAr: "حملة كرة القدم", image: "/images/argentina-messi-copa-america-outdoor.jpeg", category: "Social Media", externalUrl: "https://www.behance.net/dhiaa" },
 ]
 
 export function publishedWorkProjects() {
@@ -329,6 +336,7 @@ export type WorkLocale = "en" | "fr" | "ar"
 export function localizedWork(project: WorkProject, locale: WorkLocale) {
   if (locale === "fr") {
     return {
+      title: project.titleFr ?? project.title,
       clientLine: project.clientLineFr ?? project.clientLine,
       excerpt: project.excerptFr ?? project.excerpt,
       role: project.roleFr ?? project.role,
@@ -339,6 +347,7 @@ export function localizedWork(project: WorkProject, locale: WorkLocale) {
   }
   if (locale === "ar") {
     return {
+      title: project.titleAr ?? project.title,
       clientLine: project.clientLineAr ?? project.clientLine,
       excerpt: project.excerptAr ?? project.excerpt,
       role: project.roleAr ?? project.role,
@@ -348,6 +357,7 @@ export function localizedWork(project: WorkProject, locale: WorkLocale) {
     }
   }
   return {
+    title: project.title,
     clientLine: project.clientLine,
     excerpt: project.excerpt,
     role: project.role,
@@ -471,7 +481,11 @@ export const devCardTheme: Record<
   {
     gradient: string
     tag: string
+    tagFr: string
+    tagAr: string
     meta: string
+    metaFr: string
+    metaAr: string
     secondaryImage?: string
     tertiaryImage?: string
     /** Full screenshot set for this project, shown in the click-to-open
@@ -482,7 +496,11 @@ export const devCardTheme: Record<
   digimytch: {
     gradient: "from-emerald-950 via-emerald-900 to-slate-950",
     tag: "Web Dev · AI SaaS",
+    tagFr: "Dév web · SaaS IA",
+    tagAr: "تطوير ويب · SaaS بالذكاء الاصطناعي",
     meta: "Full-stack · AI integration | 1200+ CVs · 98% satisfaction | PFE Capstone",
+    metaFr: "Full-stack · Intégration IA | 1200+ CV · 98 % de satisfaction | Projet de fin d'études",
+    metaAr: "Full-stack · دمج الذكاء الاصطناعي | +1200 سيرة ذاتية · رضا 98% | مشروع ختم الدروس",
     secondaryImage: "/images/projects/digimytch/kanban.png",
     tertiaryImage: "/images/projects/digimytch/dashboard.png",
     screenshots: [
@@ -498,7 +516,11 @@ export const devCardTheme: Record<
   "crit-tunisie": {
     gradient: "from-green-950 via-emerald-900 to-slate-950",
     tag: "Web Dev · Corporate",
+    tagFr: "Dév web · Entreprise",
+    tagAr: "تطوير ويب · مؤسسات",
     meta: "Web developer · UI implementation | Production site | Sep–Dec 2025",
+    metaFr: "Développeur web · Intégration UI | Site en production | sept.–déc. 2025",
+    metaAr: "مطوّر ويب · تنفيذ الواجهات | موقع في الإنتاج | سبتمبر–ديسمبر 2025",
     secondaryImage: "/images/crit-screenshots/candidates.png",
     tertiaryImage: "/images/crit-screenshots/solutions.png",
     screenshots: [
@@ -512,7 +534,11 @@ export const devCardTheme: Record<
   "best-dates-fruits": {
     gradient: "from-emerald-900 via-green-950 to-stone-950",
     tag: "Web Dev · Marketing",
+    tagFr: "Dév web · Marketing",
+    tagAr: "تطوير ويب · تسويق",
     meta: "Web development · Marketing site | Live brand site | Client project",
+    metaFr: "Développement web · Site marketing | Site de marque en ligne | Projet client",
+    metaAr: "تطوير ويب · موقع تسويقي | موقع علامة منشور | مشروع لعميل",
     secondaryImage: "/images/bdaf-screenshots/products.png",
     tertiaryImage: "/images/bdaf-screenshots/fruits.png",
     screenshots: [

@@ -125,20 +125,23 @@ export default function HeroAnnotatedPortrait({
         />
       </div>
 
-      {/* z-20: dot-grid, masked to the inverse of the photo fade so dots
-          only show where the photo has dissolved away (never on the
-          face/body) and fade out as the photo becomes opaque. */}
-      <div
-        className="pointer-events-none absolute inset-0 z-20 bg-dot-grid opacity-[0.45] hero-photo-dots"
-        aria-hidden
-      />
-
       {/* z-20: soft scrim behind the text zone for contrast -- a gradient,
           never a hard box, per Dhia's spec. Direction flips with the mask:
           left-to-right fade on tablet/desktop (text sits left), top-to-
           bottom on mobile (text sits below the photo). */}
       <div
         className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-white from-45% via-white/75 to-transparent to-75% dark:from-[#0A0A0A] dark:via-[#0A0A0A]/75 dark:to-transparent lg:bg-gradient-to-r lg:from-white lg:from-0% lg:via-white/60 lg:to-transparent lg:to-100% lg:dark:from-[#0A0A0A] lg:dark:via-[#0A0A0A]/60 lg:dark:to-transparent"
+        aria-hidden
+      />
+
+      {/* z-20: dot-grid, masked to the inverse of the photo fade so dots
+          only show where the photo has dissolved away (never on the
+          face/body) and fade out as the photo becomes opaque. Painted
+          AFTER the contrast scrim: underneath it, the white light-mode
+          scrim washed the dots out completely while the dark one let them
+          show, so the pattern existed in dark mode only. */}
+      <div
+        className="pointer-events-none absolute inset-0 z-20 bg-dot-grid opacity-[0.45] hero-photo-dots"
         aria-hidden
       />
 

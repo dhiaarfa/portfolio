@@ -5,7 +5,7 @@ import Image from "next/image"
 import { ArrowRight, Search, PenTool, Package, RefreshCw, Gift } from "lucide-react"
 import { formatStat, designExperience, certifications as profileCertifications, localizedExperience, localizedCertification } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
-import { featuredWorkProjects, curatedGallery, categoryKey, localizedWork } from "@/lib/work"
+import { featuredWorkProjects, curatedGallery, categoryKey, localizedWork, type GalleryItem } from "@/lib/work"
 import { motion } from "framer-motion"
 import Navbar from "@/components/navbar-new"
 import RoleHero from "@/components/role-hero"
@@ -47,6 +47,9 @@ const howWeWork = [
   { step: "03", titleKey: "howWeWorkStep3Title", descKey: "howWeWorkStep3Desc", Icon: RefreshCw },
   { step: "04", titleKey: "howWeWorkStep4Title", descKey: "howWeWorkStep4Desc", Icon: Package },
 ]
+
+const galleryTitle = (item: GalleryItem, lang: string) =>
+  (lang === "fr" ? item.titleFr : lang === "ar" ? item.titleAr : undefined) ?? item.title
 
 const packages = [
   {
@@ -243,7 +246,7 @@ export default function DesignerPageClient() {
                 >
                   <Link href={`/work/${project.slug}`} className="block">
                     <div className={`relative bg-muted ${i === 0 ? "aspect-[4/3] lg:aspect-[16/9]" : "aspect-[4/3]"}`}>
-                      <Image src={project.cardImage} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
+                      <Image src={project.cardImage} alt={lw.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
                     </div>
                     <div className="space-y-2 p-5">
                       <div className="flex flex-wrap items-center gap-2">
@@ -254,7 +257,7 @@ export default function DesignerPageClient() {
                           {project.concept ? t("galleryConceptBadge") : t("caseClientBadge")}
                         </span>
                       </div>
-                      <h3 className="text-lg font-bold">{project.title}</h3>
+                      <h3 className="text-lg font-bold">{lw.title}</h3>
                       {/* Outcome first, deliverable second (step 10, after
                           NOSIGNER's "HOW" captions). */}
                       <p className="text-sm font-medium text-foreground">{lw.outcome}</p>
@@ -314,7 +317,7 @@ export default function DesignerPageClient() {
                     {...linkProps}
                     className="group relative mb-3 block break-inside-avoid overflow-hidden rounded-2xl bg-muted"
                   >
-                    <Image src={project.image} alt={project.title} width={0} height={0} className="h-auto w-full transition-transform duration-500 group-hover:scale-105" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw" />
+                    <Image src={project.image} alt={galleryTitle(project, language)} width={0} height={0} className="h-auto w-full transition-transform duration-500 group-hover:scale-105" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw" />
                     <div className="absolute inset-0 flex items-end bg-slate-900/0 p-3 transition-all group-hover:bg-slate-900/70">
                       {project.concept && (
                         // Neutral status tag ("concept" vs. a delivered
@@ -324,7 +327,7 @@ export default function DesignerPageClient() {
                         </span>
                       )}
                       <div className="translate-y-2 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                        <p className="text-sm font-semibold text-white">{project.title}</p>
+                        <p className="text-sm font-semibold text-white">{galleryTitle(project, language)}</p>
                         <p className="text-xs text-white/70">{internal ? t("caseStudyLabel") : t("galleryBehanceLabel")}</p>
                       </div>
                     </div>
@@ -384,14 +387,16 @@ export default function DesignerPageClient() {
                   src="/images/photos/dhia-hero-green.jpg"
                   alt="Mohamed Dhia Arfa, designer"
                   fill
-                  className="object-cover object-[85%_30%] rtl:-scale-x-100"
+                  className="object-cover object-[85%_30%]"
                   sizes="100vw"
                 />
-                {/* Text sits on the photo's dark side, away from the face
-                    (image is mirrored in RTL so that side is always "start"). */}
-                <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-black/80 via-black/30 to-transparent" />
+                {/* Text sits on the photo's dark left side, away from the
+                    face, in every language. The photo is never mirrored in
+                    Arabic (Dhia's rule): the text box stays physically on
+                    the left instead. */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" />
               </div>
-              <div className="absolute inset-0 flex flex-col items-start justify-center text-start px-6 sm:px-10 md:px-14 max-w-[60%]">
+              <div className="absolute inset-y-0 left-0 flex w-[60%] flex-col items-start justify-center text-start px-6 sm:px-10 md:px-14">
                 {/* The named method (Oct 2026), shared with /trainer. */}
                 <p className="label !text-white/80 mb-2">{t("methodName")}</p>
                 <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-white">{t("designerProcessHeading")}</h2>
@@ -404,7 +409,7 @@ export default function DesignerPageClient() {
                     <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-subtle text-accent">
                       <step.Icon className="h-4 w-4" />
                     </span>
-                    <span className="font-display text-2xl font-black text-muted-foreground/70">{step.step}</span>
+                    <span className="font-display text-2xl font-black text-muted-foreground">{step.step}</span>
                   </div>
                   <h3 className="mb-2 font-semibold">{t(step.titleKey)}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{t(step.descKey)}</p>

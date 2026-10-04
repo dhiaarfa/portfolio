@@ -155,8 +155,11 @@ export default function HomePageClient() {
             is a physical margin (ignores `dir`), so it keeps this column
             pinned to the physical left -- opposite the photo -- in every
             language, with no visual change in LTR (where it was already
-            flush left by default). */}
-        <div className="max-w-2xl mr-auto">
+            flush left by default). In Arabic the lines are right-aligned,
+            so they end at this column's right edge: on desktop the column
+            is narrower there (rtl:lg:max-w-lg) so the text stops before
+            the photo instead of running into the face. */}
+        <div className="max-w-2xl mr-auto rtl:lg:max-w-lg">
           {/* 3-way audit synthesis (Sep 2026): promotes the existing,
               already-translated positioning tagline into the literal <h1>
               (previously just the name greeting), so the page's core
@@ -171,7 +174,7 @@ export default function HomePageClient() {
               forcing dark regardless of theme. */}
           <p className="text-base sm:text-lg font-medium text-slate-500 dark:text-slate-400 mb-2">
             {t("helloGreeting")}{" "}
-            <span className="text-slate-900 dark:text-white font-semibold">Dhia</span>
+            <span className="text-slate-900 dark:text-white font-semibold">{language === "ar" ? "ضياء" : "Dhia"}</span>
           </p>
           <h1 className="h1-hero-tagline text-slate-900 dark:text-white mb-2 transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]">
             {/* Dhia's ask: a real line break after "build." rather than
@@ -326,7 +329,7 @@ export default function HomePageClient() {
                 icon: Palette,
                 eyebrowKey: "design",
                 title: "Zia Studio",
-                tags: ["Brand Identity", "UI/UX", "Motion", "Print"],
+                tags: language === "fr" ? ["Identité de marque", "UI/UX", "Motion", "Print"] : language === "ar" ? ["هوية بصرية", "UI/UX", "موشن", "مطبوعات"] : ["Brand Identity", "UI/UX", "Motion", "Print"],
                 flagship: "Speranza Café, full brand identity",
               },
               {
@@ -351,7 +354,7 @@ export default function HomePageClient() {
                 title: t("pillarFullStackDevelopment"),
                 // Master roadmap 2.4: outcome chips here; the framework
                 // list (React/Next.js/Tailwind/TypeScript) lives on /developer.
-                tags: ["Websites", "Web apps", "Responsive", "Fast"],
+                tags: language === "fr" ? ["Sites web", "Applications web", "Responsive", "Rapide"] : language === "ar" ? ["مواقع ويب", "تطبيقات ويب", "متجاوب", "سريع"] : ["Websites", "Web apps", "Responsive", "Fast"],
                 flagship: "DigiMyTech Talent Hub, graduation project",
               },
             ].map(

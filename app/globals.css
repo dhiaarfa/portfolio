@@ -44,8 +44,9 @@
    a hard color cut"). Any tinted section fades in from the page background
    and carries a faint green hairline at its top edge. Drawn as background
    layers, so it sits under the content and never changes layout. Sections
-   that already paint their own background image are left alone. */
-section:is(.bg-card, .bg-section-tint, [class*="bg-muted/"], [class*="bg-background/"]):not([class*="bg-gradient"]):not([class*="bg-[url"]):not([class*="bg-dot"]) {
+   that already paint their own background image, or that continue a
+   gradient from the section above ([data-seamless]), are left alone. */
+section:is(.bg-card, .bg-section-tint, [class*="bg-muted/"], [class*="bg-background/"]):not([class*="bg-gradient"]):not([class*="bg-[url"]):not([class*="bg-dot"]):not([data-seamless]) {
   background-image:
     linear-gradient(90deg, transparent, color-mix(in oklab, var(--site-accent) 45%, transparent) 50%, transparent),
     linear-gradient(to bottom, hsl(var(--background)), transparent 56px);
@@ -162,10 +163,13 @@ html.theme-transition a {
  * (pink = design, amber = training, blue = dev) are only for insight and
  * freebie category badges -- see color-role-system-sep2026.md -- and never
  * for buttons. */
-:root { --site-accent: #16a34a; }
-.dark { --site-accent: #22c55e; }
+:root { --site-accent: #16a34a; --site-accent-text: #166534; }
+.dark { --site-accent: #22c55e; --site-accent-text: #22c55e; }
 
-.text-accent { color: var(--site-accent); }
+/* Green TEXT uses --site-accent-text: on white, #16a34a is only 3.3:1 (below
+   the 4.5:1 WCAG minimum for small text, flagged by axe on every light-mode
+   page); #166534 is 7:1, and still 4.5:1+ on the pale green chip tints. Dark mode keeps the bright green. */
+.text-accent { color: var(--site-accent-text); }
 .text-accent-muted { color: color-mix(in oklab, var(--site-accent) 35%, transparent); }
 /* Solid green fills carry white text. #15803d gives 5:1 against white in
    both themes; Tailwind's own bg-accent (hsl(var(--accent)), #22c55e-ish)
@@ -206,7 +210,7 @@ html.custom-cursor-active * {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--site-accent);
+  color: var(--site-accent-text);
   margin-bottom: 8px;
 }
 

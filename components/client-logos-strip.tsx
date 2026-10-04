@@ -76,7 +76,7 @@ export default function ClientLogosStrip() {
           * someone searching any of these organizations by name, not just
           * "Mohamed Dhia Arfa". Nothing here is invented -- same list, same
           * names, already used for the logos rendered above. */}
-        <p className="mt-6 text-center text-xs text-muted-foreground/70 max-w-4xl mx-auto leading-relaxed px-4">
+        <p className="mt-6 text-center text-xs text-muted-foreground max-w-4xl mx-auto leading-relaxed px-4">
           {/* Isolated LTR run (RTL bidi fix, Oct 2026): this paragraph's
               base direction flips to RTL on the Arabic locale, and the
               organization names are a long list of Latin-script proper

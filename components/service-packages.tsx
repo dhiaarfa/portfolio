@@ -48,7 +48,7 @@ export default function ServicePackages({ pillar }: Props = {}) {
   const { t } = useLanguage()
   const visibleServices = pillar ? services.filter((s) => s.href === `/${pillar}`) : services
   return (
-    <section id="services" className="relative overflow-hidden bg-section-tint dark:bg-[#052e16] py-20 px-5">
+    <section id="services" data-seamless className="relative overflow-hidden bg-section-tint dark:bg-[#052e16] pt-14 pb-20 px-5">
       {/* Charte-graphique pass (Oct 2026): swapped the faint background
           photo for the site's dot-grid texture. */}
       <div

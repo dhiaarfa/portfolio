@@ -98,6 +98,24 @@ Second batch (all 11 items from the "what else" list):
   cost, trainer day rates (incl. the CNFCPP reimbursement cap), brand
   identity cost. Their own prices read from lib/pricing.ts.
 
+- Oct 4 fixes from Dhia's review: hero dot pattern now shows in light mode
+  too (it sat under the white contrast scrim); photo banners are never
+  mirrored in Arabic (text box moved to the photo's dark left side instead);
+  Arabic hero text column narrower so it stops before the face; "ضياء" in
+  the navbar, hero and footer on Arabic pages; testimonial names (nameAr)
+  and LinkedIn headlines (headlineEn/Fr/Ar) translated; dev project tags,
+  gallery titles, experience companies and month names localized; the
+  "which door" filter band shares the tint of the sections around it
+  (section seam skipped via data-seamless); light-mode green text uses
+  --site-accent-text (#166534) so axe contrast is 0 in both themes.
+- Emails (lib/email-templates.ts): branded, trilingual (RTL Arabic),
+  table-based layout with preheader + plain-text part. Contact confirmation
+  shows next steps and the visitor's message; freebie delivery shows a
+  resource card + 3 latest articles; NEW newsletter welcome email; owner
+  notifications share the layout. Forms send `lang`.
+- Build cache gotcha: Turbopack once served stale CSS after a globals.css
+  edit; `rm -rf .next` before verifying CSS changes.
+
 ## Waiting on Dhia
 
 1. Testimonial photos (Yassine, Oumaima, Youssef, Rayen, Amir, Ikram, Skander).

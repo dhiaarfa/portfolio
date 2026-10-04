@@ -24,8 +24,15 @@ export type TestimonialItem = {
   quoteEn: string
   quoteFr: string
   quoteAr: string
-  /** The person's own LinkedIn headline (kept in its original wording). */
+  /** The person's own LinkedIn headline, in its original wording. */
   headline: string
+  /** Faithful translations of `headline` (the original-language one
+   *  repeats it). Shown so Arabic and French pages aren't half English. */
+  headlineEn: string
+  headlineFr: string
+  headlineAr: string
+  /** The name in Arabic script, for /ar pages. */
+  nameAr: string
   relationEn: string
   relationFr: string
   relationAr: string
@@ -40,6 +47,7 @@ export const allTestimonials: TestimonialItem[] = [
   {
     id: "yassine",
     name: "Yassine Bahri",
+    nameAr: "ياسين بحري",
     linkedin: "https://www.linkedin.com/in/yassinebahri-/",
     date: "2026-04",
     originalLang: "fr",
@@ -50,6 +58,9 @@ export const allTestimonials: TestimonialItem[] = [
     quoteAr:
       "شارك محمد ضياء معي في تنشيط ورشة حول التصميم الجرافيكي في المعهد العالي للتصرف بتونس، وقام بالضبط بما يُنتظر من متدخّل جيّد: شدّ الانتباه، والإشراك، والتكوين. غادر الطلبة بهويات بصرية متينة ورغبة في الذهاب أبعد.",
     headline: "Créateur de stratégies digitales innovantes pour PME & Startups | Formateur | Enseignant | Freelance",
+    headlineEn: "Creator of innovative digital strategies for SMEs & startups | Trainer | Teacher | Freelance",
+    headlineFr: "Créateur de stratégies digitales innovantes pour PME & Startups | Formateur | Enseignant | Freelance",
+    headlineAr: "صانع استراتيجيات رقمية مبتكرة للمؤسسات الصغرى والمتوسطة والشركات الناشئة | مدرّب | أستاذ | مستقل",
     relationEn: "Was Dhia's teacher · co-facilitated a design workshop at ISG Tunis",
     relationFr: "Était l'enseignant de Dhia · co-animation d'un workshop design à l'ISG Tunis",
     relationAr: "كان أستاذ ضياء · شاركه تنشيط ورشة تصميم في ISG تونس",
@@ -59,6 +70,7 @@ export const allTestimonials: TestimonialItem[] = [
   {
     id: "rayen",
     name: "Rayen Bejaoui",
+    nameAr: "ريان بجاوي",
     linkedin: "https://www.linkedin.com/in/rayen-bejaoui-694673210/",
     date: "2025-01",
     originalLang: "en",
@@ -69,6 +81,9 @@ export const allTestimonials: TestimonialItem[] = [
     quoteAr:
       "كانت قيادته خلال الدفعة الثانية من مدرسة 1000 Challenges لافتة، إذ قاد النجاح بشغف وروح فريق. وفي AIESEC تميّز ضياء بمرونته وتفانيه وقدرته على جمع الناس.",
     headline: "Account Manager | Project Management, Client Relations",
+    headlineEn: "Account Manager | Project Management, Client Relations",
+    headlineFr: "Chargé de comptes | Gestion de projet, relation client",
+    headlineAr: "مدير حسابات | إدارة المشاريع، العلاقات مع العملاء",
     // Hidden on Dhia's LinkedIn profile, but he confirmed (Oct 2026) that
     // it should be shown on the site.
     relationEn: "Worked with Dhia on the same team · 1000 Challenges School & AIESEC",
@@ -80,6 +95,7 @@ export const allTestimonials: TestimonialItem[] = [
   {
     id: "oumaima",
     name: "Oumaima Arfaoui",
+    nameAr: "أميمة العرفاوي",
     linkedin: "https://www.linkedin.com/in/oumaima-arfaoui/",
     date: "2025-01",
     originalLang: "en",
@@ -90,6 +106,9 @@ export const allTestimonials: TestimonialItem[] = [
     quoteAr:
       "خلال مشاركتنا ضمن أفضل 5% الذين اختيروا لتمثيل تونس في هاكاثون المنظمة الدولية للهجرة في الدوحة، تشرّفت بالعمل عن قرب مع محمد ضياء. وجدته شخصًا ملهمًا يتمتع بمهارات تعاون استثنائية، يقدّم باستمرار أفكارًا مبتكرة ورؤية تصميم فريدة.",
     headline: "Geosciences Engineer | Petroleum Engineer | Geothermal Energy | Inspired Graphic Designer | Digital Marketer",
+    headlineEn: "Geosciences Engineer | Petroleum Engineer | Geothermal Energy | Inspired Graphic Designer | Digital Marketer",
+    headlineFr: "Ingénieure en géosciences | Ingénieure pétrolière | Énergie géothermique | Graphiste passionnée | Marketeuse digitale",
+    headlineAr: "مهندسة جيولوجيا | مهندسة بترول | الطاقة الحرارية الجوفية | مصممة جرافيك شغوفة | مسوّقة رقمية",
     relationEn: "Worked with Dhia on different teams · IOM Hackathon, Doha",
     relationFr: "A travaillé avec Dhia dans des équipes différentes · Hackathon OIM, Doha",
     relationAr: "عملت مع ضياء في فرق مختلفة · هاكاثون المنظمة الدولية للهجرة، الدوحة",
@@ -99,6 +118,7 @@ export const allTestimonials: TestimonialItem[] = [
   {
     id: "ikram",
     name: "Ikram Allah Nemri",
+    nameAr: "إكرام الله النمري",
     linkedin: "https://www.linkedin.com/in/ikram-allah-nemri-765815211/",
     date: "2024-05",
     originalLang: "en",
@@ -109,6 +129,9 @@ export const allTestimonials: TestimonialItem[] = [
     quoteAr:
       "عملت عن قرب مع محمد ضياء عرفة عندما كنت عضوة في AIESEC سوسة، ولاحظت أنه مصمم مؤهّل ومبتكر، ومسوّق رقمي متحمّس، وعامل شباب ملهم.",
     headline: "MSc in International Economy & Business | Social Entrepreneur | MBA Candidate",
+    headlineEn: "MSc in International Economy & Business | Social Entrepreneur | MBA Candidate",
+    headlineFr: "Master en économie et commerce internationaux | Entrepreneure sociale | Candidate au MBA",
+    headlineAr: "ماجستير في الاقتصاد والأعمال الدولية | رائدة أعمال اجتماعية | مترشحة لماجستير إدارة الأعمال (MBA)",
     relationEn: "Worked with Dhia on different teams · AIESEC Sousse",
     relationFr: "A travaillé avec Dhia dans des équipes différentes · AIESEC Sousse",
     relationAr: "عملت مع ضياء في فرق مختلفة · AIESEC سوسة",
@@ -118,6 +141,7 @@ export const allTestimonials: TestimonialItem[] = [
   {
     id: "youssef",
     name: "Youssef Touati",
+    nameAr: "يوسف التواتي",
     linkedin: "https://www.linkedin.com/in/yousseft/",
     date: "2024-03",
     originalLang: "en",
@@ -128,6 +152,9 @@ export const allTestimonials: TestimonialItem[] = [
     quoteAr:
       "خلال تربّصه في Jasmin Marketing، أظهر محمد ضياء عرفة باستمرار الإبداع والتفاني كمصمم جرافيك. وكان انتباهه للتفاصيل وحرصه على التعلّم واضحين في كل مشروع.",
     headline: "CEO & Co-Founder at Jasmin Marketing",
+    headlineEn: "CEO & Co-Founder at Jasmin Marketing",
+    headlineFr: "PDG et cofondateur de Jasmin Marketing",
+    headlineAr: "الرئيس التنفيذي والشريك المؤسس لـ Jasmin Marketing",
     relationEn: "Managed Dhia directly · graphic design internship, Jasmin Marketing",
     relationFr: "A encadré Dhia directement · stage en design graphique, Jasmin Marketing",
     relationAr: "أشرف على ضياء مباشرة · تربّص في التصميم الجرافيكي، Jasmin Marketing",
@@ -137,6 +164,7 @@ export const allTestimonials: TestimonialItem[] = [
   {
     id: "skander",
     name: "Skander Chebbi",
+    nameAr: "إسكندر الشابي",
     linkedin: "https://www.linkedin.com/in/skander-chebbi/",
     date: "2023-12",
     originalLang: "en",
@@ -147,6 +175,9 @@ export const allTestimonials: TestimonialItem[] = [
     quoteAr:
       "أوصي بشدة بالعمل مع ضياء، فهو رمز للحيوية والدقة في بيئة عمله. ومن تجربتي، أضاف قيمة كبيرة في التصميم الجرافيكي والتخطيط الاستراتيجي واللوجستيك والتمثيل الخارجي.",
     headline: "Graphic Designer",
+    headlineEn: "Graphic Designer",
+    headlineFr: "Graphiste",
+    headlineAr: "مصمم جرافيك",
     relationEn: "Worked with Dhia on different teams",
     relationFr: "A travaillé avec Dhia dans des équipes différentes",
     relationAr: "عمل مع ضياء في فرق مختلفة",
@@ -156,6 +187,7 @@ export const allTestimonials: TestimonialItem[] = [
   {
     id: "amir",
     name: "Amir Boujelben",
+    nameAr: "أمير بوجلبن",
     linkedin: "https://www.linkedin.com/in/amir-boujelben-205181210/",
     date: "2023-06",
     originalLang: "en",
@@ -166,6 +198,9 @@ export const allTestimonials: TestimonialItem[] = [
     quoteAr:
       "سعدت بالعمل عن قرب مع ضياء خلال MeetUp Pro 1.0، حيث كان مسؤول التسويق (OCVP Marketing) وكنت مدير الحدث. أظهر ضياء مهارات استثنائية في التسويق الاستراتيجي والإبداع والانتباه للتفاصيل.",
     headline: "Software Engineer @ Eyeo GmbH",
+    headlineEn: "Software Engineer @ Eyeo GmbH",
+    headlineFr: "Ingénieur logiciel chez Eyeo GmbH",
+    headlineAr: "مهندس برمجيات في Eyeo GmbH",
     relationEn: "Senior to Dhia on the team · Event Manager, MeetUp Pro 1.0",
     relationFr: "Senior dans l'équipe de Dhia · Event Manager, MeetUp Pro 1.0",
     relationAr: "كان أقدم من ضياء في الفريق · مدير حدث MeetUp Pro 1.0",
@@ -192,8 +227,10 @@ export function pickTestimonials(opts?: {
 export function testimonialText(
   item: TestimonialItem,
   lang: "en" | "fr" | "ar"
-): { quote: string; role: string; relation: string; translated: boolean } {
+): { name: string; quote: string; role: string; relation: string; translated: boolean } {
   const quote = lang === "fr" ? item.quoteFr : lang === "ar" ? item.quoteAr : item.quoteEn
   const relation = lang === "fr" ? item.relationFr : lang === "ar" ? item.relationAr : item.relationEn
-  return { quote, role: item.headline, relation, translated: lang !== item.originalLang }
+  const role = lang === "fr" ? item.headlineFr : lang === "ar" ? item.headlineAr : item.headlineEn
+  const name = lang === "ar" ? item.nameAr : item.name
+  return { name, quote, role, relation, translated: lang !== item.originalLang }
 }

@@ -112,6 +112,7 @@ export default function ContactForm({ defaultService = "design" }: { defaultServ
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name.trim(),
+          lang: language,
           email: formData.email.trim(),
           subject: formData.service,
           message: formData.message.trim(),
@@ -262,10 +263,10 @@ export default function ContactForm({ defaultService = "design" }: { defaultServ
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="h-5 w-5 text-green-700 dark:text-green-400 flex-shrink-0 mt-0.5" />
             <div>
               <p className="text-sm font-semibold text-green-700 dark:text-green-300">{t("contactFormSuccessTitle")}</p>
-              <p className="text-sm text-green-600 dark:text-green-400">{t("contactFormSuccessDesc")}</p>
+              <p className="text-sm text-green-700 dark:text-green-400">{t("contactFormSuccessDesc")}</p>
             </div>
           </motion.div>
         )}
