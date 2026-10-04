@@ -245,6 +245,7 @@ export default function Footer({ variant }: FooterProps = {}) {
       <div className="border-t border-border">
         <div className="max-w-5xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-muted-foreground text-xs">
           <span>© 2026 Mohamed Dhia Arfa · {t("allRightsReserved")}</span>
+          <Link href="/privacy" className="hover:text-accent transition-colors">{t("footerPrivacyLink")}</Link>
         </div>
       </div>
     </footer>

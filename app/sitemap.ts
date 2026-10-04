@@ -32,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { base: "/developer", priority: 0.8, changeFrequency: "monthly" },
     { base: "/freebies", priority: 0.7, changeFrequency: "monthly" },
     { base: "/insights", priority: 0.7, changeFrequency: "weekly" },
+    { base: "/privacy", priority: 0.2, changeFrequency: "monthly" },
   ]
 
   const entries: MetadataRoute.Sitemap = []

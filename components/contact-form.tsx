@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { Mail, AlertCircle, CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
+import { Link } from "next-view-transitions"
 import { useLanguage } from "@/components/language-provider"
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -271,6 +272,10 @@ export default function ContactForm({ defaultService = "design" }: { defaultServ
           )}
         </motion.button>
 
+        <p className="text-xs text-muted-foreground text-center">
+          {t("contactFormPrivacyNote")}{" "}
+          <Link href="/privacy" className="underline hover:text-accent">{t("footerPrivacyLink")}</Link>
+        </p>
         <p className="text-xs text-muted-foreground text-center">
           {t("contactFormFooterNote")}{" "}
           <a href="mailto:mohameddhiaarfa@gmail.com" className="text-accent hover:underline font-medium">
