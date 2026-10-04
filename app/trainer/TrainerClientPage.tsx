@@ -23,6 +23,7 @@ import { formatStat, trainingMilestones } from "@/lib/profile"
 import TrainerImpactWall from "@/components/trainer-impact-wall"
 import SectionIndex from "@/components/section-index"
 import TrainerProfileCard from "@/components/trainer-profile-card"
+import TrackFaq from "@/components/track-faq"
 
 const SECTION_INDEX = [
   { id: "trainer-impact", labelKey: "secImpact" },
@@ -249,6 +250,8 @@ export default function TrainerClientPage() {
             reinforcement without restating the same two links a third time
             on one scroll (Master to-do list, Tier 4, CTA redundancy). */}
         <ResourcesInsightsStrip focus="training" className="bg-section-tint" />
+
+        <TrackFaq track="training" />
 
         <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto">

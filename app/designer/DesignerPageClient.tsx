@@ -17,6 +17,7 @@ import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import SectionIndex from "@/components/section-index"
 import { useState } from "react"
 import { useLanguage } from "@/components/language-provider"
+import TrackFaq from "@/components/track-faq"
 
 const SECTION_INDEX = [
   { id: "case-studies", labelKey: "secCaseStudies" },
@@ -462,6 +463,8 @@ export default function DesignerPageClient() {
             third time on one scroll. Removed (Master to-do list, Tier 4 —
             CTA redundancy), same fix already applied on /trainer. */}
         <ResourcesInsightsStrip focus="design" className="bg-section-tint" />
+
+        <TrackFaq track="design" />
 
         <section id="contact-form" className="section-compact w-full bg-card px-4 md:px-8">
           <div className="mx-auto max-w-4xl space-y-8">
