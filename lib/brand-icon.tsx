@@ -21,6 +21,13 @@ import {
   siKahoot,
   siGoogleslides,
   siWhatsapp,
+  siCursor,
+  siAngular,
+  siNestjs,
+  siPhp,
+  siSymfony,
+  siJira,
+  siPostgresql,
 } from "simple-icons"
 import { LOCAL_ICON_SVGS } from "@/lib/local-icon-svgs"
 
@@ -98,6 +105,15 @@ const SI_BY_SLUG: Record<string, SiIcon> = {
   kahoot: siKahoot,
   googleslides: siGoogleslides,
   whatsapp: siWhatsapp,
+  // Bundled instead of the cdn.simpleicons.org fallback: one less outside
+  // request, and no blank tile if that CDN is slow or blocked.
+  cursor: siCursor,
+  angular: siAngular,
+  nestjs: siNestjs,
+  php: siPhp,
+  symfony: siSymfony,
+  jira: siJira,
+  postgresql: siPostgresql,
 }
 
 function InlineSvgMarkup({ svg, size, className }: { svg: string; size: number; className?: string }) {

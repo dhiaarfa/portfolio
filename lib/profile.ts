@@ -107,9 +107,10 @@ export const certifications: Certification[] = [
     title: "Certified Trainer Entrepreneur Leader",
     titleFr: "Formateur Certifié Leader Entrepreneur",
     titleAr: "مدرّب معتمد قائد رياديّ",
-    issuer: "International Certification",
-    issuerFr: "Certification Internationale",
-    issuerAr: "شهادة دولية",
+    // Issuer confirmed by Dhia (Oct 2026).
+    issuer: "Pôle Étudiant Entrepreneur, University of Sousse",
+    issuerFr: "Pôle Étudiant Entrepreneur de l'Université de Sousse",
+    issuerAr: "القطب الطلابي للمبادرة، جامعة سوسة",
     year: "2025",
   },
 ]
@@ -187,18 +188,34 @@ export type ExperienceEntry = {
   roleFr?: string
   roleAr?: string
   company: string
+  /** Only for descriptive (non-proper-noun) company labels. */
+  companyFr?: string
+  companyAr?: string
   description: string
   tags?: string[]
   isCurrent?: boolean
 }
 
-/** Resolve an ExperienceEntry's role for the active language. `company` and
- * `period` are left as-is -- proper nouns and dates aren't translated. */
+/** Resolve an ExperienceEntry for the active language: role, descriptive
+ * company labels (proper nouns stay as written) and month names. */
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+const MONTHS_FR = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
+const MONTHS_AR = ["جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان", "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
+
+/** "Jan 2025 – Present" in French or Arabic (Tunisian month names). */
+export function localizedPeriod(period: string, locale: ProfileLocale): string {
+  if (locale === "en") return period
+  const months = locale === "fr" ? MONTHS_FR : MONTHS_AR
+  return period
+    .replace(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b/g, (m) => months[MONTHS.indexOf(m)])
+    .replace(/\bPresent\b/, locale === "fr" ? "aujourd'hui" : "اليوم")
+}
+
 export function localizedExperience(entry: ExperienceEntry, locale: ProfileLocale) {
   return {
     role: locale === "fr" ? entry.roleFr ?? entry.role : locale === "ar" ? entry.roleAr ?? entry.role : entry.role,
-    company: entry.company,
-    period: entry.period,
+    company: locale === "fr" ? entry.companyFr ?? entry.company : locale === "ar" ? entry.companyAr ?? entry.company : entry.company,
+    period: localizedPeriod(entry.period, locale),
     description: entry.description,
   }
 }
@@ -260,6 +277,8 @@ export const aboutExperience: ExperienceEntry[] = [
     roleFr: "Designer Graphique (Stages)",
     roleAr: "مصمم جرافيك (تدريبات)",
     company: "Icom Agency, Phenyx Company, Jasmin Marketing & Others",
+    companyFr: "Icom Agency, Phenyx Company, Jasmin Marketing et autres",
+    companyAr: "Icom Agency وPhenyx Company وJasmin Marketing وغيرها",
     description:
       "Produced campaign visuals, brand assets, marketing materials, and collaborated on client-facing design solutions.",
     tags: ["Brand Identity", "Campaigns", "Visual Design"],
@@ -275,6 +294,8 @@ export const civicExperience: ExperienceEntry[] = [
     roleFr: "Responsable National du Développement Commercial",
     roleAr: "مدير وطني لتطوير الأعمال",
     company: "AIESEC in Lebanon",
+    companyFr: "AIESEC au Liban",
+    companyAr: "AIESEC في لبنان",
     description:
       "International business-development mandate for AIESEC's Lebanon entity, alongside a Congress Committee Member role at AIESEC Tunisia's Middle East & Africa Summit 2023 (Marketing and Showcasing).",
     tags: ["Business Development", "International", "Leadership"],
@@ -315,6 +336,8 @@ export const developerExperience: ExperienceEntry[] = [
     period: "2023 – Present",
     role: "Full-Stack Development",
     company: "Self-Directed & Open Source",
+    companyFr: "Projets personnels et open source",
+    companyAr: "مشاريع ذاتية ومفتوحة المصدر",
     description:
       "Building personal projects, contributing to real applications, mastering frontend and backend fundamentals",
     tags: ["React, Next.js, Node.js, SQL"],
@@ -330,6 +353,8 @@ export const designExperience: ExperienceEntry[] = [
     roleFr: "Zia Studio, Direction du Studio de Design",
     roleAr: "استوديو Zia، إدارة استوديو التصميم",
     company: "Solo-led Creative Practice",
+    companyFr: "Studio créatif indépendant",
+    companyAr: "استوديو إبداعي مستقل",
     description: "Full-service creative design studio, branding, UI/UX, visual identity systems.",
   },
   {
@@ -366,6 +391,8 @@ export const designExperience: ExperienceEntry[] = [
     roleFr: "Formation en Design et Créativité",
     roleAr: "تدريب في التصميم والإبداع",
     company: "FunCoach Space, Sousse",
+    companyFr: "FunCoach Space, Sousse",
+    companyAr: "FunCoach Space، سوسة",
     description: "Design training, mentoring emerging designers.",
   },
 ]

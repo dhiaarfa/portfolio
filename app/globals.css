@@ -1,6 +1,24 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Arabic font (Oct 2026): IBM Plex Sans Arabic, OFL, self-hosted at fixed
+   URLs in public/fonts so app/[locale]/layout.tsx can preload it on /ar
+   pages only. Through next/font it was either preloaded on every page or on
+   none; with none, /ar painted in a fallback face and reflowed when the font
+   arrived (CLS 0.28 on a throttled phone). Latin faces come first so the
+   Arabic-range faces, declared last, win for Arabic characters. */
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 300; font-display: swap; src: url("/fonts/ibm-plex-sans-arabic/latin-300.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/ibm-plex-sans-arabic/latin-400.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 500; font-display: swap; src: url("/fonts/ibm-plex-sans-arabic/latin-500.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 600; font-display: swap; src: url("/fonts/ibm-plex-sans-arabic/latin-600.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/ibm-plex-sans-arabic/latin-700.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 300; font-display: swap; src: url("/fonts/ibm-plex-sans-arabic/arabic-300.woff2") format("woff2"); unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/ibm-plex-sans-arabic/arabic-400.woff2") format("woff2"); unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 500; font-display: swap; src: url("/fonts/ibm-plex-sans-arabic/arabic-500.woff2") format("woff2"); unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 600; font-display: swap; src: url("/fonts/ibm-plex-sans-arabic/arabic-600.woff2") format("woff2"); unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/ibm-plex-sans-arabic/arabic-700.woff2") format("woff2"); unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+:root { --font-arabic: "IBM Plex Sans Arabic"; }
+
 @custom-variant dark (&:is(.dark *));
 
 /* ─── NOISE TEXTURE (premium feel used by Linear, Vercel, Notion) ─── */
@@ -21,6 +39,21 @@
 /* ─── SECTION ALTERNATION ─── */
 .bg-section-tint   { background-color: #f8f8f8; }
 .dark .bg-section-tint { background-color: #111111; }
+
+/* Section seams (roadmap: "a soft fade or a thin accent divider instead of
+   a hard color cut"). Any tinted section fades in from the page background
+   and carries a faint green hairline at its top edge. Drawn as background
+   layers, so it sits under the content and never changes layout. Sections
+   that already paint their own background image, or that continue a
+   gradient from the section above ([data-seamless]), are left alone. */
+section:is(.bg-card, .bg-section-tint, [class*="bg-muted/"], [class*="bg-background/"]):not([class*="bg-gradient"]):not([class*="bg-[url"]):not([class*="bg-dot"]):not([data-seamless]) {
+  background-image:
+    linear-gradient(90deg, transparent, color-mix(in oklab, var(--site-accent) 45%, transparent) 50%, transparent),
+    linear-gradient(to bottom, hsl(var(--background)), transparent 56px);
+  background-size: 100% 1px, 100% 56px;
+  background-repeat: no-repeat;
+  background-position: top center, top center;
+}
 
 .bg-section-subtle { background-color: #f5f5f5; }
 .dark .bg-section-subtle { background-color: #0A0A0A; }
@@ -130,12 +163,20 @@ html.theme-transition a {
  * (pink = design, amber = training, blue = dev) are only for insight and
  * freebie category badges -- see color-role-system-sep2026.md -- and never
  * for buttons. */
-:root { --site-accent: #16a34a; }
-.dark { --site-accent: #22c55e; }
+:root { --site-accent: #16a34a; --site-accent-text: #166534; }
+.dark { --site-accent: #22c55e; --site-accent-text: #22c55e; }
 
-.text-accent { color: var(--site-accent); }
+/* Green TEXT uses --site-accent-text: on white, #16a34a is only 3.3:1 (below
+   the 4.5:1 WCAG minimum for small text, flagged by axe on every light-mode
+   page); #166534 is 7:1, and still 4.5:1+ on the pale green chip tints. Dark mode keeps the bright green. */
+.text-accent { color: var(--site-accent-text); }
 .text-accent-muted { color: color-mix(in oklab, var(--site-accent) 35%, transparent); }
-.bg-accent { background-color: var(--site-accent); }
+/* Solid green fills carry white text. #15803d gives 5:1 against white in
+   both themes; Tailwind's own bg-accent (hsl(var(--accent)), #22c55e-ish)
+   gave 2.3:1. "html .bg-accent" on purpose: a bare .bg-accent rule here is
+   merged into Tailwind's utility at build time and silently dropped.
+   Text, borders and tints keep the brighter --site-accent. */
+html .bg-accent { background-color: #15803d; }
 .bg-accent-subtle { background-color: color-mix(in oklab, var(--site-accent) 12%, transparent); }
 .bg-accent-muted { background-color: color-mix(in oklab, var(--site-accent) 10%, transparent); }
 .border-accent { border-color: var(--site-accent); }
@@ -169,7 +210,7 @@ html.custom-cursor-active * {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--site-accent);
+  color: var(--site-accent-text);
   margin-bottom: 8px;
 }
 
@@ -313,10 +354,10 @@ html.custom-cursor-active * {
      renders text directly on <html>), but once the selector above was
      expanded to also match body/h1-h6/p/a/etc., it started computing to
      the browser's bare default serif font (e.g. "Times New Roman") on
-     every one of them instead of Cairo -- confirmed live via
+     every one of them instead of the Arabic font -- confirmed live via
      getComputedStyle() immediately after deploying the selector fix.
-     Dropping the dangling reference restores the intended Cairo stack. */
-  font-family: var(--font-cairo), 'Noto Sans Arabic', sans-serif;
+     Dropping the dangling reference restores the intended Arabic stack. */
+  font-family: var(--font-arabic), 'Noto Sans Arabic', sans-serif;
   letter-spacing: 0 !important;
   word-spacing: 0.05em;
   line-height: 1.85;
@@ -457,11 +498,11 @@ html.custom-cursor-active * {
 
 @theme inline {
   /* Site default typeface (Sep 30): Inter, loaded in app/layout.tsx via
-     next/font/google as --font-inter. Cairo is inserted right after it
+     next/font/google as --font-inter. IBM Plex Sans Arabic is inserted right after it
      (not at the very end) so Arabic glyphs -- which Inter doesn't have --
-     still resolve to Cairo's design instead of falling through to a
+     still resolve to IBM Plex Sans Arabic's design instead of falling through to a
      generic system font; Latin text is unaffected since Inter covers it. */
-  --font-sans: var(--font-inter), var(--font-cairo), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-sans: var(--font-inter), var(--font-arabic), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   /* These wrap the raw "H S% L%" triplets below in hsl(...) so the Tailwind
      utilities generated from them (bg-popover, bg-card, bg-background,
      text-foreground, border-border, and every shadcn primitive built on
@@ -597,7 +638,7 @@ html.custom-cursor-active * {
 }
 
 /* Utility font classes */
-/* Cairo is already folded into --font-sans itself (see the @theme inline
+/* IBM Plex Sans Arabic is already folded into --font-sans itself (see the @theme inline
    block above), so these three just point at the shared token now --
    General Sans is gone from the codebase entirely as of Sep 30. */
 .font-display {
@@ -619,7 +660,7 @@ html.custom-cursor-active * {
    headline, per Dhia's reference screenshot. Never used for body copy.
    Same Arabic-fallback gap as above (Fraunces has no Arabic glyphs), plus
    Arabic has no real italic form -- a faux-obliqued Arabic glyph reads as
-   broken, not stylish -- so Arabic gets Cairo upright instead of inheriting
+   broken, not stylish -- so Arabic gets IBM Plex Sans Arabic upright instead of inheriting
    whatever generic serif the browser happens to pick. */
 .font-accent-italic {
   font-family: var(--font-fraunces), 'Fraunces', Georgia, 'Times New Roman', serif;
@@ -627,7 +668,7 @@ html.custom-cursor-active * {
 }
 
 [dir="rtl"] .font-accent-italic {
-  font-family: var(--font-cairo), sans-serif;
+  font-family: var(--font-arabic), sans-serif;
   font-style: normal;
 }
 
@@ -643,6 +684,14 @@ html.custom-cursor-active * {
 .bg-dot-grid {
   background-image: radial-gradient(var(--site-accent) 1.5px, transparent 1.5px);
   background-size: 24px 24px;
+}
+
+/* Homepage hero: the dot grid lights up around the mouse
+   (hero-annotated-portrait.tsx sets --mx/--my). */
+.hero-dot-spotlight {
+  background-image: radial-gradient(var(--site-accent) 2.25px, transparent 2.25px);
+  -webkit-mask-image: radial-gradient(180px circle at var(--mx, -999px) var(--my, -999px), black, transparent 70%);
+  mask-image: radial-gradient(180px circle at var(--mx, -999px) var(--my, -999px), black, transparent 70%);
 }
 
 /* ─── HOMEPAGE HERO: full-bleed blended portrait (Oct 2026) ───

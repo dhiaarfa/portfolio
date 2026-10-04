@@ -3,6 +3,8 @@ import { notFound } from "next/navigation"
 import DesignerPageClient from "../../designer/DesignerPageClient"
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 import type { Language } from "@/lib/translations"
+import { SITE_URL } from "@/lib/profile"
+import { offerCatalogJsonLd, DESIGN_PRICES } from "@/lib/pricing"
 
 export const dynamic = "force-static"
 
@@ -47,7 +49,24 @@ export default async function LocaleDesignerPage({ params }: Props) {
   const m = META[locale as "fr" | "ar"]
   if (!m) notFound()
 
-  const jsonLd = breadcrumbJsonLd(m.breadcrumb, `/${locale}/designer`)
+  // Same Service node as /designer (structured data stays in English, see
+  // app/[locale]/trainer/page.tsx); only the url points at this locale.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbJsonLd(m.breadcrumb, `/${locale}/designer`),
+      {
+        "@type": "Service",
+        name: "Brand identity & graphic design",
+        serviceType: "Brand identity design",
+        provider: { "@type": "Person", name: "Mohamed Dhia Arfa", url: SITE_URL },
+        areaServed: [{ "@type": "Country", name: "Tunisia" }, "Worldwide"],
+        availableLanguage: ["ar", "fr", "en"],
+        url: `${SITE_URL}/${locale}/designer`,
+        hasOfferCatalog: offerCatalogJsonLd("Design packages", DESIGN_PRICES),
+      },
+    ],
+  }
 
   return (
     <>

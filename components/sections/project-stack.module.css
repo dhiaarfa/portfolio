@@ -68,7 +68,7 @@
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.28em;
-  color: var(--site-accent, #16a34a);
+  color: var(--site-accent-text, #166534);
   text-transform: uppercase;
 }
 .title {
@@ -84,7 +84,7 @@
   max-width: 430px;
   font-size: 14px;
   line-height: 1.55;
-  color: #8e8e8e;
+  color: #6b6b6b;
 }
 
 /* Header text sits directly on the page background. The cards themselves
@@ -247,11 +247,11 @@ a.card:hover .chip {
  * always -- on-brand green on the card itself, not just in the header
  * label and the hover-only "+" button. */
 .chip:first-child {
-  color: var(--site-accent, #16a34a);
+  color: var(--site-accent-text, #166534);
   background: color-mix(in oklab, var(--site-accent, #16a34a) 14%, var(--chip-bg));
 }
 a.card:hover .chip:first-child {
-  color: var(--site-accent, #16a34a);
+  color: var(--site-accent-text, #166534);
   background: color-mix(in oklab, var(--site-accent, #16a34a) 22%, var(--chip-bg-hover));
 }
 .plus {

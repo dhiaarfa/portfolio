@@ -13,6 +13,12 @@ export const webProjects: Project[] = [
     meta: "2026 · Graduation project (PFE) · Solo build",
     description:
       "Built solo, end to end, across 5 Scrum sprints -- multi-LLM routing through OpenRouter, 109 automated tests spanning 24 files, deployed on Vercel. My graduation project, built the way I'd build for a real client.",
+    metaFr: "2026 · Projet de fin d'études (PFE) · Réalisé seul",
+    metaAr: "2026 · مشروع ختم الدروس (PFE) · إنجاز فردي",
+    descriptionFr:
+      "Réalisé seul, de bout en bout, en 5 sprints Scrum : routage multi-LLM via OpenRouter, 109 tests automatisés sur 24 fichiers, déployé sur Vercel. Mon projet de fin d'études, construit comme pour un vrai client.",
+    descriptionAr:
+      "أنجزته بمفردي من البداية إلى النهاية عبر 5 سباقات Scrum: توجيه بين عدة نماذج لغوية عبر OpenRouter، و109 اختبارات آلية في 24 ملفاً، ونشر على Vercel. مشروع تخرّجي، بنيته كما أبني لعميل حقيقي.",
     tags: ["Next.js 15", "Supabase", "AI SDK"],
     image: "/images/projects/digimytch/landing.png",
     // Internal case study (opens in the same tab -- see ProjectStack).
@@ -36,6 +42,12 @@ export const webProjects: Project[] = [
     meta: "Web developer",
     description:
       "A production Next.js site I shipped as CRIT's developer (Sep-Dec 2025), built to make it simple for talents and companies to find the right service and reach out. Have a look.",
+    metaFr: "Développeur web",
+    metaAr: "مطوّر ويب",
+    descriptionFr:
+      "Un site Next.js en production que j'ai livré comme développeur chez CRIT (sept.-déc. 2025), pour aider talents et entreprises à trouver le bon service et à prendre contact. Allez voir.",
+    descriptionAr:
+      "موقع Next.js منشور طوّرته بصفتي مطوّر CRIT (سبتمبر-ديسمبر 2025)، ليسهّل على المواهب والشركات إيجاد الخدمة المناسبة والتواصل. ألقِ نظرة.",
     tags: ["Next.js", "React", "Tailwind"],
     image: "/images/crit-screenshots/homepage.png",
     href: "https://crit-tunisie.net",
@@ -46,6 +58,12 @@ export const webProjects: Project[] = [
     meta: "Web",
     description:
       "A marketing site for a premium Tunisian dates brand -- product storytelling, seasonal sections, and a clean path from browsing to contact. See it live.",
+    metaFr: "Web",
+    metaAr: "ويب",
+    descriptionFr:
+      "Un site vitrine pour une marque tunisienne de dattes haut de gamme : récit produit, sections saisonnières et un parcours simple jusqu'au contact. À voir en ligne.",
+    descriptionAr:
+      "موقع تعريفي لعلامة تونسية فاخرة للتمور: سرد للمنتجات، أقسام موسمية، ومسار واضح من التصفح إلى التواصل. شاهده مباشرة.",
     tags: ["Next.js", "Tailwind"],
     image: "/images/bdaf-thumbnail.png",
     href: "https://bestdatesandfruits.com",
@@ -58,6 +76,12 @@ export const designProjects: Project[] = [
     meta: "Event · Branding & campaign",
     description:
       "Owned the branding and campaign end to end for this event -- and it worked: 200+ people through the door and 800+ leads captured.",
+    metaFr: "Événement · Branding et campagne",
+    metaAr: "فعالية · هوية وحملة",
+    descriptionFr:
+      "J'ai porté le branding et la campagne de cet événement de bout en bout, avec un vrai résultat : plus de 200 participants et plus de 800 contacts récoltés.",
+    descriptionAr:
+      "تولّيت هوية هذه الفعالية وحملتها من البداية إلى النهاية، وكانت النتيجة واضحة: أكثر من 200 حاضر وأكثر من 800 جهة اتصال.",
     tags: ["Branding", "Campaign"],
     image: "/images/meetuppro-thumbnail.png",
     href: "/work/meetup-pro",
@@ -68,6 +92,12 @@ export const designProjects: Project[] = [
     meta: "Branding",
     description:
       "A logo and full brand system for a travel agency, designed to stay sharp and consistent everywhere it shows up -- web, social, and printed travel collateral.",
+    metaFr: "Branding",
+    metaAr: "هوية بصرية",
+    descriptionFr:
+      "Un logo et un système de marque complet pour une agence de voyage, pensés pour rester nets et cohérents partout : web, réseaux sociaux et supports imprimés.",
+    descriptionAr:
+      "شعار ونظام هوية كامل لوكالة أسفار، مصمّم ليبقى واضحاً ومتناسقاً أينما ظهر: على الويب، في وسائل التواصل، وعلى المطبوعات.",
     tags: ["Illustrator", "Figma", "Photoshop"],
     image: "/images/tafani-white-png.png",
     href: "/work/tafani-travel",
@@ -78,6 +108,12 @@ export const designProjects: Project[] = [
     meta: "Packaging",
     description:
       "Packaging design for Delice Nakkla, a Best Dates & Fruits product line -- box system and illustration work that makes dried-fruit treats feel like a gift, not just a snack.",
+    metaFr: "Packaging",
+    metaAr: "تغليف",
+    descriptionFr:
+      "Packaging pour Délice Nakkla, une gamme de Best Dates & Fruits : système de boîtes et illustrations qui font des fruits secs un cadeau, pas un simple en-cas.",
+    descriptionAr:
+      "تصميم تغليف لـ Délice Nakkla، إحدى منتجات Best Dates & Fruits: نظام علب ورسوم تجعل الفواكه الجافة هدية لا مجرد وجبة خفيفة.",
     tags: ["Packaging", "Illustrator"],
     image: "/projects/nakkla.jpg",
   },
@@ -117,3 +153,10 @@ export const selectedWork: Project[] = [
   pick(webProjects, "DigiMyTech Talent Hub"),
   pick(designProjects, "Nakkla"),
 ]
+
+/** Picks the French/Arabic copy for a project card, English when missing. */
+export function localizeProject(p: Project, language: string): Project {
+  if (language === "fr") return { ...p, meta: p.metaFr ?? p.meta, description: p.descriptionFr ?? p.description }
+  if (language === "ar") return { ...p, meta: p.metaAr ?? p.meta, description: p.descriptionAr ?? p.description }
+  return p
+}

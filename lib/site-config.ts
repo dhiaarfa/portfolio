@@ -3,12 +3,14 @@ import { profileStats } from "@/lib/profile"
 /**
  * Site configuration - Update these for your deployment
  *
- * Calendly: Create a free account at calendly.com and add your scheduling link
+ * Booking: Cal.com (switched from Calendly, Oct 2026). Change the link here
+ * and every "book a call" button on the site follows
  * WhatsApp: Use country code without + (e.g., 216 for Tunisia)
  */
 export const siteConfig = {
-  // Contact & Booking - Update calendlyUrl with your Calendly link
-  calendlyUrl: "https://calendly.com/benarfa367/30min",
+  // Contact & Booking. Key kept as calendlyUrl so existing imports stay valid;
+  // it now holds the Cal.com booking link.
+  calendlyUrl: "https://cal.com/dhiaarfa/30min",
   whatsappNumber: "21653580272",
   whatsappMessage: "Hello! I'd like to discuss a project or consultation.",
   email: "mohameddhiaarfa@gmail.com",

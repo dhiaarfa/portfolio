@@ -11,12 +11,14 @@ import ContactForm from "@/components/contact-form"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { siteConfig } from "@/lib/site-config"
 import { devWorkProjects, devCardAspectRatio, devCardTheme, localizedWork } from "@/lib/work"
-import { otherDevProjects } from "@/lib/dev-projects"
+import { otherDevProjects, localizedOtherDevProject } from "@/lib/dev-projects"
 import { ExternalLink, Github, Download, ArrowRight, Gift, Clock, FolderGit2, Images } from "lucide-react"
 import ToolsStackSection from "@/components/tools-stack-section"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
 import { useLanguage } from "@/components/language-provider"
+import DevPricing from "@/components/dev-pricing"
+import TrackFaq from "@/components/track-faq"
 
 // Real phone-width captures (390px viewport, Oct 2026) of each live client
 // site, for the Desktop / Mobile toggle on its card (inspiration brief,
@@ -109,13 +111,13 @@ export default function DeveloperPageClient() {
                 <span className="w-3 h-3 rounded-full bg-red-500/80" />
                 <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
                 <span className="w-3 h-3 rounded-full bg-accent/80" />
-                <span className="ml-4 font-mono text-slate-500 text-xs">dhia.dev</span>
+                <span className="ml-4 font-mono text-slate-400 text-xs">dhia.dev</span>
               </div>
               {/* Real "Dhia at the keyboard" photo, replacing the generic
                   branded headshot that was previously reused here -- per
                   Dhia's request to put an actual photo of him with a laptop
                   in this hero instead. */}
-              <Image src="/images/photos/dhia-laptop-classroom.jpg" alt="Dhia working on his laptop in a classroom" width={380} height={460} className="w-full aspect-[380/460] object-cover object-[55%_50%]" />
+              <Image src="/images/photos/dhia-laptop-classroom.jpg" alt="Dhia working on his laptop in a classroom" width={380} height={460} priority sizes="(max-width: 768px) 90vw, 380px" className="w-full aspect-[380/460] object-cover object-[55%_50%]" />
             </div>
           }
         >
@@ -149,7 +151,8 @@ export default function DeveloperPageClient() {
               {t("devBtnGetFreeChecklist")}
             </Link>
             <a href="#contact-form" className="text-sm font-medium text-muted-foreground px-2 py-3 hover:text-foreground transition-colors">
-              {t("devBtnLetsTalk")}
+              {/* "Demander un devis" on French pages (inspiration brief). */}
+              {language === "fr" ? `${t("requestQuote")} →` : t("devBtnLetsTalk")}
             </a>
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
@@ -280,12 +283,12 @@ export default function DeveloperPageClient() {
 
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
                         {project.slug === "digimytch" && <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />}
-                        {theme?.tag ?? "Web Dev"}
+                        {(language === "fr" ? theme?.tagFr : language === "ar" ? theme?.tagAr : theme?.tag) ?? "Web Dev"}
                       </span>
-                      <h3 className="text-white text-xl sm:text-2xl font-bold mt-3 leading-snug">{project.title}</h3>
+                      <h3 className="text-white text-xl sm:text-2xl font-bold mt-3 leading-snug">{lw.title}</h3>
                       {theme?.meta && (
                         <p className="text-white/60 text-xs mt-2 flex flex-wrap gap-x-1.5">
-                          {theme.meta.split(" | ").map((part, idx, arr) => (
+                          {(language === "fr" ? theme.metaFr : language === "ar" ? theme.metaAr : theme.meta).split(" | ").map((part, idx, arr) => (
                             <span key={part}>
                               {part}
                               {idx < arr.length - 1 && <span className="text-white/30 ml-1.5">|</span>}
@@ -407,7 +410,7 @@ export default function DeveloperPageClient() {
               <div className="pt-8 border-t border-border">
                 <h3 className="text-lg font-bold mb-4">{t("devOtherNoteworthy")}</h3>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {otherDevProjects.map((p) => (
+                  {otherDevProjects.map((p) => localizedOtherDevProject(p, language)).map((p) => (
                     <div
                       key={p.title}
                       className="group relative overflow-hidden flex flex-col rounded-[28px] border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.55)]"
@@ -545,13 +548,17 @@ export default function DeveloperPageClient() {
             same fix already applied on /trainer. */}
         <ResourcesInsightsStrip focus="development" className="bg-section-tint" />
 
+        <DevPricing />
+
+        <TrackFaq track="development" />
+
         <section id="contact-form" className="w-full section-compact px-4 md:px-8 bg-card">
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="text-center space-y-3">
               <h2 className="text-3xl font-bold">{t("devContactHeading")}</h2>
               <p className="text-muted-foreground">{t("devContactSubtext")}</p>
             </div>
-            <ContactForm />
+            <ContactForm defaultService="development" />
           </div>
         </section>
       </main>

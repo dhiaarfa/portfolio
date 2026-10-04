@@ -1,6 +1,7 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
+import { motion } from "framer-motion"
+import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe"
 import Image from "next/image"
 import { useLanguage } from "@/components/language-provider"
 import { useState } from "react"
@@ -23,10 +24,12 @@ function LogoImage({ logo }: { logo: (typeof organizationLogos)[0] }) {
           alt={logo.name}
           width={logo.width}
           height={logo.height}
-          sizes="(max-width: 768px) 120px, 160px"
           className={`object-contain w-auto opacity-90 hover:opacity-100 transition-opacity duration-300 ${logo.bleed ? "h-16 md:h-20" : "max-h-14 md:max-h-16 h-auto"}`}
           onError={() => setFailed(true)}
           loading="eager"
+          // No `sizes` (Oct 2026): the logos render at their width prop, so
+          // the default 1x/2x srcset is enough. The responsive one listed 14
+          // widths per logo, about 55 KB of HTML for the 42 tags.
         />
       </div>
     </div>
@@ -35,7 +38,7 @@ function LogoImage({ logo }: { logo: (typeof organizationLogos)[0] }) {
 
 export default function ClientLogosStrip() {
   const { t } = useLanguage()
-  const prefersReducedMotion = useReducedMotion()
+  const prefersReducedMotion = useReducedMotionSafe()
 
   return (
     <section className="py-10 md:py-12 border-y border-border bg-muted/30 dark:bg-card/40">
@@ -73,7 +76,7 @@ export default function ClientLogosStrip() {
           * someone searching any of these organizations by name, not just
           * "Mohamed Dhia Arfa". Nothing here is invented -- same list, same
           * names, already used for the logos rendered above. */}
-        <p className="mt-6 text-center text-xs text-muted-foreground/70 max-w-4xl mx-auto leading-relaxed px-4">
+        <p className="mt-6 text-center text-xs text-muted-foreground max-w-4xl mx-auto leading-relaxed px-4">
           {/* Isolated LTR run (RTL bidi fix, Oct 2026): this paragraph's
               base direction flips to RTL on the Arabic locale, and the
               organization names are a long list of Latin-script proper

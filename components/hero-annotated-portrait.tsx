@@ -1,9 +1,11 @@
 "use client"
 
 import Image from "next/image"
+import { useRef } from "react"
 import { Calendar } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { siteConfig } from "@/lib/site-config"
+import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe"
 
 // Oct 2026 full-bleed rework: the photo used to sit in a small framed
 // panel inside a HUD stage (anchor dots / connector lines / callout
@@ -30,9 +32,36 @@ export default function HeroAnnotatedPortrait({
   children,
 }: Props) {
   const { t } = useLanguage()
+  // Cursor spotlight on the dot grid (roadmap: "the dot-network background
+  // could subtly react to cursor position"). Updates two CSS variables on a
+  // ref inside requestAnimationFrame, so moving the mouse never re-renders
+  // React. Mouse/trackpad only, and off when "reduce motion" is set.
+  const spotRef = useRef<HTMLDivElement>(null)
+  const frame = useRef(0)
+  const reducedMotion = useReducedMotionSafe()
+  const onPointerMove = (e: React.PointerEvent<HTMLElement>) => {
+    if (reducedMotion || e.pointerType !== "mouse") return
+    const box = e.currentTarget.getBoundingClientRect()
+    const x = e.clientX - box.left
+    const y = e.clientY - box.top
+    cancelAnimationFrame(frame.current)
+    frame.current = requestAnimationFrame(() => {
+      const el = spotRef.current
+      if (!el) return
+      el.style.setProperty("--mx", `${x}px`)
+      el.style.setProperty("--my", `${y}px`)
+      el.style.opacity = "1"
+    })
+  }
+  const onPointerLeave = () => {
+    cancelAnimationFrame(frame.current)
+    if (spotRef.current) spotRef.current.style.opacity = "0"
+  }
 
   return (
     <section
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
       className={`relative isolate overflow-hidden bg-white text-slate-900 dark:bg-[#0A0A0A] dark:text-white px-4 sm:px-6 pt-24 pb-16 lg:pb-20 ${className}`}
     >
       {/* z-10: full-bleed photo, anchored toward the subject on the right.
@@ -96,14 +125,6 @@ export default function HeroAnnotatedPortrait({
         />
       </div>
 
-      {/* z-20: dot-grid, masked to the inverse of the photo fade so dots
-          only show where the photo has dissolved away (never on the
-          face/body) and fade out as the photo becomes opaque. */}
-      <div
-        className="pointer-events-none absolute inset-0 z-20 bg-dot-grid opacity-[0.45] hero-photo-dots"
-        aria-hidden
-      />
-
       {/* z-20: soft scrim behind the text zone for contrast -- a gradient,
           never a hard box, per Dhia's spec. Direction flips with the mask:
           left-to-right fade on tablet/desktop (text sits left), top-to-
@@ -112,6 +133,28 @@ export default function HeroAnnotatedPortrait({
         className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-white from-45% via-white/75 to-transparent to-75% dark:from-[#0A0A0A] dark:via-[#0A0A0A]/75 dark:to-transparent lg:bg-gradient-to-r lg:from-white lg:from-0% lg:via-white/60 lg:to-transparent lg:to-100% lg:dark:from-[#0A0A0A] lg:dark:via-[#0A0A0A]/60 lg:dark:to-transparent"
         aria-hidden
       />
+
+      {/* z-20: dot-grid, masked to the inverse of the photo fade so dots
+          only show where the photo has dissolved away (never on the
+          face/body) and fade out as the photo becomes opaque. Painted
+          AFTER the contrast scrim: underneath it, the white light-mode
+          scrim washed the dots out completely while the dark one let them
+          show, so the pattern existed in dark mode only. */}
+      <div
+        className="pointer-events-none absolute inset-0 z-20 bg-dot-grid opacity-[0.45] hero-photo-dots"
+        aria-hidden
+      />
+
+      {/* Same dots, brighter and larger, visible only in a soft circle
+          around the cursor. Wrapped so the photo-fade mask and the
+          spotlight mask both apply. Sits above the contrast scrim so it
+          stays visible on the text side too (at 70%, under the z-30 text). */}
+      <div className="pointer-events-none absolute inset-0 z-20 opacity-70 hero-photo-dots" aria-hidden>
+        <div
+          ref={spotRef}
+          className="hero-dot-spotlight absolute inset-0 bg-dot-grid opacity-0 transition-opacity duration-500"
+        />
+      </div>
 
       {/* z-30: hero content. Reserves top space on mobile/tablet so the
           photo genuinely reads as "on top" before the text begins (the

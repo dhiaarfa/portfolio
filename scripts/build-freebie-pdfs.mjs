@@ -41,6 +41,8 @@ for (const file of files) {
   const out = path.join(outDir, `${id}.pdf`)
   execFileSync(browser, [
     "--headless=new",
+    // Chromium refuses to start as root (cloud containers) without this.
+    ...(process.getuid?.() === 0 ? ["--no-sandbox"] : []),
     "--disable-gpu",
     "--no-first-run",
     `--user-data-dir=${profile}`,

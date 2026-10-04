@@ -3,7 +3,7 @@ import type { Viewport } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
-import { Cairo, Fraunces, Inter } from "next/font/google"
+import { Fraunces, Inter } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { formatStat } from "@/lib/profile"
 import { DEFAULT_OG_IMAGE } from "@/lib/page-metadata"
@@ -16,7 +16,7 @@ import { ViewTransitions } from "next-view-transitions"
 
 // Typography (Sep 30): Inter is now the site's single principal typeface
 // (replacing General Sans/Fontshare, which is no longer loaded anywhere --
-// see globals.css for the --font-sans token this feeds). Cairo stays for
+// see globals.css for the --font-sans token this feeds). An Arabic face stays for
 // Arabic, since Inter has no Arabic glyphs; Quicksand/Fraunces stay as
 // deliberate decorative accents on specific hero elements, untouched.
 const inter = Inter({
@@ -26,17 +26,13 @@ const inter = Inter({
   display: "swap",
 })
 
-const cairo = Cairo({
-  subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-cairo",
-  display: "swap",
-  preload: false,
-})
+// Arabic (IBM Plex Sans Arabic, chosen Oct 2026 as the closest
+// open-licensed match to Thmanyah) is self-hosted via @font-face in
+// globals.css, not next/font, so it can be preloaded on /ar pages only.
 
 // Oct 2026: moved from a render-blocking Google Fonts <link> in <head> to
 // next/font (self-hosted, no runtime request, no layout shift), matching
-// Inter and Cairo above. Used only by .font-accent-italic in globals.css.
+// Inter and the Arabic font above. Used only by .font-accent-italic in globals.css.
 const fraunces = Fraunces({
   subsets: ["latin"],
   style: ["italic"],
@@ -150,7 +146,7 @@ export default function RootLayout({
       lang="en"
       dir="ltr"
       suppressHydrationWarning
-      className={`scroll-smooth theme-transition ${inter.variable} ${cairo.variable} ${fraunces.variable}`}
+      className={`scroll-smooth theme-transition ${inter.variable} ${fraunces.variable}`}
     >
       <head>
         <link rel="icon" href="/favicon-192.png" sizes="any" />
@@ -162,7 +158,7 @@ export default function RootLayout({
             next/font above instead of a Google Fonts <link> here.
             Quicksand was imported here but never actually applied anywhere
             in the codebase, so it was dropped as dead weight. */}
-        {/* The :root block used to start with `${cairo.variable};` -- that
+        {/* The :root block used to start with `${arabic.variable};` -- that
             interpolates a CLASS NAME, not a declaration, so browsers just
             discarded it. Removed; the variable is applied via className. */}
         <style>{`
@@ -326,7 +322,7 @@ export default function RootLayout({
               name: "Mohamed Dhia Arfa Portfolio",
               url: "https://www.dhia-portfolio.com",
               // Fixed Sep 30: this was missing "ar" even though the site has a
-              // full Arabic locale (/ar routes, RTL layout, Cairo font) -- a
+              // full Arabic locale (/ar routes, RTL layout, Arabic font) -- a
               // real contradiction between the schema and the actual site.
               inLanguage: ["en", "fr", "ar"],
               author: {
@@ -336,6 +332,12 @@ export default function RootLayout({
             }),
           }}
         />
+        {/* Without JavaScript the scroll-in animations never run, so sections
+            server-rendered at opacity 0 (framer-motion's initial state) would
+            stay invisible. Show them as-is instead. */}
+        <noscript>
+          <style>{`[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </head>
       <body className={cn("antialiased overflow-x-hidden min-w-0 font-body")} style={{ backgroundColor: "hsl(var(--background))", color: "hsl(var(--foreground))" }}>
         <ThemeProvider

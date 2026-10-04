@@ -4,6 +4,7 @@ import TrainerClientPage from "../../trainer/TrainerClientPage"
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 import { SITE_URL, formatStat, profileStats } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
+import { offerCatalogJsonLd, TRAINING_PRICES } from "@/lib/pricing"
 import type { Language } from "@/lib/translations"
 
 export const dynamic = "force-static"
@@ -17,7 +18,7 @@ const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: s
   fr: {
     title: "Formateur jeunesse certifié en Tunisie | Dhia Arfa",
     description:
-      `Formateur certifié CNFCPP pour ONG, écoles et programmes jeunesse financés par des bailleurs. Plus de ${PARTICIPANTS} participants en Tunisie, au Maroc et au Qatar, en arabe, français et anglais.`,
+      `Formateur certifié CNFCPP pour ONG, écoles et programmes jeunesse. Plus de ${PARTICIPANTS} participants en Tunisie, au Maroc et au Qatar, en arabe, français et anglais.`,
     ogTitle: "Formateur & Facilitateur Jeunesse · Mohamed Dhia Arfa",
     ogDescription:
       "Réservez des ateliers, programmes multi-séances et formations de formateurs pour ONG et organisations de jeunesse en Tunisie.",
@@ -75,6 +76,7 @@ export default async function LocaleTrainerPage({ params }: Props) {
         areaServed: { "@type": "Country", name: "Tunisia" },
         description: `Workshops and train-the-trainer programs for NGOs and youth organizations. ${formatStat("participantsTrained")} participants trained.`,
         url,
+        hasOfferCatalog: offerCatalogJsonLd("Training formats", TRAINING_PRICES),
       },
       {
         "@type": "Course",

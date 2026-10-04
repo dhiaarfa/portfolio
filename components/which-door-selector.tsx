@@ -28,7 +28,15 @@ export default function WhichDoorSelector({ active, onChange }: Props) {
   const { t } = useLanguage()
 
   return (
-    <section className="px-4 md:px-6 pt-16 pb-2" aria-label={t("whichDoorHeading")}>
+    <section
+      // Same tint as the sections above (Journey) and below (Service
+      // Packages), with no seam line, so the three read as one continuous
+      // band instead of a strip of plain page background with a hard edge
+      // on each side (Dhia, Oct 2026).
+      data-seamless
+      className="px-4 md:px-6 pt-16 pb-6 bg-section-tint"
+      aria-label={t("whichDoorHeading")}
+    >
       <div className="max-w-4xl mx-auto text-center">
         <FadeUp>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent mb-2">
@@ -40,7 +48,7 @@ export default function WhichDoorSelector({ active, onChange }: Props) {
           <div
             role="group"
             aria-label={t("whichDoorHeading")}
-            className="inline-flex flex-wrap justify-center gap-1.5 p-1.5 rounded-full bg-section-tint dark:bg-muted/30 border border-slate-100 dark:border-border"
+            className="inline-flex flex-wrap justify-center gap-1.5 p-1.5 rounded-full bg-white dark:bg-muted/30 border border-slate-200 dark:border-border"
           >
             {OPTIONS.map((opt) => {
               const isActive = active === opt.key

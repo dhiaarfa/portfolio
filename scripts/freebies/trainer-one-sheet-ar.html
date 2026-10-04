@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head><meta charset="utf-8"><title>الملف التعريفي للمدرب · محمد ضياء عرفة</title><link rel="stylesheet" href="_base.css">
+<!-- Arabic trainer one-sheet (Oct 2026), same content as
+     trainer-one-sheet.html, wording taken from the site's Arabic copy
+     (lib/i18n/ar.ts, lib/trainer.ts, lib/profile.ts, lib/pricing.ts).
+     Run: node scripts/build-freebie-pdfs.mjs trainer-one-sheet-ar -->
+<style>
+  @font-face { font-family: "Plex Arabic"; font-weight: 400; src: url("../../public/fonts/ibm-plex-sans-arabic/arabic-400.woff2") format("woff2"); }
+  @font-face { font-family: "Plex Arabic"; font-weight: 600; src: url("../../public/fonts/ibm-plex-sans-arabic/arabic-600.woff2") format("woff2"); }
+  @font-face { font-family: "Plex Arabic"; font-weight: 700; src: url("../../public/fonts/ibm-plex-sans-arabic/arabic-700.woff2") format("woff2"); }
+  @page { margin: 12mm 13mm 12mm; }
+  body { font-family: "Plex Arabic", "Inter Local", sans-serif; font-size: 9.8pt; line-height: 1.5; }
+  .cover { display: grid; grid-template-columns: 1fr 42mm; gap: 8mm; padding: 16px 20px; margin-bottom: 10px; }
+  .cover::after { right: auto; left: -40px; }
+  .cover h1 { font-size: 20pt; font-weight: 700; letter-spacing: 0; }
+  .cover .kicker { letter-spacing: 0; }
+  .cover img { width: 42mm; height: 42mm; object-fit: cover; border-radius: 10px; position: relative; z-index: 1; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 8px 0 4px; }
+  .stat { border: 1px solid var(--rule); border-radius: 8px; padding: 6px 8px; }
+  .stat b { display: block; font-size: 15pt; font-weight: 700; color: var(--ink); line-height: 1.1; font-family: "Inter Local", sans-serif; }
+  .stat span { font-size: 7.8pt; color: var(--muted); }
+  h2 { font-size: 11pt; margin: 10px 0 5px; }
+  .card { padding: 7px 10px; margin-bottom: 6px; }
+  .card h3 { margin: 0 0 2px; font-size: 10pt; }
+  .card p { margin: 0; }
+  .card .price { margin-top: 2px; font-size: 8.4pt; font-weight: 700; color: #15803d; }
+  .facts td { padding: 3px 6px; }
+  .facts td:first-child { font-weight: 600; width: 26mm; }
+  .method { display: flex; gap: 6px; }
+  .method div { flex: 1; background: var(--accent-soft); border-radius: 8px; padding: 6px 8px; }
+  .method b { display: block; color: #14532d; }
+  ul.tight { margin: 2px 0; padding-left: 0; padding-right: 16px; }
+  ul.tight li { margin: 1px 0; }
+  footer.cta { margin-top: 8px; }
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div>
+    <div class="bar"></div>
+    <div class="kicker">مدرب وميسّر · ملف تعريفي في صفحة واحدة</div>
+    <h1>محمد ضياء عرفة</h1>
+    <p>مدرب معتمد من CNFCPP للجمعيات والمدارس والبرامج الشبابية. تحليل للاحتياجات في البداية، وجلسات تفاعلية بالعربية أو الفرنسية أو الإنجليزية، وتقرير في النهاية.</p>
+    <div class="by"><span class="ltr">dhia-portfolio.com/ar/trainer · mohameddhiaarfa@gmail.com</span></div>
+  </div>
+  <img src="../../public/images/photos/dhia-facilitating-board.jpg" alt="">
+</div>
+
+<div class="stats">
+  <div class="stat"><b>1,120+</b><span>مشارك تم تدريبهم</span></div>
+  <div class="stat"><b>477+</b><span>ساعة تدريب</span></div>
+  <div class="stat"><b>51+</b><span>فعالية تدريبية</span></div>
+  <div class="stat"><b>15+</b><span>منظمة شريكة</span></div>
+</div>
+
+<div class="grid-2">
+<div>
+  <h2>ما يمكنك حجزه</h2>
+  <div class="card"><h3>ورشة شبابية نصف يوم</h3><p class="muted">3–4 ساعات · 10–100 مشارك · حضورياً أو عن بعد. تحليل احتياجات التدريب، تصميم مخصص، تيسير ومواد، ملخص ما بعد الجلسة.</p><p class="price">ابتداءً من 350 د.ت · 150 €</p></div>
+  <div class="card"><h3>برنامج متعدد الجلسات</h3><p class="muted">4–12 جلسة · مجموعة ثابتة · حضوري ومختلط. هيكلة البرنامج، أدلة وأدوات، متابعة التقدم، تقرير تقييم نهائي.</p><p class="price">ابتداءً من 500 د.ت · 200 € / اليوم</p></div>
+  <div class="card"><h3>تدريب المدربين (TOT)</h3><p class="muted">2–5 أيام · تدريبات مصغرة · تقييم بين الأقران. تصميم منهج TOT، مختبرات تطبيق، معايير تقييم، دعم الاعتماد.</p><p class="price">ابتداءً من 600 د.ت · 250 € / اليوم</p></div>
+  <div class="card"><h3>كلمة رئيسية وتيسير</h3><p class="muted">كلمة 45–90 دقيقة · تيسير نصف يوم · إدارة نقاش، مع مواءمة الموجز وتصميم تفاعل الجمهور.</p><p class="price">ابتداءً من 400 د.ت · 300 €</p></div>
+</div>
+<div>
+  <h2>في لمحة</h2>
+  <table class="facts">
+    <tr><td>اللغات</td><td>العربية، الفرنسية، الإنجليزية</td></tr>
+    <tr><td>المواضيع</td><td>التعليم غير النظامي، حقوق الإنسان، القيادة، تنمية الشباب، تدريب المدربين</td></tr>
+    <tr><td>أماكن التنفيذ</td><td>تونس، المغرب، قطر، عن بعد</td></tr>
+    <tr><td>الشهادات</td><td>مدرّب معتمد وطنياً، CNFCPP (2024) · مدرّب معتمد، Association YOUTH CLUBs (2025) · مدرّب معتمد قائد رياديّ، القطب الطلابي للمبادرة، جامعة سوسة (2025)</td></tr>
+  </table>
+
+  <h2>تجارب مختارة</h2>
+  <ul class="tight">
+    <li><b>IFMSA · SCORP Camp 25</b>، مراكش، 2025: تدريب مدربين أقران جدد.</li>
+    <li><b>IFMSA · TNHRT Carthaginian Camp</b>، الحمامات، 2024: ورشات لمدربي حقوق الإنسان.</li>
+    <li><b>IOM · Youth Hackathon</b>، الدوحة، 2024: تيسير فرق متعددة اللغات.</li>
+  </ul>
+  <p class="small muted" style="margin:4px 0 0">عملت أيضاً مع: USAID / Ma3an، AIESEC، JCI، Junior Enterprises Tunisia، AssociaMed Tunisia، Rotaract، Enactus، CNFCPP.</p>
+</div>
+</div>
+
+<h2>طريقتي في العمل: نصغي. نشكّل. نسلّم.</h2>
+<div class="method">
+  <div><b>نصغي</b>تحليل للاحتياجات مع الجهة المنظمة قبل تصميم أي شيء.</div>
+  <div><b>نشكّل</b>خطة جلسة مبنية على مستوى المجموعة ولغتها وأهدافها.</div>
+  <div><b>نسلّم</b>تيسير تفاعلي، ثم تقييم وتقرير مكتوب.</div>
+</div>
+
+<footer class="cta">
+  <span><b>احجز مكالمة مجانية مدتها 30 دقيقة:</b> <span class="ltr">cal.com/dhiaarfa/30min</span></span>
+  <span><b>البريد:</b> <span class="ltr">mohameddhiaarfa@gmail.com</span></span>
+</footer>
+</body>
+</html>

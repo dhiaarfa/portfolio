@@ -1,8 +1,7 @@
 "use client"
 
-import { useState, Suspense } from "react"
+import { useState, useSyncExternalStore } from "react"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
-import { useSearchParams } from "next/navigation"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Download, Lock, CheckCircle, X, Mail, Youtube, BookOpen, ExternalLink, GraduationCap, Wrench } from "lucide-react"
@@ -43,9 +42,29 @@ function parseCategory(value: string | null): Category {
   return "all"
 }
 
-function FreebiesClientInner() {
-  const { t } = useLanguage()
-  const searchParams = useSearchParams()
+/** First-page preview rendered from a freebie PDF path. */
+const pdfPreview = (path: string) =>
+  `/images/freebies/previews/${path.split("/").pop()!.replace(/\.pdf$/, "")}.jpg`
+
+/** ?category= from the address bar. Read with useSyncExternalStore instead of
+ *  useSearchParams(): that hook made Next skip server rendering for this whole
+ *  page (the HTML held only "Loading…"), so crawlers and slow phones got an
+ *  empty page. The server snapshot is null ("all"); the real value applies
+ *  right after hydration. */
+function subscribeToHistory(onChange: () => void) {
+  window.addEventListener("popstate", onChange)
+  return () => window.removeEventListener("popstate", onChange)
+}
+function useCategoryParam(): string | null {
+  return useSyncExternalStore(
+    subscribeToHistory,
+    () => new URLSearchParams(window.location.search).get("category"),
+    () => null,
+  )
+}
+
+export default function FreebiesClient() {
+  const { t, language } = useLanguage()
   const freebies = publishedFreebies()
   const [activeCategory, setActiveCategory] = useState<Category>("all")
   const [resourceFilter, setResourceFilter] = useState<ResourceFilter>("all")
@@ -65,7 +84,7 @@ function FreebiesClientInner() {
   // resources" link). Adjusted during render rather than in a useEffect,
   // React's recommended pattern for resetting state when an input changes;
   // the filter buttons still set activeCategory freely in between.
-  const categoryParam = searchParams.get("category")
+  const categoryParam = useCategoryParam()
   const [prevCategoryParam, setPrevCategoryParam] = useState<string | null>(null)
   if (categoryParam !== prevCategoryParam) {
     setPrevCategoryParam(categoryParam)
@@ -104,6 +123,7 @@ function FreebiesClientInner() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "freebie",
+          lang: language,
           name: formData.name.trim(),
           email: formData.email.trim(),
           freebieId: selectedFreebie.id,
@@ -216,7 +236,7 @@ function FreebiesClientInner() {
                 }`}
               >
                 {categoryLabel(cat)}
-                <span className="ms-1.5 tabular-nums opacity-60">
+                <span className="ms-1.5 tabular-nums font-normal">
                   {cat === "all" ? freebies.length : freebies.filter((f) => f.category === cat).length}
                 </span>
               </button>
@@ -225,7 +245,7 @@ function FreebiesClientInner() {
         </div>
       </section>
 
-      <section className="pb-20 px-6">
+      <section id="freebies-grid" className="pb-20 px-6 scroll-mt-24">
         <div ref={freebiesGridRef} className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.length === 0 ? (
             <p className="col-span-full text-center text-muted-foreground py-12">{t("freebies.empty")}</p>
@@ -244,7 +264,8 @@ function FreebiesClientInner() {
               return (
                 <motion.div
                   key={freebie.id}
-                  initial={{ opacity: 0, y: 16 }}
+                  // First card holds the LCP image: no fade-in, so it paints before JS runs.
+                  initial={i === 0 ? false : { opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.4, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
@@ -259,7 +280,24 @@ function FreebiesClientInner() {
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover"
+                        // First card is the page's largest image (LCP).
+                        priority={i === 0}
                       />
+                      {/* Real first page of the PDF (roadmap: show what you
+                          get, not "trust me"). Built by
+                          scripts/build-freebie-previews.sh. */}
+                      {freebie.delivery.kind === "pdf" && (
+                        <div className={`absolute bottom-0 end-4 translate-y-3 rotate-[-3deg] overflow-hidden rounded-t-md border border-black/10 bg-white shadow-xl ${isFeaturedTile ? "w-32 sm:w-36" : "w-24"}`}>
+                          <Image
+                            src={pdfPreview(freebie.delivery.path)}
+                            alt=""
+                            width={360}
+                            height={509}
+                            sizes="144px"
+                            className="h-auto w-full"
+                          />
+                        </div>
+                      )}
                     </div>
                   ) : (
                     // A stylized generic preview, not a fake screenshot of the
@@ -301,7 +339,7 @@ function FreebiesClientInner() {
                   </span>
 
                   <div>
-                    <h3 className={`font-bold text-foreground leading-snug ${isFeaturedTile ? "text-lg lg:text-xl" : "text-base lg:text-lg"}`}>{freebieText(freebie, "title", t)}</h3>
+                    <h2 className={`font-bold text-foreground leading-snug ${isFeaturedTile ? "text-lg lg:text-xl" : "text-base lg:text-lg"}`}>{freebieText(freebie, "title", t)}</h2>
                     <p className="text-sm lg:text-base text-muted-foreground mt-2 leading-relaxed">{freebieText(freebie, "description", t)}</p>
                   </div>
 
@@ -343,11 +381,11 @@ function FreebiesClientInner() {
 
           {activeCategory === "all" && (
             <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-6 flex flex-col justify-center text-center gap-4 min-h-[280px]">
-              <div className="w-12 h-12 rounded-full bg-accent-subtle flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 rounded-xl bg-accent-subtle flex items-center justify-center mx-auto">
                 <Mail className="w-6 h-6 text-accent" />
               </div>
               <div>
-                <h3 className="font-bold text-foreground text-lg">{t("freebies.moreComingTitle")}</h3>
+                <h2 className="font-bold text-foreground text-lg">{t("freebies.moreComingTitle")}</h2>
                 <p className="text-sm text-muted-foreground mt-2">{t("freebies.moreComingDesc")}</p>
               </div>
               {/* "/contact" is not a real route on this site (every other CTA uses
@@ -489,7 +527,7 @@ function FreebiesClientInner() {
 
             {status === "success" && downloadUrl ? (
               <div className="text-center py-2">
-                <div className="w-14 h-14 bg-accent-subtle rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-14 h-14 bg-accent-subtle rounded-xl flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-7 h-7 text-accent" />
                 </div>
                 <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-2">{t("freebies.successTitle")}</h3>
@@ -510,7 +548,7 @@ function FreebiesClientInner() {
                 {/* Implementation-prompts pass (Sep 2026), P15 "Freebies ->
                     conversion path": a quiet next step after the download,
                     not a hard sell -- one line + one outline link to the
-                    same Calendly used everywhere else on the site. */}
+                    same Cal.com link used everywhere else on the site. */}
                 <div className="mt-6 pt-5 border-t border-border">
                   <p className="text-sm text-muted-foreground mb-3">{t("freebies.conversionNudge")}</p>
                   <a
@@ -586,13 +624,5 @@ function FreebiesClientInner() {
         </div>
       )}
     </>
-  )
-}
-
-export default function FreebiesClient() {
-  return (
-    <Suspense fallback={<div className="py-32 text-center text-muted-foreground">Loading…</div>}>
-      <FreebiesClientInner />
-    </Suspense>
   )
 }

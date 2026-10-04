@@ -107,7 +107,7 @@ const frameworks = [
 // ─── Component ─────────────────────────────────────────────────────────────
 
 export default function TrainingMethodologySection() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   // Each pillar card starts collapsed, showing only the title/subtitle and a
   // 2-line description clamp -- the full description + pull quote reveal
   // when the visitor clicks the arrow. Keeps the section from reading as a
@@ -157,8 +157,8 @@ export default function TrainingMethodologySection() {
 
                 {/* Header row */}
                 <div className="relative flex items-start gap-4 mb-4">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-accent-gradient">
-                    <Icon className="w-5 h-5 text-white" />
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-accent-subtle text-accent">
+                    <Icon className="w-5 h-5" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
@@ -266,8 +266,10 @@ export default function TrainingMethodologySection() {
                 className={`relative rounded-2xl border ${phase.borderColor} bg-slate-800/60 p-5`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-3xl font-black text-[#8ed80c] opacity-30">{phase.step}</span>
-                  <phase.Icon className="w-6 h-6 text-[#8ed80c]" />
+                  <span className="text-3xl font-black text-[#8ed80c] opacity-70">{phase.step}</span>
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-subtle text-accent">
+                    <phase.Icon className="w-5 h-5" />
+                  </span>
                 </div>
 
                 <div className={`inline-block px-2.5 py-1 rounded-lg ${phase.chipBg} mb-3`}>
@@ -293,7 +295,7 @@ export default function TrainingMethodologySection() {
           </div>
 
           <div className="text-center mt-6">
-            <span className="text-xs text-slate-500 italic">
+            <span className="text-xs text-slate-400 italic">
               ↺ {t("kolbCycleRepeatsNote")}
             </span>
           </div>
@@ -319,11 +321,11 @@ export default function TrainingMethodologySection() {
                 key={fw.nameKey}
                 className={`rounded-2xl border p-5 h-full hover:-translate-y-0.5 transition-transform ${fw.color}`}
               >
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-white/70 dark:bg-card/40 ${fw.textColor}`}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-accent-subtle text-accent">
                   <fw.Icon className="w-5 h-5" />
                 </div>
                 <p className={`text-xs font-bold uppercase tracking-wider mb-1 ${fw.textColor}`}>
-                  {fw.year}
+                  {fw.year === 'Council of Europe' && language !== 'en' ? (language === 'fr' ? "Conseil de l'Europe" : 'مجلس أوروبا') : fw.year}
                 </p>
                 <h4 className="font-bold text-slate-900 dark:text-white text-sm leading-snug mb-2 whitespace-pre-line">
                   {t(fw.nameKey)}

@@ -7,6 +7,7 @@ import { useMemo, useState } from "react"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 import { useLanguage } from "@/components/language-provider"
 import { InsightCover } from "@/components/insight-article-cta"
+import NewsletterSection from "@/components/newsletter-section"
 import { publishedInsightArticles, type InsightCategory } from "@/lib/insights"
 
 type Filter = "all" | InsightCategory
@@ -88,7 +89,7 @@ export default function InsightsPageClient() {
                   }`}
                 >
                   {f.label}
-                  <span className="ms-1.5 tabular-nums opacity-60">
+                  <span className="ms-1.5 tabular-nums font-normal">
                     {f.id === "all" ? articles.length : articles.filter((a) => a.category === f.id).length}
                   </span>
                 </button>
@@ -99,7 +100,8 @@ export default function InsightsPageClient() {
 
         {featured && (filter === "all" || featured.category === filter) && (
           <motion.article
-            initial={{ opacity: 0, y: 16 }}
+            // Featured cover is the LCP image: no fade-in, so it paints before JS runs.
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -108,6 +110,7 @@ export default function InsightsPageClient() {
             <Link href={`/insights/${featured.slug}`} className="block group">
               <div className="grid md:grid-cols-2 gap-0">
                 <InsightCover
+                  priority
                   category={featured.category}
                   title={t(featured.titleKey)}
                   slug={featured.slug}
@@ -155,7 +158,9 @@ export default function InsightsPageClient() {
                 className={`group rounded-2xl border border-border bg-card overflow-hidden flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 ${isWide ? "sm:col-span-2" : ""}`}
               >
                 <div className={isWide ? "grid sm:grid-cols-[1fr_1.1fr] gap-0" : "contents"}>
-                  <Link href={`/insights/${article.slug}`} className="block">
+                  {/* Same target as the title link below: hidden from screen
+                      readers and the tab order so it is not an unnamed link. */}
+                  <Link href={`/insights/${article.slug}`} className="block" aria-hidden tabIndex={-1}>
                     <InsightCover
                       category={article.category}
                       title={t(article.titleKey)}
@@ -200,6 +205,10 @@ export default function InsightsPageClient() {
             )
           })}
         </div>
+      </div>
+      {/* Navbar CTA on /insights is "Get new posts by email" and points here. */}
+      <div className="-mx-6 mt-14 -mb-14">
+        <NewsletterSection />
       </div>
     </main>
   )

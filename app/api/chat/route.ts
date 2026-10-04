@@ -22,8 +22,13 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const body = await req.json()
-    const messages = body.messages as ChatMessage[] | undefined
+    let body: { messages?: unknown }
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json({ error: "Invalid request." }, { status: 400 })
+    }
+    const messages = body?.messages as (ChatMessage | null)[] | undefined
 
     if (!Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json({ error: "Message required." }, { status: 400 })
@@ -36,7 +41,7 @@ export async function POST(req: NextRequest) {
     const MAX_CHARS = 800
     const trimmed = messages
       .slice(-12)
-      .filter((m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
+      .filter((m): m is ChatMessage => !!m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
       .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_CHARS) }))
     if (trimmed.length === 0 || trimmed[trimmed.length - 1]?.role !== "user") {
       return NextResponse.json({ error: "Invalid message." }, { status: 400 })

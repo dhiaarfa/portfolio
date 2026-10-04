@@ -1,11 +1,18 @@
 /* Shared print styles for freebie PDFs (scripts/build-freebie-pdfs.mjs).
    Brand: near-black + single green accent, as on dhia-portfolio.com. */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,wght@1,500;1,600&family=Cairo:wght@400;600;700&display=swap");
+/* Offline fallback (Oct 2026): when Google Fonts can't be reached at print
+   time (e.g. a sandboxed build), Inter comes from scripts/fonts instead. */
+@font-face { font-family: "Inter Local"; font-weight: 400; src: url("../fonts/inter-latin-400.woff2") format("woff2"); }
+@font-face { font-family: "Inter Local"; font-weight: 500; src: url("../fonts/inter-latin-500.woff2") format("woff2"); }
+@font-face { font-family: "Inter Local"; font-weight: 600; src: url("../fonts/inter-latin-600.woff2") format("woff2"); }
+@font-face { font-family: "Inter Local"; font-weight: 700; src: url("../fonts/inter-latin-700.woff2") format("woff2"); }
+@font-face { font-family: "Inter Local"; font-weight: 800; src: url("../fonts/inter-latin-800.woff2") format("woff2"); }
 
 @page { size: A4; margin: 16mm 15mm 18mm; }
 * { box-sizing: border-box; }
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-body { margin: 0; font-family: Inter, system-ui, sans-serif; font-size: 10.5pt; line-height: 1.5; color: #171717; }
+body { margin: 0; font-family: Inter, "Inter Local", system-ui, sans-serif; font-size: 10.5pt; line-height: 1.5; color: #171717; }
 
 :root { --accent: #16a34a; --accent-soft: #dcfce7; --ink: #0a0a0a; --muted: #525252; --rule: #e5e5e5; }
 

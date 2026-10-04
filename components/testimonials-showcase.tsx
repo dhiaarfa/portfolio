@@ -1,7 +1,8 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, Linkedin, Quote } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
@@ -80,7 +81,7 @@ export function TestimonialsShowcase({
 }: Props) {
   const { language, t } = useLanguage()
   const lang = language === "fr" ? "fr" : language === "ar" ? "ar" : "en"
-  const reducedMotion = useReducedMotion() ?? false
+  const reducedMotion = useReducedMotionSafe()
   const items = useMemo(() => pickTestimonials({ tag, ids, limit }), [tag, ids, limit])
   const [active, setActive] = useState(0)
 
@@ -140,12 +141,12 @@ export function TestimonialsShowcase({
                 <Avatar item={featured} size={52} />
                 <div className="min-w-0">
                   <p className="flex items-center gap-2 font-semibold text-foreground">
-                    {featured.name}
+                    {featuredText.name}
                     <a
                       href={featured.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`${featured.name} on LinkedIn`}
+                      aria-label={`${featuredText.name} on LinkedIn`}
                       className="text-muted-foreground transition-colors hover:text-accent"
                     >
                       <Linkedin className="h-4 w-4" />
@@ -234,7 +235,7 @@ export function TestimonialsShowcase({
                   <div className="relative mt-5 flex items-center gap-3">
                     <Avatar item={item} size={40} />
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold text-foreground">{item.name}</p>
+                      <p className="truncate text-sm font-semibold text-foreground">{text.name}</p>
                       <p className="truncate text-xs text-accent">{text.relation}</p>
                     </div>
                   </div>
@@ -257,7 +258,7 @@ export function TestimonialsShowcase({
                   <span className="text-sm text-muted-foreground italic max-w-md truncate">
                     &ldquo;{text.quote.slice(0, 90)}…&rdquo;
                   </span>
-                  <span className="text-xs font-semibold text-foreground">{item.name}</span>
+                  <span className="text-xs font-semibold text-foreground">{text.name}</span>
                 </div>
               )
             })}

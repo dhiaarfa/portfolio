@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import TrainerClientPage from "./TrainerClientPage"
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 import { SITE_URL, formatStat } from "@/lib/profile"
+import { offerCatalogJsonLd, TRAINING_PRICES } from "@/lib/pricing"
 import { siteConfig } from "@/lib/site-config"
 
 export const dynamic = "force-static"
@@ -39,6 +40,7 @@ const jsonLd = {
       areaServed: { "@type": "Country", name: "Tunisia" },
       description: `Workshops and train-the-trainer programs for NGOs and youth organizations. ${formatStat("participantsTrained")} participants trained.`,
       url: `${SITE_URL}/trainer`,
+      hasOfferCatalog: offerCatalogJsonLd("Training formats", TRAINING_PRICES),
     },
     {
       "@type": "Course",

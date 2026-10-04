@@ -36,7 +36,7 @@ export default function HowWeWorkSection() {
               key={titleKey}
               className="relative rounded-2xl border border-border bg-card p-6 text-center"
             >
-              <span className="absolute left-4 top-4 text-xs font-bold text-muted-foreground/50">
+              <span className="absolute left-4 top-4 text-xs font-bold text-muted-foreground">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-accent-subtle">

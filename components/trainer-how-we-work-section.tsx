@@ -8,7 +8,7 @@ import { useLanguage } from "@/components/language-provider"
 const icons = [ClipboardList, PenTool, Users, FileCheck]
 
 export default function TrainerHowWeWorkSection() {
-  const { language } = useLanguage()
+  const { language, t } = useLanguage()
   const lang = language === "fr" ? "fr" : language === "ar" ? "ar" : "en"
 
   return (
@@ -27,14 +27,17 @@ export default function TrainerHowWeWorkSection() {
               fill
               // Face sits at ~55% x / ~20% y of the source; text goes on the
               // opposite side so the face is never covered or cropped out.
-              className="object-cover object-[55%_8%] rtl:-scale-x-100"
+              // Never mirrored in Arabic (Dhia's rule); the text box stays
+              // physically on the left instead.
+              className="object-cover object-[55%_8%]"
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-black/85 via-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
           </div>
-          <div className="absolute inset-0 flex flex-col items-start justify-center text-start px-5 sm:px-10 md:px-14 max-w-[44%]">
+          <div className="absolute inset-y-0 left-0 flex w-[44%] flex-col items-start justify-center text-start px-5 sm:px-10 md:px-14">
             <p className="label !text-white/80 mb-2">
-              {lang === "fr" ? "Processus" : lang === "ar" ? "العملية" : "Process"}
+              {/* The named method (Oct 2026), shared with /designer. */}
+              {t("methodName")}
             </p>
             <h2 className="text-lg sm:text-3xl md:text-4xl font-bold text-white">
               {lang === "fr" ? "Comment nous travaillons ensemble" : lang === "ar" ? "كيف نعمل معاً" : "How we work together"}
@@ -52,7 +55,7 @@ export default function TrainerHowWeWorkSection() {
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-subtle text-accent">
                     <Icon className="h-4 w-4" />
                   </span>
-                  <span className="font-display text-2xl font-black text-muted-foreground/40">{step.step}</span>
+                  <span className="font-display text-2xl font-black text-muted-foreground">{step.step}</span>
                 </div>
                 <h3 className="mb-2 font-semibold">{title}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
