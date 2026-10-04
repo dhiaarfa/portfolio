@@ -3,6 +3,8 @@ import { notFound } from "next/navigation"
 import { preload } from "react-dom"
 import { LanguageProvider } from "@/components/language-provider"
 import type { Language } from "@/lib/translations"
+import { fr } from "@/lib/i18n/fr"
+import { ar } from "@/lib/i18n/ar"
 
 // Additive-only: /fr/* and /ar/* twins of the pages that have real,
 // complete translated content (see checklist for why individual
@@ -61,7 +63,11 @@ export default async function LocaleLayout({
           __html: `document.documentElement.lang="${locale}";document.documentElement.dir="${dir}";`,
         }}
       />
-      <LanguageProvider initialLanguage={locale as Language}>{children}</LanguageProvider>
+      {/* This locale's dictionary only, so the client bundle carries no French
+          or Arabic copy (see components/language-provider.tsx). */}
+      <LanguageProvider initialLanguage={locale as Language} initialMessages={locale === "ar" ? ar : fr}>
+        {children}
+      </LanguageProvider>
     </>
   )
 }

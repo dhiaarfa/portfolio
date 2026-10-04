@@ -24,10 +24,12 @@ function LogoImage({ logo }: { logo: (typeof organizationLogos)[0] }) {
           alt={logo.name}
           width={logo.width}
           height={logo.height}
-          sizes="(max-width: 768px) 120px, 160px"
           className={`object-contain w-auto opacity-90 hover:opacity-100 transition-opacity duration-300 ${logo.bleed ? "h-16 md:h-20" : "max-h-14 md:max-h-16 h-auto"}`}
           onError={() => setFailed(true)}
           loading="eager"
+          // No `sizes` (Oct 2026): the logos render at their width prop, so
+          // the default 1x/2x srcset is enough. The responsive one listed 14
+          // widths per logo, about 55 KB of HTML for the 42 tags.
         />
       </div>
     </div>
