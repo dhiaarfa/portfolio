@@ -127,7 +127,7 @@ export const assistantNudges: AssistantNudge[] = [
   {
     id: "rate",
     messageKey: "chatNudgeRate",
-    href: "https://calendly.com/benarfa367/30min",
+    href: "https://cal.com/dhiaarfa/30min",
     actionKey: "chatNudgeActionBook",
     delayMs: 210000,
   },

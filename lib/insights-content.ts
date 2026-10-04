@@ -36,7 +36,7 @@ The trust part comes from **consistency**, not from the single "right" color. A 
 
 Color won't save a bad product or a confusing message. But the right palette, applied with discipline, makes a good brand *feel* as good as it is. That feeling is where trust starts.
 
-> **Want the shortcut?** I put the exact palettes and the emotion-to-color mapping I use with clients into a free [Color Psychology Guide](/freebies?category=design): 12 ready-made palettes with hex codes. Grab it, or [book a free call](https://calendly.com/benarfa367/30min) if you want help choosing yours.`,
+> **Want the shortcut?** I put the exact palettes and the emotion-to-color mapping I use with clients into a free [Color Psychology Guide](/freebies?category=design): 12 ready-made palettes with hex codes. Grab it, or [book a free call](https://cal.com/dhiaarfa/30min) if you want help choosing yours.`,
     fr: `Les gens décident s'ils font confiance à une marque en moins de temps qu'il n'en faut pour lire son nom. Avant même de lire votre accroche ou de juger votre produit, ils ont déjà réagi à vos couleurs. Après des années à construire des identités de marque pour des cafés, des ONG et des startups à travers la Tunisie, j'ai arrêté de traiter la couleur comme une décoration pour la traiter comme la première promesse que fait une marque.
 
 Voici la version honnête : **la psychologie des couleurs n'est pas magique.** Un logo bleu ne *rendra* pas une banque digne de confiance, et le rouge ne *forcera* personne à acheter. Ce que fait la couleur, c'est créer une attente. La confiance se construit quand l'expérience correspond à l'attente créée par la couleur. Réussissez cet accord et tout le reste semble cohérent. Ratez-le et les gens ressentent une friction qu'ils ne savent généralement pas nommer.
@@ -69,7 +69,7 @@ La confiance vient de la **cohérence**, pas de la seule "bonne" couleur. Une ma
 
 La couleur ne sauvera pas un mauvais produit ou un message confus. Mais la bonne palette, appliquée avec discipline, fait qu'une bonne marque *ressent* aussi bonne qu'elle l'est. C'est là que commence la confiance.
 
-> **Envie du raccourci ?** J'ai rassemblé les palettes exactes et la correspondance émotion-couleur que j'utilise avec mes clients dans un [Guide de psychologie des couleurs](/freebies?category=design) gratuit : 12 palettes prêtes à l'emploi avec codes hexadécimaux. Téléchargez-le, ou [réservez un appel gratuit](https://calendly.com/benarfa367/30min) si vous voulez de l'aide pour choisir la vôtre.`,
+> **Envie du raccourci ?** J'ai rassemblé les palettes exactes et la correspondance émotion-couleur que j'utilise avec mes clients dans un [Guide de psychologie des couleurs](/freebies?category=design) gratuit : 12 palettes prêtes à l'emploi avec codes hexadécimaux. Téléchargez-le, ou [réservez un appel gratuit](https://cal.com/dhiaarfa/30min) si vous voulez de l'aide pour choisir la vôtre.`,
     ar: `يقرر الناس ما إذا كانوا سيثقون بعلامة تجارية في وقت أقل من الوقت اللازم لقراءة اسمها. قبل أن يقرأ أحد شعارك الترويجي أو يحكم على منتجك، يكون قد تفاعل بالفعل مع ألوانك. بعد سنوات من بناء هويات بصرية لمقاهٍ ومنظمات غير حكومية وشركات ناشئة في تونس، توقفت عن التعامل مع اللون كزخرفة وبدأت أتعامل معه كأول وعد تقدّمه العلامة التجارية.
 
 إليك النسخة الصريحة: **علم نفس الألوان ليس سحراً.** شعار أزرق لن *يجعل* بنكاً جديراً بالثقة، والأحمر لن *يجبر* أحداً على الشراء. ما يفعله اللون هو خلق توقّع. تُبنى الثقة عندما تتطابق التجربة مع التوقّع الذي خلقه اللون. اضبط هذا التطابق بشكل صحيح وسيبدو كل شيء بعده منسجماً. أخطئ فيه وسيشعر الناس باحتكاك عادة لا يستطيعون تسميته.
@@ -102,7 +102,7 @@ La couleur ne sauvera pas un mauvais produit ou un message confus. Mais la bonne
 
 اللون لن ينقذ منتجاً سيئاً أو رسالة مشوّشة. لكن اللوحة الصحيحة، عند تطبيقها بانضباط، تجعل العلامة الجيدة *تبدو* جيدة بقدر ما هي عليه فعلاً. من هناك تبدأ الثقة.
 
-> **تريد الطريق المختصر؟** وضعت اللوحات الدقيقة وخريطة الربط بين المشاعر والألوان التي أستخدمها مع عملائي في [دليل علم نفس الألوان](/freebies?category=design) المجاني: 12 لوحة جاهزة مع أكواد الألوان. حمّله، أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min) إذا أردت مساعدة في اختيار لوحتك.`,
+> **تريد الطريق المختصر؟** وضعت اللوحات الدقيقة وخريطة الربط بين المشاعر والألوان التي أستخدمها مع عملائي في [دليل علم نفس الألوان](/freebies?category=design) المجاني: 12 لوحة جاهزة مع أكواد الألوان. حمّله، أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min) إذا أردت مساعدة في اختيار لوحتك.`,
   },
 
   "facilitation-mistakes-youth-workshops": {
@@ -136,7 +136,7 @@ End on application, not summary. My favorite closing question is some version of
 
 None of this requires a bigger budget or a perfect slide deck. It requires designing for energy, using activities as structure, talking less, making the room safe, and being willing to abandon your own plan. Do that and a youth group will give you three hours of genuine attention, which, if you've ever tried, you'll know is the real measure of a facilitator.
 
-> **Want my tools?** I've packaged the [Workshop Planning Template](/freebies?category=training), [20 Youth Icebreaker Activities](/freebies?category=training) (Arabic/French/English), and my [Pre-Training Checklist](/freebies?category=training) as free downloads. Or [book a call](https://calendly.com/benarfa367/30min) if you'd like me to run or design a session with your team.`,
+> **Want my tools?** I've packaged the [Workshop Planning Template](/freebies?category=training), [20 Youth Icebreaker Activities](/freebies?category=training) (Arabic/French/English), and my [Pre-Training Checklist](/freebies?category=training) as free downloads. Or [book a call](https://cal.com/dhiaarfa/30min) if you'd like me to run or design a session with your team.`,
     fr: `La gestion de l'énergie est la compétence la plus difficile en facilitation, et personne ne l'enseigne. On nous apprend à préparer du contenu, concevoir des slides et "engager le public", mais avec des groupes de jeunes, maintenir l'énergie d'une salle pendant deux ou trois heures est le vrai travail. Le contenu est la partie facile. Après avoir animé des sessions pour bien plus d'un millier de jeunes participants, je peux vous dire que la salle ne meurt presque jamais parce que le contenu était mauvais. Elle meurt à cause d'une poignée d'erreurs de facilitation évitables. Voici les cinq que je vois le plus, et quoi faire à la place.
 
 ## Erreur 1 : concevoir pour couvrir du contenu plutôt que pour l'énergie
@@ -167,7 +167,7 @@ Terminez sur l'application, pas sur un résumé. Ma question de clôture préfé
 
 Rien de tout cela ne demande un budget plus important ou un deck de slides parfait. Cela demande de concevoir pour l'énergie, d'utiliser les activités comme structure, de parler moins, de rendre la salle sûre, et d'être prêt à abandonner son propre plan. Faites cela et un groupe de jeunes vous offrira trois heures d'attention réelle, ce qui, si vous avez déjà essayé, est la vraie mesure d'un facilitateur.
 
-> **Envie de mes outils ?** J'ai regroupé le [modèle de planification d'atelier](/freebies?category=training), [20 activités brise-glace pour jeunes](/freebies?category=training) (arabe/français/anglais), et ma [checklist pré-formation](/freebies?category=training) en téléchargements gratuits. Ou [réservez un appel](https://calendly.com/benarfa367/30min) si vous voulez que j'anime ou conçoive une session avec votre équipe.`,
+> **Envie de mes outils ?** J'ai regroupé le [modèle de planification d'atelier](/freebies?category=training), [20 activités brise-glace pour jeunes](/freebies?category=training) (arabe/français/anglais), et ma [checklist pré-formation](/freebies?category=training) en téléchargements gratuits. Ou [réservez un appel](https://cal.com/dhiaarfa/30min) si vous voulez que j'anime ou conçoive une session avec votre équipe.`,
     ar: `إدارة الطاقة هي أصعب مهارة في التيسير، ولا أحد يعلّمها. نتعلّم كيف نُعدّ المحتوى، ونصمّم الشرائح، و"نُشرك الجمهور"، لكن مع مجموعات الشباب، الحفاظ على طاقة القاعة لمدة ساعتين أو ثلاث هو العمل الحقيقي. المحتوى هو الجزء السهل. بعد إدارة جلسات لأكثر من ألف مشارك شاب، أستطيع أن أخبرك أن القاعة نادراً ما تموت بسبب سوء المادة. إنها تموت بسبب مجموعة من أخطاء التيسير التي يمكن تجنبها. إليك الأخطاء الخمسة الأكثر شيوعاً، وما يجب فعله بدلاً منها.
 
 ## الخطأ 1: التصميم لتغطية المحتوى بدلاً من الطاقة
@@ -198,7 +198,7 @@ Rien de tout cela ne demande un budget plus important ou un deck de slides parfa
 
 لا شيء من هذا يتطلب ميزانية أكبر أو عرض شرائح مثالي. يتطلب التصميم من أجل الطاقة، واستخدام الأنشطة كبنية، والتحدث أقل، وجعل القاعة آمنة، والاستعداد للتخلي عن خطتك. افعل ذلك وستمنحك مجموعة الشباب ثلاث ساعات من الانتباه الحقيقي، وهو، إن جرّبت من قبل، المقياس الحقيقي للمُيسّر.
 
-> **تريد أدواتي؟** جمعت [قالب تخطيط الورشة](/freebies?category=training)، و[20 نشاط كسر جمود للشباب](/freebies?category=training) (عربي/فرنسي/إنجليزي)، و[قائمة التحقق قبل التدريب](/freebies?category=training) كتنزيلات مجانية. أو [احجز مكالمة](https://calendly.com/benarfa367/30min) إذا أردتني أن أدير أو أصمم جلسة مع فريقك.`,
+> **تريد أدواتي؟** جمعت [قالب تخطيط الورشة](/freebies?category=training)، و[20 نشاط كسر جمود للشباب](/freebies?category=training) (عربي/فرنسي/إنجليزي)، و[قائمة التحقق قبل التدريب](/freebies?category=training) كتنزيلات مجانية. أو [احجز مكالمة](https://cal.com/dhiaarfa/30min) إذا أردتني أن أدير أو أصمم جلسة مع فريقك.`,
   },
 
   "why-i-rebuilt-my-portfolio-in-nextjs": {
@@ -238,7 +238,7 @@ If you're a developer, yes. Your portfolio should prove you can build, and this 
 
 What I keep coming back to is this: the tool you choose should match the story you're telling. I tell clients I can take an idea from design through to a shipped, fast, maintainable product. Building this site myself, mistakes and all, is the most credible thing I could put in front of them.
 
-> **Curious about the build, or want one like it?** I take on web projects. [Book a free call](https://calendly.com/benarfa367/30min) and I'll walk you through what I'd ship for you, or see the [development work](/developer).`,
+> **Curious about the build, or want one like it?** I take on web projects. [Book a free call](https://cal.com/dhiaarfa/30min) and I'll walk you through what I'd ship for you, or see the [development work](/developer).`,
     fr: `Je suis designer et formateur qui construit pour le web, donc mon portfolio est deux choses à la fois : un lieu pour montrer mon travail, et une pièce de travail en soi. Quand j'ai décidé de le reconstruire, la voie évidente était un outil no-code (Webflow, Framer, un template Squarespace). J'ai choisi [Next.js](https://nextjs.org/docs) à la place. Voici le raisonnement honnête, y compris les parties que je reconsidérerais.
 
 ## Pourquoi pas un outil no-code
@@ -275,7 +275,7 @@ Si vous êtes développeur, oui. Votre portfolio doit prouver que vous savez con
 
 Ce à quoi je reviens toujours : l'outil que vous choisissez doit correspondre à l'histoire que vous racontez. Je dis à mes clients que je peux faire passer une idée du design à un produit livré, rapide et maintenable. Construire ce site moi-même, erreurs comprises, est la chose la plus crédible que je puisse leur présenter.
 
-> **Curieux de la construction, ou envie d'un site similaire ?** Je prends des projets web. [Réservez un appel gratuit](https://calendly.com/benarfa367/30min) et je vous montrerai ce que je livrerais pour vous, ou consultez les [projets de développement](/developer).`,
+> **Curieux de la construction, ou envie d'un site similaire ?** Je prends des projets web. [Réservez un appel gratuit](https://cal.com/dhiaarfa/30min) et je vous montrerai ce que je livrerais pour vous, ou consultez les [projets de développement](/developer).`,
     ar: `أنا مصمم ومدرّب أبني للويب، لذا فإن portfolio الخاص بي شيئان في آنٍ واحد: مكان لعرض عملي، وعمل بحد ذاته. عندما قررت إعادة بنائه، كان الطريق الواضح هو أداة no-code (Webflow، Framer، قالب Squarespace). اخترت [Next.js](https://nextjs.org/docs) بدلاً من ذلك. إليك المنطق الصريح، بما في ذلك الأجزاء التي قد أعيد النظر فيها.
 
 ## لماذا لا أداة no-code
@@ -312,7 +312,7 @@ Ce à quoi je reviens toujours : l'outil que vous choisissez doit correspondre �
 
 ما أعود إليه دائماً هو هذا: الأداة التي تختارها يجب أن تطابق القصة التي تحكيها. أخبر عملائي أنني أستطيع أخذ فكرة من التصميم إلى منتج مُسلَّم وسريع وقابل للصيانة. بناء هذا الموقع بنفسي، بأخطائه، هو أكثر شيء مقنع يمكنني وضعه أمامهم.
 
-> **فضولي حول البناء، أو تريد واحداً مشابهاً؟** أتولى مشاريع ويب. [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min) وسأشرح لك ما سأقدّمه لك، أو اطّلع على [أعمال التطوير](/developer).`,
+> **فضولي حول البناء، أو تريد واحداً مشابهاً؟** أتولى مشاريع ويب. [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min) وسأشرح لك ما سأقدّمه لك، أو اطّلع على [أعمال التطوير](/developer).`,
   },
 
   "social-media-visual-consistency": {
@@ -347,7 +347,7 @@ Consistency doesn't mean boring. It means you repeat the same **visual rules** w
 
 Open your Instagram or LinkedIn grid. Squint. Can you still see a pattern? If it looks like a collage of unrelated brands, pick one template and repost your next five pieces from it. You'll feel the difference immediately.
 
-> **Want the templates?** Grab my free [Social Media Kit](/freebies?category=design) resources, or [book a free call](https://calendly.com/benarfa367/30min) if you want help building a system for your brand.`,
+> **Want the templates?** Grab my free [Social Media Kit](/freebies?category=design) resources, or [book a free call](https://cal.com/dhiaarfa/30min) if you want help building a system for your brand.`,
     fr: `La plupart des marques n'ont pas un problème de réseaux sociaux. Elles ont un problème de **cohérence**. Le feed a l'air correct publication par publication, mais faites défiler vingt d'entre elles et la marque disparaît. Polices différentes, filtres aléatoires, logos recadrés, légendes qui semblent écrites par trois personnes différentes. Les audiences le remarquent, même si elles ne savent pas nommer ce qui cloche.
 
 Après avoir conçu du contenu social pour des cafés, des ONG et des startups à travers la Tunisie, j'ai appris que la cohérence visuelle sur les réseaux sociaux tient moins à être tendance qu'à être **reconnaissable en une demi-seconde**.
@@ -379,7 +379,7 @@ La cohérence ne veut pas dire ennuyeux. Elle veut dire que vous répétez les m
 
 Ouvrez votre grille Instagram ou LinkedIn. Plissez les yeux. Voyez-vous encore un motif ? Si ça ressemble à un collage de marques sans lien entre elles, choisissez un template et republiez vos cinq prochaines publications à partir de celui-ci. Vous sentirez la différence immédiatement.
 
-> **Envie des templates ?** Récupérez mon [kit gratuit pour réseaux sociaux](/freebies?category=design), ou [réservez un appel gratuit](https://calendly.com/benarfa367/30min) si vous voulez de l'aide pour construire un système pour votre marque.`,
+> **Envie des templates ?** Récupérez mon [kit gratuit pour réseaux sociaux](/freebies?category=design), ou [réservez un appel gratuit](https://cal.com/dhiaarfa/30min) si vous voulez de l'aide pour construire un système pour votre marque.`,
     ar: `معظم العلامات التجارية ليس لديها مشكلة في وسائل التواصل الاجتماعي. لديها مشكلة **اتساق**. يبدو الحساب جيداً منشوراً تلو الآخر، لكن مرّر عبر عشرين منشوراً وستختفي العلامة التجارية. خطوط مختلفة، فلاتر عشوائية، شعارات مقصوصة، تعليقات تبدو وكأن ثلاثة أشخاص مختلفين كتبوها. يلاحظ الجمهور ذلك، حتى لو لم يستطيعوا تسمية ما هو خاطئ.
 
 بعد تصميم محتوى اجتماعي لمقاهٍ ومنظمات غير حكومية وشركات ناشئة في تونس، تعلمت أن الاتساق البصري على وسائل التواصل لا يتعلق بمواكبة الموضة بقدر ما يتعلق بأن تكون **قابلاً للتعرف عليه في نصف ثانية**.
@@ -411,7 +411,7 @@ Ouvrez votre grille Instagram ou LinkedIn. Plissez les yeux. Voyez-vous encore u
 
 افتح شبكة Instagram أو LinkedIn الخاصة بك. ضيّق عينيك. هل ما زلت ترى نمطاً؟ إذا بدا كمجموعة من علامات تجارية غير مترابطة، اختر قالباً واحداً وأعد نشر منشوراتك الخمسة القادمة منه. ستشعر بالفرق فوراً.
 
-> **تريد القوالب؟** احصل على [حزمة وسائل التواصل الاجتماعي](/freebies?category=design) المجانية، أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min) إذا أردت مساعدة في بناء نظام لعلامتك.`,
+> **تريد القوالب؟** احصل على [حزمة وسائل التواصل الاجتماعي](/freebies?category=design) المجانية، أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min) إذا أردت مساعدة في بناء نظام لعلامتك.`,
   },
 
   "training-needs-assessment-basics": {
@@ -454,7 +454,7 @@ If you can't answer all four, you're not ready to build slides yet.
 
 Young participants are quick to detect relevance. If the content feels like it was written for someone else, energy drops fast. TNA is how you earn the right to their attention before you say a word.
 
-> **Tools I use:** My free [Workshop Planning Template](/freebies?category=training) includes a TNA section. Or [book a call](https://calendly.com/benarfa367/30min) if you want help running a needs assessment before your next session.`,
+> **Tools I use:** My free [Workshop Planning Template](/freebies?category=training) includes a TNA section. Or [book a call](https://cal.com/dhiaarfa/30min) if you want help running a needs assessment before your next session.`,
     fr: `L'erreur la plus coûteuse en formation n'est pas une mauvaise animation. C'est de **former sur le mauvais sujet**. Je suis entré dans des salles où les slides étaient soignés, le facilitateur compétent, et les participants repartaient quand même en pensant "ce n'était pas pour nous." C'est presque toujours un échec d'analyse des besoins, pas un échec de facilitation.
 
 L'analyse des besoins en formation (TNA) sonne corporate, mais l'idée centrale est simple : avant de concevoir quoi que ce soit, découvrez ce que les gens doivent réellement faire différemment, ce qu'ils savent déjà, et ce qui les en empêche.
@@ -494,7 +494,7 @@ Si vous ne pouvez pas répondre aux quatre, vous n'êtes pas prêt à construire
 
 Les jeunes participants détectent vite la pertinence. Si le contenu semble avoir été écrit pour quelqu'un d'autre, l'énergie chute rapidement. La TNA est la façon dont vous gagnez le droit à leur attention avant même de dire un mot.
 
-> **Outils que j'utilise :** mon [modèle de planification d'atelier](/freebies?category=training) gratuit inclut une section TNA. Ou [réservez un appel](https://calendly.com/benarfa367/30min) si vous voulez de l'aide pour mener une analyse des besoins avant votre prochaine session.`,
+> **Outils que j'utilise :** mon [modèle de planification d'atelier](/freebies?category=training) gratuit inclut une section TNA. Ou [réservez un appel](https://cal.com/dhiaarfa/30min) si vous voulez de l'aide pour mener une analyse des besoins avant votre prochaine session.`,
     ar: `أغلى خطأ في التدريب ليس سوء التقديم. إنه **تدريب على الشيء الخطأ**. دخلت قاعات كانت فيها الشرائح أنيقة، والمُيسّر ماهراً، ومع ذلك غادر المشاركون وهم يفكرون "هذا لم يكن لنا." هذا دائماً تقريباً فشل في تحليل الاحتياجات، لا فشل في التيسير.
 
 تحليل احتياجات التدريب (TNA) يبدو مصطلحاً مؤسسياً، لكن الفكرة الأساسية بسيطة: قبل تصميم أي شيء، اكتشف ما يحتاج الناس فعلاً أن يفعلوه بشكل مختلف، وما يعرفونه بالفعل، وما الذي يمنعهم.
@@ -534,7 +534,7 @@ TNA طريقة منظمة للإجابة عن أربعة أسئلة:
 
 المشاركون الشباب سريعون في اكتشاف مدى الصلة بالموضوع. إذا شعروا أن المحتوى كُتب لشخص آخر، تنخفض الطاقة بسرعة. TNA هي كيف تكسب حق انتباههم قبل أن تقول كلمة واحدة.
 
-> **الأدوات التي أستخدمها:** [قالب تخطيط الورشة](/freebies?category=training) المجاني يتضمن قسم TNA. أو [احجز مكالمة](https://calendly.com/benarfa367/30min) إذا أردت مساعدة في إجراء تحليل احتياجات قبل جلستك القادمة.`,
+> **الأدوات التي أستخدمها:** [قالب تخطيط الورشة](/freebies?category=training) المجاني يتضمن قسم TNA. أو [احجز مكالمة](https://cal.com/dhiaarfa/30min) إذا أردت مساعدة في إجراء تحليل احتياجات قبل جلستك القادمة.`,
   },
 
   "supabase-nextjs-for-freelancers": {
@@ -581,7 +581,7 @@ My PFE project, [Digimytch Talent Hub](/developer), is the most complete example
 
 "You get a fast public site, a real database, secure auth, and room to grow without rewriting everything in six months." That sentence closes projects.
 
-> **Building something similar?** See the [development work](/developer) or [book a free call](https://calendly.com/benarfa367/30min) to talk through your MVP scope.`,
+> **Building something similar?** See the [development work](/developer) or [book a free call](https://cal.com/dhiaarfa/30min) to talk through your MVP scope.`,
     fr: `Si vous êtes développeur freelance construisant des sites clients, des landing pages, ou de petites applications web, vous avez probablement oscillé entre "utiliser juste un SaaS de formulaires" et "monter tout un backend." Depuis un an, ma stack par défaut pour ce juste milieu est **Next.js + Supabase**, et c'est le meilleur équilibre entre vitesse, coût et contrôle que j'ai trouvé.
 
 Ce n'est pas un tutoriel. C'est le raisonnement honnête que je donne aux clients quand ils demandent pourquoi je recommande cette combinaison pour des portfolios, la capture de leads, des tableaux de bord et des MVP.
@@ -625,7 +625,7 @@ Mon projet de fin d'études, [Digimytch Talent Hub](/developer), est l'exemple l
 
 "Vous obtenez un site public rapide, une vraie base de données, une authentification sécurisée, et de la place pour grandir sans tout réécrire dans six mois." Cette phrase conclut des projets.
 
-> **Vous construisez quelque chose de similaire ?** Consultez les [projets de développement](/developer) ou [réservez un appel gratuit](https://calendly.com/benarfa367/30min) pour discuter du périmètre de votre MVP.`,
+> **Vous construisez quelque chose de similaire ?** Consultez les [projets de développement](/developer) ou [réservez un appel gratuit](https://cal.com/dhiaarfa/30min) pour discuter du périmètre de votre MVP.`,
     ar: `إذا كنت مطوراً حراً تبني مواقع عملاء، صفحات هبوط، أو تطبيقات ويب صغيرة، فمن المحتمل أنك تأرجحت بين "استخدم فقط SaaS للنماذج" و"أنشئ backend كاملاً". منذ عام، أصبحت حزمتي الافتراضية لهذا الوسط هي **Next.js + Supabase**، وهي أفضل توازن بين السرعة والتكلفة والتحكم وجدته.
 
 هذا ليس درساً تعليمياً. إنه المنطق الصريح الذي أقدمه للعملاء عندما يسألون لماذا أوصي بهذا المزيج للـ portfolios، وجمع العملاء المحتملين، ولوحات التحكم، والمنتجات الأولية (MVP).
@@ -669,7 +669,7 @@ Mon projet de fin d'études, [Digimytch Talent Hub](/developer), est l'exemple l
 
 "تحصل على موقع عام سريع، وقاعدة بيانات حقيقية، ومصادقة آمنة، ومجال للنمو دون إعادة كتابة كل شيء خلال ستة أشهر." هذه الجملة تُبرم المشاريع.
 
-> **تبني شيئاً مشابهاً؟** اطّلع على [أعمال التطوير](/developer) أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min) لمناقشة نطاق مشروعك الأولي.`,
+> **تبني شيئاً مشابهاً؟** اطّلع على [أعمال التطوير](/developer) أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min) لمناقشة نطاق مشروعك الأولي.`,
   },
 
   "brand-guidelines-that-get-used": {
@@ -699,7 +699,7 @@ After building identity systems for cafés, NGOs, and startups in Tunisia, I've 
 
 I ship a **one-page cheat sheet** (PDF + PNG for WhatsApp sharing) plus a Figma/Canva library. The full deck exists for reference, but the cheat sheet is what people actually use.
 
-> **Need a system that sticks?** Grab my free [Brand Brief Template](/freebies?category=design) or [book a call](https://calendly.com/benarfa367/30min) to talk through your identity project.`,
+> **Need a system that sticks?** Grab my free [Brand Brief Template](/freebies?category=design) or [book a call](https://cal.com/dhiaarfa/30min) to talk through your identity project.`,
     fr: `La plupart des chartes graphiques que j'hérite de mes clients partagent le même problème : ce sont de beaux PDF que personne n'ouvre après la semaine de lancement. Les designers les ignorent. Les community managers improvisent. Le logo est étiré. En trois mois, la marque ne ressemble plus du tout au deck qui a coûté 2 000 €.
 
 Après avoir construit des systèmes d'identité pour des cafés, des ONG et des startups en Tunisie, j'ai appris qu'un document de charte ne fonctionne que s'il est **court, visuel, et relié à de vraies décisions**.
@@ -726,7 +726,7 @@ Après avoir construit des systèmes d'identité pour des cafés, des ONG et des
 
 Je livre une **fiche mémo d'une page** (PDF + PNG pour le partage WhatsApp) plus une bibliothèque Figma/Canva. Le deck complet existe pour référence, mais la fiche mémo est ce que les gens utilisent réellement.
 
-> **Besoin d'un système qui tient dans le temps ?** Récupérez mon [modèle de brief de marque](/freebies?category=design) gratuit ou [réservez un appel](https://calendly.com/benarfa367/30min) pour discuter de votre projet d'identité.`,
+> **Besoin d'un système qui tient dans le temps ?** Récupérez mon [modèle de brief de marque](/freebies?category=design) gratuit ou [réservez un appel](https://cal.com/dhiaarfa/30min) pour discuter de votre projet d'identité.`,
     ar: `معظم الأدلة البصرية التي أرثها من العملاء تشترك في نفس المشكلة: إنها ملفات PDF جميلة لا يفتحها أحد بعد أسبوع الإطلاق. المصممون يتجاهلونها. مدراء وسائل التواصل يرتجلون. الشعار يُمدَّد. خلال ثلاثة أشهر، لا تشبه العلامة التجارية العرض الذي كلّف 2000 يورو بشيء.
 
 بعد بناء أنظمة هوية لمقاهٍ ومنظمات غير حكومية وشركات ناشئة في تونس، تعلمت أن وثيقة الدليل تعمل فقط إذا كانت **قصيرة وبصرية ومرتبطة بقرارات حقيقية**.
@@ -753,7 +753,7 @@ Je livre une **fiche mémo d'une page** (PDF + PNG pour le partage WhatsApp) plu
 
 أُسلّم **ورقة مرجعية من صفحة واحدة** (PDF + PNG للمشاركة عبر واتساب) بالإضافة إلى مكتبة Figma/Canva. العرض الكامل موجود للرجوع إليه، لكن الورقة المرجعية هي ما يستخدمه الناس فعلاً.
 
-> **تحتاج نظاماً يدوم؟** احصل على [قالب موجز العلامة](/freebies?category=design) المجاني أو [احجز مكالمة](https://calendly.com/benarfa367/30min) لمناقشة مشروع هويتك.`,
+> **تحتاج نظاماً يدوم؟** احصل على [قالب موجز العلامة](/freebies?category=design) المجاني أو [احجز مكالمة](https://cal.com/dhiaarfa/30min) لمناقشة مشروع هويتك.`,
   },
 
   "icebreakers-vs-energizers": {
@@ -801,7 +801,7 @@ Running an **icebreaker** in the middle when the group is flat. A name game won'
 - **Every 25 min after:** energizer
 - **End of session:** application activity (not either)
 
-> **Want a starting library?** Download my [20 Youth Icebreaker Activities](/freebies?category=training) or [book a call](https://calendly.com/benarfa367/30min) if you'd like me to design a session flow for your group.`,
+> **Want a starting library?** Download my [20 Youth Icebreaker Activities](/freebies?category=training) or [book a call](https://cal.com/dhiaarfa/30min) if you'd like me to design a session flow for your group.`,
     fr: `Les nouveaux facilitateurs traitent souvent les brise-glace et les energizers comme la même chose : une activité amusante pour réveiller les gens. Ce n'en sont pas. Utiliser le mauvais au mauvais moment est l'un des moyens les plus rapides de perdre la confiance d'un groupe de jeunes dans les vingt premières minutes.
 
 Voici la distinction que j'utilise dans chaque conception de session.
@@ -846,7 +846,7 @@ Faire un **brise-glace** au milieu quand le groupe est plat. Un jeu de noms ne r
 - **Toutes les 25 min ensuite :** energizer
 - **Fin de session :** activité d'application (ni l'un ni l'autre)
 
-> **Envie d'une bibliothèque de départ ?** Téléchargez mes [20 activités brise-glace pour jeunes](/freebies?category=training) ou [réservez un appel](https://calendly.com/benarfa367/30min) si vous voulez que je conçoive un déroulé de session pour votre groupe.`,
+> **Envie d'une bibliothèque de départ ?** Téléchargez mes [20 activités brise-glace pour jeunes](/freebies?category=training) ou [réservez un appel](https://cal.com/dhiaarfa/30min) si vous voulez que je conçoive un déroulé de session pour votre groupe.`,
     ar: `غالباً ما يتعامل المُيسّرون الجدد مع أنشطة كسر الجمود وأنشطة التنشيط على أنها نفس الشيء: نشاط ممتع لإيقاظ الناس. لكنهما ليسا كذلك. استخدام الأداة الخاطئة في الوقت الخاطئ من أسرع الطرق لفقدان ثقة مجموعة شبابية في العشرين دقيقة الأولى.
 
 إليك التمييز الذي أستخدمه في كل تصميم جلسة.
@@ -891,7 +891,7 @@ Faire un **brise-glace** au milieu quand le groupe est plat. Un jeu de noms ne r
 - **كل 25 دقيقة بعد ذلك:** نشاط تنشيط
 - **نهاية الجلسة:** نشاط تطبيق (ليس أياً منهما)
 
-> **تريد مكتبة انطلاق؟** حمّل [20 نشاط كسر جمود للشباب](/freebies?category=training) الخاص بي أو [احجز مكالمة](https://calendly.com/benarfa367/30min) إذا أردتني أن أصمم مسار جلسة لمجموعتك.`,
+> **تريد مكتبة انطلاق؟** حمّل [20 نشاط كسر جمود للشباب](/freebies?category=training) الخاص بي أو [احجز مكالمة](https://cal.com/dhiaarfa/30min) إذا أردتني أن أصمم مسار جلسة لمجموعتك.`,
   },
 
   "client-chatbot-with-openrouter": {
@@ -916,7 +916,7 @@ The visitor never sees the key. You control the model, temperature, and max toke
 Keep it factual and bounded:
 - Who you are and what you offer (design, training, dev)
 - Three profile pages and what each is for
-- Calendly link for booking
+- Cal.com link for booking
 - Email fallback if the bot can't help
 - Explicit rule: "Don't invent prices, timelines, or projects not listed"
 
@@ -943,7 +943,7 @@ For portfolio and small business sites, a fast cheap model is enough for FAQ-sty
 
 **4. Training the bot on fantasy.** If the system prompt claims capabilities you don't offer, you'll get awkward sales calls.
 
-> **Want one on your site?** See how it works here (bottom-left chat), check the [development work](/developer), or [book a free call](https://calendly.com/benarfa367/30min).`,
+> **Want one on your site?** See how it works here (bottom-left chat), check the [development work](/developer), or [book a free call](https://cal.com/dhiaarfa/30min).`,
     fr: `Les clients demandent de plus en plus "un petit chatbot IA sur le site." Les exigences semblent simples : répondre aux FAQ, capturer des leads, aider peut-être les visiteurs à trouver le bon service. Le piège est de mettre votre clé API dans le navigateur ou de payer pour un widget SaaS que vous ne pouvez pas personnaliser.
 
 Voici comment je livre des chatbots clients en utilisant **des routes API Next.js + OpenRouter**, la même stack qui fait tourner ce portfolio.
@@ -965,7 +965,7 @@ Le visiteur ne voit jamais la clé. Vous contrôlez le modèle, la température 
 Gardez-le factuel et borné :
 - Qui vous êtes et ce que vous offrez (design, formation, dev)
 - Trois pages de profil et à quoi sert chacune
-- Le lien Calendly pour réserver
+- Le lien Cal.com pour réserver
 - Un repli email si le bot ne peut pas aider
 - Une règle explicite : "N'invente pas de prix, de délais, ou de projets non listés"
 
@@ -992,7 +992,7 @@ Pour des sites de portfolio et de petite entreprise, un modèle rapide et bon ma
 
 **4. Entraîner le bot sur du fantasme.** Si le prompt système revendique des capacités que vous n'offrez pas, vous aurez des appels commerciaux embarrassants.
 
-> **En voulez-vous un sur votre site ?** Voyez comment ça marche ici (chat en bas à gauche), consultez les [projets de développement](/developer), ou [réservez un appel gratuit](https://calendly.com/benarfa367/30min).`,
+> **En voulez-vous un sur votre site ?** Voyez comment ça marche ici (chat en bas à gauche), consultez les [projets de développement](/developer), ou [réservez un appel gratuit](https://cal.com/dhiaarfa/30min).`,
     ar: `يطلب العملاء بشكل متزايد "chatbot ذكاء اصطناعي صغير على الموقع." تبدو المتطلبات بسيطة: الإجابة عن الأسئلة الشائعة، جمع العملاء المحتملين، ربما مساعدة الزوار في إيجاد الخدمة المناسبة. الفخ هو وضع مفتاح API في المتصفح أو الدفع مقابل widget SaaS لا يمكنك تخصيصه.
 
 إليك كيف أُسلّم chatbots للعملاء باستخدام **مسارات API في Next.js + OpenRouter**، نفس الحزمة التي تُشغّل هذا الـ portfolio.
@@ -1014,7 +1014,7 @@ Pour des sites de portfolio et de petite entreprise, un modèle rapide et bon ma
 اجعله واقعياً ومحدوداً:
 - من أنت وماذا تقدّم (تصميم، تدريب، تطوير)
 - ثلاث صفحات ملف شخصي وما تخدمه كل واحدة
-- رابط Calendly للحجز
+- رابط Cal.com للحجز
 - بديل بريد إلكتروني إذا لم يستطع البوت المساعدة
 - قاعدة صريحة: "لا تخترع أسعاراً أو مواعيد أو مشاريع غير مدرجة"
 
@@ -1041,7 +1041,7 @@ Pour des sites de portfolio et de petite entreprise, un modèle rapide et bon ma
 
 **4. تدريب البوت على خيال.** إذا ادّعى prompt النظام قدرات لا تقدّمها، ستحصل على مكالمات مبيعات محرجة.
 
-> **تريد واحداً على موقعك؟** شاهد كيف يعمل هنا (الدردشة أسفل اليسار)، اطّلع على [أعمال التطوير](/developer)، أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min).`,
+> **تريد واحداً على موقعك؟** شاهد كيف يعمل هنا (الدردشة أسفل اليسار)، اطّلع على [أعمال التطوير](/developer)، أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min).`,
   },
 
   "bilingual-branding-tunisia": {
@@ -1069,7 +1069,7 @@ Arabic script is connected, has no capital letters, and carries meaning in the *
 
 A brand that treats both languages as first-class citizens reads as more credible to both audiences, not just "translated." For a market like Tunisia's, where most serious brands operate in both languages daily, that credibility is not a nice-to-have. It's the baseline people expect.
 
-> **Building a bilingual identity?** I design brand systems that work natively in Arabic and French from day one. [See design work](/designer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+> **Building a bilingual identity?** I design brand systems that work natively in Arabic and French from day one. [See design work](/designer) or [book a free call](https://cal.com/dhiaarfa/30min).`,
     fr: `La première erreur que je vois dans le branding tunisien est de traiter l'arabe comme "du français, inversé." Un logo est conçu en caractères latins, et la version arabe est une réflexion après coup : même mise en page en miroir, même graisse, mêmes règles d'espacement, juste les écritures inversées. Cela ne fonctionne presque jamais, et les clients sentent généralement que quelque chose cloche même s'ils ne peuvent pas le nommer.
 
 L'arabe et le français ne sont pas le même problème de design habillé de lettres différentes. Ce sont deux problèmes différents qui partagent une marque.
@@ -1094,7 +1094,7 @@ L'écriture arabe est cursive, n'a pas de majuscules, et porte du sens dans la *
 
 Une marque qui traite les deux langues comme citoyennes de premier rang se lit comme plus crédible pour les deux audiences, pas juste "traduite." Pour un marché comme la Tunisie, où la plupart des marques sérieuses opèrent dans les deux langues quotidiennement, cette crédibilité n'est pas un plus. C'est la base attendue.
 
-> **Vous construisez une identité bilingue ?** Je conçois des systèmes de marque qui fonctionnent nativement en arabe et en français dès le premier jour. [Voir les projets de design](/designer) ou [réserver un appel gratuit](https://calendly.com/benarfa367/30min).`,
+> **Vous construisez une identité bilingue ?** Je conçois des systèmes de marque qui fonctionnent nativement en arabe et en français dès le premier jour. [Voir les projets de design](/designer) ou [réserver un appel gratuit](https://cal.com/dhiaarfa/30min).`,
     ar: `الخطأ الأول الذي أراه في الهوية البصرية التونسية هو التعامل مع العربية كـ"فرنسية مقلوبة." يُصمَّم الشعار بحروف لاتينية، وتكون النسخة العربية فكرة لاحقة: نفس التخطيط معكوساً، نفس الوزن، نفس قواعد التباعد، فقط الخطوط مُستبدلة. هذا لا ينجح تقريباً أبداً، ويشعر العملاء عادة أن هناك شيئاً غير صحيح حتى لو لم يستطيعوا تسميته.
 
 العربية والفرنسية ليستا نفس مشكلة التصميم بحروف مختلفة. إنهما مشكلتان تصميميتان مختلفتان تشتركان في علامة تجارية واحدة.
@@ -1119,7 +1119,7 @@ Une marque qui traite les deux langues comme citoyennes de premier rang se lit c
 
 العلامة التجارية التي تتعامل مع اللغتين كمواطنتين من الدرجة الأولى تُقرأ كأكثر مصداقية لدى الجمهورين، لا مجرد "مترجمة." بالنسبة لسوق مثل تونس، حيث تعمل معظم العلامات الجادة باللغتين يومياً، هذه المصداقية ليست ميزة إضافية. إنها الحد الأدنى الذي يتوقعه الناس.
 
-> **تبني هوية ثنائية اللغة؟** أصمم أنظمة علامات تجارية تعمل بشكل أصلي بالعربية والفرنسية منذ اليوم الأول. [شاهد أعمال التصميم](/designer) أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min).`,
+> **تبني هوية ثنائية اللغة؟** أصمم أنظمة علامات تجارية تعمل بشكل أصلي بالعربية والفرنسية منذ اليوم الأول. [شاهد أعمال التصميم](/designer) أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min).`,
   },
 
   "packaging-design-tunisian-exports": {
@@ -1145,7 +1145,7 @@ A common mistake I see from Tunisian producers is designing packaging like a pri
 
 Tunisian producers have a genuine story: Mediterranean terroir, generational know-how, increasingly serious organic and sustainable practices. The brands that win aren't the ones that shout heritage the loudest. They're the ones that translate that story into a label a European buyer can understand and trust in the two seconds they'll actually spend looking at it.
 
-> **Exporting a Tunisian product?** I design packaging systems built for retail shelves and EU compliance from the start. [See design work](/designer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+> **Exporting a Tunisian product?** I design packaging systems built for retail shelves and EU compliance from the start. [See design work](/designer) or [book a free call](https://cal.com/dhiaarfa/30min).`,
     fr: `L'huile d'olive, les dattes et la harissa tunisiennes sont des produits vraiment excellents qui rivalisent sur les rayons européens contre des décennies de conventions de catégorie : le langage de design de l'huile d'olive italienne et espagnole, les clichés de packaging de dattes du Moyen-Orient, les attentes du rayon condiments français. Un bon produit seul ne gagne pas ce rayon. Le packaging fait toute la première impression, en environ deux secondes, avant que quiconque ne lise un mot.
 
 ## Le rayon n'est pas un portfolio
@@ -1168,7 +1168,7 @@ Une erreur courante que je vois chez les producteurs tunisiens est de concevoir 
 
 Les producteurs tunisiens ont une histoire authentique : terroir méditerranéen, savoir-faire générationnel, des pratiques biologiques et durables de plus en plus sérieuses. Les marques qui gagnent ne sont pas celles qui crient le plus fort le patrimoine. Ce sont celles qui traduisent cette histoire en une étiquette qu'un acheteur européen peut comprendre et en qui faire confiance dans les deux secondes qu'il passera réellement à la regarder.
 
-> **Vous exportez un produit tunisien ?** Je conçois des systèmes de packaging construits pour les rayons de vente au détail et la conformité européenne dès le départ. [Voir les projets de design](/designer) ou [réserver un appel gratuit](https://calendly.com/benarfa367/30min).`,
+> **Vous exportez un produit tunisien ?** Je conçois des systèmes de packaging construits pour les rayons de vente au détail et la conformité européenne dès le départ. [Voir les projets de design](/designer) ou [réserver un appel gratuit](https://cal.com/dhiaarfa/30min).`,
     ar: `زيت الزيتون والتمور والهريسة التونسية منتجات ممتازة فعلاً تنافس على الرفوف الأوروبية أمام عقود من أعراف الفئة: لغة تصميم زيت الزيتون الإيطالي والإسباني، وكليشيهات تغليف التمور من الشرق الأوسط، وتوقعات رف التوابل الفرنسي. المنتج الجيد وحده لا يفوز بذلك الرف. التغليف يقوم بالانطباع الأول كاملاً، في نحو ثانيتين، قبل أن يقرأ أحد كلمة واحدة.
 
 ## الرف ليس portfolio
@@ -1191,7 +1191,7 @@ Les producteurs tunisiens ont une histoire authentique : terroir méditerranéen
 
 لدى المنتجين التونسيين قصة حقيقية: أرض متوسطية، خبرة أجيال، وممارسات عضوية ومستدامة تزداد جدية. العلامات التجارية التي تفوز ليست تلك التي تصرخ بالتراث بأعلى صوت. إنها تلك التي تترجم تلك القصة إلى ملصق يستطيع مشترٍ أوروبي فهمه والثقة به في الثانيتين اللتين سيقضيهما فعلاً في النظر إليه.
 
-> **تُصدّر منتجاً تونسياً؟** أصمم أنظمة تغليف مبنية لرفوف البيع بالتجزئة والامتثال الأوروبي منذ البداية. [شاهد أعمال التصميم](/designer) أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min).`,
+> **تُصدّر منتجاً تونسياً؟** أصمم أنظمة تغليف مبنية لرفوف البيع بالتجزئة والامتثال الأوروبي منذ البداية. [شاهد أعمال التصميم](/designer) أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min).`,
   },
 
   "corporate-training-tunisian-smes": {
@@ -1217,7 +1217,7 @@ Les producteurs tunisiens ont une histoire authentique : terroir méditerranéen
 
 SMEs are actually a rewarding audience once you stop importing a corporate template: decisions move fast, feedback is immediate and honest, and the impact of a well-placed two-hour session is visible within weeks, not buried in an annual engagement survey.
 
-> **Training a small team?** I design sessions around what a lean team can actually absorb and apply. [See training work](/trainer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+> **Training a small team?** I design sessions around what a lean team can actually absorb and apply. [See training work](/trainer) or [book a free call](https://cal.com/dhiaarfa/30min).`,
     fr: `La plupart des cadres de formation en entreprise sont écrits pour des organisations avec une ligne budgétaire formation, une fonction L&D dédiée, et une journée entière à consacrer à un atelier. Entrez dans une PME tunisienne de 15 personnes et aucune de ces trois choses n'existe. Le propriétaire est aussi le point de contact du formateur, les RH, et parfois le chauffeur-livreur. Si votre conception de formation présume le contraire, elle meurt au contact de la réalité.
 
 ## Concevoir pour les contraintes qui existent réellement
@@ -1240,7 +1240,7 @@ SMEs are actually a rewarding audience once you stop importing a corporate templ
 
 Les PME sont en réalité une audience gratifiante une fois qu'on arrête d'importer un template corporate : les décisions vont vite, le retour est immédiat et honnête, et l'impact d'une session de deux heures bien placée est visible en quelques semaines, pas enfoui dans une enquête d'engagement annuelle.
 
-> **Vous formez une petite équipe ?** Je conçois des sessions autour de ce qu'une équipe légère peut réellement absorber et appliquer. [Voir les projets de formation](/trainer) ou [réserver un appel gratuit](https://calendly.com/benarfa367/30min).`,
+> **Vous formez une petite équipe ?** Je conçois des sessions autour de ce qu'une équipe légère peut réellement absorber et appliquer. [Voir les projets de formation](/trainer) ou [réserver un appel gratuit](https://cal.com/dhiaarfa/30min).`,
     ar: `معظم أطر التدريب المؤسسي مكتوبة لمؤسسات لديها بند ميزانية تدريب، ووظيفة تطوير وتعلّم مخصصة، ويوم كامل لتخصيصه لورشة عمل. ادخل مؤسسة تونسية صغيرة من 15 شخصاً ولن تجد أياً من هذه الأمور الثلاثة. المالك هو أيضاً نقطة الاتصال مع المدرّب، والموارد البشرية، وأحياناً سائق التوصيل. إذا افترض تصميم تدريبك خلاف ذلك، فسيموت عند احتكاكه بالواقع.
 
 ## التصميم للقيود الموجودة فعلاً
@@ -1263,7 +1263,7 @@ Les PME sont en réalité une audience gratifiante une fois qu'on arrête d'impo
 
 المؤسسات الصغيرة جمهور مُجزٍ فعلاً بمجرد التوقف عن استيراد قالب مؤسسي: القرارات تتحرك بسرعة، والملاحظات فورية وصادقة، وأثر جلسة ساعتين موضوعة جيداً يظهر خلال أسابيع، لا مدفوناً في استطلاع مشاركة سنوي.
 
-> **تدرّب فريقاً صغيراً؟** أصمم جلسات حول ما يستطيع فريق مُصغَّر استيعابه وتطبيقه فعلاً. [شاهد أعمال التدريب](/trainer) أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min).`,
+> **تدرّب فريقاً صغيراً؟** أصمم جلسات حول ما يستطيع فريق مُصغَّر استيعابه وتطبيقه فعلاً. [شاهد أعمال التدريب](/trainer) أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min).`,
   },
 
   "green-digital-skills-youth-tunisia": {
@@ -1289,7 +1289,7 @@ Young participants in these programs are rarely short on ambition. What's usuall
 
 Programs at this intersection (I've had the chance to facilitate several, including cohorts explicitly framed around green and digital skills) are one of the more promising levers for youth employability here: they don't require participants to relocate, they build toward real freelance or green-economy income, and they give young people something concrete to show, not just something to say they attended.
 
-> **Designing a youth program?** I facilitate green and digital skills training built around real, portfolio-ready outcomes. [See training work](/trainer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+> **Designing a youth program?** I facilitate green and digital skills training built around real, portfolio-ready outcomes. [See training work](/trainer) or [book a free call](https://cal.com/dhiaarfa/30min).`,
     fr: `Beaucoup de formations jeunesse en Tunisie traitent encore les "compétences numériques" et les "compétences vertes" comme deux filières séparées, enseignées par deux programmes séparés, à deux cohortes séparées. En pratique, les emplois qui s'ouvrent réellement (efficacité énergétique, agriculture durable, startups d'économie circulaire, travail numérique à distance et freelance) ont de plus en plus besoin des deux à la fois. Animer des programmes à cette intersection a changé ma façon de concevoir des sessions.
 
 ## L'écart n'est pas la motivation, c'est la traduction
@@ -1312,7 +1312,7 @@ Les jeunes participants à ces programmes manquent rarement d'ambition. Ce qui m
 
 Les programmes à cette intersection (j'ai eu la chance d'en animer plusieurs, y compris des cohortes explicitement construites autour des compétences vertes et numériques) sont l'un des leviers les plus prometteurs pour l'employabilité des jeunes ici : ils ne demandent pas aux participants de déménager, ils construisent vers un vrai revenu freelance ou de l'économie verte, et ils donnent aux jeunes quelque chose de concret à montrer, pas juste quelque chose à dire qu'ils ont assisté.
 
-> **Vous concevez un programme jeunesse ?** J'anime des formations en compétences vertes et numériques construites autour de résultats réels et prêts pour un portfolio. [Voir les projets de formation](/trainer) ou [réserver un appel gratuit](https://calendly.com/benarfa367/30min).`,
+> **Vous concevez un programme jeunesse ?** J'anime des formations en compétences vertes et numériques construites autour de résultats réels et prêts pour un portfolio. [Voir les projets de formation](/trainer) ou [réserver un appel gratuit](https://cal.com/dhiaarfa/30min).`,
     ar: `لا يزال الكثير من تدريب الشباب في تونس يتعامل مع "المهارات الرقمية" و"المهارات الخضراء" كمسارين منفصلين، يُدرَّسان في برنامجين منفصلين، لمجموعتين منفصلتين. في الواقع، الوظائف التي تنفتح فعلاً (في كفاءة الطاقة، الزراعة المستدامة، شركات الاقتصاد الدائري الناشئة، العمل الرقمي عن بعد والحر) تحتاج بشكل متزايد الاثنين معاً. تيسير برامج في هذا التقاطع غيّر طريقة تصميمي للجلسات.
 
 ## الفجوة ليست تحفيزاً، إنها ترجمة
@@ -1335,7 +1335,7 @@ Les programmes à cette intersection (j'ai eu la chance d'en animer plusieurs, y
 
 البرامج في هذا التقاطع (أتيحت لي فرصة تيسير عدة منها، بما فيها مجموعات مبنية صراحة حول المهارات الخضراء والرقمية) هي إحدى الروافع الأكثر وعداً لتشغيل الشباب هنا: لا تتطلب من المشاركين الانتقال، وتبني نحو دخل حر أو من الاقتصاد الأخضر حقيقي، وتمنح الشباب شيئاً ملموساً ليُظهروه، لا مجرد شيء يقولون إنهم حضروه.
 
-> **تصمم برنامجاً شبابياً؟** أُيسّر تدريبات في المهارات الخضراء والرقمية مبنية حول نتائج حقيقية جاهزة للـ portfolio. [شاهد أعمال التدريب](/trainer) أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min).`,
+> **تصمم برنامجاً شبابياً؟** أُيسّر تدريبات في المهارات الخضراء والرقمية مبنية حول نتائج حقيقية جاهزة للـ portfolio. [شاهد أعمال التدريب](/trainer) أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min).`,
   },
 
   "freelance-developer-tunisia-payments": {
@@ -1361,7 +1361,7 @@ It's not that you can't get paid. It's that the naive paths (a client wiring you
 
 None of this is unique to Tunisia, but the specific combination (partial currency convertibility, banks less used to freelance income than salaried transfers, and international clients who've never heard of any of this) means a Tunisian freelancer who plans the payment infrastructure upfront looks and operates far more professionally than one who's improvising every invoice.
 
-> **Freelancing and want the setup that works?** I share the exact tools and process I use for client payments. [See development work](/developer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+> **Freelancing and want the setup that works?** I share the exact tools and process I use for client payments. [See development work](/developer) or [book a free call](https://cal.com/dhiaarfa/30min).`,
     fr: `Se faire payer en tant que développeur freelance tunisien ressemble à un problème résolu jusqu'à ce que vous essayiez réellement de le faire. Un client américain ou européen veut payer en dollars ou en euros. Le dinar tunisien n'est pas librement convertible, les banques posent des questions sur les virements étrangers entrants, et le conseil "utilisez juste PayPal" que vous trouverez en ligne ne tient pas bien la route ici. Voici le dispositif que j'utilise réellement, et ce que je dirais à un développeur qui part de zéro.
 
 ## Le problème central
@@ -1384,7 +1384,7 @@ Ce n'est pas que vous ne pouvez pas être payé. C'est que les voies naïves (un
 
 Rien de tout cela n'est unique à la Tunisie, mais la combinaison spécifique (convertibilité partielle de la devise, banques moins habituées aux revenus freelance qu'aux virements salariaux, et clients internationaux qui n'ont jamais entendu parler de tout ça) signifie qu'un freelance tunisien qui planifie l'infrastructure de paiement en amont paraît et opère bien plus professionnellement que celui qui improvise chaque facture.
 
-> **Vous êtes freelance et voulez le dispositif qui fonctionne ?** Je partage les outils et le processus exacts que j'utilise pour les paiements clients. [Voir les projets de développement](/developer) ou [réserver un appel gratuit](https://calendly.com/benarfa367/30min).`,
+> **Vous êtes freelance et voulez le dispositif qui fonctionne ?** Je partage les outils et le processus exacts que j'utilise pour les paiements clients. [Voir les projets de développement](/developer) ou [réserver un appel gratuit](https://cal.com/dhiaarfa/30min).`,
     ar: `الحصول على أجر كمطور حر تونسي يبدو مشكلة محلولة حتى تحاول فعلاً القيام بذلك. يريد عميل أمريكي أو أوروبي الدفع بالدولار أو اليورو. الدينار التونسي غير قابل للتحويل بحرية، والبنوك تطرح أسئلة حول التحويلات الأجنبية الواردة، ونصيحة "فقط استخدم PayPal" التي ستجدها عبر الإنترنت لا تصمد جيداً هنا. هذا هو الإعداد الذي أستخدمه فعلاً، وما كنت سأقوله لمطور يبدأ من الصفر.
 
 ## المشكلة الجوهرية
@@ -1407,7 +1407,7 @@ Rien de tout cela n'est unique à la Tunisie, mais la combinaison spécifique (c
 
 لا شيء من هذا فريد بتونس، لكن المزيج المحدد (قابلية تحويل جزئية للعملة، بنوك أقل اعتياداً على دخل العمل الحر مقارنة بالتحويلات الراتبية، وعملاء دوليون لم يسمعوا بأي من هذا) يعني أن مستقلاً تونسياً يخطط لبنية الدفع مسبقاً يبدو ويعمل بشكل أكثر احترافية بكثير من واحد يرتجل كل فاتورة.
 
-> **تعمل حراً وتريد الإعداد الذي ينجح؟** أشارك الأدوات والعملية الدقيقة التي أستخدمها لمدفوعات العملاء. [شاهد أعمال التطوير](/developer) أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min).`,
+> **تعمل حراً وتريد الإعداد الذي ينجح؟** أشارك الأدوات والعملية الدقيقة التي أستخدمها لمدفوعات العملاء. [شاهد أعمال التطوير](/developer) أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min).`,
   },
 
   "web-performance-tunisia-hosting": {
@@ -1433,7 +1433,7 @@ Most performance advice online is written and tested on strong, cheap, unlimited
 
 For a Tunisian business whose customers are mostly on mobile data, a slow site isn't a technical debt item to fix later. It's lost leads and lost sales happening today, invisibly, because the people who bounced never showed up in an analytics dashboard to complain.
 
-> **Want a site built for how your actual visitors browse?** I build for real-world connections, not just lab conditions. [See development work](/developer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+> **Want a site built for how your actual visitors browse?** I build for real-world connections, not just lab conditions. [See development work](/developer) or [book a free call](https://cal.com/dhiaarfa/30min).`,
     fr: `Un temps de chargement de 3 secondes est un léger désagrément sur la fibre à Paris. Sur un forfait mobile tunisien avec un plafond de données et une couverture 4G inconsistante hors des grandes villes, c'est souvent la différence entre un visiteur qui reste ou qui part avant même que votre page d'accueil ne s'affiche. Je conçois et pense la performance différemment parce qu'une part significative des vrais visiteurs de mes clients est exactement sur ce type de connexion.
 
 ## L'hypothèse qui casse discrètement les sites
@@ -1456,7 +1456,7 @@ La plupart des conseils de performance en ligne sont écrits et testés sur des 
 
 Pour une entreprise tunisienne dont les clients sont surtout sur données mobiles, un site lent n'est pas une dette technique à corriger plus tard. Ce sont des leads et des ventes perdus aujourd'hui, invisiblement, parce que les gens qui sont partis n'ont jamais apparu dans un tableau de bord analytics pour se plaindre.
 
-> **Vous voulez un site construit pour la façon dont vos vrais visiteurs naviguent ?** Je construis pour des connexions du monde réel, pas seulement des conditions de laboratoire. [Voir les projets de développement](/developer) ou [réserver un appel gratuit](https://calendly.com/benarfa367/30min).`,
+> **Vous voulez un site construit pour la façon dont vos vrais visiteurs naviguent ?** Je construis pour des connexions du monde réel, pas seulement des conditions de laboratoire. [Voir les projets de développement](/developer) ou [réserver un appel gratuit](https://cal.com/dhiaarfa/30min).`,
     ar: `وقت تحميل من 3 ثوانٍ إزعاج بسيط على الألياف الضوئية في باريس. على باقة جوال تونسية بحد بيانات وتغطية 4G غير منتظمة خارج المدن الكبرى، غالباً ما يكون الفرق بين بقاء الزائر أو مغادرته قبل أن تُرسَم صفحتك الرئيسية حتى. أُصمّم وأفكر في الأداء بشكل مختلف لأن جزءاً مهماً من زوار عملائي الحقيقيين على هذا النوع بالضبط من الاتصال.
 
 ## الافتراض الذي يكسر المواقع بهدوء
@@ -1479,7 +1479,7 @@ Pour une entreprise tunisienne dont les clients sont surtout sur données mobile
 
 بالنسبة لعمل تجاري تونسي معظم عملائه على بيانات الجوال، الموقع البطيء ليس عنصر دين تقني يُصلَح لاحقاً. إنه عملاء محتملون ومبيعات مفقودة اليوم، بشكل غير مرئي، لأن الأشخاص الذين غادروا لم يظهروا أبداً في لوحة تحليلات ليشتكوا.
 
-> **تريد موقعاً مبنياً لطريقة تصفح زوارك الفعليين؟** أبني لاتصالات العالم الحقيقي، لا ظروف المختبر فقط. [شاهد أعمال التطوير](/developer) أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min).`,
+> **تريد موقعاً مبنياً لطريقة تصفح زوارك الفعليين؟** أبني لاتصالات العالم الحقيقي، لا ظروف المختبر فقط. [شاهد أعمال التطوير](/developer) أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min).`,
   },
 }
 

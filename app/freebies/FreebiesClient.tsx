@@ -548,7 +548,7 @@ export default function FreebiesClient() {
                 {/* Implementation-prompts pass (Sep 2026), P15 "Freebies ->
                     conversion path": a quiet next step after the download,
                     not a hard sell -- one line + one outline link to the
-                    same Calendly used everywhere else on the site. */}
+                    same Cal.com link used everywhere else on the site. */}
                 <div className="mt-6 pt-5 border-t border-border">
                   <p className="text-sm text-muted-foreground mb-3">{t("freebies.conversionNudge")}</p>
                   <a

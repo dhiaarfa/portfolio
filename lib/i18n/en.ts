@@ -800,7 +800,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   tagInteractiveSessions: "Interactive Sessions",
   tagYouthDevelopment: "Youth Development",
   tagLeadershipTraining: "Leadership Training",
-  trainerBookCalendly: "Book on Calendly (2 clicks)",
+  trainerBookCalendly: "Book on Cal.com (2 clicks)",
 
   // Training milestones (lib/profile.ts trainingMilestones) -- was hardcoded English.
   milestone2019Title: "Youth Development Leader & Activist",

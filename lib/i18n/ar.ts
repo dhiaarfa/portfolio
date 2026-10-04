@@ -765,7 +765,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   tagInteractiveSessions: "جلسات تفاعلية",
   tagYouthDevelopment: "تنمية الشباب",
   tagLeadershipTraining: "تدريب القيادة",
-  trainerBookCalendly: "احجز عبر Calendly (نقرتان)",
+  trainerBookCalendly: "احجز عبر Cal.com (نقرتان)",
 
   // محطات المسيرة التدريبية
   milestone2019Title: "رائد وناشط في تنمية الشباب",

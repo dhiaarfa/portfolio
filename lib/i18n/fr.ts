@@ -765,7 +765,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   tagInteractiveSessions: "Sessions interactives",
   tagYouthDevelopment: "Développement des jeunes",
   tagLeadershipTraining: "Formation au leadership",
-  trainerBookCalendly: "Réserver sur Calendly (2 clics)",
+  trainerBookCalendly: "Réserver sur Cal.com (2 clics)",
 
   // Training milestones
   milestone2019Title: "Leader et militant du développement des jeunes",

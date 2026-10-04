@@ -53,7 +53,7 @@ For transparency, here is where I start. I build by hand in Next.js rather than 
 
 The TND price is for clients in Tunisia and the EUR price for clients abroad. You always get a written quote before any work starts.
 
-> **Planning a site and want a straight answer on budget?** Tell me what you need and I will tell you what it costs. [See development work](/developer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+> **Planning a site and want a straight answer on budget?** Tell me what you need and I will tell you what it costs. [See development work](/developer) or [book a free call](https://cal.com/dhiaarfa/30min).`,
     fr: `« Combien coûte un site web ? » est la question qu'on me pose le plus, et la réponse honnête est une fourchette. Voici à quoi elle ressemble en Tunisie en 2026, où va réellement l'argent, et comment distinguer un devis juste d'un devis bon marché qui vous coûtera plus cher ensuite.
 
 ## Ce que publient les agences tunisiennes
@@ -98,7 +98,7 @@ Par transparence, voici où je commence. Je développe à la main en Next.js plu
 
 Le prix en dinars concerne les clients en Tunisie, le prix en euros les clients à l'étranger. Vous recevez toujours un devis écrit avant tout démarrage.
 
-> **Vous préparez un site et voulez une réponse claire sur le budget ?** Dites-moi ce dont vous avez besoin, je vous dis ce que cela coûte. [Voir mes réalisations web](/developer) ou [réserver un appel gratuit](https://calendly.com/benarfa367/30min).`,
+> **Vous préparez un site et voulez une réponse claire sur le budget ?** Dites-moi ce dont vous avez besoin, je vous dis ce que cela coûte. [Voir mes réalisations web](/developer) ou [réserver un appel gratuit](https://cal.com/dhiaarfa/30min).`,
     ar: `«كم يكلّف الموقع؟» هو السؤال الذي يُطرح عليّ أكثر من غيره، والجواب الصادق هو نطاق أسعار. إليك كيف يبدو هذا النطاق في تونس سنة 2026، وأين يذهب المال فعلاً، وكيف تميّز عرض السعر العادل من العرض الرخيص الذي سيكلّفك أكثر لاحقاً.
 
 ## ما تنشره الوكالات التونسية
@@ -143,7 +143,7 @@ Le prix en dinars concerne les clients en Tunisie, le prix en euros les clients 
 
 السعر بالدينار للعملاء في تونس، وباليورو للعملاء في الخارج. تستلم دائماً عرض سعر مكتوباً قبل بدء أي عمل.
 
-> **تخطط لموقع وتريد جواباً واضحاً عن الميزانية؟** أخبرني بما تحتاجه وسأخبرك بتكلفته. [شاهد أعمال التطوير](/developer) أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min).`,
+> **تخطط لموقع وتريد جواباً واضحاً عن الميزانية؟** أخبرني بما تحتاجه وسأخبرك بتكلفته. [شاهد أعمال التطوير](/developer) أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min).`,
   },
 
   "trainer-fees-tunisia": {
@@ -190,7 +190,7 @@ When you compare quotes, check what each one covers:
 
 The TND price is for organisations in Tunisia, the EUR price for programmes abroad. Every offer starts with a needs analysis and ends with a report, and you get a written quote first.
 
-> **Planning a training or a programme?** Tell me about your group and your goals. [See training work](/trainer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+> **Planning a training or a programme?** Tell me about your group and your goals. [See training work](/trainer) or [book a free call](https://cal.com/dhiaarfa/30min).`,
     fr: `ONG, écoles et entreprises me posent souvent la même question avant toute autre : combien coûte un formateur ? Voici comment se fixent les honoraires de formation en Tunisie et dans les programmes financés par des bailleurs, ce que doit inclure un tarif journalier juste, et la règle de remboursement que beaucoup d'entreprises tunisiennes oublient d'utiliser.
 
 ## Comment les formateurs fixent leurs prix
@@ -234,7 +234,7 @@ En comparant des devis, vérifiez ce que chacun couvre :
 
 Le prix en dinars concerne les organisations en Tunisie, le prix en euros les programmes à l'étranger. Chaque offre commence par une analyse des besoins et se termine par un rapport, et vous recevez d'abord un devis écrit.
 
-> **Vous préparez une formation ou un programme ?** Parlez-moi de votre groupe et de vos objectifs. [Voir mon travail de formateur](/trainer) ou [réserver un appel gratuit](https://calendly.com/benarfa367/30min).`,
+> **Vous préparez une formation ou un programme ?** Parlez-moi de votre groupe et de vos objectifs. [Voir mon travail de formateur](/trainer) ou [réserver un appel gratuit](https://cal.com/dhiaarfa/30min).`,
     ar: `كثيراً ما تسألني الجمعيات والمدارس والشركات السؤال نفسه قبل أي شيء: كم يكلّف المدرّب؟ إليك كيف تُحدَّد أتعاب التدريب في تونس وفي البرامج الممولة من المانحين، وما الذي يجب أن يشمله سعر اليوم العادل، وقاعدة الاسترجاع التي تنسى كثير من الشركات التونسية استعمالها.
 
 ## كيف يسعّر المدربون عملهم
@@ -278,7 +278,7 @@ Le prix en dinars concerne les organisations en Tunisie, le prix en euros les pr
 
 السعر بالدينار للمنظمات في تونس، وباليورو للبرامج في الخارج. يبدأ كل عرض بتحليل للاحتياجات وينتهي بتقرير، وتستلم أولاً عرض سعر مكتوباً.
 
-> **تخطط لتدريب أو برنامج؟** حدّثني عن مجموعتك وأهدافك. [شاهد أعمال التدريب](/trainer) أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min).`,
+> **تخطط لتدريب أو برنامج؟** حدّثني عن مجموعتك وأهدافك. [شاهد أعمال التدريب](/trainer) أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min).`,
   },
 
   "brand-identity-cost-tunisia": {
@@ -325,7 +325,7 @@ Before asking for prices, write down who your customers are, where the brand wil
 
 The TND price is for clients in Tunisia, the EUR price for clients abroad. You get a written quote after a free call, before any work starts.
 
-> **Building or refreshing a brand?** Show me where it lives today and I will tell you what it needs. [See design work](/designer) or [book a free call](https://calendly.com/benarfa367/30min).`,
+> **Building or refreshing a brand?** Show me where it lives today and I will tell you what it needs. [See design work](/designer) or [book a free call](https://cal.com/dhiaarfa/30min).`,
     fr: `Un logo peut coûter 50 DT ou 5 000 DT, et les deux prix existent. La différence n'est pas le dessin, c'est ce qui l'accompagne. Voici ce que coûtent un logo et une identité de marque en Tunisie en 2026, et ce que vous devriez obtenir à chaque niveau.
 
 ## Les trois niveaux du marché
@@ -369,7 +369,7 @@ Avant de demander des prix, notez qui sont vos clients, où la marque apparaîtr
 
 Le prix en dinars concerne les clients en Tunisie, le prix en euros les clients à l'étranger. Vous recevez un devis écrit après un appel gratuit, avant tout démarrage.
 
-> **Vous créez ou rafraîchissez une marque ?** Montrez-moi où elle vit aujourd'hui, je vous dis ce dont elle a besoin. [Voir mes créations](/designer) ou [réserver un appel gratuit](https://calendly.com/benarfa367/30min).`,
+> **Vous créez ou rafraîchissez une marque ?** Montrez-moi où elle vit aujourd'hui, je vous dis ce dont elle a besoin. [Voir mes créations](/designer) ou [réserver un appel gratuit](https://cal.com/dhiaarfa/30min).`,
     ar: `قد يكلّف الشعار 50 د.ت أو 5,000 د.ت، وكلا السعرين موجود فعلاً. الفرق ليس في الرسم، بل فيما يرافقه. إليك تكلفة الشعار والهوية البصرية في تونس سنة 2026، وما الذي يجب أن تحصل عليه في كل مستوى.
 
 ## المستويات الثلاثة في السوق
@@ -413,6 +413,6 @@ Le prix en dinars concerne les clients en Tunisie, le prix en euros les clients 
 
 السعر بالدينار للعملاء في تونس، وباليورو للعملاء في الخارج. تستلم عرض سعر مكتوباً بعد مكالمة مجانية، قبل بدء أي عمل.
 
-> **تبني علامة أو تجدّدها؟** أرني أين تظهر اليوم وسأخبرك بما تحتاجه. [شاهد أعمال التصميم](/designer) أو [احجز مكالمة مجانية](https://calendly.com/benarfa367/30min).`,
+> **تبني علامة أو تجدّدها؟** أرني أين تظهر اليوم وسأخبرك بما تحتاجه. [شاهد أعمال التصميم](/designer) أو [احجز مكالمة مجانية](https://cal.com/dhiaarfa/30min).`,
   },
 }
