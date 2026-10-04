@@ -1,11 +1,13 @@
 "use client"
 
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { Mail, AlertCircle, CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
 import { Link } from "next-view-transitions"
 import { useLanguage } from "@/components/language-provider"
+import { CONTACT_INTEREST_EVENT } from "@/lib/contact-interest"
+import { fromPrice, priceLabel, priceService, type PriceId } from "@/lib/pricing"
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -22,7 +24,7 @@ const inputClass = (invalid: boolean) =>
 /** `defaultService` preselects the dropdown for the page the form sits on
  *  (it used to say "Design" even on /trainer and /developer). */
 export default function ContactForm({ defaultService = "design" }: { defaultService?: Service }) {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,6 +41,29 @@ export default function ContactForm({ defaultService = "design" }: { defaultServ
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
   const [errorHint, setErrorHint] = useState("")
+
+  // A price card's "Request a quote" (lib/contact-interest.ts): select its
+  // service and start the message with the offer, unless the visitor has
+  // already typed something.
+  useEffect(() => {
+    const onInterest = (e: Event) => {
+      const id = (e as CustomEvent<PriceId>).detail
+      const offer = `${priceLabel(id, language)} (${fromPrice(id, language, true)})`
+      const intro = {
+        en: `Hi Dhia, I'm interested in: ${offer}.\n\n`,
+        fr: `Bonjour Dhia, je suis intéressé(e) par : ${offer}.\n\n`,
+        ar: `مرحباً ضياء، أنا مهتم بـ: ${offer}.\n\n`,
+      }[language]
+      setFormData((prev) => ({
+        ...prev,
+        service: priceService(id),
+        message: prev.message.trim() ? prev.message : intro,
+      }))
+      setTimeout(() => messageRef.current?.focus({ preventScroll: true }), 400)
+    }
+    window.addEventListener(CONTACT_INTEREST_EVENT, onInterest)
+    return () => window.removeEventListener(CONTACT_INTEREST_EVENT, onInterest)
+  }, [language])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target

@@ -4,6 +4,7 @@ import TrainerClientPage from "../../trainer/TrainerClientPage"
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 import { SITE_URL, formatStat, profileStats } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
+import { offerCatalogJsonLd, TRAINING_PRICES } from "@/lib/pricing"
 import type { Language } from "@/lib/translations"
 
 export const dynamic = "force-static"
@@ -75,6 +76,7 @@ export default async function LocaleTrainerPage({ params }: Props) {
         areaServed: { "@type": "Country", name: "Tunisia" },
         description: `Workshops and train-the-trainer programs for NGOs and youth organizations. ${formatStat("participantsTrained")} participants trained.`,
         url,
+        hasOfferCatalog: offerCatalogJsonLd("Training formats", TRAINING_PRICES),
       },
       {
         "@type": "Course",

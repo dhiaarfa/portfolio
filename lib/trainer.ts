@@ -1,4 +1,4 @@
-import { fromPrice } from "@/lib/pricing"
+import { fromPrice, type PriceId } from "@/lib/pricing"
 
 export type TrainingOffer = {
   id: string
@@ -20,6 +20,8 @@ export type TrainingOffer = {
   pricingEn: string
   pricingFr: string
   pricingAr: string
+  /** Starting price in lib/pricing.ts, also used by "Get a quote". */
+  priceId: PriceId
   published: boolean
 }
 
@@ -73,6 +75,7 @@ export const trainingOffers: TrainingOffer[] = [
     pricingEn: fromPrice("halfDayWorkshop", "en"),
     pricingFr: fromPrice("halfDayWorkshop", "fr"),
     pricingAr: fromPrice("halfDayWorkshop", "ar"),
+    priceId: "halfDayWorkshop",
     published: true,
   },
   {
@@ -95,6 +98,7 @@ export const trainingOffers: TrainingOffer[] = [
     pricingEn: fromPrice("trainingDay", "en"),
     pricingFr: fromPrice("trainingDay", "fr"),
     pricingAr: fromPrice("trainingDay", "ar"),
+    priceId: "trainingDay",
     published: true,
   },
   {
@@ -117,6 +121,7 @@ export const trainingOffers: TrainingOffer[] = [
     pricingEn: fromPrice("totDay", "en"),
     pricingFr: fromPrice("totDay", "fr"),
     pricingAr: fromPrice("totDay", "ar"),
+    priceId: "totDay",
     published: true,
   },
   {
@@ -139,6 +144,7 @@ export const trainingOffers: TrainingOffer[] = [
     pricingEn: fromPrice("keynote", "en"),
     pricingFr: fromPrice("keynote", "fr"),
     pricingAr: fromPrice("keynote", "ar"),
+    priceId: "keynote",
     published: true,
   },
 ]

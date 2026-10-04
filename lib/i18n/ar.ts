@@ -286,7 +286,6 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   desiredService: "الخدمة المطلوبة",
   chooseService: "اختر خدمة",
   estimatedBudget: "الميزانية المقدرة",
-  yourBudget: "ميزانيتك",
   projectDescription: "صف مشروعك",
   projectDescPlaceholder: "صف مشروعك وأهدافك وقيودك...",
   sendRequest: "إرسال طلبي",
@@ -347,11 +346,6 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   other: "أخرى / مخصصة",
 
   // Budget Options
-  budget500: "500 - 1,000 TND",
-  budget1000: "1,000 - 3,000 TND",
-  budget3000: "3,000 - 5,000 TND",
-  budget5000: "5,000+ TND",
-  budgetDiscuss: "للمناقشة",
 
   howICanHelpYou: "كيف يمكنني مساعدتك",
   servicesTagline: "من التصميم إلى التدريب والتطوير. حلول مصممة لأهدافك.",

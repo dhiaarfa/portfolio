@@ -4,6 +4,7 @@ import DeveloperPageClient from "../../developer/DeveloperPageClient"
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 import { SITE_URL } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
+import { offerCatalogJsonLd, WEB_PRICES } from "@/lib/pricing"
 import type { Language } from "@/lib/translations"
 
 export const dynamic = "force-static"
@@ -66,6 +67,16 @@ export default async function LocaleDeveloperPage({ params }: Props) {
         description: "AI-powered talent hub for CV prep, skill matching, and application tracking.",
         url: "https://digimytch-talent-hub.vercel.app/",
         author: { "@type": "Person", name: "Mohamed Dhia Arfa" },
+      },
+      {
+        "@type": "Service",
+        name: "Website development",
+        serviceType: "Web development",
+        description: "Fast, mobile-first websites and web apps in React and Next.js, in Arabic, French and English with right-to-left layouts.",
+        provider: { "@type": "Person", name: "Mohamed Dhia Arfa" },
+        areaServed: [{ "@type": "Country", name: "Tunisia" }, "Worldwide"],
+        url: url,
+        hasOfferCatalog: offerCatalogJsonLd("Website packages", WEB_PRICES),
       },
       breadcrumbJsonLd(m.breadcrumb, `/${locale}/developer`),
     ],

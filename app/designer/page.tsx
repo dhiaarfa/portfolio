@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import DesignerPageClient from "./DesignerPageClient"
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
+import { offerCatalogJsonLd, DESIGN_PRICES } from "@/lib/pricing"
 import { SITE_URL } from "@/lib/profile"
 
 export const dynamic = "force-static"
@@ -42,6 +43,7 @@ const jsonLd = {
       areaServed: [{ "@type": "Country", name: "Tunisia" }, "Worldwide"],
       availableLanguage: ["ar", "fr", "en"],
       url: `${SITE_URL}/designer`,
+      hasOfferCatalog: offerCatalogJsonLd("Design packages", DESIGN_PRICES),
     },
   ],
 }

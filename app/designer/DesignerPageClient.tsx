@@ -19,6 +19,7 @@ import { useState } from "react"
 import { useLanguage } from "@/components/language-provider"
 import TrackFaq from "@/components/track-faq"
 import { fromPrice } from "@/lib/pricing"
+import { requestQuote } from "@/lib/contact-interest"
 
 const SECTION_INDEX = [
   { id: "case-studies", labelKey: "secCaseStudies" },
@@ -361,7 +362,7 @@ export default function DesignerPageClient() {
                     ))}
                   </ul>
                   <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-accent">{fromPrice(pkg.priceId, language)}</p>
-                  <a href="#contact-form" className="text-sm font-semibold text-foreground hover:text-accent">
+                  <a href="#contact-form" onClick={() => requestQuote(pkg.priceId)} className="text-sm font-semibold text-foreground hover:text-accent">
                     {t("designerStartProjectArrow")}
                   </a>
                 </div>

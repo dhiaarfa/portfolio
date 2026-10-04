@@ -286,7 +286,6 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   desiredService: "Service Souhaité",
   chooseService: "Choisir un service",
   estimatedBudget: "Budget Estimé",
-  yourBudget: "Votre budget",
   projectDescription: "Décrivez votre projet",
   projectDescPlaceholder: "Décrivez votre projet, vos objectifs, vos contraintes...",
   sendRequest: "Envoyer ma demande",
@@ -347,11 +346,6 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   other: "Autre / Sur mesure",
 
   // Budget Options
-  budget500: "500 - 1 000 TND",
-  budget1000: "1 000 - 3 000 TND",
-  budget3000: "3 000 - 5 000 TND",
-  budget5000: "5 000+ TND",
-  budgetDiscuss: "À discuter",
 
   howICanHelpYou: "Comment je peux vous aider",
   servicesTagline: "Du design à la formation au développement. Des solutions sur mesure pour vos objectifs.",

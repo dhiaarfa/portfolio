@@ -4,6 +4,7 @@ import Image from "next/image"
 import { ArrowRight, Calendar } from "lucide-react"
 import { motion } from "framer-motion"
 import { useLanguage } from "@/components/language-provider"
+import { requestQuote } from "@/lib/contact-interest"
 import { publishedTrainingOffers } from "@/lib/trainer"
 import { siteConfig } from "@/lib/site-config"
 
@@ -89,15 +90,24 @@ export default function TrainerOffersSection() {
                 <p className="mb-4 text-sm font-semibold text-foreground">{outcome}</p>
                 <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
                   <span className="text-sm font-medium text-muted-foreground">{pricing}</span>
-                  <a
-                    href={siteConfig.calendlyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
-                  >
-                    {lang === "fr" ? "Réserver / Demander" : lang === "ar" ? "احجز / استفسر" : "Enquire / Book"}
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
+                  <div className="flex flex-wrap items-center gap-4">
+                    <a
+                      href="#contact-form"
+                      onClick={() => requestQuote(offer.priceId)}
+                      className="text-sm font-semibold text-foreground hover:text-accent"
+                    >
+                      {lang === "fr" ? "Demander un devis" : lang === "ar" ? "اطلب عرض سعر" : "Get a quote"}
+                    </a>
+                    <a
+                      href={siteConfig.calendlyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
+                    >
+                      {lang === "fr" ? "Réserver un appel" : lang === "ar" ? "احجز مكالمة" : "Book a call"}
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
                 </div>
               </motion.article>
             )

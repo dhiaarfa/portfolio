@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import DeveloperPageClient from "./DeveloperPageClient"
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
 import { SITE_URL } from "@/lib/profile"
+import { offerCatalogJsonLd, WEB_PRICES } from "@/lib/pricing"
 import { siteConfig } from "@/lib/site-config"
 
 export const dynamic = "force-static"
@@ -37,6 +38,16 @@ const jsonLd = {
       description: "AI-powered talent hub for CV prep, skill matching, and application tracking.",
       url: "https://digimytch-talent-hub.vercel.app/",
       author: { "@type": "Person", name: "Mohamed Dhia Arfa" },
+    },
+    {
+      "@type": "Service",
+      name: "Website development",
+      serviceType: "Web development",
+      description: "Fast, mobile-first websites and web apps in React and Next.js, in Arabic, French and English with right-to-left layouts.",
+      provider: { "@type": "Person", name: "Mohamed Dhia Arfa" },
+      areaServed: [{ "@type": "Country", name: "Tunisia" }, "Worldwide"],
+      url: `${SITE_URL}/developer`,
+      hasOfferCatalog: offerCatalogJsonLd("Website packages", WEB_PRICES),
     },
     breadcrumbJsonLd("Developer", "/developer"),
   ],

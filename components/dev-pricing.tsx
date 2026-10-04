@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/language-provider"
 import { fromPrice, type PriceId } from "@/lib/pricing"
+import { requestQuote } from "@/lib/contact-interest"
 
 /**
  * Starting prices on /developer (Oct 2026). /designer shows them on its
@@ -34,6 +35,8 @@ const ITEMS: { id: PriceId; name: Record<Lang, string>; desc: Record<Lang, strin
   },
 ]
 
+const CTA: Record<Lang, string> = { en: "Request a quote →", fr: "Demander un devis →", ar: "اطلب عرض سعر ←" }
+
 const HEADING: Record<Lang, { label: string; title: string; note: string }> = {
   en: { label: "Pricing", title: "Starting prices", note: "TND for clients in Tunisia, EUR for clients abroad. You get a written quote after a free 30-minute call." },
   fr: { label: "Tarifs", title: "Prix de départ", note: "En dinars pour les clients en Tunisie, en euros pour l'étranger. Devis écrit après un appel gratuit de 30 minutes." },
@@ -54,7 +57,10 @@ export default function DevPricing() {
             <div key={item.id} className="flex flex-col rounded-2xl border border-border bg-card p-5">
               <h3 className="mb-2 font-bold">{item.name[lang]}</h3>
               <p className="mb-4 flex-1 text-sm text-muted-foreground">{item.desc[lang]}</p>
-              <p className="text-xs font-semibold uppercase tracking-wide text-accent">{fromPrice(item.id, lang)}</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-accent">{fromPrice(item.id, lang)}</p>
+              <a href="#contact-form" onClick={() => requestQuote(item.id)} className="text-sm font-semibold text-foreground hover:text-accent">
+                {CTA[lang]}
+              </a>
             </div>
           ))}
         </div>

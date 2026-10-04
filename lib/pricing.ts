@@ -63,27 +63,67 @@ export function priceAmount(id: PriceId, lang: Lang): string {
   return `${group(tnd, ",")} TND · €${group(eur, ",")}${per}`
 }
 
-/** "From 1,500 TND · €600" in the given language. */
-export function fromPrice(id: PriceId, lang: Lang): string {
-  return `${FROM[lang]} ${priceAmount(id, lang)}`
+/** "From 1,500 TND · €600" in the given language; `inline` lowercases
+ *  "From" for use mid-sentence. */
+export function fromPrice(id: PriceId, lang: Lang, inline = false): string {
+  const from = inline && lang !== "ar" ? FROM[lang].toLowerCase() : FROM[lang]
+  return `${from} ${priceAmount(id, lang)}`
 }
 
-const LABEL_EN: Record<PriceId, string> = {
-  logo: "Logo",
-  brandIdentity: "Brand identity",
-  bilingualIdentity: "Arabic + Latin identity",
-  socialTemplates: "Social media templates",
-  landingPage: "Landing page",
-  showcaseSite: "Showcase website",
-  multilingualSite: "Arabic / French / English website",
-  maintenance: "Website maintenance",
-  halfDayWorkshop: "Half-day workshop",
-  trainingDay: "Training day",
-  totDay: "Train-the-trainer",
-  keynote: "Keynote",
+const LABELS: Record<PriceId, Record<Lang, string>> = {
+  logo: { en: "Logo", fr: "Logo", ar: "شعار" },
+  brandIdentity: { en: "Brand identity", fr: "Identité de marque", ar: "هوية بصرية" },
+  bilingualIdentity: { en: "Arabic + Latin identity", fr: "Identité arabe + latin", ar: "هوية عربية + لاتينية" },
+  socialTemplates: { en: "Social media templates", fr: "Modèles pour les réseaux sociaux", ar: "قوالب التواصل الاجتماعي" },
+  landingPage: { en: "Landing page", fr: "Page d'atterrissage", ar: "صفحة هبوط" },
+  showcaseSite: { en: "Showcase website", fr: "Site vitrine", ar: "موقع تعريفي" },
+  multilingualSite: { en: "Arabic / French / English website", fr: "Site arabe / français / anglais", ar: "موقع بالعربية والفرنسية والإنجليزية" },
+  maintenance: { en: "Website maintenance", fr: "Maintenance du site", ar: "صيانة الموقع" },
+  halfDayWorkshop: { en: "Half-day workshop", fr: "Atelier d'une demi-journée", ar: "ورشة نصف يوم" },
+  trainingDay: { en: "Training day", fr: "Journée de formation", ar: "يوم تدريبي" },
+  totDay: { en: "Train-the-trainer", fr: "Formation de formateurs", ar: "تدريب المدربين" },
+  keynote: { en: "Keynote", fr: "Conférence", ar: "كلمة رئيسية" },
+}
+
+export function priceLabel(id: PriceId, lang: Lang): string {
+  return LABELS[id][lang]
+}
+
+/** Which contact-form service a priced offer belongs to. */
+export function priceService(id: PriceId): "design" | "development" | "training" {
+  if (["logo", "brandIdentity", "bilingualIdentity", "socialTemplates"].includes(id)) return "design"
+  if (["landingPage", "showcaseSite", "multilingualSite", "maintenance"].includes(id)) return "development"
+  return "training"
 }
 
 /** Plain-English list for the chat assistant and llms.txt. */
 export function startingPricesText(): string {
-  return (Object.keys(PRICES) as PriceId[]).map((id) => `- ${LABEL_EN[id]}: from ${priceAmount(id, "en")}`).join("\n")
+  return (Object.keys(PRICES) as PriceId[]).map((id) => `- ${LABELS[id].en}: from ${priceAmount(id, "en")}`).join("\n")
+}
+
+export const DESIGN_PRICES: PriceId[] = ["logo", "brandIdentity", "bilingualIdentity", "socialTemplates"]
+export const WEB_PRICES: PriceId[] = ["landingPage", "showcaseSite", "multilingualSite", "maintenance"]
+export const TRAINING_PRICES: PriceId[] = ["halfDayWorkshop", "trainingDay", "totDay", "keynote"]
+
+/** schema.org OfferCatalog for a Service node: each offer's starting price
+ *  in TND (Tunisia) and EUR (abroad), as minPrice. */
+export function offerCatalogJsonLd(name: string, ids: PriceId[]) {
+  return {
+    "@type": "OfferCatalog",
+    name,
+    itemListElement: ids.map((id) => {
+      const { tnd, eur, unit } = PRICES[id]
+      const spec = (price: number, currency: string) => ({
+        "@type": unit ? "UnitPriceSpecification" : "PriceSpecification",
+        minPrice: price,
+        priceCurrency: currency,
+        ...(unit ? { unitCode: unit === "day" ? "DAY" : "MON" } : {}),
+      })
+      return {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: LABELS[id].en },
+        priceSpecification: [spec(tnd, "TND"), spec(eur, "EUR")],
+      }
+    }),
+  }
 }

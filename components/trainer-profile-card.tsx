@@ -97,6 +97,9 @@ export default function TrainerProfileCard() {
           <a href="/freebies/trainer-one-sheet-fr.pdf" download className="font-semibold text-accent hover:underline" hrefLang="fr">
             Français
           </a>
+          <a href="/freebies/trainer-one-sheet-ar.pdf" download className="font-semibold text-accent hover:underline" hrefLang="ar" lang="ar">
+            العربية
+          </a>
         </p>
       </div>
     </section>
