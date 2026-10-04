@@ -85,6 +85,18 @@ Second batch (all 11 items from the "what else" list):
   row (components/dev-pricing.tsx), the per-track FAQ, the chat assistant
   prompt, llms.txt and the trainer one-sheet PDFs (rebuild them after a
   price change: node scripts/build-freebie-pdfs.mjs trainer-one-sheet).
+- Performance: dictionaries split into lib/i18n/{en,fr,ar}.ts. Only English
+  is bundled; /fr and /ar get theirs as a prop from app/[locale]/layout.tsx,
+  unprefixed pages import fr/ar on demand. Server code still uses
+  lib/translations.ts (all three). Lighthouse mobile on English pages went
+  0.45-0.64 -> 0.68-0.77. /fr and /ar still score lower in Lighthouse's
+  simulation, but real throttled runs show the same blocking time as English.
+- Price cards have quote links that prefill the contact form
+  (lib/contact-interest.ts); Arabic trainer one-sheet; OfferCatalog with
+  prices in the Service JSON-LD.
+- Three pricing guides (lib/insights-pricing-guides.ts, EN/FR/AR): website
+  cost, trainer day rates (incl. the CNFCPP reimbursement cap), brand
+  identity cost. Their own prices read from lib/pricing.ts.
 
 ## Waiting on Dhia
 
