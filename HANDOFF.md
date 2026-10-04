@@ -68,6 +68,17 @@ Second batch (all 11 items from the "what else" list):
     JSON-LD, keyboard focus and Escape handling, no broken internal links.
   - Not done (recommendation): lib/translations.ts ships all 3 languages to
     every visitor (~220 KB raw); splitting per language would cut JS.
+- Research follow-ups (Oct 2026):
+  - /privacy (+ /fr, /ar): legal notice and privacy policy matching what the
+    code does (Resend, OpenRouter, Vercel, localStorage). Footer + contact form link.
+  - Trainer one-sheet PDF, EN + FR (scripts/freebies/trainer-one-sheet*.html,
+    linked from the trainer profile box). PDF CSS falls back to bundled Inter.
+  - Buyer FAQ per track (components/track-faq.tsx) with FAQPage JSON-LD.
+  - /llms.txt generated from site data (app/llms.txt/route.ts).
+  - Lighthouse CI in .github/workflows/ci.yml (lighthouserc.json): a11y and SEO
+    must stay >= 0.9 (currently 1.00); performance only warns. Local run:
+    mobile performance 0.45-0.64, held back by JS boot time (main thread ~8 s,
+    big inline RSC payload + translations chunk). Next optimisation target.
 
 ## Waiting on Dhia
 

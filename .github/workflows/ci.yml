@@ -60,3 +60,8 @@ jobs:
 
       - name: Test /api/contact
         run: npm run test:api -- http://localhost:3000
+      # Lighthouse on six key pages (lighthouserc.json): accessibility and SEO
+      # below 0.9 fail the build; performance and best practices only warn,
+      # since simulated mobile scores vary from run to run.
+      - name: Lighthouse CI
+        run: npx -y @lhci/cli@0.14.0 autorun
