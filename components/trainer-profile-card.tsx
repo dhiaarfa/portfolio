@@ -1,6 +1,6 @@
 "use client"
 
-import { Languages, BookOpen, LayoutGrid, MapPin, Award } from "lucide-react"
+import { Languages, BookOpen, LayoutGrid, MapPin, Award, Download } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { formatStat } from "@/lib/profile"
 
@@ -63,6 +63,9 @@ export default function TrainerProfileCard() {
   const { language } = useLanguage()
   const lang = language === "fr" ? "fr" : language === "ar" ? "ar" : "en"
   const heading = { en: "Trainer profile", fr: "Profil du formateur", ar: "ملف المدرب" }[lang]
+  // One-page PDF for organisers to forward internally (built from
+  // scripts/freebies/trainer-one-sheet*.html).
+  const download = { en: "Download the one-page profile (PDF)", fr: "Télécharger la fiche d'une page (PDF)", ar: "تحميل الملف التعريفي في صفحة واحدة (PDF)" }[lang]
 
   return (
     <section aria-labelledby="trainer-profile-heading" className="w-full px-4 pt-10 md:px-8">
@@ -83,6 +86,18 @@ export default function TrainerProfileCard() {
             </div>
           ))}
         </dl>
+        <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border pt-5 text-sm">
+          <span className="inline-flex items-center gap-2 font-semibold text-foreground">
+            <Download className="h-4 w-4 text-accent" aria-hidden />
+            {download}
+          </span>
+          <a href="/freebies/trainer-one-sheet.pdf" download className="font-semibold text-accent hover:underline" hrefLang="en">
+            English
+          </a>
+          <a href="/freebies/trainer-one-sheet-fr.pdf" download className="font-semibold text-accent hover:underline" hrefLang="fr">
+            Français
+          </a>
+        </p>
       </div>
     </section>
   )

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Trainer one-sheet · Mohamed Dhia Arfa</title><link rel="stylesheet" href="_base.css">
+<!-- Trainer one-sheet (Oct 2026): the page organisers forward internally.
+     Every fact comes from lib/profile.ts, lib/trainer.ts and
+     lib/organization-logos.ts -- update this file when those change, then
+     run: node scripts/build-freebie-pdfs.mjs trainer-one-sheet -->
+<style>
+  @page { margin: 12mm 13mm 12mm; }
+  body { font-size: 9.6pt; line-height: 1.42; }
+  .cover { display: grid; grid-template-columns: 1fr 42mm; gap: 8mm; padding: 16px 20px; margin-bottom: 10px; }
+  .cover h1 { font-size: 20pt; }
+  .cover img { width: 42mm; height: 42mm; object-fit: cover; border-radius: 10px; position: relative; z-index: 1; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 8px 0 4px; }
+  .stat { border: 1px solid var(--rule); border-radius: 8px; padding: 6px 8px; }
+  .stat b { display: block; font-size: 15pt; font-weight: 800; color: var(--ink); line-height: 1.1; }
+  .stat span { font-size: 7.8pt; color: var(--muted); }
+  h2 { font-size: 11pt; margin: 10px 0 5px; }
+  .card { padding: 7px 10px; margin-bottom: 6px; }
+  .card h3 { margin: 0 0 2px; font-size: 10pt; }
+  .card p { margin: 0; }
+  .facts td { padding: 3px 6px; }
+  .facts td:first-child { font-weight: 600; width: 30mm; }
+  .method { display: flex; gap: 6px; }
+  .method div { flex: 1; background: var(--accent-soft); border-radius: 8px; padding: 6px 8px; }
+  .method b { display: block; color: #14532d; }
+  ul.tight { margin: 2px 0; padding-left: 16px; }
+  ul.tight li { margin: 1px 0; }
+  footer.cta { margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div>
+    <div class="bar"></div>
+    <div class="kicker">Trainer &amp; facilitator · one-sheet</div>
+    <h1>Mohamed Dhia Arfa</h1>
+    <p>CNFCPP-certified trainer for NGOs, schools and youth programmes. Needs analysis up front, active sessions in Arabic, French or English, and a report at the end.</p>
+    <div class="by">dhia-portfolio.com/trainer · mohameddhiaarfa@gmail.com</div>
+  </div>
+  <img src="../../public/images/photos/dhia-facilitating-board.jpg" alt="">
+</div>
+
+<div class="stats">
+  <div class="stat"><b>1,120+</b><span>participants trained</span></div>
+  <div class="stat"><b>477+</b><span>training hours</span></div>
+  <div class="stat"><b>51+</b><span>training events</span></div>
+  <div class="stat"><b>15+</b><span>partner organisations</span></div>
+</div>
+
+<div class="grid-2">
+<div>
+  <h2>What you can book</h2>
+  <div class="card"><h3>Half-day youth workshop</h3><p class="muted">3–4 hrs · 10–100 participants · in person or online. Needs analysis, custom design, facilitation and materials, post-session summary.</p></div>
+  <div class="card"><h3>Multi-session programme</h3><p class="muted">4–12 sessions · cohort-based · blended. Programme architecture, session manuals, progress tracking, final evaluation report.</p></div>
+  <div class="card"><h3>Train-the-trainer (TOT)</h3><p class="muted">2–5 days · micro-training practice · peer feedback. TOT curriculum, practice labs, trainer assessment rubric, certification support.</p></div>
+  <div class="card"><h3>Keynote &amp; facilitation</h3><p class="muted">45–90 min keynote · half-day facilitation · panel moderation, with brief alignment and audience engagement design.</p></div>
+</div>
+<div>
+  <h2>At a glance</h2>
+  <table class="facts">
+    <tr><td>Languages</td><td>Arabic, French, English</td></tr>
+    <tr><td>Topics</td><td>Non-formal education, human rights, leadership, youth development, train-the-trainer</td></tr>
+    <tr><td>Delivered in</td><td>Tunisia, Morocco, Qatar, online</td></tr>
+    <tr><td>Certifications</td><td>National Certified Trainer, CNFCPP (2024) · Certified Trainer, Association Youth Clubs (2025) · Certified Trainer Entrepreneur Leader, Pôle Étudiant Entrepreneur, University of Sousse (2025)</td></tr>
+  </table>
+
+  <h2>Selected engagements</h2>
+  <ul class="tight">
+    <li><b>IFMSA · SCORP Camp 25</b>, Marrakech, 2025: train-the-trainer for new peer trainers.</li>
+    <li><b>IFMSA · TNHRT Carthaginian Camp</b>, Hammamet, 2024: human-rights trainer workshops.</li>
+    <li><b>IOM · Youth Hackathon</b>, Doha, 2024: facilitation for multilingual teams.</li>
+  </ul>
+  <p class="small muted" style="margin:4px 0 0">Also worked with: USAID / Ma3an, AIESEC, JCI, Junior Enterprises Tunisia, AssociaMed Tunisia, Rotaract, Enactus, CNFCPP.</p>
+</div>
+</div>
+
+<h2>How I work: Listen. Shape. Deliver.</h2>
+<div class="method">
+  <div><b>Listen</b>A needs analysis with the organiser before anything is designed.</div>
+  <div><b>Shape</b>A session plan built for the group's level, language and goals.</div>
+  <div><b>Deliver</b>Active facilitation, then an evaluation and a written report.</div>
+</div>
+
+<footer class="cta">
+  <span><b>Book a free 30-minute call:</b> calendly.com/benarfa367/30min</span>
+  <span><b>Email:</b> mohameddhiaarfa@gmail.com</span>
+</footer>
+</body>
+</html>

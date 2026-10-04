@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>Fiche formateur · Mohamed Dhia Arfa</title><link rel="stylesheet" href="_base.css">
+<!-- Trainer one-sheet (Oct 2026): the page organisers forward internally.
+     Every fact comes from lib/profile.ts, lib/trainer.ts and
+     lib/organization-logos.ts -- update this file when those change, then
+     run: node scripts/build-freebie-pdfs.mjs trainer-one-sheet-fr -->
+<style>
+  @page { margin: 12mm 13mm 12mm; }
+  body { font-size: 9.6pt; line-height: 1.42; }
+  .cover { display: grid; grid-template-columns: 1fr 42mm; gap: 8mm; padding: 16px 20px; margin-bottom: 10px; }
+  .cover h1 { font-size: 20pt; }
+  .cover img { width: 42mm; height: 42mm; object-fit: cover; border-radius: 10px; position: relative; z-index: 1; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 8px 0 4px; }
+  .stat { border: 1px solid var(--rule); border-radius: 8px; padding: 6px 8px; }
+  .stat b { display: block; font-size: 15pt; font-weight: 800; color: var(--ink); line-height: 1.1; }
+  .stat span { font-size: 7.8pt; color: var(--muted); }
+  h2 { font-size: 11pt; margin: 10px 0 5px; }
+  .card { padding: 7px 10px; margin-bottom: 6px; }
+  .card h3 { margin: 0 0 2px; font-size: 10pt; }
+  .card p { margin: 0; }
+  .facts td { padding: 3px 6px; }
+  .facts td:first-child { font-weight: 600; width: 30mm; }
+  .method { display: flex; gap: 6px; }
+  .method div { flex: 1; background: var(--accent-soft); border-radius: 8px; padding: 6px 8px; }
+  .method b { display: block; color: #14532d; }
+  ul.tight { margin: 2px 0; padding-left: 16px; }
+  ul.tight li { margin: 1px 0; }
+  footer.cta { margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div>
+    <div class="bar"></div>
+    <div class="kicker">Formateur &amp; facilitateur · fiche de présentation</div>
+    <h1>Mohamed Dhia Arfa</h1>
+    <p>Formateur certifié CNFCPP pour ONG, écoles et programmes jeunesse. Analyse des besoins en amont, sessions actives en arabe, français ou anglais, et un rapport à la fin.</p>
+    <div class="by">dhia-portfolio.com/trainer · mohameddhiaarfa@gmail.com</div>
+  </div>
+  <img src="../../public/images/photos/dhia-facilitating-board.jpg" alt="">
+</div>
+
+<div class="stats">
+  <div class="stat"><b>1 120+</b><span>participants formés</span></div>
+  <div class="stat"><b>477+</b><span>heures de formation</span></div>
+  <div class="stat"><b>51+</b><span>événements de formation</span></div>
+  <div class="stat"><b>15+</b><span>organisations partenaires</span></div>
+</div>
+
+<div class="grid-2">
+<div>
+  <h2>Ce que vous pouvez réserver</h2>
+  <div class="card"><h3>Atelier jeunesse d'une demi-journée</h3><p class="muted">3–4 h · 10–100 participants · présentiel ou en ligne. Analyse des besoins, conception sur mesure, animation et supports, compte-rendu post-session.</p></div>
+  <div class="card"><h3>Programme multi-sessions</h3><p class="muted">4–12 sessions · cohorte · présentiel et distanciel. Architecture du programme, manuels de session, suivi des progrès, rapport d'évaluation final.</p></div>
+  <div class="card"><h3>Formation de formateurs (TOT)</h3><p class="muted">2–5 jours · micro-formations · feedback entre pairs. Programme TOT, ateliers pratiques, grille d'évaluation des formateurs, accompagnement à la certification.</p></div>
+  <div class="card"><h3>Conférence &amp; facilitation</h3><p class="muted">Keynote 45–90 min · facilitation d'une demi-journée · modération de panel, avec cadrage du brief et dispositif d'engagement du public.</p></div>
+</div>
+<div>
+  <h2>En bref</h2>
+  <table class="facts">
+    <tr><td>Langues</td><td>Arabe, français, anglais</td></tr>
+    <tr><td>Thèmes</td><td>Éducation non formelle, droits humains, leadership, développement des jeunes, formation de formateurs</td></tr>
+    <tr><td>Interventions</td><td>Tunisie, Maroc, Qatar, en ligne</td></tr>
+    <tr><td>Certifications</td><td>Formateur certifié national, CNFCPP (2024) · Formateur certifié, Association Youth Clubs (2025) · Formateur certifié Leader Entrepreneur, Pôle Étudiant Entrepreneur de l'Université de Sousse (2025)</td></tr>
+  </table>
+
+  <h2>Interventions marquantes</h2>
+  <ul class="tight">
+    <li><b>IFMSA · SCORP Camp 25</b>, Marrakech, 2025 : formation de nouveaux formateurs pairs.</li>
+    <li><b>IFMSA · TNHRT Carthaginian Camp</b>, Hammamet, 2024 : ateliers de formation de formateurs en droits humains.</li>
+    <li><b>IOM · Youth Hackathon</b>, Doha, 2024 : facilitation pour des équipes multilingues.</li>
+  </ul>
+  <p class="small muted" style="margin:4px 0 0">A aussi travaillé avec : USAID / Ma3an, AIESEC, JCI, Junior Enterprises Tunisia, AssociaMed Tunisia, Rotaract, Enactus, CNFCPP.</p>
+</div>
+</div>
+
+<h2>Ma méthode : Écouter. Façonner. Livrer.</h2>
+<div class="method">
+  <div><b>Écouter</b>Une analyse des besoins avec l'organisateur avant toute conception.</div>
+  <div><b>Façonner</b>Un déroulé construit pour le niveau, la langue et les objectifs du groupe.</div>
+  <div><b>Livrer</b>Une animation active, puis une évaluation et un rapport écrit.</div>
+</div>
+
+<footer class="cta">
+  <span><b>Appel gratuit de 30 minutes :</b> calendly.com/benarfa367/30min</span>
+  <span><b>Email :</b> mohameddhiaarfa@gmail.com</span>
+</footer>
+</body>
+</html>
