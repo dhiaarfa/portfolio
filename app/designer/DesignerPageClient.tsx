@@ -287,7 +287,7 @@ export default function DesignerPageClient() {
                 >
                   {t(categoryLabelKeys[cat])}
                   {/* Counts on filters (inspiration brief, step 5). */}
-                  <span className="ms-1.5 tabular-nums opacity-60">
+                  <span className="ms-1.5 tabular-nums font-normal">
                     {cat === "All" ? curatedGallery.length : curatedGallery.filter((p) => p.category === cat).length}
                   </span>
                 </button>
@@ -401,7 +401,7 @@ export default function DesignerPageClient() {
                     <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-subtle text-accent">
                       <step.Icon className="h-4 w-4" />
                     </span>
-                    <span className="font-display text-2xl font-black text-muted-foreground/40">{step.step}</span>
+                    <span className="font-display text-2xl font-black text-muted-foreground/70">{step.step}</span>
                   </div>
                   <h3 className="mb-2 font-semibold">{t(step.titleKey)}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{t(step.descKey)}</p>

@@ -208,7 +208,7 @@ export default function Navbar() {
               the "navbar overflows / isn't centered" bug. `xl` gives both
               enough room, and the hamburger menu below covers every one of
               these links and controls in the 1024-1279 gap. */}
-          <nav className="hidden xl:flex justify-self-center items-center gap-0.5 bg-slate-100/90 dark:bg-muted/70 backdrop-blur-sm rounded-2xl px-1.5 py-1 border border-slate-200/60 dark:border-border/60">
+          <nav aria-label="Main" className="hidden xl:flex justify-self-center items-center gap-0.5 bg-slate-100/90 dark:bg-muted/70 backdrop-blur-sm rounded-2xl px-1.5 py-1 border border-slate-200/60 dark:border-border/60">
             {desktopTopLinks.map(link => {
               const active = basePath === link.href
               return (
@@ -276,7 +276,7 @@ export default function Navbar() {
                 visitors never open it -- so they never found out the site
                 has more than Home. Compact pill with short labels, shown
                 until the full nav pill takes over at xl. */}
-            <nav className="xl:hidden flex items-center gap-0.5 me-1 bg-slate-100/90 dark:bg-muted/70 backdrop-blur-sm rounded-2xl px-1 py-1 border border-slate-200/60 dark:border-border/60">
+            <nav aria-label="Services" className="xl:hidden flex items-center gap-0.5 me-1 bg-slate-100/90 dark:bg-muted/70 backdrop-blur-sm rounded-2xl px-1 py-1 border border-slate-200/60 dark:border-border/60">
               {shortNavLinks.map((link) => {
                 const active = basePath === link.href
                 return (
@@ -410,7 +410,7 @@ export default function Navbar() {
             style={{ transformOrigin: "top right" }}
             className="fixed inset-0 z-40 bg-white dark:bg-background flex flex-col pt-[68px] overflow-y-auto xl:hidden"
           >
-            <nav className="flex flex-col gap-1 px-4 py-4 flex-1">
+            <nav aria-label="Menu" className="flex flex-col gap-1 px-4 py-4 flex-1">
               {navLinks.map((link) => {
                 const active = basePath === link.href
                 return (

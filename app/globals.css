@@ -149,7 +149,12 @@ html.theme-transition a {
 
 .text-accent { color: var(--site-accent); }
 .text-accent-muted { color: color-mix(in oklab, var(--site-accent) 35%, transparent); }
-.bg-accent { background-color: var(--site-accent); }
+/* Solid green fills carry white text. #15803d gives 5:1 against white in
+   both themes; Tailwind's own bg-accent (hsl(var(--accent)), #22c55e-ish)
+   gave 2.3:1. "html .bg-accent" on purpose: a bare .bg-accent rule here is
+   merged into Tailwind's utility at build time and silently dropped.
+   Text, borders and tints keep the brighter --site-accent. */
+html .bg-accent { background-color: #15803d; }
 .bg-accent-subtle { background-color: color-mix(in oklab, var(--site-accent) 12%, transparent); }
 .bg-accent-muted { background-color: color-mix(in oklab, var(--site-accent) 10%, transparent); }
 .border-accent { border-color: var(--site-accent); }

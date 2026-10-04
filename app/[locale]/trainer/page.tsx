@@ -17,7 +17,7 @@ const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: s
   fr: {
     title: "Formateur jeunesse certifié en Tunisie | Dhia Arfa",
     description:
-      `Formateur certifié CNFCPP pour ONG, écoles et programmes jeunesse financés par des bailleurs. Plus de ${PARTICIPANTS} participants en Tunisie, au Maroc et au Qatar, en arabe, français et anglais.`,
+      `Formateur certifié CNFCPP pour ONG, écoles et programmes jeunesse. Plus de ${PARTICIPANTS} participants en Tunisie, au Maroc et au Qatar, en arabe, français et anglais.`,
     ogTitle: "Formateur & Facilitateur Jeunesse · Mohamed Dhia Arfa",
     ogDescription:
       "Réservez des ateliers, programmes multi-séances et formations de formateurs pour ONG et organisations de jeunesse en Tunisie.",

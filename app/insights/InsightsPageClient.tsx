@@ -89,7 +89,7 @@ export default function InsightsPageClient() {
                   }`}
                 >
                   {f.label}
-                  <span className="ms-1.5 tabular-nums opacity-60">
+                  <span className="ms-1.5 tabular-nums font-normal">
                     {f.id === "all" ? articles.length : articles.filter((a) => a.category === f.id).length}
                   </span>
                 </button>
@@ -156,7 +156,9 @@ export default function InsightsPageClient() {
                 className={`group rounded-2xl border border-border bg-card overflow-hidden flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 ${isWide ? "sm:col-span-2" : ""}`}
               >
                 <div className={isWide ? "grid sm:grid-cols-[1fr_1.1fr] gap-0" : "contents"}>
-                  <Link href={`/insights/${article.slug}`} className="block">
+                  {/* Same target as the title link below: hidden from screen
+                      readers and the tab order so it is not an unnamed link. */}
+                  <Link href={`/insights/${article.slug}`} className="block" aria-hidden tabIndex={-1}>
                     <InsightCover
                       category={article.category}
                       title={t(article.titleKey)}

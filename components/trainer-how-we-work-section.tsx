@@ -53,7 +53,7 @@ export default function TrainerHowWeWorkSection() {
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-subtle text-accent">
                     <Icon className="h-4 w-4" />
                   </span>
-                  <span className="font-display text-2xl font-black text-muted-foreground/40">{step.step}</span>
+                  <span className="font-display text-2xl font-black text-muted-foreground/70">{step.step}</span>
                 </div>
                 <h3 className="mb-2 font-semibold">{title}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>

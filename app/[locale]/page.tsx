@@ -13,7 +13,7 @@ const META: Record<"fr" | "ar", { title: string; description: string; ogTitle: s
   fr: {
     title: "Mohamed Dhia Arfa | Designer, formateur & développeur web",
     description:
-      `Designer, formateur certifié et développeur web en Tunisie : identité de marque avec Zia Studio, formations jeunesse (${profileStats.participantsTrained.value}+ formés), sites web soignés. Appel gratuit.`,
+      `Designer, formateur certifié et développeur web en Tunisie : identité de marque avec Zia Studio, formations jeunesse (${profileStats.participantsTrained.value}+ formés), sites web. Appel gratuit.`,
     ogTitle: "Mohamed Dhia Arfa, Designer, Formateur & Développeur",
     ogDescription: "Designer graphique, formateur certifié et développeur web basé en Tunisie.",
   },

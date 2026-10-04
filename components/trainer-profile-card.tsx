@@ -72,14 +72,14 @@ export default function TrainerProfileCard() {
         </h2>
         <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
           {ROWS.map(({ Icon, label, value }) => (
-            <div key={label.en} className="flex gap-3">
-              <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-subtle text-accent">
-                <Icon className="h-4 w-4" />
-              </span>
-              <div>
-                <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{label[lang]}</dt>
-                <dd className="mt-0.5 text-sm leading-relaxed text-foreground">{value[lang]}</dd>
-              </div>
+            <div key={label.en}>
+              <dt className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-subtle text-accent" aria-hidden>
+                  <Icon className="h-4 w-4" />
+                </span>
+                {label[lang]}
+              </dt>
+              <dd className="ms-11 text-sm leading-relaxed text-foreground">{value[lang]}</dd>
             </div>
           ))}
         </dl>

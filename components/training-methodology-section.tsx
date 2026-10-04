@@ -266,7 +266,7 @@ export default function TrainingMethodologySection() {
                 className={`relative rounded-2xl border ${phase.borderColor} bg-slate-800/60 p-5`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-3xl font-black text-[#8ed80c] opacity-30">{phase.step}</span>
+                  <span className="text-3xl font-black text-[#8ed80c] opacity-70">{phase.step}</span>
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-subtle text-accent">
                     <phase.Icon className="w-5 h-5" />
                   </span>

@@ -220,7 +220,7 @@ function FreebiesClientInner() {
                 }`}
               >
                 {categoryLabel(cat)}
-                <span className="ms-1.5 tabular-nums opacity-60">
+                <span className="ms-1.5 tabular-nums font-normal">
                   {cat === "all" ? freebies.length : freebies.filter((f) => f.category === cat).length}
                 </span>
               </button>
@@ -320,7 +320,7 @@ function FreebiesClientInner() {
                   </span>
 
                   <div>
-                    <h3 className={`font-bold text-foreground leading-snug ${isFeaturedTile ? "text-lg lg:text-xl" : "text-base lg:text-lg"}`}>{freebieText(freebie, "title", t)}</h3>
+                    <h2 className={`font-bold text-foreground leading-snug ${isFeaturedTile ? "text-lg lg:text-xl" : "text-base lg:text-lg"}`}>{freebieText(freebie, "title", t)}</h2>
                     <p className="text-sm lg:text-base text-muted-foreground mt-2 leading-relaxed">{freebieText(freebie, "description", t)}</p>
                   </div>
 
@@ -366,7 +366,7 @@ function FreebiesClientInner() {
                 <Mail className="w-6 h-6 text-accent" />
               </div>
               <div>
-                <h3 className="font-bold text-foreground text-lg">{t("freebies.moreComingTitle")}</h3>
+                <h2 className="font-bold text-foreground text-lg">{t("freebies.moreComingTitle")}</h2>
                 <p className="text-sm text-muted-foreground mt-2">{t("freebies.moreComingDesc")}</p>
               </div>
               {/* "/contact" is not a real route on this site (every other CTA uses

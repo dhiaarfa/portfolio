@@ -41,6 +41,12 @@ Second batch (all 11 items from the "what else" list):
   sections on /designer and /trainer (`methodName` in translations.ts).
 - Arabic font: Cairo replaced by IBM Plex Sans Arabic (open license; Thmanyah
   still needs permission). Arabic share cards (public/og/ar) rebuilt with it.
+- Accessibility audit (axe-core, 24 pages, EN/FR/AR, light and dark): 0 violations
+  left. Fixes: solid green fills use #15803d behind white text (globals.css,
+  "html .bg-accent"), readable step numbers and filter counts, valid <dl> in the
+  trainer profile, named navbar landmarks, /insights cover links out of the tab
+  order, freebie card titles as h2, search dialog title inside the dialog.
+  Two French meta descriptions shortened under 160 characters.
 
 ## Waiting on Dhia
 
