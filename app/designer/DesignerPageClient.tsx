@@ -18,6 +18,7 @@ import SectionIndex from "@/components/section-index"
 import { useState } from "react"
 import { useLanguage } from "@/components/language-provider"
 import TrackFaq from "@/components/track-faq"
+import { fromPrice } from "@/lib/pricing"
 
 const SECTION_INDEX = [
   { id: "case-studies", labelKey: "secCaseStudies" },
@@ -51,27 +52,27 @@ const packages = [
     nameKey: "packageBrandIdentityName",
     descKey: "packageBrandIdentityDesc",
     includeKeys: ["packageBrandIdentityInclude1", "packageBrandIdentityInclude2", "packageBrandIdentityInclude3", "packageBrandIdentityInclude4"],
-    noteKey: "packageBrandIdentityNote",
+    priceId: "brandIdentity",
   },
   {
     nameKey: "packageSocialName",
     descKey: "packageSocialDesc",
     includeKeys: ["packageSocialInclude1", "packageSocialInclude2", "packageSocialInclude3", "packageSocialInclude4"],
-    noteKey: "packageSocialNote",
+    priceId: "socialTemplates",
   },
   {
     nameKey: "packageLogoName",
     descKey: "packageLogoDesc",
     includeKeys: ["packageLogoInclude1", "packageLogoInclude2", "packageLogoInclude3", "packageLogoInclude4"],
-    noteKey: "packageLogoNote",
+    priceId: "logo",
   },
   {
     nameKey: "packageBilingualName",
     descKey: "packageBilingualDesc",
     includeKeys: ["packageBilingualInclude1", "packageBilingualInclude2", "packageBilingualInclude3", "packageBilingualInclude4"],
-    noteKey: "packageBilingualNote",
+    priceId: "bilingualIdentity",
   },
-]
+] as const
 
 const categories = ["All", "Brand Identity", "Social Media", "Logo Design", "Packaging"] as const
 const categoryLabelKeys: Record<(typeof categories)[number], string> = {
@@ -359,7 +360,7 @@ export default function DesignerPageClient() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-accent">{t(pkg.noteKey)}</p>
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-accent">{fromPrice(pkg.priceId, language)}</p>
                   <a href="#contact-form" className="text-sm font-semibold text-foreground hover:text-accent">
                     {t("designerStartProjectArrow")}
                   </a>

@@ -4,6 +4,7 @@ import { publishedInsightArticles } from "@/lib/insights"
 import { publishedFreebies } from "@/lib/freebies"
 import { publishedTrainingOffers } from "@/lib/trainer"
 import { siteConfig } from "@/lib/site-config"
+import { startingPricesText } from "@/lib/pricing"
 
 // /llms.txt (llmstxt.org): a plain-Markdown map of the site for AI
 // assistants. Built from the same data files as the pages, so it cannot
@@ -15,7 +16,7 @@ export function GET() {
     .map((p) => `- [${p.title}](${SITE_URL}/work/${p.slug}): ${p.excerpt}`)
     .join("\n")
   const offers = publishedTrainingOffers()
-    .map((o) => `- ${o.nameEn}: ${o.formatEn}. Who it is for: ${o.forEn}.`)
+    .map((o) => `- ${o.nameEn}: ${o.formatEn}. Who it is for: ${o.forEn}. ${o.pricingEn}.`)
     .join("\n")
   const articles = publishedInsightArticles()
     .map((a) => `- [${a.seoTitle}](${SITE_URL}/insights/${a.slug})`)
@@ -35,6 +36,12 @@ Contact: ${siteConfig.email}. Free 30-minute call: ${siteConfig.calendlyUrl}. Pa
 - [Branding & design](${SITE_URL}/designer): brand identity, social and campaign design, logos, Arabic + Latin identities.
 - [Training & facilitation](${SITE_URL}/trainer): needs analysis, workshops, multi-session programmes, train-the-trainer, keynotes, reporting. Method: Listen. Shape. Deliver.
 - [Web development](${SITE_URL}/developer): React and Next.js sites and web apps, multilingual with right-to-left Arabic.
+
+## Starting prices
+
+TND for clients in Tunisia, EUR for clients abroad. Every project gets a written quote after a free call.
+
+${startingPricesText()}
 
 ## Training offers
 

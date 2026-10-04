@@ -2,6 +2,7 @@
 
 import { ChevronDown } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import { priceAmount, type PriceId } from "@/lib/pricing"
 
 /**
  * Per-track FAQ (Oct 2026), shown above the contact form on /designer,
@@ -19,31 +20,55 @@ type Lang = "en" | "fr" | "ar"
 type QA = { q: string; a: string }
 export type FaqTrack = "design" | "training" | "development"
 
-const PRICE: Record<Lang, QA> = {
-  en: { q: "How much does it cost?", a: "It depends on scope, so I quote after a free 30-minute call where we define what you need. You get a written quote before any work starts." },
-  fr: { q: "Combien ça coûte ?", a: "Cela dépend du périmètre : j'établis un devis après un appel gratuit de 30 minutes où nous définissons votre besoin. Vous recevez un devis écrit avant tout démarrage." },
-  ar: { q: "كم التكلفة؟", a: "تعتمد على نطاق العمل، لذا أقدّم عرض سعر بعد مكالمة مجانية مدتها 30 دقيقة نحدد فيها ما تحتاجه. تستلم عرض سعر مكتوباً قبل بدء أي عمل." },
+// Starting prices come from lib/pricing.ts (see docs/pricing-research-2026.md).
+const p = (id: PriceId, lang: Lang) => priceAmount(id, lang)
+const PRICE_Q: Record<Lang, string> = { en: "How much does it cost?", fr: "Combien ça coûte ?", ar: "كم التكلفة؟" }
+const PRICE_TAIL: Record<Lang, string> = {
+  en: "The final price depends on scope: after a free 30-minute call you get a written quote, before any work starts.",
+  fr: "Le prix final dépend du périmètre : après un appel gratuit de 30 minutes, vous recevez un devis écrit avant tout démarrage.",
+  ar: "يعتمد السعر النهائي على نطاق العمل: بعد مكالمة مجانية مدتها 30 دقيقة تستلم عرض سعر مكتوباً قبل بدء أي عمل.",
 }
+const PRICE_FROM: Record<FaqTrack, (l: Lang) => string> = {
+  design: (l) =>
+    ({
+      en: `Starting prices: logo from ${p("logo", l)}, brand identity from ${p("brandIdentity", l)}, social media templates from ${p("socialTemplates", l)}.`,
+      fr: `Prix de départ : logo à partir de ${p("logo", l)}, identité de marque à partir de ${p("brandIdentity", l)}, modèles pour les réseaux sociaux à partir de ${p("socialTemplates", l)}.`,
+      ar: `الأسعار الابتدائية: الشعار ابتداءً من ${p("logo", l)}، الهوية البصرية ابتداءً من ${p("brandIdentity", l)}، قوالب التواصل الاجتماعي ابتداءً من ${p("socialTemplates", l)}.`,
+    })[l],
+  training: (l) =>
+    ({
+      en: `Starting prices: half-day workshop from ${p("halfDayWorkshop", l)}, training day from ${p("trainingDay", l)}, train-the-trainer from ${p("totDay", l)}. Travel and accommodation are added when a session requires them.`,
+      fr: `Prix de départ : atelier d'une demi-journée à partir de ${p("halfDayWorkshop", l)}, journée de formation à partir de ${p("trainingDay", l)}, formation de formateurs à partir de ${p("totDay", l)}. Le déplacement et l'hébergement s'ajoutent quand la session le nécessite.`,
+      ar: `الأسعار الابتدائية: ورشة نصف يوم ابتداءً من ${p("halfDayWorkshop", l)}، يوم تدريبي ابتداءً من ${p("trainingDay", l)}، تدريب المدربين ابتداءً من ${p("totDay", l)}. تُضاف تكاليف التنقل والإقامة عند الحاجة.`,
+    })[l],
+  development: (l) =>
+    ({
+      en: `Starting prices: landing page from ${p("landingPage", l)}, showcase website from ${p("showcaseSite", l)}, Arabic / French / English website from ${p("multilingualSite", l)}.`,
+      fr: `Prix de départ : page d'atterrissage à partir de ${p("landingPage", l)}, site vitrine à partir de ${p("showcaseSite", l)}, site en arabe / français / anglais à partir de ${p("multilingualSite", l)}.`,
+      ar: `الأسعار الابتدائية: صفحة هبوط ابتداءً من ${p("landingPage", l)}، موقع تعريفي ابتداءً من ${p("showcaseSite", l)}، موقع بالعربية والفرنسية والإنجليزية ابتداءً من ${p("multilingualSite", l)}.`,
+    })[l],
+}
+const priceQA = (track: FaqTrack, l: Lang): QA => ({ q: PRICE_Q[l], a: `${PRICE_FROM[track](l)} ${PRICE_TAIL[l]}` })
 
 const FAQS: Record<FaqTrack, Record<Lang, QA[]>> = {
   design: {
     en: [
       { q: "How long does a brand identity take?", a: "Usually 2 to 4 weeks. We agree on a clear timeline in the first call." },
-      PRICE.en,
+      priceQA("design", "en"),
       { q: "What do I receive at the end?", a: "The files and rules your team needs to keep the brand consistent: logo suite, colour and type system, social templates and a brand usage guide, exported and ready to use in Canva or Figma." },
       { q: "Can you design in both Arabic and Latin scripts?", a: "Yes. I design paired Arabic and Latin wordmarks, matched type and right-to-left layouts, for brands that speak to both audiences." },
       { q: "Do you work with clients outside Tunisia?", a: "Yes, remotely, in English, French or Arabic, through video calls and shared files." },
     ],
     fr: [
       { q: "Combien de temps prend une identité de marque ?", a: "En général 2 à 4 semaines. Nous fixons un calendrier clair lors du premier appel." },
-      PRICE.fr,
+      priceQA("design", "fr"),
       { q: "Que vais-je recevoir à la fin ?", a: "Les fichiers et les règles dont votre équipe a besoin pour garder une marque cohérente : déclinaisons du logo, système de couleurs et de typographie, modèles pour les réseaux sociaux et guide d'utilisation, exportés et prêts à l'emploi dans Canva ou Figma." },
       { q: "Pouvez-vous créer en arabe et en caractères latins ?", a: "Oui : logotypes arabe et latin assortis, typographies accordées et mises en page de droite à gauche, pour les marques qui parlent aux deux publics." },
       { q: "Travaillez-vous avec des clients hors de Tunisie ?", a: "Oui, à distance, en français, en anglais ou en arabe, par visioconférence et fichiers partagés." },
     ],
     ar: [
       { q: "كم يستغرق تصميم هوية العلامة؟", a: "عادة من أسبوعين إلى 4 أسابيع. نتفق على جدول زمني واضح في المكالمة الأولى." },
-      PRICE.ar,
+      priceQA("design", "ar"),
       { q: "ماذا أستلم في النهاية؟", a: "الملفات والقواعد التي يحتاجها فريقك للحفاظ على تناسق العلامة: نسخ الشعار، نظام الألوان والخطوط، قوالب لوسائل التواصل، ودليل استخدام الهوية، جاهزة للاستعمال في Canva أو Figma." },
       { q: "هل تصمم بالعربية وبالحروف اللاتينية؟", a: "نعم: شعارات نصية عربية ولاتينية متناسقة، وخطوط متوافقة، وتخطيطات من اليمين إلى اليسار، للعلامات التي تخاطب الجمهورين." },
       { q: "هل تعمل مع عملاء خارج تونس؟", a: "نعم، عن بعد، بالعربية أو الفرنسية أو الإنجليزية، عبر مكالمات الفيديو والملفات المشتركة." },
@@ -56,7 +81,7 @@ const FAQS: Record<FaqTrack, Record<Lang, QA[]>> = {
       { q: "How many participants can a session have?", a: "A half-day workshop works for 10 to 100 participants. Multi-session programmes and train-the-trainer courses are built around a cohort." },
       { q: "How do you adapt the session to our group?", a: "Every offer starts with a needs analysis with you, so the plan fits the group's level, language and goals before anything is designed." },
       { q: "What do we get after the training?", a: "A post-session summary for workshops, and a final evaluation report for programmes, so you can show results to your team or funders." },
-      PRICE.en,
+      priceQA("training", "en"),
     ],
     fr: [
       { q: "Dans quelles langues formez-vous ?", a: "En arabe, en français et en anglais, y compris pour des groupes multilingues." },
@@ -64,7 +89,7 @@ const FAQS: Record<FaqTrack, Record<Lang, QA[]>> = {
       { q: "Combien de participants par session ?", a: "Un atelier d'une demi-journée convient de 10 à 100 participants. Les programmes multi-sessions et les formations de formateurs se construisent autour d'une cohorte." },
       { q: "Comment adaptez-vous la session à notre groupe ?", a: "Chaque offre commence par une analyse des besoins avec vous, pour que le déroulé corresponde au niveau, à la langue et aux objectifs du groupe avant toute conception." },
       { q: "Que recevons-nous après la formation ?", a: "Un compte-rendu post-session pour les ateliers, et un rapport d'évaluation final pour les programmes, pour présenter les résultats à votre équipe ou à vos bailleurs." },
-      PRICE.fr,
+      priceQA("training", "fr"),
     ],
     ar: [
       { q: "بأي لغات تدرّب؟", a: "بالعربية والفرنسية والإنجليزية، وكذلك للمجموعات متعددة اللغات." },
@@ -72,7 +97,7 @@ const FAQS: Record<FaqTrack, Record<Lang, QA[]>> = {
       { q: "كم عدد المشاركين في الجلسة؟", a: "تناسب ورشة نصف اليوم من 10 إلى 100 مشارك. أما البرامج متعددة الجلسات وتدريب المدربين فتُبنى حول مجموعة ثابتة." },
       { q: "كيف تكيّف الجلسة مع مجموعتنا؟", a: "يبدأ كل عرض بتحليل للاحتياجات معك، حتى يناسب البرنامج مستوى المجموعة ولغتها وأهدافها قبل أي تصميم." },
       { q: "ماذا نستلم بعد التدريب؟", a: "ملخص بعد الجلسة للورشات، وتقرير تقييم نهائي للبرامج، لتعرض النتائج على فريقك أو الجهات المموّلة." },
-      PRICE.ar,
+      priceQA("training", "ar"),
     ],
   },
   development: {
@@ -81,21 +106,21 @@ const FAQS: Record<FaqTrack, Record<Lang, QA[]>> = {
       { q: "Can the site be in Arabic, French and English?", a: "Yes. I build multilingual sites, including proper right-to-left Arabic layouts, like this one." },
       { q: "What do you build with?", a: "React and Next.js, hosted on Vercel: fast, mobile-first sites that you can keep growing." },
       { q: "Can you also handle the branding?", a: "Yes. The same person designs the brand and builds the site, so you don't coordinate two freelancers." },
-      PRICE.en,
+      priceQA("development", "en"),
     ],
     fr: [
       { q: "Combien de temps prend un site web ?", a: "De 2 à 8 semaines selon le périmètre. Nous fixons un calendrier clair lors du premier appel." },
       { q: "Le site peut-il être en arabe, français et anglais ?", a: "Oui. Je réalise des sites multilingues, avec une vraie mise en page de droite à gauche pour l'arabe, comme celui-ci." },
       { q: "Avec quelles technologies ?", a: "React et Next.js, hébergé sur Vercel : des sites rapides, pensés mobile d'abord, que vous pouvez faire évoluer." },
       { q: "Pouvez-vous aussi vous occuper de l'identité visuelle ?", a: "Oui. La même personne conçoit la marque et développe le site, vous n'avez pas à coordonner deux prestataires." },
-      PRICE.fr,
+      priceQA("development", "fr"),
     ],
     ar: [
       { q: "كم يستغرق إنجاز موقع ويب؟", a: "من أسبوعين إلى 8 أسابيع حسب نطاق العمل. نتفق على جدول زمني واضح في المكالمة الأولى." },
       { q: "هل يمكن أن يكون الموقع بالعربية والفرنسية والإنجليزية؟", a: "نعم. أبني مواقع متعددة اللغات مع تخطيط صحيح من اليمين إلى اليسار للعربية، مثل هذا الموقع." },
       { q: "ما التقنيات التي تستعملها؟", a: "React وNext.js مع استضافة على Vercel: مواقع سريعة مصممة للهاتف أولاً ويمكن تطويرها لاحقاً." },
       { q: "هل يمكنك تولّي الهوية البصرية أيضاً؟", a: "نعم. نفس الشخص يصمم العلامة ويبني الموقع، فلا تحتاج إلى التنسيق بين مستقلّين." },
-      PRICE.ar,
+      priceQA("development", "ar"),
     ],
   },
 }

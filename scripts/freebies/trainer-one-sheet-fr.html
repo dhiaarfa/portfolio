@@ -3,7 +3,7 @@
 <head><meta charset="utf-8"><title>Fiche formateur · Mohamed Dhia Arfa</title><link rel="stylesheet" href="_base.css">
 <!-- Trainer one-sheet (Oct 2026): the page organisers forward internally.
      Every fact comes from lib/profile.ts, lib/trainer.ts and
-     lib/organization-logos.ts -- update this file when those change, then
+     lib/organization-logos.ts and lib/pricing.ts -- update this file when those change, then
      run: node scripts/build-freebie-pdfs.mjs trainer-one-sheet-fr -->
 <style>
   @page { margin: 12mm 13mm 12mm; }
@@ -19,6 +19,7 @@
   .card { padding: 7px 10px; margin-bottom: 6px; }
   .card h3 { margin: 0 0 2px; font-size: 10pt; }
   .card p { margin: 0; }
+  .card .price { margin-top: 2px; font-size: 8.4pt; font-weight: 700; color: #15803d; }
   .facts td { padding: 3px 6px; }
   .facts td:first-child { font-weight: 600; width: 30mm; }
   .method { display: flex; gap: 6px; }
@@ -51,10 +52,10 @@
 <div class="grid-2">
 <div>
   <h2>Ce que vous pouvez réserver</h2>
-  <div class="card"><h3>Atelier jeunesse d'une demi-journée</h3><p class="muted">3–4 h · 10–100 participants · présentiel ou en ligne. Analyse des besoins, conception sur mesure, animation et supports, compte-rendu post-session.</p></div>
-  <div class="card"><h3>Programme multi-sessions</h3><p class="muted">4–12 sessions · cohorte · présentiel et distanciel. Architecture du programme, manuels de session, suivi des progrès, rapport d'évaluation final.</p></div>
-  <div class="card"><h3>Formation de formateurs (TOT)</h3><p class="muted">2–5 jours · micro-formations · feedback entre pairs. Programme TOT, ateliers pratiques, grille d'évaluation des formateurs, accompagnement à la certification.</p></div>
-  <div class="card"><h3>Conférence &amp; facilitation</h3><p class="muted">Keynote 45–90 min · facilitation d'une demi-journée · modération de panel, avec cadrage du brief et dispositif d'engagement du public.</p></div>
+  <div class="card"><h3>Atelier jeunesse d'une demi-journée</h3><p class="muted">3–4 h · 10–100 participants · présentiel ou en ligne. Analyse des besoins, conception sur mesure, animation et supports, compte-rendu post-session.</p><p class="price">À partir de 350 DT · 150 €</p></div>
+  <div class="card"><h3>Programme multi-sessions</h3><p class="muted">4–12 sessions · cohorte · présentiel et distanciel. Architecture du programme, manuels de session, suivi des progrès, rapport d'évaluation final.</p><p class="price">À partir de 500 DT · 200 € / jour</p></div>
+  <div class="card"><h3>Formation de formateurs (TOT)</h3><p class="muted">2–5 jours · micro-formations · feedback entre pairs. Programme TOT, ateliers pratiques, grille d'évaluation des formateurs, accompagnement à la certification.</p><p class="price">À partir de 600 DT · 250 € / jour</p></div>
+  <div class="card"><h3>Conférence &amp; facilitation</h3><p class="muted">Keynote 45–90 min · facilitation d'une demi-journée · modération de panel, avec cadrage du brief et dispositif d'engagement du public.</p><p class="price">À partir de 400 DT · 300 €</p></div>
 </div>
 <div>
   <h2>En bref</h2>

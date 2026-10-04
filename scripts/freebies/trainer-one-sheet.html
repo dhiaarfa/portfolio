@@ -3,7 +3,7 @@
 <head><meta charset="utf-8"><title>Trainer one-sheet · Mohamed Dhia Arfa</title><link rel="stylesheet" href="_base.css">
 <!-- Trainer one-sheet (Oct 2026): the page organisers forward internally.
      Every fact comes from lib/profile.ts, lib/trainer.ts and
-     lib/organization-logos.ts -- update this file when those change, then
+     lib/organization-logos.ts and lib/pricing.ts -- update this file when those change, then
      run: node scripts/build-freebie-pdfs.mjs trainer-one-sheet -->
 <style>
   @page { margin: 12mm 13mm 12mm; }
@@ -19,6 +19,7 @@
   .card { padding: 7px 10px; margin-bottom: 6px; }
   .card h3 { margin: 0 0 2px; font-size: 10pt; }
   .card p { margin: 0; }
+  .card .price { margin-top: 2px; font-size: 8.4pt; font-weight: 700; color: #15803d; }
   .facts td { padding: 3px 6px; }
   .facts td:first-child { font-weight: 600; width: 30mm; }
   .method { display: flex; gap: 6px; }
@@ -51,10 +52,10 @@
 <div class="grid-2">
 <div>
   <h2>What you can book</h2>
-  <div class="card"><h3>Half-day youth workshop</h3><p class="muted">3–4 hrs · 10–100 participants · in person or online. Needs analysis, custom design, facilitation and materials, post-session summary.</p></div>
-  <div class="card"><h3>Multi-session programme</h3><p class="muted">4–12 sessions · cohort-based · blended. Programme architecture, session manuals, progress tracking, final evaluation report.</p></div>
-  <div class="card"><h3>Train-the-trainer (TOT)</h3><p class="muted">2–5 days · micro-training practice · peer feedback. TOT curriculum, practice labs, trainer assessment rubric, certification support.</p></div>
-  <div class="card"><h3>Keynote &amp; facilitation</h3><p class="muted">45–90 min keynote · half-day facilitation · panel moderation, with brief alignment and audience engagement design.</p></div>
+  <div class="card"><h3>Half-day youth workshop</h3><p class="muted">3–4 hrs · 10–100 participants · in person or online. Needs analysis, custom design, facilitation and materials, post-session summary.</p><p class="price">From 350 TND · €150</p></div>
+  <div class="card"><h3>Multi-session programme</h3><p class="muted">4–12 sessions · cohort-based · blended. Programme architecture, session manuals, progress tracking, final evaluation report.</p><p class="price">From 500 TND · €200 / day</p></div>
+  <div class="card"><h3>Train-the-trainer (TOT)</h3><p class="muted">2–5 days · micro-training practice · peer feedback. TOT curriculum, practice labs, trainer assessment rubric, certification support.</p><p class="price">From 600 TND · €250 / day</p></div>
+  <div class="card"><h3>Keynote &amp; facilitation</h3><p class="muted">45–90 min keynote · half-day facilitation · panel moderation, with brief alignment and audience engagement design.</p><p class="price">From 400 TND · €300</p></div>
 </div>
 <div>
   <h2>At a glance</h2>

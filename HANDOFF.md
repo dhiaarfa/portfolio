@@ -79,6 +79,12 @@ Second batch (all 11 items from the "what else" list):
     must stay >= 0.9 (currently 1.00); performance only warns. Local run:
     mobile performance 0.45-0.64, held back by JS boot time (main thread ~8 s,
     big inline RSC payload + translations chunk). Next optimisation target.
+- Pricing (Dhia: "apply the researches"): docs/pricing-research-2026.md
+  (64 sources) -> lib/pricing.ts, the one place to change a price. Shown on
+  the designer package cards, trainer offer cards, a new /developer pricing
+  row (components/dev-pricing.tsx), the per-track FAQ, the chat assistant
+  prompt, llms.txt and the trainer one-sheet PDFs (rebuild them after a
+  price change: node scripts/build-freebie-pdfs.mjs trainer-one-sheet).
 
 ## Waiting on Dhia
 

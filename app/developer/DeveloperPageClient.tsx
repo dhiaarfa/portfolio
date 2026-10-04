@@ -17,6 +17,7 @@ import ToolsStackSection from "@/components/tools-stack-section"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
 import { useLanguage } from "@/components/language-provider"
+import DevPricing from "@/components/dev-pricing"
 import TrackFaq from "@/components/track-faq"
 
 // Real phone-width captures (390px viewport, Oct 2026) of each live client
@@ -546,6 +547,8 @@ export default function DeveloperPageClient() {
             scroll. Removed (Master to-do list, Tier 4, CTA redundancy),
             same fix already applied on /trainer. */}
         <ResourcesInsightsStrip focus="development" className="bg-section-tint" />
+
+        <DevPricing />
 
         <TrackFaq track="development" />
 

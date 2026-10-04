@@ -1,3 +1,5 @@
+import { fromPrice } from "@/lib/pricing"
+
 export type TrainingOffer = {
   id: string
   nameEn: string
@@ -68,9 +70,9 @@ export const trainingOffers: TrainingOffer[] = [
     outcomeEn: "An engaged group with concrete takeaways they can apply the next day",
     outcomeFr: "Un groupe engagé avec des acquis concrets applicables dès le lendemain",
     outcomeAr: "مجموعة متفاعلة مع مخرجات عملية يمكن تطبيقها فوراً",
-    pricingEn: "Request a quote",
-    pricingFr: "Sur devis",
-    pricingAr: "حسب الطلب",
+    pricingEn: fromPrice("halfDayWorkshop", "en"),
+    pricingFr: fromPrice("halfDayWorkshop", "fr"),
+    pricingAr: fromPrice("halfDayWorkshop", "ar"),
     published: true,
   },
   {
@@ -90,9 +92,9 @@ export const trainingOffers: TrainingOffer[] = [
     outcomeEn: "Measurable behavior change and skills progression across the cohort",
     outcomeFr: "Changement de comportement mesurable et progression des compétences",
     outcomeAr: "تغيير سلوكي ملموس وتطور مهارات المجموعة",
-    pricingEn: "From custom scope",
-    pricingFr: "Selon périmètre",
-    pricingAr: "حسب النطاق",
+    pricingEn: fromPrice("trainingDay", "en"),
+    pricingFr: fromPrice("trainingDay", "fr"),
+    pricingAr: fromPrice("trainingDay", "ar"),
     published: true,
   },
   {
@@ -112,9 +114,9 @@ export const trainingOffers: TrainingOffer[] = [
     outcomeEn: "A pool of confident trainers ready to run their own sessions",
     outcomeFr: "Des formateurs confiants prêts à animer leurs propres sessions",
     outcomeAr: "مجموعة مدربين واثقين جاهزين لإدارة جلساتهم",
-    pricingEn: "Request a quote",
-    pricingFr: "Sur devis",
-    pricingAr: "حسب الطلب",
+    pricingEn: fromPrice("totDay", "en"),
+    pricingFr: fromPrice("totDay", "fr"),
+    pricingAr: fromPrice("totDay", "ar"),
     published: true,
   },
   {
@@ -134,9 +136,9 @@ export const trainingOffers: TrainingOffer[] = [
     outcomeEn: "A room that stays engaged, connected, and clear on next steps",
     outcomeFr: "Une salle engagée, connectée et claire sur la suite",
     outcomeAr: "قاعة متفاعلة وواضحة على الخطوات التالية",
-    pricingEn: "Project-based",
-    pricingFr: "Au projet",
-    pricingAr: "حسب المشروع",
+    pricingEn: fromPrice("keynote", "en"),
+    pricingFr: fromPrice("keynote", "fr"),
+    pricingAr: fromPrice("keynote", "ar"),
     published: true,
   },
 ]
