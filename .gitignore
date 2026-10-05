@@ -46,7 +46,9 @@ _dev_log.txt
 dev-log.txt
 
 # Local Claude Code tool settings
-.claude/
+# Local Claude settings stay private; shared skills are committed.
+.claude/*
+!.claude/skills/
 
 build_log*.txt
 deploy_log*.txt
