@@ -1,5 +1,6 @@
 /** Full article bodies, localized (en/fr/ar). Metadata lives in lib/insights.ts */
 import { pricingGuideContent } from "@/lib/insights-pricing-guides"
+import { octoberArticlesContent } from "@/lib/insights-oct-2026"
 export type InsightContentLocale = "en" | "fr" | "ar"
 
 export const insightContent: Record<string, Record<InsightContentLocale, string>> = {
@@ -1484,5 +1485,5 @@ Pour une entreprise tunisienne dont les clients sont surtout sur données mobile
 }
 
 export function getInsightContent(slug: string): Record<InsightContentLocale, string> | undefined {
-  return insightContent[slug] ?? pricingGuideContent[slug]
+  return insightContent[slug] ?? pricingGuideContent[slug] ?? octoberArticlesContent[slug]
 }

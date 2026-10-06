@@ -24,6 +24,9 @@ import {
   Calculator,
   Wallet,
   Tag,
+  HeartHandshake,
+  Truck,
+  Sparkles,
 } from "lucide-react"
 import type { InsightArticleMeta } from "@/lib/insights"
 import { siteConfig } from "@/lib/site-config"
@@ -87,6 +90,9 @@ const slugIcons: Record<string, React.ReactNode> = {
   "website-cost-tunisia-2026": <Calculator className="h-7 w-7 text-white/35" />,
   "trainer-fees-tunisia": <Wallet className="h-7 w-7 text-white/35" />,
   "brand-identity-cost-tunisia": <Tag className="h-7 w-7 text-white/35" />,
+  "youth-training-after-aid-cuts-tunisia": <HeartHandshake className="h-7 w-7 text-white/35" />,
+  "cash-on-delivery-returns-tunisia": <Truck className="h-7 w-7 text-white/35" />,
+  "ai-search-visibility-tunisia": <Sparkles className="h-7 w-7 text-white/35" />,
 }
 
 export function InsightCover({
