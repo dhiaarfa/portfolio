@@ -22,7 +22,9 @@ const DEFAULT_IMAGE = "/images/photos/dhia-hero-green.jpg"
  *  any http(s) URL was fetched server-side; every real caller passes a
  *  /public path, so both are now refused and fall back to the default. */
 function safePublicImage(raw: string | null): string {
-  if (!raw || !raw.startsWith("/") || raw.includes("..") || raw.includes("\\")) return DEFAULT_IMAGE
+  // Only /images is bundled with this function (next.config.js), so any
+  // other folder would fail to read.
+  if (!raw || !raw.startsWith("/images/") || raw.includes("..") || raw.includes("\\")) return DEFAULT_IMAGE
   if (!/\.(png|jpe?g|webp|gif)$/i.test(raw)) return DEFAULT_IMAGE
   const publicDir = join(process.cwd(), "public")
   const resolved = join(publicDir, raw)
