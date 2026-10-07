@@ -120,7 +120,23 @@ const nextConfig = {
   // a runtime query-param path Next's tracer can't statically discover, so
   // the whole images folder is force-included in that function's bundle.
   outputFileTracingIncludes: {
-    "/api/og": ["./public/images/**/*"],
+    "/api/og": ["./public/images/**/*.{png,jpg,jpeg,webp,gif}"],
+  },
+
+  // Oct 2026: Vercel warned the free plan was at 75% of its 10 GB Function
+  // Storage. Each deployment was storing about 100 MB of functions. Almost
+  // half of that was sharp's native binaries (glibc, musl and wasm builds),
+  // which no function uses: Vercel optimizes images outside our functions,
+  // and next/og renders with resvg. The OG route also pulled in all of
+  // public/ (PDFs, fonts, other folders) because of process.cwd(); it only
+  // reads /images, which the include above keeps.
+  outputFileTracingExcludes: {
+    "*": ["node_modules/@img/**", "node_modules/sharp/**"],
+    "/api/og": [
+      "public/{img,projects,freebies,fonts,og,resumes,email}/**",
+      "public/*.{png,ico,json}",
+      "videos/**",
+    ],
   },
 }
 
