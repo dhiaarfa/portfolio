@@ -29,4 +29,9 @@ export const organizationLogos: OrganizationLogo[] = [
   { name: "Enactus ISG Tunis", src: "/img/organizations/enactus-isg-tunis.png", width: 109, height: 60 },
   { name: "UN Sustainable Development Goals", src: "/img/organizations/un-sdgs.png", width: 60, height: 60 },
   { name: "ADN, Académie de Dialogue National", src: "/img/organizations/adn-academie-dialogue.png", width: 52, height: 60 },
+  { name: "Google Developer Groups", src: "/img/organizations/google-developer-groups.png", width: 124, height: 60 },
+  { name: "Creatos TBS", src: "/img/organizations/creatos-tbs.png", width: 155, height: 60 },
+  { name: "L'aspect psychologique ISSHT", src: "/img/organizations/aspect-psychologique-issht.png", width: 49, height: 60 },
+  { name: "CVL Lycée El Wafa", src: "/img/organizations/cvl-lycee-el-wafa.png", width: 67, height: 60 },
+  { name: "Apvision Morneg", src: "/img/organizations/apvision-morneg.png", width: 62, height: 60 },
 ]

@@ -244,6 +244,8 @@ export default function RootLayout({
                 "Adobe Illustrator",
                 "Adobe Photoshop",
                 "Figma",
+                "Motion Design",
+                "Prompt Engineering",
               ],
               alumniOf: {
                 "@type": "EducationalOrganization",
