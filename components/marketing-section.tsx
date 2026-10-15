@@ -14,6 +14,8 @@ import {
   Megaphone,
   Compass,
   Globe,
+  Clapperboard,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react"
 
@@ -88,6 +90,8 @@ const skills: { nameKey: string; Icon: LucideIcon }[] = [
   { nameKey: "skillMetaBusiness", Icon: BarChart3 },
   { nameKey: "skillCopywriting", Icon: FileText },
   { nameKey: "skillUiUxCollab", Icon: Handshake },
+  { nameKey: "skillMotionDesign", Icon: Clapperboard },
+  { nameKey: "skillPromptEngineering", Icon: Sparkles },
 ]
 
 export default function MarketingSection() {
