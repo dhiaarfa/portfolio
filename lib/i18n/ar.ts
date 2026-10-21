@@ -323,6 +323,8 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   footerService3: "تدريب الشباب",
   footerService4: "ورش القيادة",
   footerService5: "تطوير الويب",
+  footerService6: "موشن ديزاين وتعليق صوتي",
+  footerService7: "هندسة الأوامر (Prompt Engineering)",
   availableForProjects: "متاح للمشاريع",
   footerDesc:
     "مصمم جرافيكي ومدرب شغوف بأكثر من {{yearsN}} سنوات من الخبرة. متخصص في الإنشاء البصري والتدريب والدعم المهني.",
@@ -955,6 +957,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   skillUiUxCollab: "التعاون في UI/UX",
   skillMotionDesign: "تصميم الموشن",
   skillPromptEngineering: "هندسة الأوامر (Prompt Engineering)",
+  skillVoiceOver: "تعليق صوتي",
   expMktMgrSperanzaRole: "مدير التسويق",
   expMktMgrSperanzaMetricLabel: "التفاعل على وسائل التواصل الاجتماعي",
   expMktMgrSperanzaDesc: "رفع نسبة التفاعل على وسائل التواصل الاجتماعي بنسبة 40%. إدارة المحتوى اليومي والعروض الترويجية.",

@@ -15,6 +15,7 @@ import {
   Compass,
   Globe,
   Clapperboard,
+  Mic,
   Sparkles,
   type LucideIcon,
 } from "lucide-react"
@@ -92,6 +93,7 @@ const skills: { nameKey: string; Icon: LucideIcon }[] = [
   { nameKey: "skillUiUxCollab", Icon: Handshake },
   { nameKey: "skillMotionDesign", Icon: Clapperboard },
   { nameKey: "skillPromptEngineering", Icon: Sparkles },
+  { nameKey: "skillVoiceOver", Icon: Mic },
 ]
 
 export default function MarketingSection() {

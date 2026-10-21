@@ -323,6 +323,8 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   footerService3: "Formation jeunesse",
   footerService4: "Ateliers leadership",
   footerService5: "Développement web",
+  footerService6: "Motion design et voix off",
+  footerService7: "Prompt engineering",
   availableForProjects: "Disponible pour projets",
   footerDesc:
     "Designer graphique et formateur passionné avec plus de {{yearsN}} ans d'expérience. Spécialisé en création visuelle, formation et accompagnement professionnel.",
@@ -955,6 +957,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   skillUiUxCollab: "Collaboration UI/UX",
   skillMotionDesign: "Motion design",
   skillPromptEngineering: "Prompt engineering",
+  skillVoiceOver: "Voix off",
   expMktMgrSperanzaRole: "Responsable Marketing",
   expMktMgrSperanzaMetricLabel: "Engagement sur les réseaux sociaux",
   expMktMgrSperanzaDesc: "Augmentation de l'engagement sur les réseaux sociaux de 40 %. Gestion du contenu quotidien et des promotions.",

@@ -228,14 +228,27 @@ export function localizedExperience(entry: ExperienceEntry, locale: ProfileLocal
 // - Icom / Phenyx / Jasmin Marketing internships ran 2023–2025, not "2021–2023".
 export const aboutExperience: ExperienceEntry[] = [
   {
+    id: "yougo-travel-web-marketing",
+    period: "Oct 2026 – Present",
+    role: "Web Developer & Marketing Director",
+    roleFr: "Développeur Web et Directeur Marketing",
+    roleAr: "مطوّر ويب ومدير تسويق",
+    company: "YOUGO TRAVEL",
+    description:
+      "Runs the agency's website (yougotravel.tn) and brand image: led a full site and back-office audit, fixed offer pages, catalogue and SEO settings, and leads brand content on Instagram and TikTok.",
+    tags: ["Website", "SEO", "Brand Image", "Instagram & TikTok"],
+    isCurrent: true,
+  },
+  {
     id: "yougo-travel",
     period: "Jun 2026 – Present",
-    role: "Travel and Visa Agent",
-    roleFr: "Agent de Voyage et Visa",
-    roleAr: "وكيل سفر وتأشيرات",
+    role: "Visa & Travel Agent",
+    roleFr: "Agent Visa et Voyage",
+    roleAr: "وكيل تأشيرات وسفر",
     company: "YOUGO TRAVEL",
-    description: "Part-time visa and travel consulting, run alongside design, training, and development work.",
-    tags: ["Part-time"],
+    description:
+      "Handles visa appointment booking and application files for clients (consulates and visa centres), and advises them on documents and travel options.",
+    tags: ["Visa Appointments", "Client Advisory"],
   },
   {
     id: "digimytch-about",
@@ -303,6 +316,16 @@ export const civicExperience: ExperienceEntry[] = [
 ]
 
 export const developerExperience: ExperienceEntry[] = [
+  {
+    id: "yougo-dev",
+    period: "Oct 2026 – Present",
+    role: "Web Developer & Marketing Director",
+    company: "YOUGO TRAVEL",
+    description:
+      "Maintains and improves yougotravel.tn through its Flexis back-office: full site audit, offer pages and catalogue clean-up, country and SEO data fixes, plus brand content for Instagram and TikTok.",
+    tags: ["Website", "SEO", "Travel Booking Platform"],
+    isCurrent: true,
+  },
   {
     id: "digimytch-dev",
     period: "Feb 2026 – Jun 2026",

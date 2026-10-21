@@ -182,6 +182,8 @@ export default function Footer({ variant }: FooterProps = {}) {
               { label: t("footerService3"), href: "/trainer#training-offers" },
               { label: t("footerService4"), href: "/trainer#training-offers" },
               { label: t("footerService5"), href: "/developer#projects" },
+              { label: t("footerService6"), href: "/designer#case-studies" },
+              { label: t("footerService7"), href: "/developer#projects" },
               { label: t("bookConsultation"), href: siteConfig.calendlyUrl, external: true },
             ].map(({ label, href, external }) => (
               <li key={label}>
