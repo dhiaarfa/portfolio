@@ -228,15 +228,27 @@ export function localizedExperience(entry: ExperienceEntry, locale: ProfileLocal
 // - Icom / Phenyx / Jasmin Marketing internships ran 2023–2025, not "2021–2023".
 export const aboutExperience: ExperienceEntry[] = [
   {
-    id: "yougo-travel-web-marketing",
+    id: "yougo-travel-marketing",
     period: "Oct 2026 – Present",
-    role: "Web Developer & Marketing Director",
-    roleFr: "Développeur Web et Directeur Marketing",
-    roleAr: "مطوّر ويب ومدير تسويق",
+    role: "Marketing Director",
+    roleFr: "Directeur Marketing",
+    roleAr: "مدير تسويق",
     company: "YOUGO TRAVEL",
     description:
-      "Runs the agency's website (yougotravel.tn) and brand image: led a full site and back-office audit, fixed offer pages, catalogue and SEO settings, and leads brand content on Instagram and TikTok.",
-    tags: ["Website", "SEO", "Brand Image", "Instagram & TikTok"],
+      "Leads the agency's brand image and content on Instagram and TikTok: visual consistency, short-form video and campaigns built around real offers.",
+    tags: ["Brand Image", "Instagram", "TikTok", "Content"],
+    isCurrent: true,
+  },
+  {
+    id: "yougo-travel-web",
+    period: "Oct 2026 – Present",
+    role: "Web Developer",
+    roleFr: "Développeur Web",
+    roleAr: "مطوّر ويب",
+    company: "YOUGO TRAVEL",
+    description:
+      "Maintains the agency's booking website (yougotravel.tn): led a full site and back-office audit, cleaned up the offer catalogue, and set up the site's SEO foundations (title, description, robots.txt, sitemap).",
+    tags: ["Website", "SEO", "Flexis"],
     isCurrent: true,
   },
   {
@@ -319,10 +331,10 @@ export const developerExperience: ExperienceEntry[] = [
   {
     id: "yougo-dev",
     period: "Oct 2026 – Present",
-    role: "Web Developer & Marketing Director",
+    role: "Web Developer",
     company: "YOUGO TRAVEL",
     description:
-      "Maintains and improves yougotravel.tn through its Flexis back-office: full site audit, offer pages and catalogue clean-up, country and SEO data fixes, plus brand content for Instagram and TikTok.",
+      "Maintains and improves yougotravel.tn through its Flexis back-office: full site audit, offer catalogue clean-up, country data fixes, and SEO foundations (title, description, robots.txt, XML sitemap).",
     tags: ["Website", "SEO", "Travel Booking Platform"],
     isCurrent: true,
   },
