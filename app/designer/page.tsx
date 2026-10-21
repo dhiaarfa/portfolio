@@ -1,3 +1,4 @@
+import { PERSON_ID } from "@/lib/identity"
 import type { Metadata } from "next"
 import DesignerPageClient from "./DesignerPageClient"
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
@@ -36,6 +37,7 @@ const jsonLd = {
         "Logo, visual identity systems, social media templates, packaging, print and campaigns that keep a brand consistent across every channel.",
       provider: {
         "@type": "Person",
+        "@id": PERSON_ID,
         name: "Mohamed Dhia Arfa",
         url: SITE_URL,
         brand: { "@type": "Brand", name: "Zia Studio" },

@@ -195,7 +195,7 @@ type PageMetaInput = {
 /** Unprefixed routes that have real /fr and /ar twins (app/[locale]/*). */
 function hasLocaleTwins(path: string): boolean {
   return (
-    ["/", "/designer", "/trainer", "/developer", "/freebies", "/insights"].includes(path) ||
+    ["/", "/about", "/designer", "/trainer", "/developer", "/freebies", "/insights"].includes(path) ||
     path.startsWith("/insights/") ||
     path.startsWith("/work/")
   )

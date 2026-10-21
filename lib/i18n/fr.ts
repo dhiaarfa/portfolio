@@ -423,6 +423,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   // Freebies / Insights
   "nav.freebies": "Ressources",
   "nav.library": "Ma vidéothèque",
+  "nav.about": "À propos",
   "nav.insights": "Articles",
   "nav.resources": "Ressources",
   "nav.menu.freebies": "Modèles gratuits",

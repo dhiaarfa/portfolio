@@ -423,6 +423,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   // Freebies / Insights
   "nav.freebies": "موارد مجانية",
   "nav.library": "مكتبة المشاهدة",
+  "nav.about": "من أنا",
   "nav.insights": "مقالات",
   "nav.resources": "الموارد",
   "nav.menu.freebies": "قوالب مجانية",

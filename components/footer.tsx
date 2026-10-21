@@ -164,6 +164,7 @@ export default function Footer({ variant }: FooterProps = {}) {
           <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground mb-4">{t("navigationTitle")}</p>
           <ul className="space-y-2.5">
             <li><Link href="/" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("home")}</Link></li>
+            <li><Link href="/about" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("nav.about")}</Link></li>
             <li><Link href="/designer" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("branding")}</Link></li>
             <li><Link href="/trainer" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("training")}</Link></li>
             <li><Link href="/developer" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("nav.webDev")}</Link></li>
