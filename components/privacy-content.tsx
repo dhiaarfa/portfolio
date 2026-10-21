@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site-config"
  * - /api/contact (contact form, newsletter, freebie requests) emails the
  *   submission to Dhia's inbox through Resend and sends the visitor a
  *   confirmation; nothing is written to a database.
- * - /api/chat forwards chat messages to OpenRouter to generate a reply.
+ * - /api/chat sends chat messages to Anthropic's Claude API to generate a reply.
  * - Vercel hosts the site; Vercel Web Analytics / Speed Insights are
  *   cookie-free and aggregate.
  * - localStorage only holds language, theme and unlocked freebies.
@@ -18,7 +18,7 @@ import { siteConfig } from "@/lib/site-config"
 type Lang = "en" | "fr" | "ar"
 type Section = { h: string; p: string[] }
 
-const UPDATED = { en: "Last updated: 4 October 2026", fr: "Dernière mise à jour : 4 octobre 2026", ar: "آخر تحديث: 4 أكتوبر 2026" }
+const UPDATED = { en: "Last updated: 21 October 2026", fr: "Dernière mise à jour : 21 octobre 2026", ar: "آخر تحديث: 21 أكتوبر 2026" }
 
 const TITLE = { en: "Legal notice & privacy", fr: "Mentions légales & confidentialité", ar: "الإشعار القانوني والخصوصية" }
 
@@ -39,7 +39,7 @@ const SECTIONS = (email: string): Record<Lang, Section[]> => ({
       "Visit statistics: anonymous, aggregate page views and performance measures (Vercel Web Analytics and Speed Insights). No advertising or tracking cookies are used.",
     ] },
     { h: "Who processes the data", p: [
-      "Resend (email delivery) sends form submissions to my inbox and confirmations to you. OpenRouter routes chat messages to the AI model that answers. Vercel hosts the site and produces the anonymous statistics. Booking a call happens on Cal.com, under Cal.com's own privacy policy.",
+      "Resend (email delivery) sends form submissions to my inbox and confirmations to you. Anthropic (Claude) receives chat messages to generate the reply. Vercel hosts the site and produces the anonymous statistics. Booking a call happens on Cal.com, under Cal.com's own privacy policy.",
       "Nothing is sold or shared for advertising.",
     ] },
     { h: "How long it is kept", p: ["Messages stay in my email inbox for as long as needed to follow up with you, and are deleted on request. Newsletter addresses are kept until you unsubscribe. The site itself keeps no database of submissions."] },
@@ -57,7 +57,7 @@ const SECTIONS = (email: string): Record<Lang, Section[]> => ({
       "Statistiques de visite : pages vues et mesures de performance anonymes et agrégées (Vercel Web Analytics et Speed Insights). Aucun cookie publicitaire ou de suivi n'est utilisé.",
     ] },
     { h: "Sous-traitants", p: [
-      "Resend (envoi d'emails) transmet les formulaires à ma boîte mail et vous envoie les confirmations. OpenRouter transmet les messages du chat au modèle d'IA qui répond. Vercel héberge le site et produit les statistiques anonymes. La prise de rendez-vous se fait sur Cal.com, selon sa propre politique de confidentialité.",
+      "Resend (envoi d'emails) transmet les formulaires à ma boîte mail et vous envoie les confirmations. Anthropic (Claude) reçoit les messages du chat pour générer la réponse. Vercel héberge le site et produit les statistiques anonymes. La prise de rendez-vous se fait sur Cal.com, selon sa propre politique de confidentialité.",
       "Aucune donnée n'est vendue ni partagée à des fins publicitaires.",
     ] },
     { h: "Durée de conservation", p: ["Les messages restent dans ma boîte mail le temps nécessaire au suivi de votre demande et sont supprimés sur simple demande. Les adresses de la newsletter sont conservées jusqu'au désabonnement. Le site ne conserve aucune base de données des envois."] },
@@ -75,7 +75,7 @@ const SECTIONS = (email: string): Record<Lang, Section[]> => ({
       "إحصائيات الزيارة: عدد مشاهدات الصفحات وقياسات الأداء بشكل مجهول ومجمّع (Vercel Web Analytics وSpeed Insights). لا تُستعمل أي ملفات تعريف ارتباط إعلانية أو للتتبّع.",
     ] },
     { h: "من يعالج البيانات", p: [
-      "Resend (إرسال البريد) ينقل النماذج إلى بريدي ويرسل لك التأكيدات. OpenRouter ينقل رسائل المحادثة إلى نموذج الذكاء الاصطناعي الذي يجيب. Vercel يستضيف الموقع وينتج الإحصائيات المجهولة. حجز المكالمات يتم على Cal.com وفق سياسة الخصوصية الخاصة به.",
+      "Resend (إرسال البريد) ينقل النماذج إلى بريدي ويرسل لك التأكيدات. Anthropic (Claude) تستقبل رسائل المحادثة لتوليد الرد. Vercel يستضيف الموقع وينتج الإحصائيات المجهولة. حجز المكالمات يتم على Cal.com وفق سياسة الخصوصية الخاصة به.",
       "لا تُباع أي بيانات ولا تُشارك لأغراض إعلانية.",
     ] },
     { h: "مدة الاحتفاظ", p: ["تبقى الرسائل في بريدي الإلكتروني للمدة اللازمة لمتابعة طلبك، وتُحذف عند الطلب. تُحفظ عناوين النشرة البريدية حتى إلغاء الاشتراك. الموقع نفسه لا يحتفظ بأي قاعدة بيانات للإرسالات."] },

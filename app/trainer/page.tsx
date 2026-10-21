@@ -1,3 +1,4 @@
+import { PERSON_ID } from "@/lib/identity"
 import type { Metadata } from "next"
 import TrainerClientPage from "./TrainerClientPage"
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/page-metadata"
@@ -26,6 +27,7 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Person",
+      "@id": PERSON_ID,
       name: "Mohamed Dhia Arfa",
       jobTitle: "Certified Trainer & Facilitator",
       url: `${SITE_URL}/trainer`,
@@ -36,7 +38,7 @@ const jsonLd = {
     {
       "@type": "Service",
       name: "Youth Development Training & Facilitation",
-      provider: { "@type": "Person", name: "Mohamed Dhia Arfa" },
+      provider: { "@type": "Person", "@id": PERSON_ID, name: "Mohamed Dhia Arfa" },
       areaServed: { "@type": "Country", name: "Tunisia" },
       description: `Workshops and train-the-trainer programs for NGOs and youth organizations. ${formatStat("participantsTrained")} participants trained.`,
       url: `${SITE_URL}/trainer`,
@@ -46,7 +48,7 @@ const jsonLd = {
       "@type": "Course",
       name: "Half-Day Youth Workshop",
       description: "Custom non-formal education workshop for NGOs, schools, and youth clubs.",
-      provider: { "@type": "Person", name: "Mohamed Dhia Arfa" },
+      provider: { "@type": "Person", "@id": PERSON_ID, name: "Mohamed Dhia Arfa" },
       inLanguage: ["ar", "fr", "en"],
       url: `${SITE_URL}/trainer#training-offers`,
     },

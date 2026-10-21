@@ -1,3 +1,4 @@
+import { personJsonLd } from "@/lib/identity"
 import type React from "react"
 import type { Viewport } from "next"
 import "./globals.css"
@@ -195,98 +196,9 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Mohamed Dhia Arfa",
-              alternateName: "Dhia Arfa",
-              jobTitle: ["Graphic Designer", "Certified Trainer", "Web Developer"],
-              url: "https://www.dhia-portfolio.com",
-              image: "https://www.dhia-portfolio.com/images/photos/dhia-hero-green.jpg",
-              email: "mohameddhiaarfa@gmail.com",
-              telephone: "+216-53-580-272",
-              // Master roadmap 4.3 (Oct 2026): all four confirmed by Dhia as
-              // his real public profiles (Instagram is the Zia Studio account,
-              // linked here at his request).
-              sameAs: [
-                "https://www.linkedin.com/in/dhia-/",
-                "https://www.behance.net/dhiaa",
-                "https://github.com/dhiaarfa",
-                "https://www.instagram.com/zia.studioo/",
-              ],
-              // addressLocality used to be "Tunisia" -- a country, not a
-              // locality. Country alone is accurate.
-              address: {
-                "@type": "PostalAddress",
-                addressCountry: "TN",
-              },
-              // Zia Studio is his own design brand, not a separate employer,
-              // so `brand` (a valid Person property) rather than `worksFor`.
-              brand: { "@type": "Brand", name: "Zia Studio", url: "https://www.dhia-portfolio.com/designer" },
-              // Expanded Sep 30 with real technologies/fields already used
-              // elsewhere on the site (lib/work.ts tools, /developer,
-              // /designer) -- entity/topic breadth for search, not just
-              // Dhia's name.
-              knowsAbout: [
-                "Graphic Design",
-                "Training & Education",
-                "Web Development",
-                "Youth Development",
-                "Leadership",
-                "Brand Identity",
-                "UI/UX Design",
-                "React",
-                "Next.js",
-                "TypeScript",
-                "Supabase",
-                "Non-Formal Education",
-                "Facilitation",
-                "Adobe Illustrator",
-                "Adobe Photoshop",
-                "Figma",
-                "Motion Design",
-                "Prompt Engineering",
-              ],
-              alumniOf: {
-                "@type": "EducationalOrganization",
-                name: "Higher Institute of Technological Studies (ISET)",
-                address: {
-                  "@type": "PostalAddress",
-                  addressLocality: "Sousse",
-                  addressCountry: "TN",
-                },
-              },
-              // Expanded Sep 30 from a single CNFCPP entry to every real,
-              // verified certification in lib/profile.ts's `certifications`
-              // array -- same source of truth already used on /trainer and
-              // the about page, not new/invented data.
-              hasCredential: [
-                {
-                  "@type": "EducationalOccupationalCredential",
-                  credentialCategory: "National Certified Trainer",
-                  recognizedBy: { "@type": "Organization", name: "CNFCPP" },
-                },
-                {
-                  "@type": "EducationalOccupationalCredential",
-                  credentialCategory: "Certified Trainer",
-                  recognizedBy: { "@type": "Organization", name: "Association YOUTH CLUBs" },
-                },
-                {
-                  "@type": "EducationalOccupationalCredential",
-                  credentialCategory: "Social Media Marketing",
-                  recognizedBy: { "@type": "Organization", name: "HubSpot Academy" },
-                },
-                {
-                  "@type": "EducationalOccupationalCredential",
-                  credentialCategory: "Green Digital Skills",
-                  recognizedBy: { "@type": "Organization", name: "INCO Academy" },
-                },
-              ],
-              // New Sep 30: real civic/NGO affiliation from lib/profile.ts's
-              // `civicExperience` (AIESEC in Lebanon, Dec 2023-Jun 2024) --
-              // gives search engines a genuine entity link to AIESEC.
-              memberOf: [{ "@type": "Organization", name: "AIESEC" }],
-            }),
+            // Built in lib/identity.ts (one source for this schema, /about,
+            // /llms.txt and the site chat). Other pages point at it by @id.
+            __html: JSON.stringify(personJsonLd()),
           }}
         />
         

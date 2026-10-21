@@ -27,6 +27,7 @@ function alternates(base: string) {
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: { base: string; priority: number; changeFrequency: "weekly" | "monthly" }[] = [
     { base: "/", priority: 1, changeFrequency: "monthly" },
+    { base: "/about", priority: 0.9, changeFrequency: "monthly" },
     { base: "/designer", priority: 0.8, changeFrequency: "monthly" },
     { base: "/trainer", priority: 0.8, changeFrequency: "monthly" },
     { base: "/developer", priority: 0.8, changeFrequency: "monthly" },

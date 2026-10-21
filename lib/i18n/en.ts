@@ -453,6 +453,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   // Freebies / Insights
   "nav.freebies": "Freebies",
   "nav.library": "My watch library",
+  "nav.about": "About me",
   "nav.insights": "Insights",
   "nav.resources": "Resources",
   "nav.menu.freebies": "Free templates",

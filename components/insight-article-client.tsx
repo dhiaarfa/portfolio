@@ -56,7 +56,11 @@ export default function InsightArticleClient({ article, content, related }: Prop
           height={36}
           className="h-9 w-9 rounded-full object-cover ring-2 ring-accent/30"
         />
-        <span className="font-medium text-foreground">Mohamed Dhia Arfa</span>
+        {/* rel="author" + link to /about: ties every article to the author
+            page, so search engines connect the topic with his name. */}
+        <Link href="/about" rel="author" className="font-medium text-foreground hover:text-accent transition-colors">
+          Mohamed Dhia Arfa
+        </Link>
         <span aria-hidden>·</span>
         <time dateTime={article.updated ?? article.date}>
           {new Intl.DateTimeFormat(language === "ar" ? "ar-TN" : language === "fr" ? "fr-FR" : "en-GB", {

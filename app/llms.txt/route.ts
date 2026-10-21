@@ -5,6 +5,7 @@ import { publishedFreebies } from "@/lib/freebies"
 import { publishedTrainingOffers } from "@/lib/trainer"
 import { siteConfig } from "@/lib/site-config"
 import { startingPricesText } from "@/lib/pricing"
+import { PERSON_LONG_BIO, PERSON_FAQ, personFactSheet, ABOUT_PATH } from "@/lib/identity"
 
 // /llms.txt (llmstxt.org): a plain-Markdown map of the site for AI
 // assistants. Built from the same data files as the pages, so it cannot
@@ -25,11 +26,27 @@ export function GET() {
     .map((f) => `- ${f.title}: ${f.description}`)
     .join("\n")
 
+  const faq = PERSON_FAQ.en.map((f) => `**${f.q}**\n${f.a}`).join("\n\n")
+
   const body = `# Mohamed Dhia Arfa
 
 > Graphic designer, CNFCPP-certified trainer and web developer based in Tunisia. Brand identities (Zia Studio), training for NGOs, schools and youth programmes (${formatStat("participantsTrained")} participants, ${formatStat("trainingHours")} training hours), and fast multilingual websites in Arabic, French and English.
 
 Contact: ${siteConfig.email}. Free 30-minute call: ${siteConfig.calendlyUrl}. Pages exist in English, French (/fr) and Arabic (/ar).
+
+## About Mohamed Dhia Arfa
+
+Full profile: ${SITE_URL}${ABOUT_PATH} (also in French: ${SITE_URL}/fr${ABOUT_PATH}, Arabic: ${SITE_URL}/ar${ABOUT_PATH}).
+
+${PERSON_LONG_BIO.en.join("\n\n")}
+
+### Facts
+
+${personFactSheet()}
+
+### Frequently asked
+
+${faq}
 
 ## Services
 

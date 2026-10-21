@@ -1,3 +1,4 @@
+import { PERSON_ID } from "@/lib/identity"
 import type { Metadata } from "next"
 import type { InsightArticleMeta } from "@/lib/insights"
 import { getInsightContent } from "@/lib/insights-content"
@@ -88,7 +89,7 @@ export function insightJsonLd(article: InsightArticleMeta, locale: Language) {
   const listUrl = `${SITE_URL}${locale === "en" ? "" : `/${locale}`}/insights`
   const headline = locale === "en" ? article.seoTitle : getTranslation(locale, article.titleKey)
   const body = getInsightContent(article.slug)?.[locale]
-  const person = { "@type": "Person", name: "Mohamed Dhia Arfa", url: SITE_URL }
+  const person = { "@type": "Person", "@id": PERSON_ID, name: "Mohamed Dhia Arfa", url: SITE_URL }
 
   return {
     "@context": "https://schema.org",

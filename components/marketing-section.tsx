@@ -117,12 +117,14 @@ export default function MarketingSection() {
             </p>
           </div>
 
-          {/* Skills Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
+          {/* Skills Grid: a centred flex-wrap instead of a CSS grid, so an
+              incomplete last row (10 skills in rows of 4) sits in the middle
+              instead of hanging on the left. Widths match the old columns. */}
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             {skills.map((skill, i) => (
               <motion.div
                 key={i}
-                className={`relative overflow-hidden rounded-[1.5rem] ring-1 ${cardStyle.ring} bg-gradient-to-br ${cardStyle.wash} px-4 py-5 flex flex-col items-center text-center gap-2.5 hover:-translate-y-1 hover:shadow-md transition-all duration-300`}
+                className={`w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.5rem)] md:w-[calc(25%-0.75rem)] relative overflow-hidden rounded-[1.5rem] ring-1 ${cardStyle.ring} bg-gradient-to-br ${cardStyle.wash} px-4 py-5 flex flex-col items-center text-center gap-2.5 hover:-translate-y-1 hover:shadow-md transition-all duration-300`}
                 whileHover={{ y: -2 }}
               >
                 <div className="w-10 h-10 rounded-full bg-accent-gradient flex items-center justify-center">

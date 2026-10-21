@@ -28,10 +28,9 @@ const nextConfig = {
   async redirects() {
     return [
       { source: "/favicon.ico", destination: "/favicon-32.png", permanent: true },
-      // About page was folded into Home (certs/education/experience now
-      // live there as a compact "My Journey" card) — keep old links/
-      // bookmarks/search results working instead of 404ing.
-      { source: "/about", destination: "/", permanent: true },
+      // /about was folded into Home, then brought back in Oct 2026 as the
+      // dedicated "who is Mohamed Dhia Arfa" page (name SEO / GEO), so the
+      // old /about -> / redirect is gone.
       // Sep 30 SEO fix: /case-study/meetup-pro was a legacy standalone route
       // duplicating /work/meetup-pro (same project, different title/body,
       // both indexable -- a real duplicate-content problem an earlier audit
