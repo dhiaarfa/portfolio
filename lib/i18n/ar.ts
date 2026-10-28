@@ -621,7 +621,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   "insightsArticle5Title": "تحليل احتياجات التدريب: الخطوة التي يتخطاها معظم المدربين",
   "insightsArticle5Excerpt": "قبل إعداد الشرائح، أجب عن أربعة أسئلة. عملية TNA خفيفة أستخدمها قبل كل جلسة.",
   "insightsArticle6Title": "لماذا أستخدم Supabase + Next.js في مشاريع العملاء",
-  "insightsArticle6Excerpt": "الوسط بين SaaS للنماذج وbackend مخصص. حالات واقعية وما يجب الحذر منه.",
+  "insightsArticle6Excerpt": "الحل الوسط بين خدمات SaaS للنماذج وbackend مخصص لمشاريع العملاء. حالات واقعية وما يجب الحذر منه.",
   "insightsArticle7Title": "دليل هوية بصري يستخدمه العملاء فعلاً",
   "insightsArticle7Excerpt": "صفحة واحدة أفضل من PDF طويل. ما يجب تضمينه ليبقى النظام البصري حياً بعد الإطلاق.",
   "insightsArticle8Title": "كسر الجمود مقابل تنشيط الطاقة: لا تستبدلهما",

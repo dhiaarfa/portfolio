@@ -7,6 +7,9 @@ export type InsightArticleMeta = {
   slug: string
   /** <=60 chars, used for the <title>/OG title (the visible H1 keeps titleKey). */
   seoTitle: string
+  /** Shorter search titles for FR/AR when the translated H1 runs past ~60 chars. */
+  seoTitleFr?: string
+  seoTitleAr?: string
   /** ~140-155 chars, the meta/OG description (EN; FR/AR use their excerpt). */
   seoDescription: string
   category: InsightCategory
@@ -44,6 +47,7 @@ export const insightArticles: InsightArticleMeta[] = [
   {
     slug: "facilitation-mistakes-youth-workshops",
     seoTitle: "5 Facilitation Mistakes That Kill Youth Workshop Energy",
+    seoTitleFr: "5 erreurs de facilitation en atelier jeunesse",
     seoDescription: `Patterns from ${formatStat("trainingCycles")} youth training events in Tunisia: the facilitation mistakes that drain engagement in workshops, and how trainers can fix them.`,
     thumbnail: "/images/insights/facilitation-mistakes-youth-workshops.jpg",
     category: "Training",
@@ -72,6 +76,8 @@ export const insightArticles: InsightArticleMeta[] = [
   {
     slug: "social-media-visual-consistency",
     seoTitle: "Social Media Visual Consistency: Make Your Feed a Brand",
+    seoTitleFr: "Cohérence visuelle de votre marque sur les réseaux",
+    seoTitleAr: "الاتساق البصري على وسائل التواصل الاجتماعي",
     seoDescription: "Recognition beats virality. The 4-part system I use to make an Instagram or Facebook feed look like one brand, not twenty different designers.",
     thumbnail: "/images/insights/social-media-visual-consistency.jpg",
     category: "Design",
@@ -86,6 +92,7 @@ export const insightArticles: InsightArticleMeta[] = [
   {
     slug: "training-needs-assessment-basics",
     seoTitle: "Training Needs Assessment (TNA): A Simple 4-Question Guide",
+    seoTitleFr: "Analyse des besoins en formation : l'étape oubliée",
     seoDescription: "Before you build slides, answer four questions. A lightweight training needs assessment (TNA) process I run before every workshop or programme.",
     thumbnail: "/images/insights/training-needs-assessment-basics.jpg",
     category: "Training",
@@ -100,6 +107,7 @@ export const insightArticles: InsightArticleMeta[] = [
   {
     slug: "supabase-nextjs-for-freelancers",
     seoTitle: "Supabase + Next.js for Freelance Client Projects",
+    seoTitleFr: "Supabase + Next.js pour les projets freelance",
     seoDescription: "The honest middle ground between form SaaS and a full custom backend: when Supabase with Next.js fits a client project, and what to watch out for.",
     thumbnail: "/images/insights/supabase-nextjs-for-freelancers.jpg",
     category: "Development",
