@@ -36,16 +36,22 @@ for (const p of pdfPaths) {
 // Translation keys used in FreebiesClient
 const freebiesClient = fs.readFileSync(path.join(root, "app", "freebies", "FreebiesClient.tsx"), "utf8")
 const keys = [...freebiesClient.matchAll(/\bt\("([^"]+)"\)/g)].map((m) => m[1])
-const translations = fs.readFileSync(path.join(root, "lib", "translations.ts"), "utf8")
+// The dictionaries live in lib/i18n/{en,fr,ar}.ts (lib/translations.ts is
+// now only a re-export, so checking it flagged real keys as missing).
+// Each key must exist in every language.
+const dictionaries = Object.fromEntries(
+  ["en", "fr", "ar"].map((l) => [l, fs.readFileSync(path.join(root, "lib", "i18n", `${l}.ts`), "utf8")]),
+)
 
-// (Used to wrap this in a per-language loop whose variable was never read --
-// the check itself is "key exists anywhere", so one pass per key.)
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
 for (const key of [...new Set(keys)]) {
-  // Keys appear both quoted ("freebie.x.title":) and bare (bookFreeConsultation:);
-  // the old check only matched the quoted form and falsely flagged bare keys.
-  if (!new RegExp(`(^|\\s)"?${escapeRe(key)}"?\\s*:`, "m").test(translations)) {
-    console.log(`✗ Missing translation key entirely: ${key}`)
+  // Keys appear both quoted ("freebie.x.title":) and bare (bookFreeConsultation:).
+  const re = new RegExp(`(^|\\s)"?${escapeRe(key)}"?\\s*:`, "m")
+  for (const [lang, src] of Object.entries(dictionaries)) {
+    if (!re.test(src)) {
+      console.log(`✗ Missing translation key in ${lang}: ${key}`)
+      missing++
+    }
   }
 }
 console.log(`✓ Checked ${keys.length} freebies translation keys`)

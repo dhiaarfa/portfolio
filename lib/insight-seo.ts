@@ -21,7 +21,10 @@ const DESC_MAX = 158
 
 /** <title>: the article's search title, plus the brand only if it fits. */
 export function insightSeoTitle(article: InsightArticleMeta, locale: Language): string {
-  const base = locale === "en" ? article.seoTitle : getTranslation(locale, article.titleKey)
+  const base =
+    locale === "en"
+      ? article.seoTitle
+      : (locale === "fr" ? article.seoTitleFr : article.seoTitleAr) ?? getTranslation(locale, article.titleKey)
   const branded = `${base} | ${BRAND}`
   return branded.length <= TITLE_MAX ? branded : base
 }

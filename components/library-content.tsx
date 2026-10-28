@@ -62,6 +62,9 @@ export default function LibraryContent() {
         {c.open}
         <ExternalLink className="h-4 w-4" aria-hidden="true" />
       </a>
+      {/* Visually hidden h2 so the outline doesn't jump from this h1 to the
+          footer's h3 (heading-level skip flagged by the OpenSEO audit). */}
+      <h2 className="sr-only">{c.frame}</h2>
       <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
         <iframe
           src={EMBED_URL}

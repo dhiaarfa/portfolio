@@ -1,20 +1,24 @@
-import { SITE_URL } from "@/lib/profile"
-import { PERSON_ID, PERSON_NAME, PERSON_SHORT_BIO, PERSON_FAQ, ABOUT_PATH } from "@/lib/identity"
+import { SITE_URL, formatStat } from "@/lib/profile"
+import { PERSON_ID, PERSON_NAME, PERSON_FAQ, ABOUT_PATH } from "@/lib/identity"
 
 type L = "en" | "fr" | "ar"
 
+// Titles <=60 and descriptions 70-160 characters (OpenSEO audit, Oct 2026).
 export const ABOUT_META: Record<L, { title: string; description: string }> = {
   en: {
-    title: `${PERSON_NAME}: Designer, Certified Trainer & Web Developer`,
-    description: PERSON_SHORT_BIO.en,
+    title: `${PERSON_NAME} | Designer, Trainer & Web Developer`,
+    description:
+      `Mohamed Dhia Arfa: Tunisian graphic designer (Zia Studio), CNFCPP-certified trainer of ${formatStat("participantsTrained")} participants, and web developer in Arabic, French, English.`,
   },
   fr: {
-    title: `${PERSON_NAME} : designer, formateur certifié et développeur web`,
-    description: PERSON_SHORT_BIO.fr,
+    title: `${PERSON_NAME} | Designer, formateur, dév web`,
+    description:
+      "Mohamed Dhia Arfa : designer graphique tunisien (Zia Studio), formateur certifié CNFCPP de 1 120+ participants et développeur web en arabe, français, anglais.",
   },
   ar: {
-    title: "محمد ضياء عرفة: مصمم جرافيك ومدرّب معتمد ومطوّر ويب",
-    description: PERSON_SHORT_BIO.ar,
+    title: "محمد ضياء عرفة | مصمم جرافيك ومدرّب ومطوّر ويب",
+    description:
+      "محمد ضياء عرفة: مصمم جرافيك تونسي (Zia Studio)، مدرّب معتمد CNFCPP درّب أكثر من 1120 مشاركًا، ومطوّر ويب بالعربية والفرنسية والإنجليزية.",
   },
 }
 
