@@ -991,6 +991,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   skillMetaBusiness: "Meta Business",
   skillCopywriting: "Copywriting",
   skillUiUxCollab: "UI/UX Collab",
+  skillVisualStorytelling: "Visual Storytelling",
   skillMotionDesign: "Motion Design",
   skillPromptEngineering: "Prompt Engineering",
   skillVoiceOver: "Voice-over",

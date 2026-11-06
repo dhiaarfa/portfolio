@@ -145,7 +145,7 @@ export function personJsonLd() {
     familyName: "Arfa",
     alternateName: PERSON_ALT_NAMES,
     description: PERSON_SHORT_BIO.en,
-    jobTitle: ["Graphic Designer", "Certified Trainer", "Web Developer"],
+    jobTitle: ["Visual Storyteller", "Graphic Designer", "Certified Trainer", "Web Developer"],
     url: SITE_URL,
     mainEntityOfPage: `${SITE_URL}${ABOUT_PATH}`,
     image: {
@@ -171,6 +171,7 @@ export function personJsonLd() {
       "Brand Identity",
       "Logo Design",
       "Social Media Design",
+      "Visual Storytelling",
       "Motion Design",
       "Packaging Design",
       "UI/UX Design",

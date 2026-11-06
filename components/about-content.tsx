@@ -27,7 +27,7 @@ type Lang = "en" | "fr" | "ar"
 const UI: Record<Lang, Record<string, string>> = {
   en: {
     kicker: "About",
-    roles: "Graphic designer · Certified trainer · Web developer · Tunisia",
+    roles: "Visual storyteller · Graphic designer · Certified trainer · Web developer · Tunisia",
     numbers: "In numbers",
     experience: "Experience",
     education: "Education",
@@ -43,7 +43,7 @@ const UI: Record<Lang, Record<string, string>> = {
   },
   fr: {
     kicker: "À propos",
-    roles: "Designer graphique · Formateur certifié · Développeur web · Tunisie",
+    roles: "Conteur visuel · Designer graphique · Formateur certifié · Développeur web · Tunisie",
     numbers: "En chiffres",
     experience: "Expérience",
     education: "Formation",
@@ -59,7 +59,7 @@ const UI: Record<Lang, Record<string, string>> = {
   },
   ar: {
     kicker: "نبذة",
-    roles: "مصمم جرافيك · مدرّب معتمد · مطوّر ويب · تونس",
+    roles: "راوي قصص بصري · مصمم جرافيك · مدرّب معتمد · مطوّر ويب · تونس",
     numbers: "بالأرقام",
     experience: "الخبرة",
     education: "التعليم",
