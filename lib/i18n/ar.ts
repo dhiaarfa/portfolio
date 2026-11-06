@@ -956,6 +956,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   skillMetaBusiness: "Meta Business",
   skillCopywriting: "كتابة المحتوى الإعلاني",
   skillUiUxCollab: "التعاون في UI/UX",
+  skillVisualStorytelling: "السرد البصري",
   skillMotionDesign: "تصميم الموشن",
   skillPromptEngineering: "هندسة الأوامر (Prompt Engineering)",
   skillVoiceOver: "تعليق صوتي",
