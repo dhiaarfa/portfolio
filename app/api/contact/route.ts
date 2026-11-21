@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 import { z } from "zod"
 import { freebieById, freebieDownloadUrl } from "@/lib/freebies"
-import { checkRateLimit } from "@/lib/rate-limit"
+import { checkRateLimit, clientIp, isAllowedOrigin } from "@/lib/rate-limit"
 import { contactConfirmation, freebieDelivery, newsletterWelcome, ownerNotification } from "@/lib/email-templates"
 
 // Request shape validation (audit hardening pass, Sep 2026). Bounds are
@@ -28,6 +28,11 @@ const ContactRequestSchema = z.object({
   lang: z.enum(["en", "fr", "ar"]).optional(),
 })
 
+/** Single-line, control-character-free text for email subjects. */
+function oneLine(value?: string): string {
+  return (value ?? "").replace(/[\u0000-\u001f\u007f]+/g, " ").trim().slice(0, 120)
+}
+
 function getSender() {
   return (
     process.env.DELIVERY_FROM ||
@@ -38,6 +43,9 @@ function getSender() {
 
 export async function POST(req: NextRequest) {
   try {
+    if (!isAllowedOrigin(req)) {
+      return NextResponse.json({ error: "Forbidden." }, { status: 403 })
+    }
     const contentLength = Number(req.headers.get("content-length") || 0)
     if (contentLength > MAX_BODY_BYTES) {
       return NextResponse.json({ error: "Request too large." }, { status: 413 })
@@ -78,10 +86,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true })
     }
 
-    const ip =
-      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-      req.headers.get("x-real-ip") ||
-      "unknown"
+    const ip = clientIp(req)
 
     if (type !== "freebie" && !checkRateLimit(`contact:${ip}`)) {
       return NextResponse.json(
@@ -90,7 +95,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    if (type === "freebie" && !checkRateLimit(`freebie:${ip}`, 30)) {
+    if (type === "freebie" && !checkRateLimit(`freebie:${ip}`, 10)) {
       return NextResponse.json(
         { error: "Too many download attempts. Please try again later." },
         { status: 429 },
@@ -107,6 +112,12 @@ export async function POST(req: NextRequest) {
     }
 
     const trimmedEmail = email.trim()
+
+    // Every flow below emails this address. Cap mail per recipient so the
+    // forms cannot be used to flood a third party's inbox.
+    if (!checkRateLimit(`rcpt:${trimmedEmail.toLowerCase()}`, 4)) {
+      return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 })
+    }
 
     if (type === "freebie") {
       if (!freebieId) {
@@ -174,7 +185,7 @@ export async function POST(req: NextRequest) {
       replyTo: trimmedEmail,
       subject: isNewsletter
         ? `Newsletter signup: ${trimmedEmail}`
-        : `${name || "Contact"} via dhia-portfolio.com, ${subject || "New message"}`,
+        : `${oneLine(name) || "Contact"} via dhia-portfolio.com, ${oneLine(subject) || "New message"}`,
       html: ownerNotification({
         kind: isNewsletter ? "newsletter" : "contact",
         name: name || undefined,

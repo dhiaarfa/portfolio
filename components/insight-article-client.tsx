@@ -79,8 +79,8 @@ export default function InsightArticleClient({ article, content, related }: Prop
       {/* Table of contents from the body's ## headings: jump links for
           readers, and a structure search engines can show as sitelinks. */}
       {toc.length >= 3 && (
-        <nav aria-label={t("insightsToc")} className="mb-10 rounded-2xl border border-border bg-muted/40 p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground mb-3">{t("insightsToc")}</p>
+        <nav aria-label={t("insightsToc")} className="tactile tactile-hover mb-10 rounded-2xl border border-border bg-muted/40 p-5">
+          <p className="text-xs font-semibold text-muted-foreground mb-3">{t("insightsToc")}</p>
           <ol className="space-y-1.5 text-sm">
             {toc.map((h) => (
               <li key={h.id}>

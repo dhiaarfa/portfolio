@@ -134,7 +134,9 @@ export const assistantNudges: AssistantNudge[] = [
 ]
 
 export function nudgesForPath(pathname: string): AssistantNudge[] {
-  return assistantNudges.filter((n) => {
+  // Nov 2026 audit: no timed bubbles. They covered page headings and read as
+  // nagging; the chat button itself stays.
+  return assistantNudges.slice(0, 0).filter((n) => {
     if (!n.paths?.length) return true
     return n.paths.some((p) => pathname === p || pathname.startsWith(`${p}/`))
   })

@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/html-escape"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Navbar from "@/components/navbar-new"
@@ -35,7 +36,7 @@ export default async function LocaleInsightArticlePage({ params }: Props) {
   // used to be English-only data pointing at this page's URL.
   return (
     <div className="min-h-screen bg-background">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(insightJsonLd(article, locale)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(insightJsonLd(article, locale)) }} />
       <Navbar />
       <main id="main-content" className="pt-[5.5rem] pb-14 px-6">
         <InsightArticleClient article={article} content={content} related={related} />

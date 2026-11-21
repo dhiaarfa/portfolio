@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/html-escape"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Navbar from "@/components/navbar-new"
@@ -33,7 +34,7 @@ export default async function InsightArticlePage({ params }: Props) {
   // their own localized BlogPosting (same helper).
   return (
     <div className="min-h-screen bg-background">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(insightJsonLd(article, "en")) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(insightJsonLd(article, "en")) }} />
       <Navbar />
       <main id="main-content" className="pt-[5.5rem] pb-14 px-6">
         <InsightArticleClient article={article} content={content} related={related} />

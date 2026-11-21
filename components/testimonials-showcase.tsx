@@ -106,7 +106,7 @@ export function TestimonialsShowcase({
 
   return (
     <section className={`relative overflow-hidden ${className}`}>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,color-mix(in_oklab,var(--site-accent)_8%,transparent),transparent_60%)]" />
+
 
       <div className="relative mx-auto max-w-5xl px-4 md:px-6">
         <div className="mb-8 text-center md:mb-10">
@@ -126,7 +126,7 @@ export function TestimonialsShowcase({
               animate={{ opacity: 1, y: 0 }}
               exit={reducedMotion ? undefined : { opacity: 0, y: -12 }}
               transition={{ duration: 0.4 }}
-              className={`relative rounded-3xl border p-6 sm:p-8 md:p-10 ${accentStyles[featured.accent]}`}
+              className={`tactile tactile-hover relative rounded-3xl border p-6 sm:p-8 md:p-10 ${accentStyles[featured.accent]}`}
             >
               <Quote className="absolute right-5 top-5 h-10 w-10 text-accent/15 sm:h-14 sm:w-14" aria-hidden />
               {/* Oct 2026: removed the five gold stars -- LinkedIn
@@ -228,7 +228,7 @@ export function TestimonialsShowcase({
                   transition={{ delay: i * 0.06 }}
                   viewport={{ once: true }}
                   onClick={() => setActive(items.findIndex((x) => x.id === item.id))}
-                  className={`group relative min-w-[260px] shrink-0 snap-start overflow-hidden rounded-[1.75rem] border p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:min-w-0 ${accentStyles[item.accent]}`}
+                  className={`tactile tactile-hover group relative min-w-[260px] shrink-0 snap-start overflow-hidden rounded-lg border p-6 text-left transition-all duration-300 hover:shadow-lg md:min-w-0 ${accentStyles[item.accent]}`}
                 >
                   <Quote className="pointer-events-none absolute -right-3 -top-3 h-16 w-16 text-foreground opacity-[0.05] transition-transform duration-300 group-hover:scale-110" aria-hidden />
                   <p className="relative line-clamp-3 text-sm leading-relaxed text-foreground/90">&ldquo;{text.quote}&rdquo;</p>

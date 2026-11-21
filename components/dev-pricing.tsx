@@ -54,10 +54,10 @@ export default function DevPricing() {
         <p className="mb-8 text-sm text-muted-foreground">{HEADING[lang].note}</p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {ITEMS.map((item) => (
-            <div key={item.id} className="flex flex-col rounded-2xl border border-border bg-card p-5">
+            <div key={item.id} className="tactile tactile-hover flex flex-col rounded-2xl border border-border bg-card p-5">
               <h3 className="mb-2 font-bold">{item.name[lang]}</h3>
               <p className="mb-4 flex-1 text-sm text-muted-foreground">{item.desc[lang]}</p>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-accent">{fromPrice(item.id, lang)}</p>
+              <p className="mb-3 text-xs font-semibold text-accent">{fromPrice(item.id, lang)}</p>
               <a href="#contact-form" onClick={() => requestQuote(item.id)} className="text-sm font-semibold text-foreground hover:text-accent">
                 {CTA[lang]}
               </a>

@@ -7,6 +7,7 @@ import Navbar from "@/components/navbar-new"
 import RoleHero from "@/components/role-hero"
 import Footer from "@/components/footer"
 import Image from "next/image"
+import DeviceFrame from "@/components/ui/device-frame"
 import ContactForm from "@/components/contact-form"
 import ResourcesInsightsStrip from "@/components/resources-insights-strip"
 import { siteConfig } from "@/lib/site-config"
@@ -101,18 +102,10 @@ export default function DeveloperPageClient() {
           variant="split-contained"
           decoration={
             <>
-              <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#22c55e 1px, transparent 1px), linear-gradient(90deg, #22c55e 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
-              <div className="pointer-events-none absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full bg-accent/8 blur-[100px]" />
             </>
           }
           media={
-            <div className="bg-[#2E2E2E] rounded-2xl overflow-hidden border border-[#383838]/60 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
-              <div className="flex items-center gap-1.5 px-4 py-3 bg-[#1C1C1C]/60 border-b border-[#383838]/60">
-                <span className="w-3 h-3 rounded-full bg-red-500/80" />
-                <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <span className="w-3 h-3 rounded-full bg-accent/80" />
-                <span className="ml-4 font-mono text-slate-400 text-xs">dhia.dev</span>
-              </div>
+            <div className="bg-[#2E2E2E] rounded-2xl overflow-hidden border border-[#383838]/60 ">
               {/* Real "Dhia at the keyboard" photo, replacing the generic
                   branded headshot that was previously reused here -- per
                   Dhia's request to put an actual photo of him with a laptop
@@ -121,11 +114,6 @@ export default function DeveloperPageClient() {
             </div>
           }
         >
-          <div className="inline-flex items-center gap-2 bg-[#2E2E2E]/80 border border-[#383838]/60 rounded-lg px-4 py-2 mb-8 font-mono text-sm">
-            <span className="text-accent">$</span>
-            <span className="text-slate-300">dhia --role developer</span>
-            <span className="text-accent animate-[pulse_1s_ease-in-out_infinite] font-bold ml-1">█</span>
-          </div>
           <h1 className="h1-hero-tagline mb-4">
             {t("devHeroHeadlinePart1")}<br /><span className="text-accent">{t("devHeroHeadlinePart2")}</span>
           </h1>
@@ -171,7 +159,7 @@ export default function DeveloperPageClient() {
           <div className="max-w-7xl mx-auto">
             <div className="space-y-10">
               <div className="text-center space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">{t("devFeaturedLabel")}</p>
+                <p className="text-xs font-medium text-muted-foreground">{t("devFeaturedLabel")}</p>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">{t("devFeaturedHeading")}</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
                   {t("devFeaturedIntro")}
@@ -191,7 +179,7 @@ export default function DeveloperPageClient() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.08 }}
                     viewport={{ once: true }}
-                    className={`group relative overflow-hidden rounded-3xl border-2 border-border bg-card transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.25)] dark:hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)] ${i === 0 ? "lg:col-span-2" : ""}`}
+                    className={`group relative tactile bg-card`}
                   >
                     {/* Colour-blocked header: real screenshot "sheet(s)" peek out of
                         the top, over a project-specific dark gradient, a category
@@ -236,43 +224,13 @@ export default function DeveloperPageClient() {
                         type="button"
                         onClick={() => setGalleryOpen(project.slug)}
                         aria-label={t("devViewScreensAriaLabel", { count: theme?.screenshots?.length ?? 1, title: project.title })}
-                        className={`group/gallery relative flex w-full justify-center items-end gap-3 ${showMobile ? "-mt-4" : "-mt-20 sm:-mt-24"} mb-5 cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
+                        className={`group/gallery relative flex w-full justify-center items-end gap-3 -mt-4 mb-6 cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
                       >
                         {showMobile ? (
-                          <div className="relative z-10 h-48 sm:h-56 shrink-0 overflow-hidden rounded-[1.25rem] border-[5px] border-slate-900 bg-slate-900 shadow-2xl ring-1 ring-white/10" style={{ aspectRatio: 390 / 844 }}>
-                            <Image src={mobileSrc} alt={`${project.title}, mobile view`} fill className="object-cover object-top" sizes="130px" />
-                          </div>
-                        ) : (<>
-                        {theme?.secondaryImage && (
-                          <div
-                            className="relative h-24 sm:h-32 shrink-0 -rotate-[10deg] translate-y-2 rounded-lg overflow-hidden shadow-2xl ring-1 ring-black/20 transition-transform duration-500 group-hover/gallery:-rotate-[16deg] group-hover/gallery:-translate-x-1 group-hover/gallery:-translate-y-1 hidden sm:block"
-                            style={{ aspectRatio: 4 / 3 }}
-                          >
-                            <Image src={theme.secondaryImage} alt="" fill className="object-cover object-top" sizes="280px" />
-                          </div>
+                          <div className="w-[min(44%,170px)] pt-2"><DeviceFrame variant="phone" src={mobileSrc!} alt={`${project.title}, mobile view`} sizes="170px" /></div>
+                        ) : (
+                          <div className="w-full max-w-[440px] pt-2"><DeviceFrame variant={i % 2 ? "window" : "laptop"} src={project.cardImage} alt={project.title} sizes="440px" /></div>
                         )}
-                        <div
-                          className="relative z-10 h-36 sm:h-44 shrink-0 rotate-[4deg] rounded-lg overflow-hidden shadow-2xl ring-1 ring-black/20 transition-transform duration-500 group-hover/gallery:rotate-[7deg] group-hover/gallery:-translate-y-1.5"
-                          style={{ aspectRatio: devCardAspectRatio[project.slug] ?? 16 / 9 }}
-                        >
-                          <Image
-                            src={project.cardImage}
-                            alt={project.title}
-                            fill
-                            className="object-cover object-top"
-                            sizes="400px"
-                            priority={i === 0}
-                          />
-                        </div>
-                        {theme?.tertiaryImage && (
-                          <div
-                            className="relative h-24 sm:h-32 shrink-0 rotate-[13deg] translate-y-2 rounded-lg overflow-hidden shadow-2xl ring-1 ring-black/20 transition-transform duration-500 group-hover/gallery:rotate-[19deg] group-hover/gallery:translate-x-1 group-hover/gallery:-translate-y-1 hidden sm:block"
-                            style={{ aspectRatio: 4 / 3 }}
-                          >
-                            <Image src={theme.tertiaryImage} alt="" fill className="object-cover object-top" sizes="280px" />
-                          </div>
-                        )}
-                        </>)}
                         <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover/gallery:opacity-100 group-focus-visible/gallery:opacity-100">
                           <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-bold text-slate-900 shadow-xl">
                             <Images className="h-3.5 w-3.5" />
@@ -281,7 +239,7 @@ export default function DeveloperPageClient() {
                         </span>
                       </button>
 
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[10px] font-bold text-white backdrop-blur-sm">
                         {project.slug === "digimytch" && <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />}
                         {(language === "fr" ? theme?.tagFr : language === "ar" ? theme?.tagAr : theme?.tag) ?? "Web Dev"}
                       </span>
@@ -319,7 +277,7 @@ export default function DeveloperPageClient() {
                             href={project.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition-transform hover:-translate-y-0.5"
+                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition-transform"
                           >
                             <ExternalLink className="h-4 w-4" />
                             {t("devLiveDemo")}
@@ -330,7 +288,7 @@ export default function DeveloperPageClient() {
                             href={project.repoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-transform hover:-translate-y-0.5 hover:text-accent"
+                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-transform hover:text-accent"
                           >
                             <Github className="h-4 w-4" />
                             {t("devGithubLabel")}
@@ -413,7 +371,7 @@ export default function DeveloperPageClient() {
                   {otherDevProjects.map((p) => localizedOtherDevProject(p, language)).map((p) => (
                     <div
                       key={p.title}
-                      className="group relative overflow-hidden flex flex-col rounded-[28px] border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.55)]"
+                      className="tactile tactile-hover group relative overflow-hidden flex flex-col rounded-[28px] border border-border bg-card p-5 transition-all duration-300 hover:border-accent/40 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.55)]"
                     >
                       <div className="pointer-events-none absolute -top-8 -right-8 w-20 h-20 rounded-full bg-accent-subtle/40 group-hover:scale-110 transition-transform" aria-hidden />
                       <div className="relative flex items-start justify-between gap-2 mb-3">
@@ -489,7 +447,7 @@ export default function DeveloperPageClient() {
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               {bridgeItems.map((item) => (
-                <div key={item.titleKey} className="relative overflow-hidden rounded-[28px] border border-border p-5">
+                <div key={item.titleKey} className="tactile tactile-hover relative overflow-hidden rounded-[28px] border border-border p-5">
                   <div className="pointer-events-none absolute -top-8 -right-8 w-20 h-20 rounded-full bg-accent-subtle/40" aria-hidden />
                   <h3 className="relative font-semibold mb-2">{t(item.titleKey)}</h3>
                   <p className="relative text-sm text-muted-foreground mb-3">{t(item.descKey)}</p>
@@ -514,7 +472,7 @@ export default function DeveloperPageClient() {
             <h2 className="text-2xl font-bold text-center mb-10">{t("devBuildTodayHeading")}</h2>
             <div className="grid sm:grid-cols-3 gap-5">
               {capabilities.map((cap) => (
-                <div key={cap.titleKey} className="relative overflow-hidden rounded-[28px] border border-border bg-card p-5 flex flex-col">
+                <div key={cap.titleKey} className="tactile tactile-hover relative overflow-hidden rounded-[28px] border border-border bg-card p-5 flex flex-col">
                   <div className="pointer-events-none absolute -top-8 -right-8 w-20 h-20 rounded-full bg-accent-subtle/40" aria-hidden />
                   <h3 className="relative font-bold text-sm mb-2">{t(cap.titleKey)}</h3>
                   <p className="relative text-xs text-muted-foreground mb-4 flex-1">{t(cap.descKey)}</p>

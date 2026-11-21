@@ -63,13 +63,13 @@ const PAGE_CARDS: Record<string, CardDef> = {
     en: {
       kicker: "CNFCPP-certified trainer",
       title: "Trainings that change behaviour",
-      subhead: `NGOs, schools and youth programmes. ${formatStat("participantsTrained")} participants in Tunisia, Morocco and Qatar.`,
+      subhead: `NGOs, schools and youth programmes. ${formatStat("participantsTrained")} participants in Tunisia and Morocco.`,
       alt: "Mohamed Dhia Arfa facilitating a youth training workshop",
     },
     fr: {
       kicker: "Formateur certifié CNFCPP",
       title: "Des formations qui changent les comportements",
-      subhead: `ONG, écoles et programmes jeunesse. ${profileStats.participantsTrained.value}+ participants en Tunisie, au Maroc et au Qatar.`,
+      subhead: `ONG, écoles et programmes jeunesse. ${profileStats.participantsTrained.value}+ participants en Tunisie et au Maroc.`,
       alt: "Mohamed Dhia Arfa animant un atelier de formation jeunesse",
     },
   },

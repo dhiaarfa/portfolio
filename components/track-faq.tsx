@@ -77,7 +77,7 @@ const FAQS: Record<FaqTrack, Record<Lang, QA[]>> = {
   training: {
     en: [
       { q: "In which languages do you train?", a: "Arabic, French and English, and mixed-language groups." },
-      { q: "In person or online?", a: "Both. I train in person across Tunisia, travel for events (sessions so far in Morocco and Qatar) and run sessions online." },
+      { q: "In person or online?", a: "Both. I train in person across Tunisia, travel for events (sessions so far in Morocco) and run sessions online." },
       { q: "How many participants can a session have?", a: "A half-day workshop works for 10 to 100 participants. Multi-session programmes and train-the-trainer courses are built around a cohort." },
       { q: "How do you adapt the session to our group?", a: "Every offer starts with a needs analysis with you, so the plan fits the group's level, language and goals before anything is designed." },
       { q: "What do we get after the training?", a: "A post-session summary for workshops, and a final evaluation report for programmes, so you can show results to your team or funders." },
@@ -85,7 +85,7 @@ const FAQS: Record<FaqTrack, Record<Lang, QA[]>> = {
     ],
     fr: [
       { q: "Dans quelles langues formez-vous ?", a: "En arabe, en français et en anglais, y compris pour des groupes multilingues." },
-      { q: "En présentiel ou en ligne ?", a: "Les deux. Je forme en présentiel partout en Tunisie, je me déplace pour des événements (déjà au Maroc et au Qatar) et j'anime aussi en ligne." },
+      { q: "En présentiel ou en ligne ?", a: "Les deux. Je forme en présentiel partout en Tunisie, je me déplace pour des événements (déjà au Maroc) et j'anime aussi en ligne." },
       { q: "Combien de participants par session ?", a: "Un atelier d'une demi-journée convient de 10 à 100 participants. Les programmes multi-sessions et les formations de formateurs se construisent autour d'une cohorte." },
       { q: "Comment adaptez-vous la session à notre groupe ?", a: "Chaque offre commence par une analyse des besoins avec vous, pour que le déroulé corresponde au niveau, à la langue et aux objectifs du groupe avant toute conception." },
       { q: "Que recevons-nous après la formation ?", a: "Un compte-rendu post-session pour les ateliers, et un rapport d'évaluation final pour les programmes, pour présenter les résultats à votre équipe ou à vos bailleurs." },
@@ -93,7 +93,7 @@ const FAQS: Record<FaqTrack, Record<Lang, QA[]>> = {
     ],
     ar: [
       { q: "بأي لغات تدرّب؟", a: "بالعربية والفرنسية والإنجليزية، وكذلك للمجموعات متعددة اللغات." },
-      { q: "حضورياً أم عن بعد؟", a: "الاثنان. أدرّب حضورياً في كامل تونس، وأتنقل للفعاليات (سبق ذلك في المغرب وقطر)، وأقدّم جلسات عن بعد." },
+      { q: "حضورياً أم عن بعد؟", a: "الاثنان. أدرّب حضورياً في كامل تونس، وأتنقل للفعاليات (سبق ذلك في المغرب)، وأقدّم جلسات عن بعد." },
       { q: "كم عدد المشاركين في الجلسة؟", a: "تناسب ورشة نصف اليوم من 10 إلى 100 مشارك. أما البرامج متعددة الجلسات وتدريب المدربين فتُبنى حول مجموعة ثابتة." },
       { q: "كيف تكيّف الجلسة مع مجموعتنا؟", a: "يبدأ كل عرض بتحليل للاحتياجات معك، حتى يناسب البرنامج مستوى المجموعة ولغتها وأهدافها قبل أي تصميم." },
       { q: "ماذا نستلم بعد التدريب؟", a: "ملخص بعد الجلسة للورشات، وتقرير تقييم نهائي للبرامج، لتعرض النتائج على فريقك أو الجهات المموّلة." },
@@ -147,7 +147,7 @@ export default function TrackFaq({ track }: { track: FaqTrack }) {
       <div className="mx-auto max-w-3xl">
         <p className="label mb-2">{HEADING[lang].label}</p>
         <h2 id="faq-heading" className="mb-6 text-2xl font-bold md:text-3xl">{HEADING[lang].title}</h2>
-        <div className="divide-y divide-border rounded-2xl border border-border bg-card">
+        <div className="tactile tactile-hover divide-y divide-border rounded-2xl border border-border bg-card">
           {items.map(({ q, a }) => (
             <details key={q} className="group px-5 py-4">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold [&::-webkit-details-marker]:hidden">

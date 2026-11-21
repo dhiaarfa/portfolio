@@ -28,7 +28,7 @@ type Tile = {
  * TNHRT Hammamet, the IOM hackathon in Doha, a facilitation keynote -- in
  * an editorial bento: one large feature, mixed photo and text tiles.
  * Charte: near-black base, single green accent (number underline, place
- * chips, text-tile numbers), rounded-[2rem] cards and dot-grid texture as
+ * chips, text-tile numbers), rounded-lg cards and dot-grid texture as
  * on Home's expertise cards. Numbers count up once on scroll (static under
  * reduced motion, via AnimatedNumber). Every figure reads lib/profile.ts.
  */
@@ -100,20 +100,20 @@ export default function TrainerImpactWall() {
     <section id="trainer-impact" className="w-full section-compact px-4 md:px-8 bg-card">
       <div className="max-w-6xl mx-auto">
         <FadeUp>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent mb-2">{t("impactMetrics")}</p>
+          <p className="text-xs font-semibold text-accent mb-2">{t("impactMetrics")}</p>
           <h2 className="font-display text-[clamp(28px,4vw,44px)] font-bold leading-tight text-foreground mb-10 max-w-2xl">
             {t("measurableResults")}
           </h2>
         </FadeUp>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 lg:auto-rows-[290px] gap-4">
-          {TILES.map((tile) => {
+          {TILES.map((tile, ti) => {
             const isFeature = tile.span.includes("row-span-2")
             if (!tile.photo) {
               return (
                 <div
                   key={tile.stat}
-                  className={`relative overflow-hidden rounded-[2rem] border border-border bg-background p-6 flex flex-col justify-between min-h-[200px] ${tile.span}`}
+                  className={`tactile tactile-hover relative overflow-hidden rounded-lg border border-border bg-background p-6 flex flex-col justify-between min-h-[200px] ${tile.span}`}
                 >
                   <div className="absolute inset-0 bg-dot-grid opacity-50 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" aria-hidden />
                   <div className="relative">
@@ -129,7 +129,7 @@ export default function TrainerImpactWall() {
             return (
               <figure
                 key={tile.stat}
-                className={`group relative overflow-hidden rounded-[2rem] border border-border col-span-2 ${
+                className={`taped tactile tactile-hover group relative col-span-2 ${ti % 2 ? "tilt-r" : "tilt-l"} ${
                   isFeature ? "min-h-[440px]" : "min-h-[290px]"
                 } ${tile.span}`}
               >

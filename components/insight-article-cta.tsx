@@ -46,7 +46,7 @@ export function InsightArticleCta({ article }: { article: InsightArticleMeta }) 
   const cta = ctaKeys[article.category]
 
   return (
-    <div className="mt-12 rounded-2xl border border-border bg-muted/40 p-6 sm:p-8">
+    <div className="tactile tactile-hover mt-12 rounded-2xl border border-border bg-muted/40 p-6 sm:p-8">
       <p className="text-lg font-semibold text-foreground">{t(cta.text)}</p>
       <p className="mt-2 text-sm text-muted-foreground">{t("insightsCtaSub")}</p>
       <div className="mt-5 flex flex-wrap gap-3">
@@ -158,7 +158,7 @@ export function InsightCover({
           redundancy on every article that now has a real cover photo. */}
       {!image && (
         <div className="relative flex h-full min-h-[120px] flex-col justify-end p-4">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-white/85">
+          <span className="text-[10px] font-semibold text-white/85">
             {category}
           </span>
           <p className="mt-1 line-clamp-3 text-sm font-bold leading-snug text-white">{title}</p>

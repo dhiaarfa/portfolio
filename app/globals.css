@@ -37,7 +37,7 @@
 }
 
 /* ─── SECTION ALTERNATION ─── */
-.bg-section-tint   { background-color: #f8f8f8; }
+.bg-section-tint   { background-color: #f6f0d6; }
 .dark .bg-section-tint { background-color: #111111; }
 
 /* Section seams (roadmap: "a soft fade or a thin accent divider instead of
@@ -200,16 +200,16 @@ html .bg-accent { background-color: #15803d; }
    hydrates all keep the normal OS cursor. */
 html.custom-cursor-active,
 html.custom-cursor-active * {
-  cursor: none !important;
+  cursor: auto;
 }
 
 /* ─── SECTION LABELS ─── */
 .label {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--site-accent-text);
   margin-bottom: 8px;
 }
@@ -218,13 +218,12 @@ html.custom-cursor-active * {
 .card-base {
   background: #fff;
   border: 1px solid #e2e8f0;
-  border-radius: 28px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  box-shadow: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s ease;
 }
 .card-base:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+  box-shadow: none;
   border-color: #cbd5e1;
 }
 .dark .card-base {
@@ -238,7 +237,7 @@ html.custom-cursor-active * {
 }
 .card-brand:hover {
   border-color: var(--site-accent) !important;
-  box-shadow: 0 8px 28px color-mix(in oklab, var(--site-accent) 25%, transparent) !important;
+  box-shadow: none !important;
 }
 
 /* ─── BUTTONS (unified accent) ───
@@ -377,16 +376,16 @@ html.custom-cursor-active * {
 :root {
   /* Light mode colors - shadcn base tokens */
   color-scheme: light dark;
-  --background: 0 0% 98.8%; /* @radix-ui/colors gray-1 #fcfcfc */
+  --background: 50 62% 95%; /* warm cream, Nov 2026 */
   --foreground: 0 0% 12.5%; /* @radix-ui/colors gray-12 #202020 */
-  --card: 0 0% 97.6%; /* @radix-ui/colors gray-2 #f9f9f9 */
+  --card: 48 70% 98%;
   --card-foreground: 0 0% 12.5%; /* @radix-ui/colors gray-12 */
   --muted: 0 0% 91%; /* @radix-ui/colors gray-4 #e8e8e8 */
   --muted-foreground: 0 0% 39.2%; /* @radix-ui/colors gray-11 #646464 */
   --accent: var(--zia-green);
   --accent-foreground: 0 0% 5%;
   --border: 0 0% 85.1%; /* @radix-ui/colors gray-6 #d9d9d9 */
-  --radius: 1.5rem; /* Preserving existing value */
+  --radius: 0.375rem; /* Preserving existing value */
   --primary: 0 0% 12.5%; /* @radix-ui/colors gray-12 */
   --primary-foreground: 0 0% 98.8%; /* @radix-ui/colors gray-1 */
   --secondary: 0 0% 87.8%; /* @radix-ui/colors gray-5 #e0e0e0 */
@@ -445,10 +444,10 @@ html.custom-cursor-active * {
   --ink-4: #94a3b8;
   --border-token: #e2e8f0;
   --border-hover: #16a34a;
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
   --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
   --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
   --shadow-green: 0 4px 20px rgba(22,163,74,0.30);
@@ -502,7 +501,7 @@ html.custom-cursor-active * {
      (not at the very end) so Arabic glyphs -- which Inter doesn't have --
      still resolve to IBM Plex Sans Arabic's design instead of falling through to a
      generic system font; Latin text is unaffected since Inter covers it. */
-  --font-sans: var(--font-inter), var(--font-arabic), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-sans: var(--font-plex-sans), var(--font-arabic), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   /* These wrap the raw "H S% L%" triplets below in hsl(...) so the Tailwind
      utilities generated from them (bg-popover, bg-card, bg-background,
      text-foreground, border-border, and every shadcn primitive built on
@@ -543,9 +542,9 @@ html.custom-cursor-active * {
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: 14px;
-  --radius-3xl: 20px;
-  --radius-4xl: 28px;
+  --radius-2xl: 8px;
+  --radius-3xl: 10px;
+  --radius-4xl: 12px;
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -586,7 +585,6 @@ html.custom-cursor-active * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-feature-settings: "cv11", "ss01", "ss03";
     @apply bg-background text-foreground;
   }
 
@@ -609,6 +607,13 @@ html.custom-cursor-active * {
     font-family: var(--font-sans);
   }
 
+  /* Display voice: IBM Plex Serif for the two top heading levels. The
+     Arabic face follows it in the stack, so /ar headings are unaffected. */
+  h1,
+  h2 {
+    font-family: var(--font-plex-serif), var(--font-arabic), Georgia, "Times New Roman", serif;
+  }
+
   /* Coherent default weight per heading level — a plain <h1>/<h2>/<h3> with
      no extra weight utility used to inherit the body's regular (400) weight
      from Tailwind's preflight reset, which is why some headings sitewide
@@ -623,8 +628,8 @@ html.custom-cursor-active * {
      utility classes repeated on every hero/page h1 individually. h2/h3 can
      fall below 40px on small viewports (their clamps dip to 28px), so they
      keep the gentler shared letter-spacing above instead. */
-  h1 { font-size: clamp(2.75rem, 7.5vw, 5.25rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
-  h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; }
+  h1 { font-size: clamp(2.75rem, 7.5vw, 5.25rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.02; }
+  h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 600; }
   h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 700; }
   h4, h5, h6 { font-weight: 600; }
   p { @apply leading-relaxed; }
@@ -635,6 +640,14 @@ html.custom-cursor-active * {
   span {
     font-family: var(--font-sans);
   }
+
+  /* Spans inside headings keep the heading's face (the rule above forced
+     them back to sans, splitting two-tone headlines across two fonts). */
+  h1 span,
+  h2 span,
+  .font-display span {
+    font-family: inherit;
+  }
 }
 
 /* Utility font classes */
@@ -642,8 +655,8 @@ html.custom-cursor-active * {
    block above), so these three just point at the shared token now --
    General Sans is gone from the codebase entirely as of Sep 30. */
 .font-display {
-  font-family: var(--font-sans);
-  letter-spacing: 0.01em;
+  font-family: var(--font-plex-serif), var(--font-arabic), Georgia, "Times New Roman", serif;
+  letter-spacing: 0;
 }
 
 .font-heading {
@@ -663,8 +676,9 @@ html.custom-cursor-active * {
    broken, not stylish -- so Arabic gets IBM Plex Sans Arabic upright instead of inheriting
    whatever generic serif the browser happens to pick. */
 .font-accent-italic {
-  font-family: var(--font-fraunces), 'Fraunces', Georgia, 'Times New Roman', serif;
-  font-style: italic;
+  /* Name kept for callers; no longer serif italic (Nov 2026 audit). */
+  font-family: var(--font-sans);
+  font-style: normal;
 }
 
 [dir="rtl"] .font-accent-italic {
@@ -682,14 +696,15 @@ html.custom-cursor-active * {
    and optional mask (each context's fade/placement is legitimately
    different), just not the shape of the dot itself. */
 .bg-dot-grid {
-  background-image: radial-gradient(var(--site-accent) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
+  /* Dot-grid wash retired Nov 2026: with the glow it was the site's most
+     template-looking texture. Class kept so callers need no change. */
+  background-image: none;
 }
 
 /* Homepage hero: the dot grid lights up around the mouse
    (hero-annotated-portrait.tsx sets --mx/--my). */
 .hero-dot-spotlight {
-  background-image: radial-gradient(var(--site-accent) 2.25px, transparent 2.25px);
+  display: none;
   -webkit-mask-image: radial-gradient(180px circle at var(--mx, -999px) var(--my, -999px), black, transparent 70%);
   mask-image: radial-gradient(180px circle at var(--mx, -999px) var(--my, -999px), black, transparent 70%);
 }
@@ -798,7 +813,7 @@ html.custom-cursor-active * {
    different family, and no explicit weight) is very likely what read as
    "fonts not coherent" between sections. */
 .font-serif {
-  font-family: var(--font-sans);
+  font-family: var(--font-plex-serif), var(--font-arabic), Georgia, "Times New Roman", serif;
   font-weight: 700;
   letter-spacing: 0.005em;
 }
@@ -826,11 +841,11 @@ html.custom-cursor-active * {
    and visibly inflated the whole hero section. Same family/weight, smaller
    scale and slightly looser leading so a full sentence reads comfortably. */
 .h1-hero-tagline {
-  font-family: var(--font-sans);
-  font-weight: 700;
+  font-family: var(--font-plex-serif), var(--font-arabic), Georgia, serif;
+  font-weight: 600;
   letter-spacing: -0.005em;
-  line-height: 1.2;
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.12;
+  font-size: clamp(2rem, 3.6vw, 2.875rem);
   text-wrap: balance;
 }
 
@@ -1010,3 +1025,141 @@ select {
     outline-offset: 2px;
   }
 }
+
+/* Nov 2026 audit: the pulsing blur behind the hero portrait is off. */
+.hero-glow-pulse { display: none; }
+
+/* Nov 2026 audit: boxes. Bordered, filled, rounded cards were stacked on
+   every page (cards inside sections inside cards). .flat-card turns a card
+   into a ruled block: one hairline on top, no fill, no side walls. */
+.flat-card:not(.tactile) {
+  background: transparent !important;
+  border-width: 1px 0 0 0 !important;
+  border-style: solid !important;
+  border-color: hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding-inline: 0 !important;
+  transform: none !important;
+}
+.flat-card:has(> img:first-child),
+.flat-card:has(> div:first-child img) {
+  border-top-width: 0 !important;
+}
+
+/* Nov 2026 audit: one type scale. Headings had drifted page by page: h1 was
+   serif 600 on role pages and sans 800 on articles, case studies, freebies;
+   h2 ran from 23px to 60px; some h3s were larger than the h2 above them.
+   Unlayered so it wins over per-component size utilities. Headings used as
+   small labels (text-xs / text-sm / text-base) are left alone. */
+main h1 {
+  font-family: var(--font-plex-serif), var(--font-arabic), Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: clamp(2rem, 3.6vw, 2.875rem) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.01em !important;
+}
+main h2:not([class*="text-xs"]):not([class*="text-sm"]):not([class*="text-base"]) {
+  font-family: var(--font-plex-serif), var(--font-arabic), Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem) !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+}
+main h3:not([class*="text-xs"]):not([class*="text-sm"]):not(.title-lg) {
+  font-family: var(--font-sans) !important;
+  font-weight: 600 !important;
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem) !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+}
+main h3.title-lg {
+  font-weight: 600 !important;
+  font-size: clamp(1.375rem, 2.2vw, 1.75rem) !important;
+  line-height: 1.2 !important;
+}
+[dir="rtl"] main h1, [dir="rtl"] main h2 { letter-spacing: 0 !important; line-height: 1.5 !important; }
+/* One button shape site-wide (pills and 8px/11.5px corners were mixed). */
+.btn-green, .btn-outline, .btn-ghost { border-radius: 8px !important; }
+
+/* Touch targets: 44px minimum on coarse pointers */
+@media (pointer: coarse) {
+  footer a, nav a, nav button, main .btn-green, main .btn-outline, main .btn-ghost {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* ---------- Nov 2026 "tactile editorial" layer ----------
+   Replaces the flat-only pass. Real objects instead of ghosted boxes:
+   solid ink outline, hard offset shadow (no blur, no glow), colour blocks
+   per discipline, a slow marquee and a rotated sticker. Motion only where
+   it tells you something: lift on hover, strip drift, count-up. */
+:root { --tactile-ink: #14140f; --tactile-shadow: #14140f; --block-lime: #c8ff3d; --block-sand: #f3e3c3; --block-ink: #14140f; }
+.dark { --tactile-ink: #f4f4ef; --tactile-shadow: #aaff00; }
+
+.tactile {
+  border: 2px solid var(--tactile-ink) !important;
+  border-radius: 16px !important;
+  box-shadow: 6px 6px 0 var(--tactile-shadow) !important;
+  transition: transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .18s cubic-bezier(.2,.8,.2,1);
+}
+a.tactile:hover, .tactile-hover:hover {
+  transform: translate(-3px, -3px) !important;
+  box-shadow: 9px 9px 0 var(--tactile-shadow) !important;
+}
+a.tactile:active { transform: translate(3px, 3px) !important; box-shadow: 2px 2px 0 var(--tactile-shadow) !important; }
+[dir="rtl"] .tactile { box-shadow: -6px 6px 0 var(--tactile-shadow) !important; }
+
+.block-lime { background: var(--block-lime); color: #14140f; }
+.block-sand { background: var(--block-sand); color: #14140f; }
+.block-ink  { background: var(--block-ink);  color: #f4f4ef; }
+.dark .block-ink { border-color: #f4f4ef !important; }
+.block-lime *, .block-sand * { --tw-text-opacity: 1; }
+.block-lime .muted, .block-sand .muted { color: rgba(20,20,15,.72); }
+.block-ink .muted { color: rgba(244,244,239,.72); }
+
+.marquee { overflow: hidden; border-block: 2px solid var(--tactile-ink); background: var(--block-lime); color: #14140f; }
+.marquee-track { display: flex; width: max-content; animation: marquee-x 38s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-item { padding: .9rem 1.6rem; font-family: var(--font-display, inherit); font-size: clamp(1.25rem, 2.6vw, 1.9rem); font-weight: 600; white-space: nowrap; }
+.marquee-item::after { content: "✺"; margin-inline-start: 1.6rem; font-size: .7em; }
+@keyframes marquee-x { to { transform: translateX(-50%); } }
+[dir="rtl"] .marquee-track { animation-name: marquee-x-rtl; }
+@keyframes marquee-x-rtl { to { transform: translateX(50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } .marquee { overflow-x: auto; } }
+
+.sticker {
+  display: inline-block; transform: rotate(-4deg); padding: .35rem .8rem; border-radius: 999px;
+  background: var(--block-lime); color: #14140f; border: 2px solid var(--tactile-ink);
+  font-weight: 700; font-size: .8rem;
+}
+.tilt-l { transform: rotate(-.8deg); } .tilt-r { transform: rotate(.8deg); }
+.tilt-l:hover, .tilt-r:hover { transform: rotate(0) translate(-3px,-3px) !important; }
+
+/* defaults for cards converted from .flat-card */
+.tactile { overflow: hidden; }
+.tactile:not([class*="block-"]) { background: hsl(var(--card)) !important; }
+.tactile:not([class*="p-"]):not([class*="px-"]):not([class*="py-"]):not(:has(> img:first-child)):not(:has(> div:first-child img)) { padding: 1.25rem !important; }
+/* friendlier buttons: same ink outline + hard shadow language */
+.btn-green, .btn-outline, .btn-ghost { border-radius: 999px !important; }
+.btn-green { border: 2px solid var(--tactile-ink) !important; box-shadow: 3px 3px 0 var(--tactile-shadow) !important; transition: transform .15s, box-shadow .15s; }
+.btn-green:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--tactile-shadow) !important; }
+.btn-outline { border: 2px solid var(--tactile-ink) !important; }
+.sticker { max-width: 100%; white-space: normal; }
+
+:root { --block-sky: #a9bde8; }
+.block-sky { background: var(--block-sky); color: #14140f; }
+.block-sky .muted { color: rgba(20,20,15,.72); }
+.paren { font-size: .8rem; letter-spacing: .06em; font-weight: 600; opacity: .75; }
+.paren::before { content: "("; } .paren::after { content: ")"; }
+.desk-chip { position: absolute; z-index: 2; display: inline-flex; align-items: center; gap: .4rem; padding: .4rem .8rem; border-radius: 999px; background: hsl(var(--card)); border: 2px solid var(--tactile-ink); box-shadow: 3px 3px 0 var(--tactile-shadow); font-weight: 700; font-size: .8rem; color: hsl(var(--foreground)); }
+@media (max-width: 1023px) { .desk-chip { display: none; } }
+@media (prefers-reduced-motion: no-preference) { .desk-chip { animation: chip-bob 5s ease-in-out infinite; } .desk-chip:nth-of-type(2n) { animation-delay: -2s; } }
+@keyframes chip-bob { 50% { translate: 0 -6px; } }
+.gallery-tile { border: 2px solid var(--tactile-ink); box-shadow: 4px 4px 0 var(--tactile-shadow); transition: transform .18s; }
+.gallery-tile:nth-child(3n+1) { rotate: -1.2deg; } .gallery-tile:nth-child(3n+2) { rotate: .9deg; }
+.gallery-tile:hover { rotate: 0deg; transform: translate(-2px,-2px); }
+html:not(.dark) body { background-color: #faf6e3 !important; }
+.taped::before { content: ""; position: absolute; top: 10px; left: 50%; width: 76px; height: 22px; transform: translateX(-50%) rotate(-3deg); background: rgba(200,255,61,.92); border: 1px solid rgba(20,20,15,.4); z-index: 5; }

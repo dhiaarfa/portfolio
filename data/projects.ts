@@ -19,7 +19,7 @@ export const webProjects: Project[] = [
       "Réalisé seul, de bout en bout, en 5 sprints Scrum : routage multi-LLM via OpenRouter, 109 tests automatisés sur 24 fichiers, déployé sur Vercel. Mon projet de fin d'études, construit comme pour un vrai client.",
     descriptionAr:
       "أنجزته بمفردي من البداية إلى النهاية عبر 5 سباقات Scrum: توجيه بين عدة نماذج لغوية عبر OpenRouter، و109 اختبارات آلية في 24 ملفاً، ونشر على Vercel. مشروع تخرّجي، بنيته كما أبني لعميل حقيقي.",
-    tags: ["Next.js 15", "Supabase", "AI SDK"],
+    tags: ["Next.js 16", "Supabase", "AI SDK"],
     image: "/images/projects/digimytch/landing.png",
     // Internal case study (opens in the same tab -- see ProjectStack).
     href: "/work/digimytch",
@@ -28,7 +28,7 @@ export const webProjects: Project[] = [
     name: "dhia-portfolio.com",
     meta: "2026 · Personal site",
     description:
-      "The site you're on right now -- Next.js 15, Tailwind v4, and Framer Motion, shipped on Vercel. Click through for a closer look at the code and the motion details.",
+      "The site you're on right now -- Next.js 16, Tailwind v4, and Framer Motion, shipped on Vercel. Click through for a closer look at the code and the motion details.",
     tags: ["Next.js", "Tailwind v4", "Framer Motion"],
     // Dhia's ask: use his own hero photo for this card instead of a site
     // screenshot -- it's his personal site, so his face is the more

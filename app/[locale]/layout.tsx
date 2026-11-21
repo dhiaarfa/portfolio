@@ -66,7 +66,10 @@ export default async function LocaleLayout({
       {/* This locale's dictionary only, so the client bundle carries no French
           or Arabic copy (see components/language-provider.tsx). */}
       <LanguageProvider initialLanguage={locale as Language} initialMessages={locale === "ar" ? ar : fr}>
-        {children}
+        {/* Static HTML for crawlers and screen readers: the subtree states its own
+            language and direction even though <html> (root layout) says "en"
+            until the script above runs. display:contents leaves layout alone. */}
+        <div lang={locale} dir={dir} className="contents">{children}</div>
       </LanguageProvider>
     </>
   )

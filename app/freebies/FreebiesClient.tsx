@@ -269,7 +269,7 @@ export default function FreebiesClient() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.4, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                  className={`relative overflow-hidden rounded-2xl border flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer bg-card ${colors.border} ${isFeaturedTile ? "sm:col-span-2" : ""}`}
+                  className={`tactile tactile-hover relative overflow-hidden rounded-2xl border flex flex-col transition-all hover:shadow-lg cursor-pointer bg-card ${colors.border} ${isFeaturedTile ? "sm:col-span-2" : ""}`}
                   onClick={() => !isUnlocked && setSelectedFreebie(freebie)}
                 >
                   {freebie.bgImage ? (
@@ -339,7 +339,7 @@ export default function FreebiesClient() {
                   </span>
 
                   <div>
-                    <h2 className={`font-bold text-foreground leading-snug ${isFeaturedTile ? "text-lg lg:text-xl" : "text-base lg:text-lg"}`}>{freebieText(freebie, "title", t)}</h2>
+                    <h3 className={`font-bold text-foreground leading-snug ${isFeaturedTile ? "text-lg lg:text-xl" : "text-base lg:text-lg"}`}>{freebieText(freebie, "title", t)}</h3>
                     <p className="text-sm lg:text-base text-muted-foreground mt-2 leading-relaxed">{freebieText(freebie, "description", t)}</p>
                   </div>
 
@@ -380,12 +380,12 @@ export default function FreebiesClient() {
           )}
 
           {activeCategory === "all" && (
-            <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-6 flex flex-col justify-center text-center gap-4 min-h-[280px]">
+            <div className="tactile tactile-hover rounded-2xl border border-dashed border-border bg-muted/30 p-6 flex flex-col justify-center text-center gap-4 min-h-[280px]">
               <div className="w-12 h-12 rounded-xl bg-accent-subtle flex items-center justify-center mx-auto">
                 <Mail className="w-6 h-6 text-accent" />
               </div>
               <div>
-                <h2 className="font-bold text-foreground text-lg">{t("freebies.moreComingTitle")}</h2>
+                <h3 className="font-bold text-foreground text-lg">{t("freebies.moreComingTitle")}</h3>
                 <p className="text-sm text-muted-foreground mt-2">{t("freebies.moreComingDesc")}</p>
               </div>
               {/* "/contact" is not a real route on this site (every other CTA uses
@@ -442,7 +442,7 @@ export default function FreebiesClient() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.4, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-accent/30 hover:shadow-md hover:-translate-y-1"
+                  className="tactile tactile-hover flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-accent/30 hover:shadow-md"
                 >
                   {resource.youtubeId && (
                     <div className="relative aspect-video bg-muted">
@@ -475,7 +475,7 @@ export default function FreebiesClient() {
                         <Icon className="h-4 w-4" />
                       </span>
                       <div>
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                        <span className="text-[10px] font-bold text-muted-foreground">
                           {resourceCategoryLabel(resource.category, t)} · {resource.type}
                         </span>
                         <h3 className="font-semibold text-foreground leading-snug mt-0.5">{t(resource.titleKey)}</h3>

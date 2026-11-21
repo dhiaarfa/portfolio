@@ -74,9 +74,9 @@ const traits: { Icon: LucideIcon; subjectKey: string; proof: Proof }[] = [
     Icon: Sparkles,
     subjectKey: 'radarCulturalFit',
     proof: {
-      en: 'Sessions delivered in Tunisia, Morocco and Qatar, with multilingual groups.',
-      fr: 'Sessions animées en Tunisie, au Maroc et au Qatar, avec des groupes multilingues.',
-      ar: 'جلسات في تونس والمغرب وقطر مع مجموعات متعددة اللغات.',
+      en: 'Sessions delivered in Tunisia and Morocco, with multilingual groups.',
+      fr: 'Sessions animées en Tunisie et au Maroc, avec des groupes multilingues.',
+      ar: 'جلسات في تونس والمغرب مع مجموعات متعددة اللغات.',
     },
   },
 ]
@@ -124,7 +124,7 @@ export default function ValueRadarChart() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-1">
+          <p className="text-xs font-semibold text-accent mb-1">
             {t('radarLabel')}
           </p>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white">
@@ -135,7 +135,7 @@ export default function ValueRadarChart() {
           </p>
         </motion.div>
 
-        <div className="rounded-2xl border border-border bg-card p-5 md:p-8">
+        <div className="tactile tactile-hover rounded-2xl border border-border bg-card p-5 md:p-8">
           {/* Redesign (Oct 2026): the old layout was a 2-col grid with
               items-center -- a short 3-row chip grid next to a taller
               4-row list left a visible block of dead space on wide

@@ -55,7 +55,7 @@ export function ResumeMobileList() {
 
   return (
     <div className="px-4 py-3">
-      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-2 flex items-center gap-1.5">
+      <p className="text-xs font-semibold text-slate-400 dark:text-slate-500 mb-2 flex items-center gap-1.5">
         <FileText className="w-3.5 h-3.5" />
         {t("resumesMenuTitle")}
       </p>

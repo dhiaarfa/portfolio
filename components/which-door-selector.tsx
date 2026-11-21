@@ -39,7 +39,7 @@ export default function WhichDoorSelector({ active, onChange }: Props) {
     >
       <div className="max-w-4xl mx-auto text-center">
         <FadeUp>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent mb-2">
+          <p className="text-xs font-semibold text-accent mb-2">
             {t("whichDoorEyebrow")}
           </p>
           <h2 className="font-serif text-[clamp(20px,2.6vw,28px)] text-slate-900 dark:text-white mb-6">

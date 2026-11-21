@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/html-escape"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import DeveloperPageClient from "../../developer/DeveloperPageClient"
@@ -84,7 +85,7 @@ export default async function LocaleDeveloperPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <DeveloperPageClient />
     </>
   )

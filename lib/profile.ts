@@ -21,12 +21,12 @@
 export const SITE_URL = "https://www.dhia-portfolio.com"
 
 // Stats verified against CV_General_Detailed_MohamedDhiaArfa.pdf (Aug 2026): 477+ training
-// hours across 51 events to 1,120+ participants. Previous figures (1000+/450+) were stale.
+// hours across 55 training sessions (trainer log sheet, Nov 2026: 699 participants in trainings + 436 in facilitations = 1,135 reached). Previous figures (1000+/450+) were stale.
 export const profileStats = {
   participantsTrained: { value: 1120, suffix: "+", label: "Participants trained" },
   trainingHours: { value: 477, suffix: "+", label: "Training hours" },
   facilitationHours: { value: 30, suffix: "+", label: "Facilitation hours" },
-  trainingCycles: { value: 51, suffix: "+", label: "Training events" },
+  trainingCycles: { value: 55, suffix: "", label: "Training sessions" },
   yearsExperience: { value: 7, suffix: "+", label: "Years experience" },
   designProjects: { value: 50, suffix: "+", label: "Design projects" },
   brands: { value: 20, suffix: "+", label: "Brands" },

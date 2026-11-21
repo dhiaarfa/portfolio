@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import Anthropic from "@anthropic-ai/sdk"
 import { CHAT_MODEL, CHAT_SYSTEM_PROMPT } from "@/lib/chat-config"
-import { checkRateLimit } from "@/lib/rate-limit"
+import { checkRateLimit, clientIp, isAllowedOrigin } from "@/lib/rate-limit"
 
 type ChatMessage = { role: "user" | "assistant"; content: string }
 
@@ -17,12 +17,14 @@ function getClient() {
 
 export async function POST(req: NextRequest) {
   try {
-    const ip =
-      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-      req.headers.get("x-real-ip") ||
-      "unknown"
+    if (!isAllowedOrigin(req)) {
+      return NextResponse.json({ error: "Forbidden." }, { status: 403 })
+    }
+    const ip = clientIp(req)
 
-    if (!checkRateLimit(`chat:${ip}`, 20)) {
+    // 6 a minute and 20 an hour per visitor: enough for a real conversation,
+    // too few to run up the model bill from one address.
+    if (!checkRateLimit(`chat-burst:${ip}`, 6, 60 * 1000) || !checkRateLimit(`chat:${ip}`, 20)) {
       return NextResponse.json({ error: "Too many messages. Please wait a moment." }, { status: 429 })
     }
 
@@ -126,7 +128,7 @@ async function openRouterReply(messages: ChatMessage[]) {
   const data = await res.json()
   const reply = data.choices?.[0]?.message?.content?.trim()
   if (!res.ok || !reply) {
-    console.error("[CHAT] OpenRouter error:", data)
+    console.error("[CHAT] OpenRouter error:", res.status)
     return NextResponse.json({ error: "Could not get a reply. Try again." }, { status: 502 })
   }
   return NextResponse.json({ reply })

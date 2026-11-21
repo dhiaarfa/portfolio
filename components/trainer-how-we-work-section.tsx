@@ -19,7 +19,7 @@ export default function TrainerHowWeWorkSection() {
             field" gallery after the hero -- a genuine fit here since the
             photo shows exactly the facilitation process this section
             describes. */}
-        <div className="relative overflow-hidden rounded-[2rem] border border-border mb-10">
+        <div className="relative overflow-hidden rounded-lg border border-border mb-10">
           <div className="relative aspect-[4/3] sm:aspect-[21/9]">
             <Image
               src="/images/trainer/moment-keynote.jpg"
@@ -50,7 +50,7 @@ export default function TrainerHowWeWorkSection() {
             const title = lang === "fr" ? step.titleFr : lang === "ar" ? step.titleAr : step.titleEn
             const desc = lang === "fr" ? step.descFr : lang === "ar" ? step.descAr : step.descEn
             return (
-              <div key={step.step} className="rounded-2xl border border-border bg-card p-5">
+              <div key={step.step} className="tactile tactile-hover rounded-2xl border border-border bg-card p-5">
                 <div className="mb-3 flex items-center justify-between">
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-subtle text-accent">
                     <Icon className="h-4 w-4" />

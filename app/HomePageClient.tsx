@@ -1,30 +1,20 @@
 "use client"
 
 import { Link } from "next-view-transitions"
-import { ArrowRight, BookOpen, Palette, Users, Code, Code2, Send, Calendar, Download, Linkedin, Sparkles } from "lucide-react"
+import { ArrowRight, BookOpen, Palette, Users, Code, Code2, Calendar, Download, Linkedin } from "lucide-react"
 import Navbar from "@/components/navbar-new"
 import { WhatsAppIcon } from "@/lib/brand-icon"
 import Footer from "@/components/footer"
-import Image from "next/image"
-import { useState } from "react"
 import { siteConfig } from "@/lib/site-config"
 import { AnimatedNumber } from "@/components/ui/animated-number"
 import ClientLogosStrip from "@/components/client-logos-strip"
-import ToolkitStrip from "@/components/toolkit-strip"
 import HeroAnnotatedPortrait from "@/components/hero-annotated-portrait"
-import StatsSection from "@/components/stats-section"
-import JourneySection from "@/components/journey-section"
-import ServicePackages from "@/components/service-packages"
 import HowWeWorkSection from "@/components/how-we-work-section"
-import ProjectStack from "@/components/sections/ProjectStack"
+import WorkList from "@/components/sections/WorkList"
 import { selectedWork, localizeProject } from "@/data/projects"
-import NewsletterSection from "@/components/newsletter-section"
 import { useLanguage } from "@/components/language-provider"
 import { FadeUp } from "@/components/ui/motion"
-import ResourcesInsightsStrip from "@/components/resources-insights-strip"
-import { TestimonialsShowcase } from "@/components/testimonials-showcase"
-import WhichDoorSelector from "@/components/which-door-selector"
-import { type Pillar, pillarToInsightsFocus, pillarToTestimonialTag } from "@/lib/which-door"
+import HomeQuotes from "@/components/home-quotes"
 
 /** Master roadmap (Oct 2026), 1.2 "Freeze rotating role line": this used
  *  to cycle one role at a time every 2.8s ("A Creative Graphic Designer"
@@ -63,54 +53,8 @@ function askAI(prompt?: string) {
   window.dispatchEvent(new CustomEvent("dhia:ask-ai", { detail: { prompt } }))
 }
 
-function HeroAskBar() {
-  const { t } = useLanguage()
-  const [value, setValue] = useState("")
-
-  // Implementation-prompts pass (Sep 2026), P1 "Hero CTA hierarchy": this
-  // used to also render 6 canned-question pills (Work/What I Do/
-  // Availability/Chat/Resume/LinkedIn) above this input, competing with the
-  // primary Book-a-call / secondary Explore-work pair for attention. Resume
-  // and LinkedIn moved into the compact icon row next to those buttons;
-  // the canned questions were redundant with that same row plus the
-  // floating assistant, so they're gone rather than relocated. Only the
-  // free-text ask input remains here, visually de-emphasized (smaller,
-  // muted) since it's now a secondary path, not the first thing offered.
-  return (
-    <form
-      // focus-within ring (roadmap 3.1): the input itself drops its outline
-      // to stay borderless inside the pill, so the pill shows focus instead.
-      className="mt-5 flex max-w-[420px] items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 px-2 py-1 pl-4 backdrop-blur-sm dark:border-border/70 dark:bg-card/50 has-[input:focus-visible]:ring-2 has-[input:focus-visible]:ring-accent"
-      onSubmit={(e) => {
-        e.preventDefault()
-        if (!value.trim()) return
-        askAI(value)
-        setValue("")
-      }}
-    >
-      <Sparkles className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder={t("heroAskPlaceholder")}
-        className="flex-1 bg-transparent text-xs text-slate-600 placeholder:text-slate-400 focus:outline-none dark:text-slate-300 dark:placeholder:text-slate-500"
-      />
-      <button
-        type="submit"
-        aria-label="Send"
-        className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 transition-transform hover:scale-105 disabled:opacity-40"
-        disabled={!value.trim()}
-      >
-        <Send className="h-3 w-3" />
-      </button>
-    </form>
-  )
-}
-
 export default function HomePageClient() {
   const { t, language } = useLanguage()
-  const [pillar, setPillar] = useState<Pillar>(null)
   const roles = [
     {
       title: "Trainer",
@@ -139,7 +83,7 @@ export default function HomePageClient() {
   ]
 
   return (
-    <div className="w-full min-h-screen bg-white dark:bg-background">
+    <div className="w-full min-h-screen bg-background">
       <Navbar />
 
       <main id="main-content">
@@ -172,11 +116,12 @@ export default function HomePageClient() {
               itself now follows the site theme (light bg/dark text in
               light mode, dark bg/light text in dark mode) instead of
               forcing dark regardless of theme. */}
+          <span className="sticker mb-3">{language === "fr" ? "Disponible pour projets" : language === "ar" ? "متاح لمشاريع جديدة" : "Open for new projects"}</span>
           <p className="text-base sm:text-lg font-medium text-slate-500 dark:text-slate-400 mb-2">
             {t("helloGreeting")}{" "}
             <span className="text-slate-900 dark:text-white font-semibold">{language === "ar" ? "ضياء" : "Dhia"}</span>
           </p>
-          <h1 className="h1-hero-tagline text-slate-900 dark:text-white mb-2 transition-[text-shadow] duration-300 hover:[text-shadow:0_0_18px_var(--site-accent)]">
+          <h1 className="h1-hero-tagline text-slate-900 dark:text-white mb-2">
             {/* Dhia's ask: a real line break after "build." rather than
                 whatever the browser's own wrap happens to land on. */}
             {t("homeHeroTaglinePart1")}
@@ -185,7 +130,6 @@ export default function HomePageClient() {
                 full strength, the context muted, so the eye reads it first. */}
             <span className="text-slate-500 dark:text-slate-400">{t("homeHeroTaglinePart2")}</span>
           </h1>
-          <StaticRole />
           {/* Implementation-prompts pass (Sep 2026), P2 "Kill duplicate
               stats": this hero used to also carry its own 3-number micro
               stats row (participants/projects/years), a partial repeat of
@@ -225,88 +169,35 @@ export default function HomePageClient() {
 
           {/* Proof chips (inspiration brief, step 4): three facts inside the
               first screen; the full stats strip further down stays. */}
-          <ul className="mt-4 flex flex-wrap gap-2" aria-label="Highlights">
-            {["heroProof1", "heroProof2", "heroProof3"].map((key) => (
-              <li
-                key={key}
-                className="rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-xs font-medium text-slate-600 backdrop-blur-sm dark:border-border dark:bg-card/60 dark:text-slate-300"
-              >
-                {t(key)}
-              </li>
-            ))}
-          </ul>
+          <p className="mt-5 text-sm text-slate-600 dark:text-slate-300">
+            {["heroProof1", "heroProof2", "heroProof3"].map((key) => t(key)).join(" · ")}
+          </p>
 
-          <div className="flex items-center gap-2 mt-4">
-            {[
-              { href: siteConfig.resumePdfUrl, icon: Download, label: t("downloadResumePdf"), external: true },
-              { href: siteConfig.linkedin, icon: Linkedin, label: "LinkedIn", external: true },
-              { href: `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(siteConfig.whatsappMessage)}`, icon: WhatsAppIcon, label: "WhatsApp", external: true },
-              { href: `mailto:${siteConfig.email}`, icon: null, label: "Email", external: false },
-            ].map(({ href, icon: Icon, label, external }) => (
-              <a
-                key={label}
-                href={href}
-                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                aria-label={label}
-                title={label}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-600 backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-accent dark:border-border dark:bg-card/70 dark:text-slate-300"
-              >
-                {Icon ? <Icon className="h-4 w-4" /> : <span className="text-[10px] font-bold">@</span>}
-              </a>
-            ))}
-          </div>
 
-          {/* De-emphasized "ask me anything" input, opens the existing
-              floating AI assistant (see askAI() / floating-actions.tsx)
-              instead of duplicating a second chat UI. Sits after the
-              primary/secondary CTAs and icon row per P1, not competing
-              with booking for first attention. */}
-          <HeroAskBar />
+          <span className="desk-chip" style={{ top: "6%", right: "4%", rotate: "5deg" }} aria-hidden>(01) Figma</span>
+          <span className="desk-chip" style={{ top: "38%", right: "-2%", rotate: "-4deg" }} aria-hidden>(02) Workshops</span>
+          <span className="desk-chip" style={{ bottom: "12%", right: "8%", rotate: "3deg" }} aria-hidden>(03) Next.js</span>
         </div>
       </HeroAnnotatedPortrait>
 
-      {/* Master roadmap 5.1 (Oct 2026): "Who I help" -- names the three
-          buyer types in plain words right under the hero, so a cold visitor
-          can recognise themselves before reading any service detail.
-          Deliberately quiet: plain text with small icons, no links or
-          buttons (the roadmap is explicit that this must not become a
-          third CTA row). Copy is the roadmap's draft; edit in translations.ts. */}
-      <section aria-labelledby="who-i-help" className="bg-white dark:bg-background px-4 py-8 sm:py-10">
-        <div className="max-w-5xl mx-auto">
-          <h2 id="who-i-help" className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground text-center mb-5">
-            {t("homeWhoIHelpLabel")}
-          </h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
-            {[
-              { Icon: Palette, tagKey: "homeWhoIHelpTag1", key: "homeWhoIHelp1" },
-              { Icon: Users, tagKey: "homeWhoIHelpTag2", key: "homeWhoIHelp2" },
-              { Icon: Code2, tagKey: "homeWhoIHelpTag3", key: "homeWhoIHelp3" },
-            ].map(({ Icon, tagKey, key }) => (
-              <li key={key} className="flex items-start gap-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
-                <span>
-                  <span className="block text-xs font-semibold text-slate-900 dark:text-white mb-0.5">{t(tagKey)}</span>
-                  {t(key)}
-                </span>
-              </li>
-            ))}
-          </ul>
+      <div className="marquee" aria-hidden="true">
+        <div className="marquee-track">
+          {[0, 1].map((k) =>
+            ["Brand identity", "Youth training", "Next.js sites", "UI/UX", "Workshops", "Motion", "Arabic · French · English", "Print", "Web apps", "Facilitation"].map((w) => (
+              <span key={`${k}-${w}`} className="marquee-item">{w}</span>
+            ))
+          )}
         </div>
-      </section>
+      </div>
 
       {/* My Expertise Bento */}
       <section id="expertise" className="bg-section-tint section-compact px-4">
         <div className="max-w-5xl mx-auto">
           <FadeUp>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent text-center mb-2">
-              {t("myExpertise")}
-            </p>
-            <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] text-center text-slate-900 dark:text-white leading-snug mb-4">
-              {t("homeExpertiseLine1")}
-              <br />
-              {t("homeExpertiseLine2")}
+            <h2 className="font-display text-[clamp(28px,4vw,46px)] text-slate-900 dark:text-white leading-tight mb-3 max-w-3xl">
+              {t("homeExpertiseLine1")} {t("homeExpertiseLine2")}
             </h2>
-            <p className="text-center text-muted-foreground text-base lg:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-muted-foreground text-base lg:text-lg max-w-2xl mb-10 leading-relaxed">
               {t("homeExpertiseDesc")}
             </p>
           </FadeUp>
@@ -322,7 +213,7 @@ export default function HomePageClient() {
               Every card now shares one icon treatment, one dot-grid-textured
               surface, and one accent color -- distinguished only by its own
               title/description/stats, exactly like the rest of the site. */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pb-3">
             {[
               {
                 role: roles[1],
@@ -358,119 +249,35 @@ export default function HomePageClient() {
                 flagship: "DigiMyTech Talent Hub, graduation project",
               },
             ].map(
-              (card) =>
+              (card, idx) =>
                 card.role && (
                   <Link
                     key={card.role.slug}
                     href={`/${card.role.slug}`}
-                    className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-slate-100 dark:border-border bg-white dark:bg-card shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-500 p-7"
+                    className={`tactile group flex flex-col p-6 md:p-7 min-h-[300px] ${["block-lime", "block-sky", "block-ink"][idx]}`}
                   >
-                    {/* Dot-grid texture -- the same hero-section pattern,
-                        generalized here -- in place of the old per-card
-                        colored wash and low-opacity photo watermark. */}
-                    <div
-                      className="absolute inset-0 bg-dot-grid opacity-[0.5] dark:opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"
-                      aria-hidden
-                    />
-
-                    <div className="relative flex flex-col flex-1">
-                      <div className="flex items-start justify-between mb-5">
-                        <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-accent-gradient">
-                          <card.icon className="w-5 h-5 text-white" aria-hidden />
-                        </span>
-                        <span className="text-[12px] font-semibold uppercase tracking-[0.14em] px-3 py-1 rounded-full bg-accent-subtle text-accent">
-                          {t(card.eyebrowKey)}
-                        </span>
-                      </div>
-                      <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white mb-2">{card.title}</h3>
-                      <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">
-                        {t(card.role.descriptionKey)}
-                      </p>
-
-                      {card.tags && (
-                        <div className="flex gap-2 flex-wrap mb-5">
-                          {card.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="text-xs font-medium rounded-full px-3 py-1 border bg-accent-subtle text-accent border-accent/20"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-
-                      {card.stats && (
-                        <div className="flex gap-6 pb-5 border-b border-slate-100 dark:border-border mb-4">
-                          {card.stats.map(([val, label]) => (
-                            <div key={label} className="min-w-[64px]">
-                              <AnimatedNumber
-                                value={Number(val)}
-                                suffix="+"
-                                instant
-                                className="block font-display font-bold text-lg text-slate-900 dark:text-white leading-none tabular-nums"
-                              />
-                              <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{label}</p>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-
-                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent group-hover:gap-2 transition-all">
-                        {t(card.role.cta)}
-                        <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180" />
-                      </span>
-                    </div>
+                    <span className="font-display text-5xl md:text-6xl leading-none" aria-hidden>({idx + 1})</span>
+                    <h3 className="title-lg font-display text-2xl md:text-[1.75rem] leading-tight mt-6">
+                      {card.title}
+                    </h3>
+                    <p className="muted text-base leading-relaxed mt-2">
+                      {t(card.role.descriptionKey)}
+                    </p>
+                    <p className="muted mt-3 text-sm">
+                      {card.stats
+                        ? card.stats.map(([val, label]) => `${Number(val).toLocaleString("en-US")}+ ${label}`).join(" · ")
+                        : card.tags?.join(" · ")}
+                    </p>
+                    <span className="mt-auto pt-6 inline-flex items-center gap-2 text-sm font-bold underline decoration-2 underline-offset-4">
+                      {t(card.role.cta)}
+                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1.5 rtl:rotate-180 rtl:group-hover:-translate-x-1.5" />
+                    </span>
                   </Link>
                 )
             )}
           </div>
         </div>
       </section>
-
-      {/* Implementation-prompts pass (Sep 2026), P4 "How we work": placed
-          right after the expertise cards per the prompt brief, before Zia
-          Studio -- first-time visitors now see what happens after booking
-          before they hit the Zia Studio / stats / testimonials content. */}
-      <HowWeWorkSection />
-
-      {/* Zia Studio, dedicated section. Was hardcoded to the same near-black
-          background in both light and dark mode -- always rendered dark
-          regardless of the visitor's theme, which is the bug being fixed
-          here. Now uses the site's theme-aware bg-card token like every
-          other section (the logo itself already has its own black lockup
-          backdrop baked into the PNG, so it still reads as a framed logo
-          either way). */}
-      <section className="section-compact px-6 bg-card">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          <div className="flex-shrink-0 rounded-2xl overflow-hidden">
-            <Image
-              src="/images/zia/zia-logo-full.png"
-              alt="Zia Studio"
-              width={180}
-              height={64}
-              className="object-contain"
-            />
-          </div>
-          <div className="flex-1 text-center md:text-left">
-            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-2">{t("homeCreativeAgency")}</p>
-            <p className="text-foreground text-lg leading-relaxed mb-6">
-              {t("homeZiaDesc")}
-            </p>
-            <a href="#contact" className="btn-green">
-              {t("workWithZiaStudio")}
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Client Logos */}
-      <ClientLogosStrip />
-
-      {/* Toolkit, condensed cross-discipline sample -- the small icon strip
-          visitors see first. */}
-      <ToolkitStrip />
 
       {/* Cards Almanac-style project stacks (Dhia's port of the GetLayers.ai
           effect, Sep 2026) -- one for web dev, one for design, placed right
@@ -480,8 +287,25 @@ export default function HomePageClient() {
           are merged into one mixed "Selected work" stack -- see
           selectedWork in data/projects.ts. The link row underneath gives
           each track, training included, a next step from the proof. */}
-      <ProjectStack
-        eyebrow={t("homeSelectedWorkEyebrow")}
+      <section className="px-4 py-14 md:py-20">
+        <div className="max-w-5xl mx-auto tactile block-ink p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 md:gap-x-6">
+          {[
+            [siteConfig.stats.participants, "statParticipantsTrained"],
+            [siteConfig.stats.trainingHours, "statTrainingHoursLabel"],
+            [siteConfig.stats.designProjects, "statDesignProjectsLabel"],
+            [siteConfig.stats.yearsExperience, "statYearsExperienceLabel"],
+          ].map(([val, key]) => (
+            <div key={String(key)}>
+              <div className="font-display text-4xl sm:text-5xl md:text-6xl leading-none" style={{ color: "var(--block-lime)" }}>
+                <AnimatedNumber value={Number(val)} suffix="+" instant />
+              </div>
+              <p className="muted mt-3 text-sm">{t(String(key))}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <WorkList
         title={t("homeSelectedWorkTitle")}
         subtitle={t("homeSelectedWorkSubtitle")}
         projects={selectedWork.map((p) => localizeProject(p, language))}
@@ -499,71 +323,40 @@ export default function HomePageClient() {
         ))}
       </nav>
 
-      {/* Implementation-prompts pass (Sep 2026), P5 "Collapse tools/stack
-          noise on Home": the full grouped table used to render here, right
-          after ToolkitStrip's own condensed preview of the same tools --
-          two back-to-back renderings of one dataset, on top of Designer/
-          Trainer/Developer each already showing their own filtered slice
-          of it (see DesignerPageClient.tsx / TrainerClientPage.tsx /
-          DeveloperPageClient.tsx). Removed here; ToolkitStrip above now
-          links to /developer for the complete breakdown instead of
-          repeating it. */}
+      {/* Nov 2026 audit: Home is six blocks -- hero, three doors, selected
+          work, organisations, recommendations, process. Stats, credentials,
+          tools, the service filter, articles and the newsletter repeated
+          what the role pages and /about already say; they live there now. */}
+      {/* Client Logos */}
+      <ClientLogosStrip />
 
-      {/* Stats */}
-      <StatsSection />
+      <HomeQuotes ids={["yassine", "youssef", "amir"]} />
 
-      {/* My Journey, compact credentials snapshot (certs, education,
-          experience, civic work) that used to live on the now-removed
-          About page. Kept small on purpose: one tabbed card, one category
-          visible at a time. */}
-      <JourneySection />
+      {/* Implementation-prompts pass (Sep 2026), P4 "How we work": placed
+          right after the expertise cards per the prompt brief, before Zia
+          Studio -- first-time visitors now see what happens after booking
+          before they hit the Zia Studio / stats / testimonials content. */}
+      <HowWeWorkSection />
 
-      {/* "Which door do you need?" filter (checklist 6.13) -- narrows the
-          Service Packages, Testimonials, and Insights/Freebies sections
-          below to one pillar at a time. Defaults to showing everything. */}
-      <WhichDoorSelector active={pillar} onChange={setPillar} />
-
-      {/* Service Packages */}
-      <ServicePackages pillar={pillar} />
-
-      {/* Master roadmap 2.1 follow-up (Oct 2026, Dhia's call): the "Ways we
-          work together" radar chart (components/value-radar-chart.tsx) was
-          removed from Home -- ~1k px of self-rated chart rather than proof.
-          The component is kept; to restore, re-add its dynamic(() =>
-          import(...), { ssr: false }) import and render it here. */}
-
-      {/* Featured Testimonials -- when the developer pillar is selected,
-          no client testimonial in lib/testimonials.ts is actually about a
-          web-dev engagement, so this shows an honest fallback instead of
-          either nothing unexplained or a misleading tag match. */}
-      <div id="testimonials">
-        {pillar === "developer" ? (
-          <div className="bg-white dark:bg-background py-12 md:py-16 px-4 text-center">
-            <p className="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto">
-              {t("whichDoorDevNoTestimonials")}{" "}
-              <Link href="/developer" className="text-accent font-semibold hover:underline">
-                {t("whichDoorDevSeeWork")}
-              </Link>
-            </p>
+      <section className="px-4 pb-16 md:pb-24">
+        <div className="max-w-5xl mx-auto tactile block-lime p-8 md:p-14 text-center">
+          <p className="paren mb-3">{language === "fr" ? "On se parle ?" : language === "ar" ? "لنتحدث؟" : "Let's talk"}</p>
+          <h2 className="font-display text-[clamp(30px,5vw,56px)] leading-tight">
+            {language === "fr" ? "Envie de construire quelque chose ensemble ?" : language === "ar" ? "هل نبني شيئاً معاً؟" : "Ready to build something together?"}
+          </h2>
+          <p className="muted mt-3 text-base md:text-lg">
+            {language === "fr" ? "Je serais ravi d'en discuter. Un appel de 30 minutes, sans engagement." : language === "ar" ? "يسعدني أن نتحدث. مكالمة 30 دقيقة، بلا التزام." : "I'd love to hear about it. A 30-minute call, no commitment."}
+          </p>
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-green !bg-[#14140f] !text-[#f4f4ef]">
+              <Calendar className="w-4 h-4" />{t("bookFreeConsultation")}
+            </a>
+            <a href={`mailto:${siteConfig.email}`} className="btn-outline">{siteConfig.email}</a>
+            <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className="btn-outline">LinkedIn</a>
           </div>
-        ) : (
-          <TestimonialsShowcase
-            className="bg-white dark:bg-background py-12 md:py-16"
-            {...(pillar
-              ? { tag: pillarToTestimonialTag(pillar) }
-              // Oct 2026: newest + most relevant first -- Yassine (design
-              // workshop he co-ran, 2026), Oumaima (IOM Doha), Youssef (his
-              // direct manager). Rayen shown since Oct 2026 (Dhia confirmed).
-              : { ids: ["yassine", "oumaima", "youssef", "rayen", "amir", "ikram", "skander"] })}
-            showTicker={false}
-          />
-        )}
-      </div>
+        </div>
+      </section>
 
-      <ResourcesInsightsStrip focus={pillarToInsightsFocus(pillar)} className="bg-section-tint" />
-
-      {/* Newsletter */}
-      <NewsletterSection />
       </main>
 
       {/* Footer */}

@@ -39,7 +39,7 @@ export default function TrainerRoleClarifier() {
 
   return (
     <section className="w-full py-10 px-4 md:px-8">
-      <div className="mx-auto max-w-4xl rounded-2xl border border-border bg-card p-6 md:p-8">
+      <div className="tactile tactile-hover mx-auto max-w-4xl rounded-2xl border border-border bg-card p-6 md:p-8">
         <p className="label mb-3 text-center">
           {lang === "fr" ? "Clarification" : lang === "ar" ? "توضيح" : "Clarity"}
         </p>
@@ -63,7 +63,7 @@ export default function TrainerRoleClarifier() {
             const desc = lang === "fr" ? role.descFr : lang === "ar" ? role.descAr : role.descEn
             const Icon = role.icon
             return (
-              <div key={title} className="rounded-xl border border-border bg-background p-4 text-center">
+              <div key={title} className="tactile tactile-hover rounded-xl border border-border bg-background p-4 text-center">
                 <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-subtle text-accent">
                   <Icon className="h-5 w-5" />
                 </div>

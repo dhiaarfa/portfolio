@@ -105,7 +105,7 @@ export default function InsightsPageClient() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-12 rounded-2xl border border-border overflow-hidden bg-card shadow-card transition-shadow hover:shadow-lg"
+            className="tactile tactile-hover mb-12 rounded-2xl border border-border overflow-hidden bg-card shadow-card transition-shadow hover:shadow-lg"
           >
             <Link href={`/insights/${featured.slug}`} className="block group">
               <div className="grid md:grid-cols-2 gap-0">
@@ -118,7 +118,7 @@ export default function InsightsPageClient() {
                   className="min-h-[180px] md:min-h-full md:rounded-none rounded-t-2xl"
                 />
                 <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-accent mb-2">
+                  <span className="text-xs font-semibold text-accent mb-2">
                     {t("insights.featured")}
                   </span>
                   <div className="flex items-center gap-3 mb-3 flex-wrap">
@@ -155,7 +155,7 @@ export default function InsightsPageClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.4, delay: (i % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                className={`group rounded-2xl border border-border bg-card overflow-hidden flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 ${isWide ? "sm:col-span-2" : ""}`}
+                className={`tactile tactile-hover group rounded-2xl border border-border bg-card overflow-hidden flex flex-col transition-all hover:shadow-lg ${isWide ? "sm:col-span-2" : ""}`}
               >
                 <div className={isWide ? "grid sm:grid-cols-[1fr_1.1fr] gap-0" : "contents"}>
                   {/* Same target as the title link below: hidden from screen

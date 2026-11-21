@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/html-escape"
 import type { Metadata } from "next"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
@@ -17,7 +18,7 @@ const jsonLd = breadcrumbJsonLd("Freebies", "/freebies")
 export default function FreebiesPage() {
   return (
     <div className="min-h-screen bg-background">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <Navbar />
       <main id="main-content">
         <FreebiesClient />

@@ -100,9 +100,17 @@ export default function AboutContent() {
     <article className="mx-auto max-w-4xl px-4 pb-20 pt-[6.5rem] md:px-6">
       <header className="mb-10 flex flex-col-reverse items-start gap-8 md:flex-row md:items-center">
         <div className="flex-1">
-          <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-accent">{ui.kicker}</p>
+          <span className="sticker mb-3">{lang === "fr" ? "Ravi de vous rencontrer" : lang === "ar" ? "تشرفت بمعرفتك" : "Nice to meet you"}</span>
+          <p className="mb-2 text-sm font-semibold text-accent">{ui.kicker}</p>
           <h1 className="mb-3 text-4xl font-bold md:text-5xl">{NAME[lang]}</h1>
           <p className="text-muted-foreground">{ui.roles}</p>
+          <p className="mt-3 max-w-md text-base">
+            {lang === "fr"
+              ? "Bienvenue dans mon petit coin. Je travaille depuis la Tunisie, en arabe, en français et en anglais. Voici la version courte de mon parcours."
+              : lang === "ar"
+                ? "أهلاً بك في ركني الصغير. أعمل من تونس بالعربية والفرنسية والإنجليزية. هذه نسخة مختصرة من مسيرتي."
+                : "Welcome to my little corner. I work from Tunisia in Arabic, French and English. Here's the short version of my story."}
+          </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href={siteConfig.calendlyUrl}
@@ -141,7 +149,7 @@ export default function AboutContent() {
         <h2 id="about-numbers" className="mb-4 text-xl font-semibold">{ui.numbers}</h2>
         <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.l} className="rounded-2xl border border-border p-4">
+            <div key={s.l} className="tactile tactile-hover rounded-2xl border border-border p-4">
               <dt className="sr-only">{s.l}</dt>
               <dd className="text-2xl font-bold text-accent" dir="ltr">{s.v}</dd>
               <dd className="text-sm text-muted-foreground">{s.l}</dd>

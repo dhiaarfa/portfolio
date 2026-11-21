@@ -2,6 +2,7 @@
 
 import { Link } from "next-view-transitions"
 import Image from "next/image"
+import DeviceFrame from "@/components/ui/device-frame"
 import { ArrowRight, Search, PenTool, Package, RefreshCw, Gift } from "lucide-react"
 import { formatStat, designExperience, certifications as profileCertifications, localizedExperience, localizedCertification } from "@/lib/profile"
 import { siteConfig } from "@/lib/site-config"
@@ -158,7 +159,7 @@ export default function DesignerPageClient() {
               ].map(([v, l]) => (
                 <div key={l}>
                   <p className="font-display text-2xl font-black leading-none text-foreground">{v}</p>
-                  <p className="mt-1 text-[12px] uppercase tracking-widest text-muted-foreground">{l}</p>
+                  <p className="mt-1 text-[12px] text-muted-foreground">{l}</p>
                 </div>
               ))}
             </div>
@@ -208,7 +209,7 @@ export default function DesignerPageClient() {
             now names the brands its own case studies and gallery come from. */}
         <section aria-labelledby="designer-brands" className="w-full border-y border-border bg-muted/30 dark:bg-card/40 px-4 py-8 md:px-8">
           <div className="mx-auto max-w-6xl text-center">
-            <p id="designer-brands" className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            <p id="designer-brands" className="mb-4 text-xs font-semibold text-muted-foreground">
               {t("designerBrandsLabel")}
             </p>
             <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
@@ -240,20 +241,18 @@ export default function DesignerPageClient() {
                   transition={{ delay: i * 0.06 }}
                   viewport={{ once: true }}
                   // Bento: the first case study leads at double width on lg.
-                  className={`group overflow-hidden rounded-[2rem] border border-border bg-card transition-all hover:border-accent/40 hover:shadow-lg ${
+                  className={`group ${
                     i === 0 ? "lg:col-span-2" : ""
                   }`}
                 >
                   <Link href={`/work/${project.slug}`} className="block">
-                    <div className={`relative bg-muted ${i === 0 ? "aspect-[4/3] lg:aspect-[16/9]" : "aspect-[4/3]"}`}>
-                      <Image src={project.cardImage} alt={lw.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
-                    </div>
-                    <div className="space-y-2 p-5">
+                    <div className="px-3 pb-3 pt-5"><DeviceFrame variant={(["poster", "polaroid", "sticker"] as const)[i % 3]} src={project.cardImage} alt={lw.title} label={project.concept ? t("galleryConceptBadge") : t("caseClientBadge")} sizes="(max-width:768px) 100vw, 33vw" /></div>
+                    <div className="space-y-2 px-3 pb-5 pt-3">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-xs font-semibold uppercase tracking-wide text-accent">{t(categoryKey(project.category))}</span>
+                        <span className="text-xs font-semibold text-accent">{t(categoryKey(project.category))}</span>
                         {/* Status tag (inspiration brief, step 11, after
                             sushantvohra.com): real client work vs concept. */}
-                        <span className="rounded-full border border-border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                        <span className="rounded-full border border-border px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">
                           {project.concept ? t("galleryConceptBadge") : t("caseClientBadge")}
                         </span>
                       </div>
@@ -315,7 +314,7 @@ export default function DesignerPageClient() {
                   <Wrapper
                     key={project.title}
                     {...linkProps}
-                    className="group relative mb-3 block break-inside-avoid overflow-hidden rounded-2xl bg-muted"
+                    className="group relative mb-3 block break-inside-avoid overflow-hidden gallery-tile rounded-xl bg-muted"
                   >
                     <Image src={project.image} alt={galleryTitle(project, language)} width={0} height={0} className="h-auto w-full transition-transform duration-500 group-hover:scale-105" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw" />
                     <div className="absolute inset-0 flex items-end bg-slate-900/0 p-3 transition-all group-hover:bg-slate-900/70">
@@ -353,7 +352,7 @@ export default function DesignerPageClient() {
             <h2 className="mb-10 text-3xl font-bold md:text-4xl">{t("designerServicesHeading")}</h2>
             <div className="grid gap-5 md:grid-cols-2">
               {packages.map((pkg) => (
-                <div key={pkg.nameKey} className="flex flex-col rounded-2xl border border-border bg-card p-6">
+                <div key={pkg.nameKey} className="tactile tactile-hover flex flex-col rounded-2xl border border-border bg-card p-6">
                   <h3 className="mb-2 text-lg font-bold">{t(pkg.nameKey)}</h3>
                   <p className="mb-4 text-sm text-muted-foreground">{t(pkg.descKey)}</p>
                   <ul className="mb-6 flex-1 space-y-2">
@@ -364,7 +363,7 @@ export default function DesignerPageClient() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-accent">{fromPrice(pkg.priceId, language)}</p>
+                  <p className="mb-4 text-xs font-semibold text-accent">{fromPrice(pkg.priceId, language)}</p>
                   <a href="#contact-form" onClick={() => requestQuote(pkg.priceId)} className="text-sm font-semibold text-foreground hover:text-accent">
                     {t("designerStartProjectArrow")}
                   </a>
@@ -381,7 +380,7 @@ export default function DesignerPageClient() {
                 the only page with zero real photos of him -- a portrait
                 now backs this heading, the same photo-banner pattern used
                 on /trainer, instead of a plain text header. */}
-            <div className="relative overflow-hidden rounded-[2rem] border border-border mb-10">
+            <div className="relative overflow-hidden rounded-lg border border-border mb-10">
               <div className="relative aspect-[4/3] sm:aspect-[21/9]">
                 <Image
                   src="/images/photos/dhia-hero-green.jpg"
@@ -404,7 +403,7 @@ export default function DesignerPageClient() {
             </div>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {howWeWork.map((step) => (
-                <div key={step.step} className="rounded-2xl border border-border bg-card p-5">
+                <div key={step.step} className="tactile tactile-hover rounded-2xl border border-border bg-card p-5">
                   <div className="mb-3 flex items-center justify-between">
                     <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-subtle text-accent">
                       <step.Icon className="h-4 w-4" />
@@ -429,7 +428,7 @@ export default function DesignerPageClient() {
                 {workExperience.map((job) => {
                   const lj = localizedExperience(job, language)
                   return (
-                    <div key={job.company} className="rounded-xl border border-border p-4">
+                    <div key={job.company} className="tactile tactile-hover rounded-xl border border-border p-4">
                       <p className="font-semibold text-sm">{lj.role}</p>
                       <p className="text-xs text-muted-foreground">{lj.company} · {lj.period}</p>
                     </div>
@@ -444,7 +443,7 @@ export default function DesignerPageClient() {
                 {certifications.map((cert) => {
                   const lc = localizedCertification(cert, language)
                   return (
-                    <div key={cert.title} className="flex items-center justify-between rounded-xl border border-border p-4">
+                    <div key={cert.title} className="tactile tactile-hover flex items-center justify-between rounded-xl border border-border p-4">
                       <div>
                         <p className="text-sm font-semibold">{lc.title}</p>
                         <p className="text-xs text-muted-foreground">{lc.issuer}</p>

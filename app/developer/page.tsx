@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/html-escape"
 import { PERSON_ID } from "@/lib/identity"
 import type { Metadata } from "next"
 import DeveloperPageClient from "./DeveloperPageClient"
@@ -58,7 +59,7 @@ const jsonLd = {
 export default function DeveloperPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <DeveloperPageClient />
     </>
   )

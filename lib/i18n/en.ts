@@ -34,7 +34,7 @@ export const en = {
   // still translates, the combined "hello" string above was never wired
   // up (the JSX hardcoded English), so the hero heading stayed in English
   // even after switching to French/Arabic. See checklist.
-  helloGreeting: "Hello, I'm",
+  helloGreeting: "Hey, I'm",
   graphicDesigner: "Graphic Designer",
   trainer: "& Trainer",
   heroDescription:
@@ -70,7 +70,7 @@ export const en = {
   whoIAm: "Who I Am",
   backToHome: "Back to Home",
   trainerDesignerDeveloper: "Trainer, Designer & Developer",
-  aboutHeroDesc: "Design, training, and web. {{years}} years in Tunisia. I help teams and organisations get clearer visuals, better training, and solid digital projects. No fluff, just work that gets things done.",
+  aboutHeroDesc: "Design, training, and web. {{years}} years in Tunisia. I help teams and organisations get clearer visuals, better training, and solid digital projects.",
   coreValues: "Core Values",
   impactDriven: "Impact Driven",
   impactDrivenDesc: "Every project should leave something useful behind",
@@ -149,8 +149,8 @@ export const en = {
   whichDoorDevNoTestimonials:
     "Client testimonials for web development are still coming in \u2014 in the meantime, see the live demos and code.",
   whichDoorDevSeeWork: "See my dev work",
-  homeExpertiseLine1: "Three specialized areas.",
-  homeExpertiseLine2: "One cohesive vision.",
+  homeExpertiseLine1: "Design, training, web.",
+  homeExpertiseLine2: "One person, nothing lost between them.",
   homeExpertiseDesc:
     "Design + training + development in one person means no hand-offs, one brand voice, and someone who can both make it and ship it.",
   homeCreativeAgency: "Creative Agency",
@@ -164,13 +164,13 @@ export const en = {
 // translated").
 homeWebStackEyebrow: "Selected work · Web",
 homeWebStackTitle: "Things I've built",
-homeWebStackSubtitle: "Full-stack products shipped end to end — from database to deployment. Scroll through the stack.",
+homeWebStackSubtitle: "Full-stack products shipped end to end — from database to deployment.",
 homeDesignStackEyebrow: "Selected work · Design",
 homeDesignStackTitle: "Brands & visuals",
 homeDesignStackSubtitle: "Identity, campaigns and art direction — each one pinned, then the next slides over it.",
 homeSelectedWorkEyebrow: "Selected work",
-homeSelectedWorkTitle: "Sites, brands & campaigns",
-homeSelectedWorkSubtitle: "Web and design projects, mostly client work. Scroll through the stack.",
+homeSelectedWorkTitle: "Some things I've made",
+homeSelectedWorkSubtitle: "Real projects for real people. Click any of them to take a closer look.",
 // Master roadmap 5.1 (Oct 2026). One buyer + one problem per pillar, from
 // real work on this site and market research:
 // - Design: cafés (Speranza), travel (Tafani, TravelTodo), product brands
@@ -187,7 +187,7 @@ homeWhoIHelpLabel: "Who I help",
 homeWhoIHelpTag1: "Brand & design",
 homeWhoIHelp1: "Cafés, travel agencies and product brands, in Tunisia and abroad, whose brand needs to look consistent everywhere, from Instagram to packaging.",
 homeWhoIHelpTag2: "Training",
-homeWhoIHelp2: "NGOs, youth networks and donor-funded programmes, from Tunisia to Morocco and Qatar, that need workshops that change behaviour and results they can report.",
+homeWhoIHelp2: "NGOs, youth networks and donor-funded programmes, in Tunisia and Morocco that need workshops that change behaviour and results they can report.",
 homeWhoIHelpTag3: "Web",
 homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have outgrown a Facebook page and need a fast, mobile-first site in Arabic, French and English.",
   skillsAbilities: "Skills & Abilities",
@@ -258,17 +258,17 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   // Testimonials
   clientFeedback: "Client Feedback",
   testimonials: "Testimonials",
-  testimonialsDesc: "What colleagues and clients say about working with me.",
+  testimonialsDesc: "Kind words from people I've worked with",
   testimonialTranslated: "Translated",
   testimonialSource: "LinkedIn recommendation",
-  testimonialsSubtitle: "Real feedback from organizers, clients, and collaborators across design, training, and leadership.",
+  testimonialsSubtitle: "LinkedIn recommendations from teammates, a former teacher and an internship manager.",
   testimonialsSubtitleDesign: "From clients and collaborators who've worked with me on branding and visual identity.",
   testimonialsSubtitleTraining: "From organizers and participants who booked training sessions.",
   hudSwipeHint: "Swipe for profile details →",
   whatPeopleSay: "What People Say",
   trustedByTrainees: "Trusted by trainees and organizations for impactful workshops and training programs.",
   trustedByOrgs: "Trusted by organizations worldwide",
-  trustedAndCollaboratedWith: "Trusted and collaborated with",
+  trustedAndCollaboratedWith: "Organisations I've worked with",
   // Sep 30 SEO addition: real names of every organization already shown as a
   // logo above, spelled out as crawlable text (not just image alt attributes)
   // so search engines can associate this page with these real entities --
@@ -356,7 +356,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   footerService7: "Prompt Engineering",
   availableForProjects: "Available for projects",
   footerDesc:
-    "Graphic designer and trainer passionate with over {{yearsN}} years of experience. Specialized in visual creation, training and professional support.",
+    "Designer, trainer and web developer in Tunisia. Brand identity, workshops and websites in Arabic, French and English.",
   newsletter: "Newsletter",
   newsletterDesc: "Stay informed about my latest projects and news.",
   subscribe: "Subscribe",
@@ -378,11 +378,11 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
 
   // Budget Options
 
-  howICanHelpYou: "How I Can Help You",
-  servicesTagline: "From design to training to development. Tailored solutions for your goals.",
+  howICanHelpYou: "Services",
+  servicesTagline: "Three things I do, with starting prices on each page.",
   bookFreeConsultationCta: "Book a Free Consultation",
   getDesignInsights: "Get design & training insights",
-  newsletterTagline: "Join my newsletter for tips, project updates, and exclusive content. No spam.",
+  newsletterTagline: "One email a month with a template or a session plan. No spam.",
   newsletterNoSpam: "No spam. Unsubscribe anytime.",
   newsletterBenefit1: "Free design templates",
   newsletterBenefit2: "Training frameworks",
@@ -440,7 +440,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   myTrainingJourney: "My Training Journey",
   evolutionAsEducator: "Evolution As An Educator",
   trainerJourneyIntro:
-    "From my first session with Association Youth Clubs in 2019 to CNFCPP certification in 2024 and {{participants}} participants reached across Tunisia, Morocco, and Qatar, this journey has been built on real workshops, not theory.",
+    "From my first session with Association Youth Clubs in 2019 to CNFCPP certification in 2024 and {{participants}} participants reached across Tunisia and Morocco, this journey has been built on real workshops, not theory.",
   requestTraining: "Request Training",
   readyToTransformLearning: "Ready to Transform Through Learning?",
   requestTrainingDesc:
@@ -448,7 +448,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   trainerHeroTitle: "Trainer & Educator",
   trainerHeroSubtitle: "Youth Development & Leadership",
   trainerHeroDescription:
-    "CNFCPP-certified trainer delivering hands-on workshops on leadership, entrepreneurship, and career-readiness, from youth clubs in Tunisia to international camps in Morocco and Qatar.",
+    "CNFCPP-certified trainer delivering hands-on workshops on leadership, entrepreneurship, and career-readiness, from youth clubs in Tunisia to an international camp in Morocco.",
   trainingPortfolio: "Training portfolio",
   // Freebies / Insights
   "nav.freebies": "Freebies",
@@ -515,7 +515,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   "chatNudgeActionBehance": "Open Behance",
   "chatNudgeNewsletter": "Get occasional tips on design, training, and building for the web, no spam.",
   "chatNudgeActionNewsletter": "Scroll to newsletter",
-  "chatNudgePortfolioSite": "This portfolio is built with Next.js 15, TypeScript, and Framer Motion, see the dev page.",
+  "chatNudgePortfolioSite": "This portfolio is built with Next.js 16, TypeScript, and Framer Motion, see the dev page.",
   "chatNudgeActionPortfolio": "See how it's built",
   "resourcesStripEyebrow": "Learn & download",
   "resourcesStripTitle": "Articles & free resources",
@@ -545,7 +545,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   "freebies.empty": "New resources coming soon.",
   "insights.title": "Insights",
   "insights.heroTitle": "Thoughts on design, training & the web.",
-  "insights.subtitle": "Practical tips from real project experience. No fluff.",
+  "insights.subtitle": "Notes from client work and training rooms in Tunisia.",
   "insights.note": "Articles on design, training and development, written from real projects in Tunisia. New posts added regularly.",
   "insights.readArticle": "Read article",
   "insights.featured": "Featured",
@@ -720,7 +720,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   statTrainingHoursLabel: "Training Hours",
   statDesignProjectsLabel: "Design Projects",
   statYearsExperienceLabel: "Years Experience",
-  statTrainingEventsLabel: "Training Events",
+  statTrainingEventsLabel: "Training Sessions",
   civicImpactTab: "Civic Impact",
   radarCommunication: "Communication",
   radarCreativity: "Creativity",
@@ -744,8 +744,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   toolsGroupFrontend: "Frontend",
   toolsGroupBackend: "Backend & Infra",
   toolsGroupProductivity: "Productivity & Facilitation",
-  toolsStackHeadingCompact: "Dev stack I ship with",
-
+  toolsStackHeadingCompact: "Tools I use",
   // 404 page -- was fully hardcoded English, never localized.
   notFoundHeading: "This page wandered off-brief.",
   notFoundDesc: "Wrong link, moved page, or a typo, either way, it's not here. Here are three places that definitely are.",
@@ -785,7 +784,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
 
   // Trainer page hero/CTA/timeline -- was hardcoded English.
   trainerHeroHeadline: "I help NGOs, schools and donor-funded youth programmes run trainings that change behaviour, with results you can report.",
-  trainerHeroSubtitleRest: "participants trained in Tunisia, Morocco and Qatar. CNFCPP-certified facilitator in Arabic, French and English. A needs analysis up front, workshops or multi-session programmes, train-the-trainer, and a report at the end.",
+  trainerHeroSubtitleRest: "participants trained in Tunisia and Morocco. CNFCPP-certified facilitator in Arabic, French and English. A needs analysis up front, workshops or multi-session programmes, train-the-trainer, and a report at the end.",
   trainerBtnBookWorkshop: "Book a Workshop",
   trainerBtnFreeResources: "Get free training resources",
   trainerBtnViewPortfolio: "View training portfolio",
@@ -902,7 +901,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   designerCaseStudiesLabel: "Case studies",
   designerBrandsLabel: "Brands I've designed for",
   designerCaseStudiesHeading: "Selected work, with context",
-  designerCaseStudiesIntro: "Problem, process, and outcome for each project. Not just thumbnails.",
+  designerCaseStudiesIntro: "What the client needed, what I made, and what happened.",
   designerViewCaseStudy: "View case study",
   designerProcessLabel: "Process",
   designerProcessHeading: "How we work together",
@@ -1135,7 +1134,7 @@ homeWhoIHelp3: "Businesses and organisations, in Tunisia or abroad, that have ou
   trainerImpactMapEyebrow: "Where It Happened",
   trainerImpactMapTitle: "Geography of Impact",
   trainerImpactMapDesc:
-    "Real training and facilitation events, mapped: Tunisia's governorates, international work in Morocco and Qatar, and sessions delivered entirely online.",
+    "Real training and facilitation events, mapped: Tunisia's governorates, a training camp in Morocco, a hackathon in Qatar, and sessions delivered entirely online.",
   mapLocTunis: "Tunis",
   mapExTunis: "Université Centrale, ISG Tunis, Cité des Sciences, TIMUN TBS, and more",
   mapLocAriana: "Ariana",

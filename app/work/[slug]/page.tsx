@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/html-escape"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { workBySlug, publishedWorkProjects, workOgImage } from "@/lib/work"
@@ -74,7 +75,7 @@ export default async function WorkCaseStudyPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <WorkCaseStudyClient slug={slug} project={project} content={content} nextProject={nextProject} />
     </>
   )

@@ -102,7 +102,7 @@ export default function DevCaseStudyVisuals({ slug }: { slug: string }) {
           {METRICS.map(({ value, labelKey, subKey, sub, Icon }) => (
             <div
               key={labelKey}
-              className="rounded-2xl border border-border bg-card p-4 text-center transition-colors hover:border-accent/30"
+              className="tactile tactile-hover rounded-2xl border border-border bg-card p-4 text-center transition-colors hover:border-accent/30"
             >
               <Icon className="mx-auto mb-2 h-5 w-5 text-accent" />
               <p className="font-display text-2xl font-black text-foreground leading-none">{value}</p>
@@ -121,7 +121,7 @@ export default function DevCaseStudyVisuals({ slug }: { slug: string }) {
           {MODULES.map(({ titleKey, descKey, Icon, image }) => (
             <article
               key={titleKey}
-              className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-accent/30 hover:shadow-md"
+              className="tactile tactile-hover group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-accent/30 hover:shadow-md"
             >
               <PhotoView src={image}>
               <div className="relative aspect-[16/10] bg-muted cursor-zoom-in">
@@ -151,7 +151,7 @@ export default function DevCaseStudyVisuals({ slug }: { slug: string }) {
             {SPRINTS.map((s) => (
               <div key={s.n} className="relative flex gap-4 sm:pl-10">
                 <span className="absolute left-2.5 top-4 hidden h-3 w-3 rounded-full border-2 border-accent bg-background sm:block" aria-hidden />
-                <div className="flex-1 rounded-xl border border-border bg-card p-4 sm:flex sm:items-center sm:justify-between sm:gap-4">
+                <div className="tactile tactile-hover flex-1 rounded-xl border border-border bg-card p-4 sm:flex sm:items-center sm:justify-between sm:gap-4">
                   <div className="flex items-center gap-3">
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent-subtle font-display text-sm font-black text-accent">
                       S{s.n}
@@ -198,7 +198,7 @@ export default function DevCaseStudyVisuals({ slug }: { slug: string }) {
       </div>
 
       {/* Architecture strip */}
-      <div className="rounded-2xl border border-accent/20 bg-accent-subtle/40 p-6">
+      <div className="tactile tactile-hover rounded-2xl border border-accent/20 bg-accent-subtle/40 p-6">
         <p className="label mb-3">{t("devVisualsArchitecture")}</p>
         <div className="grid gap-4 sm:grid-cols-3">
           {[
@@ -206,8 +206,8 @@ export default function DevCaseStudyVisuals({ slug }: { slug: string }) {
             { layerKey: "archBusinessLayer", stack: "Server Actions · Zod DTOs", noteKey: "archBusinessNote" },
             { layerKey: "archDataLayer", stack: "Supabase · OpenRouter · Vercel AI SDK", noteKey: "archDataNote" },
           ].map((item) => (
-            <div key={item.layerKey} className="rounded-xl border border-border bg-card p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-accent">{t(item.layerKey)}</p>
+            <div key={item.layerKey} className="tactile tactile-hover rounded-xl border border-border bg-card p-4">
+              <p className="text-[10px] font-bold text-accent">{t(item.layerKey)}</p>
               <p className="mt-1 text-sm font-semibold text-foreground">{item.stack}</p>
               <p className="mt-1 text-xs text-muted-foreground">{t(item.noteKey)}</p>
             </div>

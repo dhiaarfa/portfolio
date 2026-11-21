@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/html-escape"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Navbar from "@/components/navbar-new"
@@ -46,7 +47,7 @@ export default async function LocaleInsightsPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-background">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <Navbar />
       <InsightsPageClient />
       <Footer />

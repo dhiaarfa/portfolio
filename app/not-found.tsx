@@ -57,7 +57,7 @@ export default function NotFound() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
             <Link
               href="/designer"
-              className="group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-md"
+              className="tactile tactile-hover group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:border-accent/40 hover:shadow-md"
             >
               <span className="grid h-10 w-10 place-items-center rounded-full bg-accent-gradient text-white">
                 <Palette className="h-5 w-5" />
@@ -66,7 +66,7 @@ export default function NotFound() {
             </Link>
             <Link
               href="/trainer"
-              className="group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-md"
+              className="tactile tactile-hover group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:border-accent/40 hover:shadow-md"
             >
               <span className="grid h-10 w-10 place-items-center rounded-full bg-accent-gradient text-white">
                 <Compass className="h-5 w-5" />
@@ -75,7 +75,7 @@ export default function NotFound() {
             </Link>
             <Link
               href="/developer"
-              className="group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-md"
+              className="tactile tactile-hover group flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-4 transition-all hover:border-accent/40 hover:shadow-md"
             >
               <span className="grid h-10 w-10 place-items-center rounded-full bg-accent-gradient text-white">
                 <Code2 className="h-5 w-5" />

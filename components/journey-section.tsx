@@ -65,7 +65,7 @@ export default function JourneySection() {
         aria-hidden
       />
       <div className="relative max-w-2xl mx-auto">
-        <p className="text-xs font-semibold uppercase tracking-widest text-accent text-center mb-1">
+        <p className="text-xs font-semibold text-accent text-center mb-1">
           Credentials
         </p>
         <h2 className="text-xl font-bold text-center text-slate-900 dark:text-white mb-5">
@@ -91,7 +91,7 @@ export default function JourneySection() {
           ))}
         </div>
 
-        <div className="relative rounded-2xl border border-border bg-card overflow-hidden">
+        <div className="tactile tactile-hover relative rounded-2xl border border-border bg-card overflow-hidden">
           {/* Switching tabs used to swap content instantly with no
               transition -- felt like a static table rather than an
               interactive section. Each tab's rows now cross-fade + slide in

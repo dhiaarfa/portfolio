@@ -45,9 +45,9 @@ const currentRoles = [...new Set(current.map((e) => e.company))].map((company) =
 const degree = education[0]
 
 export const PERSON_SHORT_BIO: Record<L, string> = {
-  en: `${PERSON_NAME} is a Tunisian graphic designer, CNFCPP-certified trainer and web developer. He runs the design brand Zia Studio, has trained ${formatStat("participantsTrained")} participants in Tunisia, Morocco and Qatar, and builds fast websites in Arabic, French and English.`,
-  fr: `${PERSON_NAME} est un designer graphique, formateur certifié CNFCPP et développeur web tunisien. Il dirige la marque de design Zia Studio, a formé ${formatStat("participantsTrained")} participants en Tunisie, au Maroc et au Qatar, et crée des sites web rapides en arabe, français et anglais.`,
-  ar: `محمد ضياء عرفة مصمم جرافيك تونسي ومدرّب معتمد من المركز الوطني لتكوين المكوّنين (CNFCPP) ومطوّر ويب. يدير علامة التصميم Zia Studio، ودرّب أكثر من ${profileNumber("participantsTrained")} مشارك في تونس والمغرب وقطر، ويطوّر مواقع ويب سريعة بالعربية والفرنسية والإنجليزية.`,
+  en: `${PERSON_NAME} is a Tunisian graphic designer, CNFCPP-certified trainer and web developer. He runs the design brand Zia Studio, has trained ${formatStat("participantsTrained")} participants in Tunisia and Morocco, and builds fast websites in Arabic, French and English.`,
+  fr: `${PERSON_NAME} est un designer graphique, formateur certifié CNFCPP et développeur web tunisien. Il dirige la marque de design Zia Studio, a formé ${formatStat("participantsTrained")} participants en Tunisie et au Maroc, et crée des sites web rapides en arabe, français et anglais.`,
+  ar: `محمد ضياء عرفة مصمم جرافيك تونسي ومدرّب معتمد من المركز الوطني لتكوين المكوّنين (CNFCPP) ومطوّر ويب. يدير علامة التصميم Zia Studio، ودرّب أكثر من ${profileNumber("participantsTrained")} مشارك في تونس والمغرب، ويطوّر مواقع ويب سريعة بالعربية والفرنسية والإنجليزية.`,
 }
 
 function profileNumber(key: "participantsTrained" | "trainingHours" | "trainingCycles" | "yearsExperience" | "designProjects" | "brands") {
@@ -83,7 +83,7 @@ export const PERSON_FAQ: Record<L, FaqItem[]> = {
     { q: `Who is ${PERSON_NAME}?`, a: PERSON_SHORT_BIO.en },
     { q: `What does ${PERSON_NAME} do?`, a: "Three things: brand identity and graphic design (including social media design and motion design), training and facilitation for NGOs, schools and youth programmes, and web development (React and Next.js websites in Arabic, French and English)." },
     { q: `Where is ${PERSON_NAME} based?`, a: "In Tunisia. He works with clients in Tunisia and abroad, in person and remotely, in Arabic, French and English." },
-    { q: `Is ${PERSON_NAME} a certified trainer?`, a: `Yes. He is a National Certified Trainer (CNFCPP) and has delivered ${formatStat("trainingHours")} training hours to ${formatStat("participantsTrained")} participants in Tunisia, Morocco and Qatar.` },
+    { q: `Is ${PERSON_NAME} a certified trainer?`, a: `Yes. He is a National Certified Trainer (CNFCPP) and has delivered ${formatStat("trainingHours")} training hours to ${formatStat("participantsTrained")} participants in Tunisia and Morocco.` },
     { q: "What is Zia Studio?", a: `Zia Studio is ${PERSON_NAME}'s personal design brand for brand identities, social media design and packaging.` },
     { q: `How can I work with ${PERSON_NAME}?`, a: `Book a free 30-minute call at ${siteConfig.calendlyUrl} or email ${siteConfig.email}. Every project gets a written quote after the call.` },
   ],
@@ -91,7 +91,7 @@ export const PERSON_FAQ: Record<L, FaqItem[]> = {
     { q: `Qui est ${PERSON_NAME} ?`, a: PERSON_SHORT_BIO.fr },
     { q: `Que fait ${PERSON_NAME} ?`, a: "Trois métiers : identité de marque et design graphique (dont design pour les réseaux sociaux et motion design), formation et facilitation pour les ONG, écoles et programmes jeunesse, et développement web (sites React et Next.js en arabe, français et anglais)." },
     { q: `Où est basé ${PERSON_NAME} ?`, a: "En Tunisie. Il travaille avec des clients en Tunisie et à l'étranger, en présentiel et à distance, en arabe, français et anglais." },
-    { q: `${PERSON_NAME} est-il formateur certifié ?`, a: `Oui. Il est formateur certifié national (CNFCPP) et a animé ${formatStat("trainingHours")} heures de formation pour ${formatStat("participantsTrained")} participants en Tunisie, au Maroc et au Qatar.` },
+    { q: `${PERSON_NAME} est-il formateur certifié ?`, a: `Oui. Il est formateur certifié national (CNFCPP) et a animé ${formatStat("trainingHours")} heures de formation pour ${formatStat("participantsTrained")} participants en Tunisie et au Maroc.` },
     { q: "Qu'est-ce que Zia Studio ?", a: `Zia Studio est la marque de design personnelle de ${PERSON_NAME} : identités de marque, design pour les réseaux sociaux et packaging.` },
     { q: `Comment travailler avec ${PERSON_NAME} ?`, a: `Réservez un appel gratuit de 30 minutes sur ${siteConfig.calendlyUrl} ou écrivez à ${siteConfig.email}. Chaque projet reçoit un devis écrit après l'appel.` },
   ],
@@ -99,7 +99,7 @@ export const PERSON_FAQ: Record<L, FaqItem[]> = {
     { q: "من هو محمد ضياء عرفة؟", a: PERSON_SHORT_BIO.ar },
     { q: "ماذا يعمل محمد ضياء عرفة؟", a: "ثلاثة مجالات: الهوية البصرية والتصميم الجرافيكي (بما في ذلك تصميم وسائل التواصل الاجتماعي والموشن ديزاين)، والتدريب والتيسير للجمعيات والمدارس وبرامج الشباب، وتطوير الويب (مواقع React وNext.js بالعربية والفرنسية والإنجليزية)." },
     { q: "أين يقيم محمد ضياء عرفة؟", a: "في تونس. يعمل مع عملاء في تونس وخارجها، حضوريًا وعن بُعد، بالعربية والفرنسية والإنجليزية." },
-    { q: "هل محمد ضياء عرفة مدرّب معتمد؟", a: `نعم. هو مدرّب وطني معتمد (CNFCPP)، وقدّم أكثر من ${profileNumber("trainingHours")} ساعة تدريب لأكثر من ${profileNumber("participantsTrained")} مشارك في تونس والمغرب وقطر.` },
+    { q: "هل محمد ضياء عرفة مدرّب معتمد؟", a: `نعم. هو مدرّب وطني معتمد (CNFCPP)، وقدّم أكثر من ${profileNumber("trainingHours")} ساعة تدريب لأكثر من ${profileNumber("participantsTrained")} مشارك في تونس والمغرب.` },
     { q: "ما هي Zia Studio؟", a: "Zia Studio هي علامة التصميم الشخصية لمحمد ضياء عرفة: هويات بصرية وتصميم لوسائل التواصل الاجتماعي وتغليف." },
     { q: "كيف أتعامل مع محمد ضياء عرفة؟", a: `احجز مكالمة مجانية لمدة 30 دقيقة على ${siteConfig.calendlyUrl} أو راسله على ${siteConfig.email}. يحصل كل مشروع على عرض سعر مكتوب بعد المكالمة.` },
   ],

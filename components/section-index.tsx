@@ -43,7 +43,7 @@ export default function SectionIndex({ items }: { items: Item[] }) {
         active ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
     >
-      <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{t("secIdxLabel")}</p>
+      <p className="mb-2 text-[10px] font-semibold text-muted-foreground">{t("secIdxLabel")}</p>
       <ul className="space-y-0.5">
         {items.map((i) => (
           <li key={i.id}>

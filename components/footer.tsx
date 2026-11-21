@@ -161,7 +161,7 @@ export default function Footer({ variant }: FooterProps = {}) {
         </div>
 
         <div>
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground mb-4">{t("navigationTitle")}</p>
+          <p className="text-[12px] font-semibold text-muted-foreground mb-4">{t("navigationTitle")}</p>
           <ul className="space-y-2.5">
             <li><Link href="/" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("home")}</Link></li>
             <li><Link href="/about" className="text-muted-foreground hover:text-accent text-sm transition-colors">{t("nav.about")}</Link></li>
@@ -175,7 +175,7 @@ export default function Footer({ variant }: FooterProps = {}) {
         </div>
 
         <div>
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground mb-4">{t("services")}</p>
+          <p className="text-[12px] font-semibold text-muted-foreground mb-4">{t("services")}</p>
           <ul className="space-y-2.5">
             {[
               { label: t("footerService1"), href: "/designer#case-studies" },
@@ -203,7 +203,7 @@ export default function Footer({ variant }: FooterProps = {}) {
         </div>
 
         <div>
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-muted-foreground mb-4">{t("contact")}</p>
+          <p className="text-[12px] font-semibold text-muted-foreground mb-4">{t("contact")}</p>
           <div className="space-y-3">
             <a
               href={`mailto:${siteConfig.email}`}
@@ -230,14 +230,14 @@ export default function Footer({ variant }: FooterProps = {}) {
           <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row gap-3 sm:gap-8 text-sm">
             {latestArticle && (
               <Link href={`/insights/${latestArticle.slug}`} className="group flex min-w-0 items-baseline gap-2 text-muted-foreground hover:text-accent transition-colors">
-                <span className="shrink-0 text-[11px] font-semibold uppercase tracking-widest text-accent">{t("footerLatestArticle")}</span>
+                <span className="shrink-0 text-[11px] font-semibold text-accent">{t("footerLatestArticle")}</span>
                 <span className="truncate text-foreground group-hover:text-accent">{t(latestArticle.titleKey)}</span>
                 <ArrowRight className="h-3.5 w-3.5 shrink-0 self-center rtl:rotate-180" />
               </Link>
             )}
             {newestFreebie && (
               <Link href="/freebies" className="group flex min-w-0 items-baseline gap-2 text-muted-foreground hover:text-accent transition-colors">
-                <span className="shrink-0 text-[11px] font-semibold uppercase tracking-widest text-accent">{t("footerNewestFreebie")}</span>
+                <span className="shrink-0 text-[11px] font-semibold text-accent">{t("footerNewestFreebie")}</span>
                 <span className="truncate text-foreground group-hover:text-accent">{freebieText(newestFreebie, "title", t)}</span>
                 <ArrowRight className="h-3.5 w-3.5 shrink-0 self-center rtl:rotate-180" />
               </Link>

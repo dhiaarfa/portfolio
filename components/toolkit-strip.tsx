@@ -29,7 +29,7 @@ export default function ToolkitStrip() {
   return (
     <section className="py-12 md:py-16 px-4 border-y border-border bg-muted/20 dark:bg-card/30">
       <div className="max-w-5xl mx-auto">
-        <p className="text-center text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-8">
+        <p className="text-center text-sm font-semibold text-muted-foreground mb-8">
           {t("toolkitStripLabel")}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8">

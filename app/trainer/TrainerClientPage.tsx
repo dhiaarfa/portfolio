@@ -147,7 +147,7 @@ export default function TrainerClientPage() {
               viewport={{ once: true }}
             >
               <div className="space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">{t("myTrainingJourney")}</p>
+                <p className="text-xs font-medium text-muted-foreground">{t("myTrainingJourney")}</p>
                 <h2 className="text-4xl md:text-5xl font-bold">{t("evolutionAsEducator")}</h2>
                 <p className="text-muted-foreground text-lg max-w-3xl">{t("trainerJourneyIntro")}</p>
               </div>
@@ -160,7 +160,7 @@ export default function TrainerClientPage() {
                   Fixed by capping the row's overall height and letting the
                   image use a normal landscape aspect ratio instead of a
                   square, so both columns stay compact and proportional. */}
-              <div className="rounded-2xl overflow-hidden border border-border shadow-lg bg-gradient-to-br from-background to-card">
+              <div className="tactile tactile-hover bg-card">
                 <div className="grid md:grid-cols-2 gap-0 md:max-h-[320px]">
                   <div className="relative aspect-[16/10] md:aspect-auto md:h-full">
                     <Image
@@ -216,7 +216,7 @@ export default function TrainerClientPage() {
                           aria-hidden
                         />
                       </div>
-                      <div className="rounded-2xl border border-border p-4 sm:p-5 transition-all group-hover:border-foreground/30 group-hover:bg-card">
+                      <div className="tactile tactile-hover rounded-2xl border border-border p-4 sm:p-5 transition-all group-hover:border-foreground/30 group-hover:bg-card">
                         <div className="flex flex-wrap items-center gap-2 mb-1.5">
                           <span className="text-xs font-bold text-accent bg-accent/10 rounded-full px-2.5 py-0.5">{milestone.year}</span>
                           <h4 className="text-lg sm:text-xl font-bold">{t(milestone.titleKey)}</h4>
@@ -257,7 +257,7 @@ export default function TrainerClientPage() {
           <div className="max-w-4xl mx-auto">
             <div className="space-y-12">
               <div className="text-center space-y-4">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">{t("requestTraining")}</p>
+                <p className="text-xs font-medium text-muted-foreground">{t("requestTraining")}</p>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold px-2">{t("readyToTransformLearning")}</h2>
                 <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">{t("requestTrainingDesc")}</p>
                 <a

@@ -28,7 +28,7 @@ export default function CertificationsSection() {
           viewport={{ once: true }}
         >
           <div className="space-y-4">
-            <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
+            <p className="text-xs font-medium text-muted-foreground">
               {t("certificationsHeading")}
             </p>
             <h2 className="text-3xl md:text-5xl font-bold">{t("credentialsAchievements")}</h2>
@@ -38,7 +38,7 @@ export default function CertificationsSection() {
             {certifications.map((cert, i) => (
               <motion.div
                 key={i}
-                className="relative overflow-hidden p-6 pt-8 border border-border rounded-[28px] hover:border-accent/40 transition-colors flex flex-col items-center text-center gap-4 bg-background"
+                className="tactile tactile-hover relative overflow-hidden p-6 pt-8 border border-border rounded-[28px] hover:border-accent/40 transition-colors flex flex-col items-center text-center gap-4 bg-background"
                 whileHover={{ y: -3 }}
               >
                 <div className="pointer-events-none absolute -top-8 -right-8 w-24 h-24 rounded-full bg-accent-subtle/60" aria-hidden />

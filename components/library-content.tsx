@@ -50,7 +50,7 @@ export default function LibraryContent() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 pb-20 pt-[6.5rem] md:px-6">
-      <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-accent">{c.label}</p>
+      <p className="mb-2 text-sm font-semibold text-accent">{c.label}</p>
       <h1 className="mb-3 text-3xl font-bold md:text-4xl">{c.title}</h1>
       <p className="mb-6 max-w-2xl leading-relaxed text-muted-foreground">{c.intro}</p>
       <a

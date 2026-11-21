@@ -85,14 +85,14 @@ export const otherDevProjects: OtherDevProject[] = [
   {
     title: "dhia-portfolio.com",
     excerpt:
-      "The site you're looking at right now: built with Next.js 15, available in English, French, and Arabic, with a built-in AI chat guide, a free-resource download system, and tuned for fast load times and accessibility.",
+      "The site you're looking at right now: built with Next.js 16, available in English, French, and Arabic, with a built-in AI chat guide, a free-resource download system, and tuned for fast load times and accessibility.",
     liveUrl: "https://www.dhia-portfolio.com",
     repoUrl: "https://github.com/dhiaarfa/portfolio",
     tech: ["Next.js", "TypeScript", "Vercel"],
     excerptFr:
-      "Le site que vous êtes en train de consulter : construit avec Next.js 15, disponible en anglais, français et arabe, avec un assistant IA intégré, un système de téléchargement de ressources gratuites, et optimisé pour la vitesse et l'accessibilité.",
+      "Le site que vous êtes en train de consulter : construit avec Next.js 16, disponible en anglais, français et arabe, avec un assistant IA intégré, un système de téléchargement de ressources gratuites, et optimisé pour la vitesse et l'accessibilité.",
     excerptAr:
-      "الموقع الذي تتصفحه الآن: مبني بـ Next.js 15، متوفر بالإنجليزية والفرنسية والعربية، مع مساعد ذكاء اصطناعي مدمج، ونظام لتحميل الموارد المجانية، ومُحسَّن لسرعة التحميل وسهولة الوصول.",
+      "الموقع الذي تتصفحه الآن: مبني بـ Next.js 16، متوفر بالإنجليزية والفرنسية والعربية، مع مساعد ذكاء اصطناعي مدمج، ونظام لتحميل الموارد المجانية، ومُحسَّن لسرعة التحميل وسهولة الوصول.",
   },
   {
     title: "Association Youth Clubs, Official Website",

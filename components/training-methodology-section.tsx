@@ -116,12 +116,12 @@ export default function TrainingMethodologySection() {
   const toggle = (key: string) => setOpenCards((prev) => ({ ...prev, [key]: !prev[key] }))
 
   return (
-    <section className="py-20 px-6 bg-white dark:bg-background">
+    <section className="py-20 px-6 bg-background">
       <div className="max-w-5xl mx-auto">
 
         {/* ── Section Header ── */}
         <div className="mb-16">
-          <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">
+          <p className="text-sm font-semibold text-accent mb-3">
             {t("methodologyKicker")}
           </p>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
@@ -145,7 +145,7 @@ export default function TrainingMethodologySection() {
             return (
               <div
                 key={pillar.number}
-                className="group relative overflow-hidden rounded-2xl border border-slate-100 dark:border-border bg-slate-50/50 dark:bg-card/50 p-7 hover:shadow-lg transition-all duration-300"
+                className="tactile tactile-hover group relative overflow-hidden rounded-2xl border border-slate-100 dark:border-border bg-slate-50/50 dark:bg-card/50 p-7 hover:shadow-lg transition-all duration-300"
               >
                 {/* Dot-grid texture, the same hero-section pattern used
                     site-wide, in place of the old faint per-card event
@@ -210,7 +210,7 @@ export default function TrainingMethodologySection() {
 
         {/* ── KOLB CYCLE VISUAL ── */}
         <div className="my-16 bg-slate-900 rounded-3xl p-8 sm:p-12">
-          <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2 text-center">
+          <p className="text-sm font-semibold text-accent mb-2 text-center">
             {t("kolbDiagramKicker")}
           </p>
           <h3 className="text-xl font-bold text-white text-center mb-10">
@@ -263,7 +263,7 @@ export default function TrainingMethodologySection() {
             ].map((phase, i) => (
               <div
                 key={phase.step}
-                className={`relative rounded-2xl border ${phase.borderColor} bg-slate-800/60 p-5`}
+                className={`tactile tactile-hover relative rounded-2xl border ${phase.borderColor} bg-slate-800/60 p-5`}
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-3xl font-black text-[#8ed80c] opacity-70">{phase.step}</span>
@@ -279,7 +279,7 @@ export default function TrainingMethodologySection() {
                 <p className="text-xs text-slate-300 leading-relaxed mb-3">{t(phase.descKey)}</p>
 
                 <div className="border-t border-slate-700 pt-3">
-                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">{t("kolbRealExampleLabel")}</p>
+                  <p className="text-xs text-slate-500 mb-1">{t("kolbRealExampleLabel")}</p>
                   <p className="text-xs text-slate-400 italic">{t(phase.exampleKey)}</p>
                 </div>
 
@@ -304,7 +304,7 @@ export default function TrainingMethodologySection() {
         {/* ── Theoretical Frameworks ── */}
         <div>
           <div className="text-center mb-8">
-            <p className="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-2">
+            <p className="text-sm font-semibold text-slate-400 mb-2">
               {t("foundationsKicker")}
             </p>
             <h3 className="text-xl font-bold text-slate-900 dark:text-white">
@@ -319,12 +319,12 @@ export default function TrainingMethodologySection() {
             {frameworks.map((fw) => (
               <div
                 key={fw.nameKey}
-                className={`rounded-2xl border p-5 h-full hover:-translate-y-0.5 transition-transform ${fw.color}`}
+                className={`tactile tactile-hover rounded-2xl border p-5 h-full transition-transform ${fw.color}`}
               >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-accent-subtle text-accent">
                   <fw.Icon className="w-5 h-5" />
                 </div>
-                <p className={`text-xs font-bold uppercase tracking-wider mb-1 ${fw.textColor}`}>
+                <p className={`text-xs font-bold mb-1 ${fw.textColor}`}>
                   {fw.year === 'Council of Europe' && language !== 'en' ? (language === 'fr' ? "Conseil de l'Europe" : 'مجلس أوروبا') : fw.year}
                 </p>
                 <h4 className="font-bold text-slate-900 dark:text-white text-sm leading-snug mb-2 whitespace-pre-line">

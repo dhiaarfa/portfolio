@@ -20,7 +20,7 @@ export default function TrainerOffersSection() {
             this heading instead of sitting in the old forced "In the
             field" gallery after the hero -- a genuine fit here, since it
             shows exactly the kind of group experience being booked below. */}
-        <div className="relative overflow-hidden rounded-[2rem] border border-border mb-10">
+        <div className="relative overflow-hidden rounded-lg border border-border mb-10">
           <div className="relative aspect-[16/7] sm:aspect-[21/9]">
             <Image
               src="/images/trainer/moment-group.jpg"
@@ -68,7 +68,7 @@ export default function TrainerOffersSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
                 viewport={{ once: true }}
-                className="relative overflow-hidden flex flex-col rounded-[28px] border border-border bg-card p-6"
+                className="tactile tactile-hover relative overflow-hidden flex flex-col rounded-[28px] border border-border bg-card p-6"
               >
                 <div className="pointer-events-none absolute -top-8 -right-8 w-24 h-24 rounded-full bg-accent-subtle/40" aria-hidden />
                 <span className="relative mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-accent-subtle text-sm font-bold text-accent">
@@ -78,7 +78,7 @@ export default function TrainerOffersSection() {
                 <p className="mb-3 text-sm text-accent font-medium">
                   {lang === "fr" ? "Pour :" : lang === "ar" ? "لـ:" : "For:"} {forWho}
                 </p>
-                <p className="mb-4 text-xs font-medium uppercase tracking-wide text-muted-foreground">{format}</p>
+                <p className="mb-4 text-xs font-medium text-muted-foreground">{format}</p>
                 <ul className="mb-4 flex-1 space-y-1.5">
                   {includes.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -114,7 +114,7 @@ export default function TrainerOffersSection() {
           })}
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border border-dashed border-border bg-muted/30 p-5 sm:flex-row">
+        <div className="tactile tactile-hover mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border border-dashed border-border bg-muted/30 p-5 sm:flex-row">
           <div>
             <p className="font-semibold">
               {lang === "fr" ? "Programme sur mesure" : lang === "ar" ? "برنامج مخصص" : "Custom program"}

@@ -16,7 +16,7 @@ Mohamed ("Dhia") is a graphic designer (Zia Studio), a CNFCPP-certified trainer,
 
 Who he helps:
 - Brand & design: cafés, travel agencies and product brands, in Tunisia and abroad, whose brand needs to look consistent everywhere, from Instagram to packaging (logo, visual identity, social templates, packaging, print, campaigns).
-- Training: NGOs, schools and donor-funded youth programmes. ${formatStat("participantsTrained")} participants and ${formatStat("trainingHours")} training hours in Tunisia, Morocco and Qatar. Process: needs analysis, custom workshops or multi-session programmes, train-the-trainer, and a final report.
+- Training: NGOs, schools and donor-funded youth programmes. ${formatStat("participantsTrained")} participants and ${formatStat("trainingHours")} training hours in Tunisia and Morocco. Process: needs analysis, custom workshops or multi-session programmes, train-the-trainer, and a final report.
 - Web: businesses and organisations that have outgrown a Facebook page and need a fast, mobile-first website in Arabic, French and English (built with React and Next.js).
 
 Help visitors with:

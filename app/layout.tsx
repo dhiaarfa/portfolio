@@ -1,10 +1,11 @@
+import { safeJsonLd } from "@/lib/html-escape"
 import { personJsonLd } from "@/lib/identity"
 import type React from "react"
 import type { Viewport } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
-import { Fraunces, Inter } from "next/font/google"
+import { IBM_Plex_Sans, IBM_Plex_Serif } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { formatStat } from "@/lib/profile"
 import { DEFAULT_OG_IMAGE } from "@/lib/page-metadata"
@@ -20,10 +21,10 @@ import { ViewTransitions } from "next-view-transitions"
 // see globals.css for the --font-sans token this feeds). An Arabic face stays for
 // Arabic, since Inter has no Arabic glyphs; Quicksand/Fraunces stay as
 // deliberate decorative accents on specific hero elements, untouched.
-const inter = Inter({
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-plex-sans",
   display: "swap",
 })
 
@@ -34,13 +35,14 @@ const inter = Inter({
 // Oct 2026: moved from a render-blocking Google Fonts <link> in <head> to
 // next/font (self-hosted, no runtime request, no layout shift), matching
 // Inter and the Arabic font above. Used only by .font-accent-italic in globals.css.
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  style: ["italic"],
+// Nov 2026 audit: Inter + an italic Fraunces accent is the stock pairing of
+// generated sites. IBM Plex Sans/Serif share one design with the IBM Plex
+// Sans Arabic already used on /ar, so all three languages read as one voice.
+const plexSerif = IBM_Plex_Serif({
+  subsets: ["latin", "latin-ext"],
   weight: ["500", "600"],
-  variable: "--font-fraunces",
+  variable: "--font-plex-serif",
   display: "swap",
-  preload: false,
 })
 
 // Result-first fallback description (was a stats-only line). Pages with
@@ -147,7 +149,7 @@ export default function RootLayout({
       lang="en"
       dir="ltr"
       suppressHydrationWarning
-      className={`scroll-smooth theme-transition ${inter.variable} ${fraunces.variable}`}
+      className={`scroll-smooth theme-transition ${plexSans.variable} ${plexSerif.variable}`}
     >
       <head>
         <link rel="icon" href="/favicon-192.png" sizes="any" />
@@ -186,11 +188,8 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=yes" />
         <meta name="geo.region" content="TN" />
         <meta name="geo.placename" content="Tunisia" />
-        <meta name="language" content="en,fr,ar" />
         <meta name="author" content="Mohamed Dhia Arfa" />
         <meta name="copyright" content="Mohamed Dhia Arfa" />
-        <meta name="revisit-after" content="7 days" />
-        <meta name="rating" content="general" />
         
         {/* Enhanced Structured Data for SEO */}
         <script
@@ -198,7 +197,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             // Built in lib/identity.ts (one source for this schema, /about,
             // /llms.txt and the site chat). Other pages point at it by @id.
-            __html: JSON.stringify(personJsonLd()),
+            __html: safeJsonLd(personJsonLd()),
           }}
         />
         
@@ -208,7 +207,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: safeJsonLd({
               "@context": "https://schema.org",
               "@type": "Brand",
               // The site calls it "Zia Studio" everywhere visible; "Zia" kept
@@ -230,7 +229,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: safeJsonLd({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Mohamed Dhia Arfa Portfolio",

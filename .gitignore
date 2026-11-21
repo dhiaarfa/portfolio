@@ -63,3 +63,8 @@ Claude outputs/
 Dhia_Claude_Master_Roadmap.pdf
 find-pages.ps1
 .lighthouseci/
+
+# Local preview screenshots and parked work-in-progress
+_preview-shots/
+_wip-parked/
+preview.bat

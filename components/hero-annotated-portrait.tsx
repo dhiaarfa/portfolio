@@ -62,7 +62,7 @@ export default function HeroAnnotatedPortrait({
     <section
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
-      className={`relative isolate overflow-hidden bg-white text-slate-900 dark:bg-[#0A0A0A] dark:text-white px-4 sm:px-6 pt-24 pb-16 lg:pb-20 ${className}`}
+      className={`relative isolate overflow-hidden bg-background text-slate-900 dark:bg-[#0A0A0A] dark:text-white px-4 sm:px-6 pt-24 pb-16 lg:pb-20 ${className}`}
     >
       {/* z-10: full-bleed photo, anchored toward the subject on the right.
           object-position shifts per breakpoint: mobile keeps the face
@@ -88,7 +88,7 @@ export default function HeroAnnotatedPortrait({
           where text overlays the photo's faded left side -- instead of
           stacking under a photo that ended first. Tablet uses the same
           layout: its old side-by-side crop put the H1 across the face. */}
-      <div className="absolute inset-x-0 top-0 h-[60vh] max-h-[620px] lg:max-h-none lg:inset-0 lg:h-auto z-10 hero-photo-mask">
+      <div className="absolute inset-x-0 top-0 h-[40vh] max-h-[400px] lg:max-h-none lg:inset-0 lg:h-auto z-10 hero-photo-mask">
         <Image
           src={imageSrc}
           alt="Mohamed Dhia Arfa portrait"
@@ -160,8 +160,8 @@ export default function HeroAnnotatedPortrait({
           photo genuinely reads as "on top" before the text begins (the
           stacked mobile layout from Dhia's spec), collapses to the normal
           pt-24 on desktop where the photo sits beside the text instead. */}
-      <div className="relative z-30 mx-auto w-full max-w-6xl">
-        <div className="min-w-0 pt-[min(36vh,380px)] lg:pt-0">{children}</div>
+      <div className="relative z-30 mx-auto w-full max-w-5xl">
+        <div className="min-w-0 pt-[min(20vh,200px)] lg:pt-0">{children}</div>
 
         {showCta && (
           <div className="mt-6 lg:mt-8">

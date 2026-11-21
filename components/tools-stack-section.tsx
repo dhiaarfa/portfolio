@@ -42,7 +42,7 @@ export default function ToolsStackSection({
   return (
     <section className={compact ? "py-10 px-6" : "py-16 px-6 bg-card"}>
       <div className="max-w-5xl mx-auto">
-        <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-2 text-center">{t("toolsStackKicker")}</p>
+        <p className="text-sm font-semibold text-accent mb-2 text-center">{t("toolsStackKicker")}</p>
         <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-10">
           {compact ? t("toolsStackHeadingCompact") : t("toolsStackHeading")}
         </h3>
@@ -59,7 +59,7 @@ export default function ToolsStackSection({
               className={`!py-4 !px-5 border-t-4 ${GROUP_ACCENT[group.id] ?? "border-t-accent"} flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5`}
             >
               <span
-                className={`shrink-0 inline-block w-fit text-[12px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full ${GROUP_BADGE[group.id] ?? "bg-accent-subtle text-accent"}`}
+                className={`shrink-0 inline-block w-fit text-[12px] font-semibold px-2.5 py-1 rounded-full ${GROUP_BADGE[group.id] ?? "bg-accent-subtle text-accent"}`}
               >
                 {t(TOOL_GROUP_LABEL_KEYS[group.id] ?? group.label) || group.label}
               </span>

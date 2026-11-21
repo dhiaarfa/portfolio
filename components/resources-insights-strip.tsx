@@ -69,12 +69,8 @@ export default function ResourcesInsightsStrip({ focus = "all", className = "" }
               misapplied the color-role system (pink/blue are reserved for
               the Design/Dev tags). Both cards now share the same neutral
               card surface + green accent used everywhere else on the site. */}
-          <div className="group/card relative overflow-hidden rounded-[1.75rem] ring-1 ring-border bg-card p-5 md:p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-            <span className="pointer-events-none absolute -right-3 -top-3 text-6xl opacity-[0.06] group-hover/card:scale-110 group-hover/card:opacity-[0.1] transition-all duration-500 select-none" aria-hidden>
-              📚
-            </span>
-            <p className="relative inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-accent mb-4">
-              <span className="w-6 h-6 rounded-full bg-accent-subtle flex items-center justify-center text-sm" aria-hidden>📚</span>
+          <div className="tactile tactile-hover group/card relative overflow-hidden rounded-lg ring-1 ring-border bg-card p-5 md:p-6 hover:shadow-lg transition-all duration-300">
+            <p className="relative inline-flex items-center gap-1.5 text-xs font-bold text-accent mb-4">
               {t("insights.title")}
             </p>
             <ul className="relative space-y-3.5">
@@ -94,12 +90,8 @@ export default function ResourcesInsightsStrip({ focus = "all", className = "" }
             </ul>
           </div>
 
-          <div className="group/card relative overflow-hidden rounded-[1.75rem] ring-1 ring-border bg-card p-5 md:p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-            <span className="pointer-events-none absolute -right-3 -top-3 text-6xl opacity-[0.06] group-hover/card:scale-110 group-hover/card:opacity-[0.1] transition-all duration-500 select-none" aria-hidden>
-              🎁
-            </span>
-            <p className="relative inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-accent mb-4">
-              <span className="w-6 h-6 rounded-full bg-accent-subtle flex items-center justify-center text-sm" aria-hidden>🎁</span>
+          <div className="tactile tactile-hover group/card relative overflow-hidden rounded-lg ring-1 ring-border bg-card p-5 md:p-6 hover:shadow-lg transition-all duration-300">
+            <p className="relative inline-flex items-center gap-1.5 text-xs font-bold text-accent mb-4">
               {t("freebies.title")}
             </p>
             <ul className="relative space-y-3.5">

@@ -88,7 +88,7 @@ export default function TrainerImpactMap() {
           viewport={{ once: true }}
         >
           <div className="text-center space-y-3 md:space-y-4">
-            <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
+            <p className="text-xs font-medium text-muted-foreground">
               {t("trainerImpactMapEyebrow")}
             </p>
             <h2 id="impact-map-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold px-2">
@@ -191,8 +191,8 @@ export default function TrainerImpactMap() {
             {/* Beyond Tunisia + online, stacked beside the map on desktop,
                 below it on mobile via the grid's implicit row order. */}
             <div className="space-y-4">
-              <div className="rounded-2xl border border-border p-5">
-                <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase mb-4">
+              <div className="tactile tactile-hover rounded-2xl border border-border p-5">
+                <p className="text-xs font-medium text-muted-foreground mb-4">
                   {t("mapBeyondTunisia")}
                 </p>
                 <div className="space-y-4">
@@ -218,7 +218,7 @@ export default function TrainerImpactMap() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-border p-5 bg-gradient-to-br from-[var(--site-accent)]/[6%] to-transparent">
+              <div className="tactile tactile-hover rounded-2xl border border-border p-5 bg-gradient-to-br from-[var(--site-accent)]/[6%] to-transparent">
                 <div className="flex items-center gap-2 mb-2">
                   <Radio className="h-4 w-4 text-[var(--site-accent)]" aria-hidden="true" />
                   <p className="font-semibold text-sm">{t("mapOnlineTitle")}</p>

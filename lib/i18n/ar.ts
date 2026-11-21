@@ -31,7 +31,7 @@ export const ar: Partial<Record<TranslationKey, string>> = {
 
   // Hero Section
   hello: "مرحباً، أنا محمد ضياء",
-  helloGreeting: "مرحباً، أنا",
+  helloGreeting: "أهلاً، أنا",
   graphicDesigner: "مصمم جرافيكي",
   trainer: "ومدرب",
   heroDescription:
@@ -147,8 +147,8 @@ export const ar: Partial<Record<TranslationKey, string>> = {
   whichDoorDevNoTestimonials:
     "شهادات العملاء الخاصة بتطوير الويب ما زالت قليلة حاليًا \u2014 في هذه الأثناء، يمكنك مشاهدة العروض الحية والكود المصدري.",
   whichDoorDevSeeWork: "شاهد أعمالي في التطوير",
-  homeExpertiseLine1: "ثلاثة مجالات متخصصة.",
-  homeExpertiseLine2: "رؤية واحدة متكاملة.",
+  homeExpertiseLine1: "تصميم، تدريب، ويب.",
+  homeExpertiseLine2: "شخص واحد، فلا يضيع شيء بينها.",
   homeExpertiseDesc:
     "التصميم والتدريب والتطوير في شخص واحد يعني عدم وجود تسليم بين أطراف مختلفة، وصوت علامة تجارية واحد، وشخص قادر على التصميم والتنفيذ معًا.",
   homeCreativeAgency: "وكالة إبداعية",
@@ -162,13 +162,13 @@ homeDesignStackEyebrow: "أعمال مختارة · التصميم",
 homeDesignStackTitle: "علامات تجارية وتصاميم بصرية",
 homeDesignStackSubtitle: "الهوية البصرية، الحملات، والتوجيه الفني — كل عمل مثبّت، ثم ينزلق التالي فوقه.",
 homeSelectedWorkEyebrow: "أعمال مختارة",
-homeSelectedWorkTitle: "مواقع، علامات تجارية وحملات",
-homeSelectedWorkSubtitle: "مشاريع ويب وتصميم، أغلبها لعملاء. مرر عبر القائمة لاستكشافها.",
+homeSelectedWorkTitle: "بعض ما صنعته",
+homeSelectedWorkSubtitle: "مشاريع حقيقية لأشخاص حقيقيين. اضغط على أي مشروع لتراه عن قرب.",
 homeWhoIHelpLabel: "من أساعد",
 homeWhoIHelpTag1: "الهوية والتصميم",
 homeWhoIHelp1: "المقاهي ووكالات الأسفار وعلامات المنتجات، في تونس وخارجها، التي تحتاج إلى صورة متناسقة في كل مكان، من إنستغرام إلى التغليف.",
 homeWhoIHelpTag2: "التدريب",
-homeWhoIHelp2: "الجمعيات وشبكات الشباب والبرامج الممولة من المانحين، من تونس إلى المغرب وقطر، التي تحتاج إلى تدريبات تغيّر السلوك ونتائج قابلة للقياس.",
+homeWhoIHelp2: "الجمعيات وشبكات الشباب والبرامج الممولة من المانحين، في تونس والمغرب، التي تحتاج إلى تدريبات تغيّر السلوك ونتائج قابلة للقياس.",
 homeWhoIHelpTag3: "الويب",
 homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارجها، التي تجاوزت صفحة فيسبوك وتحتاج إلى موقع سريع مصمم للهاتف أولًا، بالعربية والفرنسية والإنجليزية.",
   skillsAbilities: "المهارات والقدرات",
@@ -240,17 +240,17 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   // Testimonials
   clientFeedback: "ملاحظات العملاء",
   testimonials: "الشهادات",
-  testimonialsDesc: "ما يقوله زملائي وعملائي عن العمل معي.",
+  testimonialsDesc: "كلمات طيبة من أشخاص عملت معهم",
   testimonialTranslated: "مترجم",
   testimonialSource: "توصية على LinkedIn",
-  testimonialsSubtitle: "آراء حقيقية من منظمين وعملاء ومتعاونين في التصميم والتدريب والقيادة.",
+  testimonialsSubtitle: "توصيات على لينكدإن من زملاء في الفريق وأستاذ سابق ومسؤول تربّص.",
   testimonialsSubtitleDesign: "من عملاء ومتعاونين في الهوية البصرية والعلامة التجارية.",
   testimonialsSubtitleTraining: "من منظمين ومشاركين حجزوا جلسات تدريب.",
   hudSwipeHint: "اسحب لعرض تفاصيل الملف →",
   whatPeopleSay: "ما يقوله الناس",
   trustedByTrainees: "موثوق به من المتدربين والمنظمات لورش العمل والبرامج التدريبية المؤثرة.",
   trustedByOrgs: "موثوق به من منظمات حول العالم",
-  trustedAndCollaboratedWith: "موثوق به ومعتمد عليه في التعاون",
+  trustedAndCollaboratedWith: "مؤسسات عملت معها",
   collaboratedWithListPrefix: "تدريب أو تيسير أو تصميم تم إنجازه مع:",
   toolkitStripLabel: "الأدوات التي أستخدمها يومياً",
   toolkitStripFullStackLink: "عرض كل الأدوات",
@@ -327,7 +327,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   footerService7: "هندسة الأوامر (Prompt Engineering)",
   availableForProjects: "متاح للمشاريع",
   footerDesc:
-    "مصمم جرافيكي ومدرب شغوف بأكثر من {{yearsN}} سنوات من الخبرة. متخصص في الإنشاء البصري والتدريب والدعم المهني.",
+    "مصمم ومدرّب ومطوّر ويب في تونس. هوية بصرية وورشات ومواقع ويب بالعربية والفرنسية والإنجليزية.",
   newsletter: "النشرة الإخبارية",
   newsletterDesc: "ابقَ على اطلاع بآخر مشاريعي والأخبار.",
   subscribe: "اشتراك",
@@ -349,11 +349,11 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
 
   // Budget Options
 
-  howICanHelpYou: "كيف يمكنني مساعدتك",
-  servicesTagline: "من التصميم إلى التدريب والتطوير. حلول مصممة لأهدافك.",
+  howICanHelpYou: "الخدمات",
+  servicesTagline: "ثلاثة مجالات، مع أسعار البداية في كل صفحة.",
   bookFreeConsultationCta: "حجز استشارة مجانية",
   getDesignInsights: "آخر أخبار التصميم والتدريب",
-  newsletterTagline: "انضم إلى النشرة للحصول على نصائح وتحديثات ومحتوى حصري. بدون إزعاج.",
+  newsletterTagline: "رسالة واحدة في الشهر فيها قالب أو خطة جلسة. بلا رسائل مزعجة.",
   newsletterNoSpam: "بدون إزعاج. إلغاء الاشتراك متاح في أي وقت.",
   newsletterBenefit1: "قوالب تصميم مجانية",
   newsletterBenefit2: "أطر التدريب",
@@ -410,7 +410,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   myTrainingJourney: "مسيرتي التدريبية",
   evolutionAsEducator: "تطوري كمربّي",
   trainerJourneyIntro:
-    "من أول جلسة تدريبية مع جمعية Youth Clubs سنة 2019 إلى شهادة CNFCPP سنة 2024 وأكثر من {{participantsN}} مشاركاً في تونس والمغرب وقطر، بُنيت هذه المسيرة على ورشات حقيقية لا على النظريات.",
+    "من أول جلسة تدريبية مع جمعية Youth Clubs سنة 2019 إلى شهادة CNFCPP سنة 2024 وأكثر من {{participantsN}} مشاركاً في تونس والمغرب، بُنيت هذه المسيرة على ورشات حقيقية لا على النظريات.",
   requestTraining: "طلب تدريب",
   readyToTransformLearning: "مستعد للتحول من خلال التعلّم؟",
   requestTrainingDesc:
@@ -418,7 +418,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   trainerHeroTitle: "مدرب ومربّي",
   trainerHeroSubtitle: "تنمية الشباب والقيادة",
   trainerHeroDescription:
-    "مدرب معتمد من CNFCPP، يقدّم ورشات عملية في القيادة وريادة الأعمال والتأهيل المهني، من دور الشباب في تونس إلى المخيمات الدولية في المغرب وقطر.",
+    "مدرب معتمد من CNFCPP، يقدّم ورشات عملية في القيادة وريادة الأعمال والتأهيل المهني، من دور الشباب في تونس إلى مخيم دولي في المغرب.",
   trainingPortfolio: "Portfolio التدريب",
   // Freebies / Insights
   "nav.freebies": "موارد مجانية",
@@ -485,7 +485,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   "chatNudgeActionBehance": "فتح Behance",
   "chatNudgeNewsletter": "احصل على نصائح في التصميم والتدريب والويب، بدون إزعاج.",
   "chatNudgeActionNewsletter": "الانتقال للنشرة",
-  "chatNudgePortfolioSite": "هذا الموقع مبني بـ Next.js 15 وTypeScript وFramer Motion، راجع صفحة التطوير.",
+  "chatNudgePortfolioSite": "هذا الموقع مبني بـ Next.js 16 وTypeScript وFramer Motion، راجع صفحة التطوير.",
   "chatNudgeActionPortfolio": "كيف بُني الموقع",
   "resourcesStripEyebrow": "تعلّم وحمّل",
   "resourcesStripTitle": "مقالات وموارد مجانية",
@@ -515,7 +515,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   "freebies.empty": "موارد جديدة قريباً.",
   "insights.title": "مقالات",
   "insights.heroTitle": "أفكار حول التصميم والتدريب والويب.",
-  "insights.subtitle": "نصائح عملية من مشاريع حقيقية. بدون كلام فارغ.",
+  "insights.subtitle": "ملاحظات من مشاريع العملاء وقاعات التدريب في تونس.",
   "insights.note": "مقالات عن التصميم والتدريب والتطوير، مستمدة من مشاريع حقيقية في تونس. محتوى جديد يُضاف بانتظام.",
   "insights.readArticle": "اقرأ المقال",
   "insights.featured": "مميز",
@@ -686,7 +686,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   statTrainingHoursLabel: "ساعات التدريب",
   statDesignProjectsLabel: "مشاريع تصميم",
   statYearsExperienceLabel: "سنوات الخبرة",
-  statTrainingEventsLabel: "دورات تدريبية",
+  statTrainingEventsLabel: "جلسات تدريبية",
   civicImpactTab: "الأثر المدني",
   radarCommunication: "التواصل",
   radarCreativity: "الإبداع",
@@ -710,8 +710,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   toolsGroupFrontend: "الواجهة الأمامية",
   toolsGroupBackend: "الخلفية والبنية التحتية",
   toolsGroupProductivity: "الإنتاجية والتيسير",
-  toolsStackHeadingCompact: "الأدوات التقنية التي أستخدمها",
-
+  toolsStackHeadingCompact: "الأدوات التي أستخدمها",
   notFoundHeading: "هذه الصفحة ضلّت طريقها.",
   notFoundDesc: "رابط خاطئ، صفحة منقولة، أو خطأ إملائي، المهم أنها ليست هنا. إليك ثلاث وجهات موجودة بالتأكيد.",
   notFoundDesignLabel: "تصميم",
@@ -750,7 +749,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
 
   // صفحة المدرّب — البطل والأزرار والمسيرة الزمنية
   trainerHeroHeadline: "أساعد الجمعيات والمدارس والبرامج الشبابية الممولة من المانحين على تقديم تدريبات تغيّر السلوك، بنتائج قابلة للقياس.",
-  trainerHeroSubtitleRest: "مشاركاً تم تدريبهم في تونس والمغرب وقطر. ميسّر معتمد من CNFCPP بالعربية والفرنسية والإنجليزية. تحليل للاحتياجات في البداية، ورشات أو برامج متعددة الجلسات، تدريب المدربين، وتقرير في النهاية.",
+  trainerHeroSubtitleRest: "مشاركاً تم تدريبهم في تونس والمغرب. ميسّر معتمد من CNFCPP بالعربية والفرنسية والإنجليزية. تحليل للاحتياجات في البداية، ورشات أو برامج متعددة الجلسات، تدريب المدربين، وتقرير في النهاية.",
   trainerBtnBookWorkshop: "احجز ورشة",
   trainerBtnFreeResources: "احصل على موارد تدريبية مجانية",
   trainerBtnViewPortfolio: "عرض ملف التدريب",
@@ -867,7 +866,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   designerCaseStudiesLabel: "دراسات الحالة",
   designerBrandsLabel: "علامات صمّمت لها",
   designerCaseStudiesHeading: "أعمال مختارة، مع سياقها الكامل",
-  designerCaseStudiesIntro: "المشكلة والعملية والنتيجة لكل مشروع، وليس مجرد صور مصغرة.",
+  designerCaseStudiesIntro: "ما احتاجه العميل، ما صمّمته، وما الذي حدث.",
   designerViewCaseStudy: "عرض دراسة الحالة",
   designerProcessLabel: "المسار",
   designerProcessHeading: "كيف نعمل معاً",
@@ -1099,7 +1098,7 @@ homeWhoIHelp3: "الشركات والمؤسسات، في تونس أو خارج�
   trainerImpactMapEyebrow: "أين حدث ذلك",
   trainerImpactMapTitle: "جغرافيا الأثر",
   trainerImpactMapDesc:
-    "فعاليات تدريب وتيسير حقيقية، موزّعة على خريطة: ولايات تونس، وامتداد دولي في المغرب وقطر، وجلسات قُدّمت بالكامل عبر الإنترنت.",
+    "فعاليات تدريب وتيسير حقيقية، موزّعة على خريطة: ولايات تونس، ومخيم تدريبي في المغرب وهاكاثون في قطر، وجلسات قُدّمت بالكامل عبر الإنترنت.",
   mapLocTunis: "تونس العاصمة",
   mapExTunis: "الجامعة المركزية، المعهد العالي للإدارة بتونس، مدينة العلوم، TIMUN TBS، وغيرها",
   mapLocAriana: "أريانة",

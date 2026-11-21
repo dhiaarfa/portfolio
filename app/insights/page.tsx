@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/html-escape"
 import type { Metadata } from "next"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
@@ -55,7 +56,7 @@ const jsonLd = {
 export default function InsightsPage() {
   return (
     <div className="min-h-screen bg-background">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <Navbar />
       <InsightsPageClient />
       <Footer />

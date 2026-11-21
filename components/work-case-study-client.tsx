@@ -73,7 +73,7 @@ export default function WorkCaseStudyClient({ slug, project, content, nextProjec
             )}
           </div>
 
-          <div className="mb-10 rounded-xl border border-accent/20 bg-accent-subtle px-4 py-3 text-sm text-foreground">
+          <div className="tactile tactile-hover mb-10 rounded-xl border border-accent/20 bg-accent-subtle px-4 py-3 text-sm text-foreground">
             <strong>{t("workOutcomeLabel")}</strong> {lw.outcome}
           </div>
 
@@ -113,7 +113,7 @@ export default function WorkCaseStudyClient({ slug, project, content, nextProjec
           {nextProject && (
             <Link
               href={`/work/${nextProject.slug}`}
-              className="mt-8 flex items-center justify-between rounded-2xl border border-border bg-card p-5 transition-colors hover:border-accent/40"
+              className="tactile tactile-hover mt-8 flex items-center justify-between rounded-2xl border border-border bg-card p-5 transition-colors hover:border-accent/40"
             >
               <span className="text-sm text-muted-foreground">{t("workNextProject")}</span>
               <span className="font-semibold text-foreground">{nextProject.title} →</span>

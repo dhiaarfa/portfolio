@@ -34,7 +34,11 @@ export function AnimatedNumber({
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: "-40px" })
   const reducedMotion = useReducedMotionSafe()
-  const [display, setDisplay] = useState(0)
+  // Starts at the real value so server HTML, crawlers and no-JS readers
+  // see "1,120+", never "0+". The count-up only arms when the number
+  // is below the fold at mount, so nothing visible ever flashes to 0.
+  const [display, setDisplay] = useState(value)
+  const [armed, setArmed] = useState(false)
 
   // Reduced motion / instant: show the final value directly (derived, not
   // set from an effect).
@@ -42,7 +46,17 @@ export function AnimatedNumber({
 
   useEffect(() => {
     if (skipCount) return
-    if (!inView) return
+    const el = ref.current
+    if (!el) return
+    if (el.getBoundingClientRect().top > window.innerHeight) {
+      setDisplay(0)
+      setArmed(true)
+    }
+  }, [skipCount])
+
+  useEffect(() => {
+    if (skipCount) return
+    if (!armed || !inView) return
     let raf: number
     const start = performance.now()
     const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
@@ -54,7 +68,7 @@ export function AnimatedNumber({
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [inView, value, duration, skipCount])
+  }, [armed, inView, value, duration, skipCount])
 
   return (
     <span ref={ref} className={className}>

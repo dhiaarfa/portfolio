@@ -124,7 +124,7 @@ export default function MarketingSection() {
             {skills.map((skill, i) => (
               <motion.div
                 key={i}
-                className={`w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.5rem)] md:w-[calc(25%-0.75rem)] relative overflow-hidden rounded-[1.5rem] ring-1 ${cardStyle.ring} bg-gradient-to-br ${cardStyle.wash} px-4 py-5 flex flex-col items-center text-center gap-2.5 hover:-translate-y-1 hover:shadow-md transition-all duration-300`}
+                className={`w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.5rem)] md:w-[calc(25%-0.75rem)] relative overflow-hidden rounded-lg ring-1 ${cardStyle.ring} bg-gradient-to-br ${cardStyle.wash} px-4 py-5 flex flex-col items-center text-center gap-2.5 hover:shadow-md transition-all duration-300`}
                 whileHover={{ y: -2 }}
               >
                 <div className="w-10 h-10 rounded-full bg-accent-gradient flex items-center justify-center">
@@ -140,7 +140,7 @@ export default function MarketingSection() {
             {experiences.map((exp, i) => (
               <motion.div
                 key={i}
-                className={`group relative overflow-hidden p-6 md:p-8 rounded-[2rem] ring-1 ${cardStyle.ring} bg-gradient-to-br ${cardStyle.wash} hover:-translate-y-1.5 hover:shadow-card-hover transition-all duration-500`}
+                className={`tactile tactile-hover group relative overflow-hidden p-6 md:p-8 rounded-lg ring-1 ${cardStyle.ring} bg-gradient-to-br ${cardStyle.wash} hover:shadow-card-hover transition-all duration-500`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}

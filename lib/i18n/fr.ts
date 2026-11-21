@@ -31,7 +31,7 @@ export const fr: Partial<Record<TranslationKey, string>> = {
 
   // Hero Section
   hello: "Bonjour, je suis Mohamed Dhia",
-  helloGreeting: "Bonjour, je suis",
+  helloGreeting: "Salut, moi c'est",
   graphicDesigner: "Designer Graphique",
   trainer: "& Formateur",
   heroDescription:
@@ -147,8 +147,8 @@ export const fr: Partial<Record<TranslationKey, string>> = {
   whichDoorDevNoTestimonials:
     "Les t\u00e9moignages clients pour le d\u00e9veloppement web arrivent encore \u2014 en attendant, d\u00e9couvrez les d\u00e9mos live et le code.",
   whichDoorDevSeeWork: "Voir mes projets dev",
-  homeExpertiseLine1: "Trois domaines spécialisés.",
-  homeExpertiseLine2: "Une vision cohérente.",
+  homeExpertiseLine1: "Design, formation, web.",
+  homeExpertiseLine2: "Une seule personne, rien ne se perd entre les trois.",
   homeExpertiseDesc:
     "Design + formation + développement réunis en une seule personne : pas de transmission entre intervenants, une seule voix de marque, et quelqu'un capable de concevoir et de livrer.",
   homeCreativeAgency: "Agence Créative",
@@ -157,18 +157,18 @@ export const fr: Partial<Record<TranslationKey, string>> = {
   workWithZiaStudio: "Travailler avec Zia Studio",
 homeWebStackEyebrow: "Travaux sélectionnés · Web",
 homeWebStackTitle: "Ce que j'ai construit",
-homeWebStackSubtitle: "Des produits full-stack livrés de bout en bout — de la base de données au déploiement. Faites défiler la pile.",
+homeWebStackSubtitle: "Des produits full-stack livrés de bout en bout — de la base de données au déploiement.",
 homeDesignStackEyebrow: "Travaux sélectionnés · Design",
 homeDesignStackTitle: "Marques & visuels",
 homeDesignStackSubtitle: "Identité, campagnes et direction artistique — chacune épinglée, puis la suivante glisse par-dessus.",
 homeSelectedWorkEyebrow: "Travaux sélectionnés",
-homeSelectedWorkTitle: "Sites, marques & campagnes",
-homeSelectedWorkSubtitle: "Projets web et design, surtout pour des clients. Faites défiler la pile.",
+homeSelectedWorkTitle: "Quelques projets dont je suis fier",
+homeSelectedWorkSubtitle: "De vrais projets pour de vraies personnes. Cliquez pour voir de plus près.",
 homeWhoIHelpLabel: "Pour qui je travaille",
 homeWhoIHelpTag1: "Marque & design",
 homeWhoIHelp1: "Cafés, agences de voyage et marques de produits, en Tunisie et à l'étranger, dont l'image doit rester cohérente partout, d'Instagram à l'emballage.",
 homeWhoIHelpTag2: "Formation",
-homeWhoIHelp2: "ONG, réseaux jeunesse et programmes financés par des bailleurs, de la Tunisie au Maroc et au Qatar, qui veulent des formations qui changent les comportements et des résultats mesurables.",
+homeWhoIHelp2: "ONG, réseaux jeunesse et programmes financés par des bailleurs, en Tunisie et au Maroc, qui veulent des formations qui changent les comportements et des résultats mesurables.",
 homeWhoIHelpTag3: "Web",
 homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui ont dépassé la simple page Facebook et veulent un site rapide, pensé mobile, en arabe, français et anglais.",
   skillsAbilities: "Compétences & Capacités",
@@ -240,17 +240,17 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   // Testimonials
   clientFeedback: "Retours Clients",
   testimonials: "Témoignages",
-  testimonialsDesc: "Ce que disent mes collègues et clients sur le travail avec moi.",
+  testimonialsDesc: "Des mots gentils de ceux avec qui j'ai travaillé",
   testimonialTranslated: "Traduit",
   testimonialSource: "Recommandation LinkedIn",
-  testimonialsSubtitle: "Retours réels d'organisateurs, clients et collaborateurs en design, formation et leadership.",
+  testimonialsSubtitle: "Recommandations LinkedIn de coéquipiers, d'un ancien enseignant et d'un responsable de stage.",
   testimonialsSubtitleDesign: "De clients et collaborateurs en branding et identité visuelle.",
   testimonialsSubtitleTraining: "D'organisateurs et participants qui ont réservé des formations.",
   hudSwipeHint: "Glissez pour les détails du profil →",
   whatPeopleSay: "Ce que les gens disent",
   trustedByTrainees: "Apprécié par les stagiaires et organisations pour des ateliers et formations impactants.",
   trustedByOrgs: "Ils me font confiance dans le monde entier",
-  trustedAndCollaboratedWith: "Ils me font confiance et collaborent avec moi",
+  trustedAndCollaboratedWith: "Organisations avec lesquelles j'ai travaillé",
   collaboratedWithListPrefix: "Formation, facilitation ou design réalisés avec :",
   toolkitStripLabel: "Outils que j'utilise au quotidien",
   toolkitStripFullStackLink: "Voir la stack complète",
@@ -327,7 +327,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   footerService7: "Prompt engineering",
   availableForProjects: "Disponible pour projets",
   footerDesc:
-    "Designer graphique et formateur passionné avec plus de {{yearsN}} ans d'expérience. Spécialisé en création visuelle, formation et accompagnement professionnel.",
+    "Designer, formateur et développeur web en Tunisie. Identité de marque, ateliers et sites web en arabe, français et anglais.",
   newsletter: "Newsletter",
   newsletterDesc: "Restez informé de mes derniers projets et actualités.",
   subscribe: "S'inscrire",
@@ -349,11 +349,11 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
 
   // Budget Options
 
-  howICanHelpYou: "Comment je peux vous aider",
-  servicesTagline: "Du design à la formation au développement. Des solutions sur mesure pour vos objectifs.",
+  howICanHelpYou: "Services",
+  servicesTagline: "Trois métiers, avec des prix de départ sur chaque page.",
   bookFreeConsultationCta: "Réserver une consultation gratuite",
   getDesignInsights: "Actualités design & formation",
-  newsletterTagline: "Inscrivez-vous à ma newsletter pour des conseils, des actualités et du contenu exclusif. Pas de spam.",
+  newsletterTagline: "Un e-mail par mois avec un modèle ou un plan de séance. Pas de spam.",
   newsletterNoSpam: "Pas de spam. Désinscription à tout moment.",
   newsletterBenefit1: "Modèles de design gratuits",
   newsletterBenefit2: "Cadres de formation",
@@ -410,7 +410,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   myTrainingJourney: "Mon parcours de formateur",
   evolutionAsEducator: "Évolution en tant qu'éducateur",
   trainerJourneyIntro:
-    "De ma première session avec l'Association Youth Clubs en 2019 à la certification CNFCPP en 2024 et plus de 1 120 participants touchés en Tunisie, au Maroc et au Qatar, ce parcours s'est construit sur de vrais ateliers, pas de la théorie.",
+    "De ma première session avec l'Association Youth Clubs en 2019 à la certification CNFCPP en 2024 et plus de 1 120 participants touchés en Tunisie et au Maroc, ce parcours s'est construit sur de vrais ateliers, pas de la théorie.",
   requestTraining: "Demander une formation",
   readyToTransformLearning: "Prêt à transformer par l'apprentissage ?",
   requestTrainingDesc:
@@ -418,7 +418,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   trainerHeroTitle: "Formateur & Éducateur",
   trainerHeroSubtitle: "Développement des jeunes & Leadership",
   trainerHeroDescription:
-    "Formateur certifié CNFCPP, animant des ateliers pratiques sur le leadership, l'entrepreneuriat et l'employabilité, des maisons des jeunes en Tunisie aux camps internationaux au Maroc et au Qatar.",
+    "Formateur certifié CNFCPP, animant des ateliers pratiques sur le leadership, l'entrepreneuriat et l'employabilité, des maisons des jeunes en Tunisie à un camp international au Maroc.",
   trainingPortfolio: "Portfolio de formation",
   // Freebies / Insights
   "nav.freebies": "Ressources",
@@ -485,7 +485,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   "chatNudgeActionBehance": "Ouvrir Behance",
   "chatNudgeNewsletter": "Recevez des conseils design, formation et web, sans spam.",
   "chatNudgeActionNewsletter": "Voir la newsletter",
-  "chatNudgePortfolioSite": "Ce portfolio est en Next.js 15, TypeScript et Framer Motion, voir la page dev.",
+  "chatNudgePortfolioSite": "Ce portfolio est en Next.js 16, TypeScript et Framer Motion, voir la page dev.",
   "chatNudgeActionPortfolio": "Comment c'est construit",
   "resourcesStripEyebrow": "Apprendre & télécharger",
   "resourcesStripTitle": "Articles & ressources gratuites",
@@ -515,7 +515,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   "freebies.empty": "De nouvelles ressources arrivent bientôt.",
   "insights.title": "Articles",
   "insights.heroTitle": "Réflexions sur le design, la formation et le web.",
-  "insights.subtitle": "Conseils pratiques tirés de projets réels. Sans blabla.",
+  "insights.subtitle": "Notes tirées de projets clients et de salles de formation en Tunisie.",
   "insights.note": "Des articles sur le design, la formation et le développement, tirés de vrais projets en Tunisie. Nouveaux contenus ajoutés régulièrement.",
   "insights.readArticle": "Lire l'article",
   "insights.featured": "À la une",
@@ -710,8 +710,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   toolsGroupFrontend: "Frontend",
   toolsGroupBackend: "Backend & Infra",
   toolsGroupProductivity: "Productivité & Animation",
-  toolsStackHeadingCompact: "Stack technique que j'utilise",
-
+  toolsStackHeadingCompact: "Les outils que j'utilise",
   notFoundHeading: "Cette page s'est perdue.",
   notFoundDesc: "Lien erroné, page déplacée ou faute de frappe, elle n'est pas ici. Voici trois endroits qui le sont sûrement.",
   notFoundDesignLabel: "Design",
@@ -750,7 +749,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
 
   // Trainer page hero/CTA/timeline
   trainerHeroHeadline: "J'aide les ONG, les écoles et les programmes jeunesse financés par des bailleurs à mener des formations qui changent les comportements, avec des résultats mesurables.",
-  trainerHeroSubtitleRest: "participants formés en Tunisie, au Maroc et au Qatar. Formateur certifié CNFCPP en arabe, français et anglais. Une analyse des besoins en amont, des ateliers ou programmes multi-sessions, la formation de formateurs, et un rapport à la fin.",
+  trainerHeroSubtitleRest: "participants formés en Tunisie et au Maroc. Formateur certifié CNFCPP en arabe, français et anglais. Une analyse des besoins en amont, des ateliers ou programmes multi-sessions, la formation de formateurs, et un rapport à la fin.",
   trainerBtnBookWorkshop: "Réserver un atelier",
   trainerBtnFreeResources: "Obtenir des ressources de formation gratuites",
   trainerBtnViewPortfolio: "Voir le portfolio de formation",
@@ -867,7 +866,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   designerCaseStudiesLabel: "Études de cas",
   designerBrandsLabel: "Marques pour lesquelles j'ai créé",
   designerCaseStudiesHeading: "Une sélection de projets, avec leur contexte",
-  designerCaseStudiesIntro: "Problème, démarche et résultat pour chaque projet. Pas seulement des vignettes.",
+  designerCaseStudiesIntro: "Ce dont le client avait besoin, ce que j'ai conçu, ce qui s'est passé.",
   designerViewCaseStudy: "Voir l'étude de cas",
   designerProcessLabel: "Processus",
   designerProcessHeading: "Comment nous travaillons ensemble",
@@ -1099,7 +1098,7 @@ homeWhoIHelp3: "Entreprises et organisations, en Tunisie ou à l'étranger, qui 
   trainerImpactMapEyebrow: "Là où c'est arrivé",
   trainerImpactMapTitle: "Géographie de l'impact",
   trainerImpactMapDesc:
-    "Des événements de formation et de facilitation réels, cartographiés : les gouvernorats de Tunisie, un rayonnement international au Maroc et au Qatar, et des sessions données entièrement en ligne.",
+    "Des événements de formation et de facilitation réels, cartographiés : les gouvernorats de Tunisie, un camp de formation au Maroc, un hackathon au Qatar, et des sessions données entièrement en ligne.",
   mapLocTunis: "Tunis",
   mapExTunis: "Université Centrale, ISG Tunis, Cité des Sciences, TIMUN TBS, et plus",
   mapLocAriana: "Ariana",

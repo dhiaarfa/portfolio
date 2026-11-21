@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/html-escape"
 import type { Metadata } from "next"
 import Navbar from "@/components/navbar-new"
 import Footer from "@/components/footer"
@@ -14,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd("en")) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(aboutJsonLd("en")) }} />
       <Navbar />
       <main id="main-content">
         <AboutContent />

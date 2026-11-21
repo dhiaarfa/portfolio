@@ -197,7 +197,7 @@ export default function Navbar() {
                   there; otherwise the nav pill ran over the name. */}
               <div className={`hidden lg:block leading-tight shrink-0 ${language === "fr" ? "xl:max-2xl:hidden" : ""}`}>
                 <p className="font-display font-bold text-sm text-slate-900 dark:text-white leading-none whitespace-nowrap">{language === "ar" ? "ضياء" : "Dhia"}</p>
-                <p className="text-[10px] text-slate-500 dark:text-slate-300 tracking-widest uppercase font-medium mt-0.5 whitespace-nowrap">{t("navTagline")}</p>
+                <p className="text-[10px] text-slate-500 dark:text-slate-300 font-medium mt-0.5 whitespace-nowrap">{t("navTagline")}</p>
               </div>
             </Link>
           </motion.div>
@@ -408,7 +408,7 @@ export default function Navbar() {
             exit={{ opacity: 0, scale: 0.92 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
             style={{ transformOrigin: "top right" }}
-            className="fixed inset-0 z-40 bg-white dark:bg-background flex flex-col pt-[68px] overflow-y-auto xl:hidden"
+            className="fixed inset-0 z-40 bg-background flex flex-col pt-[68px] overflow-y-auto xl:hidden"
           >
             <nav aria-label="Menu" className="flex flex-col gap-1 px-4 py-4 flex-1">
               {navLinks.map((link) => {

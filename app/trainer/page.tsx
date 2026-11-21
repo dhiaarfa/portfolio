@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/html-escape"
 import { PERSON_ID } from "@/lib/identity"
 import type { Metadata } from "next"
 import TrainerClientPage from "./TrainerClientPage"
@@ -13,7 +14,7 @@ export const metadata: Metadata = pageMetadata({
   // <=60 chars (was 71).
   title: "Certified Youth Trainer in Tunisia | Mohamed Dhia Arfa",
   description:
-    `CNFCPP-certified trainer for NGOs, schools and donor-funded youth programmes. ${formatStat("participantsTrained")} participants in Tunisia, Morocco and Qatar, in Arabic, French and English.`,
+    `CNFCPP-certified trainer for NGOs, schools and donor-funded youth programmes. ${formatStat("participantsTrained")} participants in Tunisia and Morocco, in Arabic, French and English.`,
   keywords: ["trainer", "CNFCPP certified", "youth development", "leadership training", "Tunisia", "facilitation", "non-formal education", "train the trainer"],
   openGraph: {
     title: "Trainings that change behaviour · Mohamed Dhia Arfa",
@@ -59,7 +60,7 @@ const jsonLd = {
 export default function TrainerPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <TrainerClientPage />
     </>
   )

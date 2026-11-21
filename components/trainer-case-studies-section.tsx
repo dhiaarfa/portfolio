@@ -53,7 +53,7 @@ export default function TrainerCaseStudiesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08 }}
               viewport={{ once: true }}
-              className="overflow-hidden rounded-[28px] border border-border bg-background"
+              className="overflow-hidden tactile tactile-hover rounded-[28px] border border-border bg-background"
             >
               <div className="relative aspect-[16/10] bg-black">
                 <Image src={study.image} alt={t(study.titleKey)} fill className="object-cover" sizes="(max-width:1024px) 100vw, 50vw" />

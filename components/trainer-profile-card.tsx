@@ -43,9 +43,9 @@ const ROWS = [
     Icon: MapPin,
     label: { en: "Delivered in", fr: "Interventions", ar: "أماكن التنفيذ" },
     value: {
-      en: "Tunisia, Morocco, Qatar, online",
-      fr: "Tunisie, Maroc, Qatar, en ligne",
-      ar: "تونس، المغرب، قطر، عن بعد",
+      en: "Tunisia, Morocco, online",
+      fr: "Tunisie, Maroc, en ligne",
+      ar: "تونس، المغرب، عن بعد",
     },
   },
   {
@@ -69,14 +69,14 @@ export default function TrainerProfileCard() {
 
   return (
     <section aria-labelledby="trainer-profile-heading" className="w-full px-4 pt-10 md:px-8">
-      <div className="mx-auto max-w-5xl rounded-2xl border border-border bg-card p-6 md:p-8">
+      <div className="tactile tactile-hover mx-auto max-w-5xl rounded-2xl border border-border bg-card p-6 md:p-8">
         <h2 id="trainer-profile-heading" className="label mb-5">
           {heading}
         </h2>
         <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
           {ROWS.map(({ Icon, label, value }) => (
             <div key={label.en}>
-              <dt className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <dt className="flex items-center gap-3 text-xs font-semibold text-muted-foreground">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-subtle text-accent" aria-hidden>
                   <Icon className="h-4 w-4" />
                 </span>

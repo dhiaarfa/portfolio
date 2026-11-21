@@ -77,7 +77,7 @@ export default function ServicePackages({ pillar }: Props = {}) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="card-base card-brand flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-5 sm:p-6 cursor-default"
+              className="tactile tactile-hover card-base card-brand flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-5 sm:p-6 cursor-default"
             >
               {/* Icon + copy stay their own row on every size; the CTA used
                   to sit in this same row, which is fine at sm:+ width but on
